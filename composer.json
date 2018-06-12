@@ -20,7 +20,8 @@
         "doctrine/common": "2.7.2",
         "doctrine/inflector": "1.1.0",
         "drupal/sendgrid_integration": "^1.1",
-        "drupal/recaptcha": "^2.3"
+        "drupal/recaptcha": "^2.3",
+        "drupal/r4032login": "1.x-dev"
     },
     "repositories": [
         {
