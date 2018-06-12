@@ -3282,8 +3282,7 @@
             "homepage": "https://www.drupal.org/project/r4032login",
             "support": {
                 "source": "http://cgit.drupalcode.org/r4032login"
-            },
-            "time": "2018-06-06T13:42:09+00:00"
+            }
         },
         {
             "name": "drupal/recaptcha",
