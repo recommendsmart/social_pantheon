@@ -32,10 +32,14 @@
     ],
     "scripts": {
       "post-install-cmd": [
-        "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
+        "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+		"DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
+		"DrupalProject\\composer\\ScriptHandler::removeGitDirectories"
       ],
       "post-update-cmd": [
-        "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
+        "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+		"DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
+		"DrupalProject\\composer\\ScriptHandler::removeGitDirectories"
       ]
     },
     "extra": {
