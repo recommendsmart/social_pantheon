@@ -64,7 +64,6 @@ class ComposerStaticInitDrupal8
             'Symfony\\Cmf\\Component\\Routing\\' => 30,
             'Symfony\\Bridge\\PsrHttpMessage\\' => 30,
             'Social\\' => 7,
-            'SendGrid\\' => 9,
         ),
         'P' => 
         array (
@@ -245,10 +244,6 @@ class ComposerStaticInitDrupal8
         array (
             0 => __DIR__ . '/../..' . '/profiles/contrib/social/src',
         ),
-        'SendGrid\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/fastglass/sendgrid/src',
-        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
@@ -406,10 +401,6 @@ class ComposerStaticInitDrupal8
             'Stack' => 
             array (
                 0 => __DIR__ . '/..' . '/stack/builder/src',
-            ),
-            'Smtpapi' => 
-            array (
-                0 => __DIR__ . '/..' . '/sendgrid/smtpapi/lib',
             ),
         ),
         'G' => 

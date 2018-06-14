@@ -23,7 +23,7 @@
     "test": "./node_modules/.bin/grunt travis"
   },
   "dependencies": {
-    "jquery": "~> 3.0.0",
+    "jquery": "^2.2.3",
     "respond.js": "^1.4.2",
     "shoestring": "^1.0.3"
   },
