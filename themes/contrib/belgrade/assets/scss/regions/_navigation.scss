@@ -1,0 +1,50 @@
+//
+// Navigation
+// --------------------------------------------------
+
+.region-navigation{
+  text-align: center;
+  
+
+  // home link
+  a[data-drupal-link-system-path="<front>"]{
+    @extend .text-hide;
+    width: 270px;
+    height: 42px;
+    margin: 70px auto;
+    padding: 0;
+    background: url("../../logo-inverted.svg") no-repeat center;
+  }
+
+  .menu-main{
+    // general styles
+    &__item{
+      width: 100%;
+    }
+    &__link{
+      color: white;
+      padding: $main-menu-link-padding;
+      font-size: $main-menu-font-size;
+    }
+  }
+
+  // Responsive styles
+  @media screen and (min-width: $screen-sm) {
+    padding-right: 30px;
+    text-align: left;
+    a[data-drupal-link-system-path="<front>"]{
+      margin: 70px 15px;
+    }
+  }
+
+  // Using bootstrap defined containers adjust left spacing
+  @media screen and (min-width: $screen-sm) {
+    padding-left: calc((100vw - #{$container-sm}) / 2);
+  }
+  @media screen and (min-width: $screen-md) {
+    padding-left: calc((100vw - #{$container-md}) / 2);
+  }
+  @media screen and (min-width: $screen-lg) {
+    padding-left: calc((100vw - #{$container-lg}) / 2);
+  }
+}

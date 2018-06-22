@@ -1,0 +1,54 @@
+.checkout-progress{
+  margin-bottom: 60px;
+  padding: 0;
+  color: $brand-primary;
+  text-align: center;
+}
+
+.checkout-progress--step{
+  position: relative;
+  display: inline-block;
+  margin: 0 .5em;
+  padding-top: 57px;
+  padding-right: 0;
+  min-width: 200px;
+  // background images
+  background-image: url('../images/note.svg');
+  background-position: top center;
+  background-size: 42px 42px;
+  background-repeat: no-repeat;
+  font-weight: bold;
+  opacity: .4;
+
+  // before and after elements are used, background remained as only option
+  &:first-child{
+    background-image: url('../images/info.svg');
+  }
+  &:last-child{
+    background-image: url('../images/gift.svg');
+  }
+
+  &:before {
+    content: "Step " counter(checkout-progress) " | ";
+    counter-increment: checkout-progress;
+  }
+
+}
+
+
+.checkout-progress--step__previous,
+.checkout-progress--step__current{
+  opacity: 1;
+}
+
+.checkout-progress--step__previous{
+  &:after{
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    margin-left: 12px;
+
+    @extend .glyph:before;
+    @extend .glyph-checked-rounded:before;
+  }
+}

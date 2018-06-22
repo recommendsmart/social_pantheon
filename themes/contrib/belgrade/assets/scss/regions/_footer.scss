@@ -1,0 +1,82 @@
+//
+// Footer
+// --------------------------------------------------
+
+.footer {
+  margin-top: 45px;
+  padding-top: 60px;
+  padding-bottom: 70px;
+  background-color: $footer-bg;
+  color: $footer-color;
+  text-transform: uppercase;
+
+  // Branding
+  &--logo {
+    display: block;
+    width: 45px;
+    margin: 10px auto;
+    @media screen and (min-width: $screen-sm) {
+      margin: 10px 0;
+    }
+  }
+
+  // Footer content
+  &--contents {
+    text-align: center;
+    // social menu title
+    h2 {
+      font-size: 18px;
+      text-transform: uppercase;
+      margin: 8px 0 15px;
+    }
+    @media screen and (min-width: $screen-sm) {
+      display: flex;
+      text-align: left;
+      > nav {
+        margin-left: 13%;
+        &:last-child {
+          margin-left: auto;
+        }
+      }
+    }
+  }
+
+  // Navigation
+  .menu{
+    // General menu elements
+    a {
+      font-size: 18px;
+      color: $footer-link-color;
+    }
+    // overrides for mobile
+    @media screen and (max-width: $screen-xs-max) {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+      &-catalog-menu{
+        &__item{
+          width: 100%;
+        }
+      }
+    }
+
+    // Footer middle menu
+    &-footer {
+      text-transform: none;
+    }
+    // Social menu
+    &-social {
+      &__item {
+        display: inline-block;
+        margin: 0 7px;
+        @media screen and (min-width: $screen-sm) {
+          &:first-child {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
