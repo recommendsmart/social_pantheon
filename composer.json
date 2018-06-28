@@ -23,7 +23,8 @@
 		"drupal/commerce_demo":"^1.0",
         "drupal/blizz_dynamic_entitylist": "^2.34",
         "drupal/belgrade": "^1.0@beta",
-        "drupal/switch_page_theme": "^1.0"
+        "drupal/switch_page_theme": "^1.0",
+        "drupal/social_pwa": "1.x-dev"
     },
     "repositories": [
         {

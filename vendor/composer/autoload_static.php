@@ -15,8 +15,10 @@ class ComposerStaticInitDrupal8
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
+        'a4ecaeafb8cfb009ad0e052c90355e98' => __DIR__ . '/..' . '/beberlei/assert/lib/Assert/functions.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'ddc0a4d7e61c0286f0f8593b1903e894' => __DIR__ . '/..' . '/clue/stream-filter/src/functions.php',
+        '04c6c5c2f7095ccf6c481d3e53e1776f' => __DIR__ . '/..' . '/mustangostang/spyc/Spyc.php',
         '8cff32064859f4559445b89279f3199c' => __DIR__ . '/..' . '/php-http/message/src/filters.php',
         'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
         'c65d09b6820da036953a371c8c73a9b1' => __DIR__ . '/..' . '/facebook/graph-sdk/src/Facebook/polyfills.php',
@@ -79,11 +81,17 @@ class ComposerStaticInitDrupal8
         'M' => 
         array (
             'Monolog\\' => 8,
+            'Minishlink\\WebPush\\' => 19,
+            'Mdanter\\Ecc\\' => 12,
             'Masterminds\\' => 12,
         ),
         'L' => 
         array (
             'League\\Csv\\' => 11,
+        ),
+        'J' => 
+        array (
+            'Jose\\' => 5,
         ),
         'H' => 
         array (
@@ -106,6 +114,7 @@ class ComposerStaticInitDrupal8
         array (
             'Firebase\\JWT\\' => 13,
             'Facebook\\' => 9,
+            'FG\\' => 3,
         ),
         'E' => 
         array (
@@ -120,6 +129,7 @@ class ComposerStaticInitDrupal8
             'Doctrine\\Common\\Cache\\' => 22,
             'Doctrine\\Common\\Annotations\\' => 28,
             'Doctrine\\Common\\' => 16,
+            'DeviceDetector\\' => 15,
         ),
         'C' => 
         array (
@@ -129,10 +139,17 @@ class ComposerStaticInitDrupal8
             'CommerceGuys\\Addressing\\' => 24,
             'Clue\\StreamFilter\\' => 18,
         ),
+        'B' => 
+        array (
+            'Base64Url\\' => 10,
+        ),
         'A' => 
         array (
+            'Assert\\' => 7,
             'Asm89\\Stack\\' => 12,
             'Abraham\\TwitterOAuth\\' => 21,
+            'AESKW\\' => 6,
+            'AESGCM\\' => 7,
         ),
     );
 
@@ -269,6 +286,14 @@ class ComposerStaticInitDrupal8
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'Minishlink\\WebPush\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/minishlink/web-push/src',
+        ),
+        'Mdanter\\Ecc\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mdanter/ecc/src',
+        ),
         'Masterminds\\' => 
         array (
             0 => __DIR__ . '/..' . '/masterminds/html5/src',
@@ -276,6 +301,10 @@ class ComposerStaticInitDrupal8
         'League\\Csv\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/csv/src',
+        ),
+        'Jose\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spomky-labs/jose/src',
         ),
         'Http\\Promise\\' => 
         array (
@@ -331,6 +360,10 @@ class ComposerStaticInitDrupal8
         array (
             0 => __DIR__ . '/..' . '/facebook/graph-sdk/src/Facebook',
         ),
+        'FG\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/fgrosse/phpasn1/lib',
+        ),
         'Embed\\' => 
         array (
             0 => __DIR__ . '/..' . '/embed/embed/src',
@@ -363,6 +396,10 @@ class ComposerStaticInitDrupal8
         array (
             0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
         ),
+        'DeviceDetector\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/piwik/device-detector',
+        ),
         'Composer\\Semver\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/semver/src',
@@ -383,6 +420,14 @@ class ComposerStaticInitDrupal8
         array (
             0 => __DIR__ . '/..' . '/clue/stream-filter/src',
         ),
+        'Base64Url\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spomky-labs/base64url/src',
+        ),
+        'Assert\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/beberlei/assert/lib/Assert',
+        ),
         'Asm89\\Stack\\' => 
         array (
             0 => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack',
@@ -390,6 +435,14 @@ class ComposerStaticInitDrupal8
         'Abraham\\TwitterOAuth\\' => 
         array (
             0 => __DIR__ . '/..' . '/abraham/twitteroauth/src',
+        ),
+        'AESKW\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spomky-labs/aes-key-wrap/src',
+        ),
+        'AESGCM\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spomky-labs/php-aes-gcm/src',
         ),
     );
 
