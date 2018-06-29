@@ -10,7 +10,7 @@ namespace Drupal\url_embed;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Embed\Embed;
 use Drupal\Core\Cache\Cache;
-use Drupal\Core\Cache\DatabaseBackend;
+use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Component\Datetime\TimeInterface;
 
 /**
@@ -20,9 +20,9 @@ class UrlEmbed implements UrlEmbedInterface {
   use UrlEmbedHelperTrait;
 
   /**
-   * Drupal\Core\Cache\DatabaseBackend definition.
+   * Drupal\Core\Cache\CacheBackendInterface definition.
    *
-   * @var \Drupal\Core\Cache\DatabaseBackend
+   * @var \Drupal\Core\Cache\CacheBackendInterface
    */
   protected $cacheBackend;
 
@@ -48,7 +48,7 @@ class UrlEmbed implements UrlEmbedInterface {
   /**
    * @{inheritdoc}
    */
-  public function __construct(DatabaseBackend $cache_backend, TimeInterface $time, ConfigFactoryInterface $config_factory, array $config = []) {
+  public function __construct(CacheBackendInterface $cache_backend, TimeInterface $time, ConfigFactoryInterface $config_factory, array $config = []) {
     $this->config = $config;
     $this->cacheBackend = $cache_backend;
     $this->time = $time;
