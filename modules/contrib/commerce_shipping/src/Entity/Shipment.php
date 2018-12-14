@@ -21,6 +21,7 @@ use Drupal\profile\Entity\ProfileInterface;
  * @ContentEntityType(
  *   id = "commerce_shipment",
  *   label = @Translation("Shipment"),
+ *   label_collection = @Translation("Shipments"),
  *   label_singular = @Translation("shipment"),
  *   label_plural = @Translation("shipments"),
  *   label_count = @PluralTranslation(
@@ -71,6 +72,7 @@ class Shipment extends ContentEntityBase implements ShipmentInterface {
         $this->setData($field_name, $value);
       }
     }
+    $this->prepareFields();
     // @todo Reset the shipping method/service/amount if the items changed.
   }
 
@@ -347,17 +349,23 @@ class Shipment extends ContentEntityBase implements ShipmentInterface {
   public function preSave(EntityStorageInterface $storage) {
     parent::preSave($storage);
 
-    if (empty($this->getPackageType()) && !empty($this->getShippingMethodId())) {
-      $default_package_type = $this->getShippingMethod()->getPlugin()->getDefaultPackageType();
-      $this->set('package_type', $default_package_type->getId());
-    }
-    $this->recalculateWeight();
-
+    $this->prepareFields();
     foreach (['order_id', 'items'] as $field) {
       if ($this->get($field)->isEmpty()) {
         throw new EntityMalformedException(sprintf('Required shipment field "%s" is empty.', $field));
       }
     }
+  }
+
+  /**
+   * Ensures that the package_type and weight fields are populated.
+   */
+  protected function prepareFields() {
+    if (empty($this->getPackageType()) && !empty($this->getShippingMethodId())) {
+      $default_package_type = $this->getShippingMethod()->getPlugin()->getDefaultPackageType();
+      $this->set('package_type', $default_package_type->getId());
+    }
+    $this->recalculateWeight();
   }
 
   /**

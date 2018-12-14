@@ -2,8 +2,8 @@
 
 namespace Drupal\commerce_shipping\Plugin\Commerce\EntityTrait;
 
-use Drupal\commerce\BundleFieldDefinition;
 use Drupal\commerce\Plugin\Commerce\EntityTrait\EntityTraitBase;
+use Drupal\entity\BundleFieldDefinition;
 
 /**
  * Provides the "purchasable_entity_dimensions" trait.

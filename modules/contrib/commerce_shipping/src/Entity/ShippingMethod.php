@@ -14,6 +14,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
  * @ContentEntityType(
  *   id = "commerce_shipping_method",
  *   label = @Translation("Shipping method"),
+ *   label_collection = @Translation("Shipping methods"),
  *   label_singular = @Translation("shipping method"),
  *   label_plural = @Translation("shipping methods"),
  *   label_count = @PluralTranslation(
@@ -22,8 +23,8 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *   ),
  *   handlers = {
  *     "storage" = "Drupal\commerce_shipping\ShippingMethodStorage",
- *     "access" = "Drupal\commerce\EntityAccessControlHandler",
- *     "permission_provider" = "Drupal\commerce\EntityPermissionProvider",
+ *     "access" = "Drupal\entity\EntityAccessControlHandler",
+ *     "permission_provider" = "Drupal\entity\EntityPermissionProvider",
  *     "list_builder" = "Drupal\commerce_shipping\ShippingMethodListBuilder",
  *     "form" = {
  *       "default" = "Drupal\commerce_shipping\Form\ShippingMethodForm",
@@ -32,7 +33,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm"
  *     },
  *     "route_provider" = {
- *       "default" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
+ *       "default" = "Drupal\entity\Routing\AdminHtmlRouteProvider",
  *     },
  *     "translation" = "Drupal\content_translation\ContentTranslationHandler"
  *   },

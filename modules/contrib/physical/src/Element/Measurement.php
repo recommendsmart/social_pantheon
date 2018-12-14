@@ -131,6 +131,7 @@ class Measurement extends FormElement {
         '#options' => $units,
         '#default_value' => $default_value ? $default_value['unit'] : $unit_class::getBaseUnit(),
         '#title_display' => 'invisible',
+        '#field_suffix' => '',
       ];
     }
 

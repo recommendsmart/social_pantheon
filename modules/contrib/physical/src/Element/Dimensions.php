@@ -140,6 +140,7 @@ class Dimensions extends FormElement {
         '#options' => $units,
         '#default_value' => $default_value ? $default_value['unit'] : LengthUnit::getBaseUnit(),
         '#title_display' => 'invisible',
+        '#field_suffix' => '',
       ];
     }
 

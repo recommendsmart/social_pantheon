@@ -2,7 +2,6 @@
 
 namespace Drupal\commerce_shipping\EventSubscriber;
 
-use Drupal\commerce\Event\CommerceEvents;
 use Drupal\commerce\Event\ReferenceablePluginTypesEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -13,7 +12,7 @@ class ReferenceablePluginTypesSubscriber implements EventSubscriberInterface {
    */
   public static function getSubscribedEvents() {
     return [
-      CommerceEvents::REFERENCEABLE_PLUGIN_TYPES => 'onPluginTypes',
+      'commerce.referenceable_plugin_types' => 'onPluginTypes',
     ];
   }
 

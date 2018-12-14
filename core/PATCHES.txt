@@ -6,18 +6,14 @@ Source: https://www.drupal.org/files/issues/color-optional-html-preview-2844190-
 
 
 Restrict images to this site blocks image style derivatives
-Source: https://www.drupal.org/files/issues/image_restrict_image_styles-2528214-24.patch
+Source: https://www.drupal.org/files/issues/2018-10-26/2528214-47.patch
 
 
 Fix SQL error when importing translations
-Source: https://www.drupal.org/files/issues/2599228-31.patch
+Source: https://www.drupal.org/files/issues/2018-10-01/2599228-SQL_error_on_content_creation-78_0.patch
 
 
 Optimize getCommentedEntity()
 Source: https://www.drupal.org/files/issues/get-commented-entity-2580551.52.patch
-
-
-ajax.js insert command sometimes wraps content in a div
-Source: https://www.drupal.org/files/issues/2018-03-14/736066-296-328.patch
 
 

@@ -13,8 +13,7 @@ use Drupal\physical\MeasurementType;
  *
  * @CommerceCondition(
  *   id = "shipment_weight",
- *   label = @Translation("Weight"),
- *   display_label = @Translation("Limit by shipment weight"),
+ *   label = @Translation("Shipment weight"),
  *   category = @Translation("Shipment"),
  *   entity_type = "commerce_shipment",
  * )

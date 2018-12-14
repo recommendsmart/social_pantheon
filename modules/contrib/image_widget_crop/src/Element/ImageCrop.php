@@ -217,7 +217,22 @@ class ImageCrop extends FormElement {
               // Define properties according to dimensions and ratio.
               $height = $image->getHeight();
               $width = $image->getWidth();
+
+              // We use the crop aspect ratio to figure out which edge will be
+              // scaled down.
+              $constant_width = FALSE;
+
+              // If it's a wide crop then we use the image width.
               if ($width_ratio > $height_ratio) {
+                $constant_width = TRUE;
+              }
+              // For square crops we need to use the original image width and
+              // height as guidelines for which side to cut off.
+              elseif ($width_ratio === $height_ratio) {
+                $constant_width = $width <= $height;
+              }
+
+              if ($constant_width) {
                 $properties['width'] = $width;
                 $properties['height'] = $width * $height_ratio / $width_ratio;
                 $properties['x'] = 0;

@@ -14,18 +14,19 @@
         "composer/installers": "^1.0",
         "drupal-composer/drupal-scaffold": "^2.0.0",
         "cweagans/composer-patches": "^1.0",
-		"goalgorilla/open_social": "^2.0",
         "doctrine/cache": "1.6.1",
         "doctrine/collections": "1.4.0",
         "doctrine/common": "2.7.2",
         "doctrine/inflector": "1.1.0",
         "drupal/easy_install": "^10.1",
-		"drupal/commerce_demo":"^1.0",
-        "drupal/blizz_dynamic_entitylist": "^2.34",
-        "drupal/belgrade": "^1.0@beta",
+		"drupal/blizz_dynamic_entitylist": "^2.34",
         "drupal/switch_page_theme": "^1.0",
-        "drupal/social_pwa": "1.x-dev"
-    },
+        "drupal/social_pwa": "1.x-dev",
+        "drupal/bootstrap": "3.15",
+        "goalgorilla/open_social": "^4.1",
+        "drupal/commerce_demo": "^1.0",
+        "drupal/belgrade": "^1.0@beta"
+        },
     "repositories": [
         {
             "type": "composer",

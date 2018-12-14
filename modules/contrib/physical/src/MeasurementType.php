@@ -9,6 +9,7 @@ final class MeasurementType {
 
   const AREA = 'area';
   const LENGTH = 'length';
+  const TEMPERATURE = 'temperature';
   const VOLUME = 'volume';
   const WEIGHT = 'weight';
 
@@ -22,6 +23,7 @@ final class MeasurementType {
     return [
       self::AREA => t('Area'),
       self::LENGTH => t('Length'),
+      self::TEMPERATURE => t('Temperature'),
       self::VOLUME => t('Volume'),
       self::WEIGHT => t('Weight'),
     ];
@@ -41,6 +43,7 @@ final class MeasurementType {
     $classes = [
       self::AREA => Area::class,
       self::LENGTH => Length::class,
+      self::TEMPERATURE => Temperature::class,
       self::VOLUME => Volume::class,
       self::WEIGHT => Weight::class,
     ];
@@ -62,6 +65,7 @@ final class MeasurementType {
     $classes = [
       self::AREA => AreaUnit::class,
       self::LENGTH => LengthUnit::class,
+      self::TEMPERATURE => TemperatureUnit::class,
       self::VOLUME => VolumeUnit::class,
       self::WEIGHT => WeightUnit::class,
     ];
@@ -79,7 +83,7 @@ final class MeasurementType {
    */
   public static function assertExists($type) {
     $allowed_types = [
-      self::AREA, self::LENGTH, self::VOLUME, self::WEIGHT,
+      self::AREA, self::LENGTH, self::TEMPERATURE, self::VOLUME, self::WEIGHT,
     ];
     if (!in_array($type, $allowed_types)) {
       throw new \InvalidArgumentException(sprintf('Invalid measurement type "%s" provided.', $type));

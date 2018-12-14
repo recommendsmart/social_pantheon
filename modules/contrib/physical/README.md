@@ -5,6 +5,7 @@ Provides an API for storing and manipulating physical measurements.
 Supported measurement types:
 - Area
 - Length
+- Temperature
 - Volume
 - Weight
 

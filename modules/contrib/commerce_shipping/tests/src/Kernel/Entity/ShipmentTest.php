@@ -237,10 +237,11 @@ class ShipmentTest extends CommerceKernelTestBase {
     $shipment->populateFromProposedShipment($proposed_shipment);
 
     $this->assertEquals($proposed_shipment->getOrderId(), $shipment->getOrderId());
+    $this->assertEquals($proposed_shipment->getPackageTypeId(), $shipment->getPackageType()->getId());
     $this->assertEquals($profile, $shipment->getShippingProfile());
     $this->assertEquals($proposed_shipment->getTitle(), $shipment->getTitle());
     $this->assertEquals($proposed_shipment->getItems(), $shipment->getItems());
-    $this->assertEquals($proposed_shipment->getPackageTypeId(), $shipment->getPackageType()->getId());
+    $this->assertEquals(new Weight('10', 'kg'), $shipment->getWeight());
     $this->assertEquals('ready', $shipment->getState()->value);
     $this->assertEquals('custom_value', $shipment->getData('no_field'));
   }

@@ -13,13 +13,22 @@ interface NumberFormatterInterface {
   /**
    * Formats the given number for the current language.
    *
+   * Supported options:
+   * - use_grouping:            Whether to use grouping separators,
+   *                            such as thousands separators.
+   *                            Default: true.
+   * - minimum_fraction_digits: Minimum fraction digits. Default: 0.
+   * - maximum_fraction_digits: Minimum fraction digits. Default: 6.
+   *
    * @param string $number
    *   The number.
+   * @param array $options
+   *   The formatting options.
    *
    * @return string
    *   The formatted number.
    */
-  public function format($number);
+  public function format($number, array $options = []);
 
   /**
    * Parses the given number.

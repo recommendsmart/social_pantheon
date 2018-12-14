@@ -25,8 +25,6 @@ var sassConfig = config.tasks.css.sassConfig;
 
 gulp.task('watch', ['css'], function() {
 
-  browserSync.init(browserSyncConfig); // Initialize BrowserSync Server
-
   gulp.watch(scssSrc, ['css:devBrowserSync']); // Compile SCSS to CSS
   // watch twig templates for chages
   gulp.watch("./templates/**/*.html.twig").on('change', browserSync.reload);

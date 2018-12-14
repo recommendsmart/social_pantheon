@@ -14,17 +14,38 @@ use Drupal\social_post\Entity\Post;
 class SocialGroupHelperService {
 
   /**
-   * Constructor.
+   * A cache of groups that have been matched to entities.
+   *
+   * @var array
    */
-  public function __construct() {
-
-  }
+  protected $cache;
 
   /**
    * Returns a group id from a entity (post, node).
+   *
+   * @param array $entity
+   *   The entity in the form of an entity reference array to get the group for.
+   * @param bool $read_cache
+   *   Whether the per request cache should be used. This should only be
+   *   disabled if you know that the group for the entity has changed because
+   *   disabling this can have serious performance implications. Setting this to
+   *   FALSE will update the cache for subsequent calls.
+   *
+   * @return \Drupal\group\Entity\GroupInterface|null
+   *   The group that this entity belongs to or NULL if the entity doesn't
+   *   belong to any group.
    */
-  public static function getGroupFromEntity($entity) {
+  public function getGroupFromEntity(array $entity, $read_cache = TRUE) {
     $gid = NULL;
+
+    // Comments can have groups based on what the comment is posted on so the
+    // cache type differs from what we later use to fetch the group.
+    $cache_type = $entity['target_type'];
+    $cache_id = $entity['target_id'];
+
+    if ($read_cache && is_array($this->cache[$cache_type]) && isset($this->cache[$cache_type][$cache_id])) {
+      return $this->cache[$cache_type][$cache_id];
+    }
 
     // Special cases for comments.
     // Returns the entity to which the comment is attached.
@@ -57,7 +78,48 @@ class SocialGroupHelperService {
         }
       }
     }
+
+    // Cache the group id for this entity to optimise future calls.
+    $this->cache[$cache_type][$cache_id] = $gid;
+
     return $gid;
+  }
+
+  /**
+   * Returns the default visibility.
+   *
+   * @param string $type
+   *   The Group Type.
+   *
+   * @return string|null
+   *   The default visibility.
+   */
+  public static function getDefaultGroupVisibility($type) {
+    $visibility = &drupal_static(__FUNCTION__ . $type);
+
+    if (empty($visibility)) {
+      switch ($type) {
+        case 'closed_group':
+          $visibility = 'group';
+          break;
+
+        case 'open_group':
+          $visibility = 'community';
+          break;
+
+        case 'public_group':
+          $visibility = 'public';
+          break;
+
+        default:
+          $visibility = NULL;
+      }
+
+      \Drupal::moduleHandler()
+        ->alter('social_group_default_visibility', $visibility, $type);
+    }
+
+    return $visibility;
   }
 
 }

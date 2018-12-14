@@ -117,7 +117,7 @@ class PrivateMessageMapper implements PrivateMessageMapperInterface {
       $vars[':timestamp'] = $timestamp;
     }
 
-    $query .= 'GROUP BY thread.id ORDER BY MAX(thread.updated) ASC, thread.id';
+    $query .= 'GROUP BY thread.id ORDER BY MAX(thread.updated) DESC, thread.id';
 
     $thread_ids = $this->database->queryRange(
       $query,

@@ -12,8 +12,10 @@ theme:
     - belgrade/fonts
 
 custom-form-elements:
-    js:
-      'assets/js/custom_form_elements.js': { }
+  js:
+    'assets/js/custom_form_elements.js': { }
+  dependencies:
+    - core/drupal
 
 commerce.product-images:
     js:

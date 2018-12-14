@@ -13,9 +13,9 @@ use Drupal\Core\Form\FormStateInterface;
  * @CommerceCondition(
  *   id = "shipment_address",
  *   label = @Translation("Shipping address"),
- *   display_label = @Translation("Limit by shipping address"),
  *   category = @Translation("Customer"),
  *   entity_type = "commerce_shipment",
+ *   weight = 10,
  * )
  */
 class ShipmentAddress extends ConditionBase {
@@ -71,6 +71,10 @@ class ShipmentAddress extends ConditionBase {
     $shipment = $entity;
     $shipping_profile = $shipment->getShippingProfile();
     if (!$shipping_profile) {
+      return FALSE;
+    }
+    $address = $shipping_profile->get('address')->first();
+    if (!$address) {
       // The conditions can't be applied until the shipping address is known.
       return FALSE;
     }
@@ -78,7 +82,6 @@ class ShipmentAddress extends ConditionBase {
       'id' => 'shipping',
       'label' => 'N/A',
     ] + $this->configuration['zone']);
-    $address = $shipping_profile->get('address')->first();
 
     return $zone->match($address);
   }

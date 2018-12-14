@@ -38,11 +38,13 @@
           item.is_expanded and menu_level == 0 ? 'dropdown',
           item.in_active_trail ? 'active',
           'menu-' ~ menu_name|clean_class ~ '__item',
+          'menu__item',
         ]
       %}
       {%
         set link_classes = [
           'menu-' ~ menu_name|clean_class ~ '__link',
+          'menu__link',
         ]
       %}
       {% if menu_level == 0 and item.is_expanded %}

@@ -7,6 +7,7 @@ namespace Drupal\physical;
  */
 final class WeightUnit implements UnitInterface {
 
+  const MILLIGRAM = 'mg';
   const GRAM = 'g';
   const KILOGRAM = 'kg';
   const OUNCE = 'oz';
@@ -17,6 +18,7 @@ final class WeightUnit implements UnitInterface {
    */
   public static function getLabels() {
     return [
+      self::MILLIGRAM => t('mg'),
       self::GRAM => t('g'),
       self::KILOGRAM => t('kg'),
       self::OUNCE => t('oz'),
@@ -37,6 +39,7 @@ final class WeightUnit implements UnitInterface {
   public static function getBaseFactor($unit) {
     self::assertExists($unit);
     $factors = [
+      self::MILLIGRAM => '0.000001',
       self::GRAM => '0.001',
       self::KILOGRAM => '1',
       self::OUNCE => '0.028349523125',
@@ -51,7 +54,7 @@ final class WeightUnit implements UnitInterface {
    */
   public static function assertExists($unit) {
     $allowed_units = [
-      self::GRAM, self::KILOGRAM, self::OUNCE, self::POUND,
+      self::MILLIGRAM, self::GRAM, self::KILOGRAM, self::OUNCE, self::POUND,
     ];
     if (!in_array($unit, $allowed_units)) {
       throw new \InvalidArgumentException(sprintf('Invalid weight unit "%s" provided.', $unit));

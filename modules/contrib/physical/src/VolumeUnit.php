@@ -9,6 +9,7 @@ final class VolumeUnit implements UnitInterface {
 
   const MILLILITER = 'ml';
   const CENTILITER = 'cl';
+  const DECILITER = 'dl';
   const LITER = 'l';
   const CUBIC_MILLIMETER = 'mm3';
   const CUBIC_CENTIMETER = 'cm3';
@@ -25,6 +26,7 @@ final class VolumeUnit implements UnitInterface {
     return [
       self::MILLILITER => t('ml'),
       self::CENTILITER => t('cl'),
+      self::DECILITER => t('dl'),
       self::LITER => t('l'),
       self::CUBIC_MILLIMETER => t('mm³'),
       self::CUBIC_CENTIMETER => t('cm³'),
@@ -51,6 +53,7 @@ final class VolumeUnit implements UnitInterface {
     $factors = [
       self::MILLILITER => '0.000001',
       self::CENTILITER => '0.00001',
+      self::DECILITER => '0.0001',
       self::LITER => '0.001',
       self::CUBIC_MILLIMETER => '0.000000001',
       self::CUBIC_CENTIMETER => '0.000001',
@@ -69,9 +72,9 @@ final class VolumeUnit implements UnitInterface {
    */
   public static function assertExists($unit) {
     $allowed_units = [
-      self::MILLILITER, self::CENTILITER, self::LITER, self::CUBIC_MILLIMETER,
-      self::CUBIC_CENTIMETER, self::CUBIC_METER, self::CUBIC_INCH,
-      self::CUBIC_FOOT, self::FLUID_OUNCE, self::US_GALLON,
+      self::MILLILITER, self::CENTILITER, self::DECILITER, self::LITER,
+      self::CUBIC_MILLIMETER, self::CUBIC_CENTIMETER, self::CUBIC_METER,
+      self::CUBIC_INCH, self::CUBIC_FOOT, self::FLUID_OUNCE, self::US_GALLON,
     ];
     if (!in_array($unit, $allowed_units)) {
       throw new \InvalidArgumentException(sprintf('Invalid volume unit "%s" provided.', $unit));

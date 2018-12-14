@@ -8,7 +8,6 @@ use Drupal\Core\Language\LanguageManagerInterface;
  * Default number formatter.
  *
  * Uses the intl NumberFormatter class, if the intl PHP extension is enabled.
- * Otherwise, returns the numbers as given.
  *
  * Commerce swaps out this class in order to use its own NumberFormatter which
  * does not depend on the intl extension.
@@ -39,18 +38,31 @@ class NumberFormatter implements NumberFormatterInterface {
     if (extension_loaded('intl')) {
       $language = $language_manager->getConfigOverrideLanguage() ?: $language_manager->getCurrentLanguage();
       $this->numberFormatter = new \NumberFormatter($language->getId(), \NumberFormatter::DECIMAL);
-      // Skip rounding for the first 12 decimals.
-      $this->numberFormatter->setAttribute(\NumberFormatter::MAX_FRACTION_DIGITS, 12);
     }
   }
 
   /**
    * {@inheritdoc}
    */
-  public function format($number) {
+  public function format($number, array $options = []) {
+    $default_options = [
+      'use_grouping' => TRUE,
+      'minimum_fraction_digits' => 0,
+      'maximum_fraction_digits' => 6,
+    ];
+    $options = array_replace($default_options, $options);
     if ($this->numberFormatter) {
+      $this->numberFormatter->setAttribute(\NumberFormatter::GROUPING_USED, $options['use_grouping']);
+      $this->numberFormatter->setAttribute(\NumberFormatter::MIN_FRACTION_DIGITS, $options['minimum_fraction_digits']);
+      $this->numberFormatter->setAttribute(\NumberFormatter::MAX_FRACTION_DIGITS, $options['maximum_fraction_digits']);
       $number = $this->numberFormatter->format($number);
     }
+    else {
+      if ($options['minimum_fraction_digits'] == 0) {
+        $number = Calculator::trim($number);
+      }
+    }
+
     return $number;
   }
 

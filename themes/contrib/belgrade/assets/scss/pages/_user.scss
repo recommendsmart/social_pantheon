@@ -1,7 +1,6 @@
 // CSS to hide primary tabs and style page header
 .path-user:not(.logged-in) {
-  .page-header,
-  .tabs--primary {
+  .page-header {
     display: none;
   }
 }

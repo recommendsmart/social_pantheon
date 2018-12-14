@@ -32,12 +32,9 @@ gulp.task('css:devBrowserSync', function () {
     .pipe(plumber({
       errorHandler: notify.onError('Error: <%= error.message %>')
     }))
-    .pipe(sourcemaps.init())
     .pipe(sass(sassConfig))
     .pipe(autoprefixer(prefixSettings))
-    .pipe(sourcemaps.write(sourceMaps))
-    .pipe(gulp.dest(cssDest))
-    .pipe(browserSync.stream({match: '**/*.css'}));
+    .pipe(gulp.dest(cssDest));
 });
 
 
@@ -47,10 +44,8 @@ gulp.task('css', function () {
     .pipe(plumber({
       errorHandler: notify.onError('Error: <%= error.message %>')
     }))
-    .pipe(sourcemaps.init())
     .pipe(sass(sassConfig))
     .pipe(autoprefixer(prefixSettings))
-    .pipe(sourcemaps.write(sourceMaps))
     .pipe(gulp.dest(cssDest));
 });
 

@@ -20,12 +20,12 @@ class Google_Service_ShoppingContent_TestOrder extends Google_Collection
   protected $collection_key = 'promotions';
   protected $customerType = 'Google_Service_ShoppingContent_TestOrderCustomer';
   protected $customerDataType = '';
+  public $enableOrderinvoices;
   public $kind;
   protected $lineItemsType = 'Google_Service_ShoppingContent_TestOrderLineItem';
   protected $lineItemsDataType = 'array';
   public $notificationMode;
-  protected $paymentMethodType = 'Google_Service_ShoppingContent_TestOrderPaymentMethod';
-  protected $paymentMethodDataType = '';
+  public $predefinedBillingAddress;
   public $predefinedDeliveryAddress;
   protected $promotionsType = 'Google_Service_ShoppingContent_OrderPromotion';
   protected $promotionsDataType = 'array';
@@ -48,6 +48,14 @@ class Google_Service_ShoppingContent_TestOrder extends Google_Collection
   public function getCustomer()
   {
     return $this->customer;
+  }
+  public function setEnableOrderinvoices($enableOrderinvoices)
+  {
+    $this->enableOrderinvoices = $enableOrderinvoices;
+  }
+  public function getEnableOrderinvoices()
+  {
+    return $this->enableOrderinvoices;
   }
   public function setKind($kind)
   {
@@ -79,19 +87,13 @@ class Google_Service_ShoppingContent_TestOrder extends Google_Collection
   {
     return $this->notificationMode;
   }
-  /**
-   * @param Google_Service_ShoppingContent_TestOrderPaymentMethod
-   */
-  public function setPaymentMethod(Google_Service_ShoppingContent_TestOrderPaymentMethod $paymentMethod)
+  public function setPredefinedBillingAddress($predefinedBillingAddress)
   {
-    $this->paymentMethod = $paymentMethod;
+    $this->predefinedBillingAddress = $predefinedBillingAddress;
   }
-  /**
-   * @return Google_Service_ShoppingContent_TestOrderPaymentMethod
-   */
-  public function getPaymentMethod()
+  public function getPredefinedBillingAddress()
   {
-    return $this->paymentMethod;
+    return $this->predefinedBillingAddress;
   }
   public function setPredefinedDeliveryAddress($predefinedDeliveryAddress)
   {

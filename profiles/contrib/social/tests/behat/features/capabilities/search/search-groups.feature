@@ -1,4 +1,4 @@
-@api @search @groups @stability @1523 @stability-3
+@api @search @groups @stability @1523 @stability-3 @search-groups
 Feature: Search
   Benefit: In order to find specific content
   Role: As a LU
@@ -18,7 +18,7 @@ Feature: Search
     And I am on "search/groups"
     When I fill in the following:
       | search_input | My description |
-    And I press "Search"
+    And I press "Search" in the "Hero block" region
     And I should see the heading "Search" in the "Hero block" region
     And I should see "Behat test group title 1" in the "Main content"
     And I should see "Behat test group title 2" in the "Main content"

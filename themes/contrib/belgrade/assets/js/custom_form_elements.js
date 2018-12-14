@@ -2,7 +2,7 @@
  * @file
  * Belgrade Theme JS.
  */
-(function ($) {
+(function ($, Drupal) {
 
     'use strict';
 
@@ -10,21 +10,18 @@
      * Close behaviour.
      */
     Drupal.behaviors.quantityIncDec = {
-      attach: function (context, settings) {
-        $(".quantity-btn").on("click", function() {
+      attach: function (context) {
+        $(".number-btn").once().on("click", function() {
 
             var $button = $(this);
             var oldValue = parseInt($button.parent().find("input").val());
+            var newVal;
 
-            if ($button.text() == "+") {
-              var newVal = parseInt(oldValue) + 1;
+            if ($button.text() === "+") {
+              newVal = oldValue + 1;
             } else {
               // Don't allow decrementing below zero
-              if (oldValue > 0) {
-                var newVal = parseInt(oldValue) - 1;
-              } else {
-                newVal = 0;
-              }
+              newVal = (oldValue > 0) ? oldValue - 1 : 0;
             }
 
             $button.parent().find("input").val(newVal);
@@ -32,4 +29,4 @@
       }
     };
 
-  })(jQuery);
+  })(jQuery, Drupal);

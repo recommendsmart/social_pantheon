@@ -262,7 +262,7 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
       // The checkout step was submitted without shipping being calculated.
       // Force the recalculation now and reload the page.
       $recalculate = TRUE;
-      drupal_set_message('Please select a shipping method.', 'error');
+      drupal_set_message($this->t('Please select a shipping method.'), 'error');
       $form_state->setRebuild(TRUE);
     }
 

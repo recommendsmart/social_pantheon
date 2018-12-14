@@ -1,8 +1,12 @@
 <?php
 // @codingStandardsIgnoreFile
 
+namespace Drupal\social\Behat;
+
 use Drupal\DrupalExtension\Context\DrupalContext;
 use Behat\Mink\Element\Element;
+use Drupal\big_pipe\Render\Placeholder\BigPipeStrategy;
+use Behat\Mink\Exception\UnsupportedDriverActionException;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 
 use Behat\Gherkin\Node\TableNode;
@@ -12,6 +16,34 @@ use Behat\Gherkin\Node\TableNode;
  */
 class SocialDrupalContext extends DrupalContext {
 
+  /**
+   * Prepares Big Pipe NOJS cookie if needed.
+   *
+   * Add support for Bigpipe in Behat tests.
+   *
+   * Original PR here:
+   * https://github.com/jhedstrom/drupalextension/pull/325
+   *
+   * @BeforeScenario
+   */
+  public function prepareBigPipeNoJsCookie(BeforeScenarioScope $scope) {
+    try {
+      // Check if JavaScript can be executed by Driver.
+      $this->getSession()->getDriver()->executeScript('true');
+    }
+    catch (UnsupportedDriverActionException $e) {
+      // Set NOJS cookie.
+      if ($this
+        ->getSession()) {
+        $this
+          ->getSession()
+          ->setCookie(BigPipeStrategy::NOJS_COOKIE, TRUE);
+      }
+    }
+    catch (\Exception $e) {
+      // Mute exceptions.
+    }
+  }
 
   /**
    * @beforeScenario @api
@@ -99,10 +131,26 @@ class SocialDrupalContext extends DrupalContext {
   }
 
   /**
+   * @When I empty the queue
+   */
+  public function iEmptyTheQueue() {
+    $this->processQueue(TRUE);
+  }
+
+  /**
    * @When I wait for the queue to be empty
    */
-  public function iWaitForTheQueueToBeEmpty()
-  {
+  public function iWaitForTheQueueToBeEmpty() {
+    $this->processQueue();
+  }
+
+  /**
+   * Process queue items.
+   *
+   * @param bool $just_delete
+   *   If set to TRUE, it doesn't process the items, but simply deletes them.
+   */
+  protected function processQueue($just_delete = FALSE) {
     $workerManager = \Drupal::service('plugin.manager.queue_worker');
     /** @var Drupal\Core\Queue\QueueFactory; $queue */
     $queue = \Drupal::service('queue');
@@ -117,7 +165,10 @@ class SocialDrupalContext extends DrupalContext {
 
         if ($worker->numberOfItems() > 0) {
           while ($item = $worker->claimItem()) {
-            $queue_worker->processItem($item->data);
+            // If we don't just delete them, process the item first.
+            if ($just_delete === FALSE) {
+              $queue_worker->processItem($item->data);
+            }
             $worker->deleteItem($item);
           }
         }
@@ -165,6 +216,19 @@ class SocialDrupalContext extends DrupalContext {
    */
   public function iEnableTheTourSetting() {
     \Drupal::configFactory()->getEditable('social_tour.settings')->set('social_tour_enabled', 1)->save();
+  }
+
+  /**
+   * Allow platforms that re-use the Open Social platform a chance to fill in
+   * custom form fields that are not present in the distribution but may lead to
+   * validation errors (e.g. because a field is required).
+   *
+   * @When /^(?:|I )fill in the custom fields for this "([^"]*)"$/
+   */
+  public function iFillInCustomFieldsForThis($type) {
+    // This method is intentionally left blank. Projects extending Open Social
+    // are encouraged to overwrite this method and call the methods that are
+    // needed to fill in custom required fields for the used type.
   }
 
 }

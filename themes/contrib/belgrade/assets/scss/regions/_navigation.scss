@@ -4,27 +4,25 @@
 
 .region-navigation{
   text-align: center;
-  
 
-  // home link
-  a[data-drupal-link-system-path="<front>"]{
-    @extend .text-hide;
-    width: 270px;
-    height: 42px;
-    margin: 70px auto;
-    padding: 0;
-    background: url("../../logo-inverted.svg") no-repeat center;
-  }
-
-  .menu-main{
+  .menu {
     // general styles
-    &__item{
+    .menu__item{
       width: 100%;
     }
-    &__link{
+    .menu__link{
       color: white;
       padding: $main-menu-link-padding;
       font-size: $main-menu-font-size;
+    }
+    // home link
+    a[data-drupal-link-system-path="<front>"]{
+      @extend .text-hide;
+      width: 270px;
+      height: 42px;
+      margin: 70px auto;
+      padding: 0;
+      background: url("../../logo-inverted.svg") no-repeat center;
     }
   }
 

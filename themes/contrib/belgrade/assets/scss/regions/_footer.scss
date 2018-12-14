@@ -20,9 +20,25 @@
     }
   }
 
+  // Specific theming for the "powered by" block.
+  .block-system-powered-by-block {
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
   // Footer content
   &--contents {
     text-align: center;
+    @media screen and (max-width: $screen-xs-max) {
+      text-align: left;
+      h2.visually-hidden {
+        position: relative !important;
+        clip: unset;
+        overflow: visible;
+        height: auto;
+        width: auto;
+      }
+    }
     // social menu title
     h2 {
       font-size: 18px;
@@ -50,21 +66,19 @@
     }
     // overrides for mobile
     @media screen and (max-width: $screen-xs-max) {
+      text-transform: none;
       display: flex;
-      justify-content: center;
+      justify-content: left;
       flex-wrap: wrap;
       margin-bottom: 25px;
-      &-catalog-menu{
-        &__item{
-          width: 100%;
-        }
+      .menu__item {
+        width: 100%;
+      }
+      a {
+        font-size: 16px;
       }
     }
 
-    // Footer middle menu
-    &-footer {
-      text-transform: none;
-    }
     // Social menu
     &-social {
       &__item {

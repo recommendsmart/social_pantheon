@@ -2,8 +2,6 @@
 
 namespace Drupal\physical;
 
-use Drupal\physical\Exception\UnitMismatchException;
-
 /**
  * Provides a base class for measurement value objects.
  */
@@ -119,7 +117,9 @@ abstract class Measurement {
    *   The resulting measurement.
    */
   public function add(Measurement $measurement) {
-    $this->assertSameUnit($this, $measurement);
+    if ($this->unit != $measurement->getUnit()) {
+      $measurement = $measurement->convert($this->unit);
+    }
     $new_number = Calculator::add($this->number, $measurement->getNumber());
     return new static($new_number, $this->unit);
   }
@@ -134,7 +134,9 @@ abstract class Measurement {
    *   The resulting measurement.
    */
   public function subtract(Measurement $measurement) {
-    $this->assertSameUnit($this, $measurement);
+    if ($this->unit != $measurement->getUnit()) {
+      $measurement = $measurement->convert($this->unit);
+    }
     $new_number = Calculator::subtract($this->number, $measurement->getNumber());
     return new static($new_number, $this->unit);
   }
@@ -195,7 +197,9 @@ abstract class Measurement {
    *   -1 otherwise.
    */
   public function compareTo(Measurement $measurement) {
-    $this->assertSameUnit($this, $measurement);
+    if ($this->unit != $measurement->getUnit()) {
+      $measurement = $measurement->convert($this->unit);
+    }
     return Calculator::compare($this->number, $measurement->getNumber());
   }
 
@@ -276,23 +280,6 @@ abstract class Measurement {
    */
   public function lessThanOrEqual(Measurement $measurement) {
     return $this->lessThan($measurement) || $this->equals($measurement);
-  }
-
-  /**
-   * Asserts that the two measurements have the same currency.
-   *
-   * @param \Drupal\physical\Measurement $first_measurement
-   *   The first measurement.
-   * @param \Drupal\physical\Measurement $second_measurement
-   *   The second measurement.
-   *
-   * @throws \Drupal\physical\Exception\UnitMismatchException
-   *   Thrown when the measurements do not have the same currency.
-   */
-  protected function assertSameUnit(Measurement $first_measurement, Measurement $second_measurement) {
-    if ($first_measurement->getUnit() != $second_measurement->getUnit()) {
-      throw new UnitMismatchException();
-    }
   }
 
 }

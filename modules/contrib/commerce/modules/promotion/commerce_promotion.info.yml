@@ -8,8 +8,8 @@ dependencies:
   - commerce:commerce_order
   - drupal:options
 
-# Information added by Drupal.org packaging script on 2018-05-28
-version: '8.x-2.7'
+# Information added by Drupal.org packaging script on 2018-10-31
+version: '8.x-2.11'
 core: '8.x'
 project: 'commerce'
-datestamp: 1527529099
+datestamp: 1541002987

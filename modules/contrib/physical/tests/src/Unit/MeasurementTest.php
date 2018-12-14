@@ -72,6 +72,13 @@ class MeasurementTest extends UnitTestCase {
 
     $result = $this->measurement->divide('10');
     $this->assertEquals(new Length('1', 'm'), $result);
+
+    // Test mismatched units.
+    $result = $this->measurement->add(new Length('200', 'cm'));
+    $this->assertEquals(new Length('12', 'm'), $result);
+
+    $result = $this->measurement->subtract(new Length('2.5', 'ft'));
+    $this->assertEquals(new Length('9.238', 'm'), $result);
   }
 
   /**
@@ -108,6 +115,15 @@ class MeasurementTest extends UnitTestCase {
     $this->assertTrue($this->measurement->lessThanOrEqual(new Length('15', 'm')));
     $this->assertTrue($this->measurement->lessThanOrEqual(new Length('10', 'm')));
     $this->assertFalse($this->measurement->lessThanOrEqual(new Length('5', 'm')));
+
+    // Test mismatched units.
+    $this->assertTrue($this->measurement->equals(new Length('1000', 'cm')));
+    $this->assertTrue($this->measurement->greaterThan(new Length('500', 'cm')));
+    $this->assertTrue($this->measurement->greaterThanOrEqual(new Length('500', 'cm')));
+    $this->assertTrue($this->measurement->greaterThanOrEqual(new Length('1000', 'cm')));
+    $this->assertTrue($this->measurement->lessThan(new Length('1500', 'cm')));
+    $this->assertTrue($this->measurement->lessThanOrEqual(new Length('1500', 'cm')));
+    $this->assertTrue($this->measurement->lessThanOrEqual(new Length('1000', 'cm')));
   }
 
 }

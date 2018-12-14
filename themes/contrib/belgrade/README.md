@@ -8,6 +8,16 @@ Any questions or feedback?
 
 # Getting started with Belgrade
 
+## Built for [Commerce Demo](https://www.drupal.org/project/commerce_demo)
+
+The Belgrade theme was designed and built around functionality provieded by the Commerce Demo module. As a
+result, it has styling that targets specific components that the theme itself is unable to provide.
+
+* An entity view mode for Commerce Product with the machine name `catalog`.
+* Belgrade provides styling for a menu with the machine name `catalog`.
+* A product catalog built with Views and the machine name `product_catalog`, using the `catalog` view mode for products.
+* An image field on Commerce Product Variation bundles with the machine name `field_images`
+
 ### Enable Drupal debbuging
 Need a few words on enabling Drupal debugging
 

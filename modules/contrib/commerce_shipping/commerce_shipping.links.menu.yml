@@ -7,7 +7,7 @@ entity.commerce_package_type.collection:
   title: 'Package types'
   route_name: entity.commerce_package_type.collection
   parent: 'commerce_shipping.configuration'
-  description: 'Manage you package types'
+  description: 'Manage your package types'
 
 entity.commerce_shipping_method.collection:
   title: 'Shipping methods'
@@ -20,5 +20,5 @@ entity.commerce_shipment_type.collection:
   title: 'Shipment types'
   route_name: entity.commerce_shipment_type.collection
   parent: 'commerce_shipping.configuration'
-  description: 'Manage you shipment types'
+  description: 'Manage your shipment types'
   weight: -5

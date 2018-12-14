@@ -19,8 +19,8 @@
  * Service definition for Digitalassetlinks (v1).
  *
  * <p>
- * API for discovering relationships between online assets such as web sites or
- * mobile apps.</p>
+ * Discovers relationships between online assets such as websites or mobile
+ * apps.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -59,6 +59,10 @@ class Google_Service_Digitalassetlinks extends Google_Service
               'path' => 'v1/assetlinks:check',
               'httpMethod' => 'GET',
               'parameters' => array(
+                'target.web.site' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'target.androidApp.certificate.sha256Fingerprint' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -80,10 +84,6 @@ class Google_Service_Digitalassetlinks extends Google_Service
                   'type' => 'string',
                 ),
                 'relation' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'target.web.site' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),

@@ -45,6 +45,7 @@ class VolumeTest extends UnitTestCase {
   public function testConvert() {
     $this->assertEquals(new Volume('4000000', 'ml'), $this->volume->convert('ml')->round());
     $this->assertEquals(new Volume('400000', 'cl'), $this->volume->convert('cl')->round());
+    $this->assertEquals(new Volume('40000', 'dl'), $this->volume->convert('dl')->round());
     $this->assertEquals(new Volume('4000', 'l'), $this->volume->convert('l')->round());
     $this->assertEquals(new Volume('4000000000', 'mm3'), $this->volume->convert('mm3')->round());
     $this->assertEquals(new Volume('4000000', 'cm3'), $this->volume->convert('cm3')->round());
