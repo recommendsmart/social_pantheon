@@ -26,7 +26,12 @@
         "goalgorilla/open_social": "^4.1",
         "drupal/commerce_demo": "^1.0",
         "drupal/belgrade": "^1.0@beta",
-        "drupal/eck": "^1.0"
+        "drupal/eck": "^1.0",
+        "drupal/transaction": "^1.0",
+        "drupal/transaction_workflow": "^1.0",
+        "drupal/views_add_button": "^1.0",
+        "drupal/views_add_button_group": "^1.0",
+        "drupal/blocktabs": "^1.0"
         },
     "repositories": [
         {

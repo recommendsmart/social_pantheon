@@ -1,0 +1,14 @@
+name: 'Transaction'
+type: module
+description: 'Transactional operations over entities.'
+package: Workflow
+configure: entity.transaction_type.collection
+# core: 8.x
+dependencies:
+ - dynamic_entity_reference:dynamic_entity_reference
+
+# Information added by Drupal.org packaging script on 2018-03-06
+version: '8.x-1.0-alpha3'
+core: '8.x'
+project: 'transaction'
+datestamp: 1520368086

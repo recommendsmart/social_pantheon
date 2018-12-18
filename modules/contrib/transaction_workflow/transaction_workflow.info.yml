@@ -1,0 +1,13 @@
+name: 'Transaction workflow'
+type: module
+description: 'Simple and light weight transactional workflow for any entity type.'
+package: Workflow
+# core: 8.x
+dependencies:
+ - transaction:transaction (>=8.x-1.0-alpha3)
+
+# Information added by Drupal.org packaging script on 2018-03-08
+version: '8.x-1.0-alpha1'
+core: '8.x'
+project: 'transaction_workflow'
+datestamp: 1520533991

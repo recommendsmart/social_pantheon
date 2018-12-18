@@ -1,0 +1,14 @@
+name: 'Views Add Button : Group'
+description: 'Enables add buttons for Groups and Group Content.'
+type: module
+# core: 8.x
+package: 'Views'
+dependencies:
+  - drupal:views_add_button
+
+
+# Information added by Drupal.org packaging script on 2018-12-11
+version: '8.x-1.0-alpha3'
+core: '8.x'
+project: 'views_add_button_group'
+datestamp: 1544488984

@@ -1,0 +1,21 @@
+<?php
+/**
+ * @file
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * This will install/reinstall all of the defaults for this module - if you are using custom settings,
+ * please CLONE views and groups and use these as a template.
+ */
+function views_add_button_install() {
+    \Drupal::service('config.installer')->installDefaultConfig('module', 'views_add_button');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function views_add_button_uninstall() {
+    \Drupal::service('config.manager')->uninstall('module', 'views_add_button');
+}
