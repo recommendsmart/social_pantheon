@@ -25,7 +25,8 @@
         "drupal/bootstrap": "3.15",
         "goalgorilla/open_social": "^4.1",
         "drupal/commerce_demo": "^1.0",
-        "drupal/belgrade": "^1.0@beta"
+        "drupal/belgrade": "^1.0@beta",
+        "drupal/eck": "^1.0"
         },
     "repositories": [
         {
