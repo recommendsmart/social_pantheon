@@ -28,7 +28,7 @@ class ViewsAddButtonEck extends PluginBase implements ViewsAddButtonInterface {
   public static function generate_url($entity_type, $bundle, $options, $context = '') {
 
     // Create URL from the data above
-    $url = Url::fromRoute('entity.animal.add_form', array('animal' => $bundle), $options);
+    $url = Url::fromRoute('eck_entity.animal', array('animal' => $bundle), $options);
 
     return $url;
   }
