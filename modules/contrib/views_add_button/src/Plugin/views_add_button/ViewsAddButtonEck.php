@@ -9,12 +9,12 @@ use Drupal\views_add_button\ViewsAddButtonInterface;
 /**
  *
  * @ViewsAddButton(
- *   id = "views_add_button_node",
- *   label = @Translation("ViewsAddButtonNode"),
- *   target_entity = "node"
+ *   id = "views_add_button_taxonomy",
+ *   label = @Translation("ViewsAddButtonTaxonomy"),
+ *   target_entity = "taxonomy_term"
  * )
  */
-class ViewsAddButtonNode extends PluginBase implements ViewsAddButtonInterface {
+class ViewsAddButtonTaxonomy extends PluginBase implements ViewsAddButtonInterface {
 
   /**
    * @return string
@@ -22,13 +22,13 @@ class ViewsAddButtonNode extends PluginBase implements ViewsAddButtonInterface {
    */
   public function description()
   {
-    return $this->t('Views Add Button URL Generator for Node entities');
+    return $this->t('Views Add Button URL Generator for Taxonomy Term entities');
   }
 
   public static function generate_url($entity_type, $bundle, $options, $context = '') {
 
     // Create URL from the data above
-    $url = Url::fromRoute('animal.add', array('animal_type' => $bundle), $options);
+    $url = Url::fromRoute('entity.animal.add_form', array('animal' => $bundle), $options);
 
     return $url;
   }
