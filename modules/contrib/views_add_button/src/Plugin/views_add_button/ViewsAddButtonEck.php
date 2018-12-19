@@ -9,12 +9,12 @@ use Drupal\views_add_button\ViewsAddButtonInterface;
 /**
  *
  * @ViewsAddButton(
- *   id = "views_add_button_taxonomy",
- *   label = @Translation("ViewsAddButtonTaxonomy"),
- *   target_entity = "taxonomy_term"
+ *   id = "views_add_button_eck",
+ *   label = @Translation("ViewsAddButtonEck"),
+ *   target_entity = "animal"
  * )
  */
-class ViewsAddButtonTaxonomy extends PluginBase implements ViewsAddButtonInterface {
+class ViewsAddButtonEck extends PluginBase implements ViewsAddButtonInterface {
 
   /**
    * @return string
