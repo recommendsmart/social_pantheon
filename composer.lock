@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "601ecacbe2e4329f1697fd96832566f5",
+    "content-hash": "5178e82b9195c2e2a2b8d10fe9c956a7",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -4835,6 +4835,52 @@
             }
         },
         {
+            "name": "drupal/pwa",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/pwa",
+                "reference": "f4178f7870baf11eb12a1f4bd1cb0828d9ed7c2a"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1536853080",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "nod_",
+                    "homepage": "https://www.drupal.org/user/598310"
+                },
+                {
+                    "name": "rupl",
+                    "homepage": "https://www.drupal.org/user/411999"
+                }
+            ],
+            "description": "Make the website installable on mobile.",
+            "homepage": "https://www.drupal.org/project/pwa",
+            "support": {
+                "source": "http://cgit.drupalcode.org/pwa"
+            },
+            "time": "2018-10-04T13:03:47+00:00"
+        },
+        {
             "name": "drupal/r4032login",
             "version": "1.1.0",
             "source": {
@@ -5321,7 +5367,8 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/social_pwa",
                 "error": "Invalid dependency: \"activity_send\" is an unknown drupal 8 package name"
-            }
+            },
+            "time": "2018-06-11T15:00:51+00:00"
         },
         {
             "name": "drupal/state_machine",
@@ -10195,9 +10242,10 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/social_pwa": 20,
         "drupal/belgrade": 10,
-        "drupal/serial": 20
+        "drupal/serial": 20,
+        "drupal/pwa": 20,
+        "drupal/social_pwa": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

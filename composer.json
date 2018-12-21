@@ -21,7 +21,6 @@
         "drupal/easy_install": "^10.1",
 		"drupal/blizz_dynamic_entitylist": "^2.34",
         "drupal/switch_page_theme": "^1.0",
-        "drupal/social_pwa": "1.x-dev",
         "drupal/bootstrap": "3.15",
         "goalgorilla/open_social": "^4.1",
         "drupal/commerce_demo": "^1.0",
@@ -34,7 +33,12 @@
         "drupal/blocktabs": "^1.0",
         "drupal/serial": "1.x-dev",
         "drupal/computed_field": "^2.0",
-        "drupal/unique_field_ajax": "^1.2"
+        "drupal/unique_field_ajax": "^1.2",
+        "drupal/taxonomy_term_depth": "^2.1",
+        "drupal/pwa": "1.x-dev",
+        "minishlink/web-push": "^2.0",
+        "piwik/device-detector": "^3.0",
+        "drupal/social_pwa": "1.x-dev"
         },
     "repositories": [
         {
