@@ -5,10 +5,11 @@ type: module
 package: 'Views'
 dependencies:
   - drupal:views
+  - drupal:token
 
 
-# Information added by Drupal.org packaging script on 2018-12-06
-version: '8.x-1.0-rc4'
+# Information added by Drupal.org packaging script on 2018-12-20
+version: '8.x-1.0-rc5'
 core: '8.x'
 project: 'views_add_button'
-datestamp: 1544124183
+datestamp: 1545288787
