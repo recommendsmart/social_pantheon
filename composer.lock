@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5178e82b9195c2e2a2b8d10fe9c956a7",
+    "content-hash": "260b371faaadbe522843035d6f7fad75",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -1756,6 +1756,58 @@
             }
         },
         {
+            "name": "drupal/business_rules",
+            "version": "1.0.0-beta6",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/business_rules",
+                "reference": "8.x-1.0-beta6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/business_rules-8.x-1.0-beta6.zip",
+                "reference": "8.x-1.0-beta6",
+                "shasum": "932a0ed68355866ae37a5d46953dc066c6f3b60e"
+            },
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/dbug": "*"
+            },
+            "require-dev": {
+                "drupal/group": "*",
+                "drupal/sms-sms": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta6",
+                    "datestamp": "1543420081",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "yuriseki",
+                    "homepage": "https://www.drupal.org/user/1523064"
+                }
+            ],
+            "description": "Business Rules",
+            "homepage": "https://www.drupal.org/project/business_rules",
+            "support": {
+                "source": "http://cgit.drupalcode.org/business_rules"
+            }
+        },
+        {
             "name": "drupal/color_field",
             "version": "2.0.0",
             "source": {
@@ -2502,6 +2554,69 @@
             }
         },
         {
+            "name": "drupal/conditional_fields",
+            "version": "1.0.0-alpha4",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/conditional_fields",
+                "reference": "8.x-1.0-alpha4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/conditional_fields-8.x-1.0-alpha4.zip",
+                "reference": "8.x-1.0-alpha4",
+                "shasum": "5e13204d5296c63958eacc0028cdb6c7a4d2e3d3"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha4",
+                    "datestamp": "1511555675",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Adyax",
+                    "homepage": "https://www.adyax.com/"
+                },
+                {
+                    "name": "axel.rutz",
+                    "homepage": "https://www.drupal.org/user/229048"
+                },
+                {
+                    "name": "colan",
+                    "homepage": "https://www.drupal.org/user/58704"
+                },
+                {
+                    "name": "itsekhmistro",
+                    "homepage": "https://www.drupal.org/user/928152"
+                },
+                {
+                    "name": "peterpoe",
+                    "homepage": "https://www.drupal.org/user/55674"
+                }
+            ],
+            "description": "Conditional fields",
+            "homepage": "https://www.drupal.org/project/conditional_fields",
+            "support": {
+                "source": "http://cgit.drupalcode.org/conditional_fields"
+            }
+        },
+        {
             "name": "drupal/config_update",
             "version": "1.5.0",
             "source": {
@@ -3055,6 +3170,53 @@
             ],
             "support": {
                 "source": "http://cgit.drupalcode.org/data_policy"
+            }
+        },
+        {
+            "name": "drupal/dbug",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/dbug",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/dbug-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "47297ae9a1ee478a9d51d2213347f01ac167aff8"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1490823784",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "yuriseki",
+                    "homepage": "https://www.drupal.org/user/1523064"
+                }
+            ],
+            "description": "Drupal version of ColdFusion's cfdump",
+            "homepage": "https://www.drupal.org/project/dbug",
+            "support": {
+                "source": "http://cgit.drupalcode.org/dbug"
             }
         },
         {
@@ -5575,17 +5737,17 @@
         },
         {
             "name": "drupal/taxonomy_menu",
-            "version": "3.3.0",
+            "version": "3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/taxonomy_menu",
-                "reference": "8.x-3.3"
+                "reference": "8.x-3.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/taxonomy_menu-8.x-3.3.zip",
-                "reference": "8.x-3.3",
-                "shasum": "26492e3210430d44822de242449baa8e658568cf"
+                "url": "https://ftp.drupal.org/files/projects/taxonomy_menu-8.x-3.4.zip",
+                "reference": "8.x-3.4",
+                "shasum": "c0c8890a7c07f9af8a6f0509d2e9ea678f95aab1"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -5596,8 +5758,8 @@
                     "dev-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-3.3",
-                    "datestamp": "1479916742",
+                    "version": "8.x-3.4",
+                    "datestamp": "1545492780",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6725,16 +6887,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.78",
+            "version": "v0.79",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "16a71009a5b402012e00e0d46628ace599c1abb2"
+                "reference": "74f7cdab80c6f2766d5fb9e484fe4fe8334c96e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/16a71009a5b402012e00e0d46628ace599c1abb2",
-                "reference": "16a71009a5b402012e00e0d46628ace599c1abb2",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/74f7cdab80c6f2766d5fb9e484fe4fe8334c96e3",
+                "reference": "74f7cdab80c6f2766d5fb9e484fe4fe8334c96e3",
                 "shasum": ""
             },
             "require": {
@@ -6758,7 +6920,7 @@
             "keywords": [
                 "google"
             ],
-            "time": "2018-12-16T00:22:52+00:00"
+            "time": "2018-12-22T00:23:08+00:00"
         },
         {
             "name": "google/auth",

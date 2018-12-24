@@ -38,7 +38,9 @@
         "drupal/pwa": "1.x-dev",
         "minishlink/web-push": "^2.0",
         "piwik/device-detector": "^3.0",
-        "drupal/social_pwa": "1.x-dev"
+        "drupal/social_pwa": "1.x-dev",
+        "drupal/conditional_fields": "^1.0",
+        "drupal/business_rules": "^1.0"
         },
     "repositories": [
         {

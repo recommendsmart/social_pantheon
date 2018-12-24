@@ -15,25 +15,23 @@
  * the License.
  */
 
-class Google_Service_Dialogflow_GoogleCloudDialogflowV2beta1HumanAgentAssistantEvent extends Google_Model
+class Google_Service_AlertCenter_Notification extends Google_Model
 {
-  public $conversation;
-  public $type;
+  protected $cloudPubsubTopicType = 'Google_Service_AlertCenter_CloudPubsubTopic';
+  protected $cloudPubsubTopicDataType = '';
 
-  public function setConversation($conversation)
+  /**
+   * @param Google_Service_AlertCenter_CloudPubsubTopic
+   */
+  public function setCloudPubsubTopic(Google_Service_AlertCenter_CloudPubsubTopic $cloudPubsubTopic)
   {
-    $this->conversation = $conversation;
+    $this->cloudPubsubTopic = $cloudPubsubTopic;
   }
-  public function getConversation()
+  /**
+   * @return Google_Service_AlertCenter_CloudPubsubTopic
+   */
+  public function getCloudPubsubTopic()
   {
-    return $this->conversation;
-  }
-  public function setType($type)
-  {
-    $this->type = $type;
-  }
-  public function getType()
-  {
-    return $this->type;
+    return $this->cloudPubsubTopic;
   }
 }
