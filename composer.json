@@ -45,7 +45,8 @@
         "drupal/webform_views": "^5.0",
         "drupal/maestro": "^2.1",
         "zurb/foundation": "^6.5",
-        "drupal/xy_grid_layouts": "^1.0"
+        "drupal/xy_grid_layouts": "^1.0",
+        "drupal/zurb_foundation": "^6.0"
         },
     "repositories": [
         {
