@@ -6778,6 +6778,59 @@
         }
     },
     {
+        "name": "drupal/xy_grid_layouts",
+        "version": "1.0.0-beta2",
+        "version_normalized": "1.0.0.0-beta2",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupal.org/project/xy_grid_layouts",
+            "reference": "8.x-1.0-beta2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/xy_grid_layouts-8.x-1.0-beta2.zip",
+            "reference": "8.x-1.0-beta2",
+            "shasum": "31bfb4f09b6bc29239b4ab8847b0dbe9df6fcd29"
+        },
+        "require": {
+            "drupal/core": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.0-beta2",
+                "datestamp": "1546512180",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Project has not opted into security advisory coverage!"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "HolgerHandel",
+                "homepage": "https://www.drupal.org/user/1842414"
+            },
+            {
+                "name": "itothegore",
+                "homepage": "https://www.drupal.org/user/3080669"
+            }
+        ],
+        "description": "Provides ZURB Foundation XY grid system layouts.",
+        "homepage": "https://www.drupal.org/project/xy_grid_layouts",
+        "support": {
+            "source": "http://cgit.drupalcode.org/xy_grid_layouts"
+        }
+    },
+    {
         "name": "easyrdf/easyrdf",
         "version": "0.9.1",
         "version_normalized": "0.9.1.0",
@@ -9239,7 +9292,8 @@
             "RFC7520",
             "jwa",
             "jwt"
-        ]
+        ],
+        "abandoned": "web-token/jwt-framework"
     },
     {
         "name": "spomky-labs/php-aes-gcm",
@@ -10970,6 +11024,47 @@
             "ZendFramework",
             "stdlib",
             "zf"
+        ]
+    },
+    {
+        "name": "zurb/foundation",
+        "version": "v6.5.1",
+        "version_normalized": "6.5.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zurb/foundation-sites.git",
+            "reference": "c712acfbb24778303978a318a820ee5d05afbd89"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zurb/foundation-sites/zipball/c712acfbb24778303978a318a820ee5d05afbd89",
+            "reference": "c712acfbb24778303978a318a820ee5d05afbd89",
+            "shasum": ""
+        },
+        "time": "2018-11-15T22:15:49+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "ZURB, Inc.",
+                "email": "foundation@zurb.com",
+                "homepage": "http://zurb.com"
+            }
+        ],
+        "description": "The most advanced responsive front-end framework in the world.",
+        "homepage": "http://foundation.zurb.com",
+        "keywords": [
+            "JS",
+            "css",
+            "framework",
+            "mobile-first",
+            "responsive",
+            "sass",
+            "scss"
         ]
     }
 ]
