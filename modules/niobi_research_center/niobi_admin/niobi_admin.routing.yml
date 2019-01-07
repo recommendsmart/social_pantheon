@@ -1,0 +1,8 @@
+# General routes for the Niobi Admin module.
+niobi_admin.settings:
+  path: '/admin/niobi'
+  defaults:
+    _form: '\Drupal\niobi_admin\Form\NiobiAdminSettingsForm'
+    _title: 'Niobi Settings'
+  requirements:
+    _permission: 'administer niobi'

@@ -1,0 +1,33 @@
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.kb.body
+    - field.field.node.kb.field_kb_file
+    - field.field.node.kb.field_kb_tags
+    - node.type.kb
+  module:
+    - text
+    - user
+id: node.kb.teaser
+targetEntityType: node
+bundle: kb
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_kb_file: true
+  field_kb_tags: true

@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    theme:
+      - niobi_theme
+  config:
+    - field.field.user.user.user_picture
+  module:
+    - user
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  homepage_profile_entity_view_1:
+    weight: -1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  my_groups_entity_view_1:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  user_picture: true
+  member_for: true

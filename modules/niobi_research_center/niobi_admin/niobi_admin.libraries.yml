@@ -1,0 +1,7 @@
+toolbar:
+  version: 1.x
+  css:
+    theme:
+      css/niobi-toolbar.css: {  }
+  dependencies:
+    - 'toolbar/toolbar'

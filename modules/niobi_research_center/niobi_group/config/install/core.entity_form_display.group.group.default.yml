@@ -1,0 +1,41 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - niobi_group
+  config:
+    - field.field.group.group.field_department
+    - group.type.group
+  module:
+    - path
+id: group.group.default
+targetEntityType: group
+bundle: group
+mode: default
+content:
+  field_department:
+    weight: 31
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  label:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  uid: true

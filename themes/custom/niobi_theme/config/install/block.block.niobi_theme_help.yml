@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    theme:
+      - niobi_theme
+  module:
+    - help
+  theme:
+    - niobi_theme
+id: niobi_theme_help
+theme: niobi_theme
+region: content
+weight: -30
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

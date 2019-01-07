@@ -1,0 +1,15 @@
+name: '(EXPERIMENTAL) Niobi Whitelist Access'
+description: 'Provides "whitelist" functionality for access control.'
+type: module
+# core: 8.x
+dependencies:
+  - user
+  - views
+  - niobi_admin
+package: 'Niobi Research Center'
+
+# Information added by Drupal.org packaging script on 2018-11-08
+version: '8.x-1.0-alpha14'
+core: '8.x'
+project: 'niobi'
+datestamp: 1541663594

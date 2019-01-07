@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - niobi_admin
+id: master_report_access
+label: 'Master Report Acess'
+weight: 2
+is_admin: false

@@ -1,0 +1,45 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.kb.body
+    - field.field.node.kb.field_kb_file
+    - field.field.node.kb.field_kb_tags
+    - node.type.kb
+  module:
+    - file
+    - text
+    - user
+id: node.kb.default
+targetEntityType: node
+bundle: kb
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 102
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_kb_file:
+    weight: 104
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: file_default
+    region: content
+  field_kb_tags:
+    weight: 103
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

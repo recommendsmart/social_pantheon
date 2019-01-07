@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    theme:
+      - niobi_theme
+  theme:
+    - niobi_theme
+id: niobi_theme_page_title
+theme: niobi_theme
+region: content
+weight: -50
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility: {  }

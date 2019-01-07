@@ -1,0 +1,22 @@
+{#
+/**
+ * @file niobi_whitelist_item.html.twig
+ * Default theme implementation to present Whitelist Item data.
+ *
+ * This template is used when viewing Whitelist Item pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_niobi_whitelist_item()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('niobi_whitelist_item') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

@@ -1,0 +1,5 @@
+entity.niobi_whitelist_item.add_form:
+  route_name: entity.niobi_whitelist_item.add_form
+  title: 'Add Whitelist Item'
+  appears_on:
+    - entity.niobi_whitelist_item.collection

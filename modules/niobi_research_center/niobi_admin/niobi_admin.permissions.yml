@@ -1,0 +1,4 @@
+administer niobi:
+  title: 'Administer Niobi Research Center settings'
+  description: 'Administer all Niobi Settings.'
+  restrict access: TRUE

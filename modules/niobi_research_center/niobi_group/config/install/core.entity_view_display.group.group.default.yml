@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - niobi_group
+  config:
+    - field.field.group.group.field_department
+    - group.type.group
+id: group.group.default
+targetEntityType: group
+bundle: group
+mode: default
+content:
+  label:
+    label: hidden
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  changed: true
+  created: true
+  field_department: true
+  uid: true

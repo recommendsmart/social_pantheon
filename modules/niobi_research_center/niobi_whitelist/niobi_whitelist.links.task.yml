@@ -1,0 +1,22 @@
+# Whitelist Item routing definition
+niobi_whitelist_item.settings_tab:
+  route_name: niobi_whitelist_item.settings
+  title: 'Settings'
+  base_route: niobi_whitelist_item.settings
+
+entity.niobi_whitelist_item.canonical:
+  route_name: entity.niobi_whitelist_item.canonical
+  base_route: entity.niobi_whitelist_item.canonical
+  title: 'View'
+
+entity.niobi_whitelist_item.edit_form:
+  route_name: entity.niobi_whitelist_item.edit_form
+  base_route: entity.niobi_whitelist_item.canonical
+  title: 'Edit'
+
+entity.niobi_whitelist_item.delete_form:
+  route_name:  entity.niobi_whitelist_item.delete_form
+  base_route:  entity.niobi_whitelist_item.canonical
+  title: Delete
+  weight: 10
+
