@@ -7,7 +7,6 @@ namespace Drupal\views_add_button\Plugin\views\area;
 
 use Drupal\views\Plugin\views\area\TokenizeAreaPluginBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\views_add_button\ViewsAddButtonManager;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
 
@@ -32,7 +31,9 @@ class ViewsAddButtonArea extends TokenizeAreaPluginBase {
    */
   public function createEntityBundleList() {
     $ret = array();
-    foreach(\Drupal::entityManager()->getDefinitions() as $type => $info) {
+    $entity_info = \Drupal::entityTypeManager()->getDefinitions();
+    $bundle_info = \Drupal::service('entity_type.bundle.info');
+    foreach($entity_info as $type => $info) {
       // is this a content/front-facing entity?
       if ($info instanceof \Drupal\Core\Entity\ContentEntityType) {
         $label = $info->getLabel();
@@ -40,7 +41,7 @@ class ViewsAddButtonArea extends TokenizeAreaPluginBase {
           $label = $label->render();
         }
         $ret[$label] = array();
-        $bundles = \Drupal::entityManager()->getBundleInfo($type);
+        $bundles = $bundle_info->getBundleInfo($type);
         foreach ($bundles as $key => $bundle) {
           if ($bundle['label'] instanceof \Drupal\Core\StringTranslation\TranslatableMarkup) {
             $ret[$label][$type . '+' . $key] = $bundle['label']->render();
@@ -65,8 +66,8 @@ class ViewsAddButtonArea extends TokenizeAreaPluginBase {
     $options['button_text'] = array('default' => '');
     $options['button_classes'] = array('default' => '');
     $options['button_attributes'] = array('default' => '');
-    $options['button_prefix'] = array('format' => NULL, 'value' => '');
-    $options['button_suffix'] = array('format' => NULL, 'value' => '');
+    $options['button_prefix'] = array('default' => array('format' => NULL, 'value' => ''));
+    $options['button_suffix'] = array('default' => array('format' => NULL, 'value' => ''));
     $options['query_string'] = array('default' => '');
     $options['destination'] = array('default' => TRUE);
     $options['tokenize'] = array('default' => FALSE, 'bool' => TRUE);

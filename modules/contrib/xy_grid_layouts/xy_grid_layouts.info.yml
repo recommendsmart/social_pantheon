@@ -7,7 +7,7 @@ dependencies:
   - drupal:layout_discovery
   
 # Information added by Drupal.org packaging script on 2019-01-03
-version: '8.x-1.0-beta2'
+version: '8.x-1.0-beta3'
 core: '8.x'
 project: 'xy_grid_layouts'
-datestamp: 1546512183
+datestamp: 1546518184

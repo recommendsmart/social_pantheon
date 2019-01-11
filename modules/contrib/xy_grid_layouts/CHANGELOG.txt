@@ -1,0 +1,3 @@
+ Journal 8.x-1.x-beta2, 2019-01-03
+----------------------------------
+#3022224 by jidrone, itothegore: Add support for grid-container and breakpoints

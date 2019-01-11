@@ -8,8 +8,8 @@ dependencies:
   - drupal:token
 
 
-# Information added by Drupal.org packaging script on 2018-12-20
-version: '8.x-1.0-rc5'
+# Information added by Drupal.org packaging script on 2019-01-07
+version: '8.x-1.0-rc6'
 core: '8.x'
 project: 'views_add_button'
-datestamp: 1545288787
+datestamp: 1546886911
