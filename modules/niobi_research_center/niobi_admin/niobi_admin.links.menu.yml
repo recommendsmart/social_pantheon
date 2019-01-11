@@ -1,6 +1,0 @@
-niobi_admin.settings:
-  title: 'Niobi Settings'
-  description: 'Configure Niobi Research Center.'
-  route_name: 'niobi_admin.settings'
-  parent: 'system.admin'
-  weight: -1

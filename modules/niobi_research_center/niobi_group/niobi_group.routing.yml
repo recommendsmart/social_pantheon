@@ -1,8 +1,0 @@
-niobi_group.group_admin:
-  path: '/group/{group}/admin'
-  defaults:
-    _title: 'Administrative Settings'
-    _controller: '\Drupal\niobi_group\Controller\NiobiGroupController::settings_page'
-  requirements:
-    _group_permission: 'administer group'
-    _group_member: 'TRUE'

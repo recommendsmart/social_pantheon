@@ -1,5 +1,0 @@
-niobi_group.settings_tab:
-  route_name : 'niobi_group.group_admin'
-  title: Settings
-  base_route: 'entity.group.canonical'
-  weight: 10
