@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.asset.plant
+    - field.storage.asset.field_plant_id
+  module:
+    - entity_serial
+id: asset.plant.field_plant_id
+field_name: field_plant_id
+entity_type: asset
+bundle: plant
+label: 'Plant ID'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: '0'
+default_value_callback: ''
+settings: {  }
+field_type: entity_serial_field_type
