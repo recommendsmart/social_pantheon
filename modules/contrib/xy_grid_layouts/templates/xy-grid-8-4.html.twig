@@ -2,12 +2,12 @@
 
 {% block grid %}
     {% if content.sidebar_left %}
-        <{{ settings.wrappers.sidebar_left }} class="cell {{settings.breakpoint}}-8">
+        <{{ settings.wrappers.sidebar_left }} {{ region_attributes.sidebar_left.addClass('cell', settings.breakpoint ~ '-8') }}>
         {{ content.sidebar_left }}
         </{{ settings.wrappers.sidebar_left }}>
     {% endif %}
     {% if content.sidebar_right %}
-        <{{ settings.wrappers.sidebar_right}} class="cell {{settings.breakpoint}}-4">
+        <{{ settings.wrappers.sidebar_right}} {{ region_attributes.sidebar_right.addClass('cell', settings.breakpoint ~ '-4') }}>
         {{ content.sidebar_right}}
         </{{ settings.wrappers.sidebar_right}}>
     {% endif %}

@@ -2,17 +2,17 @@
 
 {% block grid %}
     {% if content.sidebar_left %}
-      <{{ settings.wrappers.sidebar_left }} class="cell {{settings.breakpoint}}-3">
+      <{{ settings.wrappers.sidebar_left }} {{ region_attributes.sidebar_left.addClass('cell', settings.breakpoint ~ '-3') }}>
         {{ content.sidebar_left }}
       </{{ settings.wrappers.sidebar_left }}>
     {% endif %}
     {% if content.main %}
-      <{{ settings.wrappers.main }} class="cell {{settings.breakpoint}}-6">
+      <{{ settings.wrappers.main }} {{ region_attributes.main.addClass('cell', settings.breakpoint ~ '-6') }}>
         {{ content.main }}
       </{{ settings.wrappers.main }}>
     {% endif %}
     {% if content.sidebar_right %}
-      <{{ settings.wrappers.sidebar_right }} class="cell {{settings.breakpoint}}-3">
+      <{{ settings.wrappers.sidebar_right }} {{ region_attributes.sidebar_right.addClass('cell', settings.breakpoint ~ '-3') }}>
         {{ content.sidebar_right }}
       </{{ settings.wrappers.sidebar_right }}>
     {% endif %}
