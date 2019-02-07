@@ -46,7 +46,9 @@
         "drupal/maestro": "^2.1",
         "zurb/foundation": "^6.5",
         "drupal/xy_grid_layouts": "^1.0",
-        "drupal/zurb_foundation": "^6.0"
+        "drupal/zurb_foundation": "^6.0",
+        "drupal/entity_serial": " 1.x-dev",
+        "drupal/fences": "^2.0@alpha"
         },
     "repositories": [
         {
