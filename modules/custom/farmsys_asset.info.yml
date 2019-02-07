@@ -1,0 +1,13 @@
+name: Asset
+type: module
+core: 8.x
+dependencies:
+  - eck
+  - entity_serial
+  - features
+  - fences
+  - field
+  - taxonomy
+  - unique_field_ajax
+  - user
+package: FarmSys
