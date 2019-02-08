@@ -3117,21 +3117,21 @@
     },
     {
         "name": "drupal/ctools",
-        "version": "3.0.0",
-        "version_normalized": "3.0.0.0",
+        "version": "3.1.0",
+        "version_normalized": "3.1.0.0",
         "source": {
             "type": "git",
             "url": "https://git.drupal.org/project/ctools",
-            "reference": "8.x-3.0"
+            "reference": "8.x-3.1"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/ctools-8.x-3.0.zip",
-            "reference": "8.x-3.0",
-            "shasum": "302e869ecd1e59fe55663673999fee2ccac5daa8"
+            "url": "https://ftp.drupal.org/files/projects/ctools-8.x-3.1.zip",
+            "reference": "8.x-3.1",
+            "shasum": "7056df469624ec3943c62ebe613dbfcb3171dcd1"
         },
         "require": {
-            "drupal/core": "~8.0"
+            "drupal/core": "^8.5"
         },
         "type": "drupal-module",
         "extra": {
@@ -3139,8 +3139,8 @@
                 "dev-3.x": "3.x-dev"
             },
             "drupal": {
-                "version": "8.x-3.0",
-                "datestamp": "1493401742",
+                "version": "8.x-3.1",
+                "datestamp": "1549603381",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -3739,6 +3739,79 @@
         "homepage": "http://drupal.org/project/entity",
         "support": {
             "source": "http://cgit.drupalcode.org/entity"
+        }
+    },
+    {
+        "name": "drupal/entity_collector",
+        "version": "1.0.0-alpha17",
+        "version_normalized": "1.0.0.0-alpha17",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupal.org/project/entity_collector",
+            "reference": "8.x-1.0-alpha17"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/entity_collector-8.x-1.0-alpha17.zip",
+            "reference": "8.x-1.0-alpha17",
+            "shasum": "44b4e4bacbac03e328db5f8071618d84c429ed42"
+        },
+        "require": {
+            "drupal/core": "~8.0",
+            "drupal/entity_collector": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.0-alpha17",
+                "datestamp": "1549615684",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Project has not opted into security advisory coverage!"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Marnix van Balgooi",
+                "homepage": "https://www.drupal.org/u/mirnaxvb",
+                "email": "mj.van.balgooi@gmail.com",
+                "role": "Maintainer"
+            },
+            {
+                "name": "Jeffrey Bertoen",
+                "homepage": "https://www.drupal.org/u/jbertoen",
+                "email": "jbertoen@gmail.com",
+                "role": "Maintainer"
+            },
+            {
+                "name": "leonvanderhaas",
+                "homepage": "https://www.drupal.org/user/3549874"
+            },
+            {
+                "name": "mycw1991",
+                "homepage": "https://www.drupal.org/user/3523472"
+            }
+        ],
+        "description": "Provides the functionality to create entity collections and add them to a specific collection.",
+        "homepage": "https://www.drupal.org/project/entity_collector",
+        "keywords": [
+            "Drupal",
+            "collector",
+            "entity"
+        ],
+        "support": {
+            "source": "http://cgit.drupalcode.org/entity_collector",
+            "issues": "https://www.drupal.org/project/issues/entity_collector",
+            "irc": "irc://irc.freenode.org/drupal-contribute"
         }
     },
     {

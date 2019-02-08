@@ -48,7 +48,8 @@
         "drupal/xy_grid_layouts": "^1.0",
         "drupal/zurb_foundation": "^6.0",
         "drupal/entity_serial": " 1.x-dev",
-        "drupal/fences": "^2.0@alpha"
+        "drupal/fences": "^2.0@alpha",
+        "drupal/entity_collector": "^1.0"
         },
     "repositories": [
         {
