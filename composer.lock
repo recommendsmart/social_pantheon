@@ -5927,8 +5927,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/social_course",
                 "error": "Invalid dependency: \"social_topic\" is an unknown drupal 8 package name"
-            },
-            "time": "2019-02-08T12:47:20+00:00"
+            }
         },
         {
             "name": "drupal/social_pwa",
