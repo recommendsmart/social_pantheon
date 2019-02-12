@@ -49,8 +49,7 @@
         "drupal/zurb_foundation": "^6.0",
         "drupal/entity_serial": " 1.x-dev",
         "drupal/fences": "^2.0@alpha",
-        "drupal/entity_collector": "^1.0",
-        "drupal/social_course": "2.x-dev"
+        "drupal/entity_collector": "^1.0"
         },
     "repositories": [
         {
