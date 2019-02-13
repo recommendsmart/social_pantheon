@@ -1,0 +1,21 @@
+selectable:
+  version: 1.0.0
+  js:
+    lib/js/selectable.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+
+selectable.style:
+  version: 1.0.0
+  css:
+    theme:
+      lib/css/selectable.css: {}
+
+inlinefields.style:
+  version: 1.0.0
+  css:
+    theme:
+      lib/css/inlinefields.css: {}
+
+

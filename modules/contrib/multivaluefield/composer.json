@@ -1,0 +1,13 @@
+{
+    "name": "drupal/multivaluefield",
+    "version": "1.0.5-dev",
+    "type": "drupal-module",
+    "description": "Drupal 8 module to store multiple values in one field.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nuwantha",
+            "role": "Admin"
+        }
+    ]
+}

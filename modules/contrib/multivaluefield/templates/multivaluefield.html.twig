@@ -1,0 +1,69 @@
+{#
+/**
+ * @file
+ * theme implementation to multivaluefield.
+ *
+ * Available variables:
+ * - data: Field data Array.
+ * - header: Fields labled list (Array).
+ * - attributes : Fields wrapper div attributes.
+ * - settings : Array [Field name, Entity type, bundle] .
+ *
+ * @ingroup themeable
+ */
+#}
+{% if rows %}
+    <div{{ attributes }}>
+        {% for count, row in rows %}
+            {#Print rows.#}
+            <div class="row row-{{ count }}">
+                {%- for key, item in row -%}
+                    {#Print fields of mvf.#}
+                    <div class="field field-{{ key }}">
+                        {#Print header.#}
+                        {%- if header -%}
+                            <label>{{ header[key] }}</label>
+                        {%- endif -%}
+
+                        {#Print value.#}
+                        {% if item.id is defined %}
+                            obj---
+                            {#If an entity, Print label in id of the entity#}
+                            {#Use dump to show the object : {{ dump(item) }}#}
+                            <span>{{ item.label }} ({{ item.id }})</span>
+                        {% elseif item is iterable %}
+                            array---
+                            {#If an array, Print label in id of the entity#}
+                            {#Use dump to show the array : {{ dump(item) }}#}
+                            {{ dump(item) }}
+                            {% for item_element in item %}
+                                {{ item_element }}
+                            {% endfor %}
+                        {% else %}
+                            {#Print value.#}
+                            <span>{{ item }}</span>
+                        {% endif %}
+
+                        {#Print value.#}
+                        {% if item is iterable %}
+                            {#If an array, Print label in id of the entity#}
+                            {#Use dump to show the array : {{ dump(item) }}#}
+                            {% for item_element in item %}
+                                {{ item_element }}
+                            {% endfor %}
+                        {% elseif item.id is defined %}
+                            {#If an entity, Print label in id of the entity#}
+                            {#Use dump to show the object : {{ dump(item) }}#}
+                            <span>{{ item.label }} ({{ item.id }})</span>
+                        {% else %}
+                            {#Print value.#}
+                            <span>{{ item }}</span>
+                        {% endif %}
+
+
+                    </div>
+                {%- endfor -%}
+            </div>
+        {%- endfor -%}
+    </div>
+{% endif %}

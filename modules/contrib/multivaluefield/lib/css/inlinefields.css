@@ -1,0 +1,13 @@
+
+.field--type-multivaluefield .field-multiple-table {
+}
+
+.field--type-multivaluefield .field-multiple-table tbody > tr > td > div,
+.field--type-multivaluefield .field-multiple-table tbody > tr > td > fieldset .form-type-radio {
+  display: inline-flex;
+}
+
+.field--type-multivaluefield .field-multiple-table tbody > tr > td > div > label {
+  margin: 5px 5px 0 5px;
+  min-width: 25px;
+}
