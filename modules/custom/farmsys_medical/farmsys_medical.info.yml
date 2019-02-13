@@ -1,0 +1,12 @@
+name: Medical
+description: 'Provides Medical content type and related configuration. Medical content type for observation'
+type: module
+core: 8.x
+dependencies:
+  - field
+  - menu_ui
+  - node
+  - path
+  - text
+  - user
+package: FarmSys
