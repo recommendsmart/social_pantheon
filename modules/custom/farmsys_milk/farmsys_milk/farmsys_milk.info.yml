@@ -1,0 +1,12 @@
+name: Milk
+description: 'Provides Milk content type and related configuration. Milk content type for recording milk production'
+type: module
+core: 8.x
+dependencies:
+  - field
+  - menu_ui
+  - node
+  - path
+  - text
+  - user
+package: FarmSys
