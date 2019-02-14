@@ -1,11 +1,6 @@
 name: Multi Value Field Examples
 type: module
 description: "Examples of multivaluefield usage."
-# core: '8.x'
-
-# version: 1.0.0-dev
-# Information added by Drupal.org packaging script on 2019-02-12
-version: '8.x-1.0-alpha2'
 core: '8.x'
-project: 'multivaluefield'
-datestamp: 1549981086
+
+version: 1.0.0-dev

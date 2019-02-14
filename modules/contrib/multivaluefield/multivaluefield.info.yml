@@ -1,11 +1,5 @@
 name: Multi Value Field
 type: module
 description: "Create fields with multiple values."
-# core: '8.x'
-#version: 8.x-1.0.5-dev
-
-# Information added by Drupal.org packaging script on 2019-02-12
-version: '8.x-1.0-alpha2'
 core: '8.x'
-project: 'multivaluefield'
-datestamp: 1549981086
+#version: 8.x-1.0.5-dev
