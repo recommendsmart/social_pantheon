@@ -43,7 +43,8 @@
         "drupal/fences": "^2.0@alpha",
         "drupal/entity_collector": "^1.0",
         "drupal/social_course": "2.x-dev",
-        "drupal/multivaluefield": "^1.0"
+        "drupal/multivaluefield": "^1.0",
+        "drupal/basic_data": "1.x-dev"
         },
     "repositories": [
         {

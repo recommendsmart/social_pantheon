@@ -1491,6 +1491,49 @@
         }
     },
     {
+        "name": "drupal/basic_data",
+        "version": "dev-1.x",
+        "version_normalized": "dev-1.x",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupal.org/project/basic_data",
+            "reference": "801d8f00ca34e9419147ee853e05a5f1a5622352"
+        },
+        "require": {
+            "drupal/core": "~8.0"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.x-dev",
+                "datestamp": "1549909981",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Project has not opted into security advisory coverage!"
+                }
+            }
+        },
+        "installation-source": "source",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "brantwynn",
+                "homepage": "https://www.drupal.org/user/252788"
+            }
+        ],
+        "description": "A basic entity type that stores data blobs.",
+        "homepage": "https://www.drupal.org/project/basic_data",
+        "support": {
+            "source": "http://cgit.drupalcode.org/basic_data"
+        }
+    },
+    {
         "name": "drupal/blizz_dynamic_entitylist",
         "version": "2.34.0",
         "version_normalized": "2.34.0.0",
@@ -2241,6 +2284,9 @@
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
                 }
+            },
+            "patches_applied": {
+                "Automated crop integration": "https://www.drupal.org/files/issues/2018-12-16/2830768-crop-automated_crop_integration-45.patch"
             }
         },
         "installation-source": "dist",
@@ -4090,7 +4136,7 @@
     {
         "name": "drupal/multivaluefield",
         "version": "1.0.5-dev",
-        "version_normalized": "1.0.0.0-alpha2",
+        "version_normalized": "1.0.5.0-dev",
         "source": {
             "type": "git",
             "url": "https://git.drupal.org/project/multivaluefield",
@@ -4305,7 +4351,8 @@
                 }
             },
             "patches_applied": {
-                "Private message unread messages fix": "https://www.drupal.org/files/issues/2018-06-08/2978324-getthreads-sort-order-2.patch"
+                "Private message unread messages fix": "https://www.drupal.org/files/issues/2018-06-08/2978324-getthreads-sort-order-2.patch",
+                "Own send messages are shown as new messages": "https://www.drupal.org/files/issues/2019-02-05/private_message-message_count-2977310-8_0.patch"
             }
         },
         "installation-source": "dist",

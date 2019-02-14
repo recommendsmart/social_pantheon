@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a49276fc4fc28e95f825d593a68ae771",
+    "content-hash": "55821351963900701d69470d8518afea",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -1435,6 +1435,48 @@
             }
         },
         {
+            "name": "drupal/basic_data",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/basic_data",
+                "reference": "801d8f00ca34e9419147ee853e05a5f1a5622352"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1549909981",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "brantwynn",
+                    "homepage": "https://www.drupal.org/user/252788"
+                }
+            ],
+            "description": "A basic entity type that stores data blobs.",
+            "homepage": "https://www.drupal.org/project/basic_data",
+            "support": {
+                "source": "http://cgit.drupalcode.org/basic_data"
+            },
+            "time": "2019-02-11T16:27:52+00:00"
+        },
+        {
             "name": "drupal/blizz_dynamic_entitylist",
             "version": "2.34.0",
             "source": {
@@ -2166,6 +2208,9 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "Automated crop integration": "https://www.drupal.org/files/issues/2018-12-16/2830768-crop-automated_crop_integration-45.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4005,7 +4050,8 @@
             "homepage": "https://www.drupal.org/project/multivaluefield",
             "support": {
                 "source": "http://cgit.drupalcode.org/multivaluefield"
-            }
+            },
+            "time": "2019-02-12T14:10:42+00:00"
         },
         {
             "name": "drupal/override_node_options",
@@ -4166,7 +4212,8 @@
                     }
                 },
                 "patches_applied": {
-                    "Private message unread messages fix": "https://www.drupal.org/files/issues/2018-06-08/2978324-getthreads-sort-order-2.patch"
+                    "Private message unread messages fix": "https://www.drupal.org/files/issues/2018-06-08/2978324-getthreads-sort-order-2.patch",
+                    "Own send messages are shown as new messages": "https://www.drupal.org/files/issues/2019-02-05/private_message-message_count-2977310-8_0.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -9898,7 +9945,8 @@
         "drupal/social_pwa": 20,
         "drupal/entity_serial": 20,
         "drupal/fences": 15,
-        "drupal/social_course": 20
+        "drupal/social_course": 20,
+        "drupal/basic_data": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
