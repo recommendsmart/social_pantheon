@@ -1,0 +1,8 @@
+{
+  "name": "farmsys/medical",
+  "type": "module",
+  "description": "Provides Medical content type and related configuration. Medical content type for observation",
+  "homepage": "https://github.com/recommendsmart/farmsys_medical",
+  "keywords": ["farmsys_medical"],
+  "license": "GPL-2.0+"
+}

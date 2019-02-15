@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5a3d3938bd2bfa157c44457639443e87",
+    "content-hash": "63864993ca5a21a6cc600c98c5e2b611",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -5973,6 +5973,110 @@
             "time": "2018-12-11T22:56:31+00:00"
         },
         {
+            "name": "farmsys/farmsys_asset",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/recommendsmart/farmsys_asset.git",
+                "reference": "1227040b66cfd7c1d7fdb8678a5f01f8ae016e4e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/recommendsmart/farmsys_asset/zipball/1227040b66cfd7c1d7fdb8678a5f01f8ae016e4e",
+                "reference": "1227040b66cfd7c1d7fdb8678a5f01f8ae016e4e",
+                "shasum": ""
+            },
+            "type": "module",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Asset entity type for farmsys.",
+            "homepage": "https://github.com/recommendsmart/farmsys_asset",
+            "keywords": [
+                "farmsys"
+            ],
+            "time": "2019-02-15T11:20:32+00:00"
+        },
+        {
+            "name": "farmsys/liability",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/recommendsmart/farmsys_liability.git",
+                "reference": "505a1651444dbf639bd6b2dc4f3a58e0d01fa400"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/recommendsmart/farmsys_liability/zipball/505a1651444dbf639bd6b2dc4f3a58e0d01fa400",
+                "reference": "505a1651444dbf639bd6b2dc4f3a58e0d01fa400",
+                "shasum": ""
+            },
+            "type": "module",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Liability entity type for farmsys.",
+            "homepage": "https://github.com/recommendsmart/farmsys_liability",
+            "keywords": [
+                "farmsys_liability"
+            ],
+            "time": "2019-02-15T11:39:38+00:00"
+        },
+        {
+            "name": "farmsys/medical",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/recommendsmart/farmsys_medical.git",
+                "reference": "1e50168b2e912f859eb20d96de2753b691510e2a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/recommendsmart/farmsys_medical/zipball/1e50168b2e912f859eb20d96de2753b691510e2a",
+                "reference": "1e50168b2e912f859eb20d96de2753b691510e2a",
+                "shasum": ""
+            },
+            "type": "module",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Provides Medical content type and related configuration. Medical content type for observation",
+            "homepage": "https://github.com/recommendsmart/farmsys_medical",
+            "keywords": [
+                "farmsys_medical"
+            ],
+            "time": "2019-02-15T11:41:26+00:00"
+        },
+        {
+            "name": "farmsys/milk",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/recommendsmart/farmsys_milk.git",
+                "reference": "f5f256713d31dab382d36f8953065eb22394b6ed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/recommendsmart/farmsys_milk/zipball/f5f256713d31dab382d36f8953065eb22394b6ed",
+                "reference": "f5f256713d31dab382d36f8953065eb22394b6ed",
+                "shasum": ""
+            },
+            "type": "module",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Provides Milk content type and related configuration. Milk content type for observation",
+            "homepage": "https://github.com/recommendsmart/farmsys_milk",
+            "keywords": [
+                "farmsys_milk"
+            ],
+            "time": "2019-02-15T11:44:33+00:00"
+        },
+        {
             "name": "fgrosse/phpasn1",
             "version": "v2.1.1",
             "source": {
@@ -10035,7 +10139,11 @@
         "drupal/fences": 15,
         "drupal/social_course": 20,
         "drupal/basic_data": 20,
-        "drupal/state_form_entity": 20
+        "drupal/state_form_entity": 20,
+        "farmsys/farmsys_asset": 20,
+        "farmsys/liability": 20,
+        "farmsys/medical": 20,
+        "farmsys/milk": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

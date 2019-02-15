@@ -1,0 +1,8 @@
+{
+  "name": "farmsys/farmsys_asset",
+  "type": "module",
+  "description": "Asset entity type for farmsys.",
+  "homepage": "https://github.com/recommendsmart/farmsys_asset",
+  "keywords": ["farmsys"],
+  "license": "GPL-2.0+"
+}

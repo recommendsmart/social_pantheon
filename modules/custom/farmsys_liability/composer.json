@@ -1,0 +1,8 @@
+{
+  "name": "farmsys/liability",
+  "type": "module",
+  "description": "Liability entity type for farmsys.",
+  "homepage": "https://github.com/recommendsmart/farmsys_liability",
+  "keywords": ["farmsys_liability"],
+  "license": "GPL-2.0+"
+}

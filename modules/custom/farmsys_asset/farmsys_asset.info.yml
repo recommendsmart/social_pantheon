@@ -1,5 +1,4 @@
 name: Asset
-description: 'Asset entity type for farmsys.'
 type: module
 core: 8.x
 dependencies:
