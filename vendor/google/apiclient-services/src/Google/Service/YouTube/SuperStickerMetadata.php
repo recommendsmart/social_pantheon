@@ -15,25 +15,34 @@
  * the License.
  */
 
-class Google_Service_Dfareporting_DirectorySiteContactAssignment extends Google_Model
+class Google_Service_YouTube_SuperStickerMetadata extends Google_Model
 {
-  public $contactId;
-  public $visibility;
+  public $altText;
+  public $altTextLanguage;
+  public $stickerId;
 
-  public function setContactId($contactId)
+  public function setAltText($altText)
   {
-    $this->contactId = $contactId;
+    $this->altText = $altText;
   }
-  public function getContactId()
+  public function getAltText()
   {
-    return $this->contactId;
+    return $this->altText;
   }
-  public function setVisibility($visibility)
+  public function setAltTextLanguage($altTextLanguage)
   {
-    $this->visibility = $visibility;
+    $this->altTextLanguage = $altTextLanguage;
   }
-  public function getVisibility()
+  public function getAltTextLanguage()
   {
-    return $this->visibility;
+    return $this->altTextLanguage;
+  }
+  public function setStickerId($stickerId)
+  {
+    $this->stickerId = $stickerId;
+  }
+  public function getStickerId()
+  {
+    return $this->stickerId;
   }
 }

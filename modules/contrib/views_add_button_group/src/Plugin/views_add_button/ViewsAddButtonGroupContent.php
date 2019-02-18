@@ -87,7 +87,7 @@ class ViewsAddButtonGroupContent extends PluginBase implements ViewsAddButtonInt
     }
   }
 
-  public static function generate_url($entity_type, $bundle, $options, $context = '') {
+  public static function generateUrl($entity_type, $bundle, $options, $context = '') {
     $c = explode(',', $context);
     // We are expecting a bundle of the type group-group_[entity_type]-[entity_type_bundle]
     $b  = explode('-', $bundle);

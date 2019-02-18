@@ -50,7 +50,8 @@
         "farmsys/farmsys_asset": "dev-master",
         "farmsys/liability": "dev-master",
         "farmsys/medical": "dev-master",
-        "farmsys/milk": "dev-master"
+        "farmsys/milk": "dev-master",
+		"drupal/forms_steps": "^1.0"
         },
     "repositories": [
         {

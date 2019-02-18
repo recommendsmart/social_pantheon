@@ -2,7 +2,25 @@
 ##                     Views Add Button README                     ##
 #####################################################################
 
-### How to install ###
+### INTRODUCTION ###
+
+Have you ever wanted to create "add" buttons with tokens from your
+contextual filters? Did you ever need a custom list of nodes with an
+add button at the top that checks for entity create access, without
+having to write a custom handler or put a view inside a view? Then
+this module is for you!
+
+Views Add Button lets you make an "add an entity" button of any
+type, and you may specify CSS classes and destination parameters for
+your link. You may also create multiple buttons with differing
+parameters if needed: just add multiple instances of the button
+field.
+
+### REQUIREMENTS ###
+
+ - Views
+
+### INSTALLATION ###
 
 Views Add Button installs like most Drupal modules:
 
@@ -21,7 +39,7 @@ Views Add Button installs like most Drupal modules:
    needed
 
 
-### How to use ###
+### CONFIGURATION ###
 
 Once installed, in the Views header and footer "Global: Entity Add
 Button" will be made available. The button has the following options,
