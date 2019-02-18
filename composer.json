@@ -51,7 +51,8 @@
         "farmsys/liability": "dev-master",
         "farmsys/medical": "dev-master",
         "farmsys/milk": "dev-master",
-		"drupal/forms_steps": "^1.0"
+		"drupal/forms_steps": "^1.0",
+        "drupal/date_recur_modular": "^1.0"
         },
     "repositories": [
         {

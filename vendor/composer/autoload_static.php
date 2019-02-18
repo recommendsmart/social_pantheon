@@ -85,6 +85,10 @@ class ComposerStaticInitDrupal8
             'Symfony\\Bridge\\PsrHttpMessage\\' => 30,
             'Social\\' => 7,
         ),
+        'R' => 
+        array (
+            'RRule\\' => 6,
+        ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
@@ -292,6 +296,10 @@ class ComposerStaticInitDrupal8
         'Social\\' => 
         array (
             0 => __DIR__ . '/../..' . '/profiles/contrib/social/src',
+        ),
+        'RRule\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rlanvin/php-rrule/src',
         ),
         'Psr\\Log\\' => 
         array (
