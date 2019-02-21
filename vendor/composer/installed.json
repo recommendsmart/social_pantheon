@@ -399,7 +399,7 @@
         "version_normalized": "1.11.14.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/jonthornton/jquery-timepicker.git",
+            "url": "git@github.com:jonthornton/jquery-timepicker.git",
             "reference": "b53338cc92270da3750d5c0cc6abe60fb27a0d89"
         },
         "dist": {
@@ -2009,17 +2009,17 @@
     },
     {
         "name": "drupal/core",
-        "version": "8.6.9",
-        "version_normalized": "8.6.9.0",
+        "version": "8.6.10",
+        "version_normalized": "8.6.10.0",
         "source": {
             "type": "git",
             "url": "https://github.com/drupal/core.git",
-            "reference": "cac12e0ec19d5c6fa53778522b3ff4c542f86c8d"
+            "reference": "59568ac02948cf075ee8543e6c6d4386ad8daec1"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/drupal/core/zipball/cac12e0ec19d5c6fa53778522b3ff4c542f86c8d",
-            "reference": "cac12e0ec19d5c6fa53778522b3ff4c542f86c8d",
+            "url": "https://api.github.com/repos/drupal/core/zipball/59568ac02948cf075ee8543e6c6d4386ad8daec1",
+            "reference": "59568ac02948cf075ee8543e6c6d4386ad8daec1",
             "shasum": ""
         },
         "require": {
@@ -2192,7 +2192,7 @@
             "symfony/debug": "^3.4.0",
             "symfony/phpunit-bridge": "^3.4.3"
         },
-        "time": "2019-02-08T12:21:40+00:00",
+        "time": "2019-02-20T18:35:01+00:00",
         "type": "drupal-core",
         "extra": {
             "merge-plugin": {
@@ -4361,7 +4361,7 @@
     {
         "name": "drupal/multivaluefield",
         "version": "1.0.5-dev",
-        "version_normalized": "1.0.5.0-dev",
+        "version_normalized": "1.0.0.0-alpha2",
         "source": {
             "type": "git",
             "url": "https://git.drupal.org/project/multivaluefield",
@@ -4464,18 +4464,18 @@
     },
     {
         "name": "drupal/paragraphs",
-        "version": "1.5.0",
-        "version_normalized": "1.5.0.0",
+        "version": "1.6.0",
+        "version_normalized": "1.6.0.0",
         "source": {
             "type": "git",
             "url": "https://git.drupal.org/project/paragraphs",
-            "reference": "8.x-1.5"
+            "reference": "8.x-1.6"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/paragraphs-8.x-1.5.zip",
-            "reference": "8.x-1.5",
-            "shasum": "85ba97dd1c602d33fc5904b6e1df5973312afa94"
+            "url": "https://ftp.drupal.org/files/projects/paragraphs-8.x-1.6.zip",
+            "reference": "8.x-1.6",
+            "shasum": "cd93e244f3a78dabdcf362adc31e59aad25b3fae"
         },
         "require": {
             "drupal/core": "~8",
@@ -4503,8 +4503,8 @@
                 "dev-1.x": "1.x-dev"
             },
             "drupal": {
-                "version": "8.x-1.5",
-                "datestamp": "1541009695",
+                "version": "8.x-1.6",
+                "datestamp": "1550692525",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -5148,7 +5148,7 @@
         "source": {
             "type": "git",
             "url": "https://git.drupal.org/project/social_pwa",
-            "reference": "292d6a61819f76942220f311e05c810243b7a83f"
+            "reference": "2784fe76592ec3f3f72e7bb70647bbb229c84638"
         },
         "require": {
             "drupal/activity_send_push": "*",
@@ -5162,8 +5162,8 @@
                 "dev-1.x": "1.x-dev"
             },
             "drupal": {
-                "version": "8.x-1.x-dev",
-                "datestamp": "1548153480",
+                "version": "8.x-1.0-alpha1+2-dev",
+                "datestamp": "1550483885",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Project has not opted into security advisory coverage!"
@@ -6578,17 +6578,17 @@
     },
     {
         "name": "goalgorilla/open_social",
-        "version": "4.4.0",
-        "version_normalized": "4.4.0.0",
+        "version": "4.5.0",
+        "version_normalized": "4.5.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/goalgorilla/open_social.git",
-            "reference": "c3639d8aa21b8cbbd1c0c05314c01cc525252eab"
+            "reference": "f34d5349f0f8fcedc151c99cf84391cc52021a2e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/goalgorilla/open_social/zipball/c3639d8aa21b8cbbd1c0c05314c01cc525252eab",
-            "reference": "c3639d8aa21b8cbbd1c0c05314c01cc525252eab",
+            "url": "https://api.github.com/repos/goalgorilla/open_social/zipball/f34d5349f0f8fcedc151c99cf84391cc52021a2e",
+            "reference": "f34d5349f0f8fcedc151c99cf84391cc52021a2e",
             "shasum": ""
         },
         "require": {
@@ -6612,7 +6612,7 @@
             "drupal/block_field": "1.0-alpha8",
             "drupal/bootstrap": "3.17",
             "drupal/config_update": "1.6",
-            "drupal/core": "~8.6.3",
+            "drupal/core": "~8.6.10",
             "drupal/crop": "1.5",
             "drupal/csv_serialization": "1.4.0",
             "drupal/data_policy": "^1.0",
@@ -6633,7 +6633,7 @@
             "drupal/link_css": "1.x-dev",
             "drupal/message": "1.0-rc2",
             "drupal/override_node_options": "2.4",
-            "drupal/paragraphs": "1.5",
+            "drupal/paragraphs": "1.6",
             "drupal/private_message": "1.2",
             "drupal/profile": "1.0-rc1",
             "drupal/r4032login": "1.1",
@@ -6662,7 +6662,7 @@
             "swiftmailer/swiftmailer": "v5.4.12",
             "zaporylie/composer-drupal-optimizations": "^1.0"
         },
-        "time": "2019-02-13T15:07:27+00:00",
+        "time": "2019-02-20T20:14:56+00:00",
         "type": "drupal-profile",
         "extra": {
             "enable-patching": true,
@@ -6782,17 +6782,17 @@
     },
     {
         "name": "google/apiclient-services",
-        "version": "v0.85",
-        "version_normalized": "0.85.0.0",
+        "version": "v0.86",
+        "version_normalized": "0.86.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/googleapis/google-api-php-client-services.git",
-            "reference": "66bf538d26b40fec0ae3cda79eea64fe2b0cc6de"
+            "reference": "84496e256a7cac3a7817db7ba534829a370a3201"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/66bf538d26b40fec0ae3cda79eea64fe2b0cc6de",
-            "reference": "66bf538d26b40fec0ae3cda79eea64fe2b0cc6de",
+            "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/84496e256a7cac3a7817db7ba534829a370a3201",
+            "reference": "84496e256a7cac3a7817db7ba534829a370a3201",
             "shasum": ""
         },
         "require": {
@@ -6801,7 +6801,7 @@
         "require-dev": {
             "phpunit/phpunit": "~4.8"
         },
-        "time": "2019-02-07T00:23:12+00:00",
+        "time": "2019-02-20T02:10:11+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -10391,27 +10391,27 @@
     },
     {
         "name": "zaporylie/composer-drupal-optimizations",
-        "version": "1.0.2",
-        "version_normalized": "1.0.2.0",
+        "version": "1.1.0",
+        "version_normalized": "1.1.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/zaporylie/composer-drupal-optimizations.git",
-            "reference": "cc5eb9f0b5fa664885765748ce5190c1de7d2571"
+            "reference": "173c198fd7c9aefa5e5b68cd755ee63eb0abf7e8"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/zaporylie/composer-drupal-optimizations/zipball/cc5eb9f0b5fa664885765748ce5190c1de7d2571",
-            "reference": "cc5eb9f0b5fa664885765748ce5190c1de7d2571",
+            "url": "https://api.github.com/repos/zaporylie/composer-drupal-optimizations/zipball/173c198fd7c9aefa5e5b68cd755ee63eb0abf7e8",
+            "reference": "173c198fd7c9aefa5e5b68cd755ee63eb0abf7e8",
             "shasum": ""
         },
         "require": {
-            "composer-plugin-api": "^1.1",
-            "drupal/core": "^8.5"
+            "composer-plugin-api": "^1.1"
         },
         "require-dev": {
-            "composer/composer": "^1.6"
+            "composer/composer": "^1.6",
+            "phpunit/phpunit": "^6"
         },
-        "time": "2018-07-15T18:04:58+00:00",
+        "time": "2019-02-20T10:00:17+00:00",
         "type": "composer-plugin",
         "extra": {
             "class": "zaporylie\\ComposerDrupalOptimizations\\Plugin"
