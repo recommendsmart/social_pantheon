@@ -25,6 +25,7 @@ class ComposerStaticInitDrupal8
         '40360c0b9b437e69bcbb7f1349ce029e' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/parse_cookie_header.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         'a4ecaeafb8cfb009ad0e052c90355e98' => __DIR__ . '/..' . '/beberlei/assert/lib/Assert/functions.php',
+        'a16312f9300fed4a097923eacb0ba814' => __DIR__ . '/..' . '/igorw/get-in/src/get_in.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'ddc0a4d7e61c0286f0f8593b1903e894' => __DIR__ . '/..' . '/clue/stream-filter/src/functions.php',
         '04c6c5c2f7095ccf6c481d3e53e1776f' => __DIR__ . '/..' . '/mustangostang/spyc/Spyc.php',
@@ -115,6 +116,10 @@ class ComposerStaticInitDrupal8
         array (
             'Jose\\' => 5,
         ),
+        'I' => 
+        array (
+            'Ivory\\HttpAdapter\\' => 18,
+        ),
         'H' => 
         array (
             'Http\\Promise\\' => 13,
@@ -146,6 +151,7 @@ class ComposerStaticInitDrupal8
         'D' => 
         array (
             'Drupal\\social\\Behat\\' => 20,
+            'Drupal\\drush9_example\\' => 22,
             'Drupal\\Driver\\' => 14,
             'Drupal\\Core\\' => 12,
             'Drupal\\Component\\' => 17,
@@ -345,6 +351,10 @@ class ComposerStaticInitDrupal8
         array (
             0 => __DIR__ . '/..' . '/spomky-labs/jose/src',
         ),
+        'Ivory\\HttpAdapter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/egeloen/http-adapter/src',
+        ),
         'Http\\Promise\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-http/promise/src',
@@ -414,6 +424,10 @@ class ComposerStaticInitDrupal8
         'Drupal\\social\\Behat\\' => 
         array (
             0 => __DIR__ . '/../..' . '/profiles/contrib/social/tests/behat/features/bootstrap',
+        ),
+        'Drupal\\drush9_example\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/modules/contrib/duration_field/src',
         ),
         'Drupal\\Driver\\' => 
         array (
@@ -513,6 +527,10 @@ class ComposerStaticInitDrupal8
             'Google_' => 
             array (
                 0 => __DIR__ . '/..' . '/google/apiclient/src',
+            ),
+            'Geocoder' => 
+            array (
+                0 => __DIR__ . '/..' . '/willdurand/geocoder/src',
             ),
         ),
         'E' => 

@@ -23,6 +23,9 @@ function zurb_foundation_preprocess_breadcrumb(&$variables) {
   $title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
 
   $variables['title'] = $title;
+
+  // Add cache context based on url.
+  $variables['#cache']['contexts'][] = 'url';
 }
 
 /**
@@ -66,10 +69,10 @@ function zurb_foundation_preprocess_block(&$variables) {
  */
 function zurb_foundation_preprocess_field(&$variables) {
   if (!isset($variables['title_attributes']['class'])) {
-    $variables['title_attributes']['class'] = array();
+    $variables['title_attributes']['class'] = [];
   }
   if (!isset($variables['content_attributes']['class'])) {
-    $variables['content_attributes']['class'] = array();
+    $variables['content_attributes']['class'] = [];
   }
   $variables['title_attributes']['class'][] = 'field-label';
 
@@ -77,7 +80,7 @@ function zurb_foundation_preprocess_field(&$variables) {
   $mode = $variables['element']['#view_mode'];
   $classes = &$variables['attributes']['class'];
   $content_classes = &$variables['content_attributes']['class'];
-  $item_classes = array();
+  $item_classes = [];
 
   // Global field classes
   $classes[] = 'field-wrapper';
@@ -135,14 +138,7 @@ function zurb_foundation_preprocess_field(&$variables) {
 
   // Add classes to body based on content type and view mode.
   if ($variables['element']['#field_name'] == 'body') {
-    // Add classes to other content types with view mode 'teaser';
-    if ($variables['element']['#view_mode'] == 'teaser') {
-      $classes[] = 'text-secondary';
-    }
-    // The rest is text-content.
-    else {
       $classes[] = 'field';
-    }
   }
 }
 
@@ -194,24 +190,24 @@ function zurb_foundation_preprocess_html(&$variables) {
  */
 function zurb_foundation_page_attachments_alter(&$page) {
   // Force IE to use Chrome Frame if installed.
-  $page['#attached']['html_head'][] = array(array(
+  $page['#attached']['html_head']['chrome_frame'] = [[
     '#type' => 'html_tag',
     '#tag' => 'meta',
-    '#attributes' => array(
+    '#attributes' => [
       'content' => 'ie=edge, chrome=1',
       'http-equiv' => 'x-ua-compatible',
-    ),
-  ), 'chrome_frame');
+    ],
+  ], 'chrome_frame'];
 
   // Remove image toolbar in IE.
-  $page['#attached']['html_head'][] = array(array(
+  $page['#attached']['html_head']['ie_image_toolbar'] = [[
     '#type' => 'html_tag',
     '#tag' => 'meta',
-    '#attributes' => array(
+    '#attributes' => [
       'http-equiv' => 'ImageToolbar',
       'content' => 'false',
-    ),
-  ), 'ie_image_toolbar');
+    ],
+  ], 'ie_image_toolbar'];
 }
 
 /**
@@ -263,22 +259,22 @@ function zurb_foundation_preprocess_page(&$variables) {
   $logo = theme_get_setting('logo.url');
 
   if (!empty($logo)) {
-    $elements = array(
+    $elements = [
       '#theme' => 'image',
       '#uri' => $logo,
-      '#attributes' => array(
+      '#attributes' => [
         'alt' => strip_tags($site_name) . ' ' . t('logo'),
         'title' => strip_tags($site_name) . ' ' . t('Home'),
-        'class' => array('logo'),
-      )
-    );
+        'class' => ['logo'],
+      ]
+    ];
 
     $variables['logo_img'] = $elements;
   }
 
   $title = strip_tags($site_name) . ' ' . t('Home');
   $url = \Drupal\Core\Url::fromRoute('<front>');
-  $url->setOption('attributes', array('title' => $title));
+  $url->setOption('attributes', ['title' => $title]);
 
   if (theme_get_setting('zurb_foundation_page_site_logo')) {
     $variables['linked_logo'] = '';
@@ -398,4 +394,11 @@ function zurb_foundation_preprocess_status_messages(&$variables) {
   $variables['zurb_foundation_status_in_reveal'] = $status_in_reveal;
   $variables['#attached']['library'][] = $status_in_reveal ?
     'zurb_foundation/status_in_reveal' : 'zurb_foundation/alert_close';
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function zurb_foundation_theme_suggestions_field_alter(&$suggestions, $variables) {
+  $suggestions[] = 'field__node__' . $variables['element']['#field_name'] . '__' . $variables['element']['#bundle'] . '__' . $variables['element']['#view_mode'];
 }

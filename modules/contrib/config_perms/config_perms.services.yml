@@ -1,0 +1,6 @@
+services:
+  config_perms.route_subscriber:
+    class: Drupal\config_perms\Routing\RouteSubscriber
+    arguments: ['@router.route_provider']
+    tags:
+      - { name: event_subscriber }

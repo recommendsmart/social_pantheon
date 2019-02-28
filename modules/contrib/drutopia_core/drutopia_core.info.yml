@@ -1,0 +1,30 @@
+name: 'Drutopia Core'
+description: 'Provides core components required by other features.'
+type: module
+# core: 8.x
+dependencies:
+  - block_content
+  - config_actions
+  - config_perms
+  - datetime
+  - ds
+  - entity_reference_revisions
+  - field
+  - file
+  - image
+  - link
+  - metatag
+  - node
+  - paragraphs
+  - rdf
+  - responsive_image
+  - taxonomy
+  - text
+  - user
+package: Drutopia
+
+# Information added by Drupal.org packaging script on 2017-10-07
+version: '8.x-1.0-alpha1'
+core: '8.x'
+project: 'drutopia_core'
+datestamp: 1507343971

@@ -24,6 +24,7 @@ return array(
     '40360c0b9b437e69bcbb7f1349ce029e' => $vendorDir . '/zendframework/zend-diactoros/src/functions/parse_cookie_header.php',
     'def43f6c87e4f8dfd0c9e1b1bab14fe8' => $vendorDir . '/symfony/polyfill-iconv/bootstrap.php',
     'a4ecaeafb8cfb009ad0e052c90355e98' => $vendorDir . '/beberlei/assert/lib/Assert/functions.php',
+    'a16312f9300fed4a097923eacb0ba814' => $vendorDir . '/igorw/get-in/src/get_in.php',
     '2c102faa651ef8ea5874edb585946bce' => $vendorDir . '/swiftmailer/swiftmailer/lib/swift_required.php',
     'ddc0a4d7e61c0286f0f8593b1903e894' => $vendorDir . '/clue/stream-filter/src/functions.php',
     '04c6c5c2f7095ccf6c481d3e53e1776f' => $vendorDir . '/mustangostang/spyc/Spyc.php',

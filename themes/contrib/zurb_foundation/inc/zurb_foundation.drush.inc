@@ -8,24 +8,24 @@
  * Implementation of hook_drush_command().
  */
 function zurb_foundation_drush_command() {
-  $items = array();
+  $items = [];
 
-  $items['foundation-sub-theme'] = array(
+  $items['foundation-sub-theme'] = [
     'description' => 'Create a ZURB foundation sub-theme',
-    'aliases' => array('fst'),
-    'arguments' => array(
+    'aliases' => ['fst'],
+    'arguments' => [
       'name'         => 'Your sub-theme name.',
       'machine_name' => 'A machine-readable name for your theme, optional only  [a-z, 0-9] ',
-    ),
-    'options' => array(
+    ],
+    'options' => [
       'description'  => 'Your sub-theme description.',
       'machine-name' => '[a-z, 0-9] A machine-readable name for your theme.'
-    ),
-    'examples' => array(
+    ],
+    'examples' => [
       'drush fst "custom theme name"' => 'Create a sub-theme with the default options.',
       'drush fst "foo bar" "foo_bar"  --description="My supersweet awesome theme"' => 'Create a sub-theme with additional options.',
-    ),
-  );
+    ],
+  ];
 
   return $items;
 }
@@ -80,10 +80,10 @@ function drush_zurb_foundation_foundation_sub_theme($name = NULL, $machine_name 
 
   // Notify user of the newly created theme.
   drush_print(dt("\n!name sub-theme was created in !path. \n",
-    array(
+    [
       '!name' => $name,
       '!path' => $subtheme_path,
-    )
+    ]
   ));
   drush_pm_enable_validate($machine_name);
   drush_pm_enable($machine_name);

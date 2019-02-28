@@ -12,26 +12,26 @@ function zurb_foundation_menu_local_tasks(&$variables) {
     $variables['primary']['#prefix'] = '<h2 class="visually-hidden">' . t('Primary tabs') . '</h2>';
     $variables['primary']['#prefix'] .= '<div class="button-group">';
     $variables['primary']['#suffix'] = '</div>';
-    $output .= drupal_render($variables['primary']);
+    $output .= \Drupal::service('renderer')->render($variables['primary']);
   }
   if (!empty($variables['secondary'])) {
     $variables['secondary']['#prefix'] = '<h2 class="visually-hidden">' . t('Secondary tabs') . '</h2>';
     $variables['secondary']['#prefix'] .= '<div class="button-group">';
     $variables['secondary']['#suffix'] = '</div>';
-    $output .= drupal_render($variables['secondary']);
+    $output .= \Drupal::service('renderer')->render($variables['secondary']);
   }
 
   return $output;
 }
 
 /**
- * Implements theme_menu_local_task().
+ * Implements theme_preprocess_menu_local_task().
  */
-function zurb_foundation_menu_local_task(&$variables) {
+function zurb_foundation_preprocess_menu_local_task(&$variables) {
   $link = $variables['element']['#link'];
-  $link_text = array(
+  $link_text = [
     '#markup' => $link['title'],
-  );
+  ];
 
   if (!empty($variables['element']['#active'])) {
     // Add text to indicate active tab for non-visual users.
@@ -39,11 +39,7 @@ function zurb_foundation_menu_local_task(&$variables) {
   }
 
   $state = !empty($variables['element']['#active']) ? 'active' : 'secondary';
-  $link['url']->setOption('attributes', array('class' => array('button', $state)));
-
-  $a_tag = Link::fromTextAndUrl($link_text, $link['url'])->toString();
-
-  return $a_tag;
+  $link['url']->setOption('attributes', ['class' => ['button', $state]]);
 }
 
 /**
@@ -53,7 +49,7 @@ function zurb_foundation_menu_local_task(&$variables) {
  */
 function zurb_foundation_preprocess_menu__off_canvas(&$variables) {
   $blocks = \Drupal::service('block.repository')->getVisibleBlocksPerRegion();
-  foreach (array('left', 'right') as $direction) {
+  foreach (['left', 'right'] as $direction) {
     if (!empty($blocks[$direction . '_off_canvas'])) {
       foreach ($blocks[$direction . '_off_canvas'] as $block) {
         $plugin = $block->getPlugin();
@@ -121,7 +117,7 @@ function zurb_foundation_preprocess_menu__main(&$variables) {
     $site_name = \Drupal::config('system.site')->get('name');
     $title = strip_tags($site_name) . ' ' . t('Home');
     $url = \Drupal\Core\Url::fromRoute('<front>');
-    $url->setOption('attributes', array('title' => $title));
+    $url->setOption('attributes', ['title' => $title]);
 
     $variables['linked_site_name'] = '';
     if (!empty($variables['site_name'])) {

@@ -3,12 +3,12 @@
 namespace Drupal\zurb_foundation\Plugin\Layout;
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\layout_plugin\Plugin\Layout\LayoutBase;
+use Drupal\Core\Layout\LayoutDefault;
 
 /**
  * Layout class for all Foundation layouts.
  */
-class FoundationLayout extends LayoutBase {
+class FoundationLayout extends LayoutDefault {
 
   /**
    * {@inheritdoc}
@@ -27,21 +27,21 @@ class FoundationLayout extends LayoutBase {
     $form = parent::buildConfigurationForm($form, $form_state);
     $configuration = $this->getConfiguration();
 
-    $form['css_classes'] = array(
+    $form['css_classes'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Classes'),
       '#description' => $this->t('Add classes to the outer wrapper element.'),
       '#default_value' => $configuration['css_classes'],
       '#weight' => 1
-    );
+    ];
 
-    $form['css_id'] = array(
+    $form['css_id'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Id'),
       '#description' => $this->t('Add an id to the outer wrapper element.'),
       '#default_value' => $configuration['css_id'],
       '#weight' => 2
-    );
+    ];
 
     return $form;
   }

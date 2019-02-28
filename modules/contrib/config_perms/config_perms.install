@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for Custom Permissions.
+ */
+
+/**
+ * Rebuild the container to add a service parameter.
+ */
+function config_perms_update_8100() {
+  // Empty update to cause a cache rebuild so that the container is rebuilt.
+}
