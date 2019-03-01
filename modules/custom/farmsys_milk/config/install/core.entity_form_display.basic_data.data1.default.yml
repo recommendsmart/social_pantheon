@@ -1,0 +1,48 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - basic_data.basic_data_type.data1
+    - field.field.basic_data.data1.field_sp
+  module:
+    - dynamic_entity_reference
+id: basic_data.data1.default
+targetEntityType: basic_data
+bundle: data1
+mode: default
+content:
+  data:
+    type: string_textarea
+    weight: 5
+    settings:
+      rows: 4
+      placeholder: ''
+    region: content
+    third_party_settings: {  }
+  field_sp:
+    weight: 6
+    settings:
+      match_operator: CONTAINS
+      size: 40
+      placeholder: ''
+    third_party_settings: {  }
+    type: dynamic_entity_reference_default
+    region: content
+  name:
+    type: string_textfield
+    weight: -4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  user_id:
+    type: entity_reference_autocomplete
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    region: content
+    third_party_settings: {  }
+hidden: {  }

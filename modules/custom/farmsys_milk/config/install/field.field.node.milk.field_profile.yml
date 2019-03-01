@@ -1,0 +1,123 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_profile
+    - node.type.milk
+  module:
+    - dynamic_entity_reference
+id: node.milk.field_profile
+field_name: field_profile
+entity_type: node
+bundle: milk
+label: Profile
+description: 'Select Profile'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  profile:
+    handler: views
+    handler_settings:
+      view:
+        view_name: profile_select_list
+        display_name: profile_select_list_er
+        arguments: {  }
+  activity:
+    handler: 'default:activity'
+    handler_settings: {  }
+  asset:
+    handler: 'default:asset'
+    handler_settings: {  }
+  basic_data:
+    handler: 'default:basic_data'
+    handler_settings: {  }
+  comment:
+    handler: 'default:comment'
+    handler_settings: {  }
+  node:
+    handler: 'default:node'
+    handler_settings: {  }
+  course_enrollment:
+    handler: 'default:course_enrollment'
+    handler_settings: {  }
+  crop:
+    handler: 'default:crop'
+    handler_settings: {  }
+  block_content:
+    handler: 'default:block_content'
+    handler_settings: {  }
+  menu_link_content:
+    handler: 'default:menu_link_content'
+    handler_settings: {  }
+  entity_collection:
+    handler: 'default:entity_collection'
+    handler_settings: {  }
+  event_enrollment:
+    handler: 'default:event_enrollment'
+    handler_settings: {  }
+  file:
+    handler: 'default:file'
+    handler_settings: {  }
+  flagging:
+    handler: 'default:flagging'
+    handler_settings: {  }
+  font:
+    handler: 'default:font'
+    handler_settings: {  }
+  group:
+    handler: 'default:group'
+    handler_settings: {  }
+  group_content:
+    handler: 'default:group_content'
+    handler_settings: {  }
+  liability:
+    handler: 'default:liability'
+    handler_settings: {  }
+  media:
+    handler: 'default:media'
+    handler_settings: {  }
+  mentions:
+    handler: 'default:mentions'
+    handler_settings: {  }
+  message:
+    handler: 'default:message'
+    handler_settings: {  }
+  paragraph:
+    handler: 'default:paragraph'
+    handler_settings: {  }
+  post:
+    handler: 'default:post'
+    handler_settings: {  }
+  private_message:
+    handler: 'default:private_message'
+    handler_settings: {  }
+  private_message_thread:
+    handler: 'default:private_message_thread'
+    handler_settings: {  }
+  pm_thread_access_time:
+    handler: 'default:pm_thread_access_time'
+    handler_settings: {  }
+  pm_thread_delete_time:
+    handler: 'default:pm_thread_delete_time'
+    handler_settings: {  }
+  scheduled_update:
+    handler: 'default:scheduled_update'
+    handler_settings: {  }
+  search_api_task:
+    handler: 'default:search_api_task'
+    handler_settings: {  }
+  taxonomy_term:
+    handler: 'default:taxonomy_term'
+    handler_settings: {  }
+  user:
+    handler: 'default:user'
+    handler_settings: {  }
+  vote:
+    handler: 'default:vote'
+    handler_settings: {  }
+  vote_result:
+    handler: 'default:vote_result'
+    handler_settings: {  }
+field_type: dynamic_entity_reference

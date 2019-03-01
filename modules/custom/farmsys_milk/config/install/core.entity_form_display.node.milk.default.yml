@@ -1,0 +1,61 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.milk.body
+    - field.field.node.milk.field_milk_quantity
+    - field.field.node.milk.field_profile
+    - node.type.milk
+  module:
+    - dynamic_entity_reference
+    - physical
+    - text
+id: node.milk.default
+targetEntityType: node
+bundle: milk
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 3
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  created:
+    type: datetime_timestamp
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_milk_quantity:
+    weight: 1
+    settings:
+      default_unit: l
+      allow_unit_change: true
+    third_party_settings: {  }
+    type: physical_measurement_default
+    region: content
+  field_profile:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: dynamic_entity_reference_options_select
+    region: content
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  groups: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true

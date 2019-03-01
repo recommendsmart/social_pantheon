@@ -1,0 +1,8 @@
+{
+  "name": "farmsys/milk",
+  "type": "module",
+  "description": "Provides Milk content type and related configuration. Milk content type for observation",
+  "homepage": "https://github.com/recommendsmart/farmsys_milk",
+  "keywords": ["farmsys_milk"],
+  "license": "GPL-2.0+"
+}

@@ -1,0 +1,45 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - basic_data.basic_data_type.data1
+    - field.field.basic_data.data1.field_sp
+  module:
+    - dynamic_entity_reference
+    - user
+id: basic_data.data1.default
+targetEntityType: basic_data
+bundle: data1
+mode: default
+content:
+  data:
+    label: visible
+    type: basic_string
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_sp:
+    weight: 6
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: dynamic_entity_reference_label
+    region: content
+  name:
+    label: above
+    type: string
+    weight: -4
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  user_id:
+    label: hidden
+    type: author
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }
