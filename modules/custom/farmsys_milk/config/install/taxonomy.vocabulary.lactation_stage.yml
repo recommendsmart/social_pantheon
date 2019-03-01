@@ -1,8 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-name: 'Lactation Stage'
-vid: lactation_stage
-description: 'Lactation Stage'
-hierarchy: 0
-weight: 0
