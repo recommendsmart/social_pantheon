@@ -1,0 +1,36 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.asset.animal
+    - field.storage.asset.field_animal_species
+    - taxonomy.vocabulary.animal_species
+  module:
+    - unique_field_ajax
+third_party_settings:
+  unique_field_ajax:
+    unique: 0
+    per_lang: 0
+    use_ajax: 0
+    message: ''
+id: asset.animal.field_animal_species
+field_name: field_animal_species
+entity_type: asset
+bundle: animal
+label: 'Animal Species'
+description: 'Animal Species'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      animal_species: animal_species
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

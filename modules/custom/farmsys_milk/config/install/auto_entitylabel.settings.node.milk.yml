@@ -1,0 +1,7 @@
+status: '1'
+pattern: '[node:field_profile]/[node:content-type:name]/[current-date:day_month_time]'
+php: 0
+escape: 0
+dependencies:
+  config:
+    - node.type.milk

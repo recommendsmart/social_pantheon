@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_date_range
+    - taxonomy.vocabulary.lactation_stage
+  module:
+    - datetime_range
+id: taxonomy_term.lactation_stage.field_date_range
+field_name: field_date_range
+entity_type: taxonomy_term
+bundle: lactation_stage
+label: 'Date Range'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: daterange
