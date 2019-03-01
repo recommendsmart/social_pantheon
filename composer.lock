@@ -6597,8 +6597,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/social_course",
                 "error": "Invalid dependency: \"social_topic\" is an unknown drupal 8 package name"
-            },
-            "time": "2019-02-25T15:58:02+00:00"
+            }
         },
         {
             "name": "drupal/social_geolocation",
@@ -6720,8 +6719,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/social_pwa",
                 "error": "Invalid dependency: \"activity_send\" is an unknown drupal 8 package name"
-            },
-            "time": "2019-02-18T07:52:30+00:00"
+            }
         },
         {
             "name": "drupal/state_form_entity",
