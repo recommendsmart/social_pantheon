@@ -18,6 +18,7 @@ dependencies:
     - field.field.profile.profile.field_profile_profile_tag
     - field.field.profile.profile.field_profile_self_introduction
     - field.field.profile.profile.field_profile_show_email
+    - field.field.profile.profile.update_lactation_stage
     - profile.type.profile
   module:
     - address
@@ -92,3 +93,4 @@ hidden:
   field_profile_organization: true
   field_profile_organization_tag: true
   field_profile_show_email: true
+  update_lactation_stage: true

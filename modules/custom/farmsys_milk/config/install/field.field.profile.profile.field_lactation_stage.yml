@@ -121,4 +121,7 @@ settings:
   vote_result:
     handler: 'default:vote_result'
     handler_settings: {  }
+  scheduled_update:
+    handler: 'default:scheduled_update'
+    handler_settings: {  }
 field_type: dynamic_entity_reference

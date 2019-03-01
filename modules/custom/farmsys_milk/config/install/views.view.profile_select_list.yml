@@ -153,7 +153,6 @@ display:
         - user.roles
       tags:
         - 'config:core.entity_view_display.profile.profile.default'
-        - 'config:core.entity_view_display.profile.profile.teaser'
         - 'config:core.entity_view_display.profile.profile.autocomplete_item'
         - 'config:core.entity_view_display.profile.profile.compact'
         - 'config:core.entity_view_display.profile.profile.compact_notification'
@@ -165,6 +164,7 @@ display:
         - 'config:core.entity_view_display.profile.profile.small'
         - 'config:core.entity_view_display.profile.profile.small_teaser'
         - 'config:core.entity_view_display.profile.profile.table'
+        - 'config:core.entity_view_display.profile.profile.teaser'
   profile_select_list:
     display_plugin: page
     id: profile_select_list
