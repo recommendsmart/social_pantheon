@@ -274,7 +274,7 @@
         "version_normalized": "3.3.1.0",
         "source": {
             "type": "git",
-            "url": "git@github.com:jquery/jquery-dist.git",
+            "url": "https://github.com/jquery/jquery-dist.git",
             "reference": "9e8ec3d10fad04748176144f108d7355662ae75e"
         },
         "dist": {
@@ -1602,49 +1602,6 @@
         }
     },
     {
-        "name": "drupal/basic_data",
-        "version": "dev-1.x",
-        "version_normalized": "dev-1.x",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupal.org/project/basic_data",
-            "reference": "801d8f00ca34e9419147ee853e05a5f1a5622352"
-        },
-        "require": {
-            "drupal/core": "~8.0"
-        },
-        "type": "drupal-module",
-        "extra": {
-            "branch-alias": {
-                "dev-1.x": "1.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-1.x-dev",
-                "datestamp": "1549909981",
-                "security-coverage": {
-                    "status": "not-covered",
-                    "message": "Project has not opted into security advisory coverage!"
-                }
-            }
-        },
-        "installation-source": "source",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0-or-later"
-        ],
-        "authors": [
-            {
-                "name": "brantwynn",
-                "homepage": "https://www.drupal.org/user/252788"
-            }
-        ],
-        "description": "A basic entity type that stores data blobs.",
-        "homepage": "https://www.drupal.org/project/basic_data",
-        "support": {
-            "source": "http://cgit.drupalcode.org/basic_data"
-        }
-    },
-    {
         "name": "drupal/blizz_dynamic_entitylist",
         "version": "2.34.0",
         "version_normalized": "2.34.0.0",
@@ -2526,6 +2483,7 @@
                 "merge-extra": false
             },
             "patches_applied": {
+                "https://www.drupal.org/project/drupal/issues/2943172": "https://www.drupal.org/files/issues/2018-07-05/2943172-kernel-test-base-3.patch",
                 "Color module html preview optional": "https://www.drupal.org/files/issues/color-optional-html-preview-2844190-2.patch",
                 "Restrict images to this site blocks image style derivatives": "https://www.drupal.org/files/issues/2018-10-26/2528214-47.patch",
                 "Fix SQL error when importing translations": "https://www.drupal.org/files/issues/2018-10-01/2599228-SQL_error_on_content_creation-78_0.patch",
@@ -3953,6 +3911,9 @@
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
                 }
+            },
+            "patches_applied": {
+                "Support normalization without local revision ID": "https://www.drupal.org/files/issues/entity_reference_revisions-normalizer-2913713-2.patch"
             }
         },
         "installation-source": "dist",
@@ -8368,15 +8329,15 @@
         "source": {
             "type": "git",
             "url": "https://github.com/recommendsmart/farmsys_milk.git",
-            "reference": "f5f256713d31dab382d36f8953065eb22394b6ed"
+            "reference": "5f54a0e16dce1ef0f0de97aa7a07d31cd3f429e6"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/recommendsmart/farmsys_milk/zipball/f5f256713d31dab382d36f8953065eb22394b6ed",
-            "reference": "f5f256713d31dab382d36f8953065eb22394b6ed",
+            "url": "https://api.github.com/repos/recommendsmart/farmsys_milk/zipball/5f54a0e16dce1ef0f0de97aa7a07d31cd3f429e6",
+            "reference": "5f54a0e16dce1ef0f0de97aa7a07d31cd3f429e6",
             "shasum": ""
         },
-        "time": "2019-02-15T11:44:33+00:00",
+        "time": "2019-02-28T12:30:43+00:00",
         "type": "module",
         "installation-source": "source",
         "notification-url": "https://packagist.org/downloads/",

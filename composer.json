@@ -44,7 +44,6 @@
         "drupal/entity_collector": "^1.0",
         "drupal/social_course": "2.x-dev",
         "drupal/multivaluefield": "^1.0",
-        "drupal/basic_data": "1.x-dev",
         "drupal/flag_attendance_field": "^1.0",
         "drupal/state_form_entity": "1.x-dev",
         "farmsys/farmsys_asset": "dev-master",

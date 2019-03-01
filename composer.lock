@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "940bfed75308517944696b02f644bfb5",
+    "content-hash": "bbbbaf5aa4ffd048d08db6882cb4e38d",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -264,7 +264,7 @@
             "version": "3.3.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:jquery/jquery-dist.git",
+                "url": "https://github.com/jquery/jquery-dist.git",
                 "reference": "9e8ec3d10fad04748176144f108d7355662ae75e"
             },
             "dist": {
@@ -1542,47 +1542,6 @@
             }
         },
         {
-            "name": "drupal/basic_data",
-            "version": "dev-1.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/basic_data",
-                "reference": "801d8f00ca34e9419147ee853e05a5f1a5622352"
-            },
-            "require": {
-                "drupal/core": "~8.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.x-dev",
-                    "datestamp": "1549909981",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "brantwynn",
-                    "homepage": "https://www.drupal.org/user/252788"
-                }
-            ],
-            "description": "A basic entity type that stores data blobs.",
-            "homepage": "https://www.drupal.org/project/basic_data",
-            "support": {
-                "source": "http://cgit.drupalcode.org/basic_data"
-            }
-        },
-        {
             "name": "drupal/blizz_dynamic_entitylist",
             "version": "2.34.0",
             "source": {
@@ -2440,6 +2399,7 @@
                     "merge-extra": false
                 },
                 "patches_applied": {
+                    "https://www.drupal.org/project/drupal/issues/2943172": "https://www.drupal.org/files/issues/2018-07-05/2943172-kernel-test-base-3.patch",
                     "Color module html preview optional": "https://www.drupal.org/files/issues/color-optional-html-preview-2844190-2.patch",
                     "Restrict images to this site blocks image style derivatives": "https://www.drupal.org/files/issues/2018-10-26/2528214-47.patch",
                     "Fix SQL error when importing translations": "https://www.drupal.org/files/issues/2018-10-01/2599228-SQL_error_on_content_creation-78_0.patch",
@@ -3826,6 +3786,9 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "Support normalization without local revision ID": "https://www.drupal.org/files/issues/entity_reference_revisions-normalizer-2913713-2.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -8102,12 +8065,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/recommendsmart/farmsys_milk.git",
-                "reference": "f5f256713d31dab382d36f8953065eb22394b6ed"
+                "reference": "5f54a0e16dce1ef0f0de97aa7a07d31cd3f429e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/recommendsmart/farmsys_milk/zipball/f5f256713d31dab382d36f8953065eb22394b6ed",
-                "reference": "f5f256713d31dab382d36f8953065eb22394b6ed",
+                "url": "https://api.github.com/repos/recommendsmart/farmsys_milk/zipball/5f54a0e16dce1ef0f0de97aa7a07d31cd3f429e6",
+                "reference": "5f54a0e16dce1ef0f0de97aa7a07d31cd3f429e6",
                 "shasum": ""
             },
             "type": "module",
@@ -8120,7 +8083,7 @@
             "keywords": [
                 "farmsys_milk"
             ],
-            "time": "2019-02-15T11:44:33+00:00"
+            "time": "2019-02-28T12:30:43+00:00"
         },
         {
             "name": "fgrosse/phpasn1",
@@ -12333,7 +12296,6 @@
         "drupal/entity_serial": 20,
         "drupal/fences": 15,
         "drupal/social_course": 20,
-        "drupal/basic_data": 20,
         "drupal/state_form_entity": 20,
         "farmsys/farmsys_asset": 20,
         "farmsys/liability": 20,
