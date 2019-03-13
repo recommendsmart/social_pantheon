@@ -1,0 +1,4 @@
+farmsys_user.milk:
+  route_name: view.milk_profile.milk_profile
+  base_route: entity.user.canonical
+  title: Milk
