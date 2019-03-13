@@ -1,0 +1,43 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.lactation_stage.field_date_range
+    - field.field.taxonomy_term.lactation_stage.field_duration
+    - taxonomy.vocabulary.lactation_stage
+  module:
+    - datetime_range
+    - duration_field
+    - text
+id: taxonomy_term.lactation_stage.default
+targetEntityType: taxonomy_term
+bundle: lactation_stage
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_date_range:
+    weight: 2
+    label: above
+    settings:
+      separator: '-'
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: daterange_default
+    region: content
+  field_duration:
+    weight: 0
+    label: above
+    settings:
+      text_length: full
+      separator: space
+    third_party_settings: {  }
+    type: duration_human_display
+    region: content
+hidden: {  }

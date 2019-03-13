@@ -1,0 +1,31 @@
+name: 'Farmsys Taxonomy'
+description: 'Farmsys Taxonomy'
+type: module
+core: 8.x
+dependencies:
+  - datetime_extras
+  - datetime_range
+  - duration_field
+  - dynamic_entity_reference
+  - eck
+  - entity_serial
+  - farmsys_asset
+  - farmsys_milk
+  - fences
+  - field
+  - menu_ui
+  - node
+  - options
+  - path
+  - physical
+  - profile
+  - scheduled_updates
+  - social_profile
+  - taxonomy
+  - text
+  - unique_field_ajax
+  - user
+  - views
+  - views_add_button
+version: 8.x-1.0-beta1
+package: FarmSys

@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies: {  }
+id: update_lactation_stage
+label: 'Update Lactation Stage'
+update_entity_type: profile
+update_types_supported:
+  - embedded
+field_map:
+  field_lactation_stage: field_lactation_stage
+update_runner:
+  id: default_embedded
+  after_run: ARCHIVE
+  invalid_update_behavior: REQUEUE
+  create_revisions: 'YES'
+  update_user: USER_OWNER
