@@ -9,6 +9,7 @@ dependencies:
   - datetime_range
   - duration_field
   - dynamic_entity_reference
+  - eck
   - entity_serial
   - farmsys_asset
   - fences
@@ -34,5 +35,6 @@ dependencies:
   - unique_field_ajax
   - user
   - views
+  - views_add_button
 package: FarmSys
-version: 8.x-1.0-beta1
+version: 8.x-1.0-beta2
