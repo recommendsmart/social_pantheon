@@ -666,9 +666,9 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
-  page_1:
+  milk_production:
     display_plugin: page
-    id: page_1
+    id: milk_production
     display_title: Page
     position: 1
     display_options:
