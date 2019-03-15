@@ -133,7 +133,7 @@ function maestro_update_8005() {
   if (\Drupal::moduleHandler()->moduleExists('views') && !View::load('maestro_entity_identifiers')) {
     $config_path = drupal_get_path('module', 'maestro') . '/config/install/views.view.maestro_entity_identifiers.yml';
     $data = Yaml::parse(file_get_contents($config_path));
-    \Drupal::configFactory()->getEditable('views.view.maestro_entity_identifiers.yml')->setData($data)->save(TRUE);
+    \Drupal::configFactory()->getEditable('views.view.maestro_entity_identifiers')->setData($data)->save(TRUE);
     $message = 'The new Maestro Entity Identifiers view for the Task Console has been created.';
   }
   else {

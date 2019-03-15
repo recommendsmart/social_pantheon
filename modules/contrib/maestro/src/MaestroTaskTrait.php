@@ -2,9 +2,9 @@
 
 namespace Drupal\maestro;
 
-use Drupal\maestro\Engine\MaestroEngine;
 use Drupal\Core\Form\FormStateInterface;
-
+use Drupal\maestro\Engine\MaestroEngine;
+use Drupal\user\Entity\User;
 
 /**
  * MaestroTaskTrait
@@ -520,8 +520,8 @@ trait MaestroTaskTrait {
         //alright, formulate the assignment
         if($taskAssignments['select_assigned_user'] != '' && $taskAssignments['select_assign_to'] == 'user') {
           //need to get the username
-          $account = user_load($taskAssignments['select_assigned_user']);
-          $assignee = $account->getDisplayName();
+          $account = User::load($taskAssignments['select_assigned_user']);
+          $assignee = $account->getAccountName();
         }
         elseif ($taskAssignments['select_assigned_role'] != '' && $taskAssignments['select_assign_to'] == 'role') {
           //need to strip out the text surrounding the bracketed values
@@ -555,28 +555,28 @@ trait MaestroTaskTrait {
       }
       $task['notifications']['notification_assignments'] = implode(',', $currentNotifications);
     }
-    $notificaitons = '';
+    $notifications = '';
     if(($taskNotifications['select_notification_role'] != '' || $taskNotifications['select_notification_user'] != '') && $taskNotifications['select_notification_method'] == 'fixed') {
         //alright, formulate the assignment
         if($taskNotifications['select_notification_user'] != '' && $taskNotifications['select_notification_to'] == 'user') {
           //need to get the username
-          $account = user_load($taskNotifications['select_notification_user']);
-          $assignee = $account->getDisplayName();
+          $account = User::load($taskNotifications['select_notification_user']);
+          $assignee = $account->getAccountName();
         }
         elseif ($taskNotifications['select_notification_role'] != '' && $taskNotifications['select_notification_to'] == 'role') {
           //need to strip out the text surrounding the bracketed values
           preg_match('#\((.*?)\)#', $taskNotifications['select_notification_role'], $match);
           $assignee = $match[1];
         }
-        $notificaitons = $taskNotifications['select_notification_to'] . ':' . $taskNotifications['select_notification_method'] . ':' . $assignee . ':' . $taskNotifications['which_notification'];
+        $notifications = $taskNotifications['select_notification_to'] . ':' . $taskNotifications['select_notification_method'] . ':' . $assignee . ':' . $taskNotifications['which_notification'];
       }
       elseif($taskNotifications['select_notification_method'] == 'variable') {
-        $notificaitons = $taskNotifications['select_notification_to'] . ':' . $taskNotifications['select_notification_method'] . ':' . $taskNotifications['variable'] . ':' . $taskNotifications['which_notification'];
+        $notifications = $taskNotifications['select_notification_to'] . ':' . $taskNotifications['select_notification_method'] . ':' . $taskNotifications['variable'] . ':' . $taskNotifications['which_notification'];
       }
       
-      if($notificaitons != '') {
+      if($notifications != '') {
         if($task['notifications']['notification_assignments'] != '') $task['notifications']['notification_assignments'] .=',';
-        $task['notifications']['notification_assignments'] .= $notificaitons;
+        $task['notifications']['notification_assignments'] .= $notifications;
       }
     }
     
@@ -588,7 +588,7 @@ trait MaestroTaskTrait {
     $task['notifications']['escalation_after'] = $taskNotifications['escalation_after'];
     
     //let other modules do their own assignments and notifications and any other task mods they want
-    \Drupal::moduleHandler()->invokeAll('maestro_pre_task_save', array($templateMachineName, $taskID, &$task));
+    \Drupal::moduleHandler()->invokeAll('maestro_pre_task_save', array($templateMachineName, $taskID, &$task, $taskAssignments, $taskNotifications));
     
     //finally save the task
     $result = MaestroEngine::saveTemplateTask($templateMachineName, $taskID, $task);

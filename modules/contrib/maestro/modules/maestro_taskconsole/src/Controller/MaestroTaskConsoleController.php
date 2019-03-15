@@ -158,6 +158,9 @@ class MaestroTaskConsoleController extends ControllerBase {
           break;
 
         case 'function':
+          //Let's call a hook here to let people change the name of the link to execute the task if they so choose to do so
+          \Drupal::moduleHandler()->invokeAll('maestro_task_console_interactive_link_alter', array(&$link, $taskTemplate, $queueRecord, $templateMachineName));
+          
           if ($use_modal) {
             $query_options += ['modal' => 'modal'];
             $links[$link] = array(
@@ -186,9 +189,6 @@ class MaestroTaskConsoleController extends ControllerBase {
               '#links' => $links,
             ),
           );
-
-          //Let's call a hook here to let people change the name of the link to execute the task if they so choose to do so
-          \Drupal::moduleHandler()->invokeAll('maestro_task_console_interactive_link_alter', array(&$link, $taskTemplate, $queueRecord, $templateMachineName));
 
           break;
 

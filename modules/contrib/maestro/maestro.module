@@ -191,8 +191,13 @@ function maestro_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_s
       '#weight' => -100,
     ];
   }
-  
-  if($isMaestro > 0 && $queueID > 0) {  //both these keys need to exist
+
+  $templateTask = MaestroEngine::getTemplateTaskByQueueID($queueID);
+  if($isMaestro > 0 
+      && $queueID > 0 
+      && MaestroEngine::canUserExecuteTask($queueID, \Drupal::currentUser()->id())
+      && $templateTask['tasktype'] == 'MaestroContentType'
+      ) {  //url keys, execute assigned, it's a content type task 
     $storage = $form_state->getStorage();
     if($isMaestro == 1) {  //populate this form if its a content type
       $contentTypes = \Drupal::entityTypeManager()->getStorage('node_type')->loadMultiple();
@@ -202,7 +207,8 @@ function maestro_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_s
       else {
         $thisForm = NULL;
       }
-      if(array_key_exists($thisForm, $contentTypes)) {  //we have a content type match
+            
+      if(array_key_exists($thisForm, $contentTypes) && $templateTask['data']['content_type'] == $thisForm) {  //we have a content type match
        //add our fields to the content type
        
         $form['maestro'] = array (
@@ -248,7 +254,7 @@ function maestro_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_s
 function maestro_node_view_alter(array &$build, Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display)  {
   $queueID = intval(\Drupal::request()->query->get('queueid', 0));
   $isMaestro = intval(\Drupal::request()->query->get('maestro', 0));
-  if($display->getEntityTypeId() == 'entity_view_display' && $isMaestro > 0 && $queueID > 0) {
+  if($display->getEntityTypeId() == 'entity_view_display' && $isMaestro > 0 && $queueID > 0 && MaestroEngine::canUserExecuteTask($queueID, \Drupal::currentUser()->id())) {
    $task = MaestroEngine::getTemplateTaskByQueueID($queueID);
    if($task['tasktype'] == 'MaestroContentType' && isset($task['data']['show_maestro_buttons_on_view']) && $task['data']['show_maestro_buttons_on_view'] == 1) {
      $build['maestro_form'] = \Drupal::formBuilder()->getForm('Drupal\maestro\Form\MaestroContentTypeCompleteTask', $queueID );
@@ -262,7 +268,7 @@ function maestro_menu_local_tasks_alter(&$data, $route_name) {
   //if we're viewing/editing a node AND we have a maestro and queueid query parameter
   $queueID = intval(\Drupal::request()->query->get('queueid', 0));
   $isMaestro = intval(\Drupal::request()->query->get('maestro', 0));
-  if(($route_name == 'entity.node.edit_form' || $route_name == 'entity.node.canonical') && ($isMaestro > 0 || $queueID > 0)) {
+  if(($route_name == 'entity.node.edit_form' || $route_name == 'entity.node.canonical') && ($isMaestro > 0 || $queueID > 0) && MaestroEngine::canUserExecuteTask($queueID, \Drupal::currentUser()->id())) {
     $oldurl = $data['tabs'][0]['entity.node.edit_form']['#link']['url'];
     $oldRouteParms = $oldurl->getRouteParameters(); 
     $url =  \Drupal\Core\Url::fromRoute('entity.node.edit_form', ['node' => $oldRouteParms['node']], ['query' => ['maestro' => 1, 'queueid' => $queueID]]);
@@ -556,6 +562,14 @@ function maestro_token_info() {
     'name' => t('Template Name'),
     'description' => t('The name of the template.'),
   ];
+  
+  $maestro['entity-identifier'] = [
+    'name' => t('Entity Identifier'),
+    'description' => t('Use the Entity Identifier to pull a value out of a field.  example: maestro:entity-identifier:uniqueid:field_machine_name.'),
+  ];
+  
+  
+  
   return array(
     'types' => array('maestro' => $type),
     'tokens' => array(
@@ -648,6 +662,53 @@ function maestro_tokens($type, $tokens, array $data, array $options, \Drupal\Cor
           $replacements[$original] = $replace;
           break;
           
+        //we will use this section to detect the 'entity-identifier' token which uses a few dynamic parameters
+        //that associate the entity identifier unique ID and the field you wish to pull its value for display 
+        default:
+          $replace = '';
+          $token_parts = explode(':', $name);
+          if(count($token_parts) > 1) {
+            //we know there's a multi-part token.  [0] should be 'entity-identifier'.  if so, continue.
+            if($token_parts[0] == 'entity-identifier') {
+              //let's be sure there's enough parts here.
+              if(count($token_parts) == 3) {
+                //part [1] will be the unique ID and [2] will be the field to pull the value out of the entity
+                
+                
+                $uniqueIdentifier = MaestroEngine::getEntityIdentiferFieldsByUniqueID($processID, $token_parts[1]);
+                $entity = entity_load($uniqueIdentifier[$token_parts[1]]['entity_type'], $uniqueIdentifier[$token_parts[1]]['entity_id']);
+                if($entity) {
+                  //we have a match.  
+                  //we can support 2 different types of entities our of the box here.  Content types and webforms.
+                  //if we don't have one of those types of entities, we'll just provide a hook so you can 
+                  //take care of the fetching.  We'll expand these in-code as required over time.
+                
+                  switch($entity->getEntityTypeId() ) {
+                    case 'webform_submission':
+                      if (\Drupal::moduleHandler()->moduleExists('maestro_webform')) {
+                        $webform_submission = \Drupal\webform\Entity\WebformSubmission::load($entity->id());
+                        $replace = $webform_submission->getElementData($token_parts[2]);
+                      }
+                      break;
+                      
+                    case 'node':
+                      $field_ref = $entity->{$token_parts[2]};
+                      $replace = $field_ref->getValue();
+                      if(is_array($replace)) {
+                        $replace = current($replace)['value'];  //bail out once we know we have a value
+                      }
+                      break;
+                      
+                  }
+                  //let's pass off the fetching of the data to any hooks that wish to do any work on the entity type
+                  \Drupal::moduleHandler()->invokeAll('maestro_get_entity_token_value', array($entity, $name, $original, $token_parts, &$replacements));
+                  
+                }
+              }
+            }
+          }
+          $replacements[$original] = $replace;
+          break;
       }
     }
   }
@@ -676,7 +737,8 @@ function maestro_theme_registry_alter(&$theme_registry) {
   
   //Now, we actually want to use our own template, which is inside of our Maestro module templates folder.
   $theme_registry['maestro_views_view_table']['template'] = 'maestro-views-view-table';
-  $theme_registry['maestro_views_view_table']['path'] = '/modules/maestro/templates';
+  $path = drupal_get_path('module', 'maestro');
+  $theme_registry['maestro_views_view_table']['path'] = $path . '/templates';
 }
 
 /*

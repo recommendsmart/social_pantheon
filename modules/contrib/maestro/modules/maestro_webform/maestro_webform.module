@@ -12,14 +12,15 @@ use Drupal\Core\Url;
 
 /**
  * Implements hook_help().
+ * Provided empty and NULL default values due to https://www.drupal.org/project/webform/issues/2958479
  */
-function maestro_webform_help($route_name, RouteMatchInterface $route_match) {
+function maestro_webform_help($route_name = '', RouteMatchInterface $route_match = NULL) {
   switch ($route_name) {
     // Main module help for the maestro_webform module.
     case 'help.page.maestro_webform':
       $output = '';
       $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('Maestro Webform Integration Module') . '</p>';
+      $output .= '<p>' . t('Maestro Webform Module') . '</p>';
       return $output;
 
     default:
@@ -148,6 +149,30 @@ function maestro_webform_webform_type_task_submit(&$form, \Drupal\Core\Form\Form
   }
 }
 
+/**
+ * Implements hook_local_tasks_alter
+ */
+function maestro_webform_menu_local_tasks_alter(&$data, $route_name) {
+  //if we're viewing/editing a node AND we have a maestro and queueid query parameter
+  $queueID = intval(\Drupal::request()->query->get('queueid', 0));
+  $isMaestro = intval(\Drupal::request()->query->get('maestro', 0));
+
+  if(($route_name == 'entity.webform_submission.edit_form' || $route_name == 'entity.webform_submission.canonical') && ($isMaestro > 0 || $queueID > 0)) {
+
+    $oldUrl = $data['tabs'][0]['entity.webform_submission.edit_form']['#link']['url'];
+    $oldRouteParameters = $oldUrl->getRouteParameters();
+
+    $oldurl = $data['tabs'][0]['entity.webform_submission.edit_form']['#link']['url'];
+    $oldRouteParms = $oldurl->getRouteParameters(); 
+    $url =  \Drupal\Core\Url::fromRoute('entity.webform_submission.edit_form', $oldRouteParameters,['query' => ['maestro' => 1, 'queueid' => $queueID]]);
+    $data['tabs'][0]['entity.webform_submission.edit_form']['#link']['url'] = $url;
+    
+    $oldurl = $data['tabs'][0]['entity.webform_submission.canonical']['#link']['url'];
+    $oldRouteParms = $oldurl->getRouteParameters();
+    $url =  \Drupal\Core\Url::fromRoute('entity.webform_submission.canonical', $oldRouteParameters,['query' => ['maestro' => 1, 'queueid' => $queueID]]);
+    $data['tabs'][0]['entity.webform_submission.canonical']['#link']['url'] = $url;
+  }
+}
 
 /**
  * Set Process Variable (SPV) function which uses the webform's unique identifier referenced in the Maestro "webforms" process variable

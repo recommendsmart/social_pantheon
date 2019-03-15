@@ -2,8 +2,7 @@ Maestro Workflow Engine for Drupal 8
 
 For more detailed documentation - refer to the module documentation page: https://www.drupal.org/docs/8/modules/maestro
 
-
-Instalation:
+Installation:
 ------------
 1. Copy/upload the maestro module to the modules directory of your Drupal installation.
 

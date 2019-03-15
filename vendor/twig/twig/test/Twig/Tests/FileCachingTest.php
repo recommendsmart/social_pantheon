@@ -9,10 +9,7 @@
  * file that was distributed with this source code.
  */
 
-use Twig\Environment;
-use Twig\Loader\ArrayLoader;
-
-require_once __DIR__.'/FilesystemHelper.php';
+require_once dirname(__FILE__).'/FilesystemHelper.php';
 
 class Twig_Tests_FileCachingTest extends \PHPUnit\Framework\TestCase
 {
@@ -30,7 +27,7 @@ class Twig_Tests_FileCachingTest extends \PHPUnit\Framework\TestCase
             $this->markTestSkipped(sprintf('Unable to run the tests as "%s" is not writable.', $this->tmpDir));
         }
 
-        $this->env = new Environment(new ArrayLoader(['index' => 'index', 'index2' => 'index2']), ['cache' => $this->tmpDir]);
+        $this->env = new Twig_Environment(new Twig_Loader_Array(['index' => 'index', 'index2' => 'index2']), ['cache' => $this->tmpDir]);
     }
 
     protected function tearDown()

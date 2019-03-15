@@ -31,7 +31,22 @@ function maestro_form_approval_example_form_alter(&$form, \Drupal\Core\Form\Form
   //queueid keys exist in the URL.
   //for the purposes of this demo, testing to see if the query string has the 2 keys we need
   //is sufficient
-  if(  (array_key_exists('maestro', $_GET) && array_key_exists('queueid', $_GET))   ) {  //both these keys need to exist
+  $storage = $form_state->getStorage();
+  if(array_key_exists('form_display', $storage)) {
+    $thisForm = $storage['form_display']->get('bundle');
+  }
+  else {
+    $thisForm = NULL;
+  }
+  $queueID = intval(\Drupal::request()->query->get('queueid', 0));
+  $isMaestro = intval(\Drupal::request()->query->get('maestro', 0));
+  $templateTask = MaestroEngine::getTemplateTaskByQueueID($queueID);
+  if(  $isMaestro > 0 
+       && $queueID > 0 
+       && $templateTask['tasktype'] == 'MaestroContentType'
+       && MaestroEngine::canUserExecuteTask($queueID, \Drupal::currentUser()->id())
+       && $templateTask['data']['content_type'] == $thisForm
+      ) {  //both these keys need to exist
     $form['actions']['submit']['#value'] = t('Submit Request');
     $form['actions']['publish']['#value'] = t('Submit Request');
     $form['actions']['unpublish']['#value'] = t('Submit Request');

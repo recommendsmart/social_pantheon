@@ -45,14 +45,14 @@ class MaestroProcessStatusController extends ControllerBase {
             $display_to_use = isset($display[0]) ? $display[0] : 'default';
             $render_build = $view->buildRenderable($display_to_use, [$processID, 0], FALSE);
             if($render_build) {
-              $thisViewOutput = drupal_render($render_build);
+              $thisViewOutput = \Drupal::service('renderer')->renderPlain($render_build);
               if($thisViewOutput) {
                 $task_information_render_array = [
                   '#theme' => 'taskconsole_views',
                   '#task_information' => $thisViewOutput,
                   '#title' => $view->storage->label(),
                 ];
-                $taskDetails .= (drupal_render($task_information_render_array));
+                $taskDetails .= (\Drupal::service('renderer')->renderPlain($task_information_render_array));
               }
             }
           }

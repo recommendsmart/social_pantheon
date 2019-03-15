@@ -110,4 +110,18 @@ class MaestroTemplate extends ConfigEntityBase {
    * @var string
    */
   public $canvas_width;
+  
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function urlRouteParameters($rel) {
+    $uri_route_parameters = parent::urlRouteParameters($rel);
+  
+    if ($rel == 'config-translation-overview') {
+      $uri_route_parameters['is_modal'] = 'notmodal';
+    }
+  
+    return $uri_route_parameters;
+  }
 }

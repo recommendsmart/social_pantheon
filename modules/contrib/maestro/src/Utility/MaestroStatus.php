@@ -37,7 +37,7 @@ class MaestroStatus {
               '#current_stage' => $current_status_number,
               '#current_stage_message' => $current_status_message,
             ];
-            $status_bar = drupal_render($bar_render_array);
+            $status_bar = \Drupal::service('renderer')->renderPlain($bar_render_array);
             //anyone want to override it?
             \Drupal::moduleHandler()->invokeAll('maestro_task_console_status_bar_alter', array(&$status_bar, $processID));
           }

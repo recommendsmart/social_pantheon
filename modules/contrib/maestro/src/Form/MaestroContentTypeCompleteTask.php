@@ -31,7 +31,7 @@ class MaestroContentTypeCompleteTask extends FormBase {
         if($task['tasktype'] == 'MaestroContentType') {
           $form['submit'] = array(
             '#type' => 'submit',
-            '#value' => (isset($task['data']['accept_label']) && $task['data']['accept_label' != '') ? $this->t($task['data']['accept_label']) : $this->t('Accept'),
+            '#value' => (isset($task['data']['accept_label']) && $task['data']['accept_label'] != '') ? $this->t($task['data']['accept_label']) : $this->t('Accept'),
           );
           
           //only show the reject button if it has no label

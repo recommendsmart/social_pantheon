@@ -379,8 +379,7 @@ class MaestroTemplateBuilderForm extends FormBase {
     $legend_render_array = [
       '#theme' => 'template_task_legend',
     ];
-    $legend = drupal_render($legend_render_array);
-    
+    $legend = \Drupal::service('renderer')->renderPlain($legend_render_array);
     
     
     $form['task_legend'] = array(

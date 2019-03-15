@@ -119,6 +119,7 @@ class MaestroTemplateBuilderEditTask extends FormBase {
     $taskID = Xss::filter($_SESSION['maestro_template_builder']['maestro_editing_task']);  
     $template = MaestroEngine::getTemplate($templateMachineName);
     $task = MaestroEngine::getTemplateTaskByID($templateMachineName, $taskID);
+    $task['form_state'] = $form_state;
     //need to validate this taskID and template to ensure that they exist
     if($taskID == '' || $template == NULL || $task == NULL) {
       $form = array(
