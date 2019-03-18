@@ -68,7 +68,8 @@
         "drupal/scheduled_updates": "^1.0",
         "drupal/physical": "^1.0",
         "drupal/menu_item_extras": "^2.4",
-        "drupal/rabbit_hole": "^1.0"							  									  							 
+        "drupal/rabbit_hole": "^1.0",
+        "drupal/views_accordion": "^1.2"							  									  							 
         },
     "repositories": [
         {
