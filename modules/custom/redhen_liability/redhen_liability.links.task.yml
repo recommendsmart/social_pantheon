@@ -1,0 +1,20 @@
+# Liability routing definition
+entity.redhen_liability.canonical:
+  route_name: entity.redhen_liability.canonical
+  base_route: entity.redhen_liability.canonical
+  title: 'View'
+
+entity.redhen_liability.edit_form:
+  route_name: entity.redhen_liability.edit_form
+  base_route: entity.redhen_liability.canonical
+  title: 'Edit'
+
+entity.redhen_liability.delete_form:
+  route_name: entity.redhen_liability.delete_form
+  base_route: entity.redhen_liability.canonical
+  title: 'Delete'
+
+entity.redhen_liability_type.edit_form:
+  route_name: entity.redhen_liability_type.edit_form
+  base_route: entity.redhen_liability_type.edit_form
+  title: 'Edit'

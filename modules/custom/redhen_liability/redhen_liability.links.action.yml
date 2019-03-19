@@ -1,0 +1,10 @@
+entity.redhen_liability.add_form:
+  route_name: 'redhen_liability.add_page'
+  title: 'Add Liability'
+  appears_on:
+    - entity.redhen_liability.collection
+entity.redhen_liability_type.add_form:
+  route_name: 'entity.redhen_liability_type.add_form'
+  title: 'Add Liability type'
+  appears_on:
+    - entity.redhen_liability_type.collection

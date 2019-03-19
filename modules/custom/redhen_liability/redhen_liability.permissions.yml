@@ -1,0 +1,26 @@
+add liability entities:
+  title: 'Create new Liability entities'
+
+administer liability entities:
+  title: 'Administer Liability entities'
+  description: 'Allow to access the administration form to configure Liability entities.'
+  restrict access: true
+
+delete liability entities:
+  title: 'Delete Liability entities'
+
+edit liability entities:
+  title: 'Edit Liability entities'
+
+link liability entities to users:
+  title: 'Link Liability entities to Users'
+  description: 'Allow access to "Linked user" field on embedded Liability form'
+
+view active liability entities:
+  title: 'View active Liability entities'
+
+view inactive liability entities:
+  title: 'View inactive Liability entities'
+
+permission_callbacks:
+  - \Drupal\redhen_liability\LiabilityPermissions::LiabilityTypePermissions
