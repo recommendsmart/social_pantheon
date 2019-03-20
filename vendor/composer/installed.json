@@ -351,12 +351,12 @@
         "version_normalized": "4.0.5.0",
         "source": {
             "type": "git",
-            "url": "git@github.com:ivaynberg/select2.git",
+            "url": "https://github.com/select2/select2.git",
             "reference": "ebf10c93db7d6d7a0d1330119d4c6f32cbd231d7"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/ivaynberg/select2/zipball/ebf10c93db7d6d7a0d1330119d4c6f32cbd231d7",
+            "url": "https://api.github.com/repos/select2/select2/zipball/ebf10c93db7d6d7a0d1330119d4c6f32cbd231d7",
             "reference": "ebf10c93db7d6d7a0d1330119d4c6f32cbd231d7"
         },
         "type": "bower-asset",
@@ -8255,6 +8255,60 @@
         "homepage": "https://www.drupal.org/project/xy_grid_layouts",
         "support": {
             "source": "http://cgit.drupalcode.org/xy_grid_layouts"
+        }
+    },
+    {
+        "name": "drupal/yasm",
+        "version": "1.2.0",
+        "version_normalized": "1.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupal.org/project/yasm",
+            "reference": "8.x-1.2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/yasm-8.x-1.2.zip",
+            "reference": "8.x-1.2",
+            "shasum": "888c9f6255f0a65121720994dbf95d1018340a8a"
+        },
+        "require": {
+            "drupal/core": "~8.0"
+        },
+        "require-dev": {
+            "drupal/charts": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.2",
+                "datestamp": "1552996985",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Oriol Roselló Castells",
+                "homepage": "https://www.drupal.org/u/oriol_e9g",
+                "role": "Maintainer"
+            }
+        ],
+        "description": "Statistics about your site contents, files and users.",
+        "homepage": "https://www.drupal.org/project/yasm",
+        "support": {
+            "source": "http://cgit.drupalcode.org/yasm",
+            "issues": "https://www.drupal.org/project/issues/yasm"
         }
     },
     {
