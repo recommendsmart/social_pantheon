@@ -73,7 +73,8 @@
         "drupal/redhen_asset": "^1.0",
         "drupal/entity_ui": "^1.0",
         "drupal/yasm": "^1.2",
-        "drupal/charts": "^3.0"							  									  							 
+        "drupal/charts": "^3.0",
+        "drupal/ordered_list": "^1.2"							  									  							 
         },
     "repositories": [
         {
