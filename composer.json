@@ -70,7 +70,6 @@
         "drupal/menu_item_extras": "^2.4",
         "drupal/rabbit_hole": "^1.0",
         "drupal/views_accordion": "^1.2",
-        "drupal/redhen_asset": "^1.0",
         "drupal/entity_ui": "^1.0",
         "drupal/yasm": "^1.2",
         "drupal/charts": "^3.0",
