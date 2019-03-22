@@ -7,6 +7,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Plugin\DefaultSingleLazyPluginCollection;
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Session\AccountInterface;
 
 /**
@@ -184,8 +185,14 @@ class EntityTab extends ConfigEntityBase implements EntityTabInterface {
   /**
    * {@inheritdoc}
    */
-  public function getPageTitle() {
-    return $this->get('page_title');
+  public function getPageTitle(EntityInterface $target_entity) {
+    $page_title = $this->get('page_title');
+
+    $token_service = \Drupal::token();
+    return $token_service->replace($page_title, [
+      'entity_ui_tab' => $this,
+      'entity_ui_target_entity' => $target_entity,
+    ]);
   }
 
   /**

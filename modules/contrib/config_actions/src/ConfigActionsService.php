@@ -92,16 +92,29 @@ class ConfigActionsService implements ConfigActionsServiceInterface {
    * Return a list of action files for the specified module
    * @param string $module_name
    * @return array of config action files
-   *   keyed by simple name of file, value is full path
+   *   'module': name of module
+   *   'file': simple name of action file
+   *   'path': full path to action file
    */
   protected function getConfigActionsFiles($module_name = '') {
     $result = [];
-    $path = drupal_get_path('module', $module_name) . '/' . static::CONFIG_ACTIONS_CONFIG_DIR;
-    if (is_dir($path)) {
-      $action_storage = new FileStorage($path, StorageInterface::DEFAULT_COLLECTION);
-      $files = $action_storage->listAll();
-      foreach ($files as $file) {
-        $result[$file] = $path . '/' . $file . '.yml';
+    $modules = empty($module_name)
+      ? $modules = $this->moduleHandler->getModuleList()
+      : [$module_name => $this->moduleHandler->getModule($module_name)];
+    foreach ($modules as $module_name => $module) {
+      $module_path = $module->getPath();
+      // Check to see if module has a config/actions folder.
+      $path = $module_path . '/' . static::CONFIG_ACTIONS_CONFIG_DIR;
+      if (is_dir($path)) {
+        $action_storage = new FileStorage($path, StorageInterface::DEFAULT_COLLECTION);
+        $files = $action_storage->listAll();
+        foreach ($files as $file) {
+          $result[] = [
+            'module' => $module_name,
+            'file' => $file,
+            'path' => $path . '/' . $file . '.yml',
+          ];
+        }
       }
     }
     return $result;
@@ -343,19 +356,19 @@ class ConfigActionsService implements ConfigActionsServiceInterface {
     $file = str_replace('.yml', '', $file);
     // Get list of all action files within the module to loop over.
     $files = $this->getConfigActionsFiles($module_name);
-    foreach ($files as $key => $filename) {
-      if (empty($file) || $file === $key) {
-        $actions = $this->readActions($filename);
+    foreach ($files as $action_file) {
+      if (empty($file) || $file === $action_file['file']) {
+        $actions = $this->readActions($action_file['path']);
         // Rebase so any includes look in the specified module.
-        $actions['module'] = $module_name;
-        $actions['base'] = DRUPAL_ROOT . '/' . drupal_get_path('module', $module_name);
+        $actions['module'] = !empty($actions['module']) ? $actions['module'] : $action_file['module'];
+        $actions['base'] = DRUPAL_ROOT . '/' . drupal_get_path('module', $actions['module']);
         // Use file key as default source.
-        $actions['source'] = !empty($actions['source']) ? $actions['source'] : $key;
+        $actions['source'] = !empty($actions['source']) ? $actions['source'] : $action_file['file'];
 
-        // Prevent auto:false actions from running if only the module_name is
-        // given without a file or specific action id.
-        $this->autoExecute(!empty($module_name) && empty($file) && empty($action_id));
-        $result[$key] = $this->processAction($actions, $variables, $action_id);
+        // Prevent auto:false actions from running if not given a file or
+        // specific action id.
+        $this->autoExecute(empty($file) && empty($action_id));
+        $result[$action_file['file']] = $this->processAction($actions, $variables, $action_id);
       }
     }
     return $result;
@@ -369,10 +382,10 @@ class ConfigActionsService implements ConfigActionsServiceInterface {
     $modules = !empty($module_name) ? [$module_name => []] : $this->moduleHandler->getModuleList();
     foreach ($modules as $module_name => $extension) {
       $files = $this->getConfigActionsFiles($module_name);
-      foreach ($files as $key => $filename) {
-        if (empty($file) || $file === $key) {
-          $actions = $this->readActions($filename);
-          $result[$module_name][$key] = $this->listActions($actions);
+      foreach ($files as $action_file) {
+        if (empty($file) || $file === $action_file['file']) {
+          $actions = $this->readActions($action_file['path']);
+          $result[$module_name][$action_file['file']] = $this->listActions($actions);
         }
       }
     }

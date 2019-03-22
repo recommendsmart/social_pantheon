@@ -30,6 +30,10 @@ interface EntityTabContentInterface extends ConfigurablePluginInterface, PluginF
    * This should purely concern itself with applicability: whether the entity
    * type supports what this plugin does.
    *
+   * Plugins can specify the 'entity_types' annotation property to define the
+   * entity types they can work with, or override this method for dynamic
+   * handling and not use the annotation.
+   *
    * @param \Drupal\Core\Entity\EntityTypeInterface
    *  The entity type to check.
    * @param array $definition

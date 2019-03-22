@@ -5,10 +5,10 @@ The following action data (placed in ``my_module/config/actions/whatever.yml``)
 will override the help text configuration for various fields and
 content types::
 
+  plugin: "change"
+  path: ["description"]
+  source: "@id@"
   actions:
-    plugin: "change"
-    path: ["description"]
-    source: "@id@"
     article_content:
       actions:
         node.type.article:

@@ -261,7 +261,19 @@ abstract class EntityTabContentBase extends PluginBase implements EntityTabConte
    * {@inheritdoc}
    */
   public static function appliesToEntityType(EntityTypeInterface $entity_type, $definition) {
-    return TRUE;
+    if (empty($definition['entity_types'])) {
+      // If the entity_types annotation property is not set (and is thus the
+      // default empty array), this applies to all entity types.
+      return TRUE;
+    }
+    else {
+      // If the entity_types annotation property is set, check that.
+      if (in_array($entity_type->id(), $definition['entity_types'])) {
+        return TRUE;
+      }
+    }
+
+    return FALSE;
   }
 
   /**

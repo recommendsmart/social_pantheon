@@ -80,7 +80,7 @@ abstract class EntityUIAdminBase implements EntityHandlerInterface {
   }
 
   /**
-   * Builds the route for the collection.
+   * Builds the route for the partial collection of entity UI tab entities.
    *
    * @param \Symfony\Component\Routing\RouteCollection $route_collection
    *   The collection of routes built so far.

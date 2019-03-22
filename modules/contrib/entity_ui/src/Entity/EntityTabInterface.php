@@ -3,6 +3,7 @@
 namespace Drupal\entity_ui\Entity;
 
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityWithPluginCollectionInterface;
 
 /**
@@ -45,10 +46,13 @@ interface EntityTabInterface extends ConfigEntityInterface, EntityWithPluginColl
   /**
    * Gets the page title for this tab.
    *
+   * @param \Drupal\Core\Entity\EntityInterface $target_entity
+   *  The target entity of the tab entity.
+   *
    * @return string
    *  The path component that is appended to the target entity's canonical URL.
    */
-  public function getPageTitle();
+  public function getPageTitle(EntityInterface $target_entity);
 
   /**
    * Gets the tab title for this tab.

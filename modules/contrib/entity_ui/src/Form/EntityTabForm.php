@@ -190,7 +190,7 @@ class EntityTabForm extends EntityForm {
       '#title' => $this->t('Page title'),
       '#maxlength' => 255,
       '#default_value' => $entity_tab->get('page_title'),
-      '#description' => $this->t("The page title to show when the entity tab is displayed."),
+      '#description' => $this->t("The page title to show when the entity tab is displayed. Tokens may be used it this field starting with '[entity_ui_tab:target_entity:' for the target entity."),
       '#required' => TRUE,
     ];
 

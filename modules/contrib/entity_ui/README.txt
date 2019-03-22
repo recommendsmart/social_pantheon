@@ -18,14 +18,6 @@ INSTALLATION
    https://drupal.org/documentation/install/modules-themes/modules-8
    for further information.
 
-REQUIREMENTS
-------------
-
-The following patches are needed in order to work with certain entity types:
-
-* For support for Comment entities: https://www.drupal.org/node/2878151
-* For support for ECK entities: https://www.drupal.org/node/2878143
-
 CONFIGURATION
 -------------
 

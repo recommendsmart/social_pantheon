@@ -39,4 +39,14 @@ class EntityTabContent extends Plugin {
    */
   public $description;
 
+  /**
+   * An array of entity types this tab content is valid for.
+   *
+   * If this is set, the plugin class's appliesToEntityType() method is
+   * ignored.
+   *
+   * @var array
+   */
+  public $entity_types = [];
+
 }

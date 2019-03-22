@@ -48,11 +48,39 @@ function entity_ui_entity_type_build(array &$entity_types) {
         // Done with this entity type.
         continue;
       }
+      else {
+        // If there is no link template for the collection of bundle entities,
+        // we don't know what to do.
+        continue;
+      }
     }
 
-    // Case 2: The entity type doesn't have a bundle entity type, but has a
+    // Get details about the field UI base route for cases 2 and 3.
+    $route_provider = \Drupal::service('router.route_provider');
+
+    $field_ui_base_route_name = $entity_type->get('field_ui_base_route');
+    if ($field_ui_base_route_name) {
+
+      $field_ui_base_route = $route_provider->getRouteByName($field_ui_base_route_name);
+      $field_ui_base_route_path = $field_ui_base_route->getPath();
+    }
+
+    // Case 2: The entity type doesn't have a bundle entity type, but has
+    // multiple bundles. These might be derived from plugins (using the Entity
+    // API contrib module's functionality), or simnply hardcoded in
+    // hook_entity_bundle_info(). We detect this by the presence of a 'bundle'
+    // parameter at the end of the field UI route path, which Field UI module
+    // expects when the bundles are not config entities.
+    if (!empty($field_ui_base_route_path) && substr($field_ui_base_route_path, -(strlen('/{bundle}'))) == '/{bundle}') {
+      $entity_type->setHandlerClass('entity_ui_admin', \Drupal\entity_ui\EntityHandler\PlainBundlesEntityUIAdmin::class);
+
+      // Done with this entity type.
+      continue;
+    }
+
+    // Case 3: The entity type doesn't have a bundle entity type, but has a
     // field UI base route.
-    if ($field_ui_base_route_name = $entity_type->get('field_ui_base_route')) {
+    if ($field_ui_base_route_name) {
       $entity_type->setHandlerClass('entity_ui_admin', \Drupal\entity_ui\EntityHandler\BasicFieldUI::class);
 
       // Done with this entity type.

@@ -116,7 +116,11 @@ class EntityTabController implements ContainerInjectionInterface {
   public function title() {
     $entity_tab_id = $this->currentRouteMatch->getRouteObject()->getDefault('_entity_tab_id');
     $entity_tab = \Drupal::service('entity_type.manager')->getStorage('entity_tab')->load($entity_tab_id);
-    return $entity_tab->getPageTitle();
+
+    // Get the target entity the tab is being shown on.
+    $target_entity = $this->currentRouteMatch->getParameter($entity_tab->getTargetEntityTypeID());
+
+    return $entity_tab->getPageTitle($target_entity);
   }
 
 }

@@ -5,8 +5,8 @@ description: 'Allows creation of UIs for entities.'
 dependencies:
   - field_ui
 
-# Information added by Drupal.org packaging script on 2019-01-26
-version: '8.x-1.0-beta5'
+# Information added by Drupal.org packaging script on 2019-03-21
+version: '8.x-1.0'
 core: '8.x'
 project: 'entity_ui'
-datestamp: 1548511389
+datestamp: 1553168889

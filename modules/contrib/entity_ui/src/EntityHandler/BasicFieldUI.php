@@ -47,6 +47,11 @@ class BasicFieldUI extends EntityUIAdminBase {
    */
   protected function getCollectionRoutePath(RouteCollection $route_collection) {
     $field_ui_base_route = $route_collection->get($this->fieldUiBaseRouteName);
+
+    if (empty($field_ui_base_route)) {
+      throw new \Exception("Field UI base route {$this->fieldUiBaseRouteName} does not exist.");
+    }
+
     return $field_ui_base_route->getPath() . '/entity_ui';
   }
 
