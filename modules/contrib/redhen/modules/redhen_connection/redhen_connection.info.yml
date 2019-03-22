@@ -1,0 +1,19 @@
+name: RedHen Connections
+type: module
+description: Defines the base Connection entity and features.
+# core: 8.x
+package: RedHen
+configure: entity.redhen_connection_type.collection
+dependencies:
+  - redhen
+  - entity
+  - field
+  - views
+  - redhen_contact
+  - redhen_org
+
+# Information added by Drupal.org packaging script on 2017-10-16
+version: '8.x-1.0-alpha3'
+core: '8.x'
+project: 'redhen'
+datestamp: 1508196248
