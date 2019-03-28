@@ -70,8 +70,7 @@
         "drupal/entity_ui": "^1.0",
         "drupal/react_calendar": "^1.0",
         "drupal/module_filter": "^3.1",
-        "drupal/fullcalendar_view": "^2.2",
-        "drupal/redhen": "^1.0"							  									  							 
+        "drupal/fullcalendar_view": "^2.2"							  									  							 
         },
     "repositories": [
         {
