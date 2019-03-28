@@ -69,7 +69,8 @@
         "drupal/views_accordion": "^1.2",
         "drupal/yasm": "^1.2",
         "drupal/charts": "^3.0",
-        "drupal/ordered_list": "^1.2"							  									  							 
+        "drupal/ordered_list": "^1.2",
+        "drupal/entity_ui": "^1.0"							  									  							 
         },
     "repositories": [
         {

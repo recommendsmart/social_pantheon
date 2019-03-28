@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eca4fa439465daf939eee7e063ae3dbb",
+    "content-hash": "318fcd50c305c27d0a389152681570f9",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -3437,6 +3437,53 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/entity_serial",
                 "issues": "https://www.drupal.org/project/issues/entity_serial"
+            }
+        },
+        {
+            "name": "drupal/entity_ui",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/entity_ui",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/entity_ui-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "24f6890845bf49636b04ff841eb093f0460e5c00"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1553168884",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "joachim",
+                    "homepage": "https://www.drupal.org/user/107701"
+                }
+            ],
+            "description": "Allows creation of UIs for entities.",
+            "homepage": "https://www.drupal.org/project/entity_ui",
+            "support": {
+                "source": "http://cgit.drupalcode.org/entity_ui"
             }
         },
         {
