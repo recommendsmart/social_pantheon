@@ -3,29 +3,21 @@
 namespace Drupal\charts\Form;
 
 
-use Drupal\charts\Theme\ChartsInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\charts\Settings\ChartsBaseSettingsForm;
 use Drupal\Core\Url;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Extension\ModuleHandlerInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\charts\Settings\ChartsDefaultSettings;
-use Drupal\charts\Settings\ChartsTypeInfo;
 
 /**
  * Charts Config Form.
  */
 class ChartsConfigForm extends ConfigFormBase {
 
-  protected $moduleHandler;
-
   protected $config;
 
   protected $defaults;
-
-  protected $chart_types;
 
   protected $chartsBaseSettingsForm;
 
@@ -34,23 +26,12 @@ class ChartsConfigForm extends ConfigFormBase {
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   Config factory.
-   * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
-   *   Module handler.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, ModuleHandlerInterface $module_handler) {
+  public function __construct(ConfigFactoryInterface $config_factory) {
     parent::__construct($config_factory);
-    $this->moduleHandler = $module_handler;
     $this->config = $this->configFactory->getEditable('charts.settings');
     $this->defaults = new ChartsDefaultSettings();
-    $this->chart_types = new ChartsTypeInfo();
     $this->chartsBaseSettingsForm = new ChartsBaseSettingsForm();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static($container->get('config.factory'), $container->get('module_handler'));
   }
 
   /**
@@ -73,8 +54,8 @@ class ChartsConfigForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
 
     $parents = ['charts_default_settings'];
-    $default_config = (array) $this->config->get('charts_default_settings');
-    $defaults = $default_config + $this->defaults->getDefaults();
+    $default_config = $this->config->get('charts_default_settings');
+    $defaults = array_merge($this->defaults->getDefaults(), $default_config);
 
     $field_options = [];
     $form['help'] = [
@@ -102,17 +83,7 @@ class ChartsConfigForm extends ConfigFormBase {
     $form['yaxis']['#group'] = 'defaults';
     $form['defaults'] = ['#type' => 'vertical_tabs'];
 
-    // Add submit buttons and normal saving behavior.
-    $form['actions'] = [
-      '#type' => 'actions',
-      'submit' => [
-        '#type' => 'submit',
-        '#value' => $this->t('Save defaults'),
-        '#button_type' => 'primary',
-      ],
-    ];
-
-    return $form;
+    return parent::buildForm($form, $form_state);
   }
 
   /**
@@ -121,6 +92,8 @@ class ChartsConfigForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->config->set('charts_default_settings', $form_state->getValue('charts_default_settings'));
     $this->config->save();
+
+    parent::submitForm($form, $form_state);
   }
 
 }

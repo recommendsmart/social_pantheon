@@ -4,6 +4,7 @@ namespace Drupal\charts\Plugin\views\style;
 
 use Drupal\charts\Services\ChartAttachmentServiceInterface;
 use Drupal\charts\Plugin\chart\ChartManager;
+use Drupal\charts\Services\ChartsSettingsService;
 use Drupal\charts\Settings\ChartsBaseSettingsForm;
 use Drupal\charts\Settings\ChartsTypeInfo;
 use Drupal\charts\Theme\ChartsInterface;
@@ -12,8 +13,6 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Render\Element;
 use Drupal\views\Plugin\views\style\StylePluginBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\charts\Settings\ChartsDefaultColors;
-use Drupal\charts\Settings\ChartsDefaultSettings;
 
 /**
  * Style plugin to render view as a chart.
@@ -45,9 +44,7 @@ class ChartsPluginStyleChart extends StylePluginBase implements ContainerFactory
 
   protected $moduleHandler;
 
-  protected $defaultColors;
-
-  protected $defaults;
+  protected $chartsDefaultSettings;
 
   protected $chartsBaseSettingsForm;
 
@@ -64,21 +61,20 @@ class ChartsPluginStyleChart extends StylePluginBase implements ContainerFactory
    *   The attachment service.
    * @param \Drupal\charts\Plugin\chart\ChartManager $chart_manager
    *   The chart manager service.
-   * @param $config_factory
-   * @param $module_handler
+   * @param \Drupal\charts\Services\ChartsSettingsService $chartsSettings
    */
   public function __construct(
     array $configuration,
     $plugin_id,
     $plugin_definition,
     ChartAttachmentServiceInterface $attachment_service,
-    ChartManager $chart_manager
+    ChartManager $chart_manager,
+    ChartsSettingsService $chartsSettings
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->attachmentService = $attachment_service;
     $this->chartManager = $chart_manager;
-    $this->defaultColors = new ChartsDefaultColors();
-    $this->defaults = new ChartsDefaultSettings();
+    $this->chartsDefaultSettings = $chartsSettings->getChartsSettings();
     $this->chartsBaseSettingsForm = new ChartsBaseSettingsForm();
   }
 
@@ -91,21 +87,9 @@ class ChartsPluginStyleChart extends StylePluginBase implements ContainerFactory
       $plugin_id,
       $plugin_definition,
       $container->get('charts.charts_attachment'),
-      $container->get('plugin.manager.charts')
+      $container->get('plugin.manager.charts'),
+      $container->get('charts.settings')
     );
-  }
-
-  /**
-   * @return array
-   * $defaultOptions
-   */
-  public function chartsDefaultSettings() {
-
-    $defaultOptions = $this->defaults->defaults;
-    $colors = $this->defaultColors->defaultColors;
-    $defaultOptions['colors'] = $colors;
-
-    return $defaultOptions;
   }
 
   /**
@@ -119,12 +103,12 @@ class ChartsPluginStyleChart extends StylePluginBase implements ContainerFactory
     ];
 
     // Get the default chart values.
-    $defaults = \Drupal::state()->get('charts_default_settings', []);
-
-    $defaults += $this->chartsDefaultSettings();
+    $defaults = $this->chartsDefaultSettings;
     foreach ($defaults as $default_key => $default_value) {
       $options[$default_key]['default'] = $default_value;
     }
+
+    // @todo: ensure that chart extensions inherit defaults from parent
 
     // Remove the default setting for chart type so it can be inherited if this
     // is a chart extension type.
@@ -170,6 +154,7 @@ class ChartsPluginStyleChart extends StylePluginBase implements ContainerFactory
 
     // Merge in the global chart settings form.
     $field_options = $this->displayHandler->getFieldLabels();
+    $form_state->set('default_options', $this->options);
     $form = $this->chartsBaseSettingsForm->getChartsBaseSettingsForm($form, $this->options, $field_options, ['style_options'], 'view');
 
   }
@@ -240,6 +225,17 @@ class ChartsPluginStyleChart extends StylePluginBase implements ContainerFactory
     if (isset($data_fields[$label_field_key])) {
       unset($data_fields[$label_field_key]);
     }
+    // Allow argument tokens in the title
+    if (!empty($this->view->build_info['substitutions'])) {
+      $tokens = $this->view->build_info['substitutions'];
+      $title = $this->options['title_position'] ? $this->options['title'] : FALSE;
+      $title = $this->viewsTokenReplace($title, $tokens);
+      $this->options['title'] = $title;
+    }
+    else {
+      $title = $this->options['title_position'] ? $this->options['title'] : FALSE;
+    }
+
     $chart_id = $this->view->id() . '__' . $this->view->current_display;
     $chart = [
       '#type' => 'chart',
@@ -247,7 +243,8 @@ class ChartsPluginStyleChart extends StylePluginBase implements ContainerFactory
       '#chart_library' => $this->options['library'],
       '#chart_id' => $chart_id,
       '#id' => ('chart_' . $chart_id),
-      '#title' => $this->options['title_position'] ? $this->options['title'] : FALSE,
+    //  '#title' => $this->options['title_position'] ? $this->options['title'] : FALSE,
+      '#title' => $title,
       '#title_position' => $this->options['title_position'],
       '#tooltips' => $this->options['tooltips'],
       '#data_labels' => $this->options['data_labels'],
@@ -263,13 +260,11 @@ class ChartsPluginStyleChart extends StylePluginBase implements ContainerFactory
       // Pass info about the actual view results to allow further processing.
       '#theme' => 'views_view_charts',
     ];
-
     $chartTypes = new ChartsTypeInfo();
     $chart_type_info = $chartTypes->getChartType($this->options['type']);
     if ($chart_type_info['axis'] === ChartsInterface::CHARTS_SINGLE_AXIS) {
       $data_field_key = key($data_fields);
       $data_field = $data_fields[$data_field_key];
-
       $data = [];
       $this->renderFields($this->view->result);
       $renders = $this->rendered_fields;
@@ -316,12 +311,10 @@ class ChartsPluginStyleChart extends StylePluginBase implements ContainerFactory
         '#max' => $this->options['yaxis_max'],
         '#min' => $this->options['yaxis_min'],
       ];
-
       $sets = $this->renderGrouping($this->view->result, $this->options['grouping'], TRUE);
       $series_index = -1;
       foreach ($sets as $series_label => $data_set) {
         $series_index++;
-        //    $series_key = $this->view->current_display . '__' . $field_key . '_' . $series_index;
         foreach ($data_fields as $field_key => $field_handler) {
           $chart[$this->view->current_display . '__' . $field_key . '_' . $series_index] = [
             '#type' => 'chart_data',
@@ -348,7 +341,6 @@ class ChartsPluginStyleChart extends StylePluginBase implements ContainerFactory
             if (isset($this->options['grouping'][0]['field']) && $field_key === $this->options['grouping'][0]['field']) {
               continue;
             }
-
             $value = $this->getField($result_number, $field_key);
             // Convert empty strings to NULL.
             if ($value === '') {

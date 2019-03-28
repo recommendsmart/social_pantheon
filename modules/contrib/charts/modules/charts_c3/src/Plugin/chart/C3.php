@@ -11,6 +11,7 @@ use Drupal\charts_c3\Settings\CThree\ChartTitle;
 use Drupal\charts_c3\Settings\CThree\ChartData;
 use Drupal\charts_c3\Settings\CThree\ChartColor;
 use Drupal\charts_c3\Settings\CThree\ChartAxis;
+use Drupal\charts_c3\Settings\CThree\ChartLegend;
 
 /**
  * Define a concrete class for a Chart.
@@ -148,11 +149,34 @@ class C3 extends AbstractChart {
         $chartAxis->setRotated(FALSE);
       }
       if ($options['type'] == 'scatter') {
+        // Old code: $chartAxis->setX(['tick' => ['fit' => FALSE]]);
+
+        // New code: uses the Scatter Field in charts_fields. Still needs
+        // plenty of work.
+        $fieldLabel = $seriesData[0]['name'];
+        array_shift($c3Data[0]);
+        $scatterFieldData = $c3Data[0];
+        $scatterFieldX = [];
+        $scatterFieldY = [];
+        for($i = 0; $i < count($scatterFieldData); $i++) {
+          array_push($scatterFieldX, $scatterFieldData[$i][0]);
+          array_push($scatterFieldY, $scatterFieldData[$i][1]);
+        }
+        array_unshift($scatterFieldX, $fieldLabel . '_x');
+        array_unshift($scatterFieldY, $fieldLabel);
+        $c3Data[0] = $scatterFieldX;
+        $c3Data[1] = $scatterFieldY;
         $chartAxis->setX(['tick' => ['fit' => FALSE]]);
+        $xs = new \stdClass();
+        $xs->{$fieldLabel} = $fieldLabel . '_x';
+        $chartData->setXs($xs);
+        $chartData->setX('');
+      }
+      else {
+        array_unshift($categories, 'x');
+        array_push($c3Data, $categories);
       }
 
-      array_unshift($categories, 'x');
-      array_push($c3Data, $categories);
       $chartData->setColumns($c3Data);
       $c3->setAxis($chartAxis);
     }
@@ -209,6 +233,15 @@ class C3 extends AbstractChart {
       }
       $c3->setPoint($points);
     }
+
+    // Set legend
+    $legend = new ChartLegend();
+    if (empty($options['legend_position'])) {
+      $legend->setShow(FALSE);
+    } else {
+      $legend->setShow(TRUE);
+    }
+    $c3->setLegend($legend);
 
     $bindTo = '#' . $chartId;
     $c3->setBindTo($bindTo);

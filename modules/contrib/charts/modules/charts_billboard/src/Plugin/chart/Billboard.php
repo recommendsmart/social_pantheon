@@ -11,6 +11,7 @@ use Drupal\charts_billboard\Settings\Billboard\ChartTitle;
 use Drupal\charts_billboard\Settings\Billboard\ChartData;
 use Drupal\charts_billboard\Settings\Billboard\ChartColor;
 use Drupal\charts_billboard\Settings\Billboard\ChartAxis;
+use Drupal\charts_billboard\Settings\Billboard\ChartLegend;
 
 /**
  * Define a concrete class for a Chart.
@@ -154,12 +155,35 @@ class Billboard extends AbstractChart {
         $chartData->setType('bar');
         $chartAxis->setRotated(FALSE);
       }
-      if ($type == 'scatter') {
+      if ($options['type'] == 'scatter') {
+        // Old code: $chartAxis->setX(['tick' => ['fit' => FALSE]]);
+
+        // New code: uses the Scatter Field in charts_fields. Still needs
+        // plenty of work.
+        $fieldLabel = $seriesData[0]['name'];
+        array_shift($bbData[0]);
+        $scatterFieldData = $bbData[0];
+        $scatterFieldX = [];
+        $scatterFieldY = [];
+        for($i = 0; $i < count($scatterFieldData); $i++) {
+          array_push($scatterFieldX, $scatterFieldData[$i][0]);
+          array_push($scatterFieldY, $scatterFieldData[$i][1]);
+        }
+        array_unshift($scatterFieldX, $fieldLabel . '_x');
+        array_unshift($scatterFieldY, $fieldLabel);
+        $bbData[0] = $scatterFieldX;
+        $bbData[1] = $scatterFieldY;
         $chartAxis->setX(['tick' => ['fit' => FALSE]]);
+        $xs = new \stdClass();
+        $xs->{$fieldLabel} = $fieldLabel . '_x';
+        $chartData->setXs($xs);
+        $chartData->setX('');
+      }
+      else {
+        array_unshift($categories, 'x');
+        array_push($bbData, $categories);
       }
 
-      array_unshift($categories, 'x');
-      array_push($bbData, $categories);
       $chartData->setColumns($bbData);
       $bb->setAxis($chartAxis);
     }
@@ -220,6 +244,15 @@ class Billboard extends AbstractChart {
       }
       $bb->setPoint($points);
     }
+
+    // Set legend
+    $legend = new ChartLegend();
+    if (empty($options['legend_position'])) {
+      $legend->setShow(FALSE);
+    } else {
+      $legend->setShow(TRUE);
+    }
+    $bb->setLegend($legend);
 
     $bindTo = '#' . $chartId;
     $bb->setBindTo($bindTo);

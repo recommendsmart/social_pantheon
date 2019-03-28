@@ -11,6 +11,8 @@ class HighchartsOptions implements \JsonSerializable {
 
   private $title;
 
+  private $subtitle;
+
   private $xAxis;
 
   private $yAxis;
@@ -263,6 +265,20 @@ class HighchartsOptions implements \JsonSerializable {
    */
   public function setPane($pane) {
     $this->pane = $pane;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getSubtitle() {
+    return $this->subtitle;
+  }
+
+  /**
+   * @param mixed $subtitle
+   */
+  public function setSubtitle($subtitle) {
+    $this->subtitle = $subtitle;
   }
 
   /**

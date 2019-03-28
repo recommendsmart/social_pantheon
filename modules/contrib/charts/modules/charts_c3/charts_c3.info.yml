@@ -6,8 +6,8 @@ package: Charts
 dependencies:
   - 'charts:charts'
 
-# Information added by Drupal.org packaging script on 2018-10-25
-version: '8.x-3.0-beta2'
+# Information added by Drupal.org packaging script on 2019-03-22
+version: '8.x-3.0-beta3'
 core: '8.x'
 project: 'charts'
-datestamp: 1540444694
+datestamp: 1553289785

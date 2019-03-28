@@ -8,6 +8,22 @@
 use Drupal\charts\Util\Util;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 
+function charts_views_data() {
+  $data['charts_fields']['table']['group'] = t('Charts');
+  $data['charts_fields']['table']['join'] = [
+    // Exist in all views.
+    '#global' => [],
+  ];
+  $data['charts_fields']['field_charts_fields_scatter'] = [
+    'title' => t('Scatter Field'),
+    'help' => t('Use this field for your data field in a scatter plot.'),
+    'field' => [
+      'id' => 'field_charts_fields_scatter',
+    ],
+  ];
+  return $data;
+}
+
 /**
  * Implements hook_theme().
  */
@@ -94,7 +110,6 @@ function template_preprocess_views_view_charts(&$variables) {
   // Bring in the Value Field from the View.
   $valueField = $view->style_plugin->options['data_fields'];
   $valueField = Util::removeUnselectedFields($valueField);
-
   // Bring in the Label Field from the View.
   $labelField = $view->style_plugin->options['label_field'];
 

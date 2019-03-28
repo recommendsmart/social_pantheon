@@ -7,9 +7,10 @@ charts_chartjs:
     gpl-compatible: false
   js:
     /libraries/chartjs/Chart.bundle.js: {  }
-    /libraries/chartjs/chart.scale.lineargauge.js: {  }
-    /libraries/chartjs/chart.element.gaugerect.js: {  }
-    /libraries/chartjs/chart.lineargauge.js: {  }
+#  @todo: incorporate additional plugins, such as
+#    /libraries/chartjs/chart.scale.lineargauge.js: {  }
+#    /libraries/chartjs/chart.element.gaugerect.js: {  }
+#    /libraries/chartjs/chart.lineargauge.js: {  }
   dependencies:
     - core/jquery
     - core/jquery.once

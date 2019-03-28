@@ -4,6 +4,8 @@ namespace Drupal\charts_highcharts\Plugin\chart;
 
 use Drupal\charts\Plugin\chart\AbstractChart;
 use Drupal\charts_highcharts\Settings\Highcharts\Chart;
+use Drupal\charts_highcharts\Settings\Highcharts\ChartCreditsPosition;
+use Drupal\charts_highcharts\Settings\Highcharts\ChartLegendItemStyle;
 use Drupal\charts_highcharts\Settings\Highcharts\ChartTitle;
 use Drupal\charts_highcharts\Settings\Highcharts\ExportingOptions;
 use Drupal\charts_highcharts\Settings\Highcharts\Marker;
@@ -24,6 +26,8 @@ use Drupal\charts_highcharts\Settings\Highcharts\Tooltip;
 use Drupal\charts_highcharts\Settings\Highcharts\ChartCredits;
 use Drupal\charts_highcharts\Settings\Highcharts\ChartLegend;
 use Drupal\charts_highcharts\Settings\Highcharts\HighchartsOptions;
+use Drupal\Core\Config\Config;
+use Drupal\Core\Plugin\Context\ContextDefinition;
 
 /**
  * Defines a concrete class for a Highcharts.
@@ -41,32 +45,58 @@ class Highcharts extends AbstractChart {
    * @return \Drupal\charts_highcharts\Settings\Highcharts\ChartLegend
    */
   protected function buildChartLegend($options) {
+    // Retrieve Highcharts-specific default settings
+    $highchartsConfig = \Drupal::config('charts_highcharts.settings')
+      ->get();
+    // Incorporate Highcharts-specific default settings into $options
+    $options = array_merge($options, $highchartsConfig);
+
     $chartLegend = new ChartLegend();
+    if (!empty($options['legend_layout'])) {
+      $chartLegend->setLayout($options['legend_layout']);
+    }
+    if (!empty($options['legend_background_color'])) {
+      $chartLegend->setBackgroundColor($options['legend_background_color']);
+    }
+    if (!empty($options['legend_border_width'])) {
+      $chartLegend->setBorderWidth($options['legend_border_width']);
+    }
+    if (!empty($options['legend_shadow'])) {
+      $chartLegend->setShadow($options['legend_shadow']);
+    }
     if (empty($options['legend_position'])) {
       $chartLegend->setEnabled(FALSE);
     }
     elseif (in_array($options['legend_position'], ['left', 'right'])) {
-      $chartLegend->setAlign($options['legend_position']);
+      if (!empty($options['legend_position'])) {
+        $chartLegend->setAlign($options['legend_position']);
+      }
       $chartLegend->setVerticalAlign('top');
       $chartLegend->setY(80);
-      if ($options['legend_position'] == 'left') {
+      if (!empty($options['legend_position']) && $options['legend_position'] == 'left') {
         $chartLegend->setX(0);
       }
     }
-    elseif ($options['legend_position'] == 'bottom') {
-      $chartLegend->setVerticalAlign($options['legend_position']);
-      $chartLegend->setAlign('center');
-      $chartLegend->setX(0);
-      $chartLegend->setY(0);
-      $chartLegend->setFloating(FALSE);
-    }
     else {
-      $chartLegend->setVerticalAlign($options['legend_position']);
+      if (!empty($options['legend_position'])) {
+        $chartLegend->setVerticalAlign($options['legend_position']);
+      }
       $chartLegend->setAlign('center');
       $chartLegend->setX(0);
       $chartLegend->setY(0);
       $chartLegend->setFloating(FALSE);
     }
+    $styles = new ChartLegendItemStyle();
+    if (!empty($options['item_style_color'])) {
+      $styles->setColor($options['item_style_color']);
+    }
+    if (!empty($options['text_overflow'])) {
+      $styles->setTextOverflow($options['text_overflow']);
+    }
+    $chartLegend->setItemStyle($styles);
+    // Get language direction and set legend direction upon
+    $direction = \Drupal::languageManager()->getCurrentLanguage()->getDirection();
+    $chartLegend->setDirection($direction == 'ltr' ? false : true);
 
     return $chartLegend;
   }
@@ -87,7 +117,7 @@ class Highcharts extends AbstractChart {
       $plotOptions->setPlotOptions($options['type'], $plotOptionsStacking);
       $plotOptionsStacking->setDataLabels($plotOptionsSeriesDataLabels);
       // Set markers if grouped
-      if (($options['type'] == 'line') || ($options['type'] == 'spline')) {
+      if (in_array($options['type'], ['area','line','scatter','spline'])) {
         $marker = new Marker();
         if ($options['data_markers'] == 'FALSE') {
           $marker->setEnabled(FALSE);
@@ -105,7 +135,7 @@ class Highcharts extends AbstractChart {
       $plotOptions->setPlotOptions($options['type'], $plotOptionsSeries);
       $plotOptionsSeries->setDataLabels($plotOptionsSeriesDataLabels);
       // Set markers if not grouped
-      if (($options['type'] == 'line') || ($options['type'] == 'spline')) {
+      if (in_array($options['type'], ['area','line','scatter','spline'])) {
         $marker = new Marker();
         if ($options['data_markers'] == 'FALSE') {
           $marker->setEnabled(FALSE);
@@ -154,9 +184,30 @@ class Highcharts extends AbstractChart {
       }
     }
     $chartXaxis->setCategories($categories);
+    if (isset($options['xaxis_tickmark_placement'])) {
+      switch ($options['xaxis_tickmark_placement']) {
+        case 'on':
+        case 'between':
+          $chartXaxis->setTickmarkPlacement($options['xaxis_tickmark_placement']);
+          break;
+        default:
+      }
+    }
     // Set x-axis title.
     $chartXaxis->setTitle($xAxisTitle);
     $chartXaxis->setLabels($chartLabels);
+    // Set min.
+    if (!empty($options['xaxis_min'])) {
+      $chartXaxis->setMin((int) $options['xaxis_min']);
+    }
+    // Set max.
+    if (!empty($options['xaxis_max'])) {
+      $chartXaxis->setMax((int) $options['xaxis_max']);
+    }
+    // Set interval.
+    if (!empty($options['xaxis_interval'])) {
+      $chartXaxis->setTickInterval((int) $options['xaxis_interval']);
+    }
 
     return $chartXaxis;
   }
@@ -217,6 +268,7 @@ class Highcharts extends AbstractChart {
    * @return \Drupal\charts_highcharts\Settings\Highcharts\Yaxis
    */
   protected function buildYaxis($title, $yaxisLabels, $options, $seriesData, $categories) {
+
     $chartYaxis = new Yaxis();
     $yAxisTitle = new YaxisTitle();
     $yAxisTitle->setText($title);
@@ -226,6 +278,35 @@ class Highcharts extends AbstractChart {
     if (!empty($options['yaxis_max'])) {
       $chartYaxis->setMax($options['yaxis_max']);
     }
+    if (isset($options['yaxis_categories'])) {
+      $chartYaxis->setCategories($options['yaxis_categories']);
+    }
+    if (!empty($options['yaxis_interval']) && is_numeric($options['yaxis_interval'])) {
+      $chartYaxis->setTickInterval($options['yaxis_interval']);
+    }
+    if (isset($options['yaxis_show_first_label'])) {
+      $chartYaxis->setShowFirstLabel($options['yaxis_show_first_label']);
+      if ($options['yaxis_show_first_label']) {
+        $chartYaxis->setStartOnTick(TRUE);
+      }
+    }
+    if (isset($options['yaxis_show_last_label'])) {
+      $chartYaxis->setShowLastLabel($options['yaxis_show_last_label']);
+      // endOnTick needs to be TRUE for showLastLabel = TRUE to work.
+      if ($options['yaxis_show_last_label']) {
+        $chartYaxis->setEndOnTick(TRUE);
+      }
+    }
+    if (isset($options['yaxis_tickmark_placement'])) {
+      switch ($options['yaxis_tickmark_placement']) {
+        case 'on':
+        case 'between':
+          $chartYaxis->setTickmarkPlacement($options['yaxis_tickmark_placement']);
+          break;
+        default:
+      }
+    }
+
     // Gauge options.
     if ($options['type'] == 'gauge') {
       // Gauge will not work if grouping is set.
@@ -272,6 +353,25 @@ class Highcharts extends AbstractChart {
     }
 
     return $chartTooltip;
+  }
+
+  /**
+   * @param $options
+   *
+   * @return \Drupal\charts_highcharts\Settings\Highcharts\ChartCredits
+   */
+  protected function buildCredits($options) {
+    $chartCredits = new ChartCredits();
+    if (isset($options['credits'])) {
+      $chartCredits->setEnabled(TRUE);
+      $chartCredits->setText($options['credits']);
+      $position = new ChartCreditsPosition();
+      $position->setX(10);
+      $position->setY(-20);
+      $chartCredits->setPosition($position);
+    }
+
+    return $chartCredits;
   }
 
   /**
@@ -394,7 +494,7 @@ class Highcharts extends AbstractChart {
     }
     // Set plot options.
     $plotOptions = $this->buildPlotOptions($options);
-    $chartCredits = new ChartCredits();
+    $chartCredits = $this->buildCredits($options);
     // Set charts legend.
     $chartLegend = $this->buildChartLegend($options);
     // Set exporting options.
@@ -402,6 +502,11 @@ class Highcharts extends AbstractChart {
     $highchart = new HighchartsOptions();
     $highchart->setChart($this->buildChartType($options));
     $highchart->setTitle($this->buildChartTitle($options));
+    if (!empty($options['subtitle'])) {
+      $subtitleText = new \stdClass();
+      $subtitleText->text = $options['subtitle'];
+      $highchart->setSubtitle($subtitleText);
+    }
     $highchart->setAxisX($xAxisOptions);
     $highchart->setAxisY($yAxes);
     if ($options['type'] == 'gauge') {
@@ -427,6 +532,19 @@ class Highcharts extends AbstractChart {
       }
       $chartData = ['data' => $seriesData];
       $highchart->setSeries([$chartData]);
+    }
+    elseif ($options['type'] == 'scatter') {
+      // You probably want to enable and use the ScatterField in charts_fields.
+      $data = $seriesData[0]['data'];
+      $xAxisCategories['categories'] = [];
+      for ($i = 0; $i < count($categories); $i++) {
+        $seriesData[$i]['name'] = $categories[$i];
+        $seriesData[$i]['data'] = [$data[$i]];
+        array_push($xAxisCategories['categories'], $data[$i][0]);
+      }
+      $xAxisOptions = $this->buildXaxis($options, $seriesData, $xAxisCategories);
+      $highchart->setAxisX($xAxisOptions);
+      $highchart->setSeries($seriesData);
     }
     else {
       $highchart->setSeries($seriesData);

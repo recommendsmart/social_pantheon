@@ -109,6 +109,9 @@
           break;
         case 'GaugeChart':
           chart = new google.visualization.Gauge(document.getElementById(chartId));
+          break;
+        case 'GeoChart':
+          chart = new google.visualization.GeoChart(document.getElementById(chartId));
       }
       // Fix for https://www.drupal.org/project/charts/issues/2950654.
       // Would be interested in a different approach that allowed the default

@@ -28,6 +28,9 @@ class Google extends AbstractChart {
     if ($type == 'column') {
       $type = 'bars';
     }
+    if ($type == 'bar') {
+      $type = 'bars';
+    }
     if ($type == 'spline') {
       $type = 'line';
     }
@@ -105,6 +108,30 @@ class Google extends AbstractChart {
         array_unshift($dataTableHeader, 'label');
         array_unshift($dataTable, $dataTableHeader);
       }
+    }
+    elseif ($options['type'] == 'scatter') {
+      // You will want to use the Scatter Field in the charts_fields module.
+      $dataTable = [];
+      for ($j = 0; $j < $categoriesCount; $j++) {
+        $rowDataTable = [];
+        for ($i = 0; $i < $seriesCount; $i++) {
+          // @todo: make work for multiple series.
+          $rowDataTabletemp[0] = $seriesData[$i]['data'][$j][0];
+          $rowDataTabletemp[1] = $seriesData[$i]['data'][$j][1];
+          $rowDataTabletemp[2] = $categories[$j] . ': ' . json_encode($seriesData[$i]['data'][$j]);
+          $rowDataTable = $rowDataTabletemp;
+        }
+        array_push($dataTable, $rowDataTable);
+      }
+      $dataTableHeader = [];
+      for ($r = 0; $r < $seriesCount; $r++) {
+        array_push($dataTableHeader, $seriesData[$r]['name']);
+      }
+      $role = new \stdClass();
+      $role->role = 'tooltip';
+      array_push($dataTableHeader, $role);
+      array_unshift($dataTableHeader, 'label');
+      array_unshift($dataTable, $dataTableHeader);
     }
     else {
       $dataTable = [];
@@ -321,7 +348,7 @@ class Google extends AbstractChart {
       array_push($vAxes, $secondVaxis);
     }
 
-    array_push($chartSelected, $options['type']);
+    array_push($chartSelected, $this->processChartType($options['type']));
 
     // @todo: make sure this works for more than one attachment.
     for ($i = 0; $i < count($attachmentDisplayOptions); $i++) {

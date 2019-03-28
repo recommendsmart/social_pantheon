@@ -17,6 +17,8 @@ class ChartData implements \JsonSerializable {
 
   private $groups = '';
 
+  private $xs;
+
   /**
    * Get X.
    *
@@ -118,6 +120,20 @@ class ChartData implements \JsonSerializable {
   }
 
   /**
+   * @return mixed
+   */
+  public function getXs() {
+    return $this->xs;
+  }
+
+  /**
+   * @param mixed $xs
+   */
+  public function setXs($xs) {
+    $this->xs = $xs;
+  }
+
+  /**
    * Json Serialize.
    *
    * @return array
@@ -132,5 +148,6 @@ class ChartData implements \JsonSerializable {
 
     return $vars;
   }
+
 
 }

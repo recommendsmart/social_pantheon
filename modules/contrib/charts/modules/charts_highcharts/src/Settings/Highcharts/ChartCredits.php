@@ -9,6 +9,12 @@ class ChartCredits implements \JsonSerializable {
 
   private $enabled = FALSE;
 
+  private $text;
+
+  private $position;
+
+  private $href = '#';
+
   /**
    * Is Enabled.
    *
@@ -27,6 +33,48 @@ class ChartCredits implements \JsonSerializable {
    */
   public function setEnabled($enabled) {
     $this->enabled = $enabled;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getText() {
+    return $this->text;
+  }
+
+  /**
+   * @param mixed $text
+   */
+  public function setText($text) {
+    $this->text = $text;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getPosition() {
+    return $this->position;
+  }
+
+  /**
+   * @param mixed $position
+   */
+  public function setPosition($position) {
+    $this->position = $position;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getHref() {
+    return $this->href;
+  }
+
+  /**
+   * @param mixed $href
+   */
+  public function setHref($href) {
+    $this->href = $href;
   }
 
   /**

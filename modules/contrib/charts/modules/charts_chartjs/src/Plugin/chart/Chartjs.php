@@ -216,11 +216,23 @@ class Chartjs extends AbstractChart {
       else {
         $dataset[$i]->fill = FALSE;
       }
-      if ($dataset[$i]->type == 'radar') {
+      if (!empty($options['polar']) && $options['polar'] == 1) {
         $dataset[$i]->borderColor = $seriesData[$i]['color'];
+        $dataset[$i]->type = 'radar';
       }
       if ($dataset[$i]->type == 'linearGauge') {
         $dataset[$i]->offset = ($i + 1) * 10;
+      }
+      if ($dataset[$i]->type == 'scatter') {
+        $data = $dataset[$i]->data;
+        $scatterDataSet = [];
+        for ($i = 0; $i < count($data); $i++) {
+          $scatterData = new \stdClass();
+          $scatterData->x = $data[$i][0];
+          $scatterData->y = $data[$i][1];
+          array_push($scatterDataSet, $scatterData);
+        }
+        $dataset[0]->data = $scatterDataSet;
       }
     }
     $chartjsData->setDatasets($dataset);
@@ -240,7 +252,8 @@ class Chartjs extends AbstractChart {
     $chartjs->setOptions($this->buildOptions($options));
 
     // Override Chart.js classes. These will only override what is in
-    // charts_chartjs/src/Settings/Chartjs/ChartjsChart.php   // but you can use more of the Chart.js API, as you are not constrained
+    // charts_chartjs/src/Settings/Chartjs/ChartjsChart.php
+    // but you can use more of the Chart.js API, as you are not constrained
     // to what is in this class. See:
     // charts_chartjs/src/Plugin/override/ChartjsOverrides.php
     foreach($customOptions as $option => $key) {

@@ -19,10 +19,9 @@ class ChartsOverridesHighcharts extends HighchartsOverrides {
     $options = [];
 
     //    The following are currently available for overriding; they are the
-    //    private variables in charts_c3/src/Settings/CThree/CThree.php
+    //    private variables in
+    //    charts_highcharts/src/Settings/Highcharts/HighchartsOptions.php
     //
-    //    $options['
-    //    An example of how to override plotOptions property.
     //    $options['plotOptions'] = [
     //        'series' => [
     //            'dataLabels' => [

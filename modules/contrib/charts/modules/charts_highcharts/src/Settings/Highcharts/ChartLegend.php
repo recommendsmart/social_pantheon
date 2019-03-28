@@ -25,6 +25,12 @@ class ChartLegend implements \JsonSerializable {
 
   private $shadow = TRUE;
 
+  private $enabled = TRUE;
+
+  private $itemStyle;
+
+  private $rtl = FALSE;
+
   /**
    * Get Layout.
    *
@@ -223,6 +229,38 @@ class ChartLegend implements \JsonSerializable {
    */
   public function setEnabled($enabled) {
     $this->enabled = $enabled;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getItemStyle() {
+    return $this->itemStyle;
+  }
+
+  /**
+   * @param mixed $itemStyle
+   */
+  public function setItemStyle($itemStyle) {
+    $this->itemStyle = $itemStyle;
+  }
+
+  /**
+   * Get Direction.
+   *
+   * @return bool rtl false or true
+   */
+  public function getDirection() {
+    return $this->rtl;
+  }
+
+  /**
+   * Set Direction either rtl false or true.
+   *
+   * @param bool $rtl
+   */
+  public function setDirection($rtl) {
+    $this->rtl = $rtl;
   }
 
   /**

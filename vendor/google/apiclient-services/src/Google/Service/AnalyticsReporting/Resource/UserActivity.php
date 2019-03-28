@@ -16,28 +16,26 @@
  */
 
 /**
- * The "operations" collection of methods.
+ * The "userActivity" collection of methods.
  * Typical usage is:
  *  <code>
- *   $cloudassetService = new Google_Service_CloudAsset(...);
- *   $operations = $cloudassetService->operations;
+ *   $analyticsreportingService = new Google_Service_AnalyticsReporting(...);
+ *   $userActivity = $analyticsreportingService->userActivity;
  *  </code>
  */
-class Google_Service_CloudAsset_Resource_FoldersOperations extends Google_Service_Resource
+class Google_Service_AnalyticsReporting_Resource_UserActivity extends Google_Service_Resource
 {
   /**
-   * Gets the latest state of a long-running operation.  Clients can use this
-   * method to poll the operation result at intervals as recommended by the API
-   * service. (operations.get)
+   * Returns User Activity data. (userActivity.search)
    *
-   * @param string $name The name of the operation resource.
+   * @param Google_Service_AnalyticsReporting_SearchUserActivityRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_CloudAsset_Operation
+   * @return Google_Service_AnalyticsReporting_SearchUserActivityResponse
    */
-  public function get($name, $optParams = array())
+  public function search(Google_Service_AnalyticsReporting_SearchUserActivityRequest $postBody, $optParams = array())
   {
-    $params = array('name' => $name);
+    $params = array('postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('get', array($params), "Google_Service_CloudAsset_Operation");
+    return $this->call('search', array($params), "Google_Service_AnalyticsReporting_SearchUserActivityResponse");
   }
 }

@@ -17,6 +17,20 @@ class Yaxis implements \JsonSerializable {
 
   private $max;
 
+  private $categories = NULL;
+
+  private $tickInterval;
+
+  private $tickmarkPlacement;
+
+  private $showFirstLabel;
+
+  private $startOnTick;
+
+  private $showLastLabel;
+
+  private $endOnTick;
+
   /**
    * Get Title.
    *
@@ -72,31 +86,135 @@ class Yaxis implements \JsonSerializable {
   }
 
   /**
-   * @return int
+   * @return float
    */
   public function getMin() {
     return $this->min;
   }
 
   /**
-   * @param int $min
+   * @param float $min
    */
-  public function setMin($min) {
+  public function setMin(float $min) {
     $this->min = $min;
   }
 
   /**
-   * @return int
+   * @return float
    */
   public function getMax() {
     return $this->max;
   }
 
   /**
-   * @param int $max
+   * @param float $max
    */
-  public function setMax($max) {
+  public function setMax(float $max) {
     $this->max = $max;
+  }
+
+  /**
+   * Get Categories.
+   *
+   * @return array
+   *   Categories.
+   */
+  public function getCategories() {
+    return $this->categories;
+  }
+
+  /**
+   * Set Categories.
+   *
+   * @param mixed $categories
+   *   Categories.
+   */
+  public function setCategories($categories) {
+    $this->categories = $categories;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getTickInterval() {
+    return $this->tickInterval;
+  }
+
+  /**
+   * @param mixed $tickInterval
+   */
+  public function setTickInterval($tickInterval) {
+    $this->tickInterval = $tickInterval;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getShowFirstLabel() {
+    return $this->showFirstLabel;
+  }
+
+  /**
+   * @param mixed $showFirstLabel
+   */
+  public function setShowFirstLabel($showFirstLabel) {
+    $this->showFirstLabel = $showFirstLabel;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getStartOnTick() {
+    return $this->startOnTick;
+  }
+
+  /**
+   * @param mixed $startOnTick
+   */
+  public function setStartOnTick($startOnTick) {
+    $this->startOnTick = $startOnTick;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getTickmarkPlacement() {
+    return $this->tickmarkPlacement;
+  }
+
+  /**
+   * @param mixed $tickmarkPlacement
+   */
+  public function setTickmarkPlacement($tickmarkPlacement) {
+    $this->tickmarkPlacement = $tickmarkPlacement;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getShowLastLabel() {
+    return $this->showLastLabel;
+  }
+
+  /**
+   * @param mixed $showLastLabel
+   */
+  public function setShowLastLabel($showLastLabel) {
+    $this->showLastLabel = $showLastLabel;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getEndOnTick() {
+    return $this->endOnTick;
+  }
+
+  /**
+   * @param mixed $endOnTick
+   */
+  public function setEndOnTick($endOnTick) {
+    $this->endOnTick = $endOnTick;
   }
 
   /**

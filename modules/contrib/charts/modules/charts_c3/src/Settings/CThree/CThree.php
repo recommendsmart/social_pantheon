@@ -21,6 +21,8 @@ class CThree implements \JsonSerializable {
 
   private $point;
 
+  private $legend;
+
   /**
    * Get Title.
    *
@@ -147,6 +149,20 @@ class CThree implements \JsonSerializable {
    */
   public function setPoint($point) {
     $this->point = $point;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getLegend() {
+    return $this->legend;
+  }
+
+  /**
+   * @param mixed $legend
+   */
+  public function setLegend($legend) {
+    $this->legend = $legend;
   }
 
   /**

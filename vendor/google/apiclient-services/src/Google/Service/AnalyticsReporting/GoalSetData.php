@@ -15,23 +15,24 @@
  * the License.
  */
 
-class Google_Service_CloudTasks_AppEngineHttpQueue extends Google_Model
+class Google_Service_AnalyticsReporting_GoalSetData extends Google_Collection
 {
-  protected $appEngineRoutingOverrideType = 'Google_Service_CloudTasks_AppEngineRouting';
-  protected $appEngineRoutingOverrideDataType = '';
+  protected $collection_key = 'goals';
+  protected $goalsType = 'Google_Service_AnalyticsReporting_GoalData';
+  protected $goalsDataType = 'array';
 
   /**
-   * @param Google_Service_CloudTasks_AppEngineRouting
+   * @param Google_Service_AnalyticsReporting_GoalData
    */
-  public function setAppEngineRoutingOverride(Google_Service_CloudTasks_AppEngineRouting $appEngineRoutingOverride)
+  public function setGoals($goals)
   {
-    $this->appEngineRoutingOverride = $appEngineRoutingOverride;
+    $this->goals = $goals;
   }
   /**
-   * @return Google_Service_CloudTasks_AppEngineRouting
+   * @return Google_Service_AnalyticsReporting_GoalData
    */
-  public function getAppEngineRoutingOverride()
+  public function getGoals()
   {
-    return $this->appEngineRoutingOverride;
+    return $this->goals;
   }
 }

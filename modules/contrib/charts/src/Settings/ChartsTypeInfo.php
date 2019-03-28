@@ -1,12 +1,18 @@
 <?php
 
-
 namespace Drupal\charts\Settings;
 
 use Drupal\charts\Theme\ChartsInterface;
-
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 class ChartsTypeInfo {
+
+  use StringTranslationTrait;
+
+  public function __construct() {
+    $translation = \Drupal::service('string_translation');
+    $this->setStringTranslation($translation);
+  }
 
   /**
    * Get charts types info.
@@ -16,44 +22,44 @@ class ChartsTypeInfo {
    */
   public function chartsChartsTypeInfo() {
     $chart_types['area'] = [
-      'label' => t('Area'),
+      'label' => $this->t('Area'),
       'axis' => ChartsInterface::CHARTS_DUAL_AXIS,
       'stacking' => TRUE,
     ];
     $chart_types['bar'] = [
-      'label' => t('Bar'),
+      'label' => $this->t('Bar'),
       'axis' => ChartsInterface::CHARTS_DUAL_AXIS,
       'axis_inverted' => TRUE,
       'stacking' => TRUE,
     ];
     $chart_types['column'] = [
-      'label' => t('Column'),
+      'label' => $this->t('Column'),
       'axis' => ChartsInterface::CHARTS_DUAL_AXIS,
       'stacking' => TRUE,
     ];
     $chart_types['donut'] = [
-      'label' => t('Donut'),
+      'label' => $this->t('Donut'),
       'axis' => ChartsInterface::CHARTS_SINGLE_AXIS,
     ];
     $chart_types['gauge'] = [
-      'label' => t('Gauge'),
+      'label' => $this->t('Gauge'),
       'axis' => ChartsInterface::CHARTS_SINGLE_AXIS,
       'stacking' => FALSE,
     ];
     $chart_types['line'] = [
-      'label' => t('Line'),
+      'label' => $this->t('Line'),
       'axis' => ChartsInterface::CHARTS_DUAL_AXIS,
     ];
     $chart_types['pie'] = [
-      'label' => t('Pie'),
+      'label' => $this->t('Pie'),
       'axis' => ChartsInterface::CHARTS_SINGLE_AXIS,
     ];
     $chart_types['scatter'] = [
-      'label' => t('Scatter'),
+      'label' => $this->t('Scatter'),
       'axis' => ChartsInterface::CHARTS_DUAL_AXIS,
     ];
     $chart_types['spline'] = [
-      'label' => t('Spline'),
+      'label' => $this->t('Spline'),
       'axis' => ChartsInterface::CHARTS_DUAL_AXIS,
     ];
 
@@ -65,16 +71,6 @@ class ChartsTypeInfo {
     $type_options = [];
     foreach ($chart_types as $chart_type => $chart_type_info) {
       $type_options[$chart_type] = $chart_type_info['label'];
-    }
-
-    // Set data attributes to identify special properties of different types.
-    foreach ($chart_types as $chart_type => $chart_type_info) {
-      if (isset($chart_type_info['axis_inverted']) && $chart_type_info['axis_inverted']) {
-        $form['type'][$chart_type]['#attributes']['data-axis-inverted'] = TRUE;
-      }
-      if ($chart_type_info['axis'] === ChartsInterface::CHARTS_SINGLE_AXIS) {
-        $form['type'][$chart_type]['#attributes']['data-axis-single'] = TRUE;
-      }
     }
 
     return $type_options;
@@ -90,10 +86,9 @@ class ChartsTypeInfo {
    *   If not false, returns an array of values from charts_charts_type_info.
    */
   public function getChartType($chart_type) {
-    $chart_types = new ChartsTypeInfo();
-    $types = $chart_types->chartsChartsTypeInfo();
-    return ($types[$chart_type]) ? $types[$chart_type] : FALSE;
-  }
+    $types = $this->chartsChartsTypeInfo();
 
+    return (isset($types[$chart_type])) ? $types[$chart_type] : FALSE;
+  }
 
 }

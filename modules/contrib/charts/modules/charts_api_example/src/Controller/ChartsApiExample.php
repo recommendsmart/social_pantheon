@@ -2,29 +2,47 @@
 
 namespace Drupal\charts_api_example\Controller;
 
-use Drupal\charts\Services\ChartsSettingsService;
+use Drupal\charts\Services\ChartsSettingsServiceInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Component\Uuid\Php;
+use Drupal\Component\Uuid\UuidInterface;
 
 /**
  * Charts Api Example.
  */
-class ChartsApiExample extends ControllerBase implements ContainerInjectionInterface {
+class ChartsApiExample extends ControllerBase {
 
+  /**
+   * The charts settings.
+   *
+   * @var \Drupal\charts\Services\ChartsSettingsServiceInterface
+   */
   protected $chartSettings;
+
+  /**
+   * The messenger service.
+   *
+   * @var \Drupal\Core\Messenger\MessengerInterface
+   */
   protected $messenger;
+
+  /**
+   * The UUID service.
+   *
+   * @var \Drupal\Component\Uuid\UuidInterface
+   */
   protected $uuidService;
 
   /**
    * Construct.
    *
-   * @param \Drupal\charts\Services\ChartsSettingsService $chartSettings
-   *   Service ChartsSettingsService.
+   * @param \Drupal\charts\Services\ChartsSettingsServiceInterface $chartSettings
+   * @param \Drupal\Core\Messenger\MessengerInterface $messenger
+   * @param \Drupal\Component\Uuid\UuidInterface $uuidService
    */
-  public function __construct(ChartsSettingsService $chartSettings, MessengerInterface $messenger, Php $uuidService) {
+  public function __construct(ChartsSettingsServiceInterface $chartSettings, MessengerInterface $messenger, UuidInterface $uuidService) {
     $this->chartSettings = $chartSettings->getChartsSettings();
     $this->messenger = $messenger;
     $this->uuidService = $uuidService;
@@ -56,6 +74,7 @@ class ChartsApiExample extends ControllerBase implements ContainerInjectionInter
       'title_position' => 'out',
       'legend_position' => 'right',
       'data_labels'=> $this->chartSettings['data_labels'],
+      'tooltips' => $this->chartSettings['tooltips'],
       // 'grouping'   => TRUE,
       'colors'   => $this->chartSettings['colors'],
       'min'   => $this->chartSettings['min'],
@@ -99,7 +118,6 @@ class ChartsApiExample extends ControllerBase implements ContainerInjectionInter
     }
 
     // Creates a UUID for the chart ID.
-    //$uuid_service = \Drupal::service('uuid');
     $chartId = 'chart-' . $this->uuidService->generate();
 
     $build = [

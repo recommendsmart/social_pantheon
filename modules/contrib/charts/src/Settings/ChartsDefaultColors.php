@@ -6,7 +6,7 @@ namespace Drupal\charts\Settings;
 
 class ChartsDefaultColors {
 
-  public $defaultColors = [
+  protected $defaultColors = [
     '#2f7ed8',
     '#0d233a',
     '#8bbc21',
