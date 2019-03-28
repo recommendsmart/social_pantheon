@@ -1,5 +1,0 @@
-services:
-  redhen_connection.connections:
-    class: Drupal\redhen_connection\ConnectionService
-    arguments: ['@entity_type.manager', '@entity.query', '@database']
-
