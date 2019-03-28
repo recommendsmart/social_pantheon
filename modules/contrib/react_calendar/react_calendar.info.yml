@@ -1,0 +1,15 @@
+name: 'React Calendar'
+type: module
+description: 'React frontend for the Drupal 8 Calendar module.'
+# core: 8.x
+configure: react_calendar.settings_form
+package: 'Date/Time'
+dependencies:
+  # @todo set dependency to 2.0 after a first stable release
+  - jsonapi:jsonapi (>=2)
+
+# Information added by Drupal.org packaging script on 2018-08-29
+version: '8.x-1.0-alpha3'
+core: '8.x'
+project: 'react_calendar'
+datestamp: 1535551710

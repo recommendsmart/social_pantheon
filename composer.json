@@ -67,7 +67,10 @@
         "drupal/yasm": "^1.2",
         "drupal/charts": "^3.0",
         "drupal/ordered_list": "^1.2",
-        "drupal/entity_ui": "^1.0"							  									  							 
+        "drupal/entity_ui": "^1.0",
+        "drupal/react_calendar": "^1.0",
+        "drupal/module_filter": "^3.1",
+        "drupal/fullcalendar_view": "^2.2"							  									  							 
         },
     "repositories": [
         {
