@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fd43a0fbb68017034155952473725917",
+    "content-hash": "148849a79f43cfab971bedd098243bfd",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -178,7 +178,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/jackmoore/autosize/zipball/6ae70cd3d28888eb858eef1167e6ed75d25dff7f",
-                "reference": "6ae70cd3d28888eb858eef1167e6ed75d25dff7f"
+                "reference": "6ae70cd3d28888eb858eef1167e6ed75d25dff7f",
+                "shasum": null
             },
             "type": "bower-asset"
         },
@@ -193,7 +194,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/twbs/bootstrap/zipball/68b0d231a13201eb14acd3dc84e51543d16e5f7e",
-                "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
+                "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e",
+                "shasum": null
             },
             "require": {
                 "bower-asset/jquery": ">=1.9.1,<4.0"
@@ -214,7 +216,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/mbostock-bower/d3-bower/zipball/7a826d211d5067867debf9ce24a9987e0cb02b6e",
-                "reference": "7a826d211d5067867debf9ce24a9987e0cb02b6e"
+                "reference": "7a826d211d5067867debf9ce24a9987e0cb02b6e",
+                "shasum": null
             },
             "type": "bower-asset",
             "license": [
@@ -232,7 +235,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/tomasAlabes/eve/zipball/93132d5d47a0ce31dbd1b75208b1d4c0e2ad81e8",
-                "reference": "93132d5d47a0ce31dbd1b75208b1d4c0e2ad81e8"
+                "reference": "93132d5d47a0ce31dbd1b75208b1d4c0e2ad81e8",
+                "shasum": null
             },
             "type": "bower-asset",
             "license": [
@@ -250,7 +254,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/highlightjs/highlight.js/zipball/9cf8120c6a2a5d285af6b62e9b056de3a266959a",
-                "reference": "9cf8120c6a2a5d285af6b62e9b056de3a266959a"
+                "reference": "9cf8120c6a2a5d285af6b62e9b056de3a266959a",
+                "shasum": null
             },
             "type": "bower-asset"
         },
@@ -265,7 +270,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/9e8ec3d10fad04748176144f108d7355662ae75e",
-                "reference": "9e8ec3d10fad04748176144f108d7355662ae75e"
+                "reference": "9e8ec3d10fad04748176144f108d7355662ae75e",
+                "shasum": null
             },
             "type": "bower-asset",
             "license": [
@@ -283,7 +289,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/mochajs/mocha/zipball/7fc565ee3e225cb7a66bf39ae9c2c05b346675c1",
-                "reference": "7fc565ee3e225cb7a66bf39ae9c2c05b346675c1"
+                "reference": "7fc565ee3e225cb7a66bf39ae9c2c05b346675c1",
+                "shasum": null
             },
             "type": "bower-asset"
         },
@@ -298,7 +305,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/oesmith/morris.js/zipball/d5cf1410eda7055eaf2c7d218d4cb24ec5ed55c8",
-                "reference": "d5cf1410eda7055eaf2c7d218d4cb24ec5ed55c8"
+                "reference": "d5cf1410eda7055eaf2c7d218d4cb24ec5ed55c8",
+                "shasum": null
             },
             "require": {
                 "bower-asset/jquery": ">=2.1.0",
@@ -318,7 +326,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/DmitryBaranovskiy/raphael/zipball/c02b9c125d036e42b9bb95d0e401bbf6a5153da5",
-                "reference": "c02b9c125d036e42b9bb95d0e401bbf6a5153da5"
+                "reference": "c02b9c125d036e42b9bb95d0e401bbf6a5153da5",
+                "shasum": null
             },
             "require": {
                 "bower-asset/eve-raphael": "0.5.0"
@@ -339,7 +348,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/select2/select2/zipball/ebf10c93db7d6d7a0d1330119d4c6f32cbd231d7",
-                "reference": "ebf10c93db7d6d7a0d1330119d4c6f32cbd231d7"
+                "reference": "ebf10c93db7d6d7a0d1330119d4c6f32cbd231d7",
+                "shasum": null
             },
             "type": "bower-asset",
             "license": [
@@ -357,7 +367,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/filamentgroup/tablesaw/zipball/6c3387b71d659773e1c7dcb5d7aa5bcb83f53932",
-                "reference": "6c3387b71d659773e1c7dcb5d7aa5bcb83f53932"
+                "reference": "6c3387b71d659773e1c7dcb5d7aa5bcb83f53932",
+                "shasum": null
             },
             "type": "bower-asset"
         },
@@ -372,7 +383,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/jonthornton/jquery-timepicker/zipball/b53338cc92270da3750d5c0cc6abe60fb27a0d89",
-                "reference": "b53338cc92270da3750d5c0cc6abe60fb27a0d89"
+                "reference": "b53338cc92270da3750d5c0cc6abe60fb27a0d89",
+                "shasum": null
             },
             "require": {
                 "bower-asset/jquery": ">=1.7"
@@ -393,7 +405,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/fians/Waves/zipball/1985b7e18327f86f1bb640efe3a2ab4b4fea4078",
-                "reference": "1985b7e18327f86f1bb640efe3a2ab4b4fea4078"
+                "reference": "1985b7e18327f86f1bb640efe3a2ab4b4fea4078",
+                "shasum": null
             },
             "type": "bower-asset",
             "license": [
@@ -2467,7 +2480,8 @@
             "homepage": "https://www.drupal.org/project/crm_core",
             "support": {
                 "source": "http://cgit.drupalcode.org/crm_core"
-            }
+            },
+            "time": "2017-11-29T21:17:43+00:00"
         },
         {
             "name": "drupal/crop",
@@ -3516,53 +3530,6 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/entity_serial",
                 "issues": "https://www.drupal.org/project/issues/entity_serial"
-            }
-        },
-        {
-            "name": "drupal/entity_ui",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/entity_ui",
-                "reference": "8.x-1.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/entity_ui-8.x-1.0.zip",
-                "reference": "8.x-1.0",
-                "shasum": "24f6890845bf49636b04ff841eb093f0460e5c00"
-            },
-            "require": {
-                "drupal/core": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0",
-                    "datestamp": "1553168884",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "joachim",
-                    "homepage": "https://www.drupal.org/user/107701"
-                }
-            ],
-            "description": "Allows creation of UIs for entities.",
-            "homepage": "https://www.drupal.org/project/entity_ui",
-            "support": {
-                "source": "http://cgit.drupalcode.org/entity_ui"
             }
         },
         {
@@ -9246,7 +9213,9 @@
             "version": "3.5.0",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/diff/-/diff-3.5.0.tgz"
+                "url": "https://registry.npmjs.org/diff/-/diff-3.5.0.tgz",
+                "reference": null,
+                "shasum": null
             },
             "type": "npm-asset",
             "license": [
@@ -9258,7 +9227,9 @@
             "version": "1.0.9",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/@fortawesome/fontawesome-free-webfonts/-/fontawesome-free-webfonts-1.0.9.tgz"
+                "url": "https://registry.npmjs.org/@fortawesome/fontawesome-free-webfonts/-/fontawesome-free-webfonts-1.0.9.tgz",
+                "reference": null,
+                "shasum": null
             },
             "type": "npm-asset",
             "license": [
@@ -9270,7 +9241,9 @@
             "version": "3.3.1",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/jquery/-/jquery-3.3.1.tgz"
+                "url": "https://registry.npmjs.org/jquery/-/jquery-3.3.1.tgz",
+                "reference": null,
+                "shasum": null
             },
             "type": "npm-asset",
             "license": [
@@ -9282,7 +9255,9 @@
             "version": "0.3.1",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/jquery.caret/-/jquery.caret-0.3.1.tgz"
+                "url": "https://registry.npmjs.org/jquery.caret/-/jquery.caret-0.3.1.tgz",
+                "reference": null,
+                "shasum": null
             },
             "type": "npm-asset",
             "license": [
@@ -9294,7 +9269,9 @@
             "version": "4.1.3",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/photoswipe/-/photoswipe-4.1.3.tgz"
+                "url": "https://registry.npmjs.org/photoswipe/-/photoswipe-4.1.3.tgz",
+                "reference": null,
+                "shasum": null
             },
             "type": "npm-asset",
             "license": [
@@ -9306,7 +9283,9 @@
             "version": "3.1.1",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/shariff/-/shariff-3.1.1.tgz"
+                "url": "https://registry.npmjs.org/shariff/-/shariff-3.1.1.tgz",
+                "reference": null,
+                "shasum": null
             },
             "require": {
                 "npm-asset/fortawesome--fontawesome-free-webfonts": ">=1.0.9,<2.0.0",

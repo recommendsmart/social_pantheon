@@ -1,7 +1,0 @@
-administer all entity tabs:
-  title: 'Administer all entity tabs'
-  description: 'Administer entity tabs for all target entity types.'
-
-permission_callbacks:
-  - Drupal\entity_ui\EntityUiPermissions::entityUiAdminPermissions
-  - Drupal\entity_ui\EntityUiPermissions::entityUiTabPermissions
