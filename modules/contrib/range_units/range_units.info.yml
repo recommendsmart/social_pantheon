@@ -1,0 +1,11 @@
+name: Range units
+type: module
+description: To give units based on the content data range 
+# core: 8.x
+package: Custom
+
+# Information added by Drupal.org packaging script on 2016-12-26
+version: '8.x-1.0'
+core: '8.x'
+project: 'range_units'
+datestamp: 1482734586
