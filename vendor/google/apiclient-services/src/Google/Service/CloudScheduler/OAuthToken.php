@@ -15,17 +15,25 @@
  * the License.
  */
 
-class Google_Service_Genomics_ImportReadGroupSetsResponse extends Google_Collection
+class Google_Service_CloudScheduler_OAuthToken extends Google_Model
 {
-  protected $collection_key = 'readGroupSetIds';
-  public $readGroupSetIds;
+  public $scope;
+  public $serviceAccountEmail;
 
-  public function setReadGroupSetIds($readGroupSetIds)
+  public function setScope($scope)
   {
-    $this->readGroupSetIds = $readGroupSetIds;
+    $this->scope = $scope;
   }
-  public function getReadGroupSetIds()
+  public function getScope()
   {
-    return $this->readGroupSetIds;
+    return $this->scope;
+  }
+  public function setServiceAccountEmail($serviceAccountEmail)
+  {
+    $this->serviceAccountEmail = $serviceAccountEmail;
+  }
+  public function getServiceAccountEmail()
+  {
+    return $this->serviceAccountEmail;
   }
 }

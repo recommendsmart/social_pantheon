@@ -15,17 +15,25 @@
  * the License.
  */
 
-class Google_Service_Genomics_ImportVariantsResponse extends Google_Collection
+class Google_Service_SQLAdmin_DiskEncryptionConfiguration extends Google_Model
 {
-  protected $collection_key = 'callSetIds';
-  public $callSetIds;
+  public $kind;
+  public $kmsKeyName;
 
-  public function setCallSetIds($callSetIds)
+  public function setKind($kind)
   {
-    $this->callSetIds = $callSetIds;
+    $this->kind = $kind;
   }
-  public function getCallSetIds()
+  public function getKind()
   {
-    return $this->callSetIds;
+    return $this->kind;
+  }
+  public function setKmsKeyName($kmsKeyName)
+  {
+    $this->kmsKeyName = $kmsKeyName;
+  }
+  public function getKmsKeyName()
+  {
+    return $this->kmsKeyName;
   }
 }
