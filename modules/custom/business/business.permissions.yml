@@ -1,0 +1,6 @@
+administer business types:
+  title: 'Administer BusinessEntity types'
+  restrict access: true
+
+permission_callbacks:
+  - '\Drupal\business\BusinessPermissionsGenerator::businessTypePermissions'
