@@ -5,7 +5,7 @@ business_entity_collection_menu:
   parent: system.admin_content
 
 business_type_entity_collection_menu:
-  title: 'BusinessEntity Types'
+  title: 'Business Entity Types'
   route_name: entity.business_type.collection
   description: 'List of Business entity types (bundles)'
   parent: system.admin_structure
