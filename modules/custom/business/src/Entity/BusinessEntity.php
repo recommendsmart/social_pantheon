@@ -47,7 +47,7 @@ use Drupal\user\UserInterface;
  *     "add-form" = "/business/add/{business_type}",
  *     "edit-form" = "/business/{business}/edit",
  *     "delete-form" = "/business/{business}/delete",
- *     "collection" = "/admin/content/businesses",
+ *     "collection" = "/admin/content/business",
  *   },
  *   bundle_entity_type = "business_type",
  *   field_ui_base_route = "entity.business_type.edit_form",
