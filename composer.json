@@ -70,7 +70,6 @@
         "drupal/react_calendar": "^1.0",
         "drupal/module_filter": "^3.1",
         "drupal/fullcalendar_view": "^2.2",
-        "drupal/crm_core": "2.x-dev",
         "drupal/recipe": "^2.0",
         "drupal/age_field_formatter": "^2.1",
         "drupal/range_units": "^1.0",
