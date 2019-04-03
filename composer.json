@@ -73,7 +73,8 @@
         "drupal/crm_core": "2.x-dev",
         "drupal/recipe": "^2.0",
         "drupal/age_field_formatter": "^2.1",
-        "drupal/range_units": "^1.0"		  									  							 
+        "drupal/range_units": "^1.0",
+        "drupal/basic_data": "1.x-dev"		  									  							 
         },
     "repositories": [
         {
