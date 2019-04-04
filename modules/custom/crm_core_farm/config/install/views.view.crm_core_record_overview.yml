@@ -259,7 +259,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Individual Type'
+          label: 'Record Type'
           exclude: false
           alter:
             alter_text: false
