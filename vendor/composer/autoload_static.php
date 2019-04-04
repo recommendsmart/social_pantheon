@@ -156,6 +156,7 @@ class ComposerStaticInitDrupal8
             'Drupal\\Core\\' => 12,
             'Drupal\\Component\\' => 17,
             'DrupalComposer\\DrupalScaffold\\' => 30,
+            'DrupalCodeBuilder\\' => 18,
             'Doctrine\\Common\\Cache\\' => 22,
             'Doctrine\\Common\\Annotations\\' => 28,
             'Doctrine\\Common\\' => 16,
@@ -167,6 +168,7 @@ class ComposerStaticInitDrupal8
             'Composer\\Installers\\' => 20,
             'CommerceGuys\\Addressing\\' => 24,
             'Clue\\StreamFilter\\' => 18,
+            'CaseConverter\\' => 14,
         ),
         'B' => 
         array (
@@ -446,6 +448,10 @@ class ComposerStaticInitDrupal8
         array (
             0 => __DIR__ . '/..' . '/drupal-composer/drupal-scaffold/src',
         ),
+        'DrupalCodeBuilder\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/drupal-code-builder/drupal-code-builder',
+        ),
         'Doctrine\\Common\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache',
@@ -477,6 +483,10 @@ class ComposerStaticInitDrupal8
         'Clue\\StreamFilter\\' => 
         array (
             0 => __DIR__ . '/..' . '/clue/stream-filter/src',
+        ),
+        'CaseConverter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/joachim-n/case-converter',
         ),
         'Brumann\\Polyfill\\' => 
         array (
