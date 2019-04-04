@@ -1,0 +1,83 @@
+# Schema for the configuration files of the crm_core_contact module.
+
+crm_core_contact.type.*:
+  type: config_entity
+  label: 'Individual type'
+  mapping:
+    name:
+      type: label
+      label: 'Name'
+    type:
+      type: string
+      label: 'Machine-readable name'
+    description:
+      type: text
+      label: 'Description'
+    locked:
+      type: boolean
+      label: 'Whether or not this type is locked.'
+    primary_fields:
+      type: sequence
+      label: 'The fields the individual uses primarily'
+      sequence:
+        type: string
+        label: 'Field'
+
+crm_core_contact.organization_type.*:
+  type: config_entity
+  label: 'Organization type'
+  mapping:
+    label:
+      type: label
+      label: 'Name'
+    id:
+      type: string
+      label: 'Machine-readable name'
+    description:
+      type: text
+      label: 'Description'
+    locked:
+      type: boolean
+      label: 'Whether or not this type is locked.'
+    primary_fields:
+      type: sequence
+      label: 'The fields the organization uses primarily'
+      sequence:
+        type: string
+        label: 'Field'
+
+field.widget.settings.email_with_type:
+  type: mapping
+  label: 'Mail with type field display format settings'
+  mapping:
+    placeholder:
+      type: label
+      label: 'Placeholder'
+    size:
+      type: integer
+      label: 'Size of email field'
+
+field.field_settings.email_with_type:
+  type: mapping
+  label: 'Mail with type settings'
+
+field.value.email_with_type:
+  type: mapping
+  label: 'Default value and mail type'
+  mapping:
+    value:
+      type: string
+      label: 'Value'
+    type:
+      type: string
+      label: 'Mail type'
+
+field.storage_settings.email_with_type:
+  type: mapping
+  label: 'Email with type settings'
+  mapping:
+    email_types:
+      type: sequence
+      label: 'Email types'
+      sequence:
+        type: string

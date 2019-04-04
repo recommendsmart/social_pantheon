@@ -1,0 +1,18 @@
+name: CRM Core User Synchronization
+type: module
+description: 'Synchronizes crm contacts with users.'
+package: CRM Core
+# version: 8.x-1.x-dev
+# core: 8.x
+
+configure: crm_core_user_sync.sync
+
+dependencies:
+  - crm_core:crm_core_contact
+  - relation:relation
+
+# Information added by Drupal.org packaging script on 2017-11-29
+version: '8.x-2.x-dev'
+core: '8.x'
+project: 'crm_core'
+datestamp: 1511990480
