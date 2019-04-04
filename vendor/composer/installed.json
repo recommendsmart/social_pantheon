@@ -5564,7 +5564,7 @@
     {
         "name": "drupal/multivaluefield",
         "version": "1.0.5-dev",
-        "version_normalized": "1.0.5.0-dev",
+        "version_normalized": "1.0.0.0-alpha2",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/multivaluefield.git",
@@ -9668,17 +9668,17 @@
         ]
     },
     {
-        "name": "npm-asset/fortawesome--fontawesome-free-webfonts",
-        "version": "1.0.9",
-        "version_normalized": "1.0.9.0",
+        "name": "npm-asset/fortawesome--fontawesome-free",
+        "version": "5.8.1",
+        "version_normalized": "5.8.1.0",
         "dist": {
             "type": "tar",
-            "url": "https://registry.npmjs.org/@fortawesome/fontawesome-free-webfonts/-/fontawesome-free-webfonts-1.0.9.tgz"
+            "url": "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-5.8.1.tgz"
         },
         "type": "npm-asset",
         "installation-source": "dist",
         "license": [
-            "(OFL-1.1 AND MIT)"
+            "(CC-BY-4.0 AND OFL-1.1 AND MIT)"
         ]
     },
     {
@@ -9725,14 +9725,14 @@
     },
     {
         "name": "npm-asset/shariff",
-        "version": "3.1.1",
-        "version_normalized": "3.1.1.0",
+        "version": "3.2.0",
+        "version_normalized": "3.2.0.0",
         "dist": {
             "type": "tar",
-            "url": "https://registry.npmjs.org/shariff/-/shariff-3.1.1.tgz"
+            "url": "https://registry.npmjs.org/shariff/-/shariff-3.2.0.tgz"
         },
         "require": {
-            "npm-asset/fortawesome--fontawesome-free-webfonts": ">=1.0.9,<2.0.0",
+            "npm-asset/fortawesome--fontawesome-free": ">=5.8.1,<6.0.0",
             "npm-asset/jquery": ">=3.3.1,<4.0.0"
         },
         "type": "npm-asset",

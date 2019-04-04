@@ -1,0 +1,112 @@
+<?php
+
+/**
+ * @file
+ * Provides default CRM Core Farm entities and the ability to create more.
+ */
+
+use Drupal\Core\Render\Element;
+
+/**
+ * Implements hook_theme().
+ */
+function crm_core_farm_theme() {
+  return array(
+    'crm_core_farm' => array(
+      'render element' => 'elements',
+      'template' => 'crm-core-farm',
+    ),
+  );
+}
+
+/**
+ * Process variables for CRM Core Farm.
+ *
+ * Default template: crm_core_farm.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - crm_core_farm: The CRM Core Farm entity.
+ */
+function template_preprocess_crm_core_farm(&$variables) {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  /** @var \Drupal\crm_core_farm\Entity\Farm $farm */
+  $farm = $variables['elements']['#crm_core_farm'];
+  $variables['crm_core_farm'] = $farm;
+
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+
+  // Add classes based on the type of farm.
+  $variables['attributes']['class'][] = 'crm_core_farm';
+  $variables['attributes']['class'][] = 'crm_core_farm-' . $farm->bundle();
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ *
+ * This function simply adds template suggestions for various
+ * farm types.
+ */
+function crm_core_farm_theme_suggestions_crm_core_farm(array $variables) {
+  $suggestions = array();
+  /** @var \Drupal\crm_core_farm\Entity\farm $crm_core_farm */
+  $crm_core_farm = $variables['elements']['#crm_core_farm'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+  // Add template suggestions.
+  $suggestions[] = 'crm_core_farm__' . $sanitized_view_mode;
+  $suggestions[] = 'crm_core_farm__' . $crm_core_farm->bundle();
+  $suggestions[] = 'crm_core_farm__' . $crm_core_farm->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'crm_core_farm__' . $crm_core_farm->id();
+  $suggestions[] = 'crm_core_farm__' . $crm_core_farm->id() . '__' . $sanitized_view_mode;
+
+  return $suggestions;
+}
+
+/**
+ * Implements hook_mail().
+ */
+function crm_core_farm_mail($key, &$message, $params) {
+  $message['subject'] = $params['subject'];
+  $message['body'][] = $params['message'];
+}
+
+/**
+ * Implements hook_entity_dependencies().
+ *
+ * Adding farm activities and relationships as dependencies.
+ */
+function crm_core_farm_entity_dependencies($entity, $entity_type) {
+  $dependencies = array();
+  if ($entity_type == 'crm_core_farm') {
+    // Lets check activities.
+    if (module_exists('crm_core_activity')) {
+      $query = new EntityFieldQuery();
+      $query->entityCondition('entity_type', 'crm_core_activity');
+      $query->fieldCondition('field_activity_participants', 'target_id', $entity->farm_id);
+      $query->fieldCondition('field_activity_participants', 'target_type', 'crm_core_farm');
+      $result = $query->execute();
+      if (!empty($result['crm_core_activity'])) {
+        foreach (array_keys($result['crm_core_activity']) as $activity_id) {
+          $dependencies[] = array('type' => 'crm_core_activity', 'id' => $activity_id);
+        }
+      }
+    }
+    // Lets check relations.
+    if (module_exists('relation')) {
+      $query = new EntityFieldQuery();
+      $query->entityCondition('entity_type', 'relation');
+      $query->fieldCondition('endpoints', 'entity_id', $entity->farm_id);
+      $result = $query->execute();
+      if (!empty($result['relation'])) {
+        foreach (array_keys($result['relation']) as $rid) {
+          $dependencies[] = array('type' => 'relation', 'id' => $rid);
+        }
+      }
+    }
+  }
+
+  return $dependencies;
+}
