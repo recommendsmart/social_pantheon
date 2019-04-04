@@ -18,4 +18,4 @@ view all crm_core_business revisions:
   'restrict access': TRUE
 
 permission_callbacks:
-  - \Drupal\crm_core_contact\ContactPermissions::permissions
+  - \Drupal\crm_core_farm\FarmPermissions::permissions
