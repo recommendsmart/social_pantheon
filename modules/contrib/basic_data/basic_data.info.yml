@@ -1,0 +1,11 @@
+name: 'Basic Data Entity'
+type: module
+description: 'A basic entity type that stores data blobs.'
+# core: 8.x
+package: 'Data'
+
+# Information added by Drupal.org packaging script on 2019-02-11
+version: '8.x-1.x-dev'
+core: '8.x'
+project: 'basic_data'
+datestamp: 1549909990
