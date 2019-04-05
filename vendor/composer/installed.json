@@ -5667,7 +5667,7 @@
     {
         "name": "drupal/multivaluefield",
         "version": "1.0.5-dev",
-        "version_normalized": "1.0.5.0-dev",
+        "version_normalized": "1.0.0.0-alpha2",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/multivaluefield.git",
