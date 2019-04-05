@@ -1,0 +1,31 @@
+entity.drm_core_record.collection:
+  path: '/drm-core/record'
+  defaults:
+    _title: 'Records'
+    _entity_list: 'drm_core_record'
+  requirements:
+    _permission: 'view any drm_core_record entity'
+
+entity.drm_core_business.collection:
+  path: '/drm-core/business'
+  defaults:
+    _title: 'Business'
+    _entity_list: 'drm_core_business'
+  requirements:
+    _permission: 'view any drm_core_business entity'
+
+entity.drm_core_record_type.collection:
+  path: '/admin/structure/drm-core/record-types'
+  defaults:
+    _title: 'Record types'
+    _entity_list: 'drm_core_record_type'
+  requirements:
+    _permission: 'administer record types'
+
+entity.drm_core_business_type.collection:
+  path: '/admin/structure/drm-core/business-types'
+  defaults:
+     _title: 'Business types'
+     _entity_list: 'drm_core_business_type'
+  requirements:
+    _permission: 'administer business types'

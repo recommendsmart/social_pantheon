@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display DRM Core Farm data.
+ *
+ * Available variables:
+ * - drm_core_farm: The DRM Core Farm entity with limited access to
+ *   object properties and methods.
+ * - content: A list of farm fields. Use 'content' to print all fields, or
+ *   print a subset such as 'content.field_example'.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - attributes: HTML attributes for the containing element.
+ *
+ * @see template_preprocess_drm_core_farm()
+ *
+ * @ingroup themeable
+ */
+#}
+<article{{ attributes }}>
+    {% if content %}
+        {{- content -}}
+    {% endif %}
+</article>
