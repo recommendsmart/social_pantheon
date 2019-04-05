@@ -1,5 +1,5 @@
 entity.crm_core_business.collection:
-  path: '/drm-core/business'
+  path: '/crm-core/business'
   defaults:
     _title: 'Business'
     _entity_list: 'crm_core_business'
