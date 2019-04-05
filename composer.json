@@ -75,7 +75,8 @@
         "drupal/range_units": "^1.0",
         "drupal/basic_data": "1.x-dev",
         "drupal/crm_core": "1.x-dev",
-        "drupal/module_builder": "^3.1"		  									  							 
+        "drupal/module_builder": "^3.1",
+        "drupal/switch_page_theme": "^1.0"		  									  							 
         },
     "repositories": [
         {
