@@ -10,15 +10,15 @@ use Drupal\crm_core\CRMCorePermissions;
 class FarmPermissions {
 
   /**
-   * Returns Record and Business permissions.
+   * Returns Business permissions.
    *
    * @return array
-   *   CRM Core Record and Business permissions.
+   *   CRM Business permissions.
    */
   public function permissions() {
     $perm_builder = new CRMCorePermissions();
 
-    return array_merge($perm_builder->entityTypePermissions('crm_core_record'), $perm_builder->entityTypePermissions('crm_core_business'));
+    return array_merge($perm_builder->entityTypePermissions('crm_core_business'));
   }
 
 }
