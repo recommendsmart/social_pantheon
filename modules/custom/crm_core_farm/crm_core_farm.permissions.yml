@@ -17,5 +17,3 @@ view all crm_core_business revisions:
   title: 'View all crm_core_business revisions'
   'restrict access': TRUE
 
-permission_callbacks:
-  - \Drupal\crm_core_record\RecordPermissions::permissions
