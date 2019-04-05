@@ -1,6 +1,0 @@
-drupal.drm_core_farm.merge-farms:
-  version: 1.x
-  js:
-    js/merge_table.js: {}
-  dependencies:
-    - core/jquery
