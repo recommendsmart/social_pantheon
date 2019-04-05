@@ -1,0 +1,21 @@
+administer record types:
+  title: 'Administer record types'
+  description: 'Allows the user to edit the types of records such as Customer.'
+administer business types:
+  title: 'Administer business types'
+  description: 'Allows the user to edit the types of business such as Supplier, etc.'
+revert business revisions:
+  title: 'Revert business revisions'
+  description: 'Allows the user to have ability to revert business'
+view all crm_core_record revisions:
+  title: 'View all crm_core_record revisions'
+  'restrict access': TRUE
+revert all crm_core_record revisions:
+  title: 'Revert all crm_core_record revisions'
+  'restrict access': TRUE
+view all crm_core_business revisions:
+  title: 'View all crm_core_business revisions'
+  'restrict access': TRUE
+
+permission_callbacks:
+  - \Drupal\crm_core_record\RecordPermissions::permissions
