@@ -1,0 +1,10 @@
+administer record types:
+  title: 'Administer record types'
+  description: 'Allows the user to edit the types of record such as production, etc.'
+revert record revisions:
+  title: 'Revert record revisions'
+  description: 'Allows the user to have ability to revert record'
+view all crm_core_record revisions:
+  title: 'View all crm_core_record revisions'
+  'restrict access': TRUE
+

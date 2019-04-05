@@ -1,0 +1,16 @@
+entity.crm_core_record.collection:
+  path: '/crm-core/record'
+  defaults:
+    _title: 'Record'
+    _entity_list: 'crm_core_record'
+  requirements:
+    _permission: 'view any crm_core_record entity'
+
+entity.crm_core_record_type.collection:
+  path: '/admin/structure/crm-core/record-types'
+  defaults:
+     _title: 'Record types'
+     _entity_list: 'crm_core_record_type'
+  requirements:
+    _permission: 'administer record types'
+

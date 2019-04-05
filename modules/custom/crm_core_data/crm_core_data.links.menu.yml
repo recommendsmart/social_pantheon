@@ -1,0 +1,11 @@
+entity.crm_core_record.collection:
+  title: 'CRM Record'
+  description: 'Manage CRM Record.'
+  route_name: entity.crm_core_record.collection
+  parent: crm_core.overview
+
+entity.crm_core_record_type.collection:
+  title: 'CRM Record Types'
+  description: 'Manage CRM Record Types.'
+  route_name: entity.crm_core_record_type.collection
+  parent: crm_core.manage

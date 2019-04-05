@@ -1,0 +1,12 @@
+crm_core_record.add:
+  route_name: entity.crm_core_record.add_page
+  title: 'Add a record'
+  appears_on:
+    - entity.crm_core_record.collection
+
+
+entity.crm_core_record_type.add_form:
+  route_name: entity.crm_core_record_type.add_form
+  title: 'Add record type'
+  appears_on:
+    - entity.crm_core_record_type.collection

@@ -1,0 +1,112 @@
+<?php
+
+/**
+ * @file
+ * Provides default CRM Core Data entities and the ability to create more.
+ */
+
+use Drupal\Core\Render\Element;
+
+/**
+ * Implements hook_theme().
+ */
+function crm_core_data_theme() {
+  return array(
+    'crm_core_data' => array(
+      'render element' => 'elements',
+      'template' => 'crm-core-data',
+    ),
+  );
+}
+
+/**
+ * Process variables for CRM Core Data.
+ *
+ * Default template: crm_core_data.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - crm_core_data: The CRM Core Data entity.
+ */
+function template_preprocess_crm_core_data(&$variables) {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  /** @var \Drupal\crm_core_data\Entity\Data $data */
+  $data = $variables['elements']['#crm_core_data'];
+  $variables['crm_core_data'] = $data;
+
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+
+  // Add classes based on the type of data.
+  $variables['attributes']['class'][] = 'crm_core_data';
+  $variables['attributes']['class'][] = 'crm_core_data-' . $data->bundle();
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ *
+ * This function simply adds template suggestions for various
+ * data types.
+ */
+function crm_core_data_theme_suggestions_crm_core_data(array $variables) {
+  $suggestions = array();
+  /** @var \Drupal\crm_core_data\Entity\data $crm_core_data */
+  $crm_core_data = $variables['elements']['#crm_core_data'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+  // Add template suggestions.
+  $suggestions[] = 'crm_core_data__' . $sanitized_view_mode;
+  $suggestions[] = 'crm_core_data__' . $crm_core_data->bundle();
+  $suggestions[] = 'crm_core_data__' . $crm_core_data->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'crm_core_data__' . $crm_core_data->id();
+  $suggestions[] = 'crm_core_data__' . $crm_core_data->id() . '__' . $sanitized_view_mode;
+
+  return $suggestions;
+}
+
+/**
+ * Implements hook_mail().
+ */
+function crm_core_data_mail($key, &$message, $params) {
+  $message['subject'] = $params['subject'];
+  $message['body'][] = $params['message'];
+}
+
+/**
+ * Implements hook_entity_dependencies().
+ *
+ * Adding data activities and relationships as dependencies.
+ */
+function crm_core_data_entity_dependencies($entity, $entity_type) {
+  $dependencies = array();
+  if ($entity_type == 'crm_core_data') {
+    // Lets check activities.
+    if (module_exists('crm_core_activity')) {
+      $query = new EntityFieldQuery();
+      $query->entityCondition('entity_type', 'crm_core_activity');
+      $query->fieldCondition('field_activity_participants', 'target_id', $entity->data_id);
+      $query->fieldCondition('field_activity_participants', 'target_type', 'crm_core_data');
+      $result = $query->execute();
+      if (!empty($result['crm_core_activity'])) {
+        foreach (array_keys($result['crm_core_activity']) as $activity_id) {
+          $dependencies[] = array('type' => 'crm_core_activity', 'id' => $activity_id);
+        }
+      }
+    }
+    // Lets check relations.
+    if (module_exists('relation')) {
+      $query = new EntityFieldQuery();
+      $query->entityCondition('entity_type', 'relation');
+      $query->fieldCondition('endpoints', 'entity_id', $entity->data_id);
+      $result = $query->execute();
+      if (!empty($result['relation'])) {
+        foreach (array_keys($result['relation']) as $rid) {
+          $dependencies[] = array('type' => 'relation', 'id' => $rid);
+        }
+      }
+    }
+  }
+
+  return $dependencies;
+}

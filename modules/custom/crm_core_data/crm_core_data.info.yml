@@ -1,0 +1,27 @@
+name: CRM Core Data
+type: module
+description: 'Allows data to be submitted to the site and displayed on pages, its inspired from crm core contact module for organization.'
+package: CRM Core
+# core: 8.x
+
+configure: entity.crm_core_data_type.collection
+
+dependencies:
+  - crm_core:crm_core
+  - drupal:system (>=8.2.0)
+  - entity:entity
+  - drupal:options
+  - drupal:datetime
+  - drupal:field_ui
+  - drupal:text
+  - drupal:views
+  - name:name
+
+  # @todo Re-add once available and still needed.
+#  - field_group
+
+# Information added by Drupal.org packaging script on 2018-08-30
+version: '8.x-1.x-dev'
+core: '8.x'
+project: 'crm_core'
+
