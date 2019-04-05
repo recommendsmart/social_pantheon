@@ -1,0 +1,11 @@
+name: Prevent Term Delete
+description: 'Prevent deletion of taxonomy term if associated with the entity'
+package: 'Taxonomy'
+# core: 8.x
+type: module
+configure: prevent_term_delete.settings
+# Information added by Drupal.org packaging script on 2019-03-02
+version: '8.x-1.0-alpha1'
+core: '8.x'
+project: 'prevent_term_delete'
+datestamp: 1551520387
