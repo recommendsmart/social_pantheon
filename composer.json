@@ -80,7 +80,8 @@
         "drupal/prevent_term_delete": "^1.0@alpha",
         "drupal/button_link": "^1.1",
         "drupal/linked_field": "^1.1",
-        "drupal/responsive_views_grid": "^1.1"						  							 
+        "drupal/responsive_views_grid": "^1.1",
+        "drupal/go_back": "^1.0"						  							 
         },
     "repositories": [
         {
