@@ -7,6 +7,7 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StreamWrapper\StreamWrapperManagerInterface;
+use Drupal\yasm\Services\DatatablesInterface;
 use Drupal\yasm\Services\EntitiesStatisticsInterface;
 use Drupal\yasm\Utility\YasmUtility;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -30,6 +31,13 @@ class Files extends ControllerBase {
    * @var \Drupal\Core\Extension\ModuleHandlerInterface
    */
   protected $moduleHandler;
+
+  /**
+   * The datatables service.
+   *
+   * @var \Drupal\yasm\Services\DatatablesInterface
+   */
+  protected $datatables;
 
   /**
    * The entities statitistics service.
@@ -196,6 +204,7 @@ class Files extends ControllerBase {
       $build[] = [
         '#attached' => [
           'library' => ['yasm/global', 'yasm/fontawesome', 'yasm/datatables'],
+          'drupalSettings' => ['datatables' => ['locale' => $this->datatables->getLocale()]],
         ],
         '#cache' => [
           'id' => ['yasm_files'],
@@ -212,9 +221,10 @@ class Files extends ControllerBase {
   /**
    * {@inheritdoc}
    */
-  public function __construct(ModuleHandlerInterface $module_handler, StreamWrapperManagerInterface $stream_wrapper_manager, EntitiesStatisticsInterface $entities_statistics) {
+  public function __construct(ModuleHandlerInterface $module_handler, StreamWrapperManagerInterface $stream_wrapper_manager, DatatablesInterface $datatables, EntitiesStatisticsInterface $entities_statistics) {
     $this->moduleHandler = $module_handler;
     $this->streamWrapperManager = $stream_wrapper_manager;
+    $this->datatables = $datatables;
     $this->entitiesStatistics = $entities_statistics;
   }
 
@@ -225,6 +235,7 @@ class Files extends ControllerBase {
     return new static(
       $container->get('module_handler'),
       $container->get('stream_wrapper_manager'),
+      $container->get('yasm.datatables'),
       $container->get('yasm.entities_statistics')
     );
   }

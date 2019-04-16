@@ -44,9 +44,11 @@ class YasmChartsBuilder implements YasmChartsBuilderInterface {
     if (!empty($this->chartSettings['library'])) {
       foreach ($build as $key => $element) {
         if ('#yasm_chart' === $key) {
-          $chart = $this->applyChartSettings($build['#yasm_chart'], $build['yasm_table'], $settings);
-          if (is_array($chart)) {
-            $build['yasm_chart'] = $chart;
+          if (!empty($build['yasm_table'])) {
+            $chart = $this->applyChartSettings($build['#yasm_chart'], $build['yasm_table'], $settings);
+            if (is_array($chart)) {
+              $build['yasm_chart'] = $chart;
+            }
           }
         }
         elseif (is_array($element)) {
@@ -68,47 +70,54 @@ class YasmChartsBuilder implements YasmChartsBuilderInterface {
    * Build yasm chart.
    */
   private function buildChart($chart, $settings) {
-    // Skip data settings.
-    $settings['skip_left'] = isset($settings['skip_left']) ? $settings['skip_left'] : 1;
-    $settings['skip_right'] = isset($settings['skip_right']) ? $settings['skip_right'] : 0;
-    $settings['skip_top'] = isset($settings['skip_top']) ? $settings['skip_top'] : 0;
-    // Label settings.
-    $settings['label'] = isset($settings['label']) ? $settings['label'] : '';
-    $settings['label_position'] = isset($settings['label_position']) ? $settings['label_position'] : 1;
-    // Options.
-    $settings['options'] += $this->chartSettings;
-    if (isset($settings['title'])) {
-      $settings['options']['title'] = $settings['title'];
-    }
-    elseif (isset($chart['#title'])) {
-      $settings['options']['title'] = $chart['#title'];
-    }
-    $settings['options']['type'] = isset($settings['type']) ? $settings['type'] : 'line';
-    // Series data.
-    $seriesData = $this->getChartSeries($chart['#rows'], $settings);
-    // Categories.
-    if ($settings['options']['type'] == 'pie' && count($seriesData) === 1) {
-      $categories = [$seriesData[0]['name']];
-    }
-    else {
-      $categories = $this->getChartCategories($chart['#header'], $settings);
-    }
-    // Chart Unique ID.
-    if (!isset($settings['id'])) {
-      $settings['id'] = $this->uuidService->generate();
+    if (!empty($chart['#rows'])) {
+      // Get chart settings.
+      $settings['skip_left'] = isset($settings['skip_left']) ? $settings['skip_left'] : 1;
+      $settings['skip_right'] = isset($settings['skip_right']) ? $settings['skip_right'] : 0;
+      $settings['skip_top'] = isset($settings['skip_top']) ? $settings['skip_top'] : 0;
+      $settings['label'] = isset($settings['label']) ? $settings['label'] : '';
+      $settings['label_position'] = isset($settings['label_position']) ? $settings['label_position'] : 1;
+
+      $settings['options'] += $this->chartSettings;
+      if (isset($settings['title'])) {
+        $settings['options']['title'] = $settings['title'];
+      }
+      elseif (isset($chart['#title'])) {
+        $settings['options']['title'] = $chart['#title'];
+      }
+      $settings['options']['type'] = isset($settings['type']) ? $settings['type'] : 'line';
+
+      // Build data series and labels.
+      if ($seriesData = $this->getChartSeries($chart['#rows'], $settings)) {
+        // Chart categories.
+        $categories = [];
+        if ($settings['options']['type'] == 'pie' && count($seriesData) === 1 && isset($seriesData[0]['name'])) {
+          $categories = [$seriesData[0]['name']];
+        }
+        elseif (isset($chart['#header'])) {
+          $categories = $this->getChartCategories($chart['#header'], $settings);
+        }
+
+        // Chart Unique ID.
+        if (!isset($settings['id'])) {
+          $settings['id'] = $this->uuidService->generate();
+        }
+
+        return [
+          [
+            '#theme' => 'yasm_chart',
+            '#library' => (string) $this->chartSettings['library'],
+            '#categories' => $categories,
+            '#seriesData' => $seriesData,
+            '#options' => $settings['options'],
+            '#id' => 'chart-' . $settings['id'],
+            '#override' => isset($settings['override']) ? $settings['override'] : [],
+          ],
+        ];
+      }
     }
 
-    return [
-      [
-        '#theme' => 'yasm_chart',
-        '#library' => (string) $this->chartSettings['library'],
-        '#categories' => $categories,
-        '#seriesData' => $seriesData,
-        '#options' => $settings['options'],
-        '#id' => 'chart-' . $settings['id'],
-        '#override' => isset($settings['override']) ? $settings['override'] : [],
-      ],
-    ];
+    return [];
   }
 
   /**
@@ -142,29 +151,28 @@ class YasmChartsBuilder implements YasmChartsBuilderInterface {
       $rows = array_slice($rows, $settings['skip_top']);
     }
     foreach ($rows as $row) {
-      $row = (is_array($row) && isset($row['data'])) ? $row['data'] : $row;
-      $label = $this->getChartLabel($row, $settings['label'], $settings['label_position']);
-      $row = $this->skipArray($row, $settings['skip_left'], $settings['skip_right']);
-      $items = [];
-      foreach ($row as $col) {
-        $item = (is_array($col) && isset($col['data'])) ? $col['data'] : $col;
-        $item = (string) $item;
-        // If the value is a size (5MB,3GB,15KB) convert value to bytes.
-        if ($this->isSize($item)) {
-          $items[] = Bytes::toInt($item);
-        }
-        else {
-          $items[] = (int) $item;
-        }
-      }
+      if (!empty($row)) {
+        $row = (is_array($row) && isset($row['data'])) ? $row['data'] : $row;
 
-      $series[] = [
-        'type'  => $settings['options']['type'],
-        'name'  => (string) $label,
-        'color' => $this->getChartColor($i),
-        'data'  => $items,
-      ];
-      $i++;
+        $label = $this->getChartLabel($row, $settings['label'], $settings['label_position']);
+        $value = $this->skipArray($row, $settings['skip_left'], $settings['skip_right']);
+
+        $items = [];
+        foreach ($value as $col) {
+          $item = (is_array($col) && isset($col['data'])) ? $col['data'] : $col;
+          $item = (string) $item;
+          // If the value is a size (5MB, 3GB, 15KB...) convert value to bytes.
+          $items[] = $this->isSize($item) ? Bytes::toInt($item) : (int) $item;
+        }
+
+        $series[] = [
+          'type'  => $settings['options']['type'],
+          'name'  => (string) $label,
+          'color' => $this->getChartColor($i),
+          'data'  => $items,
+        ];
+        $i++;
+      }
     }
 
     return $series;
@@ -174,15 +182,19 @@ class YasmChartsBuilder implements YasmChartsBuilderInterface {
    * Get chart categories for X axis.
    */
   private function getChartCategories($labels, $settings) {
-    $categories = $this->skipArray($labels, $settings['skip_left'], $settings['skip_right']);
+    $categories = [];
+    if (is_array($labels) && !empty($labels)) {
+      $categories = $this->skipArray($labels, $settings['skip_left'], $settings['skip_right']);
+      $categories = array_values($categories);
+    }
 
-    return array_values($categories);
+    return $categories;
   }
 
   /**
-   * Get colors AA colors for charts.
+   * Get an hexadecimal color for charts.
    */
-  private function getChartColor($i) {
+  private function getChartColor($i = 0) {
     $colors = [
       0 => '#205CB7',
       1 => '#815D51',
@@ -202,6 +214,7 @@ class YasmChartsBuilder implements YasmChartsBuilderInterface {
       $color = $colors[$i];
     }
     else {
+      // Chart with more than 12 colors. Return one randon color.
       $color = $colors[rand(0, count($colors) - 1)];
     }
 
@@ -240,28 +253,19 @@ class YasmChartsBuilder implements YasmChartsBuilderInterface {
   /**
    * Appply chart settings and build the chart array.
    */
-  private function applyChartSettings($key, $table, $settings) {
-    if (isset($settings[$key]) && !empty($table['#rows'])) {
-      return $this->buildCharts($table, $settings[$key]);
+  private function applyChartSettings($chart_key, $table, $settings) {
+    if (isset($settings[$chart_key]) && !empty($table['#rows'])) {
+      return $this->buildCharts($table, $settings[$chart_key]);
     }
 
-    return $key;
+    return $chart_key;
   }
 
   /**
    * Check if string is a size string.
    */
   private function isSize($string) {
-    $units = [
-      'KB',
-      'MB',
-      'GB',
-      'TB',
-      'PB',
-      'EB',
-      'ZB',
-      'YB',
-    ];
+    $units = ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
     if (in_array(substr($string, -2), $units)) {
       return TRUE;
     }

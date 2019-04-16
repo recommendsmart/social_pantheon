@@ -7,6 +7,7 @@ use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\yasm\Controller\Groups as BaseController;
+use Drupal\yasm\Services\DatatablesInterface;
 use Drupal\yasm\Services\GroupsStatisticsInterface;
 use Drupal\yasm_charts\Services\YasmChartsBuilderInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -39,7 +40,7 @@ class Groups extends BaseController {
       ],
       'groups_members' => [
         'skip_left' => 2,
-        'skip_right' => 4,
+        'skip_right' => 1,
         'label_position' => 2,
         'type' => 'pie',
         'options' => ['height' => 500],
@@ -69,8 +70,8 @@ class Groups extends BaseController {
   /**
    * {@inheritdoc}
    */
-  public function __construct(AccountInterface $current_user, EntityTypeManagerInterface $entityTypeManager, MessengerInterface $messenger, ModuleHandlerInterface $module_handler, GroupsStatisticsInterface $groups_statistics, YasmChartsBuilderInterface $yasmChartsBuilder) {
-    parent::__construct($current_user, $entityTypeManager, $messenger, $module_handler, $groups_statistics);
+  public function __construct(AccountInterface $current_user, EntityTypeManagerInterface $entityTypeManager, MessengerInterface $messenger, ModuleHandlerInterface $module_handler, DatatablesInterface $datatables, GroupsStatisticsInterface $groups_statistics, YasmChartsBuilderInterface $yasmChartsBuilder) {
+    parent::__construct($current_user, $entityTypeManager, $messenger, $module_handler, $datatables, $groups_statistics);
 
     $this->yasmChartsBuilder = $yasmChartsBuilder;
   }
@@ -84,6 +85,7 @@ class Groups extends BaseController {
       $container->get('entity_type.manager'),
       $container->get('messenger'),
       $container->get('module_handler'),
+      $container->get('yasm.datatables'),
       $container->get('yasm.groups_statistics'),
       $container->get('yasm_charts.builder')
     );

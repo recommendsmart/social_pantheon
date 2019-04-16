@@ -5,6 +5,7 @@ namespace Drupal\yasm_charts\Controller;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\StreamWrapper\StreamWrapperManagerInterface;
 use Drupal\yasm\Controller\Files as BaseController;
+use Drupal\yasm\Services\DatatablesInterface;
 use Drupal\yasm\Services\EntitiesStatisticsInterface;
 use Drupal\yasm_charts\Services\YasmChartsBuilderInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -86,8 +87,8 @@ class Files extends BaseController {
   /**
    * {@inheritdoc}
    */
-  public function __construct(ModuleHandlerInterface $module_handler, StreamWrapperManagerInterface $stream_wrapper_manager, EntitiesStatisticsInterface $entities_statistics, YasmChartsBuilderInterface $yasmChartsBuilder) {
-    parent::__construct($module_handler, $stream_wrapper_manager, $entities_statistics);
+  public function __construct(ModuleHandlerInterface $module_handler, StreamWrapperManagerInterface $stream_wrapper_manager, DatatablesInterface $datatables, EntitiesStatisticsInterface $entities_statistics, YasmChartsBuilderInterface $yasmChartsBuilder) {
+    parent::__construct($module_handler, $stream_wrapper_manager, $datatables, $entities_statistics);
 
     $this->yasmChartsBuilder = $yasmChartsBuilder;
   }
@@ -99,6 +100,7 @@ class Files extends BaseController {
     return new static(
       $container->get('module_handler'),
       $container->get('stream_wrapper_manager'),
+      $container->get('yasm.datatables'),
       $container->get('yasm.entities_statistics'),
       $container->get('yasm_charts.builder')
     );

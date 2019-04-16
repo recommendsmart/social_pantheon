@@ -66,6 +66,25 @@ class YasmChartsTest extends BrowserTestBase {
     $this->drupalGet('admin/reports/yasm/my/contents');
     $this->assertSession()->statusCodeEquals(200);
     $this->assertSession()->responseContains($message);
+
+    // Set a library and tests routes again.
+    $config = \Drupal::service('config.factory')->getEditable('charts.settings');
+    $default_settings = $config->get('charts_default_settings');
+    $default_settings['library'] = 'google';
+    $config->set('charts_default_settings', $default_settings);
+    $config->save();
+
+    $this->drupalGet('admin/reports/yasm/site/contents');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->responseNotContains($message);
+
+    $this->drupalGet('admin/reports/yasm/site/files');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->responseNotContains($message);
+
+    $this->drupalGet('admin/reports/yasm/my/contents');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->responseNotContains($message);
   }
 
 }

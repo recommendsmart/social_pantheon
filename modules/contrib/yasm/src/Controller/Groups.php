@@ -11,6 +11,7 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\group\GroupMembershipLoaderInterface;
 use Drupal\group\GroupMembership;
 use Drupal\group\Entity\Group;
+use Drupal\yasm\Services\DatatablesInterface;
 use Drupal\yasm\Services\GroupsStatisticsInterface;
 use Drupal\yasm\Utility\YasmUtility;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -54,6 +55,13 @@ class Groups extends ControllerBase {
    * @var \Drupal\Core\Extension\ModuleHandlerInterface
    */
   protected $moduleHandler;
+
+  /**
+   * The datatables service.
+   *
+   * @var \Drupal\yasm\Services\DatatablesInterface
+   */
+  protected $datatables;
 
   /**
    * The entities statitistics service.
@@ -168,10 +176,9 @@ class Groups extends ControllerBase {
     $build[] = [
       '#attached' => [
         'library' => ['yasm/global', 'yasm/fontawesome', 'yasm/datatables'],
+        'drupalSettings' => ['datatables' => ['locale' => $this->datatables->getLocale()]],
       ],
-      '#cache' => [
-        'max-age' => 3600,
-      ],
+      '#cache' => ['max-age' => 3600],
     ];
 
     return $build;
@@ -287,11 +294,12 @@ class Groups extends ControllerBase {
   /**
    * {@inheritdoc}
    */
-  public function __construct(AccountInterface $current_user, EntityTypeManagerInterface $entityTypeManager, MessengerInterface $messenger, ModuleHandlerInterface $module_handler, GroupsStatisticsInterface $groups_statistics) {
+  public function __construct(AccountInterface $current_user, EntityTypeManagerInterface $entityTypeManager, MessengerInterface $messenger, ModuleHandlerInterface $module_handler, DatatablesInterface $datatables, GroupsStatisticsInterface $groups_statistics) {
     $this->currentUser = $current_user;
     $this->entityTypeManager = $entityTypeManager;
     $this->messenger = $messenger;
     $this->moduleHandler = $module_handler;
+    $this->datatables = $datatables;
     $this->groupsStatistics = $groups_statistics;
 
     // Conditional dependency injection is not working. Remove this when works.
@@ -309,6 +317,7 @@ class Groups extends ControllerBase {
       $container->get('entity_type.manager'),
       $container->get('messenger'),
       $container->get('module_handler'),
+      $container->get('yasm.datatables'),
       $container->get('yasm.groups_statistics')
     );
   }

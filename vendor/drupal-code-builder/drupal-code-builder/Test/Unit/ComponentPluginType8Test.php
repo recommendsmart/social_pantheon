@@ -121,7 +121,7 @@ class ComponentPluginType8Test extends TestBase {
     $php_tester->assertClassHasParent('Drupal\Component\Annotation\Plugin');
     $php_tester->assertClassHasPublicProperty('id', 'string');
     $php_tester->assertClassHasPublicProperty('label', 'Drupal\Core\Annotation\Translation');
-    $php_tester->assertClassDocBlockHasLine('Defines the Cat Feeder plugin annotation object.');
+    $php_tester->assertClassDocBlockHasLine('Defines the Cat feeder plugin annotation object.');
     $php_tester->assertClassDocBlockHasLine('Plugin namespace: CatFeeder.');
     $php_tester->assertClassDocBlockHasLine('@Annotation');
 
@@ -168,7 +168,7 @@ class ComponentPluginType8Test extends TestBase {
 
     $yaml_tester = new YamlTester($plugin_type_file);
     $yaml_tester->assertHasProperty('test_module.cat_feeder');
-    $yaml_tester->assertPropertyHasValue(['test_module.cat_feeder', 'label'], 'Cat Feeder');
+    $yaml_tester->assertPropertyHasValue(['test_module.cat_feeder', 'label'], 'Cat feeder');
     $yaml_tester->assertPropertyHasValue(['test_module.cat_feeder', 'plugin_manager_service_id'], 'plugin.manager.test_module_cat_feeder');
     $yaml_tester->assertPropertyHasValue(['test_module.cat_feeder', 'plugin_definition_decorator_class'], 'Drupal\plugin\PluginDefinition\ArrayPluginDefinitionDecorator');
   }
@@ -247,7 +247,7 @@ class ComponentPluginType8Test extends TestBase {
     $this->assertFiles([
       'test_module.info.yml',
       'src/CatFeederManager.php',
-      'src/Plugin/CatFeeder/CatFeederBase.php',
+      'src/Plugin/CatFeeder/CatFeeder.php',
       'src/Plugin/CatFeeder/CatFeederInterface.php',
       'test_module.services.yml',
       'test_module.plugin_type.yml',
@@ -274,7 +274,7 @@ class ComponentPluginType8Test extends TestBase {
     $php_tester->assertClassHasParent('Drupal\Core\Plugin\DefaultPluginManager');
 
     $php_tester->assertClassHasProtectedProperty('defaults', 'array', [
-      'class' => 'Drupal\test_module\Plugin\CatFeeder\CatFeederBase',
+      'class' => 'Drupal\test_module\Plugin\CatFeeder\CatFeeder',
     ]);
     $php_tester->assertClassHasProtectedProperty('moduleHandler', 'Drupal\Core\Extension\ModuleHandlerInterface');
     $php_tester->assertClassHasNotProperty('cacheDiscovery');
@@ -306,11 +306,11 @@ class ComponentPluginType8Test extends TestBase {
     //$get_discovery_tester->assertReturnsVariable('discovery');
 
     // Check the plugin base class file.
-    $plugin_base_file = $files["src/Plugin/CatFeeder/CatFeederBase.php"];
+    $plugin_base_file = $files["src/Plugin/CatFeeder/CatFeeder.php"];
 
     $php_tester = new PHPTester($plugin_base_file);
     $php_tester->assertDrupalCodingStandards();
-    $php_tester->assertHasClass('Drupal\test_module\Plugin\CatFeeder\CatFeederBase');
+    $php_tester->assertHasClass('Drupal\test_module\Plugin\CatFeeder\CatFeeder');
     $php_tester->assertClassNotAbstract();
     $php_tester->assertClassHasInterfaces(['Drupal\test_module\Plugin\CatFeeder\CatFeederInterface']);
   }

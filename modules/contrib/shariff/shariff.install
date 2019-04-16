@@ -9,7 +9,7 @@
  * Implements hook_requirements().
  */
 function shariff_requirements($phase) {
-  $requirements = array();
+  $requirements = [];
 
   // Check if library is available via libraries module.
   $library_shariff = 'default';
@@ -19,7 +19,6 @@ function shariff_requirements($phase) {
 
   if ($phase == 'runtime') {
     if (!(file_exists('libraries/shariff/build/shariff.min.js') ||
-      file_exists('libraries/shariff/dist/shariff.min.js') ||
       file_exists('libraries/shariff/shariff.min.js'))
       && $library_shariff == 'default') {
       // Libraries module is not active and the shariff library is not in
@@ -50,4 +49,13 @@ function shariff_requirements($phase) {
   }
 
   return $requirements;
+}
+
+/**
+ * Remove googleplus service.
+ */
+function shariff_update_8001() {
+  \Drupal::configFactory()->getEditable('shariff.settings')
+    ->clear('shariff_services.googleplus')
+    ->save(TRUE);
 }

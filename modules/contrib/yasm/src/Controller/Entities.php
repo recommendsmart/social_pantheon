@@ -3,6 +3,7 @@
 namespace Drupal\yasm\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\yasm\Services\DatatablesInterface;
 use Drupal\yasm\Services\EntitiesStatisticsInterface;
 use Drupal\yasm\Utility\YasmUtility;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -11,6 +12,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * YASM Statistics site entities controller.
  */
 class Entities extends ControllerBase {
+
+  /**
+   * The datatables service.
+   *
+   * @var \Drupal\yasm\Services\DatatablesInterface
+   */
+  protected $datatables;
 
   /**
    * The entities statitistics service.
@@ -93,6 +101,7 @@ class Entities extends ControllerBase {
       $build[] = [
         '#attached' => [
           'library' => ['yasm/global', 'yasm/fontawesome', 'yasm/datatables'],
+          'drupalSettings' => ['datatables' => ['locale' => $this->datatables->getLocale()]],
         ],
         '#cache' => ['max-age' => 3600],
       ];
@@ -106,7 +115,8 @@ class Entities extends ControllerBase {
   /**
    * {@inheritdoc}
    */
-  public function __construct(EntitiesStatisticsInterface $entities_statistics) {
+  public function __construct(DatatablesInterface $datatables, EntitiesStatisticsInterface $entities_statistics) {
+    $this->datatables = $datatables;
     $this->entitiesStatistics = $entities_statistics;
   }
 
@@ -115,6 +125,7 @@ class Entities extends ControllerBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
+      $container->get('yasm.datatables'),
       $container->get('yasm.entities_statistics')
     );
   }

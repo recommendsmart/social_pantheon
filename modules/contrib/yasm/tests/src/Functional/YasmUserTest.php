@@ -156,14 +156,28 @@ class YasmUserTest extends BrowserTestBase {
       ]);
     }
 
-    // Count statistics for admin user.
+    // Tests site statistics for admin user.
     $this->drupalLogin($this->adminUser);
     $this->drupalGet('admin/reports/yasm');
     $this->assertSession()->pageTextContains('Nodes: 8');
+
+    $this->drupalGet('admin/reports/yasm/site/contents');
+    $this->assertSession()->responseContains('<table class="datatable display');
+
+    $this->drupalGet('admin/reports/yasm/site/users');
+    $this->assertSession()->responseContains('<table class="datatable display');
+
+    $this->drupalGet('admin/reports/yasm/site/files');
+    $this->assertSession()->pageTextContains(t('No data found.'));
+
+    $this->drupalGet('admin/reports/yasm/site/entities');
+    $this->assertSession()->responseContains('<table class="datatable display');
+
+    // Tests my statistics for admin user.
     $this->drupalGet('admin/reports/yasm/my');
     $this->assertSession()->pageTextContains('Nodes: 5');
 
-    // Count statistics for basic user.
+    // Tests my statistics for basic user.
     $this->drupalLogin($this->basicUser);
     $this->drupalGet('admin/reports/yasm/my');
     $this->assertSession()->pageTextContains('Nodes: 3');

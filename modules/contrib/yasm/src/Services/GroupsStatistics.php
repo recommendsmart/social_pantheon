@@ -5,6 +5,7 @@ namespace Drupal\yasm\Services;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\group\Entity\GroupInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Groups statistics class.

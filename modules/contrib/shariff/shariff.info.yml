@@ -6,8 +6,8 @@ type: module
 libraries:
   - shariff/shariff
 
-# Information added by Drupal.org packaging script on 2017-12-15
-version: '8.x-1.3'
+# Information added by Drupal.org packaging script on 2019-03-21
+version: '8.x-1.5'
 core: '8.x'
 project: 'shariff'
-datestamp: 1513343590
+datestamp: 1553187724

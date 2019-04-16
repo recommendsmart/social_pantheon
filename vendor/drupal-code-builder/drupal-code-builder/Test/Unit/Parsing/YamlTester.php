@@ -72,6 +72,11 @@ class YamlTester {
       $property_address = [$property_address];
     }
 
+    // Strip quotes from the property address, as the YAML parser does so too.
+    array_walk($property_address, function(&$item) {
+      $item = preg_replace('@^[\'"]?(.+?)[\'"]?$@', '$1', $item);
+    });
+
     $property_string = $this->getPropertyString($property_address);
     $message = $message ?? "The YAML file has the expected property $property_string.";
 
@@ -219,7 +224,8 @@ class YamlTester {
 
     while ($property_address_search) {
       // (Can't array_shift() in the while() as a property may be a 0.)
-      $property = array_shift($property_address_search);
+      // Quote regex characters, as config properties can contain a '*'.
+      $property = preg_quote(array_shift($property_address_search));
 
       // The expected number of indented spaces for this level's property.
       $indent_count = $level * 2;

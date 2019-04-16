@@ -32,3 +32,4 @@ datatables:
   dependencies:
     - core/drupal
     - core/jquery
+    - core/drupalSettings

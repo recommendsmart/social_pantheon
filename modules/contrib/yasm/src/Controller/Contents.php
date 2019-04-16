@@ -4,10 +4,12 @@ namespace Drupal\yasm\Controller;
 
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\yasm\Services\DatatablesInterface;
 use Drupal\yasm\Services\EntitiesStatisticsInterface;
 use Drupal\yasm\Utility\YasmUtility;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -26,7 +28,14 @@ class Contents extends ControllerBase {
   protected $currentUser;
 
   /**
-   * Entity type manager.
+   * The Date Fromatter service.
+   *
+   * @var \Drupal\Core\Datetime\DateFormatterInterface
+   */
+  protected $dateFormatter;
+
+  /**
+   * The Entity type manager.
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
@@ -45,6 +54,13 @@ class Contents extends ControllerBase {
    * @var \Drupal\Core\Extension\ModuleHandlerInterface
    */
   protected $moduleHandler;
+
+  /**
+   * The datatables service.
+   *
+   * @var \Drupal\yasm\Services\DatatablesInterface
+   */
+  protected $datatables;
 
   /**
    * The entities statitistics service.
@@ -70,35 +86,39 @@ class Contents extends ControllerBase {
    * Site content page output.
    */
   public function siteContent(Request $request) {
-    $filter = [];
-
     // Content creators ranking.
-    $year = strtotime('first day of this year');
-    $month = strtotime('first day of this month');
-    $filters = [
+    $year_timestamp = strtotime('first day of this year');
+    $month_timestamp = strtotime('first day of this month');
+    $creators_filters = [
       'overall' => [],
       'year' => [
         [
           'key'      => 'created',
-          'value'    => $year,
+          'value'    => $year_timestamp,
           'operator' => '>=',
         ],
       ],
       'month' => [
         [
           'key'      => 'created',
-          'value'    => $month,
+          'value'    => $month_timestamp,
           'operator' => '>=',
         ],
       ],
     ];
-    $labels = [
+
+    $creators_labels = [
       'overall' => $this->t('Overall creators'),
-      'year'    => $this->t('@year creators', ['@year' => date('Y', $year)]),
-      'month'   => $this->t('@month creators', ['@month' => date('F Y', $month)]),
+      'year'    => $this->t('@year creators', [
+        '@year' => $this->dateFormatter->format($year_timestamp, 'custom', 'Y'),
+      ]),
+      'month'   => $this->t('@month creators', [
+        '@month' => $this->dateFormatter->format($month_timestamp, 'custom', 'F Y'),
+      ]),
     ];
     $rankings = [];
-    foreach ($filters as $filter_key => $filter) {
+    // Count all rankings.
+    foreach ($creators_filters as $filter_key => $filter) {
       $data = $this->entitiesStatistics->aggregate('node', ['nid' => 'COUNT'], 'uid', $filter);
       $rows = [];
       foreach ($data as $value) {
@@ -110,7 +130,7 @@ class Contents extends ControllerBase {
       }
 
       $rankings[] = [
-        YasmUtility::title($labels[$filter_key], 'fas fa-crown'),
+        YasmUtility::title($creators_labels[$filter_key], 'fas fa-crown'),
         YasmUtility::table([
           $this->t('User'),
           $this->t('Node count'),
@@ -121,13 +141,11 @@ class Contents extends ControllerBase {
 
     // Count contents.
     $year = $request->query->get('year', 'all');
-    if (is_numeric($year)) {
-      $filter = YasmUtility::getYearFilter('created', $year);
-    }
+    $filter = is_numeric($year) ? YasmUtility::getYearFilter('created', $year) : [];
 
     $first_content_date = $this->entitiesStatistics->getFirstDateContent('node');
     $build['tabs'] = YasmUtility::getYearLinks(date('Y', $first_content_date), $year);
-    $build['data'] = array_merge($this->buildContent($year, $filter), $build_rankings);
+    $build['data'] = [$this->buildContent($year, $filter), $build_rankings];
 
     return $build;
   }
@@ -285,6 +303,7 @@ class Contents extends ControllerBase {
         $build[] = [
           '#attached' => [
             'library' => ['yasm/global', 'yasm/fontawesome', 'yasm/datatables'],
+            'drupalSettings' => ['datatables' => ['locale' => $this->datatables->getLocale()]],
           ],
           '#cache' => [
             'tags' => ['node_list'],
@@ -301,11 +320,13 @@ class Contents extends ControllerBase {
   /**
    * {@inheritdoc}
    */
-  public function __construct(AccountInterface $current_user, EntityTypeManagerInterface $entityTypeManager, MessengerInterface $messenger, ModuleHandlerInterface $module_handler, EntitiesStatisticsInterface $entities_statistics) {
+  public function __construct(AccountInterface $current_user, DateFormatterInterface $date_formatter, EntityTypeManagerInterface $entityTypeManager, MessengerInterface $messenger, ModuleHandlerInterface $module_handler, DatatablesInterface $datatables, EntitiesStatisticsInterface $entities_statistics) {
     $this->currentUser = $current_user;
+    $this->dateFormatter = $date_formatter;
     $this->entityTypeManager = $entityTypeManager;
     $this->messenger = $messenger;
     $this->moduleHandler = $module_handler;
+    $this->datatables = $datatables;
     $this->entitiesStatistics = $entities_statistics;
   }
 
@@ -315,9 +336,11 @@ class Contents extends ControllerBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('current_user'),
+      $container->get('date.formatter'),
       $container->get('entity_type.manager'),
       $container->get('messenger'),
       $container->get('module_handler'),
+      $container->get('yasm.datatables'),
       $container->get('yasm.entities_statistics')
     );
   }

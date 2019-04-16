@@ -15,17 +15,17 @@ define('SHARIFF_DOWNLOAD_PREFIX', 'shariff-');
  * Implements hook_drush_command().
  */
 function shariff_drush_command() {
-  $items = array();
+  $items = [];
 
-  $items['shariff-library'] = array(
+  $items['shariff-library'] = [
     'callback' => 'drush_shariff_library',
     'description' => dt('Download/install the shariff library from heiseonline/shariff GitHub repository.'),
     'bootstrap' => DRUSH_BOOTSTRAP_NONE,
-    'arguments' => array(
+    'arguments' => [
       'path' => dt('Optional. A path where to install the shariff library. If omitted Drush will use the default location.'),
-    ),
-    'aliases' => array('shariff-lib'),
-  );
+    ],
+    'aliases' => ['shariff-lib'],
+  ];
 
   return $items;
 }
@@ -59,7 +59,7 @@ function drush_shariff_library() {
   // Create the path if it does not exist.
   if (!is_dir($path)) {
     drush_op('mkdir', $path);
-    drush_log(dt('Directory @path was created', array('@path' => $path)), 'notice');
+    drush_log(dt('Directory @path was created', ['@path' => $path]), 'notice');
   }
 
   // Set the directory to the download location.
@@ -76,7 +76,7 @@ function drush_shariff_library() {
     if (is_dir($dirname) || is_dir('shariff')) {
       drush_delete_dir($dirname, TRUE);
       drush_delete_dir('shariff', TRUE);
-      drush_log(dt('A existing shariff library was deleted from @path', array('@path' => $path)), 'notice');
+      drush_log(dt('A existing shariff library was deleted from @path', ['@path' => $path]), 'notice');
     }
 
     // Decompress the zip archive.
@@ -90,10 +90,10 @@ function drush_shariff_library() {
   }
 
   if (is_dir($dirname)) {
-    drush_log(dt('The shariff library has been successfully downloaded to @path', array('@path' => $path)), 'success');
+    drush_log(dt('The shariff library has been successfully downloaded to @path', ['@path' => $path]), 'success');
   }
   else {
-    drush_log(dt('Drush was unable to download the shariff library to @path', array('@path' => $path)), 'error');
+    drush_log(dt('Drush was unable to download the shariff library to @path', ['@path' => $path]), 'error');
   }
 
   // Set working directory back to the previous working directory.

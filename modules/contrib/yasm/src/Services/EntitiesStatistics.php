@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class EntitiesStatistics implements EntitiesStatisticsInterface {
 
   /**
-   * Entity type manager.
+   * The Entity type manager.
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */

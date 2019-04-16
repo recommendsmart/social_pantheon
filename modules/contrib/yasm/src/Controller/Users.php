@@ -9,6 +9,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\yasm\Services\DatatablesInterface;
 use Drupal\yasm\Services\EntitiesStatisticsInterface;
 use Drupal\yasm\Utility\YasmUtility;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -20,7 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
 class Users extends ControllerBase {
 
   /**
-   * The date formatter service.
+   * The Date Fromatter service.
    *
    * @var \Drupal\Core\Datetime\DateFormatterInterface
    */
@@ -46,6 +47,13 @@ class Users extends ControllerBase {
    * @var \Drupal\Core\Extension\ModuleHandlerInterface
    */
   protected $moduleHandler;
+
+  /**
+   * The datatables service.
+   *
+   * @var \Drupal\yasm\Services\DatatablesInterface
+   */
+  protected $datatables;
 
   /**
    * The entities statitistics service.
@@ -253,6 +261,7 @@ class Users extends ControllerBase {
       $build[] = [
         '#attached' => [
           'library' => ['yasm/global', 'yasm/fontawesome', 'yasm/datatables'],
+          'drupalSettings' => ['datatables' => ['locale' => $this->datatables->getLocale()]],
         ],
         '#cache' => [
           'tags' => ['user_list'],
@@ -269,11 +278,12 @@ class Users extends ControllerBase {
   /**
    * {@inheritdoc}
    */
-  public function __construct(DateFormatterInterface $dateFormatter, EntityTypeManagerInterface $entityTypeManager, MessengerInterface $messenger, ModuleHandlerInterface $module_handler, EntitiesStatisticsInterface $entities_statistics) {
-    $this->dateFormatter = $dateFormatter;
+  public function __construct(DateFormatterInterface $date_formatter, EntityTypeManagerInterface $entityTypeManager, MessengerInterface $messenger, ModuleHandlerInterface $module_handler, DatatablesInterface $datatables, EntitiesStatisticsInterface $entities_statistics) {
     $this->entityTypeManager = $entityTypeManager;
+    $this->dateFormatter = $date_formatter;
     $this->messenger = $messenger;
     $this->moduleHandler = $module_handler;
+    $this->datatables = $datatables;
     $this->entitiesStatistics = $entities_statistics;
   }
 
@@ -286,6 +296,7 @@ class Users extends ControllerBase {
       $container->get('entity_type.manager'),
       $container->get('messenger'),
       $container->get('module_handler'),
+      $container->get('yasm.datatables'),
       $container->get('yasm.entities_statistics')
     );
   }

@@ -3,6 +3,7 @@
 namespace Drupal\yasm\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Session\AccountInterface;
@@ -21,6 +22,13 @@ class Dashboard extends ControllerBase {
    * @var \Drupal\Core\Session\AccountInterface
    */
   protected $currentUser;
+
+  /**
+   * The Date Fromatter service.
+   *
+   * @var \Drupal\Core\Datetime\DateFormatterInterface
+   */
+  protected $dateFormatter;
 
   /**
    * The messenger service.
@@ -101,29 +109,33 @@ class Dashboard extends ControllerBase {
     $node_count = $this->entitiesStatistics->count('node', $conditions);
     $cards = [];
     if ($node_count > 0) {
-      $year = strtotime('first day of this year');
-      $month = strtotime('first day of this month');
+      $year_timestamp = strtotime('first day of this year');
+      $month_timestamp = strtotime('first day of this month');
       $filters = [
         'overall' => [],
         'year' => [
           [
             'key'      => 'created',
-            'value'    => $year,
+            'value'    => $year_timestamp,
             'operator' => '>=',
           ],
         ],
         'month' => [
           [
             'key'      => 'created',
-            'value'    => $month,
+            'value'    => $month_timestamp,
             'operator' => '>=',
           ],
         ],
       ];
       $labels = [
         'overall' => $this->t('Overall creator'),
-        'year'    => $this->t('@year creator', ['@year' => date('Y', $year)]),
-        'month'   => $this->t('@month creator', ['@month' => date('F Y', $month)]),
+        'year'    => $this->t('@year creator', [
+          '@year' => $this->dateFormatter->format($year_timestamp, 'custom', 'Y'),
+        ]),
+        'month'   => $this->t('@month creator', [
+          '@month' => $this->dateFormatter->format($month_timestamp, 'custom', 'F Y'),
+        ]),
       ];
       $uid = $this->currentUser->id();
 
@@ -227,8 +239,9 @@ class Dashboard extends ControllerBase {
   /**
    * {@inheritdoc}
    */
-  public function __construct(AccountInterface $current_user, MessengerInterface $messenger, ModuleHandlerInterface $module_handler, EntitiesStatisticsInterface $entities_statistics) {
+  public function __construct(AccountInterface $current_user, DateFormatterInterface $date_formatter, MessengerInterface $messenger, ModuleHandlerInterface $module_handler, EntitiesStatisticsInterface $entities_statistics) {
     $this->currentUser = $current_user;
+    $this->dateFormatter = $date_formatter;
     $this->messenger = $messenger;
     $this->moduleHandler = $module_handler;
     $this->entitiesStatistics = $entities_statistics;
@@ -240,6 +253,7 @@ class Dashboard extends ControllerBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('current_user'),
+      $container->get('date.formatter'),
       $container->get('messenger'),
       $container->get('module_handler'),
       $container->get('yasm.entities_statistics')
