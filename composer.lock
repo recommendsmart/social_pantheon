@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa12ffeb67e222255810f33777c37a50",
+    "content-hash": "f4808902317afebc3a0ce76e38357f6d",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -1258,7 +1258,7 @@
         },
         {
             "name": "drupal/activity_send_push",
-            "version": "dev-1.x",
+            "version": "1.0.0-alpha4",
             "require": {
                 "drupal/core": "~8.0",
                 "drupal/social_pwa": "self.version"
@@ -1269,8 +1269,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.x-dev",
-                    "datestamp": "1528469584",
+                    "version": "8.x-1.0-alpha4",
+                    "datestamp": "1555508285",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -1287,18 +1287,30 @@
                     "homepage": "https://www.drupal.org/user/272162"
                 },
                 {
+                    "name": "Kingdutch",
+                    "homepage": "https://www.drupal.org/user/1868952"
+                },
+                {
                     "name": "bramtenhove",
                     "homepage": "https://www.drupal.org/user/1549848"
                 },
                 {
                     "name": "frankgraave",
                     "homepage": "https://www.drupal.org/user/3504287"
+                },
+                {
+                    "name": "jaapjan",
+                    "homepage": "https://www.drupal.org/user/555428"
+                },
+                {
+                    "name": "ronaldtebrake",
+                    "homepage": "https://www.drupal.org/user/2314038"
                 }
             ],
             "description": "Used to send activity notifications by Web Push",
             "homepage": "https://www.drupal.org/project/social_pwa",
             "support": {
-                "source": "http://cgit.drupalcode.org/social_pwa",
+                "source": "https://git.drupalcode.org/project/social_pwa",
                 "error": "Invalid dependency: \"activity_send\" is an unknown drupal 8 package name"
             }
         },
@@ -7358,11 +7370,17 @@
         },
         {
             "name": "drupal/social_pwa",
-            "version": "dev-1.x",
+            "version": "1.0.0-alpha4",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/social_pwa.git",
-                "reference": "3cbaae806402da57601f2fb61fa03567ada1f53a"
+                "reference": "8.x-1.0-alpha4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/social_pwa-8.x-1.0-alpha4.zip",
+                "reference": "8.x-1.0-alpha4",
+                "shasum": "5729d339694eaeb913e86f0c92ed1fe3ddc51b65"
             },
             "require": {
                 "drupal/activity_send_push": "*",
@@ -7376,7 +7394,7 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha4+0-dev",
+                    "version": "8.x-1.0-alpha4",
                     "datestamp": "1555508285",
                     "security-coverage": {
                         "status": "not-covered",
@@ -7419,8 +7437,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/social_pwa",
                 "error": "Invalid dependency: \"activity_send\" is an unknown drupal 8 package name"
-            },
-            "time": "2019-04-17T12:41:51+00:00"
+            }
         },
         {
             "name": "drupal/state_form_entity",
@@ -13287,7 +13304,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/pwa": 20,
-        "drupal/social_pwa": 20,
         "drupal/entity_serial": 20,
         "drupal/fences": 15,
         "drupal/state_form_entity": 20,
