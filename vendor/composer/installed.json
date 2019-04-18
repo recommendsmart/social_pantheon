@@ -9303,17 +9303,17 @@
     },
     {
         "name": "goalgorilla/open_social",
-        "version": "5.0.0",
-        "version_normalized": "5.0.0.0",
+        "version": "5.1.0",
+        "version_normalized": "5.1.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/goalgorilla/open_social.git",
-            "reference": "69bf41468f627f6d4f50d75cac2b26145b007512"
+            "reference": "9f59d09c2844e5278ab7379e7a2d5b98dae50f34"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/goalgorilla/open_social/zipball/69bf41468f627f6d4f50d75cac2b26145b007512",
-            "reference": "69bf41468f627f6d4f50d75cac2b26145b007512",
+            "url": "https://api.github.com/repos/goalgorilla/open_social/zipball/9f59d09c2844e5278ab7379e7a2d5b98dae50f34",
+            "reference": "9f59d09c2844e5278ab7379e7a2d5b98dae50f34",
             "shasum": ""
         },
         "require": {
@@ -9336,7 +9336,7 @@
             "drupal/block_field": "1.0-alpha8",
             "drupal/bootstrap": "3.17",
             "drupal/config_update": "1.6",
-            "drupal/core": "~8.6.14",
+            "drupal/core": "~8.6.15",
             "drupal/crop": "1.5",
             "drupal/csv_serialization": "1.4.0",
             "drupal/ctools": "3.0",
@@ -9393,7 +9393,7 @@
             "swiftmailer/swiftmailer": "v5.4.12",
             "zaporylie/composer-drupal-optimizations": "^1.0"
         },
-        "time": "2019-04-16T09:04:57+00:00",
+        "time": "2019-04-18T07:39:11+00:00",
         "type": "drupal-profile",
         "extra": {
             "enable-patching": true,
