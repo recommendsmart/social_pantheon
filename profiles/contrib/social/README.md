@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/goalgorilla/open_social.svg?branch=8.x-4.x)](https://travis-ci.org/goalgorilla/open_social)
+[![Build Status](https://travis-ci.org/goalgorilla/open_social.svg?branch=8.x-5.x)](https://travis-ci.org/goalgorilla/open_social)
 
 # Open Social
 The install profile for the

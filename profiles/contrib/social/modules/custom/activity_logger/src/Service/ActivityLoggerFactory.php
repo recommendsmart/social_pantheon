@@ -4,6 +4,7 @@ namespace Drupal\activity_logger\Service;
 
 use Drupal\Core\Entity\Entity;
 use Drupal\message\Entity\Message;
+use Drupal\user\EntityOwnerInterface;
 
 /**
  * Class ActivityLoggerFactory.
@@ -39,10 +40,17 @@ class ActivityLoggerFactory {
 
       // Set the values.
       $new_message['template'] = $message_type;
-      $new_message['created'] = $entity->getCreatedTime();
+
+      // The flagging entity does not implement getCreatedTime().
+      if ($entity->getEntityTypeId() === 'flagging') {
+        $new_message['created'] = $entity->get('created')->value;
+      }
+      else {
+        $new_message['created'] = $entity->getCreatedTime();
+      }
 
       // Get the owner or default to anonymous.
-      if (method_exists($entity, 'getOwner') && $entity->getOwner() !== NULL) {
+      if ($entity instanceof EntityOwnerInterface && $entity->getOwner() !== NULL) {
         $new_message['uid'] = $entity->getOwner()->id();
       }
       else {

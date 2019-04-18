@@ -54,14 +54,15 @@ class MediaLibrarySelectForm extends FieldPluginBase {
     $form[$this->options['id']]['#tree'] = TRUE;
     foreach ($this->view->result as $row_index => $row) {
       $entity = $this->getEntity($row);
-      $form[$this->options['id']][$row_index] = [
+      $checkbox = $entity ? [
         '#type' => 'checkbox',
         '#title' => $this->t('Select @label', [
           '@label' => $entity->label(),
         ]),
         '#title_display' => 'invisible',
         '#return_value' => $entity->id(),
-      ];
+      ] : [];
+      $form[$this->options['id']][$row_index] = $checkbox;
     }
 
     // @todo Remove in https://www.drupal.org/project/drupal/issues/2504115

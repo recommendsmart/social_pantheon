@@ -20,7 +20,7 @@
         "doctrine/inflector": "1.1.0",
         "drupal/easy_install": "^10.1",
 		"drupal/blizz_dynamic_entitylist": "^2.34",
-        "goalgorilla/open_social": "^4.1",
+        "goalgorilla/open_social": ">=5.0",
         "drupal/eck": "^1.0",
         "drupal/transaction": "^1.0",
         "drupal/transaction_workflow": "^1.0",

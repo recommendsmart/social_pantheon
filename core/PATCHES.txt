@@ -21,3 +21,11 @@ Optimize getCommentedEntity()
 Source: https://www.drupal.org/files/issues/get-commented-entity-2580551.52.patch
 
 
+#states cannot check/uncheck 'radios' and 'checkboxes' elements
+Source: https://www.drupal.org/files/issues/drupal-994360-74-states-checkboxes-checked.patch
+
+
+Multiple usages of FieldPluginBase::getEntity do not check for NULL, leading to WSOD
+Source: https://www.drupal.org/files/issues/2018-10-17/drupal-3007424-2-Multiple-usages-of-FieldPluginBase-getEntity.patch
+
+

@@ -36,7 +36,11 @@ class EntityLink extends LinkBase {
    */
   protected function getUrlInfo(ResultRow $row) {
     $template = $this->getEntityLinkTemplate();
-    return $this->getEntity($row)->toUrl($template)->setAbsolute($this->options['absolute']);
+    $entity = $this->getEntity($row);
+    if (!$entity) {
+      return NULL;
+    }
+    return $entity->toUrl($template)->setAbsolute($this->options['absolute']);
   }
 
   /**

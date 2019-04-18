@@ -362,10 +362,12 @@ class EntityCollectionManager implements EntityCollectionManagerInterface {
       $field->removeItem($index);
     }
 
-    if (!$field->isEmpty() || $entityCollection->getOwnerId() === $user->id()) {
+    if ($entityCollection->getOwnerId() === $user->id()) {
       $owner = $field->first() === NULL ? 0 : $field->first()->getValue()['target_id'];
       $entityCollection->setOwnerId((int) $owner);
-      $field->removeItem(0);
+      if (!$field->isEmpty()) {
+        $field->removeItem(0);
+      }
     }
 
     $entityCollection->save();
