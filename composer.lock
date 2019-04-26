@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f4808902317afebc3a0ce76e38357f6d",
+    "content-hash": "7850a9902f0e868dae8a292cdeb307ba",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -387,7 +387,7 @@
             "version": "v0.7.6",
             "source": {
                 "type": "git",
-                "url": "git@github.com:fians/Waves.git",
+                "url": "https://github.com/fians/Waves.git",
                 "reference": "1985b7e18327f86f1bb640efe3a2ab4b4fea4078"
             },
             "dist": {
@@ -2881,6 +2881,61 @@
             }
         },
         {
+            "name": "drupal/datatables",
+            "version": "1.0.0-rc1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/datatables.git",
+                "reference": "8.x-1.0-rc1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/datatables-8.x-1.0-rc1.zip",
+                "reference": "8.x-1.0-rc1",
+                "shasum": "ecf4b90565e75babf2cb8f95b2f905cc8ecaf56d"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-rc1",
+                    "datestamp": "1472406239",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Arkener",
+                    "homepage": "https://www.drupal.org/user/2284182"
+                },
+                {
+                    "name": "diqidoq",
+                    "homepage": "https://www.drupal.org/user/1001934"
+                },
+                {
+                    "name": "duellj",
+                    "homepage": "https://www.drupal.org/user/168159"
+                }
+            ],
+            "description": "Provides integration of the jquery DataTables plugin into views.",
+            "homepage": "https://www.drupal.org/project/datatables",
+            "support": {
+                "source": "https://git.drupalcode.org/project/datatables"
+            }
+        },
+        {
             "name": "drupal/date_recur",
             "version": "2.0.0-beta3",
             "source": {
@@ -3656,6 +3711,54 @@
                 "source": "http://cgit.drupalcode.org/entity_collector",
                 "issues": "https://www.drupal.org/project/issues/entity_collector",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
+            }
+        },
+        {
+            "name": "drupal/entity_extra_field",
+            "version": "1.0.0-alpha2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/entity_extra_field.git",
+                "reference": "8.x-1.0-alpha2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/entity_extra_field-8.x-1.0-alpha2.zip",
+                "reference": "8.x-1.0-alpha2",
+                "shasum": "4db2249f73778900cb384bf92159ae73689945ac"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha2",
+                    "datestamp": "1556117284",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Travis Tomka",
+                    "homepage": "https://www.drupal.org/user/718562",
+                    "email": "underoathosx@gmail.com"
+                }
+            ],
+            "description": "Expose various extra fields on any entity display.",
+            "homepage": "https://www.drupal.org/project/entity_extra_field",
+            "support": {
+                "source": "https://git.drupalcode.org/project/entity_extra_field"
             }
         },
         {
@@ -5812,7 +5915,8 @@
             "homepage": "https://www.drupal.org/project/multivaluefield",
             "support": {
                 "source": "https://git.drupalcode.org/project/multivaluefield"
-            }
+            },
+            "time": "2019-02-12T14:10:42+00:00"
         },
         {
             "name": "drupal/ordered_list",
@@ -7586,6 +7690,53 @@
             "homepage": "https://www.drupal.org/project/switch_page_theme",
             "support": {
                 "source": "https://git.drupalcode.org/project/switch_page_theme"
+            }
+        },
+        {
+            "name": "drupal/term_reference_fancytree",
+            "version": "1.0.0-alpha5",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/term_reference_fancytree.git",
+                "reference": "8.x-1.0-alpha5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/term_reference_fancytree-8.x-1.0-alpha5.zip",
+                "reference": "8.x-1.0-alpha5",
+                "shasum": "8bc2d4cac63364ef335cb8269877a0786d4482d2"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha5",
+                    "datestamp": "1556068984",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "kyuubi",
+                    "homepage": "https://www.drupal.org/user/652554"
+                }
+            ],
+            "description": "Provides a tree like widget for term reference fields using the Fancytree plugin.",
+            "homepage": "https://www.drupal.org/project/term_reference_fancytree",
+            "support": {
+                "source": "https://git.drupalcode.org/project/term_reference_fancytree"
             }
         },
         {
