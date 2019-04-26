@@ -1623,6 +1623,78 @@
         }
     },
     {
+        "name": "drupal/aggrid",
+        "version": "1.0.0-alpha24",
+        "version_normalized": "1.0.0.0-alpha24",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/aggrid.git",
+            "reference": "8.x-1.0-alpha24"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/aggrid-8.x-1.0-alpha24.zip",
+            "reference": "8.x-1.0-alpha24",
+            "shasum": "ce3d890d21ee2eabf9a8b90958ead859dac6be5f"
+        },
+        "require": {
+            "drupal/core": "*"
+        },
+        "require-dev": {
+            "drupal/diff": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.0-alpha24",
+                "datestamp": "1555900388",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Project has not opted into security advisory coverage!"
+                }
+            },
+            "drush": {
+                "services": {
+                    "drush.services.yml": "^9"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Drupal\\aggrid\\": "src/"
+            }
+        },
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Michael Feranda (mferanda)",
+                "homepage": "https://www.drupal.org/u/mferanda",
+                "role": "Maintainer"
+            },
+            {
+                "name": "mferanda",
+                "homepage": "https://www.drupal.org/user/3541484"
+            }
+        ],
+        "description": "Adds ag-Grid to Drupal 8 Form API",
+        "homepage": "https://www.drupal.org/project/aggrid",
+        "keywords": [
+            "Drupal"
+        ],
+        "support": {
+            "source": "http://cgit.drupalcode.org/aggrid",
+            "issues": "https://www.drupal.org/project/issues/aggrid",
+            "docs": "https://www.drupal.org/docs/8/modules/aggrid"
+        }
+    },
+    {
         "name": "drupal/auto_entitylabel",
         "version": "2.1.0-beta1",
         "version_normalized": "2.1.0.0-beta1",
@@ -4396,55 +4468,6 @@
         }
     },
     {
-        "name": "drupal/financial",
-        "version": "1.0.0",
-        "version_normalized": "1.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupalcode.org/project/financial.git",
-            "reference": "8.x-1.0"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/financial-8.x-1.0.zip",
-            "reference": "8.x-1.0",
-            "shasum": "761ebb8a3742f60e8e241da158145a89fe60844a"
-        },
-        "require": {
-            "drupal/core": "~8.0"
-        },
-        "type": "drupal-module",
-        "extra": {
-            "branch-alias": {
-                "dev-1.x": "1.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-1.0",
-                "datestamp": "1498111743",
-                "security-coverage": {
-                    "status": "not-covered",
-                    "message": "Project has not opted into security advisory coverage!"
-                }
-            }
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0-or-later"
-        ],
-        "authors": [
-            {
-                "name": "gaurav.kapoor",
-                "homepage": "https://www.drupal.org/user/3495331"
-            }
-        ],
-        "description": "To Provide the useful financial calculator tools for loans, car/auto loans, compound interest, savings, mortgages and more.",
-        "homepage": "https://www.drupal.org/project/financial",
-        "support": {
-            "source": "http://cgit.drupalcode.org/financial"
-        }
-    },
-    {
         "name": "drupal/flag",
         "version": "4.0.0-alpha3",
         "version_normalized": "4.0.0.0-alpha3",
@@ -4525,55 +4548,6 @@
         "homepage": "https://www.drupal.org/project/flag",
         "support": {
             "source": "http://cgit.drupalcode.org/flag"
-        }
-    },
-    {
-        "name": "drupal/flag_attendance_field",
-        "version": "1.0.0",
-        "version_normalized": "1.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupalcode.org/project/flag_attendance_field.git",
-            "reference": "8.x-1.0"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/flag_attendance_field-8.x-1.0.zip",
-            "reference": "8.x-1.0",
-            "shasum": "31c69ad1e5ad5f098f41139664d6a90ccce2a713"
-        },
-        "require": {
-            "drupal/core": "*"
-        },
-        "type": "drupal-module",
-        "extra": {
-            "branch-alias": {
-                "dev-1.x": "1.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-1.0",
-                "datestamp": "1523863384",
-                "security-coverage": {
-                    "status": "not-covered",
-                    "message": "Project has not opted into security advisory coverage!"
-                }
-            }
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0-or-later"
-        ],
-        "authors": [
-            {
-                "name": "Anas_maw",
-                "homepage": "https://www.drupal.org/user/3258840"
-            }
-        ],
-        "description": "Provides ContentEntityExampleContact entity.",
-        "homepage": "https://www.drupal.org/project/flag_attendance_field",
-        "support": {
-            "source": "http://cgit.drupalcode.org/flag_attendance_field"
         }
     },
     {
@@ -6056,60 +6030,6 @@
         "homepage": "https://www.drupal.org/project/module_filter",
         "support": {
             "source": "http://cgit.drupalcode.org/module_filter"
-        }
-    },
-    {
-        "name": "drupal/multivaluefield",
-        "version": "1.0.5-dev",
-        "version_normalized": "1.0.5.0-dev",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupalcode.org/project/multivaluefield.git",
-            "reference": "8.x-1.0-alpha2"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/multivaluefield-8.x-1.0-alpha2.zip",
-            "reference": "8.x-1.0-alpha2",
-            "shasum": "0161d6019db1f816b8d169146b4f0ffb57cd8dce"
-        },
-        "require": {
-            "drupal/core": "~8.0"
-        },
-        "type": "drupal-module",
-        "extra": {
-            "branch-alias": {
-                "dev-1.x": "1.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-1.0-alpha2",
-                "datestamp": "1549981084",
-                "security-coverage": {
-                    "status": "not-covered",
-                    "message": "Project has not opted into security advisory coverage!"
-                }
-            }
-        },
-        "installation-source": "source",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Nuwantha",
-                "homepage": "https://www.drupal.org/user/3250178",
-                "role": "Admin"
-            },
-            {
-                "name": "iwsp",
-                "homepage": "https://www.drupal.org/user/3514484"
-            }
-        ],
-        "description": "Drupal 8 module to store multiple values in one field.",
-        "homepage": "https://www.drupal.org/project/multivaluefield",
-        "support": {
-            "source": "https://git.drupalcode.org/project/multivaluefield"
         }
     },
     {

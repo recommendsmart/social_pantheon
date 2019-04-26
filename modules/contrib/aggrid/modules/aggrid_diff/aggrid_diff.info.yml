@@ -1,0 +1,16 @@
+name: 'ag-Grid Diff'
+type: module
+description: 'Provides a setting to allow diff module to use ag-Grid.'
+package: ag-Grid
+# core: 8.x
+dependencies:
+  - drupal:field
+  - drupal:node
+  - aggrid:aggrid
+  - diff:diff
+
+# Information added by Drupal.org packaging script on 2019-04-22
+version: '8.x-1.0-alpha24'
+core: '8.x'
+project: 'aggrid'
+datestamp: 1555900390

@@ -154,6 +154,7 @@ class ComposerStaticInitDrupal8
         array (
             'Drupal\\social\\Behat\\' => 20,
             'Drupal\\drush9_example\\' => 22,
+            'Drupal\\aggrid\\' => 14,
             'Drupal\\Driver\\' => 14,
             'Drupal\\Core\\' => 12,
             'Drupal\\Component\\' => 17,
@@ -437,6 +438,10 @@ class ComposerStaticInitDrupal8
         'Drupal\\drush9_example\\' => 
         array (
             0 => __DIR__ . '/../..' . '/modules/contrib/duration_field/src',
+        ),
+        'Drupal\\aggrid\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/modules/contrib/aggrid/src',
         ),
         'Drupal\\Driver\\' => 
         array (

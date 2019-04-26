@@ -1,0 +1,5 @@
+entity.aggrid.add_form:
+  route_name: entity.aggrid.add_form
+  title: 'Add ag-Grid'
+  appears_on:
+    - entity.aggrid.collection

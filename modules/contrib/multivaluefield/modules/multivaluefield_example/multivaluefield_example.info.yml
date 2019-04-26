@@ -1,6 +1,0 @@
-name: Multi Value Field Examples
-type: module
-description: "Examples of multivaluefield usage."
-core: '8.x'
-
-version: 1.0.0-dev

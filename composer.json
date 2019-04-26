@@ -40,8 +40,6 @@
         "drupal/fences": "^2.0@alpha",
         "drupal/entity_collector": "^1.0",
         "drupal/social_course": "^2.0",
-        "drupal/multivaluefield": "^1.0",
-        "drupal/flag_attendance_field": "^1.0",
         "drupal/state_form_entity": "1.x-dev",
         "farmsys/farmsys_asset": "dev-master",
         "farmsys/liability": "dev-master",
@@ -50,7 +48,6 @@
 		"drupal/forms_steps": "^1.0",
         "drupal/date_recur_modular": "^1.0",
         "drupal/social_geolocation": "^1.0",
-        "drupal/financial": "^1.0",
         "drupal/simple_calculator": "^1.1",
         "drupal/age_calculator": "^2.0",
         "drupal/content_planner": "^1.0",
@@ -84,7 +81,8 @@
         "drupal/go_back": "^1.0",
         "drupal/entity_extra_field": "^1.0",
         "drupal/datatables": "^1.0",
-        "drupal/term_reference_fancytree": "^1.0"						  							 
+        "drupal/term_reference_fancytree": "^1.0",
+        "drupal/aggrid": "^1.0"						  							 
         },
     "repositories": [
         {
