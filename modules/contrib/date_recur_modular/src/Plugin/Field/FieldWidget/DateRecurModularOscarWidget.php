@@ -78,6 +78,44 @@ class DateRecurModularOscarWidget extends DateRecurModularWidgetBase {
   /**
    * {@inheritdoc}
    */
+  public static function defaultSettings(): array {
+    return [
+      'all_day_toggle' => TRUE,
+    ] + parent::defaultSettings();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function settingsSummary(): array {
+    $summary = parent::settingsSummary();
+
+    $summary[] = $this->isAllDayToggleEnabled() ?
+      $this->t('All day toggle: enabled') :
+      $this->t('All day toggle: disabled');
+
+    return $summary;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function settingsForm(array $form, FormStateInterface $form_state): array {
+    $elements = parent::settingsForm($form, $form_state);
+
+    $elements['all_day_toggle'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable all-day toggle'),
+      '#description' => $this->t('Whether to enable the all-day/between toggle.'),
+      '#default_value' => $this->getSetting('all_day_toggle'),
+    ];
+
+    return $elements;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   protected function getModes(): array {
     return [
       static::MODE_ONCE => $this->t('Once'),
@@ -192,6 +230,7 @@ class DateRecurModularOscarWidget extends DateRecurModularWidgetBase {
         static::IS_ALL_DAY_ALL => $this->t('All day'),
         static::IS_ALL_DAY_PARTIAL => $this->t('Between time'),
       ],
+      '#access' => $this->isAllDayToggleEnabled(),
     ];
 
     $element['times'] = [
@@ -285,9 +324,15 @@ class DateRecurModularOscarWidget extends DateRecurModularWidgetBase {
   public static function validateModularWidget(array &$element, FormStateInterface $form_state, array &$complete_form): void {
     /** @var string|null $dayStartString */
     $dayStartString = $form_state->getValue(array_merge($element['#parents'], ['day_start']));
-    if (empty($dayStartString)) {
-      // Skip if empty.
+    $timeStartString = $form_state->getValue(array_merge($element['#parents'], ['times', 'time_start']), '');
+    $timeEndString = $form_state->getValue(array_merge($element['#parents'], ['times', 'time_end']), '');
+    $hasAnyDateTimeInput = !empty($dayStartString) || !empty($timeStartString) || !empty($timeEndString);
+
+    if (!$hasAnyDateTimeInput) {
+      // Skip if all of date and times are empty.
       $form_state->setValueForElement($element['day_start'], NULL);
+      $form_state->setValueForElement($element['times']['time_start'], NULL);
+      $form_state->setValueForElement($element['times']['time_end'], NULL);
       return;
     }
 
@@ -327,7 +372,6 @@ class DateRecurModularOscarWidget extends DateRecurModularWidgetBase {
       };
 
       try {
-        $timeStartString = $form_state->getValue(array_merge($element['#parents'], ['times', 'time_start']), '');
         $timeStartString = $fixTime($timeStartString);
         $startDate = DrupalDateTime::createFromFormat(static::HTML_TIME_FORMAT, $timeStartString, $timeZone);
         $startDate->setDate(...$baseDayParts);
@@ -339,7 +383,6 @@ class DateRecurModularOscarWidget extends DateRecurModularWidgetBase {
       }
 
       try {
-        $timeEndString = $form_state->getValue(array_merge($element['#parents'], ['times', 'time_end']), '');
         $timeEndString = $fixTime($timeEndString);
         $endDate = DrupalDateTime::createFromFormat(static::HTML_TIME_FORMAT, $timeEndString, $timeZone);
         $endDate->setDate(...$baseDayParts);
@@ -349,6 +392,10 @@ class DateRecurModularOscarWidget extends DateRecurModularWidgetBase {
         $form_state->setError($element['times']['time_end'], \t('Invalid end time.'));
         return;
       }
+    }
+
+    if ($endDate->getPhpDateTime() < $startDate->getPhpDateTime()) {
+      $form_state->setError($element['times']['time_end'], 'End time must be after start time.');
     }
 
     $form_state->setValueForElement($element['times']['time_start'], $startDate);
@@ -532,6 +579,16 @@ class DateRecurModularOscarWidget extends DateRecurModularWidgetBase {
       ],
       '#default_value' => $ordinals,
     ];
+  }
+
+  /**
+   * Whether all day toggle is enabled.
+   *
+   * @return bool
+   *   Whether all day toggle is enabled.
+   */
+  protected function isAllDayToggleEnabled(): bool {
+    return !empty($this->getSetting('all_day_toggle'));
   }
 
 }

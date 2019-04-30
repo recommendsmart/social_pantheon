@@ -3111,18 +3111,18 @@
     },
     {
         "name": "drupal/date_recur",
-        "version": "2.0.0-beta3",
-        "version_normalized": "2.0.0.0-beta3",
+        "version": "2.0.0-beta4",
+        "version_normalized": "2.0.0.0-beta4",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/date_recur.git",
-            "reference": "8.x-2.0-beta3"
+            "reference": "8.x-2.0-beta4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/date_recur-8.x-2.0-beta3.zip",
-            "reference": "8.x-2.0-beta3",
-            "shasum": "1abfa30157334edafd8dd95219ee466aaa9f0bf6"
+            "url": "https://ftp.drupal.org/files/projects/date_recur-8.x-2.0-beta4.zip",
+            "reference": "8.x-2.0-beta4",
+            "shasum": "49fda86003ab562acd83b5915e2c95eb516393c0"
         },
         "require": {
             "drupal/core": "^8.6",
@@ -3141,8 +3141,8 @@
                 "dev-2.x": "2.x-dev"
             },
             "drupal": {
-                "version": "8.x-2.0-beta3",
-                "datestamp": "1549266780",
+                "version": "8.x-2.0-beta4",
+                "datestamp": "1556606885",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Beta releases are not covered by Drupal security advisories."
@@ -3176,18 +3176,18 @@
     },
     {
         "name": "drupal/date_recur_modular",
-        "version": "1.0.0-alpha1",
-        "version_normalized": "1.0.0.0-alpha1",
+        "version": "1.0.0-alpha2",
+        "version_normalized": "1.0.0.0-alpha2",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/date_recur_modular.git",
-            "reference": "8.x-1.0-alpha1"
+            "reference": "8.x-1.0-alpha2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/date_recur_modular-8.x-1.0-alpha1.zip",
-            "reference": "8.x-1.0-alpha1",
-            "shasum": "3faaa8cb36e07eebfcb17084bfbe76231706a9ec"
+            "url": "https://ftp.drupal.org/files/projects/date_recur_modular-8.x-1.0-alpha2.zip",
+            "reference": "8.x-1.0-alpha2",
+            "shasum": "7793019fc7202ddb7b4ed6bfb9f292732233a5c1"
         },
         "require": {
             "drupal/core": "~8.0",
@@ -3199,8 +3199,8 @@
                 "dev-1.x": "1.x-dev"
             },
             "drupal": {
-                "version": "8.x-1.0-alpha1",
-                "datestamp": "1550395684",
+                "version": "8.x-1.0-alpha2",
+                "datestamp": "1556602985",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Project has not opted into security advisory coverage!"
@@ -4920,40 +4920,88 @@
     },
     {
         "name": "drupal/geolocation",
-        "version": "1.11.0",
-        "version_normalized": "1.11.0.0",
+        "version": "dev-2.x",
+        "version_normalized": "dev-2.x",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/geolocation.git",
-            "reference": "8.x-1.11"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/geolocation-8.x-1.11.zip",
-            "reference": "8.x-1.11",
-            "shasum": "a401d5c576a8c4886e84272f2ca2a3c524c46869"
+            "reference": "264a4a5f1585d58b3c055cc4a0f55fff424f117a"
         },
         "require": {
             "drupal/core": "*"
         },
+        "require-dev": {
+            "drupal/address": "*",
+            "drupal/geofield": "*",
+            "drupal/geolocation_demo": "*",
+            "drupal/geolocation_google_maps": "*",
+            "drupal/geolocation_google_maps_demo": "*",
+            "drupal/geolocation_google_static_maps": "*",
+            "drupal/geolocation_leaflet": "*",
+            "drupal/search_api": "*",
+            "drupal/search_api_location": "*"
+        },
         "type": "drupal-module",
         "extra": {
             "branch-alias": {
-                "dev-1.x": "1.x-dev"
+                "dev-2.x": "2.x-dev"
             },
             "drupal": {
-                "version": "8.x-1.11",
-                "datestamp": "1505687043",
+                "version": "8.x-2.0-beta1+204-dev",
+                "datestamp": "1554457081",
                 "security-coverage": {
-                    "status": "covered",
-                    "message": "Covered by Drupal's security advisory policy"
+                    "status": "not-covered",
+                    "message": "Dev releases are not covered by Drupal security advisories."
                 }
             }
         },
-        "installation-source": "dist",
+        "installation-source": "source",
         "notification-url": "https://packages.drupal.org/8/downloads",
         "license": [
             "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "derjochenmeyer",
+                "homepage": "https://www.drupal.org/u/derjochenmeyer"
+            },
+            {
+                "name": "cadamski",
+                "homepage": "https://www.drupal.org/u/cadamski"
+            }
+        ],
+        "description": "Provides a simple geolocation Drupal field type to store and display location data (lat, lng).",
+        "homepage": "https://www.drupal.org/project/geolocation",
+        "support": {
+            "source": "http://git.drupal.org/project/geolocation.git",
+            "issues": "https://www.drupal.org/project/issues/geolocation"
+        }
+    },
+    {
+        "name": "drupal/geolocation_leaflet",
+        "version": "dev-2.x",
+        "version_normalized": "dev-2.x",
+        "require": {
+            "drupal/core": "~8.0",
+            "drupal/geolocation": "self.version"
+        },
+        "type": "metapackage",
+        "extra": {
+            "branch-alias": {
+                "dev-2.x": "2.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-2.0-beta1+204-dev",
+                "datestamp": "1554457081",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Dev releases are not covered by Drupal security advisories."
+                }
+            }
+        },
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
         ],
         "authors": [
             {
@@ -4965,10 +5013,10 @@
                 "homepage": "https://www.drupal.org/user/106134"
             }
         ],
-        "description": "Provides a simple geolocation Drupal field type to store and display location data (lat, lng).",
+        "description": "Leaflet map provider.",
         "homepage": "https://www.drupal.org/project/geolocation",
         "support": {
-            "source": "http://cgit.drupalcode.org/geolocation"
+            "source": "https://git.drupalcode.org/project/geolocation"
         }
     },
     {
@@ -7513,7 +7561,7 @@
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/social_course.git",
-            "reference": "7d5d379ae6ee39a5ba0a0f5a57ac57def9c372ae"
+            "reference": "b771244f841944fb7c19b3029db472297bd67ad9"
         },
         "require": {
             "drupal/core": "*",
@@ -7528,8 +7576,8 @@
                 "dev-2.x": "2.x-dev"
             },
             "drupal": {
-                "version": "8.x-2.2+1-dev",
-                "datestamp": "1551110590",
+                "version": "8.x-2.3+0-dev",
+                "datestamp": "1555338184",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Project has not opted into security advisory coverage!"
@@ -7576,18 +7624,18 @@
     },
     {
         "name": "drupal/social_geolocation",
-        "version": "1.0.0-alpha4",
-        "version_normalized": "1.0.0.0-alpha4",
+        "version": "1.0.0-alpha6",
+        "version_normalized": "1.0.0.0-alpha6",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/social_geolocation.git",
-            "reference": "8.x-1.0-alpha4"
+            "reference": "8.x-1.0-alpha6"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/social_geolocation-8.x-1.0-alpha4.zip",
-            "reference": "8.x-1.0-alpha4",
-            "shasum": "4dcc287334e0b13f19aac0e6a5471b6ff251291d"
+            "url": "https://ftp.drupal.org/files/projects/social_geolocation-8.x-1.0-alpha6.zip",
+            "reference": "8.x-1.0-alpha6",
+            "shasum": "822baf76d9ca20f4301932e2821252983c7712ba"
         },
         "require": {
             "drupal/address": "*",
@@ -7595,7 +7643,11 @@
             "drupal/geocoder": "~2.0",
             "drupal/geocoder_address": "*",
             "drupal/geocoder_field": "*",
-            "drupal/geolocation": "~1.11"
+            "drupal/geolocation": "2.x-dev",
+            "drupal/geolocation_leaflet": "*"
+        },
+        "require-dev": {
+            "drupal/geolocation_leaflet": "*"
         },
         "type": "drupal-module",
         "extra": {
@@ -7603,8 +7655,8 @@
                 "dev-1.x": "1.x-dev"
             },
             "drupal": {
-                "version": "8.x-1.0-alpha4",
-                "datestamp": "1545385081",
+                "version": "8.x-1.0-alpha6",
+                "datestamp": "1556541485",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Project has not opted into security advisory coverage!"
@@ -7622,6 +7674,10 @@
                 "homepage": "https://www.drupal.org/user/272162"
             },
             {
+                "name": "Kingdutch",
+                "homepage": "https://www.drupal.org/user/1868952"
+            },
+            {
                 "name": "jaapjan",
                 "homepage": "https://www.drupal.org/user/555428"
             },
@@ -7633,7 +7689,7 @@
         "description": "Provides geolocation functionality for groups, events and users in the Open Social distribution.",
         "homepage": "http://drupal.org/project/social_geolocation",
         "support": {
-            "source": "http://cgit.drupalcode.org/social_geolocation",
+            "source": "https://git.drupalcode.org/project/social_geolocation",
             "error": "Invalid dependency: \"social_profile\" is an unknown drupal 8 package name"
         }
     },
@@ -9612,17 +9668,17 @@
     },
     {
         "name": "google/apiclient-services",
-        "version": "v0.94",
-        "version_normalized": "0.94.0.0",
+        "version": "v0.96",
+        "version_normalized": "0.96.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/googleapis/google-api-php-client-services.git",
-            "reference": "9686fc7dfd5b92dd9ff075bdcd674cd5c15294be"
+            "reference": "c03d878a948843844428e440e18b760b5d7a744e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/9686fc7dfd5b92dd9ff075bdcd674cd5c15294be",
-            "reference": "9686fc7dfd5b92dd9ff075bdcd674cd5c15294be",
+            "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/c03d878a948843844428e440e18b760b5d7a744e",
+            "reference": "c03d878a948843844428e440e18b760b5d7a744e",
             "shasum": ""
         },
         "require": {
@@ -9631,7 +9687,7 @@
         "require-dev": {
             "phpunit/phpunit": "~4.8"
         },
-        "time": "2019-04-13T00:23:08+00:00",
+        "time": "2019-04-28T00:23:08+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -13398,17 +13454,17 @@
     },
     {
         "name": "twig/twig",
-        "version": "v1.39.1",
-        "version_normalized": "1.39.1.0",
+        "version": "v1.40.1",
+        "version_normalized": "1.40.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/twigphp/Twig.git",
-            "reference": "23e7b6f0cfa1d7ba3de69f30d8e05cf957412fec"
+            "reference": "35889516bbd6bbe46a600c2c33b03515df4a076e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/twigphp/Twig/zipball/23e7b6f0cfa1d7ba3de69f30d8e05cf957412fec",
-            "reference": "23e7b6f0cfa1d7ba3de69f30d8e05cf957412fec",
+            "url": "https://api.github.com/repos/twigphp/Twig/zipball/35889516bbd6bbe46a600c2c33b03515df4a076e",
+            "reference": "35889516bbd6bbe46a600c2c33b03515df4a076e",
             "shasum": ""
         },
         "require": {
@@ -13420,11 +13476,11 @@
             "symfony/debug": "^2.7",
             "symfony/phpunit-bridge": "^3.4.19|^4.1.8"
         },
-        "time": "2019-04-16T17:12:57+00:00",
+        "time": "2019-04-29T14:12:28+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.39-dev"
+                "dev-master": "1.40-dev"
             }
         },
         "installation-source": "dist",

@@ -21,12 +21,12 @@ third_party_settings:
     hidden: true
     disabled: false
     plugins:
+    - nominatim
     - googlemaps
-    - openstreetmap
     dumper: geolocation
     delta_handling: s_to_m
     failure:
-      handling: preserve
+      handling: empty
       status_message: true
       log: true
 id: group.open_group.field_group_geolocation

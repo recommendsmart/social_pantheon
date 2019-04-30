@@ -8,13 +8,14 @@ dependencies:
   - geocoder:geocoder_address
   - geocoder:geocoder_field
   - geolocation:geolocation
+  - geolocation:geolocation_leaflet
   - social_event
   - social_group
   - social_profile
 package: Social
 
-# Information added by Drupal.org packaging script on 2018-12-21
-version: '8.x-1.0-alpha4'
+# Information added by Drupal.org packaging script on 2019-04-29
+version: '8.x-1.0-alpha6'
 core: '8.x'
 project: 'social_geolocation'
-datestamp: 1545385084
+datestamp: 1556541492

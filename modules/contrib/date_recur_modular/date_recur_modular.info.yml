@@ -7,8 +7,8 @@ package: Field types
 dependencies:
   - date_recur:date_recur (>=8.x-2.x)
 
-# Information added by Drupal.org packaging script on 2019-02-17
-version: '8.x-1.0-alpha1'
+# Information added by Drupal.org packaging script on 2019-04-30
+version: '8.x-1.0-alpha2'
 core: '8.x'
 project: 'date_recur_modular'
-datestamp: 1550395692
+datestamp: 1556602988
