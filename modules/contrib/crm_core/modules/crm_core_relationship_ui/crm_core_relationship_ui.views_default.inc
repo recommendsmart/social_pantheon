@@ -1,6 +1,13 @@
 <?php
 
 /**
+ * @file
+ * CRM Core Relationship UI Views Default.
+ *
+ * @TODO: Unported.
+ */
+
+/**
  * Implements hook_views_default_views().
  */
 function crm_core_relationship_ui_views_default_views() {
@@ -31,7 +38,7 @@ function crm_core_relationship_ui_views_default_views() {
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['style_plugin'] = 'table';
-  $handler->display->display_options['style_options']['columns'] = array(
+  $handler->display->display_options['style_options']['columns'] = [
     'rid' => 'rid',
     'endpoints' => 'endpoints',
     'endpoints_1' => 'endpoints_1',
@@ -39,53 +46,53 @@ function crm_core_relationship_ui_views_default_views() {
     'crm_core_relationship_status_1' => 'crm_core_relationship_status_1',
     'delete' => 'delete',
     'nothing' => 'nothing',
-  );
+  ];
   $handler->display->display_options['style_options']['default'] = '-1';
-  $handler->display->display_options['style_options']['info'] = array(
-    'rid' => array(
+  $handler->display->display_options['style_options']['info'] = [
+    'rid' => [
       'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-    'endpoints' => array(
+    ],
+    'endpoints' => [
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-    'endpoints_1' => array(
+    ],
+    'endpoints_1' => [
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-    'edit' => array(
+    ],
+    'edit' => [
       'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-    'crm_core_relationship_status_1' => array(
+    ],
+    'crm_core_relationship_status_1' => [
       'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-    'delete' => array(
+    ],
+    'delete' => [
       'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-    'nothing' => array(
+    ],
+    'nothing' => [
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-    ),
-  );
+    ],
+  ];
   /* Header: Global: Result summary */
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
@@ -194,29 +201,29 @@ function crm_core_relationship_ui_views_default_views() {
   $handler->display->display_options['filters']['relation_type']['id'] = 'relation_type';
   $handler->display->display_options['filters']['relation_type']['table'] = 'relation';
   $handler->display->display_options['filters']['relation_type']['field'] = 'relation_type';
-  $handler->display->display_options['filters']['relation_type']['value'] = array(
+  $handler->display->display_options['filters']['relation_type']['value'] = [
     'crm_employee' => 'crm_employee',
     'crm_friend' => 'crm_friend',
     'crm_member' => 'crm_member',
-  );
+  ];
   $handler->display->display_options['filters']['relation_type']['exposed'] = TRUE;
   $handler->display->display_options['filters']['relation_type']['expose']['operator_id'] = 'relation_type_op';
   $handler->display->display_options['filters']['relation_type']['expose']['label'] = 'Filter by:';
   $handler->display->display_options['filters']['relation_type']['expose']['operator'] = 'relation_type_op';
   $handler->display->display_options['filters']['relation_type']['expose']['identifier'] = 'relation_type';
-  $handler->display->display_options['filters']['relation_type']['expose']['remember_roles'] = array(
+  $handler->display->display_options['filters']['relation_type']['expose']['remember_roles'] = [
     2 => '2',
     1 => 0,
     3 => 0,
-  );
+  ];
   $handler->display->display_options['filters']['relation_type']['expose']['reduce'] = TRUE;
   /* Filter criterion: Relation: Status (crm_core_relationship_status) */
   $handler->display->display_options['filters']['crm_core_relationship_status_value']['id'] = 'crm_core_relationship_status_value';
   $handler->display->display_options['filters']['crm_core_relationship_status_value']['table'] = 'field_data_crm_core_relationship_status';
   $handler->display->display_options['filters']['crm_core_relationship_status_value']['field'] = 'crm_core_relationship_status_value';
-  $handler->display->display_options['filters']['crm_core_relationship_status_value']['value'] = array(
+  $handler->display->display_options['filters']['crm_core_relationship_status_value']['value'] = [
     1 => '1',
-  );
+  ];
 
   /* Display: Active */
   $handler = $view->new_display('page', 'Active', 'active');
@@ -319,29 +326,29 @@ function crm_core_relationship_ui_views_default_views() {
   $handler->display->display_options['filters']['relation_type']['id'] = 'relation_type';
   $handler->display->display_options['filters']['relation_type']['table'] = 'relation';
   $handler->display->display_options['filters']['relation_type']['field'] = 'relation_type';
-  $handler->display->display_options['filters']['relation_type']['value'] = array(
+  $handler->display->display_options['filters']['relation_type']['value'] = [
     'crm_employee' => 'crm_employee',
     'crm_friend' => 'crm_friend',
     'crm_member' => 'crm_member',
-  );
+  ];
   $handler->display->display_options['filters']['relation_type']['exposed'] = TRUE;
   $handler->display->display_options['filters']['relation_type']['expose']['operator_id'] = 'relation_type_op';
   $handler->display->display_options['filters']['relation_type']['expose']['label'] = 'Filter by:';
   $handler->display->display_options['filters']['relation_type']['expose']['operator'] = 'relation_type_op';
   $handler->display->display_options['filters']['relation_type']['expose']['identifier'] = 'relation_type';
-  $handler->display->display_options['filters']['relation_type']['expose']['remember_roles'] = array(
+  $handler->display->display_options['filters']['relation_type']['expose']['remember_roles'] = [
     2 => '2',
     1 => 0,
     3 => 0,
-  );
+  ];
   $handler->display->display_options['filters']['relation_type']['expose']['reduce'] = TRUE;
   /* Filter criterion: Relation: Status (crm_core_relationship_status) */
   $handler->display->display_options['filters']['crm_core_relationship_status_value']['id'] = 'crm_core_relationship_status_value';
   $handler->display->display_options['filters']['crm_core_relationship_status_value']['table'] = 'field_data_crm_core_relationship_status';
   $handler->display->display_options['filters']['crm_core_relationship_status_value']['field'] = 'crm_core_relationship_status_value';
-  $handler->display->display_options['filters']['crm_core_relationship_status_value']['value'] = array(
+  $handler->display->display_options['filters']['crm_core_relationship_status_value']['value'] = [
     0 => '0',
-  );
+  ];
   $handler->display->display_options['path'] = 'crm-core/contact/%/relationships/inactive';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Inactive Relationships';
@@ -352,4 +359,3 @@ function crm_core_relationship_ui_views_default_views() {
 
   return $views;
 }
-

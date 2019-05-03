@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Contains \Drupal\crm_core_match\Matcher\MatcherAccessControlHandler.
- */
 
 namespace Drupal\crm_core_match\Matcher;
 
@@ -22,7 +18,7 @@ class MatcherAccessControlHandler extends EntityAccessControlHandler {
     /** @var \Drupal\crm_core_match\Matcher\MatcherConfigInterface $entity */
     return parent::checkAccess($entity, $operation, $account);
     // Deny delete access.
-    // ->andIf(AccessResult::allowedIf($operation != 'delete'));
+    // ->andIf(AccessResult::allowedIf($operation != 'delete'));.
   }
 
 }

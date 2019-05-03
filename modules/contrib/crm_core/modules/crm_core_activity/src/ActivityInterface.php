@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Contains \Drupal\crm_core_activity\ActivityInterface.
- */
 
 namespace Drupal\crm_core_activity;
 

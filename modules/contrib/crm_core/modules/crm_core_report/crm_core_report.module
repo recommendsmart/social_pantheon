@@ -9,12 +9,12 @@
  * Implements hook_hook_info().
  */
 function crm_core_report_hook_info() {
-  $hooks = array(
+  $hooks = [
     // Registers reports from submodules within CRM Core, for central display.
-    'crm_core_report_register' => array(
+    'crm_core_report_register' => [
       'group' => 'crm_core_report',
-    ),
-  );
+    ],
+  ];
 
   return $hooks;
 }
@@ -23,12 +23,12 @@ function crm_core_report_hook_info() {
  * Implements hook_permission().
  */
 function crm_core_report_permission() {
-  return array(
-    'view crm report index' => array(
+  return [
+    'view crm report index' => [
       'title' => t('View CRM Core report index'),
       'description' => t('View CRM Core report index page.'),
-    ),
-  );
+    ],
+  ];
 }
 
 /**
@@ -36,16 +36,16 @@ function crm_core_report_permission() {
  */
 function crm_core_report_menu() {
 
-  $items = array();
+  $items = [];
 
   // Provides a listing of all reports registered for CRM Core.
-  $items['crm-core/reports'] = array(
+  $items['crm-core/reports'] = [
     'title' => 'Reports',
     'page callback' => 'crm_core_report_list',
-    'access arguments' => array('view crm report index'),
+    'access arguments' => ['view crm report index'],
     'type' => MENU_LOCAL_TASK,
     'file' => 'pages/crm_core_report.pages.inc',
-  );
+  ];
 
   return $items;
 }
@@ -59,31 +59,31 @@ function crm_core_report_theme() {
   // - report items
   // - widgets
   // - report index.
-  return array(
-    'crm_core_report_index' => array(
+  return [
+    'crm_core_report_index' => [
       'template' => 'crm-core-report-index',
-      'variables' => array('reports' => NULL, 'report_items' => array()),
+      'variables' => ['reports' => NULL, 'report_items' => []],
       'path' => drupal_get_path('module', 'crm_core_report') . '/templates',
-    ),
-  );
+    ],
+  ];
 }
 
 /**
  * Preprocess report index.
  */
 function crm_core_report_preprocess_crm_core_report_index(&$variables) {
-  $report_items = array();
+  $report_items = [];
   $reports = $variables['reports'];
   if (!empty($reports)) {
-    foreach ($reports as $key => $item) {
-      $items = array();
+    foreach ($reports as $item) {
+      $items = [];
       foreach ($item['reports'] as $report) {
         $items[] = l($report['title'], $report['path']) . '<br />' . $report['description'];
       }
-      $report_items[] = theme('item_list', array(
+      $report_items[] = theme('item_list', [
         'items' => $items,
         'title' => $item['title'],
-      ));
+      ]);
     }
   }
 
@@ -98,7 +98,7 @@ function crm_core_report_preprocess_crm_core_report_index(&$variables) {
  * everyone with access to the main reports page to see them.
  */
 function hook_crm_core_report_register() {
-  $reports = array();
+  $reports = [];
   foreach (module_implements('crm_core_report_register') as $module) {
     $function = $module . '_crm_core_report_register';
     $reports = array_merge($reports, $function());
@@ -119,13 +119,11 @@ function crm_core_report_init() {
 }
 
 /**
- * Implements hook_preprocess_page
+ * Implements hook_preprocess_page.
  */
-function crm_core_report_preprocess_page($vars){
-  if(arg(0) == 'crm-core'){
+function crm_core_report_preprocess_page($vars) {
+  if (arg(0) == 'crm-core') {
     drupal_add_css(drupal_get_path('module', 'crm_core_report') . '/css/reports.css');
     drupal_add_js(drupal_get_path('module', 'crm_core_report') . '/js/script.js');
-  }  
+  }
 }
-
-

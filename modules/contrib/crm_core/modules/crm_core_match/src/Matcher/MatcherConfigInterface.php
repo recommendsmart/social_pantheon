@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Contains \Drupal\crm_core_match\Matcher\MatcherConfigInterface.
- */
 
 namespace Drupal\crm_core_match\Matcher;
 
@@ -17,7 +13,7 @@ interface MatcherConfigInterface extends ConfigEntityInterface {
   /**
    * Gets the matcher plugin.
    *
-   * @return \Drupal\crm_core_match\Plugin\crm_core_match\engine\MatchEngineInterface.
+   * @return \Drupal\crm_core_match\Plugin\crm_core_match\engine\MatchEngineInterface
    *   Instantiated plugin.
    */
   public function getPlugin();

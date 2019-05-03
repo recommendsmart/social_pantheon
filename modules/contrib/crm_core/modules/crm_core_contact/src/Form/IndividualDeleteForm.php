@@ -14,10 +14,10 @@ class IndividualDeleteForm extends ContentEntityDeleteForm {
    */
   protected function getDeletionMessage() {
     $entity = $this->getEntity();
-    return $this->t('The individual %name (%id) has been deleted.', array(
+    return $this->t('The individual %name (%id) has been deleted.', [
       '%id' => $entity->id(),
       '%name' => $entity->label(),
-    ));
+    ]);
   }
 
 }

@@ -18,14 +18,14 @@ class OrganizationUiTest extends WebTestBase {
    *
    * @var array
    */
-  public static $modules = array(
+  public static $modules = [
     'crm_core_contact',
     'crm_core_activity',
     'crm_core_tests',
     'block',
     'datetime',
     'options',
-  );
+  ];
 
   /**
    * {@inheritdoc}
@@ -60,13 +60,13 @@ class OrganizationUiTest extends WebTestBase {
    */
   public function testOrganizationOperations() {
     // Create user and login.
-    $user = $this->drupalCreateUser(array(
+    $user = $this->drupalCreateUser([
       'administer crm_core_organization entities',
       'administer organization types',
       'create crm_core_organization entities of bundle supplier',
       'view any crm_core_organization entity',
       'view any crm_core_activity entity',
-    ));
+    ]);
     $this->drupalLogin($user);
 
     $this->drupalGet('crm-core');
@@ -109,9 +109,9 @@ class OrganizationUiTest extends WebTestBase {
     $this->assertText('Fam. Bane', 0, 'Updated organization title listed.');
 
     // Create Supplier organization.
-    $supplier_node = array(
+    $supplier_node = [
       'name[0][value]' => 'Example ltd',
-    );
+    ];
     $this->drupalPostForm('crm-core/organization/add/supplier', $supplier_node, 'Save Supplier');
     // Create supplier with no name.
     $this->drupalPostForm('crm-core/organization/add/supplier', [], 'Save Supplier');
@@ -157,9 +157,9 @@ class OrganizationUiTest extends WebTestBase {
     $this->assertText($this->container->get('date.formatter')->format($organization->get('changed')->value, 'short'), 'Organization updated date is available.');
 
     // Edit operation.
-    $supplier_node = array(
+    $supplier_node = [
       'name[0][value]' => 'Another Example ltd',
-    );
+    ];
     $this->drupalPostForm('crm-core/organization/' . $organization->id() . '/edit', $supplier_node, 'Save Supplier');
 
     // Assert we are viewing the entity.
@@ -175,9 +175,9 @@ class OrganizationUiTest extends WebTestBase {
     $this->assertLink('Another Example ltd', 0, 'Updated organization title listed.');
 
     // Delete organizations.
-    $this->drupalPostForm('crm-core/organization/1/delete', array(), t('Delete'));
-    $this->drupalPostForm('crm-core/organization/2/delete', array(), t('Delete'));
-    $this->drupalPostForm('crm-core/organization/3/delete', array(), t('Delete'));
+    $this->drupalPostForm('crm-core/organization/1/delete', [], t('Delete'));
+    $this->drupalPostForm('crm-core/organization/2/delete', [], t('Delete'));
+    $this->drupalPostForm('crm-core/organization/3/delete', [], t('Delete'));
     $this->assertUrl('crm-core/organization');
     $this->assertNoLink('Another Example ltd', 0, 'Deleted organization title no more listed.');
 
@@ -193,7 +193,7 @@ class OrganizationUiTest extends WebTestBase {
    */
   public function testOrganizationTypeOperations() {
     // Create user with permission 'administer organization types'.
-    $user = $this->drupalCreateUser(array('administer organization types'));
+    $user = $this->drupalCreateUser(['administer organization types']);
     $this->drupalLogin($user);
 
     $this->drupalGet('admin/structure/crm-core/organization-types');
@@ -216,7 +216,7 @@ class OrganizationUiTest extends WebTestBase {
     $this->drupalGet('admin/structure/crm-core/organization-types');
 
     // Create organization of type 'supplier.'.
-    Organization::create(array('type' => 'supplier'))->save();
+    Organization::create(['type' => 'supplier'])->save();
 
     $this->drupalGet('admin/structure/crm-core/organization-types');
 

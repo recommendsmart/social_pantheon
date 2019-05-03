@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\crm_core_match\Plugin\crm_core_match\engine\MatchEngineBase.
- */
-
 namespace Drupal\crm_core_match\Plugin\crm_core_match\engine;
 
 use Drupal\Component\Utility\NestedArray;
@@ -108,7 +103,7 @@ abstract class MatchEngineBase extends PluginBase implements MatchEngineInterfac
    * {@inheritdoc}
    */
   public function getRules() {
-    return array();
+    return [];
   }
 
 }

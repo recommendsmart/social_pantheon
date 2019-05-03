@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\crm_core_match\Annotation\CrmCoreMatchEngine.
- */
-
 namespace Drupal\crm_core_match\Annotation;
 
 use Drupal\Component\Annotation\Plugin;
@@ -38,6 +33,5 @@ class CrmCoreMatchEngine extends Plugin {
    * @var \Drupal\Core\StringTranslation\TranslationWrapper
    */
   protected $summary;
-
 
 }

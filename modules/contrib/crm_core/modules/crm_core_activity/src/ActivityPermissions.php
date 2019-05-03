@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Contains \Drupal\crm_core_activity\ActivityPermissions.
- */
 
 namespace Drupal\crm_core_activity;
 

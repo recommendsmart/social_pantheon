@@ -1,14 +1,20 @@
 <?php
+
+/**
+ * @file
+ * Install hooks.
+ */
+
 /**
  * Implements hook_enable().
  */
 function crm_core_report_enable() {
-  $item = array(
+  $item = [
     'link_path' => 'crm-core/reports',
     'link_title' => 'Reports',
     'menu_name' => 'crm-core-menu',
     'weight' => 2,
-  );
+  ];
   menu_link_save($item);
   menu_cache_clear_all();
 }

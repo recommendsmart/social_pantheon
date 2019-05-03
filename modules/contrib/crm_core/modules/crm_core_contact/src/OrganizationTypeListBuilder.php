@@ -21,14 +21,14 @@ class OrganizationTypeListBuilder extends ConfigEntityListBuilder {
    * {@inheritdoc}
    */
   public function buildHeader() {
-    $header = array();
+    $header = [];
 
     $header['title'] = $this->t('Name');
 
-    $header['description'] = array(
+    $header['description'] = [
       'data' => $this->t('Description'),
-      'class' => array(RESPONSIVE_PRIORITY_MEDIUM),
-    );
+      'class' => [RESPONSIVE_PRIORITY_MEDIUM],
+    ];
 
     return $header + parent::buildHeader();
   }
@@ -37,12 +37,12 @@ class OrganizationTypeListBuilder extends ConfigEntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    $row = array();
+    $row = [];
 
-    $row['title'] = array(
+    $row['title'] = [
       'data' => $entity->label(),
-      'class' => array('menu-label'),
-    );
+      'class' => ['menu-label'],
+    ];
 
     $row['description'] = Xss::filterAdmin($entity->getDescription());
 

@@ -19,7 +19,6 @@ use Drupal\Core\Entity\EntityFieldManager;
 use Drupal\Core\Render\Renderer;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-
 /**
  * Merges 2 or more contacts.
  *
@@ -150,7 +149,7 @@ class MergeContactsAction extends ConfigurableActionBase implements ContainerFac
       }
     }
     unset($this->configuration['data']['contact_id']);
-    $wrappers = array();
+    $wrappers = [];
     foreach ($objects as $contact) {
       $wrappers[$contact->id()] = $contact;
     }
@@ -185,19 +184,19 @@ class MergeContactsAction extends ConfigurableActionBase implements ContainerFac
         // Replacing existing relations for contacts been deleted with new ones.
         $query = $this->entityQuery->get('relation');
         $relations = $query->condition('endpoints.entity_type', 'crm_core_contact', '=')
-              ->condition('endpoints.entity_id', $contact_id, '=')
-              ->execute();
+          ->condition('endpoints.entity_id', $contact_id, '=')
+          ->execute();
         foreach ($relations as $relation_info) {
-          $endpoints = array(
-            array('entity_type' => 'crm_core_contact', 'entity_id' => $primary_contact->id()),
-          );
+          $endpoints = [
+            ['entity_type' => 'crm_core_contact', 'entity_id' => $primary_contact->id()],
+          ];
           $relation = Relation::load($relation_info);
           foreach ($relation->endpoints as $endpoint) {
             if ($endpoint->entity_id != $contact_id) {
-              $endpoints[] = array(
+              $endpoints[] = [
                 'entity_type' => $endpoint->entity_type,
                 'entity_id' => $endpoint->entity_id,
-              );
+              ];
             }
           }
           $new_relation = Relation::create(['relation_type' => $relation->relation_type->target_id, 'endpoints' => $endpoints]);
@@ -211,10 +210,10 @@ class MergeContactsAction extends ConfigurableActionBase implements ContainerFac
     $contacts_label = array_map(function ($contact) {
       return $contact->label();
     }, $wrappers);
-    $message = $this->translationManager->formatPlural($count, $singular, $plural, array(
+    $message = $this->translationManager->formatPlural($count, $singular, $plural, [
       '%contacts' => implode(', ', $contacts_label),
       '%dest' => $primary_contact->label(),
-    ));
+    ]);
     $this->entityTypeManager->getStorage('crm_core_contact')->delete($wrappers);
     drupal_set_message($message);
   }
@@ -223,7 +222,7 @@ class MergeContactsAction extends ConfigurableActionBase implements ContainerFac
    * {@inheritdoc}
    */
   public function execute($object = NULL) {
-    $this->executeMultiple(array($object));
+    $this->executeMultiple([$object]);
   }
 
   /**
@@ -243,13 +242,13 @@ class MergeContactsAction extends ConfigurableActionBase implements ContainerFac
    * {@inheritdoc}
    */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
-    $form = array();
+    $form = [];
     $selected_contacts = Contact::loadMultiple($form_state->getValue('selection'));
-    $selected_contacts_ids = array_map(function($contact) {
+    $selected_contacts_ids = array_map(function ($contact) {
       return $contact->id();
     }, $selected_contacts);
     // Lets check contacts type, it should be unique.
-    $contact_types = array_map(function($contact) {
+    $contact_types = array_map(function ($contact) {
       return $contact->type->target_id;
     }, $selected_contacts);
     // All selected contacts have same type.
@@ -258,37 +257,37 @@ class MergeContactsAction extends ConfigurableActionBase implements ContainerFac
       $form_state->setRedirect('entity.crm_core_contact.collection');
     }
     else {
-      $form['table'] = array(
+      $form['table'] = [
         '#type' => 'table',
         '#tree' => TRUE,
         '#selected' => $selected_contacts_ids,
-      );
+      ];
       // Creating header.
-      $header['field_name'] = array('#markup' => $this->t('Field name\\Contact'));
+      $header['field_name'] = ['#markup' => $this->t('Field name\\Contact')];
       foreach ($selected_contacts as $contact) {
-        $header[$contact->contact_id->value] = array(
+        $header[$contact->contact_id->value] = [
           '#type' => 'radio',
           '#title' => $contact->label(),
-        );
+        ];
       }
       $form['table']['contact_id'] = $header;
       $field_instances = $this->entityFieldManager->getFieldDefinitions('crm_core_contact', reset($contact_types));
       unset($field_instances['contact_id']);
       foreach ($field_instances as $field_name => $field_instance) {
-        $form['table'][$field_name] = array();
-        $form['table'][$field_name]['field_name'] = array('#markup' => $field_instance->getLabel());
+        $form['table'][$field_name] = [];
+        $form['table'][$field_name]['field_name'] = ['#markup' => $field_instance->getLabel()];
         foreach ($selected_contacts as $contact) {
-          $field_value = array('#markup' => '');
+          $field_value = ['#markup' => ''];
           $contact_field_value = $contact->get($field_name);
           if (isset($contact_field_value)) {
             $field_value_render = $contact_field_value->view('full');
             $field_value_rendered = $this->renderer->render($field_value_render);
             // Some fields can provide empty markup.
             if (!empty($field_value_rendered)) {
-              $field_value = array(
+              $field_value = [
                 '#type' => 'radio',
                 '#title' => $field_value_rendered,
-              );
+              ];
             }
           }
           $form['table'][$field_name][$contact->contact_id->value] = $field_value;
@@ -305,7 +304,7 @@ class MergeContactsAction extends ConfigurableActionBase implements ContainerFac
    * {@inheritdoc}
    */
   public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
-    $data = array('contact_id' => array_shift(array_keys(array_filter($form_state->getValue('table')['contact_id']))));
+    $data = ['contact_id' => array_shift(array_keys(array_filter($form_state->getValue('table')['contact_id'])))];
     unset($form_state->getValue('table')['contact_id']);
     foreach ($form_state->getValue('table') as $field_name => $selection) {
       $data[$field_name] = array_shift(array_keys(array_filter($selection)));

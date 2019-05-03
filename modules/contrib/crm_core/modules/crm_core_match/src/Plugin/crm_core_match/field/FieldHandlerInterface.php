@@ -5,8 +5,11 @@ namespace Drupal\crm_core_match\Plugin\crm_core_match\field;
 use Drupal\crm_core_contact\ContactInterface;
 
 /**
- * Interface for defining the logical operators and query criteria used to identify duplicate contacts based on
- * different field types in DefaultMatchingEngine.
+ * Field Handler Interface.
+ *
+ * Interface for defining the logical operators and query criteria used to
+ * identify duplicate contacts based on different field types in
+ * DefaultMatchingEngine.
  */
 interface FieldHandlerInterface {
 
@@ -28,7 +31,6 @@ interface FieldHandlerInterface {
    *   The property label.
    */
   public function getLabel($property = 'value');
-
 
   /**
    * Gets the property status.
@@ -85,8 +87,6 @@ interface FieldHandlerInterface {
   /**
    * Gets the operator options.
    *
-   * @todo: Consider using options when matching or drop.
-   *
    * @param string $property
    *   The name of the property.
    *
@@ -95,6 +95,7 @@ interface FieldHandlerInterface {
    *
    * @see FieldHandlerInterface::getOperators()
    * @see FieldHandlerInterface::getOperator()
+   * @todo: Consider using options when matching or drop.
    */
   public function getOptions($property = 'value');
 
@@ -125,7 +126,6 @@ interface FieldHandlerInterface {
    *
    * @param \Drupal\crm_core_contact\ContactInterface $contact
    *   The contact entity to find matches for.
-   *
    * @param string $property
    *   The name of the property.
    *
@@ -134,13 +134,15 @@ interface FieldHandlerInterface {
    *   The first level keys are the contact ids found as matches.
    *   The second level key is the rule id responsible for the match containing
    *   its score as value.
-   *   @code
+   *
+   * @code
    *   array(
    *     $contact_id => array(
    *       $rule_id => $core,
    *     ),
    *   );
-   *   @end
+   * @end
    */
   public function match(ContactInterface $contact, $property = 'value');
+
 }

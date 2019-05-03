@@ -92,16 +92,16 @@ class JoinIntoHouseholdAction extends ConfigurableActionBase implements Containe
     $this->configuration['household']->setOwnerId($this->currentUser->id());
     $this->configuration['household']->save();
     foreach ($objects as $member) {
-      $endpoints = array(
-        0 => array(
+      $endpoints = [
+        0 => [
           'entity_type' => $member->getEntityTypeId(),
           'entity_id' => $member->id(),
-        ),
-        1 => array(
+        ],
+        1 => [
           'entity_type' => 'crm_core_contact',
           'entity_id' => $this->configuration['household']->id(),
-        ),
-      );
+        ],
+      ];
       $relation = Relation::create(['relation_type' => self::RELATION_TYPE_HOUSEHOLD, 'endpoints' => $endpoints]);
       $relation->save();
     }
@@ -111,7 +111,7 @@ class JoinIntoHouseholdAction extends ConfigurableActionBase implements Containe
    * {@inheritdoc}
    */
   public function execute($object = NULL) {
-    $this->executeMultiple(array($object));
+    $this->executeMultiple([$object]);
   }
 
   /**

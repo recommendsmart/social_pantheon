@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\crm_core_match\Matcher\MatcherListBuilder.
- */
-
 namespace Drupal\crm_core_match\Matcher;
 
 use Drupal\Core\Config\Entity\ConfigEntityListBuilder;

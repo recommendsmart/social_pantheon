@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\crm_core_activity\Form\ActivityDeleteForm.
- */
-
 namespace Drupal\crm_core_activity\Form;
 
 use Drupal\Core\Entity\ContentEntityDeleteForm;
@@ -19,11 +14,11 @@ class ActivityDeleteForm extends ContentEntityDeleteForm {
    */
   protected function getDeletionMessage() {
     $entity = $this->getEntity();
-    return $this->t('@type %title has been deleted.', array(
+    return $this->t('@type %title has been deleted.', [
       '%id' => $entity->id(),
       '%title' => $entity->label(),
       '@type' => $entity->get('type')->entity->label(),
-    ));
+    ]);
   }
 
 }

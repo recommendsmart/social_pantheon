@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * CRM Core module hooks.
+ */
+
 use Drupal\Core\Url;
 
 /**

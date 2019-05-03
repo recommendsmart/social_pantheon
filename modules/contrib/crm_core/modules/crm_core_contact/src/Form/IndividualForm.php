@@ -18,7 +18,7 @@ class IndividualForm extends ContentEntityForm {
 
     $status = $individual->save();
 
-    $t_args = array('%name' => $individual->label(), 'link' => $individual->url());
+    $t_args = ['%name' => $individual->label(), 'link' => $individual->url()];
 
     if ($status == SAVED_UPDATED) {
       drupal_set_message($this->t('The individual %name has been updated.', $t_args));

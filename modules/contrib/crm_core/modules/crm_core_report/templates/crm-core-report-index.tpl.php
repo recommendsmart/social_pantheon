@@ -1,11 +1,12 @@
 <?php
+
 /**
  * @file
- * Default display of reports for CRM Core
+ * Default display of reports for CRM Core.
  *
  * Available variables:
- * 
- * - $report: associative array listing reports registered under the 
+ *
+ * - $report: associative array listing reports registered under the
  *   current grouping.
  *   - title: A title for the report grouping.
  *   - reports: A list of the reports to be found. This is an array
@@ -20,9 +21,7 @@
 <div class="crm_core_reports">
   <?php foreach($report_items as $item): ?>
   <div class="item-info">
-  	<?php print $item; ?>
+      <?php print $item; ?>
   </div>
   <?php endforeach; ?>
 </div>
-
-

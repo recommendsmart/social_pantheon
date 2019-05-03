@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\crm_core_contact\ContactTypeListBuilder.
- */
-
 namespace Drupal\crm_core_contact;
 
 use Drupal\Component\Utility\Xss;
@@ -12,7 +7,7 @@ use Drupal\Core\Config\Entity\ConfigEntityListBuilder;
 use Drupal\Core\Entity\EntityInterface;
 
 /**
- * Class ContactTypeListBuilder
+ * Class ContactTypeListBuilder.
  *
  * List builder for the contact type entity.
  *
@@ -25,14 +20,14 @@ class ContactTypeListBuilder extends ConfigEntityListBuilder {
    * {@inheritdoc}
    */
   public function buildHeader() {
-    $header = array();
+    $header = [];
 
     $header['title'] = $this->t('Name');
 
-    $header['description'] = array(
+    $header['description'] = [
       'data' => $this->t('Description'),
-      'class' => array(RESPONSIVE_PRIORITY_MEDIUM),
-    );
+      'class' => [RESPONSIVE_PRIORITY_MEDIUM],
+    ];
 
     return $header + parent::buildHeader();
   }
@@ -41,15 +36,16 @@ class ContactTypeListBuilder extends ConfigEntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    $row = array();
+    $row = [];
 
-    $row['title'] = array(
+    $row['title'] = [
       'data' => $entity->label(),
-      'class' => array('menu-label'),
-    );
+      'class' => ['menu-label'],
+    ];
 
     $row['description'] = Xss::filterAdmin($entity->description);
 
     return $row + parent::buildRow($entity);
   }
+
 }

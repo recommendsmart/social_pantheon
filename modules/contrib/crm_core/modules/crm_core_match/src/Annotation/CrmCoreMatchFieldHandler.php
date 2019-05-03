@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\crm_core_match\Annotation\CrmCoreMatchFieldHandler.
- */
-
 namespace Drupal\crm_core_match\Annotation;
 
 use Drupal\Component\Annotation\Plugin;
@@ -22,4 +17,5 @@ class CrmCoreMatchFieldHandler extends Plugin {
    * @var string
    */
   public $field;
+
 }

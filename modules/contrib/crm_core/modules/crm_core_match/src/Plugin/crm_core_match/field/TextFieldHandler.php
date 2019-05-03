@@ -15,12 +15,12 @@ class TextFieldHandler extends FieldHandlerBase {
    * {@inheritdoc}
    */
   public function getOperators($property = 'value') {
-    return array(
+    return [
       '=' => t('Equals'),
       'STARTS_WITH' => t('Starts with'),
       'ENDS_WITH' => t('Ends with'),
       'CONTAINS' => t('Contains'),
-    );
+    ];
   }
 
 }

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\crm_core_activity\ActivityAccessControlHandler.
- */
-
 namespace Drupal\crm_core_activity;
 
 use Drupal\Core\Access\AccessResult;

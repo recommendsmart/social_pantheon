@@ -1,10 +1,19 @@
 <?php
 
+/**
+ * @file
+ * CRM Core Relationship UI Admin pages.
+ *
+ * @TODO: Unported.
+ */
+
 use Drupal\crm_core_contact\Entity\ContactType;
 use Drupal\relation\Entity\RelationType;
 
+//@codingStandardsIgnoreFile.
+
 /**
- * List crm relationship types
+ * List crm relationship types.
  *
  * @param
  * bool $reverse
@@ -12,8 +21,8 @@ use Drupal\relation\Entity\RelationType;
  * FALSE means display all relations that are CRM relationships
  *
  * @return
- * $build
- * A renderable array of table
+ *   $build
+ *   A renderable array of table
  */
 function crm_core_relationship_ui_types_overview($reverse = FALSE) {
   drupal_set_title(t('CRM Relationship Types'));
@@ -24,44 +33,47 @@ function crm_core_relationship_ui_types_overview($reverse = FALSE) {
   $relation_types = relation_list_types();
 
   $field_ui = module_exists('field_ui');
-  $headers = array(
-    array('data' => t('Name'), 'width' => '40%'),
-    array('data' => t('Operations'))
-  );
-  $rows = array();
-
+  $headers = [
+    ['data' => t('Name'), 'width' => '40%'],
+    ['data' => t('Operations')],
+  ];
+  $rows = [];
 
   crm_core_ui_ctools_add_dropbutton_files();
   foreach ($relation_types as $type => $label) {
-    $links = array();
+    $links = [];
     if ($reverse) {
-      if (crm_core_relationship_is_relationship_type($type)) continue;
+      if (crm_core_relationship_is_relationship_type($type)) {
+        continue;
+      }
       $url = 'admin/structure/relation/manage/' . $type;
     }
     else {
-      if (!crm_core_relationship_is_relationship_type($type)) continue;
+      if (!crm_core_relationship_is_relationship_type($type)) {
+        continue;
+      }
       $url = 'admin/structure/crm-core/relationship-types/manage/' . $type;
     }
-    $row = array(l($type, $url));
+    $row = [l($type, $url)];
     $links[] = l(t('edit'), $url . '/edit');
     if ($field_ui) {
-      $links[] =  l(t('manage fields'), $url . '/fields');
-      $links[] =  l(t('display fields'), $url . '/display');
+      $links[] = l(t('manage fields'), $url . '/fields');
+      $links[] = l(t('display fields'), $url . '/display');
     }
-    $links[] =  l(t('delete'), $url . '/delete');
-    $row[] = theme('crm_core_ui_ctools_dropbutton', array(
-        'ops_count' => count($links),
-        'links' => $links,
-        'index' => $type,
-      ));
+    $links[] = l(t('delete'), $url . '/delete');
+    $row[] = theme('crm_core_ui_ctools_dropbutton', [
+      'ops_count' => count($links),
+      'links' => $links,
+      'index' => $type,
+    ]);
     $rows[] = $row;
   }
 
-  $build['crm_relationship_types_table'] = array(
+  $build['crm_relationship_types_table'] = [
     '#theme' => 'table',
     '#header' => $headers,
     '#rows' => $rows,
-  );
+  ];
 
   return $build;
 }
@@ -73,15 +85,15 @@ function crm_core_relationship_ui_types_overview($reverse = FALSE) {
  *   Relation type machine name. If this is not provided, assume that we're
  *   creating a new relation type.
  *
- * This function is originally copied from relation_type_form from relation.admin.inc
+ *   This function is originally copied from relation_type_form from relation.admin.inc
  */
-function crm_core_relationship_ui_type_form($form, &$form_state, $relation_type = array(), $op = 'edit') {
+function crm_core_relationship_ui_type_form($form, &$form_state, $relation_type = [], $op = 'edit') {
 
   (empty($relation_type)) ? drupal_set_title(t('Add New Relationship type')) : drupal_set_title(t('Edit Relationship Type'));
 
   _crm_core_relationship_ui_type_set_breadcrumb();
 
-  $form['#write_record_keys'] = array();
+  $form['#write_record_keys'] = [];
   if ($relation_type) {
     $relation_type = (object) $relation_type;
     if ($relation_type) {
@@ -89,76 +101,78 @@ function crm_core_relationship_ui_type_form($form, &$form_state, $relation_type 
     }
   }
   else {
-    $relation_type = (object) array(
+    $relation_type = (object) [
       'relation_type' => '',
       'label' => '',
       'reverse_label' => '',
-      'bundles' => array(),
+      'bundles' => [],
       'directional' => FALSE,
       'transitive' => FALSE,
       'r_unique' => FALSE,
       'min_arity' => 2,
       'max_arity' => 2,
-      'source_bundles' => array(),
-      'target_bundles' => array(),
-    );
+      'source_bundles' => [],
+      'target_bundles' => [],
+    ];
   }
-  $form['name'] = array( // use 'name' for /misc/machine-name.js
+  // Use 'name' for /misc/machine-name.js.
+  $form['name'] = [
     '#type'          => 'textfield',
     '#title'         => t('Label'),
     '#description'   => t('Display name of the relationship type. This is also used as the predicate in natural language formatters (ie. if A is related to B, you get "A [label] B")'),
     '#default_value' => $relation_type->label,
     '#required'      => TRUE,
-  );
-  $form['relation_type'] = array(
+  ];
+  $form['relation_type'] = [
     '#type'          => 'machine_name',
     '#default_value' => $relation_type->relation_type,
     '#maxlength' => 32,
     '#disabled'      => $relation_type->relation_type,
-    '#machine_name' => array(
+    '#machine_name' => [
       'exists' => '\Drupal\relation\Entity\RelationType::load',
-    ),
-  );
-  $form['directional'] = array(
+    ],
+  ];
+  $form['directional'] = [
     '#type'           => 'checkbox',
     '#title'          => 'Directional',
     '#description'   => t('A directional relationship is one that does not imply the reverse relationship. For example, a "likes" relationship is directional (A likes B does not neccesarily mean B likes A), whereas a "similar to" relationship is non-directional (A similar to B implies B similar to A. Non-directional relationship are also known as symmetric relationship.'),
     '#default_value'  => $relation_type->directional,
-  );
-  $form['reverse_label'] = array(
+  ];
+  $form['reverse_label'] = [
     '#type'          => 'textfield',
     '#title'         => t('Reverse label'),
     '#description'   => t('Reverse label of the relation type. This is used as the predicate by formatters of directional relations, when you need to display the reverse direction (ie. from the target entity to the source entity). If this is not supplied, the forward label is used.'),
     '#default_value' => $relation_type->reverse_label,
-    '#states' => array(
-      'visible' => array(   // action to take.
-        ':input[name="directional"]' => array('checked' => TRUE),
-      ),
-    ),
-  );
-  // override from original form
-  $form['transitive'] = array(
+    '#states' => [
+  // Action to take.
+      'visible' => [
+        ':input[name="directional"]' => ['checked' => TRUE],
+      ],
+    ],
+  ];
+  // Override from original form.
+  $form['transitive'] = [
     '#type'           => 'value',
     '#default_value'  => 0,
-  );
-  $form['r_unique'] = array(
+  ];
+  $form['r_unique'] = [
     '#type'           => 'checkbox',
     '#title'          => t('Unique'),
     '#description'    => t('Whether relations of this type are unique (ie. they can not contain exactly the same end points as other relations of this type).'),
     '#default_value'  => $relation_type->r_unique,
-  );
-  // these should probably be changed to numerical (validated) textfields.
-  $options = array('2' => '2', '3' => '3', '4' => '4', '5' => '5', '8' => '8');
-  $form['min_arity'] = array(
+  ];
+  // These should probably be changed to numerical (validated) textfields.
+  $options = ['2' => '2', '3' => '3', '4' => '4', '5' => '5', '8' => '8'];
+  $form['min_arity'] = [
     '#type' => 'value',
     '#default_value' => 2,
-  );
+  ];
 
-  $options = array('2' => '2', '3' => '3', '4' => '4', '5' => '5', '8' => '8', '0' => t('Infinite'));
-  $form['max_arity'] = array(
+  $options = ['2' => '2', '3' => '3', '4' => '4', '5' => '5', '8' => '8', '0' => t('Infinite')];
+  $form['max_arity'] = [
     '#type' => 'value',
     '#default_value' => 2,
-  );
+  ];
   $counter = 0;
   foreach (entity_get_info() as $entity_type => $entity) {
     $bundles[$entity['label']]["$entity_type:*"] = 'all ' . $entity['label'] . ' bundles';
@@ -173,12 +187,12 @@ function crm_core_relationship_ui_type_form($form, &$form_state, $relation_type 
 
   $contact_types = ContactType::loadMultiple();
 
-  $options = array('crm_core_contact:*' => t('Any'));
+  $options = ['crm_core_contact:*' => t('Any')];
   foreach ($contact_types as $contact_type) {
     $options['crm_core_contact:' . $contact_type->type] = t($contact_type->name);
   }
 
-  $form['source_bundles'] = array(
+  $form['source_bundles'] = [
     '#type'          => 'select',
     '#title'         => 'Source contact types',
     '#options'       => $options,
@@ -186,8 +200,8 @@ function crm_core_relationship_ui_type_form($form, &$form_state, $relation_type 
     '#default_value' => $relation_type->source_bundles,
     '#multiple'      => TRUE,
     '#description'   => 'Contact types that are not selected will not be available as sources for directional, or end points of non-directional relations relations. Ctrl+click to select multiple. Note that selecting all bundles also include bundles not yet created for that entity type.',
-  );
-  $form['target_bundles'] = array(
+  ];
+  $form['target_bundles'] = [
     '#type'          => 'select',
     '#title'         => 'Destination contact types',
     '#options'       => $options,
@@ -195,29 +209,30 @@ function crm_core_relationship_ui_type_form($form, &$form_state, $relation_type 
     '#default_value' => $relation_type->target_bundles,
     '#multiple'      => TRUE,
     '#description'   => 'Contact types that are not selected will not be available as targets for directional relations. Ctrl+click to select multiple.',
-    '#states' => array(
-      '!visible' => array(   // action to take.
-        ':input[name="directional"]' => array('checked' => FALSE),
-      ),
-    ),
-  );
-  $form['submit'] = array(
+    '#states' => [
+  // Action to take.
+      '!visible' => [
+        ':input[name="directional"]' => ['checked' => FALSE],
+      ],
+    ],
+  ];
+  $form['submit'] = [
     '#type' => 'submit',
-    '#value' => t('Save')
-  );
+    '#value' => t('Save'),
+  ];
   return $form;
 }
 
 /**
  * Submit data from relationship type page.
  *
- * This function is originally copied from relation_type_form_submit from relation.admin.inc
+ * This function is originally copied from relation_type_form_submit from relation.admin.inc.
  */
 function crm_core_relationship_ui_type_form_submit($form, &$form_state) {
   $relation_type = $form_state['values']['relation_type'];
   $min_arity = $form_state['values']['directional'] ? 2 : $form_state['values']['min_arity'];
   $max_arity = $form_state['values']['directional'] ? 2 : $form_state['values']['max_arity'];
-  $record = array(
+  $record = [
     'relation_type'   => $relation_type,
     'min_arity'   => $min_arity,
     'max_arity'   => $max_arity,
@@ -228,7 +243,7 @@ function crm_core_relationship_ui_type_form_submit($form, &$form_state) {
     'r_unique' => $form_state['values']['r_unique'],
     'source_bundles' => $form_state['values']['source_bundles'],
     'target_bundles' => $form_state['values']['target_bundles'],
-  );
+  ];
   RelationType::create($record)->save();
   $form_state['redirect'] = 'admin/structure/crm-core/relationship-types';
 
@@ -238,16 +253,16 @@ function crm_core_relationship_ui_type_form_submit($form, &$form_state) {
 /**
  * Menu callback; deletes a single relation type.
  *
- * This function is originally copied from relation_type_delete_confirm from relation.admin.inc
+ * This function is originally copied from relation_type_delete_confirm from relation.admin.inc.
  */
 function crm_core_relationship_ui_type_delete_confirm($form, &$form_state, $relation_type) {
 
   _crm_core_relationship_ui_type_set_breadcrumb();
 
-  $form['relation_type'] = array('#type' => 'value', '#value' => $relation_type->relation_type);
-  $form['label'] = array('#type' => 'value', '#value' => $relation_type->label);
+  $form['relation_type'] = ['#type' => 'value', '#value' => $relation_type->relation_type];
+  $form['label'] = ['#type' => 'value', '#value' => $relation_type->label];
 
-  $message = t('Are you sure you want to delete the %label relationship type?', array('%label' => $relation_type->label));
+  $message = t('Are you sure you want to delete the %label relationship type?', ['%label' => $relation_type->label]);
   $caption = '';
 
   $num_relations = relation_query()
@@ -258,7 +273,7 @@ function crm_core_relationship_ui_type_delete_confirm($form, &$form_state, $rela
     $caption .= '<p>' . format_plural($num_relations,
       'The %label relation type is used by 1 relation on your site. If you remove this relation type, you will not be able to edit  %label relations and they may not display correctly.',
       'The %label relation type is used by @count relations on your site. If you remove %label, you will not be able to edit %label relations and they may not display correctly.',
-      array('%label' => $relation_type->label, '@count' => $num_relations)) . '</p>';
+      ['%label' => $relation_type->label, '@count' => $num_relations]) . '</p>';
   }
 
   $caption .= '<p>' . t('This action cannot be undone.') . '</p>';
@@ -269,16 +284,16 @@ function crm_core_relationship_ui_type_delete_confirm($form, &$form_state, $rela
 /**
  * Process relation type delete confirm submissions.
  *
- *  * This function is originally copied from relation_type_delete_confirm_submit from relation.admin.inc
+ *  * This function is originally copied from relation_type_delete_confirm_submit from relation.admin.inc.
  */
 function crm_core_relationship_ui_type_delete_confirm_submit($form, &$form_state) {
   RelationType::load($form_state['values']['relation_type'])->delete();
 
-  $t_args = array('%label' => $form_state['values']['label']);
+  $t_args = ['%label' => $form_state['values']['label']];
   drupal_set_message(t('The %label relationship type has been deleted.', $t_args));
   watchdog('relation', 'Deleted the %label relationship type.', $t_args, WATCHDOG_NOTICE);
 
-  // TODO: relation_types_rebuild() ?;
+  // TODO: relation_types_rebuild() ?;.
   menu_rebuild();
 
   $form_state['redirect'] = 'admin/structure/crm-core/relationship-types';
@@ -286,18 +301,16 @@ function crm_core_relationship_ui_type_delete_confirm_submit($form, &$form_state
 }
 
 /**
- * Helper function sets breadcrumb on forms
+ * Helper function sets breadcrumb on forms.
  */
 function _crm_core_relationship_ui_type_set_breadcrumb() {
-  $breadcrumb = array(
+  $breadcrumb = [
     l(t('Home'), '<front>'),
     l(t('Administration'), 'admin'),
     l(t('Structure'), 'admin/structure'),
     l(t('CRM Core'), 'admin/structure/crm-core'),
-    l(t('Relationship types'), 'admin/structure/crm-core/relationship-types')
-  );
+    l(t('Relationship types'), 'admin/structure/crm-core/relationship-types'),
+  ];
 
   drupal_set_breadcrumb($breadcrumb);
 }
-
-

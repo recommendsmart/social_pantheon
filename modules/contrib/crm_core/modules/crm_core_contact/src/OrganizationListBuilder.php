@@ -59,19 +59,19 @@ class OrganizationListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildHeader() {
-    $header = array();
+    $header = [];
 
     $header['label'] = $this->t('Label');
 
-    $header['type'] = array(
+    $header['type'] = [
       'data' => $this->t('Organization type'),
-      'class' => array(RESPONSIVE_PRIORITY_MEDIUM),
-    );
+      'class' => [RESPONSIVE_PRIORITY_MEDIUM],
+    ];
 
-    $header['changed'] = array(
+    $header['changed'] = [
       'data' => $this->t('Updated'),
-      'class' => array(RESPONSIVE_PRIORITY_LOW),
-    );
+      'class' => [RESPONSIVE_PRIORITY_LOW],
+    ];
 
     return $header + parent::buildHeader();
   }
@@ -80,13 +80,13 @@ class OrganizationListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    $row = array();
+    $row = [];
 
-    $row['label']['data'] = array(
+    $row['label']['data'] = [
       '#type' => 'link',
       '#title' => $entity->label(),
       '#url' => $entity->toUrl(),
-    );
+    ];
 
     $row['type'] = $entity->get('type')->entity->label();
 

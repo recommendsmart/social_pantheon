@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\crm_core_match\Controller\MatcherController.
- */
-
 namespace Drupal\crm_core_match\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
@@ -25,9 +20,9 @@ class MatcherController extends ControllerBase {
    *   The page title.
    */
   public function editTitle(MatcherConfigInterface $crm_core_match) {
-    return $this->t('Edit %matcher matcher', array(
+    return $this->t('Edit %matcher matcher', [
       '%matcher' => $crm_core_match->label(),
-    ));
+    ]);
   }
 
 }

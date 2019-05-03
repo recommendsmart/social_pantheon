@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Contains \Drupal\crm_core_match\Entity\Matcher.
- */
 
 namespace Drupal\crm_core_match\Entity;
 
@@ -85,7 +81,7 @@ class Matcher extends ConfigEntityBase implements MatcherConfigInterface {
    *
    * @var array
    */
-  protected $configuration = array();
+  protected $configuration = [];
 
   /**
    * {@inheritdoc}

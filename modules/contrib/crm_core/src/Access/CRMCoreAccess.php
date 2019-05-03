@@ -77,7 +77,7 @@ class CRMCoreAccess implements RoutingAccessInterface, ContainerInjectionInterfa
       ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
     ];
     $tree = $this->menuTree->transform($tree, $manipulators);
-    foreach ($tree as $key => $element) {
+    foreach ($tree as $element) {
       $route_name = $element->link->getPluginId();
       if ($this->accessManager->checkNamedRoute($route_name, [], $account)) {
         return AccessResult::allowed();

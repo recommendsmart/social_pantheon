@@ -19,7 +19,7 @@ class ActivityUiTest extends WebTestBase {
    *
    * @var array
    */
-  public static $modules = array(
+  public static $modules = [
     'crm_core_contact',
     'crm_core_activity',
     'crm_core_tests',
@@ -28,7 +28,7 @@ class ActivityUiTest extends WebTestBase {
     'views_ui',
     'datetime',
     'options',
-  );
+  ];
 
   /**
    * {@inheritdoc}
@@ -106,14 +106,14 @@ class ActivityUiTest extends WebTestBase {
     $this->drupalGet('crm-core/activity/add/meeting');
     $this->assertText(t('Format: @date', ['@date' => date('Y-m-d')]));
     $this->assertText('Entity type');
-    $meeting_activity = array(
+    $meeting_activity = [
       'title[0][value]' => 'Pellentesque',
       'activity_date[0][value][date]' => $this->randomDate(),
       'activity_date[0][value][time]' => $this->randomTime(),
       'activity_notes[0][value]' => $this->randomString(),
       'activity_participants[0][target_type]' => $individual->getEntityTypeId(),
       'activity_participants[0][target_id]' => $individual->label() . ' (' . $individual->id() . ')',
-    );
+    ];
 
     // Assert the breadcrumb.
     $this->assertLink(t('Home'));
@@ -139,7 +139,6 @@ class ActivityUiTest extends WebTestBase {
     $this->assertEqual($meeting_activity->getOwnerId(), $user->id());
     $this->assertEqual($meeting_activity->getOwner()->id(), $user->id());
 
-
     // Test Activity::hasParticipant() method.
     $this->assertTrue($meeting_activity->hasParticipant($individual), t('Meeting activity has participant @name.', ['@name' => $individual->label()]));
     $new_individual = Individual::create([
@@ -153,22 +152,22 @@ class ActivityUiTest extends WebTestBase {
     $this->assertFalse($meeting_activity->hasParticipant($new_individual), t('Meeting activity does not have participant @name.', ['@name' => $new_individual->label()]));
 
     // Create Meeting activity. Ensure it it listed.
-    $phonecall_activity = array(
+    $phonecall_activity = [
       'title[0][value]' => 'Mollis',
       'activity_date[0][value][date]' => $this->randomDate(),
       'activity_date[0][value][time]' => $this->randomTime(),
       'activity_notes[0][value]' => $this->randomString(),
       'activity_participants[0][target_type]' => $individual->getEntityTypeId(),
       'activity_participants[0][target_id]' => $individual->label() . ' (' . $individual->id() . ')',
-    );
+    ];
     $this->drupalPostForm('crm-core/activity/add/phone_call', $phonecall_activity, 'Save Activity');
     $this->assertText('Activity Mollis created.', 'No errors after adding new activity.');
 
     // Update activity and assert its title changed on the list.
-    $meeting_activity = array(
+    $meeting_activity = [
       'title[0][value]' => 'Vestibulum',
       'activity_notes[0][value]' => 'Pellentesque egestas neque sit',
-    );
+    ];
     $this->drupalPostForm('crm-core/activity/1/edit', $meeting_activity, 'Save Activity');
     $this->assertText('Vestibulum', 'Activity updated.');
     $this->drupalGet('crm-core/activity');
@@ -202,29 +201,29 @@ class ActivityUiTest extends WebTestBase {
     $this->assertText('Pellentesque egestas neque sit');
 
     // Test that empty activity_participants field is not allowed.
-    $empty_participant = array(
+    $empty_participant = [
       'activity_participants[0][target_id]' => '',
-    );
+    ];
     $this->drupalPostForm('crm-core/activity/1/edit', $empty_participant, 'Save Activity');
     $this->assertText('Label field is required.', 'Empty activity participant not allowed.');
 
     // Update phone call activity and assert its title changed on the list.
-    $phonecall_activity = array(
+    $phonecall_activity = [
       'title[0][value]' => 'Commodo',
-    );
+    ];
     $this->drupalPostForm('crm-core/activity/2/edit', $phonecall_activity, 'Save Activity');
     $this->assertText('Commodo', 'Activity updated.');
     $this->drupalGet('crm-core/activity');
     $this->assertLink('Commodo', 0, 'Updated activity listed properly.');
 
     // Delete Meeting activity.
-    $this->drupalPostForm('crm-core/activity/1/delete', array(), 'Delete');
+    $this->drupalPostForm('crm-core/activity/1/delete', [], 'Delete');
     $this->assertText('Meeting Vestibulum has been deleted.', 'No errors after deleting activity.');
     $this->drupalGet('crm-core/activity');
     $this->assertNoLink('Vestibulum', 'Deleted activity is no more listed.');
 
     // Delete Phone call activity.
-    $this->drupalPostForm('crm-core/activity/2/delete', array(), 'Delete');
+    $this->drupalPostForm('crm-core/activity/2/delete', [], 'Delete');
     $this->assertText('Phone call Commodo has been deleted.', 'No errors after deleting activity.');
     $this->drupalGet('crm-core/activity');
     $this->assertNoLink('Commodo', 'Deleted activity is no more listed.');
@@ -238,11 +237,11 @@ class ActivityUiTest extends WebTestBase {
 
     // Add new activity type.
     $this->clickLink('Add activity type');
-    $new_activity_type = array(
+    $new_activity_type = [
       'name' => 'New activity type',
       'type' => 'new_activity_type',
       'description' => 'New activity type description',
-    );
+    ];
     $this->drupalPostForm(NULL, $new_activity_type, 'Save activity type');
 
     // Check that new activity type is displayed in activity types overview.
@@ -251,9 +250,9 @@ class ActivityUiTest extends WebTestBase {
 
     // Edit activity type.
     $this->clickLink('Edit', 1);
-    $edit = array(
+    $edit = [
       'name' => 'Edited activity type',
-    );
+    ];
     $this->drupalPostForm(NULL, $edit, 'Save activity type');
     $this->drupalGet('admin/structure/crm-core/activity-types');
     $this->assertText($edit['name']);
@@ -261,7 +260,7 @@ class ActivityUiTest extends WebTestBase {
     // Test activity type delete operation.
     $this->drupalGet('admin/structure/crm-core/activity-types');
     $this->clickLink('Delete');
-    $this->drupalPostForm(NULL, array(), 'Delete');
+    $this->drupalPostForm(NULL, [], 'Delete');
     $this->assertText(t('The crm core activity type @type has been deleted.', ['@type' => $edit['name']]));
     $this->drupalGet('admin/structure/crm-core/activity-types');
     $this->assertNoText($edit['name']);
@@ -287,23 +286,23 @@ class ActivityUiTest extends WebTestBase {
     ]);
     $customer->save();
 
-    $meeting_activity = array(
+    $meeting_activity = [
       'title[0][value]' => 'Pellentesque',
       'activity_date[0][value][date]' => $this->randomDate(),
       'activity_date[0][value][time]' => $this->randomTime(),
       'activity_notes[0][value]' => $this->randomString(),
       'activity_participants[0][target_id]' => $customer->label() . ' (' . $customer->id() . ')',
-    );
+    ];
     $this->drupalPostForm('crm-core/activity/add/meeting', $meeting_activity, 'Save Activity');
 
-    $meeting_activity_1 = array(
+    $meeting_activity_1 = [
       'title[0][value]' => 'Pellentesque rev1',
-    );
+    ];
     $this->drupalPostForm('crm-core/activity/1/edit', $meeting_activity_1, 'Save Activity');
 
-    $meeting_activity_2 = array(
+    $meeting_activity_2 = [
       'title[0][value]' => 'Pellentesque rev2',
-    );
+    ];
     $this->drupalPostForm('crm-core/activity/1/edit', $meeting_activity_2, 'Save Activity');
 
     $this->drupalGet('crm-core/activity/1/revisions');

@@ -2,9 +2,7 @@
 
 namespace Drupal\crm_core_match\Plugin\crm_core_match\field;
 
-use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\crm_core_contact\ContactInterface;
-use Drupal\field\FieldConfigInterface;
 
 /**
  * Class for evaluating name fields.
@@ -17,25 +15,28 @@ class NameFieldHandler extends FieldHandlerBase {
 
   protected $configuration = [
     'title' => [
-      'score' => 3
+      'score' => 3,
     ],
     'given' => [
-      'score' => 10
+      'score' => 10,
     ],
     'middle' => [
-      'score' => 1
+      'score' => 1,
     ],
     'family' => [
-      'score' => 10
+      'score' => 10,
     ],
     'generational' => [
-      'score' => 1
+      'score' => 1,
     ],
     'credentials' => [
-      'score' => 1
+      'score' => 1,
     ],
   ];
 
+  /**
+   * {@inheritdoc}
+   */
   public function getPropertyNames() {
     return [
       'title',
@@ -51,9 +52,9 @@ class NameFieldHandler extends FieldHandlerBase {
    * {@inheritdoc}
    */
   public function getOperators($property = 'value') {
-    return array(
+    return [
       'CONTAINS' => t('Contains'),
-    );
+    ];
   }
 
   /**

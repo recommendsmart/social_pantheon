@@ -3,8 +3,6 @@
 namespace Drupal\Tests\crm_core_activity\Kernel;
 
 use Drupal\crm_core_activity\Entity\Activity;
-use Drupal\crm_core_activity_plugin_test\Plugin\crm_core_activity\ActivityType\ActivityTypeWithConfig;
-use Drupal\crm_core_activity\Plugin\crm_core_activity\ActivityType\Generic;
 use Drupal\crm_core_contact\Entity\Individual;
 use Drupal\KernelTests\KernelTestBase;
 

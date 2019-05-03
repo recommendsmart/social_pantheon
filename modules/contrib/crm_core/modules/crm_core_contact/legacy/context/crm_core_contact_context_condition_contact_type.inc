@@ -3,7 +3,11 @@
 /**
  * @file
  * Class for determining if the user is in the right contact context.
+ *
+ * @TODO: Unported.
  */
+
+//@codingStandardsIgnoreFile
 
 use Drupal\crm_core_contact\Entity\ContactType;
 
@@ -27,38 +31,47 @@ define('CONTEXT_CRM_CONTACT_NODE_FORM_ONLY', 2);
  */
 class crm_core_contact_context_condition_contact_type extends context_condition {
 
-  function condition_values() {
-    $values = array();
+  /**
+   *
+   */
+  public function condition_values() {
+    $values = [];
     foreach (ContactType::loadMultiple() as $type) {
       $values[$type->type] = check_plain($type->name);
     }
     return $values;
   }
 
-  function options_form($context) {
+  /**
+   *
+   */
+  public function options_form($context) {
     $defaults = $this->fetch_from_context($context, 'options');
-    return array(
-      'contact_form' => array(
+    return [
+      'contact_form' => [
         '#title' => t('Set on contact form'),
         '#type' => 'select',
-        '#options' => array(
-           CONTEXT_CRM_CONTACT_VIEW => t('No'),
-           CONTEXT_CRM_CONTACT_NODE_FORM => t('Yes'),
-           CONTEXT_CRM_CONTACT_NODE_FORM_ONLY => t('Only on contact form')
-        ),
+        '#options' => [
+          CONTEXT_CRM_CONTACT_VIEW => t('No'),
+          CONTEXT_CRM_CONTACT_NODE_FORM => t('Yes'),
+          CONTEXT_CRM_CONTACT_NODE_FORM_ONLY => t('Only on contact form'),
+        ],
         '#description' => t('Set this context on contact forms'),
         '#default_value' => isset($defaults['contact_form']) ? $defaults['contact_form'] : TRUE,
-      ),
-    );
+      ],
+    ];
   }
 
-  function execute($contact, $op) {
+  /**
+   *
+   */
+  public function execute($contact, $op) {
     foreach ($this->get_contexts($contact->type) as $context) {
 
       $options = $this->fetch_from_context($context, 'options');
       if ($op === 'form') {
         $options = $this->fetch_from_context($context, 'options');
-        if (!empty($options['contact_form']) && in_array($options['contact_form'], array(CONTEXT_CRM_CONTACT_NODE_FORM, CONTEXT_CRM_CONTACT_NODE_FORM_ONLY))) {
+        if (!empty($options['contact_form']) && in_array($options['contact_form'], [CONTEXT_CRM_CONTACT_NODE_FORM, CONTEXT_CRM_CONTACT_NODE_FORM_ONLY])) {
           $this->condition_met($context, $contact->type);
         }
       }
@@ -67,4 +80,5 @@ class crm_core_contact_context_condition_contact_type extends context_condition 
       }
     }
   }
+
 }

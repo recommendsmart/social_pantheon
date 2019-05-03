@@ -20,63 +20,63 @@ class IndividualTypeForm extends EntityForm {
     /* @var \Drupal\crm_core_contact\Entity\IndividualType $type */
     $type = $this->entity;
 
-    $form['name'] = array(
+    $form['name'] = [
       '#title' => $this->t('Name'),
       '#type' => 'textfield',
       '#default_value' => $type->name,
       '#description' => $this->t('The human-readable name of this individual type. It is recommended that this name begin with a capital letter and contain only letters, numbers, and spaces. This name must be unique.'),
       '#required' => TRUE,
       '#size' => 32,
-    );
+    ];
 
-    $form['type'] = array(
+    $form['type'] = [
       '#type' => 'machine_name',
       '#default_value' => $type->id(),
       '#maxlength' => EntityTypeInterface::BUNDLE_MAX_LENGTH,
-      '#machine_name' => array(
+      '#machine_name' => [
         'exists' => 'Drupal\crm_core_contact\Entity\IndividualType::load',
-        'source' => array('name'),
-      ),
+        'source' => ['name'],
+      ],
       '#description' => $this->t('A unique machine-readable name for this individual type. It must only contain lowercase letters, numbers, and underscores.'),
-    );
+    ];
 
-    $form['description'] = array(
+    $form['description'] = [
       '#title' => $this->t('Description'),
       '#type' => 'textarea',
       '#default_value' => $type->description,
       '#description' => $this->t('Describe this individual type.'),
-    );
+    ];
 
     // Primary fields section.
-    $form['primary_fields_container'] = array(
+    $form['primary_fields_container'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Primary Fields'),
       '#description' => $this->t('Primary fields are used to tell other modules what fields to use for common communications tasks such as sending an email, addressing an envelope, etc. Use the fields below to indicate the primary fields for this individual type.'),
-    );
+    ];
 
     // @todo Move primary fields array to some hook. This Would allow extend this
     // list to other modules. This hook should return arra('key'=>t('Name')).
-    $default_primary_fields = array('email', 'address', 'phone');
-//    $primary_fields = variable_get('crm_core_contact_default_primary_fields', $default_primary_fields);
+    $default_primary_fields = ['email', 'address', 'phone'];
+    // $primary_fields = variable_get('crm_core_contact_default_primary_fields', $default_primary_fields);.
     $primary_fields = $default_primary_fields;
-    $options = array();
+    $options = [];
     if (isset($type->type)) {
       /* @var \Drupal\Core\Field\FieldDefinitionInterface[] $instances */
       $instances = \Drupal::service('entity_field.manager')->getFieldDefinitions('crm_core_individual', $type->type);
-      $instances = isset($instances[$type->type]) ? $instances[$type->type] : array();
+      $instances = isset($instances[$type->type]) ? $instances[$type->type] : [];
       foreach ($instances as $instance) {
         $options[$instance->getName()] = $instance->getLabel();
       }
     }
     foreach ($primary_fields as $primary_field) {
-      $form['primary_fields_container'][$primary_field] = array(
+      $form['primary_fields_container'][$primary_field] = [
         '#type' => 'select',
-        '#title' => $this->t('Primary @field field', array('@field' => $primary_field)),
+        '#title' => $this->t('Primary @field field', ['@field' => $primary_field]),
         '#default_value' => empty($type->primary_fields[$primary_field]) ? '' : $type->primary_fields[$primary_field],
         '#empty_value' => '',
         '#empty_option' => $this->t('--Please Select--'),
         '#options' => $options,
-      );
+      ];
     }
 
     return $form;
@@ -101,7 +101,7 @@ class IndividualTypeForm extends EntityForm {
     $id = trim($form_state->getValue('type'));
     // '0' is invalid, since elsewhere we check it using empty().
     if ($id == '0') {
-      $form_state->setErrorByName('type', $this->t("Invalid machine-readable name. Enter a name other than %invalid.", array('%invalid' => $id)));
+      $form_state->setErrorByName('type', $this->t("Invalid machine-readable name. Enter a name other than %invalid.", ['%invalid' => $id]));
     }
   }
 
@@ -113,7 +113,7 @@ class IndividualTypeForm extends EntityForm {
 
     $status = $type->save();
 
-    $t_args = array('%name' => $type->label(), 'link' => \Drupal::url('entity.crm_core_individual_type.collection'));
+    $t_args = ['%name' => $type->label(), 'link' => \Drupal::url('entity.crm_core_individual_type.collection')];
 
     if ($status == SAVED_UPDATED) {
       drupal_set_message($this->t('The individual type %name has been updated.', $t_args));

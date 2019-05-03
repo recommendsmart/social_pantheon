@@ -2,10 +2,8 @@
 
 namespace Drupal\crm_core_activity\Plugin\views\field;
 
-use Drupal\views\Plugin\views\display\DisplayPluginBase;
 use Drupal\views\Plugin\views\field\FieldPluginBase;
 use Drupal\views\ResultRow;
-use Drupal\views\ViewExecutable;
 
 /**
  * Field handler to present the preview for the activity.

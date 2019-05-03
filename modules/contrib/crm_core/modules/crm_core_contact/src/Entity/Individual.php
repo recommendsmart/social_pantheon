@@ -29,6 +29,9 @@ use Drupal\entity\Revision\RevisionableContentEntityBase;
  *       "html" = "Drupal\Core\Entity\Routing\DefaultHtmlRouteProvider",
  *       "revision" = "\Drupal\entity\Routing\RevisionRouteProvider",
  *     },
+ *     "local_task_provider" = {
+ *       "default" = "\Drupal\entity\Menu\DefaultEntityLocalTaskProvider",
+ *     },
  *   },
  *   show_revision_ui = TRUE,
  *   admin_permission = "administer crm_core_individual entities",

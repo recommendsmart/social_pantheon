@@ -93,18 +93,18 @@ class SendEmailAction extends ConfigurableActionBase implements ContainerFactory
     $message = isset($this->configuration['message']) ? $this->configuration['message'] : '';
     foreach ($objects as $contact) {
       // Token replacement preparations.
-      $data = array(
+      $data = [
         'crm_core_contact' => $contact,
-      );
-      $options = array(
+      ];
+      $options = [
         // Remove tokens that could not be found.
         'clear' => TRUE,
-      );
+      ];
       $subject = $this->token->replace($subject, $data, $options);
       $message = $this->token->replace($message, $data, $options);
 
       $email = $contact->getPrimaryEmail()->value;
-      $params = array('subject' => $subject, 'message' => $message);
+      $params = ['subject' => $subject, 'message' => $message];
       $langcode = $this->languageManager->getCurrentLanguage()->getId();
       $this->mailManager->mail('crm_core_contact', 'send_email', $email, $langcode, $params);
     }
@@ -114,28 +114,28 @@ class SendEmailAction extends ConfigurableActionBase implements ContainerFactory
    * {@inheritdoc}
    */
   public function execute($object = NULL) {
-    $this->executeMultiple(array($object));
+    $this->executeMultiple([$object]);
   }
 
   /**
    * {@inheritdoc}
    */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
-    $form = array();
+    $form = [];
 
-    $form['subject'] = array(
+    $form['subject'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Subject'),
       '#description' => $this->t('The subject of the message.'),
       '#default_value' => $form_state->getValue('subject', ''),
-    );
+    ];
 
-    $form['message'] = array(
+    $form['message'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Message'),
       '#description' => $this->t('The message that should be sent.'),
       '#default_value' => $form_state->getValue('message', ''),
-    );
+    ];
 
     return $form;
   }

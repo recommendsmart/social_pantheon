@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Contains \Drupal\Tests\crm_core_match\Unit\DefaultEngineTest.
- */
 
 namespace Drupal\Tests\crm_core_match\Unit;
 
@@ -118,12 +114,12 @@ class DefaultEngineTest extends UnitTestCase {
     $this->matchHandler = $this->getMock('Drupal\crm_core_match\Plugin\crm_core_match\field\FieldHandlerInterface');
     $this->matchHandler->expects($this->any())
       ->method('getPropertyNames')
-      ->will($this->returnValue(array('value')));
+      ->will($this->returnValue(['value']));
 
     $this->engine = new DefaultMatchingEngine([
       'rules' => ['foo' => [], 'bar' => []],
       'threshold' => 50,
-    ], 'default', array(), $this->pluginManager, $this->entityTypeManager, $this->entityFieldManager);
+    ], 'default', [], $this->pluginManager, $this->entityTypeManager, $this->entityFieldManager);
   }
 
   /**
@@ -136,9 +132,9 @@ class DefaultEngineTest extends UnitTestCase {
 
     $this->individual->expects($this->any())
       ->method('getFieldDefinitions')
-      ->will($this->returnValue(array(
+      ->will($this->returnValue([
         'foo' => $this->field,
-      )));
+      ]));
 
     $this->pluginManager->expects($this->any())
       ->method('hasDefinition')
@@ -146,11 +142,11 @@ class DefaultEngineTest extends UnitTestCase {
 
     $this->matchHandler->expects($this->any())
       ->method('match')
-      ->will($this->returnValue(array(
-        '42' => array(
+      ->will($this->returnValue([
+        '42' => [
           'value' => 100,
-        ),
-      )));
+        ],
+      ]));
 
     $this->pluginManager->expects($this->once())
       ->method('createInstance')
@@ -170,10 +166,10 @@ class DefaultEngineTest extends UnitTestCase {
 
     $this->individual->expects($this->any())
       ->method('getFieldDefinitions')
-      ->will($this->returnValue(array(
+      ->will($this->returnValue([
         'foo' => $this->field,
         'bar' => $this->field,
-      )));
+      ]));
 
     $this->pluginManager->expects($this->any())
       ->method('hasDefinition')
@@ -181,19 +177,19 @@ class DefaultEngineTest extends UnitTestCase {
 
     $this->matchHandler->expects($this->any())
       ->method('match')
-      ->will($this->returnValue(array(
-        '42' => array(
+      ->will($this->returnValue([
+        '42' => [
           'value' => 40,
-        ),
-      )))
-      ->will($this->returnValue(array(
-        '42' => array(
+        ],
+      ]))
+      ->will($this->returnValue([
+        '42' => [
           'value' => 40,
-        ),
-        '30' => array(
+        ],
+        '30' => [
           'value' => 40,
-        ),
-      )));
+        ],
+      ]));
 
     $this->pluginManager->expects($this->any())
       ->method('createInstance')

@@ -1,22 +1,25 @@
 <?php
 
 /**
-
  * @file
  * Handle the 'crm_core_contact view' override task.
  *
  * This plugin overrides crm-core/contact/%crm_core_contact and reroutes it to the page manager, where
  * a list of tasks can be used to service this request based upon criteria
  * supplied by access plugins.
+ *
+ * @TODO: Unported
  */
+
+//@codingStandardsIgnoreFile
 
 /**
  * Specialized implementation of hook_page_manager_task_tasks(). See api-task.html for
  * more information.
  */
 function crm_core_contact_view_page_manager_tasks() {
-  return array(
-    // This is a 'page' task and will fall under the page admin UI
+  return [
+    // This is a 'page' task and will fall under the page admin UI.
     'task type' => 'page',
 
     'title' => t('Contact template'),
@@ -39,7 +42,7 @@ function crm_core_contact_view_page_manager_tasks() {
     'disabled' => variable_get('page_manager_crm_core_contact_view_disabled', TRUE),
     'enable callback' => 'crm_core_contact_view_enable',
     'access callback' => 'crm_core_contact_view_access_check',
-  );
+  ];
 }
 
 /**
@@ -61,10 +64,10 @@ function crm_core_contact_view_menu_alter(&$items, $task) {
     $items['crm-core/contact/%crm_core_contact']['file'] = $task['file'];
   }
   else {
-    // automatically disable this task if it cannot be enabled.
+    // Automatically disable this task if it cannot be enabled.
     variable_set('page_manager_crm_core_contact_view_disabled', TRUE);
     if (!empty($GLOBALS['page_manager_enabling_crm_core_contact_view'])) {
-      drupal_set_message(t('Page manager module is unable to enable crm-core/contact/%crm_core_contact because some other module already has overridden with %callback.', array('%callback' => $callback)), 'error');
+      drupal_set_message(t('Page manager module is unable to enable crm-core/contact/%crm_core_contact because some other module already has overridden with %callback.', ['%callback' => $callback]), 'error');
     }
   }
 
@@ -79,7 +82,7 @@ function crm_core_contact_view_menu_alter(&$items, $task) {
  * crm_core_contact view, which is crm_core_contact().
  */
 function crm_core_contact_view_page($crm_core_contact) {
-  // Load my task plugin
+  // Load my task plugin.
   $task = page_manager_get_task('view');
 
   // Load the crm_core_contact into a context.
@@ -90,12 +93,12 @@ function crm_core_contact_view_page($crm_core_contact) {
   drupal_set_title(crm_core_contact_title($crm_core_contact));
   $uri = entity_uri('crm_core_contact', $crm_core_contact);
   // Set the crm_core_contact path as the canonical URL to prevent duplicate content.
-  drupal_add_html_head_link(array('rel' => 'canonical', 'href' => url($uri['path'], $uri['options'])), TRUE);
+  drupal_add_html_head_link(['rel' => 'canonical', 'href' => url($uri['path'], $uri['options'])], TRUE);
   // Set the non-aliased path as a default shortlink.
-  drupal_add_html_head_link(array('rel' => 'shortlink', 'href' => url($uri['path'], array_merge($uri['options'], array('alias' => TRUE)))), TRUE);
-  $contexts = ctools_context_handler_get_task_contexts($task, '', array($crm_core_contact));
+  drupal_add_html_head_link(['rel' => 'shortlink', 'href' => url($uri['path'], array_merge($uri['options'], ['alias' => TRUE]))], TRUE);
+  $contexts = ctools_context_handler_get_task_contexts($task, '', [$crm_core_contact]);
 
-  $output = ctools_context_handler_render($task, '', $contexts, array($crm_core_contact->contact_id));
+  $output = ctools_context_handler_render($task, '', $contexts, [$crm_core_contact->contact_id]);
   if ($output != FALSE) {
     return $output;
   }
@@ -120,15 +123,15 @@ function crm_core_contact_view_page($crm_core_contact) {
  * create dummy arguments that contain the needed data.
  */
 function crm_core_contact_view_get_arguments($task, $subtask_id) {
-  return array(
-    array(
+  return [
+    [
       'keyword' => 'crm_core_contact',
       'identifier' => t('Contact being viewed'),
       'id' => 1,
       'name' => 'entity_id:crm_core_contact',
-      'settings' => array(),
-    ),
-  );
+      'settings' => [],
+    ],
+  ];
 }
 
 /**
@@ -160,6 +163,7 @@ function crm_core_contact_view_enable($cache, $status) {
  *   The subtask id
  * @param $contexts
  *   The contexts loaded for the task.
+ *
  * @return
  *   TRUE if the current user can access the page.
  */

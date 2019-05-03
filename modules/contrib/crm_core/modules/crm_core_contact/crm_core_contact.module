@@ -11,12 +11,12 @@ use Drupal\Core\Render\Element;
  * Implements hook_theme().
  */
 function crm_core_contact_theme() {
-  return array(
-    'crm_core_contact' => array(
+  return [
+    'crm_core_contact' => [
       'render element' => 'elements',
       'template' => 'crm-core-contact',
-    ),
-  );
+    ],
+  ];
 }
 
 /**
@@ -28,7 +28,7 @@ function crm_core_contact_theme() {
  *   An associative array containing:
  *   - crm_core_contact: The CRM Core Contact entity.
  */
-function template_preprocess_crm_core_contact(&$variables) {
+function template_preprocess_crm_core_contact(array &$variables) {
   $variables['view_mode'] = $variables['elements']['#view_mode'];
   /** @var \Drupal\crm_core_contact\Entity\Contact $contact */
   $contact = $variables['elements']['#crm_core_contact'];
@@ -50,7 +50,7 @@ function template_preprocess_crm_core_contact(&$variables) {
  * contact types.
  */
 function crm_core_contact_theme_suggestions_crm_core_contact(array $variables) {
-  $suggestions = array();
+  $suggestions = [];
   /** @var \Drupal\crm_core_contact\Entity\Contact $crm_core_contact */
   $crm_core_contact = $variables['elements']['#crm_core_contact'];
   $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
@@ -79,7 +79,7 @@ function crm_core_contact_mail($key, &$message, $params) {
  * Adding contact activities and relationships as dependencies.
  */
 function crm_core_contact_entity_dependencies($entity, $entity_type) {
-  $dependencies = array();
+  $dependencies = [];
   if ($entity_type == 'crm_core_contact') {
     // Lets check activities.
     if (module_exists('crm_core_activity')) {
@@ -90,7 +90,7 @@ function crm_core_contact_entity_dependencies($entity, $entity_type) {
       $result = $query->execute();
       if (!empty($result['crm_core_activity'])) {
         foreach (array_keys($result['crm_core_activity']) as $activity_id) {
-          $dependencies[] = array('type' => 'crm_core_activity', 'id' => $activity_id);
+          $dependencies[] = ['type' => 'crm_core_activity', 'id' => $activity_id];
         }
       }
     }
@@ -102,7 +102,7 @@ function crm_core_contact_entity_dependencies($entity, $entity_type) {
       $result = $query->execute();
       if (!empty($result['relation'])) {
         foreach (array_keys($result['relation']) as $rid) {
-          $dependencies[] = array('type' => 'relation', 'id' => $rid);
+          $dependencies[] = ['type' => 'relation', 'id' => $rid];
         }
       }
     }

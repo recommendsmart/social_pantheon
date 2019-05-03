@@ -13,11 +13,11 @@ class DateFieldHandler extends FieldHandlerBase {
    * {@inheritdoc}
    */
   public function getOperators($property = 'value') {
-    $operators = array(
+    $operators = [
       '=' => t('Equals'),
       '>=' => t('Greater than'),
       '<=' => t('Less than'),
-    );
+    ];
 
     return $operators;
   }
@@ -28,7 +28,7 @@ class DateFieldHandler extends FieldHandlerBase {
    * @todo Update to new query API.
    */
   public function match(ContactInterface $contact, $property = 'value') {
-    $results = array();
+    $results = [];
     $field_item = 'value';
     $field = field_get_items('crm_core_contact', $contact, $rule->field_name);
     $needle = isset($field[0]['value']) ? $field[0]['value'] : '';

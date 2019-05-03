@@ -88,7 +88,7 @@ abstract class FieldHandlerBase implements FieldHandlerInterface, ContainerFacto
    * {@inheritdoc}
    */
   public function getPropertyNames() {
-    return array('value');
+    return ['value'];
   }
 
   /**
@@ -145,7 +145,7 @@ abstract class FieldHandlerBase implements FieldHandlerInterface, ContainerFacto
    */
   public function match(ContactInterface $contact, $property = 'value') {
 
-    $ids = array();
+    $ids = [];
 
     $field = $this->field->getName();
     $needle = $contact->get($field)->{$property};
@@ -165,9 +165,9 @@ abstract class FieldHandlerBase implements FieldHandlerInterface, ContainerFacto
     }
 
     // Get the score for this field/propery.
-    $score = array(
+    $score = [
       $this->field->getName() . '.' . $property => $this->getScore($property),
-    );
+    ];
     // Returning an array holding the score as value and the contact id as key.
     return array_fill_keys($ids, $score);
   }

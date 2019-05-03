@@ -11,9 +11,9 @@ class SelectFieldHandler extends FieldHandlerBase {
    * {@inheritdoc}
    */
   public function getOperators($property = 'value') {
-    return array(
+    return [
       'equals' => t('Equals'),
-    );
+    ];
   }
 
 }

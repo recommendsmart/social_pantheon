@@ -19,7 +19,7 @@ class FieldMatcherTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = array(
+  public static $modules = [
     'user',
     'field',
     'text',
@@ -30,7 +30,7 @@ class FieldMatcherTest extends KernelTestBase {
     'system',
     'datetime',
     'options',
-  );
+  ];
 
   /**
    * The mocked match field plugin manager.
@@ -90,39 +90,39 @@ class FieldMatcherTest extends KernelTestBase {
   public function testName() {
     $config = [
       'title' => [
-        'score' => 1
+        'score' => 1,
       ],
       'given' => [
-        'score' => 10
+        'score' => 10,
       ],
       'middle' => [
-        'score' => 1
+        'score' => 1,
       ],
       'family' => [
-        'score' => 20
+        'score' => 20,
       ],
       'generational' => [
-        'score' => 1
+        'score' => 1,
       ],
       'credentials' => [
-        'score' => 1
+        'score' => 1,
       ],
     ];
-    /** @var Individual $individual_needle */
+    /** @var \Drupal\crm_core_contact\Entity\Individual $individual_needle */
     $individual_needle = Individual::create(['type' => 'customer']);
     $individual_needle->set('name', [
       'title' => 'Mr.',
       'given' => 'Gimeno',
       'family' => 'Boomer',
     ])->save();
-    /** @var Individual $individual_match */
+    /** @var \Drupal\crm_core_contact\Entity\Individual $individual_match */
     $individual_match = Individual::create(['type' => 'customer']);
     $individual_match->set('name', [
       'title' => 'Mr.',
       'given' => 'Gimeno',
       'family' => 'Boomer',
     ])->save();
-    /** @var Individual $individual_match2 */
+    /** @var \Drupal\crm_core_contact\Entity\Individual $individual_match2 */
     $individual_match2 = Individual::create(['type' => 'customer']);
     $individual_match2->set('name', [
       'title' => 'Mr.',
@@ -162,17 +162,17 @@ class FieldMatcherTest extends KernelTestBase {
       'label' => t('Text'),
       'required' => FALSE,
     ])->save();
-    $config = array(
-      'value' => array(
+    $config = [
+      'value' => [
         'operator' => '=',
         'score' => 42,
-      ),
-    );
-    /** @var Individual $individual_needle */
+      ],
+    ];
+    /** @var \Drupal\crm_core_contact\Entity\Individual $individual_needle */
     $individual_needle = Individual::create(['type' => 'customer']);
     $individual_needle->set('individual_text', 'Boomer');
     $individual_needle->save();
-    /** @var Individual $individual_match */
+    /** @var \Drupal\crm_core_contact\Entity\Individual $individual_match */
     $individual_match = Individual::create(['type' => 'customer']);
     $individual_match->set('individual_text', 'Boomer');
     $individual_match->save();
@@ -190,30 +190,30 @@ class FieldMatcherTest extends KernelTestBase {
    * Test the email field.
    */
   public function testEmail() {
-    FieldStorageConfig::create(array(
+    FieldStorageConfig::create([
       'entity_type' => 'crm_core_individual',
       'type' => 'email',
       'field_name' => 'individual_mail',
-    ))->save();
-    FieldConfig::create(array(
+    ])->save();
+    FieldConfig::create([
       'field_name' => 'individual_mail',
       'entity_type' => 'crm_core_individual',
       'bundle' => 'customer',
       'label' => t('Email'),
       'required' => FALSE,
-    ))->save();
+    ])->save();
 
-    $config = array(
-      'value' => array(
+    $config = [
+      'value' => [
         'operator' => '=',
         'score' => 42,
-      ),
-    );
-    /** @var Individual $individual_needle */
+      ],
+    ];
+    /** @var \Drupal\crm_core_contact\Entity\Individual $individual_needle */
     $individual_needle = Individual::create(['type' => 'customer']);
     $individual_needle->set('individual_mail', 'boomer@example.com');
     $individual_needle->save();
-    /** @var Individual $individual_match */
+    /** @var \Drupal\crm_core_contact\Entity\Individual $individual_match */
     $individual_match = Individual::create(['type' => 'customer']);
     $individual_match->set('individual_mail', 'boomer@example.com');
     $individual_match->save();

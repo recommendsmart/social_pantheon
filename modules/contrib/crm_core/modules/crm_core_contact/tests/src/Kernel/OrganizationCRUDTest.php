@@ -20,7 +20,7 @@ class OrganizationCRUDTest extends KernelTestBase {
    *
    * @var array
    */
-  public static $modules = array(
+  public static $modules = [
     'field',
     'text',
     'user',
@@ -30,7 +30,7 @@ class OrganizationCRUDTest extends KernelTestBase {
     'dynamic_entity_reference',
     'datetime',
     'options',
-  );
+  ];
 
   /**
    * {@inheritdoc}
@@ -38,7 +38,7 @@ class OrganizationCRUDTest extends KernelTestBase {
   protected function setUp() {
     parent::setUp();
 
-    $this->installConfig(array('field'));
+    $this->installConfig(['field']);
     $this->installEntitySchema('crm_core_organization');
     $this->installEntitySchema('crm_core_activity');
   }
@@ -51,12 +51,12 @@ class OrganizationCRUDTest extends KernelTestBase {
 
     // Create.
     $organization_type = OrganizationType::create(
-      array(
+      [
         'id' => $id,
         'label' => $this->randomMachineName(),
         'description' => $this->randomString(),
         'primary_fields' => [],
-      )
+      ]
     );
     $organization_type_id = $organization_type->id();
     $this->assertTrue(isset($organization_type_id) && $organization_type_id == $id, t('New organization type @id exists.', ['@id' => $id]));
@@ -86,15 +86,15 @@ class OrganizationCRUDTest extends KernelTestBase {
   public function testOrganization() {
     $this->installEntitySchema('user');
 
-    $type = OrganizationType::create(array('id' => 'test', 'primary_fields' => []));
+    $type = OrganizationType::create(['id' => 'test', 'primary_fields' => []]);
     $type->save();
 
     // Create.
-    $organization = Organization::create(array('type' => $type->id()));
+    $organization = Organization::create(['type' => $type->id()]);
     $this->assertEquals(SAVED_NEW, $organization->save(), 'Organization saved.');
 
     // Create second organization.
-    $organization_one = Organization::create(array('type' => $type->id()));
+    $organization_one = Organization::create(['type' => $type->id()]);
     $this->assertEquals(SAVED_NEW, $organization_one->save(), 'Organization saved.');
 
     // Load.
@@ -102,11 +102,11 @@ class OrganizationCRUDTest extends KernelTestBase {
     $uuid = $organization_load->uuid();
     $this->assertTrue(!empty($uuid), 'Loaded organization has uuid.');
 
-    $activity_type = ActivityType::create(array('type' => 'activity_test'));
+    $activity_type = ActivityType::create(['type' => 'activity_test']);
     $activity_type->save();
 
     // Create activity and add participants organization.
-    $activity = Activity::create(array('type' => $activity_type->type));
+    $activity = Activity::create(['type' => $activity_type->type]);
     $activity->get('activity_participants')->appendItem($organization);
     $activity->get('activity_participants')->appendItem($organization_one);
     $this->assertEquals(SAVED_NEW, $activity->save(), 'Activity saved.');

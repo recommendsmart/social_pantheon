@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\crm_core_activity\Form\ActivityTypeForm.
- */
-
 namespace Drupal\crm_core_activity\Form;
 
 use Drupal\Core\Entity\EntityForm;
@@ -12,7 +7,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Class ActivityTypeForm
+ * Class ActivityTypeForm.
  *
  * Form for edit activity types.
  *
@@ -29,46 +24,46 @@ class ActivityTypeForm extends EntityForm {
     /* @var \Drupal\crm_core_activity\Entity\ActivityType $type */
     $type = $this->entity;
 
-    $form['name'] = array(
+    $form['name'] = [
       '#title' => $this->t('Name'),
       '#type' => 'textfield',
       '#default_value' => $type->name,
       '#description' => $this->t('The human-readable name of this activity type. It is recommended that this name begin with a capital letter and contain only letters, numbers, and spaces. This name must be unique.'),
       '#required' => TRUE,
       '#size' => 32,
-    );
+    ];
 
-    $form['type'] = array(
+    $form['type'] = [
       '#type' => 'machine_name',
       '#default_value' => $type->id(),
       '#maxlength' => EntityTypeInterface::BUNDLE_MAX_LENGTH,
-//      '#disabled' => $type->isLocked(),
-      '#machine_name' => array(
+    // '#disabled' => $type->isLocked(),
+      '#machine_name' => [
         'exists' => 'Drupal\crm_core_activity\Entity\ActivityType::load',
-        'source' => array('name'),
-      ),
+        'source' => ['name'],
+      ],
       '#description' => $this->t('A unique machine-readable name for this activity type. It must only contain lowercase letters, numbers, and underscores.'),
-    );
+    ];
 
-    $form['description'] = array(
+    $form['description'] = [
       '#title' => $this->t('Description'),
       '#type' => 'textarea',
       '#default_value' => $type->description,
       '#description' => $this->t('Describe this activity type.'),
-    );
+    ];
 
     // Primary fields section.
-    $form['activity_string_container'] = array(
+    $form['activity_string_container'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Display settings'),
-    );
+    ];
 
-    $form['activity_string_container']['activity_string'] = array(
+    $form['activity_string_container']['activity_string'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Activity string'),
       '#description' => $this->t('Enter text describing the relationship between the contact and this activity. For example: Someone Somewhere registered for this activity.'),
       '#default_value' => empty($type->activity_string) ? '' : $type->activity_string,
-    );
+    ];
 
     return $form;
   }
@@ -91,7 +86,7 @@ class ActivityTypeForm extends EntityForm {
 
     $status = $type->save();
 
-    $t_args = array('%name' => $type->label(), 'link' => \Drupal::url('entity.crm_core_activity_type.collection'));
+    $t_args = ['%name' => $type->label(), 'link' => \Drupal::url('entity.crm_core_activity_type.collection')];
 
     if ($status == SAVED_UPDATED) {
       drupal_set_message($this->t('The activity type %name has been updated.', $t_args));
@@ -103,4 +98,5 @@ class ActivityTypeForm extends EntityForm {
 
     $form_state->setRedirect('entity.crm_core_activity_type.collection');
   }
+
 }

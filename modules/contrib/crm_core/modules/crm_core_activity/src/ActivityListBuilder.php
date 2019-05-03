@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\crm_core_activity\ActivityListBuilder.
- */
-
 namespace Drupal\crm_core_activity;
 
 use Drupal\Core\Entity\EntityInterface;
@@ -13,6 +8,9 @@ use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ * Activity List Builder.
+ */
 class ActivityListBuilder extends EntityListBuilder {
 
   /**
@@ -41,7 +39,7 @@ class ActivityListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildHeader() {
-    $header = array();
+    $header = [];
 
     $header['date'] = $this->t('Activity Date');
     $header['title'] = $this->t('Title');
@@ -54,17 +52,17 @@ class ActivityListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    $row = array();
+    $row = [];
 
-    $row['date']['data'] = $entity->get('activity_date')->view(array(
+    $row['date']['data'] = $entity->get('activity_date')->view([
       'label' => 'hidden',
-    ));
+    ]);
 
-    $row['title']['data'] = array(
+    $row['title']['data'] = [
       '#type' => 'link',
       '#title' => $entity->label(),
       '#url' => $entity->urlInfo(),
-    );
+    ];
 
     $row['type'] = $entity->get('type')->entity->label();
 

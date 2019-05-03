@@ -17,7 +17,7 @@ class AddressFieldHandler extends FieldHandlerBase {
   public function fieldRender($field, $field_info, &$form) {
     foreach ($field_info['columns'] as $item => $info) {
       // This separation is rather logical than formal  at the moment.
-      $text_items = array(
+      $text_items = [
         'name_line',
         'first_name',
         'last_name',
@@ -29,11 +29,11 @@ class AddressFieldHandler extends FieldHandlerBase {
         'thoroughfare',
         'premise',
         'sub_premise',
-      );
-      $select_items = array(
+      ];
+      $select_items = [
         'country',
         'postal_code',
-      );
+      ];
 
       $field_item['field_name'] = $field['field_name'];
       $field_item['label'] = $field['label'] . ': ' . $info['description'];
@@ -55,9 +55,9 @@ class AddressFieldHandler extends FieldHandlerBase {
    * {@inheritdoc}
    */
   public function getOperators($property = 'value') {
-    return array(
+    return [
       'equals' => t('Equals'),
-    );
+    ];
   }
 
 }

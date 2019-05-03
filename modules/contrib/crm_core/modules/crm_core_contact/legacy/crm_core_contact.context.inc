@@ -3,21 +3,26 @@
 /**
  * @file
  * Integration with context module.
+ *
+ * @TODO: Unported.
  */
+
+//@codingStandardsIgnoreFile
+
 
 /**
  * Implements hook_context_plugins().
  */
 function crm_core_contact_context_plugins() {
-  $plugins = array();
-  $plugins['crm_core_contact_context_condition_contact_type'] = array(
-    'handler' => array(
+  $plugins = [];
+  $plugins['crm_core_contact_context_condition_contact_type'] = [
+    'handler' => [
       'path' => drupal_get_path('module', 'crm_core_contact') . '/includes/context',
       'file' => 'crm_core_contact_context_condition_contact_type.inc',
       'class' => 'crm_core_contact_context_condition_contact_type',
       'parent' => 'context_condition',
-    ),
-  );
+    ],
+  ];
   return $plugins;
 }
 
@@ -25,14 +30,14 @@ function crm_core_contact_context_plugins() {
  * Implements hook_context_registry().
  */
 function crm_core_contact_context_registry() {
-  return array(
-    'conditions' => array(
-      'crm_core_contact_context_condition_contact_type' => array(
+  return [
+    'conditions' => [
+      'crm_core_contact_context_condition_contact_type' => [
         'title' => t('CRM Core Contact Type'),
         'plugin' => 'crm_core_contact_context_condition_contact_type',
-      ),
-    ),
-  );
+      ],
+    ],
+  ];
 }
 
 /**
@@ -55,7 +60,7 @@ function crm_core_contact_context_page_condition() {
     }
     // Also execute context on contact add page.
     if (strpos($_GET['q'], 'crm-core/contact/add') !== FALSE) {
-      $contact = entity_create('crm_core_contact', array('type' => arg(3)));
+      $contact = entity_create('crm_core_contact', ['type' => arg(3)]);
       $op = 'edit';
     }
 

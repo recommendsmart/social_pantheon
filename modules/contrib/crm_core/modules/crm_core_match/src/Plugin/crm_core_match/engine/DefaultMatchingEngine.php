@@ -75,10 +75,10 @@ class DefaultMatchingEngine extends MatchEngineBase {
    * {@inheritdoc}
    */
   public function match(ContactInterface $contact) {
-    $ids = array();
+    $ids = [];
 
     $fields = $contact->getFieldDefinitions();
-    $results = array();
+    $results = [];
     $configuration_rules = $this->getConfigurationItem('rules') ?: [];
     foreach ($configuration_rules as $name => $rules) {
       if (isset($fields[$name])) {

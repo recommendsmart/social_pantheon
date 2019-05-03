@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\crm_core_match\Plugin\crm_core_match\engine\MatchEngineInterface.
- */
-
 namespace Drupal\crm_core_match\Plugin\crm_core_match\engine;
 
 use Drupal\Component\Plugin\ConfigurablePluginInterface;
@@ -46,6 +41,9 @@ interface MatchEngineInterface extends PluginInspectionInterface, PluginFormInte
    *
    * By default those are the contact type fields.
    *
+   * @return mixed
+   *   Matched rules.
+   *
    * @todo Extend with typed data definition to limit selections.
    *
    * Example data:
@@ -56,8 +54,6 @@ interface MatchEngineInterface extends PluginInspectionInterface, PluginFormInte
    *     definition,
    * ),
    * @endcode
-   *
-   * @return mixed
    */
   public function getRules();
 

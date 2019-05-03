@@ -8,9 +8,18 @@ namespace Drupal\crm_core_match\Plugin\crm_core_match\field;
 class PhoneNumberFieldHandler extends FieldHandlerBase {
 
   /**
+   * Render the field.
+   *
+   * @param array $field
+   *   Field.
+   * @param array $field_info
+   *   Field info.
+   * @param mixed $form
+   *   Form.
+   *
    * @see DefaultMatchingEngineFieldType::fieldRender()
    */
-  public function fieldRender($field, $field_info, &$form) {
+  public function fieldRender(array $field, array $field_info, &$form) {
     foreach ($field_info['columns'] as $item => $info) {
       $description = '';
       switch ($item) {
@@ -31,6 +40,7 @@ class PhoneNumberFieldHandler extends FieldHandlerBase {
       $field_item['bundle'] = $field['bundle'];
       $field_item['field_item'] = $item;
 
+      // TODO: Missing parameter.
       $item = new SelectFieldHandler();
       $item->fieldRender($field_item, $field_info, $form);
     }
@@ -40,9 +50,9 @@ class PhoneNumberFieldHandler extends FieldHandlerBase {
    * {@inheritdoc}
    */
   public function getOperators($property = 'value') {
-    return array(
+    return [
       'equals' => t('Equals'),
-    );
+    ];
   }
 
 }

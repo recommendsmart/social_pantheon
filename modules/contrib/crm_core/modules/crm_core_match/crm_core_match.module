@@ -22,6 +22,8 @@
 
 use Drupal\Core\Routing\RouteMatchInterface;
 
+//@codingStandardsIgnoreStart
+//TODO: Port.
 /**
  * Implements hook_crm_core_contact_match().
  */
@@ -44,16 +46,17 @@ use Drupal\Core\Routing\RouteMatchInterface;
 //
 //  $values['matches'] = array_merge($values['matches'], $matches);
 //}
+//@codingStandardsIgnoreEnd
 
 /**
  * Implements hook_hook_info().
  */
 function crm_core_match_hook_info() {
-  $hooks = array(
-    'crm_core_match_engine_register' => array(
+  $hooks = [
+    'crm_core_match_engine_register' => [
       'group' => 'crm_core_match',
-    ),
-  );
+    ],
+  ];
 
   return $hooks;
 }
@@ -62,23 +65,23 @@ function crm_core_match_hook_info() {
  * Implements hook_menu().
  */
 function crm_core_match_menu() {
-  $items['crm-core/crm-core-match/check-rules/%crm_core_contact'] = array(
+  $items['crm-core/crm-core-match/check-rules/%crm_core_contact'] = [
     'page callback' => 'crm_core_match_testing_page',
-    'page arguments' => array(3),
+    'page arguments' => [3],
     'title callback' => 'crm_core_match_testing_page_title',
-    'title arguments' => array(3),
-    'access arguments' => array('view match information'),
+    'title arguments' => [3],
+    'access arguments' => ['view match information'],
     'type' => MENU_SUGGESTED_ITEM,
     'file' => 'crm_core_match.test.inc',
-  );
+  ];
 
-  $items['crm-core/crm-core-match/info'] = array(
+  $items['crm-core/crm-core-match/info'] = [
     'page callback' => 'crm_core_match_info_page',
     'title' => 'CRM Core Match info',
-    'access arguments' => array('view matching engine rules settings'),
+    'access arguments' => ['view matching engine rules settings'],
     'type' => MENU_SUGGESTED_ITEM,
     'file' => 'crm_core_match.test.inc',
-  );
+  ];
 
   return $items;
 }
@@ -100,6 +103,8 @@ function crm_core_match_matcher_manager() {
   return \Drupal::service('plugin.manager.crm_core_match.matchers');
 }
 
+//@codingStandardsIgnoreStart
+//TODO: Port.
 /**
  * Returns a list of all matching engines registered with CRM Core Match.
  *
@@ -135,6 +140,7 @@ function crm_core_match_matcher_manager() {
 //
 //  return $cache;
 //}
+//@codingStandardsIgnoreEnd
 
 /**
  * Helper function for engines weight comparison.

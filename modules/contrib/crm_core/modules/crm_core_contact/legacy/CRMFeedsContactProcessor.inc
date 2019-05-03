@@ -3,7 +3,12 @@
 /**
  * @file
  * Class definition of CRMFeedsContactProcessor.
+ *
+ * @TODO: Unported.
  */
+
+//@codingStandardsIgnoreFile
+
 
 use Drupal\crm_core_contact\Entity\ContactType;
 use Drupal\crm_core_contact\Entity\Contact;
@@ -12,6 +17,7 @@ use Drupal\crm_core_contact\Entity\Contact;
  * Creates contacts from feed items.
  */
 class CRMFeedsContactProcessor extends FeedsProcessor {
+
   /**
    * Define entity type.
    */
@@ -54,7 +60,7 @@ class CRMFeedsContactProcessor extends FeedsProcessor {
     }
     else {
       // We're replacing the existing contact. Only save the absolutely necessary.
-      $contact = db_query("SELECT created, contact_id, vid, type FROM {crm_core_contact} WHERE contact_id = :contact_id", array(':contact_id' => $contact_id))->fetchObject();
+      $contact = db_query("SELECT created, contact_id, vid, type FROM {crm_core_contact} WHERE contact_id = :contact_id", [':contact_id' => $contact_id])->fetchObject();
       $contact->uid = $this->config['author'];
     }
     // Populate properties that are set by contact_object_prepare().
@@ -94,13 +100,13 @@ class CRMFeedsContactProcessor extends FeedsProcessor {
       return;
     }
     $count = $this->getLimit();
-    $contacts = db_query_range("SELECT c.contact_id FROM {crm_core_contact} c JOIN {feeds_item} fi ON fi.entity_type = 'crm_core_contact' AND c.contact_id = fi.entity_id WHERE fi.id = :id AND c.created < :created", 0, $count, array(':id' => $this->id, ':created' => REQUEST_TIME - $time));
-    $contact_ids = array();
+    $contacts = db_query_range("SELECT c.contact_id FROM {crm_core_contact} c JOIN {feeds_item} fi ON fi.entity_type = 'crm_core_contact' AND c.contact_id = fi.entity_id WHERE fi.id = :id AND c.created < :created", 0, $count, [':id' => $this->id, ':created' => REQUEST_TIME - $time]);
+    $contact_ids = [];
     foreach ($contacts as $contact) {
       $contact_ids[$contact->contact_id] = $contact->contact_id;
     }
     $this->entityDeleteMultiple($contact_ids);
-    if (db_query_range("SELECT 1 FROM {crm_core_contact} c JOIN {feeds_item} fi ON fi.entity_type = 'crm_core_contact' AND c.contact_id = fi.entity_id WHERE fi.id = :id AND c.created < :created", 0, 1, array(':id' => $this->id, ':created' => REQUEST_TIME - $time))->fetchField()) {
+    if (db_query_range("SELECT 1 FROM {crm_core_contact} c JOIN {feeds_item} fi ON fi.entity_type = 'crm_core_contact' AND c.contact_id = fi.entity_id WHERE fi.id = :id AND c.created < :created", 0, 1, [':id' => $this->id, ':created' => REQUEST_TIME - $time])->fetchField()) {
       return FEEDS_BATCH_ACTIVE;
     }
     return FEEDS_BATCH_COMPLETE;
@@ -119,11 +125,11 @@ class CRMFeedsContactProcessor extends FeedsProcessor {
   public function configDefaults() {
     $types = ContactType::getNames();
     $type = key($types);
-    return array(
+    return [
       'contact_type' => $type,
       'expire' => FEEDS_EXPIRE_NEVER,
       'author' => 0,
-    ) + parent::configDefaults();
+    ] + parent::configDefaults();
   }
 
   /**
@@ -133,34 +139,34 @@ class CRMFeedsContactProcessor extends FeedsProcessor {
     $types = ContactType::getNames();
     array_walk($types, 'check_plain');
     $form = parent::configForm($form_state);
-    $form['contact_type'] = array(
+    $form['contact_type'] = [
       '#type' => 'select',
       '#title' => t('Contact type'),
       '#description' => t('Select the type of contacts to be created.'),
       '#options' => $types,
       '#default_value' => $this->config['contact_type'],
-    );
+    ];
     $author = user_load($this->config['author']);
-    $form['author'] = array(
+    $form['author'] = [
       '#type' => 'textfield',
       '#title' => t('Author'),
       '#description' => t('Select the author of the contacts to be created - leave empty to assign "anonymous".'),
       '#autocomplete_path' => 'user/autocomplete',
-      '#default_value' => empty($author->name) ?  'anonymous' : check_plain($author->name),
-    );
-    $period = drupal_map_assoc(array(FEEDS_EXPIRE_NEVER, 3600, 10800, 21600, 43200, 86400, 259200, 604800, 2592000, 2592000 * 3, 2592000 * 6, 31536000), 'feeds_format_expire');
-    $form['expire'] = array(
+      '#default_value' => empty($author->name) ? 'anonymous' : check_plain($author->name),
+    ];
+    $period = drupal_map_assoc([FEEDS_EXPIRE_NEVER, 3600, 10800, 21600, 43200, 86400, 259200, 604800, 2592000, 2592000 * 3, 2592000 * 6, 31536000], 'feeds_format_expire');
+    $form['expire'] = [
       '#type' => 'select',
       '#title' => t('Expire contacts'),
       '#options' => $period,
       '#description' => t('Select after how much time contacts should be deleted. The contact\'s published date will be used for determining the contact\'s age, see Mapping settings.'),
       '#default_value' => $this->config['expire'],
-    );
-    $form['update_existing']['#options'] = array(
+    ];
+    $form['update_existing']['#options'] = [
       FEEDS_SKIP_EXISTING => 'Do not update existing contacts',
       FEEDS_REPLACE_EXISTING => 'Replace existing contacts',
       FEEDS_UPDATE_EXISTING => 'Update existing contacts (slower than replacing them)',
-    );
+    ];
     return $form;
   }
 
@@ -194,6 +200,7 @@ class CRMFeedsContactProcessor extends FeedsProcessor {
       case 'created':
         $target_contact->created = feeds_to_unixtime($value, REQUEST_TIME);
         break;
+
       case 'feeds_source':
         // Get the class of the feed contact importer's fetcher and set the source
         // property. See feeds_contact_update() how $contact->feeds gets stored.
@@ -205,6 +212,7 @@ class CRMFeedsContactProcessor extends FeedsProcessor {
           $target_contact->feeds['suppress_import'] = TRUE;
         }
         break;
+
       default:
         parent::setTargetElement($source, $target_contact, $target_element, $value);
         break;
@@ -219,30 +227,30 @@ class CRMFeedsContactProcessor extends FeedsProcessor {
     $type = $types[$this->config['contact_type']];
     $targets = parent::getMappingTargets();
 
-    $targets += array(
-      'contact_id' => array(
+    $targets += [
+      'contact_id' => [
         'name' => t('Contact ID'),
         'description' => t('The contact_id of the contact. NOTE: use this feature with care, contact ids are usually assigned by Drupal.'),
         'optional_unique' => TRUE,
-      ),
-      'uid' => array(
+      ],
+      'uid' => [
         'name' => t('User ID'),
         'description' => t('The Drupal user ID of the contact author.'),
-      ),
-      'created' => array(
+      ],
+      'created' => [
         'name' => t('Created date'),
         'description' => t('The UNIX time when a contact has been created.'),
-      ),
-    );
+      ],
+    ];
 
     // If the target content type is a Feed contact, expose its source field.
     if ($id = feeds_get_importer_id($this->config['contact_type'])) {
       $name = feeds_importer($id)->config['name'];
-      $targets['feeds_source'] = array(
+      $targets['feeds_source'] = [
         'name' => t('Feed source'),
-        'description' => t('The contact type created by this processor is a Feed Node, it represents a source itself. Depending on the fetcher selected on the importer "@importer", this field is expected to be for example a URL or a path to a file.', array('@importer' => $name)),
+        'description' => t('The contact type created by this processor is a Feed Node, it represents a source itself. Depending on the fetcher selected on the importer "@importer", this field is expected to be for example a URL or a path to a file.', ['@importer' => $name]),
         'optional_unique' => TRUE,
-      );
+      ];
     }
 
     // Let other modules expose mapping targets.
@@ -265,11 +273,12 @@ class CRMFeedsContactProcessor extends FeedsProcessor {
     foreach ($this->uniqueTargets($source, $result) as $target => $value) {
       switch ($target) {
         case 'contact_id':
-          $contact_id = db_query("SELECT contact_id FROM {crm_core_contact} WHERE contact_id = :contact_id", array(':contact_id' => $value))->fetchField();
+          $contact_id = db_query("SELECT contact_id FROM {crm_core_contact} WHERE contact_id = :contact_id", [':contact_id' => $value])->fetchField();
           break;
+
         case 'feeds_source':
           if ($id = feeds_get_importer_id($this->config['contact_type'])) {
-            $contact_id = db_query("SELECT fs.feed_contact_id FROM {crm_core_contact} c JOIN {feeds_source} fs ON c.contact_id = fs.feed_contact_id WHERE fs.id = :id AND fs.source = :source", array(':id' => $id, ':source' => $value))->fetchField();
+            $contact_id = db_query("SELECT fs.feed_contact_id FROM {crm_core_contact} c JOIN {feeds_source} fs ON c.contact_id = fs.feed_contact_id WHERE fs.id = :id AND fs.source = :source", [':id' => $id, ':source' => $value])->fetchField();
           }
           break;
       }
@@ -280,4 +289,5 @@ class CRMFeedsContactProcessor extends FeedsProcessor {
     }
     return 0;
   }
+
 }

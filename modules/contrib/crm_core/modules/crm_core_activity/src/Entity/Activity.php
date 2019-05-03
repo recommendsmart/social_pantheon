@@ -207,7 +207,7 @@ class Activity extends RevisionableContentEntityBase implements ActivityInterfac
    * {@inheritdoc}
    */
   public function hasParticipant(ContactInterface $contact) {
-    foreach ($this->activity_participants as $key => $participant) {
+    foreach ($this->activity_participants as $participant) {
       if ($participant->target_id == $contact->id()) {
         return TRUE;
       }
