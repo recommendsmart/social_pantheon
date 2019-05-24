@@ -1685,6 +1685,59 @@
         }
     },
     {
+        "name": "drupal/base_field_override_ui",
+        "version": "1.0.0-beta1",
+        "version_normalized": "1.0.0.0-beta1",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/base_field_override_ui.git",
+            "reference": "8.x-1.0-beta1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/base_field_override_ui-8.x-1.0-beta1.zip",
+            "reference": "8.x-1.0-beta1",
+            "shasum": "65cbd5ca7d6a2babc8f36a722df82c621385d671"
+        },
+        "require": {
+            "drupal/core": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.0-beta1",
+                "datestamp": "1558411985",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Project has not opted into security advisory coverage!"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "mnico",
+                "homepage": "https://www.drupal.org/user/1119544"
+            }
+        ],
+        "description": "Enables the posibility to easily override the base fields of any content entity type with a user interface.",
+        "homepage": "https://www.drupal.org/project/base_field_override_ui",
+        "keywords": [
+            "Drupal"
+        ],
+        "support": {
+            "source": "http://cgit.drupalcode.org/base_field_override_ui",
+            "issues": "https://www.drupal.org/project/issues/base_field_override_ui"
+        }
+    },
+    {
         "name": "drupal/basic_data",
         "version": "dev-1.x",
         "version_normalized": "dev-1.x",
@@ -2622,6 +2675,95 @@
             "GPL-2.0-or-later"
         ],
         "description": "Drupal is an open source content management platform powering millions of websites and applications."
+    },
+    {
+        "name": "drupal/crm_core",
+        "version": "dev-3.x",
+        "version_normalized": "dev-3.x",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/crm_core.git",
+            "reference": "fec4c6855c2d1c588a1384c6c51e6aa07ea4c71a"
+        },
+        "require": {
+            "drupal/core": "~8.0"
+        },
+        "require-dev": {
+            "drupal/crm_core_activity": "*",
+            "drupal/crm_core_contact": "*",
+            "drupal/crm_core_relationship": "*",
+            "drupal/dynamic_entity_reference": "*",
+            "drupal/entity": "*",
+            "drupal/name": "*",
+            "drupal/relation": "*",
+            "drupal/search_api": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-3.x": "3.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-3.x-dev",
+                "datestamp": "1558522381",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Dev releases are not covered by Drupal security advisories."
+                }
+            }
+        },
+        "installation-source": "source",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Berdir",
+                "homepage": "https://www.drupal.org/user/214652"
+            },
+            {
+                "name": "Morbus Iff",
+                "homepage": "https://www.drupal.org/user/9034"
+            },
+            {
+                "name": "RoSk0",
+                "homepage": "https://www.drupal.org/user/325151"
+            },
+            {
+                "name": "cr0ss",
+                "homepage": "https://www.drupal.org/user/432492"
+            },
+            {
+                "name": "dealancer",
+                "homepage": "https://www.drupal.org/user/243418"
+            },
+            {
+                "name": "grahl",
+                "homepage": "https://www.drupal.org/user/146040"
+            },
+            {
+                "name": "miro_dietiker",
+                "homepage": "https://www.drupal.org/user/227761"
+            },
+            {
+                "name": "pingers",
+                "homepage": "https://www.drupal.org/user/56282"
+            },
+            {
+                "name": "slashrsm",
+                "homepage": "https://www.drupal.org/user/744628"
+            },
+            {
+                "name": "vlkff",
+                "homepage": "https://www.drupal.org/user/320057"
+            }
+        ],
+        "description": "CRM Core is a set of modules that provide contact management functionality within Drupal web sites.",
+        "homepage": "https://www.drupal.org/project/crm_core",
+        "support": {
+            "source": "https://git.drupalcode.org/project/crm_core"
+        }
     },
     {
         "name": "drupal/crop",

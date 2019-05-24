@@ -1,0 +1,13 @@
+name: 'Base Field Override UI'
+type: module
+description: 'Enables the posibility to easily override the base fields of any content entity type with a user interface.'
+# core: 8.x
+package: 'Field'
+dependencies:
+  - field_ui
+
+# Information added by Drupal.org packaging script on 2019-05-21
+version: '8.x-1.0-beta1'
+core: '8.x'
+project: 'base_field_override_ui'
+datestamp: 1558412070
