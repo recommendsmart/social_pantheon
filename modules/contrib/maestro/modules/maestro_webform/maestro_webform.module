@@ -80,19 +80,7 @@ function maestro_webform_form_alter(&$form, \Drupal\Core\Form\FormStateInterface
           );
           
           $form['actions']['submit']['#submit'][] = 'maestro_webform_webform_type_task_submit';
-          
-          
-          //We shall now redirect based on where the task told us to go.
-          if(isset($templateTask['data']['redirect_to']) && $templateTask['data']['redirect_to'] != '') {
-            $response = new TrustedRedirectResponse('/' . $templateTask['data']['redirect_to']);
-            $form_state->setResponse($response);
-            $form_state->setRedirect(Url::fromUserInput('/' . $templateTask['data']['redirect_to']));
-          }
-          else {
-            $response = new TrustedRedirectResponse('/taskconsole');
-            $form_state->setResponse($response);
-            $form_state->setRedirect(Url::fromUserInput('/taskconsole'));
-          }
+         
         }
       }
     }

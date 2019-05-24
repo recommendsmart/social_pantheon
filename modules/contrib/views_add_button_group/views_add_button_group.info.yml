@@ -6,10 +6,10 @@ package: 'Views'
 dependencies:
   - drupal:group
   - drupal:views
-  - drupal:views_add_button
+  - views_add_button:views_add_button
 
-# Information added by Drupal.org packaging script on 2019-03-13
-version: '8.x-1.0'
+# Information added by Drupal.org packaging script on 2019-05-08
+version: '8.x-1.1'
 core: '8.x'
 project: 'views_add_button_group'
-datestamp: 1552458195
+datestamp: 1557280394

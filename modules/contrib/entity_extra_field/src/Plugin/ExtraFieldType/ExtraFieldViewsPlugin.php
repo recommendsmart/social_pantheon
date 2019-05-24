@@ -72,13 +72,16 @@ class ExtraFieldViewsPlugin extends ExtraFieldTypePluginBase {
           Tokens are supported.'),
         '#default_value' => $this->getPluginFormStateValue('arguments', $form_state)
       ];
-      $form['token_replacements'] = [
-        '#theme' => 'token_tree_link',
-        '#token_types' => $this->getEntityTokenTypes(
-          $this->getTargetEntityTypeId(),
-          $this->getTargetEntityTypeBundle()->id()
-        ),
-      ];
+
+      if ($this->moduleHandler->moduleExists('token')) {
+        $form['token_replacements'] = [
+          '#theme' => 'token_tree_link',
+          '#token_types' => $this->getEntityTokenTypes(
+            $this->getTargetEntityTypeId(),
+            $this->getTargetEntityTypeBundle()->id()
+          ),
+        ];
+      }
     }
 
     return $form;
@@ -89,6 +92,18 @@ class ExtraFieldViewsPlugin extends ExtraFieldTypePluginBase {
    */
   public function build(EntityInterface $entity, EntityDisplayInterface $display) {
     return $this->renderView($entity);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function calculateDependencies() {
+    /** @var \Drupal\views\ViewEntityInterface $view */
+    if ($view = $this->getView()) {
+      $this->addDependencies($view->getDependencies());
+    }
+
+    return parent::calculateDependencies();
   }
 
   /**

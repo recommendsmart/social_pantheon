@@ -7,9 +7,6 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
 use Drupal\Core\Entity\Annotation\ConfigEntityType;
 use Drupal\Core\Entity\Display\EntityDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\EntityWithPluginCollectionInterface;
-use Drupal\Core\Plugin\DefaultSingleLazyPluginCollection;
-use Drupal\Core\Plugin\PluginDependencyTrait;
 use Drupal\Core\Url;
 use Drupal\entity_extra_field\ExtraFieldTypePluginInterface;
 
@@ -35,9 +32,7 @@ use Drupal\entity_extra_field\ExtraFieldTypePluginInterface;
  *   }
  * )
  */
-class EntityExtraField extends ConfigEntityBase implements EntityWithPluginCollectionInterface, EntityExtraFieldInterface {
-
-  use PluginDependencyTrait;
+class EntityExtraField extends ConfigEntityBase implements EntityExtraFieldInterface {
 
   /**
    * @var string
@@ -195,6 +190,13 @@ class EntityExtraField extends ConfigEntityBase implements EntityWithPluginColle
   /**
    * {@inheritdoc}
    */
+  public function getCacheRenderTag() {
+    return "entity_extra_field:{$this->getDisplayType()}.{$this->getBaseEntityTypeId()}.{$this->getBaseBundleTypeId()}";
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function build(EntityInterface $entity, EntityDisplayInterface $display) {
     $field_type_plugin = $this->getFieldTypePlugin();
 
@@ -242,22 +244,16 @@ class EntityExtraField extends ConfigEntityBase implements EntityWithPluginColle
   }
 
   /**
-   * {@inheritdoc}
+   * {@inheritDoc}
    */
-  public function getPluginCollections() {
-    $field_type_plugin_id = $this->getFieldTypePluginId();
+  public function calculateDependencies() {
+    parent::calculateDependencies();
 
-    if (!isset($field_type_plugin_id) || empty($field_type_plugin_id)) {
-      return [];
+    if ($field_type_plugin = $this->getFieldTypePlugin()) {
+      $this->calculatePluginDependencies($field_type_plugin);
     }
 
-    return [
-      new DefaultSingleLazyPluginCollection(
-        \Drupal::service('plugin.manager.extra_field_type'),
-        $this->getFieldTypePluginId(),
-        $this->getFieldTypePluginConfig()
-      )
-    ];
+    return $this;
   }
 
   /**

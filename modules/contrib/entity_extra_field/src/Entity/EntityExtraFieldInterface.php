@@ -2,14 +2,14 @@
 
 namespace Drupal\entity_extra_field\Entity;
 
+use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Entity\Display\EntityDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\EntityTypeInterface;
 
 /**
  * Define entity extra field interface.
  */
-interface EntityExtraFieldInterface {
+interface EntityExtraFieldInterface extends ConfigEntityInterface {
 
   /**
    * Get extra field machine name.

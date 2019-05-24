@@ -1,3 +1,0 @@
-aggrid_diff.plugin.settings.aggrid_diff_builder:
-  type: diff.plugin.settings_base
-  label: 'Settings for ag-Grid diff builder plugin'

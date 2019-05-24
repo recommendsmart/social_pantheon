@@ -28,6 +28,26 @@ class ViewsAddButtonTaxonomy extends PluginBase implements ViewsAddButtonInterfa
   }
 
   /**
+   * Check for access to the appropriate "add" route.
+   *
+   * @param string $entity_type
+   *   Entity id as a machine name.
+   * @param string $bundle
+   *   The bundle string.
+   * @param string $context
+   *   Entity context string
+   *
+   * @return bool
+   *   Whether we have access.
+   */
+  public static function checkAccess($entity_type, $bundle, $context) {
+    if ($bundle) {
+      $accessManager = \Drupal::service('access_manager');
+      return $accessManager->checkNamedRoute('entity.taxonomy_term.add_form', ['taxonomy_vocabulary' => $bundle], \Drupal::currentUser());
+    }
+  }
+
+  /**
    * Generate the add button URL.
    *
    * @param string $entity_type

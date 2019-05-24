@@ -84,7 +84,7 @@ has no upgrade option (yet) from Drupal 7.
 
 
 Modules included:
------------------
+--------------------
 
 Maestro Engine (maestro)
   This is the core engine to Maestro responsible for execution of the engine templates.  

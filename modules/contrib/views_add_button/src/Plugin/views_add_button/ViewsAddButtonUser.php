@@ -28,6 +28,24 @@ class ViewsAddButtonUser extends PluginBase implements ViewsAddButtonInterface {
   }
 
   /**
+   * Check for access to the appropriate "add" route.
+   *
+   * @param string $entity_type
+   *   Entity id as a machine name.
+   * @param string $bundle
+   *   The bundle string.
+   * @param string $context
+   *   Entity context string
+   *
+   * @return bool
+   *   Whether we have access.
+   */
+  public static function checkAccess($entity_type, $bundle, $context) {
+    $accessManager = \Drupal::service('access_manager');
+    return $accessManager->checkNamedRoute('user.admin_create', [], \Drupal::currentUser());
+  }
+
+  /**
    * Generate the add button URL.
    *
    * @param string $entity_type

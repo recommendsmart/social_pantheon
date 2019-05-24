@@ -125,6 +125,10 @@ function entity_extra_field_display(
         continue;
       }
       $build[$extra_field->name()] = $extra_field->build($entity, $display);
+      $build[$extra_field->name()]['#cache']['tags'] = [
+        'entity_extra_field',
+        "entity_extra_field:{$type}.{$entity->getEntityTypeId()}.{$entity->bundle()}"
+      ];
     }
   }
 }

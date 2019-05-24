@@ -28,6 +28,26 @@ class ViewsAddButtonNode extends PluginBase implements ViewsAddButtonInterface {
   }
 
   /**
+   * Check for access to the appropriate "add" route.
+   *
+   * @param string $entity_type
+   *   Entity id as a machine name.
+   * @param string $bundle
+   *   The bundle string.
+   * @param string $context
+   *   Entity context string
+   *
+   * @return bool
+   *   Whether we have access.
+   */
+  public static function checkAccess($entity_type, $bundle, $context) {
+    if ($bundle) {
+      $accessManager = \Drupal::service('access_manager');
+      return $accessManager->checkNamedRoute('node.add', ['node_type' => $bundle], \Drupal::currentUser());
+    }
+  }
+
+  /**
    * Generate the add button URL.
    *
    * @param string $entity_type
@@ -43,7 +63,6 @@ class ViewsAddButtonNode extends PluginBase implements ViewsAddButtonInterface {
    *   Url object which is used to construct the add button link
    */
   public static function generateUrl($entity_type, $bundle, array $options, $context = '') {
-
     // Create URL from the data above.
     $url = Url::fromRoute('node.add', ['node_type' => $bundle], $options);
 

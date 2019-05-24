@@ -403,7 +403,15 @@ trait MaestroTaskTrait {
         '#plain_text' => $this->t('Enabling the Token module will reveal the replacable tokens available for custom notifications.'),
       );
     }
-    
+    $form['edit_task_notifications']['notification_assignment_subject'] = array(
+      '#type' => 'textarea',
+      '#default_value' => isset($task['notifications']['notification_assignment_subject']) ? $task['notifications']['notification_assignment_subject']: '',
+      '#title' => $this->t('Custom Assignment Subject'),
+      '#required' => FALSE,
+      '#rows' => 1,
+      '#prefix' => '<div class="maestro-engine-assignments-hidden-notification">',
+      '#suffix' => '</div>',
+     );
     $form['edit_task_notifications']['notification_assignment'] = array(
       '#id' => 'notification_assignment',
       '#type' => 'textarea',
@@ -414,7 +422,15 @@ trait MaestroTaskTrait {
       '#prefix' => '<div class="maestro-engine-assignments-hidden-notification">',
       '#suffix' => '</div>',
     );
-    
+    $form['edit_task_notifications']['notification_reminder_subject'] = array(
+      '#type' => 'textarea',
+      '#default_value' => isset($task['notifications']['notification_reminder_subject']) ? $task['notifications']['notification_reminder_subject']: '',
+      '#title' => $this->t('Custom Reminder Subject'),
+      '#required' => FALSE,
+      '#rows' => 1,
+      '#prefix' => '<div class="maestro-engine-assignments-hidden-notification">',
+      '#suffix' => '</div>',
+    );
     $form['edit_task_notifications']['notification_reminder'] = array(
       '#id' => 'notification_reminder',
       '#type' => 'textarea',
@@ -425,7 +441,15 @@ trait MaestroTaskTrait {
       '#prefix' => '<div class="maestro-engine-assignments-hidden-escalation">',
       '#suffix' => '</div>',
     );
-    
+    $form['edit_task_notifications']['notification_escalation_subject'] = array(
+          '#type' => 'textarea',
+          '#default_value' => isset($task['notifications']['notification_escalation_subject']) ? $task['notifications']['notification_escalation_subject']: '',
+          '#title' => $this->t('Custom Escalation Subject'),
+          '#required' => FALSE,
+          '#rows' => 1,
+          '#prefix' => '<div class="maestro-engine-assignments-hidden-notification">',
+          '#suffix' => '</div>',
+    );
     $form['edit_task_notifications']['notification_escalation'] = array(
       '#id' => 'notification_escalation',
       '#type' => 'textarea',
@@ -579,11 +603,13 @@ trait MaestroTaskTrait {
         $task['notifications']['notification_assignments'] .= $notifications;
       }
     }
-    
+    $task['notifications']['notification_assignment_subject'] = $taskNotifications['notification_assignment_subject'];
     $task['notifications']['notification_assignment'] = $taskNotifications['notification_assignment'];
+    $task['notifications']['notification_reminder_subject'] = $taskNotifications['notification_reminder_subject'];
     $task['notifications']['notification_reminder'] = $taskNotifications['notification_reminder'];
+    $task['notifications']['notification_escalation_subject'] = $taskNotifications['notification_escalation_subject'];
     $task['notifications']['notification_escalation'] = $taskNotifications['notification_escalation'];
-    
+
     $task['notifications']['reminder_after'] = $taskNotifications['reminder_after'];
     $task['notifications']['escalation_after'] = $taskNotifications['escalation_after'];
     

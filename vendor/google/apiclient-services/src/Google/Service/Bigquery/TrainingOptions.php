@@ -33,7 +33,9 @@ class Google_Service_Bigquery_TrainingOptions extends Google_Collection
   public $lossType;
   public $maxIterations;
   public $minRelativeProgress;
+  public $modelUri;
   public $numClusters;
+  public $optimizationStrategy;
   public $warmStart;
 
   public function setDataSplitColumn($dataSplitColumn)
@@ -156,6 +158,14 @@ class Google_Service_Bigquery_TrainingOptions extends Google_Collection
   {
     return $this->minRelativeProgress;
   }
+  public function setModelUri($modelUri)
+  {
+    $this->modelUri = $modelUri;
+  }
+  public function getModelUri()
+  {
+    return $this->modelUri;
+  }
   public function setNumClusters($numClusters)
   {
     $this->numClusters = $numClusters;
@@ -163,6 +173,14 @@ class Google_Service_Bigquery_TrainingOptions extends Google_Collection
   public function getNumClusters()
   {
     return $this->numClusters;
+  }
+  public function setOptimizationStrategy($optimizationStrategy)
+  {
+    $this->optimizationStrategy = $optimizationStrategy;
+  }
+  public function getOptimizationStrategy()
+  {
+    return $this->optimizationStrategy;
   }
   public function setWarmStart($warmStart)
   {

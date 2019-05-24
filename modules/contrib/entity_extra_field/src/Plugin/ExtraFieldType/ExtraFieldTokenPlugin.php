@@ -55,7 +55,7 @@ class ExtraFieldTokenPlugin extends ExtraFieldTypePluginBase {
     ];
 
     if (isset($type) && !empty($type)) {
-      $configuration = $this->configuration;
+      $configuration = $this->getConfiguration();
 
       $form['token'] = [
         '#type' => $type,
@@ -70,13 +70,15 @@ class ExtraFieldTokenPlugin extends ExtraFieldTypePluginBase {
         $form['token']['#format'] = $configuration['token']['format'];
       }
 
-      $form['token_replacements'] = [
-        '#theme' => 'token_tree_link',
-        '#token_types' => $this->getEntityTokenTypes(
-          $this->getTargetEntityTypeId(),
-          $this->getTargetEntityTypeBundle()->id()
-        ),
-      ];
+      if ($this->moduleHandler->moduleExists('token')) {
+        $form['token_replacements'] = [
+          '#theme' => 'token_tree_link',
+          '#token_types' => $this->getEntityTokenTypes(
+            $this->getTargetEntityTypeId(),
+            $this->getTargetEntityTypeBundle()->id()
+          ),
+        ];
+      }
     }
 
     return $form;

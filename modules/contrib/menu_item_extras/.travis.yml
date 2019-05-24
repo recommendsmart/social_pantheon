@@ -12,14 +12,11 @@ php:
 env:
   global:
     - MODULE_NAME='menu_item_extras'
-    - DRUPAL_REPO='git://drupalcode.org/project/drupal.git'
+    - DRUPAL_REPO='https://git.drupalcode.org/project/drupal.git'
     - DRUPAL_VERSION='8.6.x'
     - PHPCS_VERSION='3.*'
     - CODER_VERSION='8.3.x'
     - DRUSH_VERSION='8.1.*'
-
-notifications:
-  slack: 'xxx'
 
 # Cache Composer & Drush directories.
 cache:

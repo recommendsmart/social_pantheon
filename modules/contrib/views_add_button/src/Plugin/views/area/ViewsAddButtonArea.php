@@ -28,6 +28,33 @@ class ViewsAddButtonArea extends TokenizeAreaPluginBase {
   /**
    * Build Bundle Type List.
    */
+  public function createPluginList() {
+    $plugin_manager = \Drupal::service('plugin.manager.views_add_button');
+    $plugin_definitions = $plugin_manager->getDefinitions();
+
+    $options = ['Any Entity' => []];
+    $entity_info = \Drupal::entityTypeManager()->getDefinitions();
+    foreach ($plugin_definitions as $pd) {
+      $label = $pd['label'];
+      if ($pd['label'] instanceof TranslatableMarkup) {
+        $label = $pd['label']->render();
+      }
+      $type_info = isset($pd['target_entity']) ? $entity_info[$pd['target_entity']] : 'default';
+      $type_label = t('Any Entity');
+      if ($type_info instanceof ContentEntityType) {
+        $type_label = $type_info->getLabel();
+      }
+      if ($type_label instanceof TranslatableMarkup) {
+        $type_label = $type_label->render();
+      }
+      $options[$type_label][$pd['id']] = $label;
+    }
+    return $options;
+  }
+
+  /**
+   * Build Bundle Type List.
+   */
   public function createEntityBundleList() {
     $ret = [];
     $entity_info = \Drupal::entityTypeManager()->getDefinitions();
@@ -63,6 +90,8 @@ class ViewsAddButtonArea extends TokenizeAreaPluginBase {
   protected function defineOptions() {
     $options = parent::defineOptions();
     $options['type'] = ['default' => 'node'];
+    $options['render_plugin'] = ['default' => ''];
+    $options['access_plugin'] = ['default' => ''];
     $options['context'] = ['default' => ''];
     $options['button_text'] = ['default' => ''];
     $options['button_classes'] = ['default' => ''];
@@ -86,6 +115,27 @@ class ViewsAddButtonArea extends TokenizeAreaPluginBase {
       '#options' => $this->createEntityBundleList(),
       '#empty_option' => '- Select -',
       '#default_value' => $this->options['type'],
+      '#weight' => -10,
+      '#required' => TRUE,
+    ];
+    $form['render_plugin'] = [
+      '#type' => 'select',
+      '#title' => t('Custom Rendering Plugin'),
+      '#description' => t('If you would like to specify a plugin to use for rendering, set it here. 
+        Leave unset to use the entity default plugin (recommended).'),
+      '#options' => $this->createPluginList(),
+      '#empty_option' => '- Select -',
+      '#default_value' => $this->options['render_plugin'],
+      '#weight' => -10,
+    ];
+    $form['access_plugin'] = [
+      '#type' => 'select',
+      '#title' => t('Custom Access Plugin'),
+      '#description' => t('If you would like to specify an access plugin to use, set it here. 
+        Leave unset to use the entity default plugin (recommended).'),
+      '#options' => $this->createPluginList(),
+      '#empty_option' => '- Select -',
+      '#default_value' => $this->options['access_plugin'],
       '#weight' => -10,
     ];
     $form['context'] = [
@@ -152,46 +202,12 @@ class ViewsAddButtonArea extends TokenizeAreaPluginBase {
     $this->tokenForm($form, $form_state);
   }
 
-  /**
-   * {@inheritdoc}
-   */
-  public function render($empty = FALSE) {
-    // Get the entity/bundle type.
-    $type = explode('+', $this->options['type'], 2);
-    $entity_type = $type[0];
-    $bundle = $type[1];
-
-    // Load ViewsAddButton plugin definitions, and find the right one.
-    $plugin_manager = \Drupal::service('plugin.manager.views_add_button');
-    $plugin_definitions = $plugin_manager->getDefinitions();
-
-    $plugin_class = $plugin_definitions['views_add_button_default']['class'];
-    $set_for_bundle = FALSE;
-    foreach ($plugin_definitions as $pd) {
-      if (!empty($pd['target_entity']) && $pd['target_entity'] === $entity_type) {
-        if (!empty($pd['target_bundle'])) {
-          $b = $bundle;
-          /*
-           * In certain cases, like the Group module,
-           * we need to extract the true bundle name from a
-           * hashed bundle string.
-           */
-          if (method_exists($pd['class'], 'get_bundle')) {
-            $b = $pd['class']::get_bundle($bundle);
-          }
-          if ($pd['target_bundle'] === $b) {
-            $plugin_class = $pd['class'];
-            $set_for_bundle = TRUE;
-          }
-        }
-        elseif (!$set_for_bundle) {
-          $plugin_class = $pd['class'];
-        }
-      }
-    }
-
-    // Check for entity add access.
+  public function checkButtonAccess($plugin_definitions, $default_plugin, $entity_type, $bundle) {
     $access = FALSE;
+    $plugin_class = $default_plugin;
+    if (isset($this->options['access_plugin']) && isset($plugin_definitions[$this->options['access_plugin']]['class'])) {
+      $plugin_class = $plugin_definitions[$this->options['access_plugin']]['class'];
+    }
     if (method_exists($plugin_class, 'checkAccess')) {
       $context = $this->options['tokenize'] ? $this->tokenizeValue($this->options['context']) : $this->options['context'];
       $access = $plugin_class::checkAccess($entity_type, $bundle, $context);
@@ -206,12 +222,65 @@ class ViewsAddButtonArea extends TokenizeAreaPluginBase {
         $access = $access_handler->createAccess();
       }
     }
+    return $access;
+  }
 
-    if ($access) {
+  /**
+   * {@inheritdoc}
+   */
+  public function render($empty = FALSE) {
+    // Get the entity/bundle type.
+    $type = explode('+', $this->options['type'], 2);
+    $entity_type = $type[0];
+    $bundle = $type[1];
+
+    // Load ViewsAddButton plugin definitions, and find the right one.
+    $plugin_manager = \Drupal::service('plugin.manager.views_add_button');
+    $plugin_definitions = $plugin_manager->getDefinitions();
+
+    $plugin_class = $plugin_definitions['views_add_button_default']['class'];
+    if (isset($this->options['render_plugin']) && !empty($this->options['render_plugin'])) {
+      $plugin_class = $plugin_definitions[$this->options['render_plugin']]['class'];
+    }
+    else {
+      $set_for_bundle = FALSE;
+      foreach ($plugin_definitions as $pd) {
+        // Exclude 'manual selection' special-use plugins.
+        if (empty($pd['manual_select']) || !$pd['manual_select']) {
+          if (!empty($pd['target_entity']) && $pd['target_entity'] === $entity_type) {
+            if (!empty($pd['target_bundle'])) {
+              $b = $bundle;
+              /*
+               * In certain cases, like the Group module,
+               * we need to extract the true bundle name from a
+               * hashed bundle string.
+               */
+              if (method_exists($pd['class'], 'get_bundle')) {
+                $b = $pd['class']::get_bundle($bundle);
+              }
+              if ($pd['target_bundle'] === $b) {
+                $plugin_class = $pd['class'];
+                $set_for_bundle = TRUE;
+              }
+            }
+            elseif (!$set_for_bundle) {
+              $plugin_class = $pd['class'];
+            }
+          }
+        }
+      }
+    }
+
+
+    if ($this->checkButtonAccess($plugin_definitions, $plugin_class, $entity_type, $bundle)) {
       // Build URL Options.
       $opts = [];
-      $dest = Url::fromRoute('<current>');
-      $opts['query']['destination'] = $dest->toString();
+
+      if ($this->options['destination']) {
+        $dest = Url::fromRoute('<current>');
+        $opts['query']['destination'] = $dest->toString();
+      }
+
       $opts['attributes']['class'] = $this->options['tokenize'] ? $this->tokenizeValue($this->options['button_classes']) : $this->options['button_classes'];
 
       // Build custom attributes.

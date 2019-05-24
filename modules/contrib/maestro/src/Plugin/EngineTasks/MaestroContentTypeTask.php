@@ -234,7 +234,6 @@ class MaestroContentTypeTask extends PluginBase implements MaestroEngineTaskInte
    * {@inheritDoc}
    */
   public function prepareTaskForSave(array &$form, FormStateInterface $form_state, array &$task) {
-    global $base_url;
     $task['data']['unique_id'] = $form_state->getValue('unique_id');
     $task['data']['content_type'] = $form_state->getValue('content_type');
     $task['data']['save_edit_later'] = $form_state->getValue('save_edit_later');
@@ -257,7 +256,7 @@ class MaestroContentTypeTask extends PluginBase implements MaestroEngineTaskInte
     //we create our own handler here based on the content type and signify that it is maestro based
     //This is the NODE ADD handler.  We alter this in a post-assignment hook if the entity identifier already exists in maestro.module
     //see maestro_maestro_post_production_assignments
-    $task['handler'] = $base_url . '/node/add/' . $form_state->getValue('content_type') . '?maestro=1'; 
+    $task['handler'] = '/node/add/' . $form_state->getValue('content_type') . '?maestro=1'; 
     
   }
   

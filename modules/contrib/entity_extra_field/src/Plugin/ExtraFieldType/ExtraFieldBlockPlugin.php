@@ -8,15 +8,15 @@ use Drupal\Core\Entity\Display\EntityDisplayInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Form\SubformState;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Plugin\PluginFormInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Utility\Token;
 use Drupal\entity_extra_field\Annotation\ExtraFieldType;
 use Drupal\entity_extra_field\ExtraFieldTypeBase;
 use Drupal\entity_extra_field\ExtraFieldTypePluginBase;
-use Drupal\token\Token;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -27,7 +27,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   label = @Translation("Block")
  * )
  */
-class ExtraFieldBlockPlugin extends ExtraFieldTypePluginBase implements ContainerFactoryPluginInterface {
+class ExtraFieldBlockPlugin extends ExtraFieldTypePluginBase {
 
   /**
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
@@ -43,8 +43,10 @@ class ExtraFieldBlockPlugin extends ExtraFieldTypePluginBase implements Containe
    *   The plugin identifier.
    * @param $plugin_definition
    *   The plugin definition.
-   * @param \Drupal\token\Token $token
+   * @param \Drupal\Core\Utility\Token $token
    *   The token service.
+   * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
+   *   The module handler service.
    * @param \Drupal\Core\Routing\RouteMatchInterface $current_route_match
    *   The current route match service.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
@@ -59,6 +61,7 @@ class ExtraFieldBlockPlugin extends ExtraFieldTypePluginBase implements Containe
     $plugin_id,
     $plugin_definition,
     Token $token,
+    ModuleHandlerInterface $module_handler,
     RouteMatchInterface $current_route_match,
     EntityTypeManagerInterface $entity_type_manager,
     EntityFieldManagerInterface $entity_field_manager,
@@ -69,6 +72,7 @@ class ExtraFieldBlockPlugin extends ExtraFieldTypePluginBase implements Containe
       $plugin_id,
       $plugin_definition,
       $token,
+      $module_handler,
       $current_route_match,
       $entity_type_manager,
       $entity_field_manager
@@ -90,6 +94,7 @@ class ExtraFieldBlockPlugin extends ExtraFieldTypePluginBase implements Containe
       $plugin_id,
       $plugin_definition,
       $container->get('token'),
+      $container->get('module_handler'),
       $container->get('current_route_match'),
       $container->get('entity_type.manager'),
       $container->get('entity_field.manager'),
@@ -214,32 +219,11 @@ class ExtraFieldBlockPlugin extends ExtraFieldTypePluginBase implements Containe
    * {@inheritdoc}
    */
   public function calculateDependencies() {
-    $dependencies = [];
-
-    $block_type_instance = $this->getBlockTypeInstance();
-
-    if ($block_type_instance !== FALSE) {
-      $plugin_definition = $block_type_instance->getPluginDefinition();
-
-      // Due to the plugin definition not being an instance with a
-      // \Drupal\Component\Plugin\Definition\PluginDefinitionInterface, so we
-      // aren't able to use the \Drupal\Core\Plugin\PluginDependencyTrait. If
-      // this changes in the future then update.
-      if (is_array($plugin_definition)) {
-        if (isset($plugin_definition['config_dependencies'])) {
-          $dependencies = array_merge_recursive(
-            $dependencies,
-            $plugin_definition['config_dependencies']
-          );
-        }
-
-        if (isset($plugin_definition['provider'])) {
-          $dependencies['module'][] = $plugin_definition['provider'];
-        }
-      }
+    if ($block_type_instance = $this->getBlockTypeInstance()) {
+      $this->calculatePluginDependencies($block_type_instance);
     }
 
-    return $dependencies;
+    return parent::calculateDependencies();
   }
 
   /**

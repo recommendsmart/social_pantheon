@@ -7,22 +7,30 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\ContentEntityTypeInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Plugin\PluginBase;
+use Drupal\Core\Plugin\PluginDependencyTrait;
 use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\token\Token;
+use Drupal\Core\Utility\Token;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Define extra field type plugin base.
  */
-abstract class ExtraFieldTypePluginBase extends PluginBase implements ExtraFieldTypePluginInterface, ContainerFactoryPluginInterface {
+abstract class ExtraFieldTypePluginBase extends PluginBase implements ExtraFieldTypePluginInterface {
+
+  use PluginDependencyTrait;
 
   /**
-   * @var \Drupal\token\Token
+   * @var \Drupal\Core\Utility\Token
    */
   protected $token;
+
+  /**
+   * @var \Drupal\Core\Extension\ModuleHandlerInterface
+   */
+  protected $moduleHandler;
 
   /**
    * @var \Drupal\Core\Routing\RouteMatchInterface
@@ -48,8 +56,10 @@ abstract class ExtraFieldTypePluginBase extends PluginBase implements ExtraField
    *   The plugin identifier.
    * @param $plugin_definition
    *   The plugin definition.
-   * @param \Drupal\token\Token $token
+   * @param \Drupal\Core\Utility\Token $token
    *   The token service.
+   * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
+   *   The module handler service.
    * @param \Drupal\Core\Routing\RouteMatchInterface $current_route_match
    *   The current route match service.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
@@ -61,12 +71,14 @@ abstract class ExtraFieldTypePluginBase extends PluginBase implements ExtraField
     $plugin_id,
     $plugin_definition,
     Token $token,
+    ModuleHandlerInterface $module_handler,
     RouteMatchInterface $current_route_match,
     EntityTypeManagerInterface $entity_type_manager,
     EntityFieldManagerInterface $entity_field_manager
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->token = $token;
+    $this->moduleHandler = $module_handler;
     $this->currentRouteMatch = $current_route_match;
     $this->entityTypeManager = $entity_type_manager;
     $this->entityFieldManager = $entity_field_manager;
@@ -86,6 +98,7 @@ abstract class ExtraFieldTypePluginBase extends PluginBase implements ExtraField
       $plugin_id,
       $plugin_definition,
       $container->get('token'),
+      $container->get('module_handler'),
       $container->get('current_route_match'),
       $container->get('entity_type.manager'),
       $container->get('entity_field.manager')
@@ -158,7 +171,7 @@ abstract class ExtraFieldTypePluginBase extends PluginBase implements ExtraField
    * {@inheritdoc}
    */
   public function calculateDependencies() {
-    return [];
+    return $this->dependencies;
   }
 
   /**

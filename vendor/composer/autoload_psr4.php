@@ -68,7 +68,6 @@ return array(
     'Embed\\' => array($vendorDir . '/embed/embed/src'),
     'Drupal\\social\\Behat\\' => array($baseDir . '/profiles/contrib/social/tests/behat/features/bootstrap'),
     'Drupal\\drush9_example\\' => array($baseDir . '/modules/contrib/duration_field/src'),
-    'Drupal\\aggrid\\' => array($baseDir . '/modules/contrib/aggrid/src'),
     'Drupal\\Driver\\' => array($baseDir . '/drivers/lib/Drupal/Driver'),
     'Drupal\\Core\\' => array($baseDir . '/core/lib/Drupal/Core'),
     'Drupal\\Component\\' => array($baseDir . '/core/lib/Drupal/Component'),

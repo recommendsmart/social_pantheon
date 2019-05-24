@@ -13,8 +13,8 @@ scripts:
 # project: 'maestro'
 # datestamp: 1508519647
 
-# Information added by Drupal.org packaging script on 2019-03-12
-version: '8.x-2.1-rc2'
+# Information added by Drupal.org packaging script on 2019-05-03
+version: '8.x-2.1-rc3'
 core: '8.x'
 project: 'maestro'
-datestamp: 1552423389
+datestamp: 1556912892

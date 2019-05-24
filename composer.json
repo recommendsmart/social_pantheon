@@ -71,7 +71,6 @@
         "drupal/age_field_formatter": "^2.1",
         "drupal/range_units": "^1.0",
         "drupal/basic_data": "1.x-dev",
-        "drupal/crm_core": "1.x-dev",
         "drupal/module_builder": "^3.1",
         "drupal/switch_page_theme": "^1.0",
         "drupal/prevent_term_delete": "^1.0@alpha",
@@ -81,8 +80,7 @@
         "drupal/go_back": "^1.0",
         "drupal/entity_extra_field": "^1.0",
         "drupal/datatables": "^1.0",
-        "drupal/term_reference_fancytree": "^1.0",
-        "drupal/aggrid": "^1.0"						  							 
+        "drupal/term_reference_fancytree": "^1.0"						  							 
         },
     "repositories": [
         {

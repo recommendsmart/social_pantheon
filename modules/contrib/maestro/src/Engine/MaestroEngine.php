@@ -1736,7 +1736,15 @@ class MaestroEngine {
           //TODO: token replacement  Use hook token?  https://api.drupal.org/api/drupal/core!lib!Drupal!Core!Utility!token.api.php/function/hook_tokens/8.2.x
           $tokenService = \Drupal::token();
           $notificationMessage = $tokenService->replace($notificationMessage,['maestro' => ['task' =>$templateTask, 'queueID' => $queueID]]);
-          
+            if($notificationType == 'assignment') {
+                $subject = array_key_exists('notification_assignment_subject', $templateTask['notifications'])?$tokenService->replace($templateTask['notifications']['notification_assignment_subject'],['maestro' => ['task' =>$templateTask, 'queueID' => $queueID]]):'You have a new task assignment';
+            }
+            elseif($notificationType == 'reminder') {
+                $subject = array_key_exists('notification_reminder_subject', $templateTask['notifications'])?$tokenService->replace($templateTask['notifications']['notification_reminder_subject'],['maestro' => ['task' =>$templateTask, 'queueID' => $queueID]]):'You have a new task assignment';
+            }
+            elseif($notificationType == 'escalation') {
+                $subject = array_key_exists('notification_escalation_subject', $templateTask['notifications'])?$tokenService->replace($templateTask['notifications']['notification_escalation_subject'],['maestro' => ['task' =>$templateTask, 'queueID' => $queueID]]):'You have a new task assignment';
+            }
         }
         else { //default built in message
           //TODO: create a sitewide default email in the Maestro config
@@ -1763,6 +1771,8 @@ class MaestroEngine {
         $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
         $params = array();
         $params['queueID'] = $queueID;
+        $tokenService = \Drupal::token();
+        $params['subject'] = isset($subject)?$subject:'You have a new task assignment';
         $params['message'] = $notificationMessage;
         foreach($notificationList as $email) {
           $result = $mailManager->mail('maestro', $notificationType . '_notification', $email, $langcode, $params, NULL, TRUE);
