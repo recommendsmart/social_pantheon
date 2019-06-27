@@ -241,12 +241,17 @@ class GoBack extends BlockBase implements ContainerFactoryPluginInterface {
       $this->configuration[$content_type]['quick_display'] = $values[$content_type]['quick_display'];
       $this->configuration[$content_type]['smart_mode'] = $values[$content_type]['smart_mode'];
     }
-    $custom_url_array = explode(', ', $values['custom_url']);
+    $custom_url_array = explode(',', str_replace(' ', '', $values['custom_url']));
     if (!empty($custom_url_array)) {
       foreach ($custom_url_array as $custom_url) {
-        $this->configuration['particular_path'][$custom_url]['custom_url'] = $values['particular_path'][$custom_url]['custom_url'];
-        $this->configuration['particular_path'][$custom_url]['quick_display'] = $values['particular_path'][$custom_url]['quick_display'];
-        $this->configuration['particular_path'][$custom_url]['smart_mode'] = $values['particular_path'][$custom_url]['smart_mode'];
+        if (array_key_exists($custom_url, $values['particular_path'])) {
+          $this->configuration['particular_path'][$custom_url]['custom_url'] = $values['particular_path'][$custom_url]['custom_url'];
+          $this->configuration['particular_path'][$custom_url]['quick_display'] = $values['particular_path'][$custom_url]['quick_display'];
+          $this->configuration['particular_path'][$custom_url]['smart_mode'] = $values['particular_path'][$custom_url]['smart_mode'];
+        }
+        else {
+          \Drupal::messenger()->addWarning($this->t('Go back: Please return to the block configuration form to finish settings for your custom url.'));
+        }
       }
     }
     $this->configuration['custom_url'] = $values['custom_url'];
@@ -264,7 +269,7 @@ class GoBack extends BlockBase implements ContainerFactoryPluginInterface {
      */
     $current_path = \Drupal::service('path.current')->getPath();
     // The block appears in the url indicated in the configuration.
-    if (!strpos($config['custom_url'], $current_path)) {
+    if (strpos($config['custom_url'], $current_path) !== FALSE) {
       if ($config['particular_path'][$current_path]['quick_display'] == '1') {
         // We activate smart mode in a custom url.
         if ($config['particular_path'][$current_path]['smart_mode'] == '1') {
@@ -370,6 +375,8 @@ class GoBack extends BlockBase implements ContainerFactoryPluginInterface {
     if (empty($result)) {
       $result = [];
     }
+    // trigger cache kill switch, see: https://drupal.stackexchange.com/a/151289
+    \Drupal::service('page_cache_kill_switch')->trigger();
     return $result;
   }
 

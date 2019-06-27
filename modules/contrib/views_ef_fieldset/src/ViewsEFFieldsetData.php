@@ -141,16 +141,17 @@ class ViewsEFFieldsetData {
 
       // If it's a filter field.
       if ($item['item']['type'] === 'filter') {
-        $field_name = isset($form['#info']['filter-' . $item['item']['id']]) ?
-          $form['#info']['filter-' . $item['item']['id']]['value'] :
-          '';
+        $form_info = isset($form['#info']['filter-' . $item['item']['id']])
+          ? $form['#info']['filter-' . $item['item']['id']]
+          : NULL;
 
+        $field_name = $form_info['value'] ?: $item['item']['id'];
         if (isset($form[$field_name]) && is_array($form[$field_name])) {
           $element[$field_name] = $form[$field_name] +
             [
               '#weight' => $item['item']['weight'],
-              '#title' => $form['#info']['filter-' . $item['item']['id']]['label'],
-              '#description' => $form['#info']['filter-' . $item['item']['id']]['description'],
+              '#title' => $form_info['label'] ?: '',
+              '#description' => $form_info['description'] ?: '',
             ];
           unset($form['#info']['filter-' . $item['item']['id']]);
           unset($form[$field_name]);
@@ -219,7 +220,7 @@ class ViewsEFFieldsetData {
       return 0;
     }
 
-    return ($a['item']['weight'] < $b['item']['weight'] ? -1 : 1);
+    return $a['item']['weight'] < $b['item']['weight'] ? -1 : 1;
   }
 
 }

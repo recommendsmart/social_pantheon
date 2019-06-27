@@ -82,7 +82,8 @@
         "drupal/datatables": "^1.0",
         "drupal/term_reference_fancytree": "^1.0",
         "drupal/crm_core": "3.x-dev",
-        "drupal/base_field_override_ui": "^1.0"						  							 
+        "drupal/base_field_override_ui": "^1.0",
+        "drupal/altering_entity_routes": "^1.0"						  							 
         },
     "repositories": [
         {

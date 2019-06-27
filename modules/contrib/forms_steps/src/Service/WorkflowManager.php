@@ -6,7 +6,7 @@ use Drupal\Component\Uuid\UuidInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Routing\CurrentRouteMatch;
 use Drupal\entity_embed\Exception\EntityNotFoundException;
-use Drupal\Core\Entity\Entity;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\forms_steps\Entity\Workflow;
 
 /**
@@ -70,7 +70,7 @@ class WorkflowManager {
   /**
    * Returns the first workflow entry of the provided entity.
    *
-   * @param \Drupal\Core\Entity\Entity $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *   Entity instance to get the workflow from.
    *
    * @return \Drupal\forms_steps\Entity\Workflow|null
@@ -79,7 +79,7 @@ class WorkflowManager {
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function getWorkflowByEntity(Entity $entity) {
+  public function getWorkflowByEntity(EntityInterface $entity) {
     $workflow = NULL;
 
     // We load all the workflow of that entity type & bundle.
@@ -104,7 +104,7 @@ class WorkflowManager {
   /**
    * Workflow info storage on hook_entity_presave().
    *
-   * @param \Drupal\Core\Entity\Entity $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The entity that is going to be saved.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
@@ -112,7 +112,7 @@ class WorkflowManager {
    * @throws \Drupal\Core\Entity\EntityStorageException
    * @throws \Drupal\entity_embed\Exception\EntityNotFoundException
    */
-  public function entityPreSave(Entity $entity) {
+  public function entityPreSave(EntityInterface $entity) {
     if ($entity->isNew()) {
       return;
     }
@@ -187,7 +187,7 @@ class WorkflowManager {
   /**
    * Workflow info storage on hook_entity_insert().
    *
-   * @param \Drupal\Core\Entity\Entity $entity
+   * @param \Drupal\Core\Entity\EntityInterface $entity
    *   The entity that is going to be inserted.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
@@ -195,7 +195,7 @@ class WorkflowManager {
    * @throws \Drupal\Core\Entity\EntityStorageException
    * @throws \Drupal\entity_embed\Exception\EntityNotFoundException
    */
-  public function entityInsert(Entity $entity) {
+  public function entityInsert(EntityInterface $entity) {
     $currentRoute = $this->currentRouteMatch->getRouteName();
     if (
       preg_match('/^forms_steps\./', $currentRoute)
@@ -262,5 +262,4 @@ class WorkflowManager {
       }
     }
   }
-
 }

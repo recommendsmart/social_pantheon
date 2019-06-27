@@ -31,6 +31,20 @@ class ModuleHooksForm extends ComponentFormBase {
   public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
 
+    $form['filter'] = [
+      '#type' => 'search',
+      '#title' => $this->t('Filter'),
+      '#title_display' => 'invisible',
+      '#size' => 60,
+      '#placeholder' => $this->t('Filter by hook name'),
+      '#attributes' => [
+        'class' => ['hooks-filter-text'],
+        'data-container' => '.module-builder-hooks',
+        'autocomplete' => 'off',
+        'title' => $this->t('Enter a part of the hook name to filter by.'),
+      ],
+    ];
+
     // Get the Task handler.
     // No need to catch DCB exceptions; create() has already done that.
     // TODO: inject.
@@ -39,9 +53,14 @@ class ModuleHooksForm extends ComponentFormBase {
     // Call a method in the Task handler to perform the operation.
     $hook_info = $mb_task_handler_report->listHookOptionsStructured();
 
+    $form['groups'] = [
+      '#type' => 'container',
+      '#attributes' => ['class' => ['module-builder-hooks']],
+    ];
+
     // Create a fieldset for each group, containing checkboxes.
     foreach ($hook_info as $group => $hook_group_info) {
-      $form[$group] = array(
+      $form['groups'][$group] = array(
         '#type' => 'details',
         '#title' => $group,
         //'#open' => TRUE,
@@ -52,14 +71,14 @@ class ModuleHooksForm extends ComponentFormBase {
       // Need to differentiate the key, otherwise FormAPI treats this as an
       // error on submit.
       $group_default_value = isset($this->moduleEntityData['hooks']) ? array_intersect($hook_names, $this->moduleEntityData['hooks']) : [];
-      $form[$group][$group . '_hooks'] = array(
+      $form['groups'][$group][$group . '_hooks'] = array(
         '#type' => 'checkboxes',
         '#options' => array_combine($hook_names, array_column($hook_group_info, 'name')),
         '#default_value' => $group_default_value,
       );
 
       if (!empty($group_default_value)) {
-        $form[$group]['#open'] = TRUE;
+        $form['groups'][$group]['#open'] = TRUE;
       }
 
       foreach ($hook_group_info as $hook => $hook_info_single) {
@@ -71,13 +90,23 @@ class ModuleHooksForm extends ComponentFormBase {
           $description .= ' ' . \Drupal::l(t('[documentation]'), $url);
         }
 
-        $form[$group][$group . '_hooks'][$hook]['#description'] = $description;
+        $form['groups'][$group][$group . '_hooks'][$hook]['#description'] = $description;
       }
     }
 
     $form_state->set('module_builder_groups', array_keys($hook_info));
 
+    $form['#attached']['library'][] = 'module_builder/module_builder';
+
     return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function validateForm(array &$form, FormStateInterface $form_state) {
+    // No validation for hooks, and we need to override the parent method that
+    // expects a 'data' form element which this form doesn't have.
   }
 
   /**

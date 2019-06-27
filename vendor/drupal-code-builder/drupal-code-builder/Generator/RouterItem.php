@@ -59,7 +59,8 @@ class RouterItem extends BaseGenerator {
         'process_default' => TRUE,
         'default' => function($component_data) {
           // Create a controller name from the route path.
-          $snake = str_replace(['/', '-'], '_', $component_data['path']);
+          $path  = str_replace(['{', '}'], '', $component_data['path']);
+          $snake = str_replace(['/', '-'], '_', $path);
           $controller_class_name = CaseString::snake($snake)->pascal() . 'Controller';
           return $controller_class_name;
         },
@@ -135,7 +136,7 @@ class RouterItem extends BaseGenerator {
             'role' => 'authenticated',
             'entity_access' => 'ENTITY_TYPE.OPERATION',
           ];
-          if (isset($component_data['access_type'])) {
+          if (!empty($component_data['access_type'])) {
             return $lookup[$component_data['access_type']];
           }
         },

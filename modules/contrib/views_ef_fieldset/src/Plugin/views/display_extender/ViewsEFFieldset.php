@@ -63,6 +63,17 @@ class ViewsEFFieldset extends DefaultDisplayExtender {
       if ((bool) $exposed_field['exposed'] !== TRUE) {
         unset($exposed_fields[$exposed_field_index]);
       }
+      elseif ((bool) $exposed_field['expose']['use_operator'] === TRUE) {
+        $exposed_operator = [];
+        $exposed_operator['handler_type'] = 'filter';
+        $exposed_operator['id'] = $exposed_field['expose']['operator_id'];
+        $exposed_operator['expose'] = [
+          'label' => ($exposed_field['expose']['multiple']
+            ? $exposed_field['expose']['placeholder_text_multiple']
+            : $exposed_field['expose']['placeholder_text_single']) . ' (' . $exposed_field['expose']['label'] . ')',
+        ];
+        $exposed_fields[] = $exposed_operator;
+      }
     }
 
     $sort_fields = $this->view->getHandlers('sort');

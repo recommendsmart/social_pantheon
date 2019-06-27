@@ -37,7 +37,7 @@ class FormsStepsStepEditForm extends FormsStepsStepFormBase {
     $forms_steps = $this->entity;
 
     $forms_steps->save();
-    drupal_set_message($this->t('Saved %label step.', [
+    $this->messenger()->addMessage($this->t('Saved %label step.', [
       '%label' => $forms_steps->getStep($this->stepId)->label(),
     ]));
     $form_state->setRedirectUrl($forms_steps->toUrl('edit-form'));

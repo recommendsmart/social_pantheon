@@ -68,6 +68,8 @@ class FormsStepsAddForm extends EntityForm {
    *
    * @return bool
    *   TRUE if an entity with the same name already exists, FALSE otherwise.
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function exists($id) {
     $type = $this->entity->getEntityTypeId();
@@ -80,7 +82,7 @@ class FormsStepsAddForm extends EntityForm {
   public function save(array $form, FormStateInterface $form_state) {
     parent::save($form, $form_state);
 
-    drupal_set_message($this->t('Forms Steps %label has been created.', ['%label' => $this->entity->label()]));
+    $this->messenger()->addMessage($this->t('Forms Steps %label has been created.', ['%label' => $this->entity->label()]));
     $form_state->setRedirect('entity.forms_steps.edit_form', ['forms_steps' => $this->entity->id()]);
   }
 

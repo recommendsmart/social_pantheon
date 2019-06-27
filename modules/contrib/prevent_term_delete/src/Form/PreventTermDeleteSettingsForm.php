@@ -37,35 +37,35 @@ class PreventTermDeleteSettingsForm extends ConfigFormBase {
     }
     $vocabularies = Vocabulary::loadMultiple();
     
-    $options = array();
+    $options = [];
     foreach ($vocabularies as $vocabulary => $type) {
       $options[$vocabulary] = $type->get('name');
     }
 
-    $form['vocabulary'] = array(
+    $form['vocabulary'] = [
       '#title' => t('Vocabulary'),
       '#type' => 'checkboxes',
       '#description' => t('Check the vocabularies that you wish to add restriction on deletion'),
       '#options' => $options,
       '#default_value' => $config->get('vocabulary'),
-    );
+    ];
 
   
-    $form['delete_button'] = array(
+    $form['delete_button'] = [
       '#title' => t('Show delete button'),
       '#type' => 'checkbox',
       '#description' => t('This option will show delete button in term delete form page, even when the term is associated with entites'),
       '#default_value' => $config->get('delete_button'),
-    );
+    ];
 
    
-    $form['limit'] = array(
+    $form['limit'] = [
       '#title' => t('Number of entities list to show in term delete form'),
       '#type' => 'textfield',
       '#description' => t("Number of entities list to show in term delete form"),
       '#size' => 2,
       '#default_value' => $config->get('limit'),
-    );
+    ];
 
     return parent::buildForm($form, $form_state);
   }

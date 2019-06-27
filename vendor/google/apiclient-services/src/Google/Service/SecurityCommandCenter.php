@@ -115,11 +115,11 @@ class Google_Service_SecurityCommandCenter extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'orderBy' => array(
+                'readTime' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'readTime' => array(
+                'orderBy' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -131,11 +131,11 @@ class Google_Service_SecurityCommandCenter extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'fieldMask' => array(
+                'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'pageToken' => array(
+                'fieldMask' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -163,11 +163,11 @@ class Google_Service_SecurityCommandCenter extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'updateMask' => array(
+                'startTime' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'startTime' => array(
+                'updateMask' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -369,15 +369,11 @@ class Google_Service_SecurityCommandCenter extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'readTime' => array(
+                'orderBy' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'orderBy' => array(
+                'readTime' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -389,13 +385,17 @@ class Google_Service_SecurityCommandCenter extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                 ),
+                'fieldMask' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'fieldMask' => array(
+                'pageSize' => array(
                   'location' => 'query',
-                  'type' => 'string',
+                  'type' => 'integer',
                 ),
               ),
             ),'patch' => array(

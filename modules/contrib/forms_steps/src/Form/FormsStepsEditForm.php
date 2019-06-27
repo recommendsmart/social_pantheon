@@ -114,12 +114,11 @@ class FormsStepsEditForm extends EntityForm {
 
     // Warn the user if there are no steps.
     if (empty($steps)) {
-      drupal_set_message(
+      $this->messenger()->addWarning(
         $this->t(
           'This Forms Steps has no steps and will be disabled until there is at least one, <a href=":add-step">add a new step.</a>',
           [':add-step' => $forms_steps->toUrl('add-step-form')->toString()]
-        ),
-        'warning'
+        )
       );
     }
 
@@ -392,7 +391,7 @@ class FormsStepsEditForm extends EntityForm {
     parent::save($form, $form_state);
     $form_state->setRedirectUrl($this->entity->urlInfo('edit-form'));
 
-    drupal_set_message($this->t('Forms Steps %label has been updated.', ['%label' => $this->entity->label()]));
+    $this->messenger()->addMessage($this->t('Forms Steps %label has been updated.', ['%label' => $this->entity->label()]));
   }
 
   /**
@@ -404,7 +403,7 @@ class FormsStepsEditForm extends EntityForm {
    *   Forms States to alter.
    */
   public function cancel(array $form, FormStateInterface $form_state) {
-    drupal_set_message($this->t('Canceled.'));
+    $this->messenger()->addMessage($this->t('Canceled.'));
     $form_state->setRedirect('entity.forms_steps.collection');
   }
 

@@ -6,6 +6,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
 use Drupal\forms_steps\FormsStepsInterface;
 use Drupal\forms_steps\Step;
 use Drupal\forms_steps\ProgressStep;
+use Drupal\Core\Url;
 
 /**
  * FormsSteps configuration entity to persistently store configuration.
@@ -521,7 +522,18 @@ class FormsSteps extends ConfigEntityBase implements FormsStepsInterface {
         "The Step '$step_id' does not exist in forms steps '{$this->id()}'"
       );
     }
-    $this->steps[$step_id]['url'] = $url;
+    $this->steps[$step_id]['url'] = '';
+    if ('/' != $url[0]) {
+      $url = '/' . $url;
+    }
+    if (!empty(Url::fromUri("internal:$url"))) {
+      $this->steps[$step_id]['url'] = $url;
+    } else {
+      throw new \InvalidArgumentException(
+        "The Url Step '$url' is not accessible"
+      );
+    }
+
     return $this;
   }
 

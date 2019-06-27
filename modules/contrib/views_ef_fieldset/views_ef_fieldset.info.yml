@@ -6,8 +6,8 @@ package: Views
 dependencies:
  - drupal:views
 
-# Information added by Drupal.org packaging script on 2019-02-26
-version: '8.x-1.3'
+# Information added by Drupal.org packaging script on 2019-06-23
+version: '8.x-1.4'
 core: '8.x'
 project: 'views_ef_fieldset'
-datestamp: 1551167890
+datestamp: 1561312099

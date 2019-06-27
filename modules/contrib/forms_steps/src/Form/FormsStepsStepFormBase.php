@@ -296,7 +296,7 @@ class FormsStepsStepFormBase extends EntityForm {
       '#open' => FALSE,
     ];
 
-    $form['cancel_button']['cancelLabel'] = [
+    $form['cancel_button']['override_cancel'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Override cancel label'),
       '#maxlength' => 255,
@@ -304,7 +304,7 @@ class FormsStepsStepFormBase extends EntityForm {
       '#required' => FALSE,
     ];
 
-    $form['cancel_button']['cancel'] = [
+    $form['cancel_button']['cancel_label'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Cancel label'),
       '#maxlength' => 255,
@@ -491,8 +491,8 @@ class FormsStepsStepFormBase extends EntityForm {
         }
       }
 
-      if ($values['cancelLabel'] == 1) {
-        $entity->setStepCancelLabel($values['id'], $values['cancel']);
+      if ($values['override_cancel'] == 1) {
+        $entity->setStepCancelLabel($values['id'], $values['cancel_label']);
 
         if ($values['set_cancel_route'] == 1) {
           $entity->setStepCancelStep($values['id'], NULL);

@@ -40,7 +40,7 @@ function forms_steps_update_8101() {
   $cnx = Database::getConnection();
 
   // Check if the table exists first.  If not, then create the entity.
-  if (!db_table_exists('forms_steps_workflow')) {
+  if (!$cnx->schema()->tableExists('forms_steps_workflow')) {
     \Drupal::entityTypeManager()->clearCachedDefinitions();
     \Drupal::entityDefinitionUpdateManager()
       ->installEntityType(\Drupal::entityTypeManager()->getDefinition('forms_steps_workflow'));

@@ -19,15 +19,6 @@ class FormsStepsStepAddForm extends FormsStepsStepFormBase {
   /**
    * {@inheritdoc}
    */
-  public function form(array $form, FormStateInterface $form_state) {
-    $form = parent::form($form, $form_state);
-
-    return $form;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function save(array $form, FormStateInterface $form_state) {
     /** @var \Drupal\forms_steps\FormsStepsInterface $forms_steps */
     $forms_steps = $this->entity;
@@ -38,7 +29,7 @@ class FormsStepsStepAddForm extends FormsStepsStepFormBase {
     $routeBuilderService = \Drupal::service('router.builder');
     $routeBuilderService->rebuild();
 
-    drupal_set_message($this->t('Created %label step.', [
+    $this->messenger()->addMessage($this->t('Created %label step.', [
       '%label' => $forms_steps->getStep($form_state->getValue('id'))
         ->label(),
     ]));

@@ -43,8 +43,8 @@ function prevent_term_delete_form_alter(&$form, FormStateInterface $form_state, 
             $field_config = FieldConfig::loadByName($entity_type, $bundle, $field_name);
             if($field_config != null) {
               $field_settings = $field_config->getSettings();
-              if($field_settings["target_type"] == "taxonomy_term" && $field_settings['handler'] == "default:taxonomy_term"  && isset($field_settings['handler_settings']['target_bundles'])) { 
-                 if(in_array($terms_vocabulary, $field_settings['handler_settings']['target_bundles'])) {
+              if($field_settings["target_type"] == "taxonomy_term" && $field_settings['handler'] == "default:taxonomy_term") {
+                 if(in_array($terms_vocabulary, $field_settings['handler_settings']['target_bundles']) || empty($field_settings['handler_settings']['target_bundles'])) {
                     $map[$entity_type][$field_name] = $field_name;
                   }
 
@@ -107,11 +107,11 @@ function prevent_term_delete_form_alter(&$form, FormStateInterface $form_state, 
               if (!$entity_obj)
                 continue;
               $slug = str_replace("_", "/", $entity_type);
-              $markup .= '<li>' . \Drupal::l($entity_obj->label(), Url::fromUri('internal:/'.$slug.'/'.$entity_obj->id()), array('attributes' => array('target'=>'_blank'))) . '</li>';
+              $markup .= '<li>' . \Drupal::l($entity_obj->label(), Url::fromUri('internal:/'.$slug.'/'.$entity_obj->id()), ['attributes' => ['target'=>'_blank']]) . '</li>';
               }
             } 
             if ($iterate_limit == 0)
-              $markup .= '<li>' . t("... only the first @limit results are displayed.", array('@limit' => $limit)) . '</li>';
+              $markup .= '<li>' . t("... only the first @limit results are displayed.", ['@limit' => $limit]) . '</li>';
             $markup .= '</ul>';
    
             $form['description']['#markup'] = $markup;

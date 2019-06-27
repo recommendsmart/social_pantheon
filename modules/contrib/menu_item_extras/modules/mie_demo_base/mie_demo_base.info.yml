@@ -11,8 +11,8 @@ dependencies:
   - drupal:path
   - drupal:ckeditor
 
-# Information added by Drupal.org packaging script on 2019-05-21
-version: '8.x-2.5'
+# Information added by Drupal.org packaging script on 2019-06-06
+version: '8.x-2.6'
 core: '8.x'
 project: 'menu_item_extras'
-datestamp: 1558448585
+datestamp: 1559810891

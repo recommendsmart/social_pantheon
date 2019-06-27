@@ -437,7 +437,7 @@ class ComponentFormBase extends EntityForm {
     // Set up a wrapper for AJAX.
     $wrapper_id = Html::getUniqueId(implode('-', $element['#mb_value_address']) . '-add-more-wrapper');
     // TODO - use   '#type' => 'container',?
-    $element['#prefix'] = '<div id="' . $wrapper_id . '" style="border: solid 1px blue;">';
+    $element['#prefix'] = '<div id="' . $wrapper_id . '">';
     $element['#suffix'] = '</div>';
 
     // Show the items in a table. This is single-column, with all child

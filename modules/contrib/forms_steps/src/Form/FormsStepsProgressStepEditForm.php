@@ -66,12 +66,11 @@ class FormsStepsProgressStepEditForm extends EntityForm {
 
     // Warn the user if there are no steps.
     if (empty($steps)) {
-      drupal_set_message(
+      $this->messenger()->addWarning(
         $this->t(
           'This Forms Steps has no steps and will be disabled until there is at least one, <a href=":add-step">add a new step.</a>',
           [':add-step' => $forms_steps->toUrl('add-step-form')->toString()]
-        ),
-        'warning'
+        )
       );
     }
 
@@ -127,7 +126,7 @@ class FormsStepsProgressStepEditForm extends EntityForm {
     $forms_steps = $this->entity;
 
     $forms_steps->save();
-    drupal_set_message($this->t('Saved %label progress step.', [
+    $this->messenger()->addMessage($this->t('Saved %label progress step.', [
       '%label' => $forms_steps->getProgressStep($this->progressStepId)->label(),
     ]));
     $form_state->setRedirectUrl($forms_steps->toUrl('edit-form'));
