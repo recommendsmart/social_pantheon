@@ -2,10 +2,12 @@
 
 namespace Drupal\content_kanban\Form;
 
+use Drupal\content_kanban\KanbanService;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Symfony\Component\HttpFoundation\Request;
 use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Defines a form that configures forms module settings.
@@ -13,29 +15,46 @@ use Drupal\Core\Form\FormStateInterface;
 class SettingsForm extends ConfigFormBase {
 
   /**
-   * Config name
+   * Config name.
    *
    * @var string
    */
-  static $configName = 'content_kanban.settings';
+  static public $configName = 'content_kanban.settings';
 
   /**
+   * The stored config for the form.
+   *
    * @var \Drupal\Core\Config\Config|\Drupal\Core\Config\ImmutableConfig
    */
   protected $config;
 
   /**
+   * The Kanban service.
+   *
    * @var \Drupal\content_kanban\KanbanService
    */
   protected $kanbanService;
 
-  public function __construct(\Drupal\Core\Config\ConfigFactoryInterface $config_factory) {
+  /**
+   * Constructor for the Settings Form.
+   */
+  public function __construct(KanbanService $kanbanService, ConfigFactoryInterface $config_factory) {
     parent::__construct($config_factory);
 
-    $this->kanbanService = \Drupal::service('content_kanban.kanban_service');
+    $this->kanbanService = $kanbanService;
 
-    //Get config
+    // Get config.
     $this->config = $this->config(self::$configName);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('content_kanban.kanban_service'),
+      $container->get('config.factory')
+    );
   }
 
   /**
@@ -59,8 +78,9 @@ class SettingsForm extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state, Request $request = NULL) {
 
-    //If the Content Calendar module is not enabled, set the use color setting to inactive
-    if(!$this->kanbanService->contentCalendarModuleIsEnabled()) {
+    // If the Content Calendar module is not enabled, set the use color setting
+    // to inactive.
+    if (!$this->kanbanService->contentCalendarModuleIsEnabled()) {
       $this->saveColorSetting(0);
     }
 
@@ -73,16 +93,16 @@ class SettingsForm extends ConfigFormBase {
       '#collapsed' => FALSE,
     ];
 
-    //Content Calendar colors
-    $form['options']['use_content_calendar_colors'] = array(
+    // Content Calendar colors.
+    $form['options']['use_content_calendar_colors'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Use the defined colors from Content Calendar'),
       '#description' => $this->t('This setting is only available if the Content Calendar is enabled and configured properly.'),
       '#default_value' => $config->get('use_content_calendar_colors'),
       '#disabled' => !$this->kanbanService->contentCalendarModuleIsEnabled(),
-    );
+    ];
 
-    //Show user thumb checkbox
+    // Show user thumb checkbox.
     $user_picture_field_exists = !$this->config('field.field.user.user.user_picture')->isNew();
 
     $form['options']['show_user_thumb'] = [
@@ -101,36 +121,36 @@ class SettingsForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
 
-    //Get values
+    // Get values.
     $values = $form_state->getValues();
 
-    //Get value to use Content Calendar colors
+    // Get value to use Content Calendar colors.
     $use_content_calendar_colors = $values['use_content_calendar_colors'];
 
-    //If Content Calendar module is disabled, then disable usage of colors
-    if(!$this->kanbanService->contentCalendarModuleIsEnabled()) {
+    // If Content Calendar module is disabled, then disable usage of colors.
+    if (!$this->kanbanService->contentCalendarModuleIsEnabled()) {
       $use_content_calendar_colors = 0;
     }
 
-    //Save settings into configuration
+    // Save settings into configuration.
     $this->saveColorSetting($use_content_calendar_colors);
 
-    //Save show user image thumbnail option
+    // Save show user image thumbnail option.
     $this->config(self::$configName)
       ->set('show_user_thumb', $values['show_user_thumb'])
       ->save();
   }
 
   /**
-   * Save color setting
+   * Saves the color setting.
    *
-   * @param $value
+   * @param int $value
+   *   The "use content calendar colors" setting value.
    */
   protected function saveColorSetting($value) {
     $this->config(self::$configName)
       ->set('use_content_calendar_colors', $value)
       ->save();
   }
-
 
 }

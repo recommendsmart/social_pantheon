@@ -5,6 +5,8 @@
  * Contains content_kanban.module.
  */
 
+use Drupal\Core\Url;
+use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\node\Entity\Node;
 
@@ -13,64 +15,68 @@ use Drupal\node\Entity\Node;
  */
 function content_kanban_theme($existing, $type, $theme, $path) {
 
-  return array(
+  return [
 
-    'content_kanban' => array(
-      'variables' => array(
+    'content_kanban' => [
+      'variables' => [
         'kanban_id' => NULL,
         'kanban_label' => NULL,
-        'filter_form' => array(),
-        'permissions' => array(),
-        'headers' => array(),
-        'columns' => array(),
-      ),
-    ),
+        'filter_form' => [],
+        'permissions' => [],
+        'headers' => [],
+        'columns' => [],
+        'addEntitiesLinks' => [],
+      ],
+    ],
 
-    'content_kanban_column' => array(
-      'variables' => array(
+    'content_kanban_column' => [
+      'variables' => [
         'column_id' => NULL,
         'workflow_id' => NULL,
         'state_id' => NULL,
         'state_label' => NULL,
-        'nodes' => array(),
-      ),
-    ),
+        'entities' => [],
+      ],
+    ],
 
-    'content_kanban_column_entry' => array(
-      'variables' => array(
-        'node' => NULL,
-        'node_type_config' => NULL,
-        'user_picture' => NULL
-      ),
-    ),
+    'content_kanban_column_entry' => [
+      'variables' => [
+        'entity' => NULL,
+        'entity_type' => '',
+        'entity_id' => '',
+        'entity_type_config' => NULL,
+        'user_picture' => NULL,
+        'operation_links' => NULL,
+      ],
+    ],
 
-    'content_kanban_log_recent_activity' => array(
-      'variables' => array(
+    'content_kanban_log_recent_activity' => [
+      'variables' => [
         'show_user_thumb' => FALSE,
-        'entries' => array(),
-      ),
-    ),
+        'entries' => [],
+      ],
+    ],
 
-    'content_state_statistic' => array(
-      'variables' => array(
+    'content_state_statistic' => [
+      'variables' => [
         'data' => FALSE,
-      ),
-    ),
+      ],
+    ],
 
-  );
+  ];
 }
 
 /**
- * Implements hook_ENTITY_TYPE_presave()
+ * Implements hook_ENTITY_TYPE_presave().
  */
-function content_kanban_node_presave(EntityInterface $entity) {
+function content_kanban_entity_presave(EntityInterface $entity) {
+  // Check to be content entity.
+  if ($entity instanceof ContentEntityInterface) {
+    /* @var $moderation_information \Drupal\content_kanban\KanbanWorkflowService */
+    $kanban_workflow_service = \Drupal::service('content_kanban.kanban_workflow_service');
 
-  /**
-   * @var $moderation_information \Drupal\content_kanban\KanbanWorkflowService
-   */
-  $kanban_workflow_service = \Drupal::service('content_kanban.kanban_workflow_service');
-
-  $kanban_workflow_service->onNodePresave($entity, \Drupal::currentUser());
+    $kanban_workflow_service->onEntityPresave($entity, \Drupal::currentUser());
+  }
 }
 
 /**
@@ -78,18 +84,16 @@ function content_kanban_node_presave(EntityInterface $entity) {
  */
 function content_kanban_preprocess_content_calendar_entry(&$variables) {
 
-  /**
-   * @var $kanban_workflow_service \Drupal\content_kanban\KanbanWorkflowService
-   */
+  /* @var $kanban_workflow_service \Drupal\content_kanban\KanbanWorkflowService */
   $kanban_workflow_service = \Drupal::service('content_kanban.kanban_workflow_service');
 
-  //Fully load node
+  // Fully load node.
   $node = Node::load($variables['node']->nid);
 
-  //Get workflow state label from node
+  // Get workflow state label from node.
   $workflow_state_label = $kanban_workflow_service->getCurrentStateLabel($node);
 
-  //Add label to template
+  // Add label to template.
   $variables['workflow_state'] = $workflow_state_label;
 }
 
@@ -103,9 +107,9 @@ function content_kanban_toolbar_alter(&$items) {
   $links['content_kanban'] = [
     '#type' => 'link',
     '#title' => t('Content Kanban'),
-    '#url' => \Drupal\Core\Url::fromRoute('content_kanban.kanban'),
-    '#attributes' => array(
-      'class' => 'toolbar-icon toolbar-icon-system-admin-structure'
-    )
+    '#url' => Url::fromRoute('content_kanban.kanban'),
+    '#attributes' => [
+      'class' => 'toolbar-icon toolbar-icon-system-admin-structure',
+    ],
   ];
 }

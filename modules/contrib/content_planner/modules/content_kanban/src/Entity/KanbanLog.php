@@ -143,43 +143,55 @@ class KanbanLog extends ContentEntityBase implements KanbanLogInterface {
   }
 
   /**
-   * Get the from state
+   * Gets the from state.
    *
    * @return mixed
+   *   Returns the state_from value.
    */
   public function getStateFrom() {
     return $this->get('state_from')->value;
   }
 
   /**
-   * Get the to state
+   * Gets the to state.
    *
    * @return mixed
+   *   Returns the state_to value.
    */
   public function getStateTo() {
     return $this->get('state_to')->value;
   }
 
   /**
-   * Get Node
-   *
-   * @return \Drupal\node\Entity\Node
+   * {@inheritdoc}
    */
-  public function getNode() {
-    return $this->get('nid')->entity;
+  public function getType() {
+    return $this->get('entity_type')->value;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getNodeID() {
-    return $this->get('nid')->target_id;
+  public function getEntityObject() {
+    $entityType = \Drupal::entityTypeManager()->getStorage($this->getType());
+    if (!empty($this->getEntityId())) {
+      return $entityType->load($this->getEntityId());
+    }
+    return FALSE;
   }
 
   /**
-   * Get Workflow
+   * {@inheritdoc}
+   */
+  public function getEntityId() {
+    return $this->get('entity_id')->value;
+  }
+
+  /**
+   * Gets the Workflow.
    *
    * @return \Drupal\workflows\Entity\Workflow
+   *   Returns the workflow object.
    */
   public function getWorkflow() {
     return $this->get('workflow_id')->entity;
@@ -188,7 +200,7 @@ class KanbanLog extends ContentEntityBase implements KanbanLogInterface {
   /**
    * {@inheritdoc}
    */
-  public function getWorkflowID() {
+  public function getWorkflowId() {
     return $this->get('workflow_id')->target_id;
   }
 
@@ -197,7 +209,7 @@ class KanbanLog extends ContentEntityBase implements KanbanLogInterface {
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
 
-    //Get base fields
+    // Get base fields.
     $fields = parent::baseFieldDefinitions($entity_type);
 
     $fields['name'] = BaseFieldDefinition::create('string')
@@ -219,38 +231,17 @@ class KanbanLog extends ContentEntityBase implements KanbanLogInterface {
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)
-      ->setRequired(TRUE)
-    ;
+      ->setRequired(TRUE);
+    $fields['entity_type'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Entity Type'))
+      ->setDescription(t('The type of the entity.'))
+      ->setDefaultValue('');
+    // Entity ID.
+    $fields['entity_id'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Entity ID'))
+      ->setDescription(t('The ID of the Entity this Log refers to'));
 
-    //Node ID
-    $fields['nid'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Node ID'))
-      ->setDescription(t('The ID of the Node this Log refers to'))
-      ->setRevisionable(FALSE)
-      ->setTranslatable(FALSE)
-      ->setRequired(TRUE)
-      ->setSetting('target_type', 'node')
-      ->setSetting('handler', 'default')
-      ->setDisplayOptions('view', [
-        'label' => 'hidden',
-        'type' => 'author',
-        'weight' => 0,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'entity_reference_autocomplete',
-        'weight' => 0,
-        'settings' => [
-          'match_operator' => 'CONTAINS',
-          'size' => '60',
-          'autocomplete_type' => 'tags',
-          'placeholder' => '',
-        ],
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE)
-    ;
-
-    //User ID
+    // User ID.
     $fields['user_id'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('User ID'))
       ->setDescription(t('The user ID of author of the Kanban Log entity.'))
@@ -275,8 +266,7 @@ class KanbanLog extends ContentEntityBase implements KanbanLogInterface {
         ],
       ])
       ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE)
-    ;
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['workflow_id'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Workflow'))
@@ -302,8 +292,7 @@ class KanbanLog extends ContentEntityBase implements KanbanLogInterface {
         ],
       ])
       ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE)
-    ;
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['state_from'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Previous State'))
@@ -324,8 +313,7 @@ class KanbanLog extends ContentEntityBase implements KanbanLogInterface {
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)
-      ->setRequired(TRUE)
-    ;
+      ->setRequired(TRUE);
 
     $fields['state_to'] = BaseFieldDefinition::create('string')
       ->setLabel(t('State To'))
@@ -346,28 +334,20 @@ class KanbanLog extends ContentEntityBase implements KanbanLogInterface {
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)
-      ->setRequired(TRUE)
-    ;
+      ->setRequired(TRUE);
 
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Publishing status'))
       ->setDescription(t('A boolean indicating whether the Kanban Log is published.'))
-      ->setDefaultValue(TRUE)
-//      ->setDisplayOptions('form', [
-//        'type' => 'boolean_checkbox',
-//        'weight' => 0,
-//      ])
-    ;
+      ->setDefaultValue(TRUE);
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))
-      ->setDescription(t('The time that the entity was created.'))
-    ;
+      ->setDescription(t('The time that the entity was created.'));
 
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(t('Changed'))
-      ->setDescription(t('The time that the entity was last edited.'))
-    ;
+      ->setDescription(t('The time that the entity was last edited.'));
 
     return $fields;
   }

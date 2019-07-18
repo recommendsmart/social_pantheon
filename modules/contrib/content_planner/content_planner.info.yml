@@ -8,8 +8,8 @@ dependencies:
   - scheduler:scheduler
   - drupal:content_moderation
 
-# Information added by Drupal.org packaging script on 2018-11-27
-version: '8.x-1.0-beta6'
+# Information added by Drupal.org packaging script on 2019-07-07
+version: '8.x-1.0-beta7'
 core: '8.x'
 project: 'content_planner'
-datestamp: 1543346287
+datestamp: 1562496187

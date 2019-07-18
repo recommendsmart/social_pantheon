@@ -2,88 +2,104 @@
 
 namespace Drupal\content_kanban\Component;
 
+/**
+ * Class KanbanColumn.
+ */
 class KanbanColumn {
 
   /**
+   * The workflow ID.
+   *
    * @var string
    */
   protected $workflowID;
 
   /**
+   * The state ID.
+   *
    * @var string
    */
   protected $stateID;
 
   /**
+   * The state info.
+   *
    * @var array
    */
-  protected $stateInfo = array();
+  protected $stateInfo = [];
 
   /**
+   * An array containing the entities.
+   *
    * @var array
    */
-  protected $nodes = array();
+  protected $entities = [];
 
   /**
-   * @var array|\Drupal\content_kanban\NodeTypeConfig[]
+   * An array with the entity type configs.
+   *
+   * @var array|\Drupal\content_kanban\EntityTypeConfig[]
    */
-  protected $nodeTypeConfigs = array();
+  protected $entityTypeConfigs = [];
 
   /**
    * Constructor.
    *
    * @param string $workflow_id
+   *   The workflow ID.
    * @param string $state_id
+   *   The state ID.
    * @param array $state_info
-   * @param array $nodes
-   * @param \Drupal\content_kanban\NodeTypeConfig[] $node_type_configs
+   *   The state info.
+   * @param array $entities
+   *   An array with the entities.
+   * @param \Drupal\content_kanban\EntityTypeConfig[] $entity_type_configs
+   *   An array with the entity type configs objects.
    */
   public function __construct(
     $workflow_id,
     $state_id,
     array $state_info,
-    array $nodes,
-    array $node_type_configs
+    array $entities,
+    array $entity_type_configs
   ) {
 
     $this->workflowID = $workflow_id;
     $this->stateID = $state_id;
     $this->stateInfo = $state_info;
-    $this->nodes = $nodes;
-    $this->nodeTypeConfigs = $node_type_configs;
+    $this->entities = $entities;
+    $this->entityTypeConfigs = $entity_type_configs;
   }
 
   /**
-   * Build
+   * Builds a Kanban Column.
    *
    * @return array
+   *   Returns a renderable array for the current Kanban column.
    */
   public function build() {
-
-    $node_builds = array();
-
-    foreach($this->nodes as $node) {
-
-      $kanban_entry = new KanbanEntry(
-        $node,
+    // Change here too the array structure.
+    $entity_builds = [];
+    // I set directly the type on the entity.
+    foreach ($this->entities as $entity) {
+      $kanbanEntry = new KanbanEntry(
+        $entity,
         $this->stateID,
-        $this->nodeTypeConfigs[$node->type]
+        $this->entityTypeConfigs[$entity->type]
       );
-
-      $node_builds[] = $kanban_entry->build();
+      $entity_builds[] = $kanbanEntry->build();
     }
 
-    $build = array(
+    $build = [
       '#theme' => 'content_kanban_column',
       '#column_id' => $this->workflowID . '-' . $this->stateID,
       '#workflow_id' => $this->workflowID,
       '#state_id' => $this->stateID,
       '#state_label' => $this->stateInfo['label'],
-      '#nodes' => $node_builds
-    );
+      '#entities' => $entity_builds,
+    ];
 
     return $build;
   }
-
 
 }

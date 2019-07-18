@@ -4,7 +4,7 @@
 
     /*
       Drag n Drop functionality
-      Inpired by https://neliosoftware.com/blog/native-drag-and-drop-with-html5/
+      Inspired by https://neliosoftware.com/blog/native-drag-and-drop-with-html5/
      */
     $('.kanban-entry').draggable({
       helper: 'clone'
@@ -22,18 +22,15 @@
         ui.draggable.detach();
         $( this ).append( ui.draggable );
 
-        //Get NID from draggable object
-        var nid = $(ui.draggable[0]).data('nid');
-
-        //Get state_id from target column
+        // Get EntityId and type from draggable object.
+        var entityId = $(ui.draggable[0]).data('id');
+        var type = $(ui.draggable[0]).data('type');
+        // Get state_id from target column.
         var stateID = $(this).data('state_id');
 
-        if(stateID && nid) {
-
-          //Generate URL for AJAX call
-          var url = '/admin/content-kanban/update-node-workflow-state/' + nid + '/' + stateID;
-
-
+        if (stateID && entityId && type) {
+          // Generate URL for AJAX call.
+          var url = '/admin/content-kanban/update-entity-workflow-state/' + type +'/' + entityId + '/' + stateID;
           $.ajax({
             'url': url,
             'success': function(result) {
@@ -53,7 +50,5 @@
     });
 
   });
-
-
 
 })(jQuery);

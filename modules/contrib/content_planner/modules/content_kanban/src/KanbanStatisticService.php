@@ -3,10 +3,6 @@
 namespace Drupal\content_kanban;
 
 use Drupal\Core\Database\Driver\mysql\Connection;
-use Drupal\content_moderation\ModerationInformationInterface;
-use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Session\AccountInterface;
 use Drupal\workflows\Entity\Workflow;
 
 /**
@@ -15,6 +11,8 @@ use Drupal\workflows\Entity\Workflow;
 class KanbanStatisticService {
 
   /**
+   * The database service.
+   *
    * @var \Drupal\Core\Database\Connection
    */
   protected $database;
@@ -27,40 +25,45 @@ class KanbanStatisticService {
   }
 
   /**
-   * Get content counts from a given Workflow
+   * Get content counts from a given Workflow.
    *
    * @param \Drupal\workflows\Entity\Workflow $workflow
+   *   The workflow object.
    *
    * @return array
+   *   Returns an array with the workflow state content counts.
    */
   public function getWorkflowStateContentCounts(Workflow $workflow) {
 
-    //Get all workflow states form a given workflow
+    // Get all workflow states form a given workflow.
     $workflow_states = KanbanWorkflowService::getWorkflowStates($workflow);
 
-    $data = array();
+    $data = [];
 
-    foreach($workflow_states as $state_id => $state_label) {
+    foreach ($workflow_states as $state_id => $state_label) {
 
       $count = $this->getWorkflowStateContentCount($workflow->id(), $state_id);
 
-      $data[$state_id] = array(
+      $data[$state_id] = [
         'id' => $state_id,
         'label' => $state_label,
         'count' => $count,
-      );
+      ];
     }
 
     return $data;
   }
 
   /**
-   * Get the content count of a given workflow state
+   * Get the content count of a given workflow state.
    *
    * @param string $workflow_id
+   *   The workflow ID.
    * @param string $state_id
+   *   The state ID.
    *
    * @return mixed
+   *   Returns the workflow state content count.
    */
   public function getWorkflowStateContentCount($workflow_id, $state_id) {
 

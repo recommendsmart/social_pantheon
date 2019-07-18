@@ -1,9 +1,8 @@
 <td id="{{ column_id }}" data-state_id="{{ state_id }}" class="kanban-column droppable">{{ column }}
-  {% if nodes %}
-
-    {% for node in nodes %}
+  {% if entities %}
+    {% for entity in entities %}
       <div class="content-kanban-entry">
-        {{ node }}
+        {{ entity }}
       </div>
     {% endfor %}
 

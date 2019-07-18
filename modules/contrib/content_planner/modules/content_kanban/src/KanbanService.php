@@ -2,12 +2,16 @@
 
 namespace Drupal\content_kanban;
 
+use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
+use Drupal\Component\Plugin\Exception\PluginNotFoundException;
+use Drupal\content_calendar\ContentTypeConfigService;
 use Drupal\content_kanban\Form\SettingsForm;
 use Drupal\content_moderation\Entity\ContentModerationState;
+use Drupal\content_moderation\ModerationInformationInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Database\Driver\mysql\Connection;
-use Drupal\content_moderation\ModerationInformationInterface;
-use Drupal\node\Entity\NodeType;
+use Drupal\Core\Entity\EntityTypeManager;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 
 /**
  * Class KanbanService.
@@ -15,6 +19,8 @@ use Drupal\node\Entity\NodeType;
 class KanbanService {
 
   /**
+   * The configuration factory service.
+   *
    * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
   protected $configFactory;
@@ -34,18 +40,41 @@ class KanbanService {
   protected $moderationInformation;
 
   /**
+   * An array with the defined colors.
+   *
    * @var array
    */
-  protected $definedColors = array(
-    '#0074bd', //Drupal Standard color
+  protected $definedColors = [
+  // Drupal Standard color.
+    '#0074bd',
     '#D66611',
     '#27E834',
     '#FF3D2A',
     'purple',
     '#22FFA0',
     'black',
-    '#37C2FF'
-  );
+    '#37C2FF',
+  ];
+
+  /**
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+  /**
+   * The module handler service.
+   *
+   * @var \Drupal\Core\Extension\ModuleHandlerInterface
+   */
+  protected $moduleHandler;
+
+  /**
+   * The config content service.
+   *
+   * @var \Drupal\content_calendar\ContentTypeConfigService
+   */
+  protected $contentTypConfigService;
 
   /**
    * Constructs a new KanbanService object.
@@ -53,27 +82,34 @@ class KanbanService {
   public function __construct(
     ConfigFactoryInterface $config_factory,
     Connection $database,
-    ModerationInformationInterface $moderation_information
+    ModerationInformationInterface $moderation_information,
+    EntityTypeManager $entityTypeManager,
+    ModuleHandlerInterface $moduleHandler,
+    ContentTypeConfigService $contentTypConfigService
   ) {
     $this->configFactory = $config_factory;
     $this->database = $database;
     $this->moderationInformation = $moderation_information;
+    $this->entityTypeManager = $entityTypeManager;
+    $this->moduleHandler = $moduleHandler;
+    $this->contentTypConfigService = $contentTypConfigService;
   }
 
-
   /**
-   * Check if the Content Calendar module is enabled
+   * Check if the Content Calendar module is enabled.
    *
    * @return bool
+   *   Returns TRUE if the content_calendar module is enabled, FALSE otherwise.
    */
   public function contentCalendarModuleIsEnabled() {
-    return \Drupal::moduleHandler()->moduleExists('content_calendar');
+    return $this->moduleHandler->moduleExists('content_planner');
   }
 
   /**
-   * Get Kanban settings
+   * Gets the Kanban settings.
    *
    * @return \Drupal\Core\Config\ImmutableConfig
+   *   Returns the Kanban settings immutable config.
    */
   public function getKanbanSettings() {
     $settings = $this->configFactory->get(SettingsForm::$configName);
@@ -82,16 +118,17 @@ class KanbanService {
   }
 
   /**
-   * Check if the option to use the Content Calendar colors is active
+   * Checks if the option to use the Content Calendar colors is active.
    *
    * @return bool
+   *   Returns TRUE if the use of calendar colors is enabled, FALSE otherwise.
    */
   public function useContentCalendarColors() {
 
-    if($this->contentCalendarModuleIsEnabled()) {
+    if ($this->contentCalendarModuleIsEnabled()) {
       $settings = $this->getKanbanSettings();
 
-      if($value = $settings->get('use_content_calendar_colors')) {
+      if ($value = $settings->get('use_content_calendar_colors')) {
         return (bool) $value;
       }
     }
@@ -100,69 +137,58 @@ class KanbanService {
   }
 
   /**
-   * Get Node Type Configs
+   * Get Entity Type Configs.
    *
-   * @param array $filter Filter which node types to include
+   * @param array $entityTypes
+   *   An array with the available entity types and their bundles.
    *
-   * @return \Drupal\content_kanban\NodeTypeConfig[]
+   * @return \Drupal\content_kanban\EntityTypeConfig[]
+   *   Returns an array with the entity type configs.
    */
-  public function getNodeTypeConfigs($filter = array()) {
-
-    $node_type_configs = array();
-
-    //Load all Node types
-    $node_types = NodeType::loadMultiple();
+  public function getEntityTypeConfigs(array $entityTypes = []) {
+    $entityTypeConfigs = [];
 
     $color_index = 0;
-    foreach($node_types as $node_type_id => $entity) {
-
-      if($filter && !in_array($node_type_id, $filter)) {
-        continue;
+    foreach ($entityTypes as $entityTypeId => $entityBundles) {
+      foreach ($entityBundles as $bundle) {
+        $entityTypeConfigs[$bundle] = new EntityTypeConfig(
+          $entityTypeId,
+          $bundle,
+          ucfirst($bundle),
+          $this->getColor($color_index)
+        );
+        $color_index++;
       }
-
-      $node_type_configs[$node_type_id] = new NodeTypeConfig(
-        $node_type_id,
-        $entity->label(),
-        $this->getColor($color_index)
-      );
-
-      $color_index++;
     }
 
-    //Overwrite defined colors with colors from Content Calendar
-    if($this->useContentCalendarColors()) {
-
-      /**
-       * @var $content_type_config_service \Drupal\content_calendar\ContentTypeConfigService
-       */
-      $content_type_config_service = \Drupal::service('content_calendar.content_type_config_service');
-
-      //Load Content Type configs from Content Calendar
-      $content_type_configs = $content_type_config_service->loadAllEntities();
-
-      //Overwrite colors
-      foreach($content_type_configs as $content_type => $content_type_config) {
-
-        if(array_key_exists($content_type, $node_type_configs)) {
-          $node_type_configs[$content_type]->setColor($content_type_config->getColor());
+    // Override defined colors with colors from Content Calendar.
+    if ($this->useContentCalendarColors()) {
+      // Load Content Type configs from Content Calendar.
+      $content_type_configs = $this->contentTypConfigService->loadAllEntities();
+      // Overwrite colors.
+      foreach ($content_type_configs as $content_type => $content_type_config) {
+        if (array_key_exists($content_type, $entityTypeConfigs)) {
+          $entityTypeConfigs[$content_type]->setColor($content_type_config->getColor());
         }
       }
     }
 
-    return $node_type_configs;
+    return $entityTypeConfigs;
   }
 
   /**
-   * Get Color
+   * Gets the Color.
    *
    * @param int $index
+   *   The index associated with the requested color.
    *
    * @return string
+   *   Returns the color id for the given index.
    */
   protected function getColor($index) {
 
-    //If the desired index is greater than the count of defined colors
-    if(($index + 1) > count($this->definedColors)) {
+    // If the desired index is greater than the count of defined colors.
+    if (($index + 1) > count($this->definedColors)) {
       $index = 0;
     }
 
@@ -170,122 +196,141 @@ class KanbanService {
   }
 
   /**
-   * Get Content Moderation Entities
+   * Gets the Content Moderation Entities.
    *
-   * @param string $workflow The workflow ID
+   * @param string $workflow
+   *   The workflow ID.
    * @param array $filters
+   *   An array with the filters.
+   * @param array $entities
+   *   An array with the entities.
    *
    * @return \Drupal\content_moderation\Entity\ContentModerationState[]
+   *   Returns an array with the content moderation states for the given
+   *   workflow.
    */
-  public function getNodeContentModerationEntities($workflow, $filters = array()) {
-
-    $query = \Drupal::entityQuery('content_moderation_state');
-
-    $query->condition('workflow', $workflow);
-    $query->condition('content_entity_type_id', 'node');
-
-    //Moderation state filter
-    if(array_key_exists('moderation_state', $filters) && $filters['moderation_state']) {
-      $query->condition('moderation_state', $filters['moderation_state']);
-    }
-
-    //User ID filter
-    if(array_key_exists('uid', $filters) && $filters['uid']) {
-      $node_query = \Drupal::entityQuery('node');
-      $node_query->condition('uid', $filters['uid']);
-      $node_result = $node_query->execute();
-
-      if ($node_result && is_array($node_result) && count($node_result) > 0) {
-        $query->condition('content_entity_id', $node_result, 'IN');
+  public function getEntityContentModerationEntities($workflow, array $filters = [], array $entities = []) {
+    $result = [];
+    try {
+      $query = $this->entityTypeManager->getStorage('content_moderation_state')->getQuery();
+      if (!empty(array_keys($entities))) {
+        $query->condition('workflow', $workflow);
+        $query->condition('content_entity_type_id', array_keys($entities), 'in');
       }
-      else {
-        // keine nodes mit dieser uid
-        return [];
+
+      // Moderation state filter.
+      if (array_key_exists('moderation_state', $filters) && $filters['moderation_state']) {
+        $query->condition('moderation_state', $filters['moderation_state']);
       }
+
+      // User ID filter.
+      if (array_key_exists('uid', $filters) && $filters['uid']) {
+        $query->condition('uid', $filters['uid']);
+      }
+
+      // User ID filter.
+      $result = $query->execute();
     }
-
-    $result = $query->execute();
-
-    if($result) {
+    catch (InvalidPluginDefinitionException $e) {
+      watchdog_exception('content_kanban', $e);
+    }
+    catch (PluginNotFoundException $e) {
+      watchdog_exception('content_kanban', $e);
+    }
+    if ($result) {
       return ContentModerationState::loadMultiple($result);
     }
 
-    return array();
+    return $result;
   }
 
   /**
-   * Get Node IDs from Content Moderation entities
+   * Gets the entity IDs from Content Moderation entities.
    *
    * @param string $workflow
+   *   The workflow id.
    * @param array $filters
+   *   An array with the filters.
+   * @param array $entities
+   *   An array with the entities.
    *
    * @return array
+   *   Returns an array with the entity ids.
    */
-  public function getNodeIDsFromContentModerationEntities($workflow, $filters = array()) {
+  public function getEntityIdsFromContentModerationEntities($workflow, array $filters = [], array $entities = []) {
+    $entityIds = [];
 
-    $nids = array();
+    if ($content_moderation_states = $this->getEntityContentModerationEntities($workflow, $filters, $entities)) {
+      foreach ($content_moderation_states as $content_moderation_state) {
 
-    if($content_moderation_states = $this->getNodeContentModerationEntities($workflow, $filters)) {
-
-      foreach($content_moderation_states as $content_moderation_state) {
-
-        //Get property
+        // Get property.
         $content_entity_id_property = $content_moderation_state->content_entity_id;
 
-        //Get value
+        // Get value.
         $content_entity_id_value = $content_entity_id_property->getValue();
-
-        //Get Content ID / NID
-        $nids[] = $content_entity_id_value[0]['value'];
+        $entity_type_id_value = $content_moderation_state->get('content_entity_type_id')->getValue();
+        // Get the entity type id.
+        $entity_type_id = $entity_type_id_value[0]['value'];
+        // Build the ids array with entity type as key.
+        $entityIds[$entity_type_id][] = $content_entity_id_value[0]['value'];
       }
 
     }
-
-    return $nids;
+    return $entityIds;
   }
 
   /**
-   * Get Nodes by Type
+   * Gets the entities by Type.
    *
-   * @param int $node_type
-   * @param array $filters
+   * @param array $entityIds
+   *   An array with the entity ids.
    *
    * @return array
+   *   Returns a array with the entities for the given entity ids.
    */
-  public function getNodesByNodeIDs($nids) {
+  public function getEntitiesByEntityIds(array $entityIds = []) {
 
-    //Basic table
-    $query = $this->database->select('node_field_data', 'nfd');
-
-    //Joins
-    $query->innerJoin('users_field_data', 'ufd', 'nfd.uid = ufd.uid');
-
-    //Fields
-    $query->addField('nfd', 'nid');
-    $query->addField('nfd', 'title');
-    $query->addField('nfd', 'created');
-    $query->addField('nfd', 'status');
-    $query->addField('nfd', 'type');
-    $query->addField('nfd', 'uid');
-    $query->addField('ufd', 'name', 'username');
-
-    //Conditions
-    $query->condition('nfd.nid', $nids, 'in');
-
-    //Sort
-    if($this->contentCalendarModuleIsEnabled()) {
-      $query->orderBy('nfd.publish_on', 'ASC');
-    } else {
-      $query->orderBy('nfd.created', 'ASC');
+    $result = [];
+    // Basic table.
+    if (!empty($entityIds)) {
+      $query = [];
+      // Build the query dinamically for all entities.
+      foreach ($entityIds as $entityTypeName => $entityId) {
+        try {
+          $entityStorage = $this->entityTypeManager->getStorage($entityTypeName);
+          $entityKeys = $entityStorage->getEntityType()->getKeys();
+          $query[$entityTypeName] = $this->database->select($entityTypeName . '_field_data', 'nfd');
+          $query[$entityTypeName]->addField('nfd', $entityKeys['id']);
+          $query[$entityTypeName]->addField('nfd', $entityKeys['label']);
+          $query[$entityTypeName]->addField('nfd', 'created');
+          $query[$entityTypeName]->addField('nfd', 'status');
+          $query[$entityTypeName]->addField('nfd', 'type');
+          // Join with users table to get the username who added the entity.
+          $query[$entityTypeName]->addField('ufd', 'name', 'username');
+          $query[$entityTypeName]->addField('nfd', $entityKeys['uid']);
+          $query[$entityTypeName]->condition('nfd.' . $entityKeys['id'], $entityIds[$entityTypeName], 'in');
+          $query[$entityTypeName]->innerJoin('users_field_data', 'ufd', 'nfd.' . $entityKeys['uid'] . ' = ufd.uid');
+          // Sort.
+          if ($this->database->schema()->fieldExists($entityTypeName . '_field_data', 'publish_on') && $this->contentCalendarModuleIsEnabled()) {
+            $query[$entityTypeName]->orderBy('nfd.publish_on', 'ASC');
+          }
+          else {
+            $query[$entityTypeName]->orderBy('nfd.created', 'ASC');
+          }
+          $result[$entityTypeName] = $query[$entityTypeName]->execute()->fetchAll();
+        }
+        catch (InvalidPluginDefinitionException $e) {
+          watchdog_exception('content_kanban', $e);
+        }
+        catch (PluginNotFoundException $e) {
+          watchdog_exception('content_kanban', $e);
+        }
+      }
     }
-
-    $result = $query->execute()->fetchAll();
-
-    if($result) {
+    if ($result) {
       return $result;
     }
-
-    return array();
+    return [];
   }
 
 }

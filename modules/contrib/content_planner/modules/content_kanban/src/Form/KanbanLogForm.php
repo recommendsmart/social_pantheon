@@ -19,8 +19,6 @@ class KanbanLogForm extends ContentEntityForm {
     /* @var $entity \Drupal\content_kanban\Entity\KanbanLog */
     $form = parent::buildForm($form, $form_state);
 
-    $entity = $this->entity;
-
     return $form;
   }
 

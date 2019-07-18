@@ -427,23 +427,23 @@
     },
     {
         "name": "brumann/polyfill-unserialize",
-        "version": "v1.0.3",
-        "version_normalized": "1.0.3.0",
+        "version": "v1.0.4",
+        "version_normalized": "1.0.4.0",
         "source": {
             "type": "git",
             "url": "https://github.com/dbrumann/polyfill-unserialize.git",
-            "reference": "844d7e44b62a1a3d5c68cfb7ebbd59c17ea0fd7b"
+            "reference": "8ed1cd343ddc134a7ef649aca0aa0fe2a1b45008"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/dbrumann/polyfill-unserialize/zipball/844d7e44b62a1a3d5c68cfb7ebbd59c17ea0fd7b",
-            "reference": "844d7e44b62a1a3d5c68cfb7ebbd59c17ea0fd7b",
+            "url": "https://api.github.com/repos/dbrumann/polyfill-unserialize/zipball/8ed1cd343ddc134a7ef649aca0aa0fe2a1b45008",
+            "reference": "8ed1cd343ddc134a7ef649aca0aa0fe2a1b45008",
             "shasum": ""
         },
         "require": {
             "php": "^5.3|^7.0"
         },
-        "time": "2017-02-03T09:55:47+00:00",
+        "time": "2019-07-14T23:16:24+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -1629,6 +1629,60 @@
         }
     },
     {
+        "name": "drupal/altering_entity_routes",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/altering_entity_routes.git",
+            "reference": "8.x-1.0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/altering_entity_routes-8.x-1.0.zip",
+            "reference": "8.x-1.0",
+            "shasum": "10f19a14abf3baaf31ce6ef25c29ab7ad845a670"
+        },
+        "require": {
+            "drupal/core": "~8.0",
+            "drupal/eck": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.0",
+                "datestamp": "1560872585",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Project has not opted into security advisory coverage!"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Uming",
+                "homepage": "https://www.drupal.org/user/3342682"
+            }
+        ],
+        "description": "Altering eck entity existing defaults routes！This is a custom module.",
+        "homepage": "https://www.drupal.org/project/altering_entity_routes",
+        "keywords": [
+            "Drupal"
+        ],
+        "support": {
+            "source": "http://cgit.drupalcode.org/altering_entity_routes",
+            "issues": "https://www.drupal.org/project/issues/altering_entity_routes"
+        }
+    },
+    {
         "name": "drupal/auto_entitylabel",
         "version": "2.1.0-beta1",
         "version_normalized": "2.1.0.0-beta1",
@@ -2380,18 +2434,18 @@
     },
     {
         "name": "drupal/content_planner",
-        "version": "1.0.0-beta6",
-        "version_normalized": "1.0.0.0-beta6",
+        "version": "1.0.0-beta7",
+        "version_normalized": "1.0.0.0-beta7",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/content_planner.git",
-            "reference": "8.x-1.0-beta6"
+            "reference": "8.x-1.0-beta7"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/content_planner-8.x-1.0-beta6.zip",
-            "reference": "8.x-1.0-beta6",
-            "shasum": "7f28e7a45f7b7324dc61ee1b4b9d5af92b31f03c"
+            "url": "https://ftp.drupal.org/files/projects/content_planner-8.x-1.0-beta7.zip",
+            "reference": "8.x-1.0-beta7",
+            "shasum": "5dc2cea286b7bcd3b19cb8083bdc68faf412db59"
         },
         "require": {
             "drupal/core": "*",
@@ -2403,8 +2457,8 @@
                 "dev-1.x": "1.x-dev"
             },
             "drupal": {
-                "version": "8.x-1.0-beta6",
-                "datestamp": "1543346285",
+                "version": "8.x-1.0-beta7",
+                "datestamp": "1562496185",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Beta releases are not covered by Drupal security advisories."
@@ -2429,7 +2483,7 @@
         "description": "Plan your content using a Dashboard, the Content Calendar and Content Kanban.",
         "homepage": "https://www.drupal.org/project/content_planner",
         "support": {
-            "source": "http://cgit.drupalcode.org/content_planner"
+            "source": "https://git.drupalcode.org/project/content_planner"
         }
     },
     {
@@ -2979,18 +3033,18 @@
     },
     {
         "name": "drupal/data_policy",
-        "version": "1.0.0-beta5",
-        "version_normalized": "1.0.0.0-beta5",
+        "version": "1.0.0-beta6",
+        "version_normalized": "1.0.0.0-beta6",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/data_policy.git",
-            "reference": "8.x-1.0-beta5"
+            "reference": "8.x-1.0-beta6"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/data_policy-8.x-1.0-beta5.zip",
-            "reference": "8.x-1.0-beta5",
-            "shasum": "97324260e299cfe84494c2c491e5d6c018a8ee5d"
+            "url": "https://ftp.drupal.org/files/projects/data_policy-8.x-1.0-beta6.zip",
+            "reference": "8.x-1.0-beta6",
+            "shasum": "d7e8887ad2b4215e037d1d499c8677a9f247a325"
         },
         "require": {
             "drupal/core": "*"
@@ -3001,8 +3055,8 @@
                 "dev-1.x": "1.x-dev"
             },
             "drupal": {
-                "version": "8.x-1.0-beta5",
-                "datestamp": "1560275886",
+                "version": "8.x-1.0-beta6",
+                "datestamp": "1562252586",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Project has not opted into security advisory coverage!"
@@ -3034,6 +3088,10 @@
             {
                 "name": "jaapjan",
                 "homepage": "https://www.drupal.org/user/555428"
+            },
+            {
+                "name": "royharink",
+                "homepage": "https://www.drupal.org/user/2559552"
             }
         ],
         "description": "Create data policies and track user agreements as well as informing users.",
@@ -3106,18 +3164,18 @@
     },
     {
         "name": "drupal/date_recur",
-        "version": "2.0.0-beta4",
-        "version_normalized": "2.0.0.0-beta4",
+        "version": "2.0.0",
+        "version_normalized": "2.0.0.0",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/date_recur.git",
-            "reference": "8.x-2.0-beta4"
+            "reference": "8.x-2.0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/date_recur-8.x-2.0-beta4.zip",
-            "reference": "8.x-2.0-beta4",
-            "shasum": "49fda86003ab562acd83b5915e2c95eb516393c0"
+            "url": "https://ftp.drupal.org/files/projects/date_recur-8.x-2.0.zip",
+            "reference": "8.x-2.0",
+            "shasum": "db4c3644135a63cdf9fda609bbe1b7aba0022649"
         },
         "require": {
             "drupal/core": "^8.6",
@@ -3136,11 +3194,11 @@
                 "dev-2.x": "2.x-dev"
             },
             "drupal": {
-                "version": "8.x-2.0-beta4",
-                "datestamp": "1556606885",
+                "version": "8.x-2.0",
+                "datestamp": "1562489586",
                 "security-coverage": {
-                    "status": "not-covered",
-                    "message": "Beta releases are not covered by Drupal security advisories."
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
                 }
             }
         },
@@ -9888,35 +9946,39 @@
     },
     {
         "name": "guzzlehttp/psr7",
-        "version": "1.5.2",
-        "version_normalized": "1.5.2.0",
+        "version": "1.6.1",
+        "version_normalized": "1.6.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/guzzle/psr7.git",
-            "reference": "9f83dded91781a01c63574e387eaa769be769115"
+            "reference": "239400de7a173fe9901b9ac7c06497751f00727a"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/guzzle/psr7/zipball/9f83dded91781a01c63574e387eaa769be769115",
-            "reference": "9f83dded91781a01c63574e387eaa769be769115",
+            "url": "https://api.github.com/repos/guzzle/psr7/zipball/239400de7a173fe9901b9ac7c06497751f00727a",
+            "reference": "239400de7a173fe9901b9ac7c06497751f00727a",
             "shasum": ""
         },
         "require": {
             "php": ">=5.4.0",
             "psr/http-message": "~1.0",
-            "ralouphie/getallheaders": "^2.0.5"
+            "ralouphie/getallheaders": "^2.0.5 || ^3.0.0"
         },
         "provide": {
             "psr/http-message-implementation": "1.0"
         },
         "require-dev": {
+            "ext-zlib": "*",
             "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.8"
         },
-        "time": "2018-12-04T20:46:45+00:00",
+        "suggest": {
+            "zendframework/zend-httphandlerrunner": "Emit PSR-7 responses"
+        },
+        "time": "2019-07-01T23:21:34+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.5-dev"
+                "dev-master": "1.6-dev"
             }
         },
         "installation-source": "dist",
@@ -11004,40 +11066,41 @@
     },
     {
         "name": "php-http/discovery",
-        "version": "1.6.1",
-        "version_normalized": "1.6.1.0",
+        "version": "1.7.0",
+        "version_normalized": "1.7.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/php-http/discovery.git",
-            "reference": "684855f2c2e9d0a61868b8f8d6bd0295c8a4b651"
+            "reference": "e822f86a6983790aa17ab13aa7e69631e86806b6"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/php-http/discovery/zipball/684855f2c2e9d0a61868b8f8d6bd0295c8a4b651",
-            "reference": "684855f2c2e9d0a61868b8f8d6bd0295c8a4b651",
+            "url": "https://api.github.com/repos/php-http/discovery/zipball/e822f86a6983790aa17ab13aa7e69631e86806b6",
+            "reference": "e822f86a6983790aa17ab13aa7e69631e86806b6",
             "shasum": ""
         },
         "require": {
-            "php": "^5.5 || ^7.0"
+            "php": "^7.1"
         },
         "conflict": {
             "nyholm/psr7": "<1.0"
         },
         "require-dev": {
+            "akeneo/phpspec-skip-example-extension": "^4.0",
             "php-http/httplug": "^1.0 || ^2.0",
             "php-http/message-factory": "^1.0",
-            "phpspec/phpspec": "^2.4",
+            "phpspec/phpspec": "^5.1",
             "puli/composer-plugin": "1.0.0-beta10"
         },
         "suggest": {
             "php-http/message": "Allow to use Guzzle, Diactoros or Slim Framework factories",
             "puli/composer-plugin": "Sets up Puli which is recommended for Discovery to work. Check http://docs.php-http.org/en/latest/discovery.html for more details."
         },
-        "time": "2019-02-23T07:42:53+00:00",
+        "time": "2019-06-30T09:04:27+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.5-dev"
+                "dev-master": "1.7-dev"
             }
         },
         "installation-source": "dist",
@@ -11306,17 +11369,17 @@
     },
     {
         "name": "phpseclib/phpseclib",
-        "version": "2.0.20",
-        "version_normalized": "2.0.20.0",
+        "version": "2.0.21",
+        "version_normalized": "2.0.21.0",
         "source": {
             "type": "git",
             "url": "https://github.com/phpseclib/phpseclib.git",
-            "reference": "d6819a55b05e123db1e881d8b230d57f912126be"
+            "reference": "9f1287e68b3f283339a9f98f67515dd619e5bf9d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/d6819a55b05e123db1e881d8b230d57f912126be",
-            "reference": "d6819a55b05e123db1e881d8b230d57f912126be",
+            "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/9f1287e68b3f283339a9f98f67515dd619e5bf9d",
+            "reference": "9f1287e68b3f283339a9f98f67515dd619e5bf9d",
             "shasum": ""
         },
         "require": {
@@ -11334,7 +11397,7 @@
             "ext-mcrypt": "Install the Mcrypt extension in order to speed up a few other cryptographic operations.",
             "ext-openssl": "Install the OpenSSL extension in order to speed up a wide variety of cryptographic operations."
         },
-        "time": "2019-06-23T16:33:11+00:00",
+        "time": "2019-07-12T12:53:49+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -11657,27 +11720,27 @@
     },
     {
         "name": "ralouphie/getallheaders",
-        "version": "2.0.5",
-        "version_normalized": "2.0.5.0",
+        "version": "3.0.3",
+        "version_normalized": "3.0.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/ralouphie/getallheaders.git",
-            "reference": "5601c8a83fbba7ef674a7369456d12f1e0d0eafa"
+            "reference": "120b605dfeb996808c31b6477290a714d356e822"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/5601c8a83fbba7ef674a7369456d12f1e0d0eafa",
-            "reference": "5601c8a83fbba7ef674a7369456d12f1e0d0eafa",
+            "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/120b605dfeb996808c31b6477290a714d356e822",
+            "reference": "120b605dfeb996808c31b6477290a714d356e822",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.3"
+            "php": ">=5.6"
         },
         "require-dev": {
-            "phpunit/phpunit": "~3.7.0",
-            "satooshi/php-coveralls": ">=1.0"
+            "php-coveralls/php-coveralls": "^2.1",
+            "phpunit/phpunit": "^5 || ^6.5"
         },
-        "time": "2016-02-11T07:05:27+00:00",
+        "time": "2019-03-08T08:55:37+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

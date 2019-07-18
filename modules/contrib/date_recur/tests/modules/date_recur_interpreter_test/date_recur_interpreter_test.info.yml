@@ -4,8 +4,8 @@ description: 'Provides an interpreter plugin for testing.'
 package: Testing
 # core: 8.x
 
-# Information added by Drupal.org packaging script on 2019-04-30
-version: '8.x-2.0-beta4'
+# Information added by Drupal.org packaging script on 2019-07-07
+version: '8.x-2.0'
 core: '8.x'
 project: 'date_recur'
-datestamp: 1556606887
+datestamp: 1562489588

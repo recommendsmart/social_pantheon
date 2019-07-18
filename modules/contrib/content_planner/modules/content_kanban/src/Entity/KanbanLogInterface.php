@@ -13,8 +13,6 @@ use Drupal\user\EntityOwnerInterface;
  */
 interface KanbanLogInterface extends ContentEntityInterface, EntityChangedInterface, EntityOwnerInterface {
 
-  // Add get/set methods for your configuration properties here.
-
   /**
    * Gets the Kanban Log name.
    *
@@ -73,5 +71,29 @@ interface KanbanLogInterface extends ContentEntityInterface, EntityChangedInterf
    *   The called Kanban Log entity.
    */
   public function setPublished($published);
+
+  /**
+   * Gets the type of the entity.
+   *
+   * @return string
+   *   The content entity type.
+   */
+  public function getType();
+
+  /**
+   * Gets the entity loaded based on id and type.
+   *
+   * @return \Drupal\Core\Entity\ContentEntityInterface|bool
+   *   The content entity if exists, FALSE otherwise.
+   */
+  public function getEntityObject();
+
+  /**
+   * Gets the entity ID.
+   *
+   * @return int
+   *   The content entity ID.
+   */
+  public function getEntityId();
 
 }

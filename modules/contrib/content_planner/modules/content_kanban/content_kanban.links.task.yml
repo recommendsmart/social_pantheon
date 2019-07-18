@@ -40,4 +40,3 @@ entity.content_kanban_log.delete_form:
   base_route:  entity.content_kanban_log.canonical
   title: Delete
   weight: 10
-

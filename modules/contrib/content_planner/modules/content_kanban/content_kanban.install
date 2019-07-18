@@ -5,9 +5,50 @@
  * Contains install and uninstall functionality of the module.
  */
 
+use Drupal\Core\Entity\EntityStorageException;
+
 /**
  * Implements hook_uninstall().
  */
 function content_kanban_uninstall() {
   \Drupal::configFactory()->getEditable('image.style.content_kanban_user_thumb')->delete();
+}
+
+/**
+ * Updates the Kanban log entity with the new base fields data.
+ */
+function content_kanban_update_8001() {
+  $database = \Drupal::database();
+  $table = 'content_kanban_log';
+  // Store the existing values.
+  $nids = $database->select($table)
+    ->fields($table, ['id', 'nid'])
+    ->execute()
+    ->fetchAllKeyed();
+  // Clear out the values.
+  $database->update($table)
+    ->fields(['nid' => NULL])
+    ->execute();
+
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  // Check for entity updates.
+  if ($manager->needsUpdates()) {
+    try {
+      $manager->applyUpdates();
+    }
+    catch (EntityStorageException $e) {
+      watchdog_exception('content_kanban', $e);
+    }
+  }
+  // Update the new columns values with old ones.
+  foreach ($nids as $id => $nid) {
+    $database->update($table)
+      ->fields([
+        'entity_id' => $nid,
+        'entity_type' => 'node',
+      ])
+      ->condition('id', $id)
+      ->execute();
+  }
+
 }

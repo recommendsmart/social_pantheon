@@ -14,9 +14,10 @@ use Drupal\Core\Link;
 class KanbanLogListBuilder extends EntityListBuilder {
 
   /**
-   * Custom load of entities
+   * Custom load of entities.
    *
    * @return \Drupal\Core\Entity\EntityInterface[]
+   *   Returns an array with the entities.
    */
   public function load() {
 
@@ -24,10 +25,8 @@ class KanbanLogListBuilder extends EntityListBuilder {
     $query->sort('created', 'DESC');
 
     $result = $query->execute();
-
     return $this->storage->loadMultiple($result);
   }
-
 
   /**
    * {@inheritdoc}
@@ -37,7 +36,7 @@ class KanbanLogListBuilder extends EntityListBuilder {
     $header['id'] = $this->t('Kanban Log ID');
     $header['name'] = $this->t('Name');
     $header['workflow'] = $this->t('Workflow');
-    $header['node'] = $this->t('Node') . ' / ' . $this->t('Node ID');
+    $header['entity'] = $this->t('Entity / Entity ID');
     $header['state_from'] = $this->t('State from');
     $header['state_to'] = $this->t('State to');
 
@@ -54,21 +53,19 @@ class KanbanLogListBuilder extends EntityListBuilder {
     $row['id'] = $entity->id();
     $row['name'] = $entity->label();
 
-    //Workflow
-    if($workflow = $entity->getWorkflow()) {
+    // Workflow.
+    if ($workflow = $entity->getWorkflow()) {
       $row['workflow'] = $workflow->label();
-    } else {
-      $row['workflow'] = t('Workflow with ID @id does not exist anymore', array('@id' => $entity->getWorkflowID()));
+    }
+    else {
+      $row['workflow'] = t('Workflow with ID @id does not exist anymore', ['@id' => $entity->getWorkflowId()]);
     }
 
-    //Node
-    if($node = $entity->getNode()) {
-
-      $node_link = Link::createFromRoute($node->getTitle(), 'entity.node.canonical', array('node' => $entity->getNodeID()));
-
-      $row['node'] = $node_link;
-    } else {
-      $row['node'] = t('Node with ID @id does not exist anymore', array('@id' => $entity->getNodeID()));
+    if ($logEntity = $entity->getEntityObject()) {
+      $row['entity'] = new Link($logEntity->label(), $logEntity->toUrl());
+    }
+    else {
+      $row['entity'] = t('Entity @entity_type with ID @id does not exist anymore', ['@id' => $entity->getEntityId(), '@entity_type' => $entity->getType()]);
     }
 
     $row['state_from'] = $entity->getStateFrom();
