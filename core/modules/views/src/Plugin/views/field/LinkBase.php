@@ -123,10 +123,11 @@ abstract class LinkBase extends FieldPluginBase {
    */
   public function render(ResultRow $row) {
     $access = $this->checkUrlAccess($row);
-    $build = ['#markup' => $access->isAllowed() ? $this->renderLink($row) : ''];
-    if ($access) {
-      BubbleableMetadata::createFromObject($access)->applyTo($build);
+    if ($access === NULL) {
+      return '';
     }
+    $build = ['#markup' => $access->isAllowed() ? $this->renderLink($row) : ''];
+    BubbleableMetadata::createFromObject($access)->applyTo($build);
     return $build;
   }
 
@@ -169,7 +170,9 @@ abstract class LinkBase extends FieldPluginBase {
    */
   protected function renderLink(ResultRow $row) {
     $this->options['alter']['make_link'] = TRUE;
-    $this->options['alter']['url'] = $this->getUrlInfo($row);
+    if ($urlInfo = $this->getUrlInfo($row)) {
+      $this->options['alter']['url'] = $this->getUrlInfo($row);
+    }
     $text = !empty($this->options['text']) ? $this->sanitizeValue($this->options['text']) : $this->getDefaultLabel();
     $this->addLangcode($row);
     return $text;

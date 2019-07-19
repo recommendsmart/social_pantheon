@@ -66,6 +66,7 @@ return array(
     'Facebook\\' => array($vendorDir . '/facebook/graph-sdk/src/Facebook'),
     'FG\\' => array($vendorDir . '/fgrosse/phpasn1/lib'),
     'Embed\\' => array($vendorDir . '/embed/embed/src'),
+    'Egulias\\EmailValidator\\' => array($vendorDir . '/egulias/email-validator/EmailValidator'),
     'Drupal\\social\\Behat\\' => array($baseDir . '/profiles/contrib/social/tests/behat/features/bootstrap'),
     'Drupal\\drush9_example\\' => array($baseDir . '/modules/contrib/duration_field/src'),
     'Drupal\\Driver\\' => array($baseDir . '/drivers/lib/Drupal/Driver'),

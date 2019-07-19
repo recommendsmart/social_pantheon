@@ -8,7 +8,6 @@ class ComposerStaticInitDrupal8
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
@@ -149,6 +148,7 @@ class ComposerStaticInitDrupal8
         'E' => 
         array (
             'Embed\\' => 6,
+            'Egulias\\EmailValidator\\' => 23,
         ),
         'D' => 
         array (
@@ -431,6 +431,10 @@ class ComposerStaticInitDrupal8
         array (
             0 => __DIR__ . '/..' . '/embed/embed/src',
         ),
+        'Egulias\\EmailValidator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator',
+        ),
         'Drupal\\social\\Behat\\' => 
         array (
             0 => __DIR__ . '/../..' . '/profiles/contrib/social/tests/behat/features/bootstrap',
@@ -544,6 +548,13 @@ class ComposerStaticInitDrupal8
                 0 => __DIR__ . '/..' . '/stack/builder/src',
             ),
         ),
+        'P' => 
+        array (
+            'PEAR' => 
+            array (
+                0 => __DIR__ . '/..' . '/pear/pear_exception',
+            ),
+        ),
         'G' => 
         array (
             'Google_Service_' => 
@@ -561,10 +572,6 @@ class ComposerStaticInitDrupal8
         ),
         'E' => 
         array (
-            'Egulias\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/egulias/email-validator/src',
-            ),
             'EasyRdf_' => 
             array (
                 0 => __DIR__ . '/..' . '/easyrdf/easyrdf/lib',
@@ -581,6 +588,24 @@ class ComposerStaticInitDrupal8
                 0 => __DIR__ . '/..' . '/doctrine/collections/lib',
             ),
         ),
+        'C' => 
+        array (
+            'Console' => 
+            array (
+                0 => __DIR__ . '/..' . '/pear/console_getopt',
+            ),
+        ),
+        'A' => 
+        array (
+            'Archive_Tar' => 
+            array (
+                0 => __DIR__ . '/..' . '/pear/archive_tar',
+            ),
+        ),
+    );
+
+    public static $fallbackDirsPsr0 = array (
+        0 => __DIR__ . '/..' . '/pear/pear-core-minimal/src',
     );
 
     public static $classMap = array (
@@ -608,6 +633,7 @@ class ComposerStaticInitDrupal8
             $loader->prefixLengthsPsr4 = ComposerStaticInitDrupal8::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitDrupal8::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInitDrupal8::$prefixesPsr0;
+            $loader->fallbackDirsPsr0 = ComposerStaticInitDrupal8::$fallbackDirsPsr0;
             $loader->classMap = ComposerStaticInitDrupal8::$classMap;
 
         }, null, ClassLoader::class);
