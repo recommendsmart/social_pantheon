@@ -80,7 +80,10 @@
         "drupal/term_reference_fancytree": "^1.0@beta",
         "drupal/crm_core": "3.x-dev",
         "drupal/base_field_override_ui": "^1.0@beta",
-        "drupal/altering_entity_routes": "^1.0"						  							 
+        "drupal/altering_entity_routes": "^1.0",
+        "drupal/financial": "^1.0",
+        "drupal/views_accordion": "^1.2",
+        "drupal/entity_extra_field": "^1.0@alpha"						  							 
         },
     "repositories": [
         {
