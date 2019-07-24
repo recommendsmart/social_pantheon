@@ -84,7 +84,8 @@
         "drupal/financial": "^1.0",
         "drupal/views_accordion": "^1.2",
         "drupal/entity_extra_field": "^1.0@alpha",
-        "drupal/commerce": "^2.13"						  							 
+        "drupal/commerce": "^2.13",
+        "drupal/og": "^1.0"						  							 
         },
     "repositories": [
         {
