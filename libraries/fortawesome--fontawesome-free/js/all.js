@@ -1,5 +1,5 @@
 /*!
- * Font Awesome Free 5.10.0-11 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.10.0-12 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 (function () {
@@ -2118,11 +2118,11 @@
   var ATTRIBUTES_WATCHED_FOR_MUTATION = ['class', 'data-prefix', 'data-icon', 'data-fa-transform', 'data-fa-mask'];
   var DUOTONE_CLASSES = {
     GROUP: 'group',
-    INVERSE_OPACITY: 'swap-opacity',
+    SWAP_OPACITY: 'swap-opacity',
     PRIMARY: 'primary',
     SECONDARY: 'secondary'
   };
-  var RESERVED_CLASSES = ['xs', 'sm', 'lg', 'fw', 'ul', 'li', 'border', 'pull-left', 'pull-right', 'spin', 'pulse', 'rotate-90', 'rotate-180', 'rotate-270', 'flip-horizontal', 'flip-vertical', 'flip-both', 'stack', 'stack-1x', 'stack-2x', 'inverse', 'layers', 'layers-text', 'layers-counter', DUOTONE_CLASSES.GROUP, DUOTONE_CLASSES.INVERSE_OPACITY, DUOTONE_CLASSES.PRIMARY, DUOTONE_CLASSES.SECONDARY].concat(oneToTen.map(function (n) {
+  var RESERVED_CLASSES = ['xs', 'sm', 'lg', 'fw', 'ul', 'li', 'border', 'pull-left', 'pull-right', 'spin', 'pulse', 'rotate-90', 'rotate-180', 'rotate-270', 'flip-horizontal', 'flip-vertical', 'flip-both', 'stack', 'stack-1x', 'stack-2x', 'inverse', 'layers', 'layers-text', 'layers-counter', DUOTONE_CLASSES.GROUP, DUOTONE_CLASSES.SWAP_OPACITY, DUOTONE_CLASSES.PRIMARY, DUOTONE_CLASSES.SECONDARY].concat(oneToTen.map(function (n) {
     return "".concat(n, "x");
   })).concat(oneToTwenty.map(function (n) {
     return "w-".concat(n);
@@ -3005,7 +3005,7 @@
     mark: noop$1,
     measure: noop$1
   };
-  var preamble = "FA \"5.10.0-11\"";
+  var preamble = "FA \"5.10.0-12\"";
 
   var begin = function begin(name) {
     p.mark("".concat(preamble, " ").concat(name, " begins"));
@@ -3989,8 +3989,9 @@
 
     if (fp !== dfp || rc !== drc) {
       var dPatt = new RegExp("\\.".concat(dfp, "\\-"), 'g');
+      var customPropPatt = new RegExp("\\--".concat(dfp, "\\-"), 'g');
       var rPatt = new RegExp("\\.".concat(drc), 'g');
-      s = s.replace(dPatt, ".".concat(fp, "-")).replace(rPatt, ".".concat(rc));
+      s = s.replace(dPatt, ".".concat(fp, "-")).replace(customPropPatt, "--".concat(fp, "-")).replace(rPatt, ".".concat(rc));
     }
 
     return s;
