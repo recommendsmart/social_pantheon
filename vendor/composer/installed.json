@@ -1907,6 +1907,68 @@
         }
     },
     {
+        "name": "drupal/belgrade",
+        "version": "1.0.0-beta5",
+        "version_normalized": "1.0.0.0-beta5",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/belgrade.git",
+            "reference": "8.x-1.0-beta5"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/belgrade-8.x-1.0-beta5.zip",
+            "reference": "8.x-1.0-beta5",
+            "shasum": "a36b06dc50cfc468d9da743814ee8f6afdf96eb3"
+        },
+        "require": {
+            "drupal/commerce_bootstrap": "^1.0",
+            "drupal/core": "~8.0"
+        },
+        "type": "drupal-theme",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.0-beta5",
+                "datestamp": "1543417380",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Beta releases are not covered by Drupal security advisories."
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0"
+        ],
+        "authors": [
+            {
+                "name": "bojanz",
+                "homepage": "https://www.drupal.org/user/86106"
+            },
+            {
+                "name": "krcha",
+                "homepage": "https://www.drupal.org/user/3516276"
+            },
+            {
+                "name": "mglaman",
+                "homepage": "https://www.drupal.org/user/2416470"
+            },
+            {
+                "name": "rszrama",
+                "homepage": "https://www.drupal.org/user/49344"
+            }
+        ],
+        "description": "Belgrade theme for Drupal Commerce.",
+        "homepage": "http://drupal.org/project/belgrade",
+        "support": {
+            "source": "https://git.drupalcode.org/project/belgrade"
+        }
+    },
+    {
         "name": "drupal/blizz_dynamic_entitylist",
         "version": "2.34.0",
         "version_normalized": "2.34.0.0",
@@ -2511,6 +2573,59 @@
         "homepage": "http://drupal.org/project/commerce",
         "support": {
             "source": "https://git.drupalcode.org/project/commerce"
+        }
+    },
+    {
+        "name": "drupal/commerce_bootstrap",
+        "version": "1.0.0-beta1",
+        "version_normalized": "1.0.0.0-beta1",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/commerce_bootstrap.git",
+            "reference": "8.x-1.0-beta1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/commerce_bootstrap-8.x-1.0-beta1.zip",
+            "reference": "8.x-1.0-beta1",
+            "shasum": "c6a1de13276f4698249b19f62fab8fa4ba4aaad8"
+        },
+        "require": {
+            "drupal/bootstrap": "^3.5",
+            "drupal/core": "~8.0"
+        },
+        "type": "drupal-theme",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.0-beta1",
+                "datestamp": "1532725981",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Beta releases are not covered by Drupal security advisories."
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0"
+        ],
+        "authors": [
+            {
+                "name": "mglaman",
+                "homepage": "https://www.drupal.org/user/2416470"
+            }
+        ],
+        "description": "Bootstrap base theme for Drupal Commerce.",
+        "homepage": "http://drupal.org/project/commerce_bootstrap",
+        "support": {
+            "source": "http://cgit.drupalcode.org/commerce_bootstrap",
+            "docs": "http://drupal-bootstrap.org",
+            "issues": "https://www.drupal.org/project/issues/commerce_bootstrap",
+            "irc": "irc://irc.freenode.org/drupal-commerce"
         }
     },
     {

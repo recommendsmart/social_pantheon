@@ -93,7 +93,8 @@
         "drupal/bootstrap_quicktabs": "^1.0",
         "drupal/quicktabs": "^3.0",
         "drupal/vartheme": "^6.6",
-        "drupal/radix": "^3.2"						  							 
+        "drupal/radix": "^3.2",
+        "drupal/belgrade": "^1.0"						  							 
         },
     "repositories": [
         {
