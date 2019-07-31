@@ -584,6 +584,10 @@ class ComposerStaticInitDrupal8
         ),
         'D' => 
         array (
+            'Drupal\\Composer' => 
+            array (
+                0 => __DIR__ . '/..' . '/drupal/drupal-library-installer-plugin/src',
+            ),
             'Doctrine\\Common\\Inflector\\' => 
             array (
                 0 => __DIR__ . '/..' . '/doctrine/inflector/lib',

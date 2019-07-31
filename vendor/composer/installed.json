@@ -4424,6 +4424,43 @@
         }
     },
     {
+        "name": "drupal/drupal-library-installer-plugin",
+        "version": "0.3",
+        "version_normalized": "0.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/promet/drupal-libraries-installer-plugin.git",
+            "reference": "6d4eb744a1f244dfc290976104ecf522466a768b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/promet/drupal-libraries-installer-plugin/zipball/6d4eb744a1f244dfc290976104ecf522466a768b",
+            "reference": "6d4eb744a1f244dfc290976104ecf522466a768b",
+            "shasum": ""
+        },
+        "require": {
+            "composer-plugin-api": "^1.0"
+        },
+        "time": "2015-12-04T21:39:03+00:00",
+        "type": "composer-plugin",
+        "extra": {
+            "class": "Drupal\\Composer\\DrupalLibraryInstallerPlugin"
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Drupal\\Composer": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "authors": [
+            {
+                "name": "Allan Chappell",
+                "email": "generalredneck@gmail.com"
+            }
+        ]
+    },
+    {
         "name": "drupal/duration_field",
         "version": "2.0.0-rc2",
         "version_normalized": "2.0.0.0-RC2",
@@ -8356,6 +8393,62 @@
         }
     },
     {
+        "name": "drupal/radix",
+        "version": "3.2.0",
+        "version_normalized": "3.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/radix.git",
+            "reference": "8.x-3.2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/radix-8.x-3.2.zip",
+            "reference": "8.x-3.2",
+            "shasum": "f230ac292ca84d684b377381cf309c05f19a84cf"
+        },
+        "require": {
+            "drupal/core": "~8.0"
+        },
+        "type": "drupal-theme",
+        "extra": {
+            "branch-alias": {
+                "dev-3.x": "3.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-3.2",
+                "datestamp": "1557122298",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Arshad Chummun",
+                "homepage": "http://arshad.io",
+                "email": "arshad@chummun.com",
+                "role": "Maintainer"
+            },
+            {
+                "name": "dsnopek",
+                "homepage": "https://www.drupal.org/user/266527"
+            }
+        ],
+        "description": "Radix is a base theme for Drupal. It has Bootstrap, Sass, Gulp, BrowserSync and Font Awesome built-in.",
+        "homepage": "https://www.drupal.org/project/radix",
+        "support": {
+            "source": "https://git.drupalcode.org/project/radix",
+            "issues": "https://www.drupal.org/project/issues/radix"
+        }
+    },
+    {
         "name": "drupal/range_units",
         "version": "1.0.0",
         "version_normalized": "1.0.0.0",
@@ -10023,6 +10116,73 @@
             "source": "http://cgit.drupalcode.org/url_embed",
             "issues": "https://www.drupal.org/project/issues/url_embed",
             "irc": "irc://irc.freenode.org/drupal-media"
+        }
+    },
+    {
+        "name": "drupal/vartheme",
+        "version": "6.6.0",
+        "version_normalized": "6.6.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/vartheme.git",
+            "reference": "8.x-6.6"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/vartheme-8.x-6.6.zip",
+            "reference": "8.x-6.6",
+            "shasum": "5964f0c3cc02d5c079b39ed7eab408ea6d5d400e"
+        },
+        "require": {
+            "composer/installers": "~1.0",
+            "cweagans/composer-patches": "~1.0",
+            "drupal/bootstrap": "~3.0",
+            "drupal/core": "~8.0",
+            "drupal/drupal-library-installer-plugin": "^0.3",
+            "oomphinc/composer-installers-extender": "~1.0"
+        },
+        "type": "drupal-theme",
+        "extra": {
+            "branch-alias": {
+                "dev-6.x": "6.x-dev",
+                "dev-8.x-6.x": "8.6.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-6.6",
+                "datestamp": "1556199532",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            },
+            "installer-types": [
+                "bower-asset",
+                "npm-asset"
+            ],
+            "enable-patching": true,
+            "composer-exit-on-patch-failure": true
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "Vardot",
+                "homepage": "https://www.drupal.org/vardot",
+                "role": "Maintainer"
+            },
+            {
+                "name": "RajabNatshah",
+                "homepage": "https://www.drupal.org/user/1414312"
+            }
+        ],
+        "description": "A base theme for Varbase standard websites. Based on Bootstrap theme with Bootstrap 3",
+        "homepage": "https://www.drupal.org/project/vartheme",
+        "support": {
+            "source": "http://cgit.drupalcode.org/vartheme",
+            "issues": "http://drupal.org/project/issues/vartheme"
         }
     },
     {

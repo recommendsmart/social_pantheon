@@ -13,6 +13,7 @@ return array(
     'Google_' => array($vendorDir . '/google/apiclient/src'),
     'Geocoder' => array($vendorDir . '/willdurand/geocoder/src'),
     'EasyRdf_' => array($vendorDir . '/easyrdf/easyrdf/lib'),
+    'Drupal\\Composer' => array($vendorDir . '/drupal/drupal-library-installer-plugin/src'),
     'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib'),
     'Doctrine\\Common\\Collections\\' => array($vendorDir . '/doctrine/collections/lib'),
     'Console' => array($vendorDir . '/pear/console_getopt'),
