@@ -89,7 +89,9 @@
         "drupal/commerce_demo": "^1.0",
         "drupal/taxonomy_term_depth": "^2.3",
         "drupal/form_display_visibility": "^1.0",
-        "drupal/gutenberg": "^1.4"						  							 
+        "drupal/gutenberg": "^1.4",
+        "drupal/bootstrap_quicktabs": "^1.0",
+        "drupal/quicktabs": "^3.0"						  							 
         },
     "repositories": [
         {
