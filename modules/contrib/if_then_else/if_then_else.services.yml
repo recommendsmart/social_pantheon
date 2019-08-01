@@ -1,0 +1,428 @@
+services:
+  if_then_else.event_subscriber:
+    class: Drupal\if_then_else\EventSubscriber\IfthenelseSubscriber
+    tags:
+      - {name: 'event_subscriber'}
+ 
+  if_then_else.logger:
+    class: Drupal\if_then_else\Logger\IfthenelseLog
+    tags:
+      - {name: 'logger'}
+
+  if_then_else_init_event_register:
+    class: Drupal\if_then_else\core\Nodes\Events\InitEvent\InitEvent
+    tags:
+      - { name: 'event_subscriber' }
+ 
+  if_then_else_view_is_loaded_event_register:
+    class: Drupal\if_then_else\core\Nodes\Events\ViewIsLoadedEvent\ViewIsLoadedEvent
+    tags:
+      - { name: 'event_subscriber' }
+ 
+  if_then_else_system_log_entry_is_created_event_register:
+    class: Drupal\if_then_else\core\Nodes\Events\SystemLogEntryIsCreated\SystemLogEntryIsCreated
+    tags:
+      - { name: 'event_subscriber' }
+ 
+  if_then_else_create_new_entity_action_event_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\CreateNewEntityAction\CreateNewEntityAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_socket_register:
+    class: Drupal\if_then_else\core\Sockets\SocketSubscriber
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_entity_load_event_register:
+    class: Drupal\if_then_else\core\Nodes\Events\EntityLoadEvent\EntityLoadEvent
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_form_alter_event_register:
+    class: Drupal\if_then_else\core\Nodes\Events\FormAlterEvent\FormAlterEvent
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_form_validate_event_register:
+    class: Drupal\if_then_else\core\Nodes\Events\FormValidateEvent\FormValidateEvent
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_form_submission_event_register:
+    class: Drupal\if_then_else\core\Nodes\Events\FormSubmissionEvent\FormSubmissionEvent
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_after_deleting_entity_event_register:
+    class: Drupal\if_then_else\core\Nodes\Events\AfterDeletingEntityEvent\AfterDeletingEntityEvent
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_after_saving_new_entity_event_register:
+    class: Drupal\if_then_else\core\Nodes\Events\AfterSavingNewEntityEvent\AfterSavingNewEntityEvent
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_after_saving_existing_entity_event_register:
+    class: Drupal\if_then_else\core\Nodes\Events\AfterSavingExistingEntityEvent\AfterSavingExistingEntityEvent
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_cron_maintenance_task_is_performed_event_register:
+    class: Drupal\if_then_else\core\Nodes\Events\CronMaintenanceTaskIsPerformed\CronMaintenanceTaskIsPerformed
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_before_saving_entity_event_register:
+    class: Drupal\if_then_else\core\Nodes\Events\BeforeSavingEntityEvent\BeforeSavingEntityEvent
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_entity_is_viewed_event_register:
+    class: Drupal\if_then_else\core\Nodes\Events\EntityIsViewedEvent\EntityIsViewedEvent
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_periodic_execution_condition_register:
+    class: Drupal\if_then_else\core\Nodes\Conditions\PeriodicExecutionCondition\PeriodicExecutionCondition
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_form_condition_register:
+    class: Drupal\if_then_else\core\Nodes\Conditions\FormCondition\FormCondition
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_user_role_condition_register:
+    class: Drupal\if_then_else\core\Nodes\Conditions\UserRoleCondition\UserRoleCondition
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_current_theme_condition_register:
+    class: Drupal\if_then_else\core\Nodes\Conditions\CurrentThemeCondition\CurrentThemeCondition
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_user_status_condition_register:
+    class: Drupal\if_then_else\core\Nodes\Conditions\UserStatusCondition\UserStatusCondition
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_user_has_entity_field_access_condition_register:
+    class: Drupal\if_then_else\core\Nodes\Conditions\UserHasEntityFieldAccessCondition\UserHasEntityFieldAccessCondition
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_set_default_value_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\SetFieldDefaultValue\SetFieldDefaultValue
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_set_value_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\SetFieldValue\SetFieldValue
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_get_value_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\GetFieldValue\GetFieldValue
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_make_fields_required_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\MakeFieldsRequiredAction\MakeFieldsRequiredAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_get_entity_field_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\GetEntityFieldAction\GetEntityFieldAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_text_value_register:
+    class: Drupal\if_then_else\core\Nodes\Values\TextValue\TextValue
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_number_value_register:
+    class: Drupal\if_then_else\core\Nodes\Values\NumberValue\NumberValue
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_user_value_register:
+    class: Drupal\if_then_else\core\Nodes\Values\UserValue\UserValue
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_user_login_event_register:
+    class: Drupal\if_then_else\core\Nodes\Events\UserLoginEvent\UserLoginEvent
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_user_logout_event_register:
+    class: Drupal\if_then_else\core\Nodes\Events\UserLogoutEvent\UserLogoutEvent
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_page_redirect_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\PageRedirectAction\PageRedirectAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_unpublish_node_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\UnpublishNodeAction\UnpublishNodeAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_set_entity_field_value_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\SetEntityFieldValue\SetEntityFieldValue
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_publish_node_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\PublishNodeAction\PublishNodeAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_sticky_node_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\StickyNodeAction\StickyNodeAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_non_sticky_node_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\NonStickyNodeAction\NonStickyNodeAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_ban_ip_address_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\BanIpAddressAction\BanIpAddressAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_delete_entity_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\DeleteEntityAction\DeleteEntityAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_save_entity_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\SaveEntityAction\SaveEntityAction
+    tags:
+    - { name: 'event_subscriber' }
+
+  if_then_else_clear_cache_of_entity_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\ClearCacheOfEntityAction\ClearCacheOfEntityAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_block_user_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\BlockUserAction\BlockUserAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_send_account_email_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\SendAccountEmailAction\SendAccountEmailAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_unblock_user_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\UnblockUserAction\UnblockUserAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_set_form_error_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\SetFormErrorAction\SetFormErrorAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_grant_access_form_field_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\GrantAccessFieldAction\GrantAccessFieldAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_deny_access_field_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\DenyAccessFieldAction\DenyAccessFieldAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_add_user_role_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\AddUserRoleAction\AddUserRoleAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_remove_user_role_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\RemoveUserRoleAction\RemoveUserRoleAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_create_url_alias_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\CreateUrlAliasAction\CreateUrlAliasAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_delete_url_alias_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\DeleteUrlAliasAction\DeleteUrlAliasAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_convert_data_type_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\ConvertDataTypeAction\ConvertDataTypeAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_promote_node_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\PromoteNodeAction\PromoteNodeAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_demote_node_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\DemoteNodeAction\DemoteNodeAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_add_form_field_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\AddFormFieldAction\AddFormFieldAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_calculate_value_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\CalculateValueAction\CalculateValueAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_add_variable_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\SetVariableAction\SetVariableAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_set_cookie_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\SetCookieAction\SetCookieAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_get_user_roles_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\GetUserRolesAction\GetUserRolesAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_entity_value_register:
+    class: Drupal\if_then_else\core\Nodes\Values\EntityValue\EntityValue
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_text_with_summary_field_value_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\ParseTextWithSummaryFieldAction\ParseTextWithSummaryFieldAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_link_field_value_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\ParseLinkFieldValueAction\ParseLinkFieldValueAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_image_field_value_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\ParseImageFieldValueAction\ParseImageFieldValueAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_text_long_field_value_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\ParseTextLongFieldValueAction\ParseTextLongFieldValueAction
+    tags:
+      - { name: 'event_subscriber' }
+  
+  if_then_else_date_time_value_register:
+    class: Drupal\if_then_else\core\Nodes\Values\DateTimeValue\DateTimeValue
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_remove_item_from_list_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\RemoveItemFromListAction\RemoveItemFromListAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_send_email_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\SendEmailAction\SendEmailAction
+    tags:
+      - { name: 'event_subscriber' }
+      
+  if_then_else_set_message_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\SetMessageAction\SetMessageAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_add_numbers_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\AddNumbersAction\AddNumbersAction
+    tags:
+      - { name: 'event_subscriber' }
+      
+  if_then_else_subtract_numbers_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\SubtractNumbersAction\SubtractNumbersAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  ifthenelse.utilities:
+    class: Drupal\if_then_else\core\IfthenelseUtilities
+
+  if_then_else_condition_or_of_all_the_inputs_register:
+    class: Drupal\if_then_else\core\Nodes\Conditions\ConditionOrOfAllTheInputs\ConditionOrOfAllTheInputs
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_compare_string_inputs_register:
+    class: Drupal\if_then_else\core\Nodes\Conditions\CompareStringInputs\CompareStringInputs
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_add_item_list_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\AddItemListAction\AddItemListAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_compare_integer_inputs_register:
+    class: Drupal\if_then_else\core\Nodes\Conditions\CompareIntegerInputs\CompareIntegerInputs
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_list_contains_item_condition_register:
+    class: Drupal\if_then_else\core\Nodes\Conditions\ListContainsItemCondition\ListContainsItemCondition
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_data_value_empty_condition_register:
+    class: Drupal\if_then_else\core\Nodes\Conditions\DataValueEmptyCondition\DataValueEmptyCondition
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_list_count_comparison_condition_register:
+    class: Drupal\if_then_else\core\Nodes\Conditions\ListCountComparisonCondition\ListCountComparisonCondition
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_entity_has_bundle_condition_register:
+    class: Drupal\if_then_else\core\Nodes\Conditions\EntityHasBundleCondition\EntityHasBundleCondition
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_entity_has_field_condition_register:
+    class: Drupal\if_then_else\core\Nodes\Conditions\EntityHasFieldCondition\EntityHasFieldCondition
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_entity_is_of_type_condition_register:
+    class: Drupal\if_then_else\core\Nodes\Conditions\EntityIsOfTypeCondition\EntityIsOfTypeCondition
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_path_has_url_alias_condition_register:
+    class: Drupal\if_then_else\core\Nodes\Conditions\PathHasUrlAliasCondition\PathHasUrlAliasCondition
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_url_alias_exists_condition_register:
+    class: Drupal\if_then_else\core\Nodes\Conditions\UrlAliasExistsCondition\UrlAliasExistsCondition
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_boolean_not_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\BooleanNotAction\BooleanNotAction
+    tags:
+      - { name: 'event_subscriber' }

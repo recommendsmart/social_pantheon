@@ -1,0 +1,11 @@
+ifthenelse.rule:
+  title: 'If Then Else Rules'
+  parent: system.admin_config_system
+  description: 'Manage ifthenelse rules.'
+  route_name: entity.ifthenelserule.collection
+
+ifthenelse.admin_settings_form:  
+  title: 'If Then Else Configuration'
+  route_name: ifthenelse.admin_settings_form  
+  description: 'Ifthenelse rule entity configuration'  
+  parent: system.admin_config_system  

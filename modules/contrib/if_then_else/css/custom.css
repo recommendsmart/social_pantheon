@@ -1,0 +1,197 @@
+#ifthenelserule-edit-form select,
+#ifthenelserule-edit-form input,
+#ifthenelserule-add-form select,
+#ifthenelserule-add-form input  {
+  border-radius: 30px;
+  background-color: white;
+  padding: 2px 6px;
+  border: 1px solid #999;
+  font-size: 110%;
+  width: 170px;
+}
+
+#ifthenelserule-edit-form input#edit-active,
+#ifthenelserule-add-form input#edit-active {
+  width: auto;
+}
+
+#ifthenelserule-edit-form .node .control input,
+#ifthenelserule-edit-form .node .input-control input,
+#ifthenelserule-add-form .node .control input,
+#ifthenelserule-add-form .node .input-control input{
+  width: 140px;
+}
+
+#ifthenelserule-edit-form .node .control input[type="radio"],
+#ifthenelserule-add-form .node .control input[type="radio"]{
+  width: auto;
+}
+
+#ifthenelserule-edit-form .node .control input[type="checkbox"],
+#ifthenelserule-add-form .node .control input[type="checkbox"]{
+  margin: 15px 0;
+  width: auto;
+}
+
+#ifthenelserule-edit-form .node .control div.radio label,
+#ifthenelserule-add-form .node .control div.radio label{
+  display: inline;
+}
+
+#ifthenelserule-edit-form svg.connection,
+#ifthenelserule-add-form svg.connection{
+  width: 12px;
+  height: 12px;
+}
+
+#ifthenelserule-edit-form #rete-editor,
+#ifthenelserule-add-form #rete-editor{
+  position: relative;
+  display: block;
+  overflow: visible !important;
+  min-height: 500px;
+}
+
+#ifthenelserule-edit-form #edit-actions,
+#ifthenelserule-add-form #edit-actions{
+  float: right;
+}
+
+#ifthenelserule-edit-form #edit-rete-container div.container,
+#ifthenelserule-add-form #edit-rete-container div.container{
+  overflow: hidden;
+  background-image: url(https://pixy.org/src/236/thumbs350/2360386.jpg);
+  height: 80vh;
+  min-height: 50vh;
+  max-height: 80vh;
+}
+
+#ifthenelserule-edit-form #edit-rete-container .dock,
+#ifthenelserule-add-form #edit-rete-container .dock {
+  float: left;
+  width: 250px;
+  margin-right: 10px;
+  height: 80vh;
+  min-height: 50vh;
+  max-height: 80vh;
+  overflow: scroll;
+}
+
+#ifthenelserule-edit-form #edit-rete-container .dock #search-container,
+#ifthenelserule-add-form #edit-rete-container .dock #search-container {
+  border: 1px solid #dbdbdb;
+  border-bottom: 0;
+}
+
+#ifthenelserule-edit-form #edit-rete-container .dock .search-wrapper,
+#ifthenelserule-add-form #edit-rete-container .dock .search-wrapper {
+  padding: 0 0 0 5px;
+}
+
+#ifthenelserule-edit-form #edit-rete-container .dock input,
+#ifthenelserule-add-form #edit-rete-container .dock input {
+  border-radius: 0;
+  border-width: 0;
+  width: 100%;
+  height: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+#ifthenelserule-edit-form #edit-rete-container .dock ul,
+#ifthenelserule-add-form #edit-rete-container .dock ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #dbdbdb;
+  background-color: #fff;
+}
+
+#ifthenelserule-edit-form #edit-rete-container .dock ul li,
+#ifthenelserule-add-form #edit-rete-container .dock ul li {
+  padding: 5px;
+  height: 19px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#ifthenelserule-edit-form #edit-rete-container .dock ul li:not(:last-child),
+#ifthenelserule-add-form #edit-rete-container .dock ul li:not(:last-child) {
+  border-bottom: 1px solid #dbdbdb;
+}
+
+#ifthenelserule-edit-form #edit-rete-container .dock ul li:hover,
+#ifthenelserule-add-form #edit-rete-container .dock ul li:hover {
+  background-color: #eee;
+}
+
+#edit-rete-container .editor .dock ul li.Action{
+  border-left: 2px solid #34a853;
+}
+#edit-rete-container .editor .dock ul li.Condition{
+  border-left: 2px solid #D3D3D3;
+}
+#edit-rete-container .editor .dock ul li.Event{
+  border-left: 2px solid #ea4235;
+}
+#edit-rete-container .editor .dock ul li.Value{
+  border-left: 2px solid #4286f5;
+}
+.ifthenelserule-form .container-inline .form-item-label label:after,
+.ifthenelserule-form .container-inline .form-item-active label:after{
+  content: '';
+}
+.ifthenelserule-form .container-inline .form-item-active{
+  margin-left: 5px;
+}
+.ifthenelserule-form .container-inline .form-item-active input{
+  vertical-align: middle;
+}
+#ifthenelse_form_wrapper{
+  background: #ffffff;
+}
+#ifthenelse_form_wrapper .search-wrapper input:focus{
+  outline: 0px;
+}
+#ifthenelse_form_wrapper .form-actions #edit-clone{
+  float: left;
+}
+#ifthenelse_form_wrapper #edit-full-screen-button{
+  border: 0px;
+  width: 50px;
+  position: absolute;
+  z-index: 9;
+  right: 33px;
+  border-radius: 0px;
+  outline: none;
+  background: none;
+}
+#ifthenelse_form_wrapper.enable #edit-full-screen-button {
+  right: 0px;
+}
+#ifthenelse_form_wrapper.enable .label_checkbox_section,
+#ifthenelse_form_wrapper.enable #edit-actions{
+  display: none;
+}
+#ifthenelse_form_wrapper.enable form,
+#ifthenelse_form_wrapper.enable #edit-rete-container,
+#ifthenelse_form_wrapper.enable #edit-rete-container .editor,
+#ifthenelse_form_wrapper.enable .editor .dock,
+#ifthenelse_form_wrapper.enable .editor .container,
+#ifthenelse_form_wrapper.enable .editor .container #rete-editor{
+  height:100%  !important;
+  min-height:100%  !important;
+  max-height:100%  !important;
+}
+#ifthenelse_form_wrapper.enable .editor .dock,
+#ifthenelse_form_wrapper.enable .editor .container,
+#ifthenelse_form_wrapper.enable .editor .container #rete-editor{
+  height: 100vh !important;
+  min-height: 100vh !important;
+  max-height: 100vh !important;
+}
+#ifthenelse_form_wrapper.enable{
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+}

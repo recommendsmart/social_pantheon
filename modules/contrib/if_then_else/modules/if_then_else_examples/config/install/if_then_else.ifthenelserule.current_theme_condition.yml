@@ -1,0 +1,13 @@
+uuid: de20245e-0a8f-49b3-b024-b8e25c8c2acd
+langcode: en
+status: true
+dependencies: {  }
+id: current_theme_condition
+label: current theme condition
+active: 0
+module: ifthenelse
+event: init_event
+condition: init_event_/node/%
+data: '{"id":"demo@0.1.0","nodes":{"2":{"id":2,"data":{"type":"action","class":"Drupal\\if_then_else\\core\\Nodes\\Actions\\SetMessageAction\\SetMessageAction","name":"set_message_action","selected_options":{"name":0,"label":"status"}},"inputs":{"execute":{"connections":[{"node":5,"output":"success","data":{}}]},"message":{"connections":[{"node":4,"output":"text","data":{}}]}},"outputs":{"success":{"connections":[]}},"position":[112.44839009343374,-172.74087706594094],"name":"Action: Set Message"},"3":{"id":3,"data":{"type":"event","class":"Drupal\\if_then_else\\core\\Nodes\\Events\\InitEvent\\InitEvent","name":"init_event","valueText":"/node/%","form_selection":"all"},"inputs":{},"outputs":{"success":{"connections":[{"node":5,"input":"execute","data":{}}]},"url":{"connections":[]}},"position":[-498.515625,-207.75],"name":"Event: Init Event"},"4":{"id":4,"data":{"type":"value","class":"Drupal\\if_then_else\\core\\Nodes\\Values\\TextValue\\TextValue","name":"text_value","value":"triggered"},"inputs":{"execute":{"connections":[]},"input1":{"connections":[]},"input2":{"connections":[]},"input3":{"connections":[]},"input4":{"connections":[]},"input5":{"connections":[]}},"outputs":{"text":{"connections":[{"node":2,"input":"message","data":{}}]}},"position":[-280.515625,15.25],"name":"Value: Text"},"5":{"id":5,"data":{"type":"condition","class":"Drupal\\if_then_else\\core\\Nodes\\Conditions\\CurrentThemeCondition\\CurrentThemeCondition","name":"current_theme_condition","selected_theme":[{"name":"Seven","code":"seven"}]},"inputs":{"execute":{"connections":[{"node":3,"output":"success","data":{}}]}},"outputs":{"success":{"connections":[{"node":2,"input":"execute","data":{}}]}},"position":[-218.56626213276792,-192.98289193853225],"name":"Condition: Current Theme"}},"comments":[]}'
+processed_data: ''
+weight: null

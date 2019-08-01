@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * Installation hooks for if_then_else module.
+ */
+
+/**
+ * Remove old setting variable 'ifthenelse.adminsettings'.
+ */
+function if_then_else_update_8001() {
+  \Drupal::configFactory()->getEditable('ifthenelse.adminsettings')
+    ->delete();
+
+}
