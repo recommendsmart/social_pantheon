@@ -39,7 +39,8 @@ class ViewsAddButtonArea extends TokenizeAreaPluginBase {
       if ($pd['label'] instanceof TranslatableMarkup) {
         $label = $pd['label']->render();
       }
-      $type_info = isset($pd['target_entity']) ? $entity_info[$pd['target_entity']] : 'default';
+
+      $type_info = isset($pd['target_entity']) && isset($entity_info[$pd['target_entity']]) ? $entity_info[$pd['target_entity']] : 'default';
       $type_label = t('Any Entity');
       if ($type_info instanceof ContentEntityType) {
         $type_label = $type_info->getLabel();
@@ -231,8 +232,9 @@ class ViewsAddButtonArea extends TokenizeAreaPluginBase {
   public function render($empty = FALSE) {
     // Get the entity/bundle type.
     $type = explode('+', $this->options['type'], 2);
+    // If we do not have a '+', then assume we have a no-bundle entity type.
     $entity_type = $type[0];
-    $bundle = $type[1];
+    $bundle = isset($type[1]) ? $type[1] : $type[0];
 
     // Load ViewsAddButton plugin definitions, and find the right one.
     $plugin_manager = \Drupal::service('plugin.manager.views_add_button');

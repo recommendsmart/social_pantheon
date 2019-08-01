@@ -1,5 +1,5 @@
 /*!
- * Font Awesome Free 5.10.0-12 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.10.0-14 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 .fa,
@@ -1088,6 +1088,9 @@ readers do not read off random characters that represent icons */
 
 .fa-copyright:before {
   content: "\f1f9"; }
+
+.fa-cotton-bureau:before {
+  content: "\f898"; }
 
 .fa-couch:before {
   content: "\f4b8"; }
