@@ -94,7 +94,10 @@
         "drupal/quicktabs": "^3.0",
         "drupal/vartheme": "^6.6",
         "drupal/radix": "^3.2",
-        "drupal/belgrade": "^1.0"						  							 
+        "drupal/belgrade": "^1.0",
+        "drupal/icon_api": "^2.0",
+        "drupal/entity_reference_display": "^1.2",
+        "drupal/disable_field": "^2.0"						  							 
         },
     "repositories": [
         {

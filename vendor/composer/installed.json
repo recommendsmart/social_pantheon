@@ -4539,6 +4539,63 @@
         }
     },
     {
+        "name": "drupal/disable_field",
+        "version": "2.0.0",
+        "version_normalized": "2.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/disable_field.git",
+            "reference": "8.x-2.0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/disable_field-8.x-2.0.zip",
+            "reference": "8.x-2.0",
+            "shasum": "4361204a4b7c2f1897e3b77b037c4a42b48ee62b"
+        },
+        "require": {
+            "drupal/core": "~8.0"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-2.x": "2.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-2.0",
+                "datestamp": "1564645685",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "ajay_reddy",
+                "homepage": "https://www.drupal.org/user/3261994"
+            },
+            {
+                "name": "eugene.ilyin",
+                "homepage": "https://www.drupal.org/user/1767626"
+            },
+            {
+                "name": "virajrajankar",
+                "homepage": "https://www.drupal.org/user/3164807"
+            }
+        ],
+        "description": "Allows to disable field of entities on the forms",
+        "homepage": "https://www.drupal.org/project/disable_field",
+        "support": {
+            "source": "https://git.drupalcode.org/project/disable_field"
+        }
+    },
+    {
         "name": "drupal/drupal-library-installer-plugin",
         "version": "0.3",
         "version_normalized": "0.3.0.0",
@@ -5095,6 +5152,63 @@
         "homepage": "https://www.drupal.org/project/entity_extra_field",
         "support": {
             "source": "https://git.drupalcode.org/project/entity_extra_field"
+        }
+    },
+    {
+        "name": "drupal/entity_reference_display",
+        "version": "1.2.0",
+        "version_normalized": "1.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/entity_reference_display.git",
+            "reference": "8.x-1.2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/entity_reference_display-8.x-1.2.zip",
+            "reference": "8.x-1.2",
+            "shasum": "0598f6f6121fb8d768fdb9a777b0062f94cbef64"
+        },
+        "require": {
+            "drupal/core": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.2",
+                "datestamp": "1527517384",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "kyberman",
+                "homepage": "https://www.drupal.org/user/402924"
+            },
+            {
+                "name": "murrayw",
+                "homepage": "https://www.drupal.org/user/595658"
+            },
+            {
+                "name": "wiifm",
+                "homepage": "https://www.drupal.org/user/358731"
+            }
+        ],
+        "description": "Defines a field type for display mode selection for entity reference fields.",
+        "homepage": "https://www.drupal.org/project/entity_reference_display",
+        "support": {
+            "source": "https://git.drupalcode.org/project/entity_reference_display"
         }
     },
     {
@@ -6558,6 +6672,55 @@
         }
     },
     {
+        "name": "drupal/icon_api",
+        "version": "2.0.0",
+        "version_normalized": "2.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/icon_api.git",
+            "reference": "8.x-2.0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/icon_api-8.x-2.0.zip",
+            "reference": "8.x-2.0",
+            "shasum": "456157d7625d794d2bf87916930845f490c7ac27"
+        },
+        "require": {
+            "drupal/core": "~8.0"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-2.x": "2.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-2.0",
+                "datestamp": "1564574885",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Project has not opted into security advisory coverage!"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "maliknaik",
+                "homepage": "https://www.drupal.org/user/3561988"
+            }
+        ],
+        "description": "Provides Icon integration throughout the Drupal.",
+        "homepage": "https://www.drupal.org/project/icon_api",
+        "support": {
+            "source": "https://git.drupalcode.org/project/icon_api"
+        }
+    },
+    {
         "name": "drupal/image_delta_formatter",
         "version": "1.0.0",
         "version_normalized": "1.0.0.0",
@@ -6919,7 +7082,8 @@
                 }
             },
             "patches_applied": {
-                "Make sure we grab active config for lazy settings": "https://www.drupal.org/files/issues/2019-05-23/3056630-2.patch"
+                "Make sure we grab active config for lazy settings": "https://www.drupal.org/files/issues/2019-05-23/3056630-2.patch",
+                "Make sure lazy doesnt do anything on cron": "https://www.drupal.org/files/issues/2019-07-30/3071331-lazy-cron-empty-path-2.patch"
             }
         },
         "installation-source": "dist",
