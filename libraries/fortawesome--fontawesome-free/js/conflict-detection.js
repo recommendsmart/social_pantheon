@@ -1,5 +1,5 @@
 /*!
- * Font Awesome Free 5.10.0-14 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.10.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 (function (global, factory) {
@@ -7,6 +7,20 @@
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
   (factory((global['fontawesome-free-conflict-detection'] = {})));
 }(this, (function (exports) { 'use strict';
+
+  function _typeof(obj) {
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+      _typeof = function (obj) {
+        return typeof obj;
+      };
+    } else {
+      _typeof = function (obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+      };
+    }
+
+    return _typeof(obj);
+  }
 
   function _defineProperty(obj, key, value) {
     if (key in obj) {
@@ -40,6 +54,112 @@
     }
 
     return target;
+  }
+
+  var _WINDOW = {};
+  var _DOCUMENT = {};
+
+  try {
+    if (typeof window !== 'undefined') _WINDOW = window;
+    if (typeof document !== 'undefined') _DOCUMENT = document;
+  } catch (e) {}
+
+  var _ref = _WINDOW.navigator || {},
+      _ref$userAgent = _ref.userAgent,
+      userAgent = _ref$userAgent === void 0 ? '' : _ref$userAgent;
+
+  var WINDOW = _WINDOW;
+  var DOCUMENT = _DOCUMENT;
+  var IS_BROWSER = !!WINDOW.document;
+  var IS_DOM = !!DOCUMENT.documentElement && !!DOCUMENT.head && typeof DOCUMENT.addEventListener === 'function' && typeof DOCUMENT.createElement === 'function';
+  var IS_IE = ~userAgent.indexOf('MSIE') || ~userAgent.indexOf('Trident/');
+
+  var functions = [];
+
+  var listener = function listener() {
+    DOCUMENT.removeEventListener('DOMContentLoaded', listener);
+    loaded = 1;
+    functions.map(function (fn) {
+      return fn();
+    });
+  };
+
+  var loaded = false;
+
+  if (IS_DOM) {
+    loaded = (DOCUMENT.documentElement.doScroll ? /^loaded|^c/ : /^loaded|^i|^c/).test(DOCUMENT.readyState);
+    if (!loaded) DOCUMENT.addEventListener('DOMContentLoaded', listener);
+  }
+
+  function domready (fn) {
+    if (!IS_DOM) return;
+    loaded ? setTimeout(fn, 0) : functions.push(fn);
+  }
+
+  function report (_ref) {
+    var nodesTested = _ref.nodesTested,
+        nodesFound = _ref.nodesFound;
+    var timedOutTests = {};
+
+    for (var key in nodesFound) {
+      if (!(nodesTested.conflict[key] || nodesTested.noConflict[key])) {
+        timedOutTests[key] = nodesFound[key];
+      }
+    }
+
+    var conflictsCount = Object.keys(nodesTested.conflict).length;
+
+    if (conflictsCount > 0) {
+      console.info("%cConflict".concat(conflictsCount > 1 ? 's' : '', " found:"), 'color: darkred; font-size: large');
+      var data = {};
+
+      for (var _key in nodesTested.conflict) {
+        var item = nodesTested.conflict[_key];
+        data[_key] = {
+          'tagName': item.tagName,
+          'src/href': item.src || item.href || 'n/a',
+          'innerText excerpt': item.innerText && item.innerText !== '' ? item.innerText.slice(0, 200) + '...' : '(empty)'
+        };
+      }
+
+      console.table(data);
+    }
+
+    var noConflictsCount = Object.keys(nodesTested.noConflict).length;
+
+    if (noConflictsCount > 0) {
+      console.info("%cNo conflict".concat(noConflictsCount > 1 ? 's' : '', " found with ").concat(noConflictsCount == 1 ? 'this' : 'these', ":"), 'color: green; font-size: large');
+      var _data = {};
+
+      for (var _key2 in nodesTested.noConflict) {
+        var _item = nodesTested.noConflict[_key2];
+        _data[_key2] = {
+          'tagName': _item.tagName,
+          'src/href': _item.src || _item.href || 'n/a',
+          'innerText excerpt': _item.innerText && _item.innerText !== '' ? _item.innerText.slice(0, 200) + '...' : '(empty)'
+        };
+      }
+
+      console.table(_data);
+    }
+
+    var timeOutCount = Object.keys(timedOutTests).length;
+
+    if (timeOutCount > 0) {
+      console.info("%cLeftovers--we timed out before collecting test results for ".concat(timeOutCount == 1 ? 'this' : 'these', ":"), 'color: blue; font-size: large');
+      var _data2 = {};
+
+      for (var _key3 in timedOutTests) {
+        var _item2 = timedOutTests[_key3];
+        _data2[_key3] = {
+          'tagName': _item2.tagName,
+          'src/href': _item2.src || _item2.href || 'n/a',
+          'innerText excerpt': _item2.innerText && _item2.innerText !== '' ? _item2.innerText.slice(0, 200) + '...' : '(empty)'
+        };
+      }
+
+      console.table(_data2);
+    }
   }
 
   var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
@@ -460,109 +580,18 @@
     })(commonjsGlobal);
   });
 
-  var _WINDOW = {};
-  var _DOCUMENT = {};
+  function md5ForNode(node) {
+    if (null === node || 'object' !== _typeof(node)) return undefined;
 
-  try {
-    if (typeof window !== 'undefined') _WINDOW = window;
-    if (typeof document !== 'undefined') _DOCUMENT = document;
-  } catch (e) {}
-
-  var _ref = _WINDOW.navigator || {},
-      _ref$userAgent = _ref.userAgent,
-      userAgent = _ref$userAgent === void 0 ? '' : _ref$userAgent;
-
-  var WINDOW = _WINDOW;
-  var DOCUMENT = _DOCUMENT;
-  var IS_BROWSER = !!WINDOW.document;
-  var IS_DOM = !!DOCUMENT.documentElement && !!DOCUMENT.head && typeof DOCUMENT.addEventListener === 'function' && typeof DOCUMENT.createElement === 'function';
-  var IS_IE = ~userAgent.indexOf('MSIE') || ~userAgent.indexOf('Trident/');
-
-  var functions = [];
-
-  var listener = function listener() {
-    DOCUMENT.removeEventListener('DOMContentLoaded', listener);
-    loaded = 1;
-    functions.map(function (fn) {
-      return fn();
-    });
-  };
-
-  var loaded = false;
-
-  if (IS_DOM) {
-    loaded = (DOCUMENT.documentElement.doScroll ? /^loaded|^c/ : /^loaded|^i|^c/).test(DOCUMENT.readyState);
-    if (!loaded) DOCUMENT.addEventListener('DOMContentLoaded', listener);
-  }
-
-  function domready (fn) {
-    if (!IS_DOM) return;
-    loaded ? setTimeout(fn, 0) : functions.push(fn);
-  }
-
-  function report (_ref) {
-    var nodesTested = _ref.nodesTested,
-        nodesFound = _ref.nodesFound;
-    var timedOutTests = {};
-
-    for (var key in nodesFound) {
-      if (!(nodesTested.conflict[key] || nodesTested.noConflict[key])) {
-        timedOutTests[key] = nodesFound[key];
-      }
-    }
-
-    var conflictsCount = Object.keys(nodesTested.conflict).length;
-
-    if (conflictsCount > 0) {
-      console.info("%cConflict".concat(conflictsCount > 1 ? 's' : '', " found:"), 'color: darkred; font-size: large');
-      var data = {};
-
-      for (var _key in nodesTested.conflict) {
-        var item = nodesTested.conflict[_key];
-        data[_key] = {
-          'tagName': item.tagName,
-          'src/href': item.src || item.href || 'n/a',
-          'innerText excerpt': item.innerText && item.innerText !== '' ? item.innerText.slice(0, 200) + '...' : '(empty)'
-        };
-      }
-
-      console.table(data);
-    }
-
-    var noConflictsCount = Object.keys(nodesTested.noConflict).length;
-
-    if (noConflictsCount > 0) {
-      console.info("%cNo conflict".concat(noConflictsCount > 1 ? 's' : '', " found with ").concat(noConflictsCount == 1 ? 'this' : 'these', ":"), 'color: green; font-size: large');
-      var _data = {};
-
-      for (var _key2 in nodesTested.noConflict) {
-        var _item = nodesTested.noConflict[_key2];
-        _data[_key2] = {
-          'tagName': _item.tagName,
-          'src/href': _item.src || _item.href || 'n/a',
-          'innerText excerpt': _item.innerText && _item.innerText !== '' ? _item.innerText.slice(0, 200) + '...' : '(empty)'
-        };
-      }
-
-      console.table(_data);
-    }
-
-    var timeOutCount = Object.keys(timedOutTests).length;
-
-    if (timeOutCount > 0) {
-      console.info("%cLeftovers--we timed out before collecting test results for ".concat(timeOutCount == 1 ? 'this' : 'these', ":"), 'color: blue; font-size: large');
-      var _data2 = {};
-
-      for (var _key3 in timedOutTests) {
-        var _item2 = timedOutTests[_key3];
-        _data2[_key3] = {
-          'tagName': _item2.tagName,
-          'src/href': _item2.src || _item2.href || 'n/a',
-          'innerText excerpt': _item2.innerText && _item2.innerText !== '' ? _item2.innerText.slice(0, 200) + '...' : '(empty)'
-        };
-      }
-
-      console.table(_data2);
+    if (node.src) {
+      return md5(node.src);
+    } else if (node.href) {
+      return md5(node.href);
+    } else if (node.innerText && '' !== node.innerText) {
+      // eslint-disable-line yoda
+      return md5(node.innerText);
+    } else {
+      return undefined;
     }
   }
 
@@ -572,19 +601,6 @@
   var detectionIgnoreAttr = 'data-fa-detection-ignore';
   var timeoutAttr = 'data-fa-detection-timeout';
   var resultsCollectionMaxWaitAttr = 'data-fa-detection-results-collection-max-wait';
-
-  function md5ForNode(node) {
-    if (node.src) {
-      return md5(node.src);
-    } else if (node.href) {
-      return md5(node.href);
-    } else if (node.innerText && '' !== node.innerText) {
-      // eslint-disable-line yoda
-      return md5(node.innerText);
-    } else {
-      return null;
-    }
-  }
 
   function pollUntil(_ref) {
     var _ref$fn = _ref.fn,
@@ -647,12 +663,12 @@
       return true;
     });
 
-    function runDiag(scriptOrLinkTag, md5$$1) {
+    function runDiag(scriptOrLinkTag, md5) {
       var diagFrame = DOCUMENT.createElement('iframe'); // Using "visibility: hidden; position: absolute" instead of "display: none;" because
       // Firefox will not return the expected results for getComputedStyle if our iframe has display: none.
 
       diagFrame.setAttribute('style', 'visibility: hidden; position: absolute; height: 0; width: 0;');
-      var testIconId = 'fa-test-icon-' + md5$$1;
+      var testIconId = 'fa-test-icon-' + md5;
       var iTag = DOCUMENT.createElement('i');
       iTag.setAttribute('class', 'fa fa-coffee');
       iTag.setAttribute('id', testIconId);
@@ -665,8 +681,8 @@
       // will probably cause it to choke. Chrome will show an error like this:
       // Uncaught SyntaxError: Unexpected end of input
 
-      var diagScriptFun = function diagScriptFun(nodeUnderTestId, testIconId, md5$$1, parentOrigin) {
-        parent.FontAwesomeDetection.pollUntil({
+      var diagScriptFun = function diagScriptFun(nodeUnderTestId, testIconId, md5, parentOrigin) {
+        parent.FontAwesomeDetection.__pollUntil({
           fn: function fn() {
             var iEl = document.getElementById(testIconId);
             var computedStyle = window.getComputedStyle(iEl);
@@ -686,7 +702,7 @@
             href: node.href,
             innerText: node.innerText,
             tagName: node.tagName,
-            md5: md5$$1
+            md5: md5
           }, parentOrigin);
         }).catch(function (e) {
           var node = document.getElementById(nodeUnderTestId);
@@ -698,7 +714,7 @@
               href: node.src,
               innerText: node.innerText,
               tagName: node.tagName,
-              md5: md5$$1
+              md5: md5
             }, parentOrigin);
           } else {
             console.error(e);
@@ -707,7 +723,7 @@
       };
 
       var parentOrigin = WINDOW.location.origin === 'file://' ? '*' : WINDOW.location.origin;
-      diagScript.innerText = "(".concat(diagScriptFun.toString(), ")('").concat(nodeUnderTestId, "', '").concat(testIconId || 'foo', "', '").concat(md5$$1, "', '").concat(parentOrigin, "');");
+      diagScript.innerText = "(".concat(diagScriptFun.toString(), ")('").concat(nodeUnderTestId, "', '").concat(testIconId || 'foo', "', '").concat(md5, "', '").concat(parentOrigin, "');");
 
       diagFrame.onload = function () {
         diagFrame.contentDocument.head.appendChild(diagScript);
@@ -746,9 +762,9 @@
     return cssByMD5;
   }
 
-  function detectSvgConflicts() {
+  function detectSvgConflicts(currentScript) {
     var scripts = Array.from(DOCUMENT.scripts).filter(function (t) {
-      return !t.hasAttribute(detectionIgnoreAttr);
+      return !t.hasAttribute(detectionIgnoreAttr) && t !== currentScript;
     });
     var scriptsByMD5 = {};
 
@@ -774,8 +790,8 @@
       diagScript.setAttribute('id', diagScriptId);
       var parentOrigin = WINDOW.location.origin === 'file://' ? '*' : WINDOW.location.origin;
 
-      var diagScriptFun = function diagScriptFun(nodeUnderTestId, md5$$1, parentOrigin) {
-        parent.FontAwesomeDetection.pollUntil({
+      var diagScriptFun = function diagScriptFun(nodeUnderTestId, md5, parentOrigin) {
+        parent.FontAwesomeDetection.__pollUntil({
           fn: function fn() {
             return !!window.FontAwesomeConfig;
           }
@@ -787,7 +803,7 @@
             src: scriptNode.src,
             innerText: scriptNode.innerText,
             tagName: scriptNode.tagName,
-            md5: md5$$1
+            md5: md5
           }, parentOrigin);
         }).catch(function (e) {
           var scriptNode = document.getElementById(nodeUnderTestId);
@@ -798,7 +814,7 @@
               src: scriptNode.src,
               innerText: scriptNode.innerText,
               tagName: scriptNode.tagName,
-              md5: md5$$1
+              md5: md5
             }, parentOrigin);
           } else {
             console.error(e);
@@ -853,7 +869,7 @@
       }
     };
 
-    var scriptsToTest = detectSvgConflicts();
+    var scriptsToTest = detectSvgConflicts(DOCUMENT.currentScript);
     var cssToTest = detectWebfontConflicts();
 
     var nodesFound = _objectSpread({}, scriptsToTest, cssToTest);
@@ -935,9 +951,8 @@
 
   var _config = _objectSpread({}, _default, initialConfig, {
     // These cannot be overridden
-    pollUntil: pollUntil,
+    __pollUntil: pollUntil,
     md5ForNode: md5ForNode,
-    detectionIgnoreAttr: detectionIgnoreAttr,
     detectionDone: false,
     nodesTested: null,
     nodesFound: null

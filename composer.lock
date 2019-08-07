@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a761f543940e3afa086c723af2185636",
+    "content-hash": "fcdd425f80c856cccb0f6a9ee897e8f7",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -259,16 +259,16 @@
         },
         {
             "name": "bower-asset/highlight",
-            "version": "9.15.8",
+            "version": "9.15.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/highlightjs/highlight.js.git",
-                "reference": "0785e2b18c8651b496a227e582b003ffdcf45df6"
+                "reference": "4fbbe294c170ec096233c7e6aba89f956ab71f98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/highlightjs/highlight.js/zipball/0785e2b18c8651b496a227e582b003ffdcf45df6",
-                "reference": "0785e2b18c8651b496a227e582b003ffdcf45df6"
+                "url": "https://api.github.com/repos/highlightjs/highlight.js/zipball/4fbbe294c170ec096233c7e6aba89f956ab71f98",
+                "reference": "4fbbe294c170ec096233c7e6aba89f956ab71f98"
             },
             "type": "bower-asset"
         },
@@ -3007,6 +3007,80 @@
             }
         },
         {
+            "name": "drupal/commerce_reports",
+            "version": "1.0.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/commerce_reports.git",
+                "reference": "8.x-1.0-beta1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/commerce_reports-8.x-1.0-beta1.zip",
+                "reference": "8.x-1.0-beta1",
+                "shasum": "855163322ddaed153691e01f2d8f344044c11927"
+            },
+            "require": {
+                "drupal/commerce": "^2",
+                "drupal/commerce_order": "*",
+                "drupal/commerce_price": "*",
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta1",
+                    "datestamp": "1527793680",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "aidanlis",
+                    "homepage": "https://www.drupal.org/user/502018"
+                },
+                {
+                    "name": "cvangysel",
+                    "homepage": "https://www.drupal.org/user/868104"
+                },
+                {
+                    "name": "dpearcefl",
+                    "homepage": "https://www.drupal.org/user/436410"
+                },
+                {
+                    "name": "johnkennedy",
+                    "homepage": "https://www.drupal.org/user/1046660"
+                },
+                {
+                    "name": "mglaman",
+                    "homepage": "https://www.drupal.org/user/2416470"
+                },
+                {
+                    "name": "paul.linney",
+                    "homepage": "https://www.drupal.org/user/928636"
+                },
+                {
+                    "name": "strings6",
+                    "homepage": "https://www.drupal.org/user/317422"
+                }
+            ],
+            "description": "Provides reporting capabilities for sales, products, customers and payment gateways.",
+            "homepage": "http://drupal.org/project/commerce_reports",
+            "support": {
+                "source": "https://git.drupalcode.org/project/commerce_reports"
+            }
+        },
+        {
             "name": "drupal/commerce_shipping",
             "version": "2.0.0-beta6",
             "source": {
@@ -3063,6 +3137,80 @@
             "homepage": "http://drupal.org/project/commerce_shipping",
             "support": {
                 "source": "https://git.drupalcode.org/project/commerce_shipping"
+            }
+        },
+        {
+            "name": "drupal/commerce_stock",
+            "version": "1.0.0-alpha3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/commerce_stock.git",
+                "reference": "8.x-1.0-alpha3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/commerce_stock-8.x-1.0-alpha3.zip",
+                "reference": "8.x-1.0-alpha3",
+                "shasum": "cf45623b3ab65ecacb4d32179a347ea2cd5c399e"
+            },
+            "require": {
+                "drupal/commerce": "~2.0",
+                "drupal/commerce_order": "*",
+                "drupal/commerce_product": "*",
+                "drupal/core": "~8.0"
+            },
+            "require-dev": {
+                "drupal/commerce_product": "*",
+                "drupal/commerce_stock_local": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha3",
+                    "datestamp": "1555061884",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "guy_schneerson",
+                    "homepage": "https://www.drupal.org/user/755184"
+                },
+                {
+                    "name": "iAugur",
+                    "homepage": "https://www.drupal.org/user/750068"
+                },
+                {
+                    "name": "olafkarsten",
+                    "homepage": "https://www.drupal.org/user/352745"
+                },
+                {
+                    "name": "rfay",
+                    "homepage": "https://www.drupal.org/user/30906"
+                },
+                {
+                    "name": "rszrama",
+                    "homepage": "https://www.drupal.org/user/49344"
+                }
+            ],
+            "description": "Provides a stock management framework based on rules to manage stock levels of commerce products",
+            "homepage": "https://www.drupal.org/project/commerce_stock",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/commerce_stock",
+                "issues": "http://drupal.org/project/issues/commerce_stock"
             }
         },
         {
@@ -4396,17 +4544,17 @@
         },
         {
             "name": "drupal/disable_field",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/disable_field.git",
-                "reference": "8.x-2.0"
+                "reference": "8.x-2.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/disable_field-8.x-2.0.zip",
-                "reference": "8.x-2.0",
-                "shasum": "4361204a4b7c2f1897e3b77b037c4a42b48ee62b"
+                "url": "https://ftp.drupal.org/files/projects/disable_field-8.x-2.1.zip",
+                "reference": "8.x-2.1",
+                "shasum": "3d5159441e1b695e1fcba2e53c24d2e79f36eb0d"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -4417,8 +4565,8 @@
                     "dev-2.x": "2.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-2.0",
-                    "datestamp": "1564645685",
+                    "version": "8.x-2.1",
+                    "datestamp": "1565016786",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6294,53 +6442,6 @@
             }
         },
         {
-            "name": "drupal/go_back",
-            "version": "1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/go_back.git",
-                "reference": "8.x-1.2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/go_back-8.x-1.2.zip",
-                "reference": "8.x-1.2",
-                "shasum": "ec3c2c85161b7756496addbe202be4a28f570ed0"
-            },
-            "require": {
-                "drupal/core": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.2",
-                    "datestamp": "1560872886",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "saesa",
-                    "homepage": "https://www.drupal.org/user/3561094"
-                }
-            ],
-            "description": "Add a block with a button to go back to the previous page.",
-            "homepage": "https://www.drupal.org/project/go_back",
-            "support": {
-                "source": "https://git.drupalcode.org/project/go_back"
-            }
-        },
-        {
             "name": "drupal/group",
             "version": "1.0.0-rc2",
             "source": {
@@ -6401,17 +6502,17 @@
         },
         {
             "name": "drupal/gutenberg",
-            "version": "1.4.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/gutenberg.git",
-                "reference": "8.x-1.4"
+                "reference": "8.x-1.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/gutenberg-8.x-1.4.zip",
-                "reference": "8.x-1.4",
-                "shasum": "5692aa2f4eb1bc674df4ef830baa894ce9047870"
+                "url": "https://ftp.drupal.org/files/projects/gutenberg-8.x-1.5.zip",
+                "reference": "8.x-1.5",
+                "shasum": "75418f88a12ce1d7cd4f7f481d8d4a3fde31cb1d"
             },
             "require": {
                 "drupal/core": "*"
@@ -6422,8 +6523,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.4",
-                    "datestamp": "1564142885",
+                    "version": "8.x-1.5",
+                    "datestamp": "1564738386",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -7214,74 +7315,6 @@
             "homepage": "https://www.drupal.org/project/mailsystem",
             "support": {
                 "source": "http://cgit.drupalcode.org/mailsystem"
-            }
-        },
-        {
-            "name": "drupal/menu_item_extras",
-            "version": "2.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/menu_item_extras.git",
-                "reference": "8.x-2.6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/menu_item_extras-8.x-2.6.zip",
-                "reference": "8.x-2.6",
-                "shasum": "2815eb85486df6056401087ea8d6eac01c40d1eb"
-            },
-            "require": {
-                "drupal/core": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-2.6",
-                    "datestamp": "1559810889",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Andriy Khomych",
-                    "homepage": "https://www.drupal.org/u/andriy-khomych",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Bogdan Hepting",
-                    "homepage": "https://www.drupal.org/u/bogdan-hepting",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Oleh Vehera",
-                    "homepage": "https://www.drupal.org/u/voleger",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Mykhailo Gurei",
-                    "homepage": "https://www.drupal.org/u/ozin",
-                    "role": "Maintainer"
-                }
-            ],
-            "description": "Provide an additional custom fields which can be used on Menu link",
-            "homepage": "https://www.drupal.org/project/menu_item_extras",
-            "keywords": [
-                "Drupal",
-                "Mega Menu"
-            ],
-            "support": {
-                "source": "http://cgit.drupalcode.org/menu_item_extras",
-                "issues": "https://www.drupal.org/project/issues/menu_item_extras"
             }
         },
         {
@@ -8168,7 +8201,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/pwa.git",
-                "reference": "66d651971c2211ad9647e315418bbc6e0a22f3c5"
+                "reference": "d8fc73eb3a52dc24aadc26c5a2be16ee34bb63da"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -8179,8 +8212,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta1+1-dev",
-                    "datestamp": "1564599787",
+                    "version": "8.x-1.0-rc3+0-dev",
+                    "datestamp": "1565028186",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -8214,7 +8247,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/pwa"
             },
-            "time": "2019-07-31T19:01:40+00:00"
+            "time": "2019-08-05T18:01:36+00:00"
         },
         {
             "name": "drupal/quicktabs",
@@ -9767,17 +9800,17 @@
         },
         {
             "name": "drupal/term_reference_fancytree",
-            "version": "1.0.0-beta1",
+            "version": "1.0.0-rc1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/term_reference_fancytree.git",
-                "reference": "8.x-1.0-beta1"
+                "reference": "8.x-1.0-rc1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/term_reference_fancytree-8.x-1.0-beta1.zip",
-                "reference": "8.x-1.0-beta1",
-                "shasum": "f08c33ddc21875367843c5cb38b24481525be548"
+                "url": "https://ftp.drupal.org/files/projects/term_reference_fancytree-8.x-1.0-rc1.zip",
+                "reference": "8.x-1.0-rc1",
+                "shasum": "2e67a18d07e61d710c2fb827ce83c480a04c2aac"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -9788,11 +9821,11 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta1",
-                    "datestamp": "1560730081",
+                    "version": "8.x-1.0-rc1",
+                    "datestamp": "1564726985",
                     "security-coverage": {
                         "status": "not-covered",
-                        "message": "Beta releases are not covered by Drupal security advisories."
+                        "message": "RC releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -11548,16 +11581,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.106",
+            "version": "v0.107",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "27c47201c7ac9e2863e20a55bcd96802426233fd"
+                "reference": "0764564d5c3f4e140a3966d9996da758e15458a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/27c47201c7ac9e2863e20a55bcd96802426233fd",
-                "reference": "27c47201c7ac9e2863e20a55bcd96802426233fd",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/0764564d5c3f4e140a3966d9996da758e15458a0",
+                "reference": "0764564d5c3f4e140a3966d9996da758e15458a0",
                 "shasum": ""
             },
             "require": {
@@ -11581,7 +11614,7 @@
             "keywords": [
                 "google"
             ],
-            "time": "2019-07-28T00:23:12+00:00"
+            "time": "2019-08-05T00:22:58+00:00"
         },
         {
             "name": "google/auth",
@@ -12444,10 +12477,10 @@
         },
         {
             "name": "npm-asset/fortawesome--fontawesome-free",
-            "version": "5.10.0-patch14",
+            "version": "5.10.1",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-5.10.0-14.tgz"
+                "url": "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-5.10.1.tgz"
             },
             "type": "npm-asset",
             "license": [
@@ -13141,21 +13174,21 @@
         },
         {
             "name": "php-http/message",
-            "version": "1.7.2",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/message.git",
-                "reference": "b159ffe570dffd335e22ef0b91a946eacb182fa1"
+                "reference": "ce8f43ac1e294b54aabf5808515c3554a19c1e1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/message/zipball/b159ffe570dffd335e22ef0b91a946eacb182fa1",
-                "reference": "b159ffe570dffd335e22ef0b91a946eacb182fa1",
+                "url": "https://api.github.com/repos/php-http/message/zipball/ce8f43ac1e294b54aabf5808515c3554a19c1e1c",
+                "reference": "ce8f43ac1e294b54aabf5808515c3554a19c1e1c",
                 "shasum": ""
             },
             "require": {
                 "clue/stream-filter": "^1.4",
-                "php": "^5.4 || ^7.0",
+                "php": "^7.1",
                 "php-http/message-factory": "^1.0.2",
                 "psr/http-message": "^1.0"
             },
@@ -13181,7 +13214,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.6-dev"
+                    "dev-master": "1.8-dev"
                 }
             },
             "autoload": {
@@ -13209,7 +13242,7 @@
                 "message",
                 "psr-7"
             ],
-            "time": "2018-11-01T09:32:41+00:00"
+            "time": "2019-08-05T06:55:08+00:00"
         },
         {
             "name": "php-http/message-factory",
@@ -14614,16 +14647,16 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.11.0",
+            "version": "v1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "82ebae02209c21113908c229e9883c419720738a"
+                "reference": "550ebaac289296ce228a706d0867afc34687e3f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/82ebae02209c21113908c229e9883c419720738a",
-                "reference": "82ebae02209c21113908c229e9883c419720738a",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/550ebaac289296ce228a706d0867afc34687e3f4",
+                "reference": "550ebaac289296ce228a706d0867afc34687e3f4",
                 "shasum": ""
             },
             "require": {
@@ -14635,7 +14668,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.11-dev"
+                    "dev-master": "1.12-dev"
                 }
             },
             "autoload": {
@@ -14652,12 +14685,12 @@
             ],
             "authors": [
                 {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
+                    "name": "Gert de Pagter",
+                    "email": "BackEndTea@gmail.com"
                 },
                 {
-                    "name": "Gert de Pagter",
-                    "email": "backendtea@gmail.com"
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -14668,20 +14701,20 @@
                 "polyfill",
                 "portable"
             ],
-            "time": "2019-02-06T07:57:58+00:00"
+            "time": "2019-08-06T08:03:45+00:00"
         },
         {
             "name": "symfony/polyfill-iconv",
-            "version": "v1.11.0",
+            "version": "v1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-iconv.git",
-                "reference": "f037ea22acfaee983e271dd9c3b8bb4150bd8ad7"
+                "reference": "685968b11e61a347c18bf25db32effa478be610f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-iconv/zipball/f037ea22acfaee983e271dd9c3b8bb4150bd8ad7",
-                "reference": "f037ea22acfaee983e271dd9c3b8bb4150bd8ad7",
+                "url": "https://api.github.com/repos/symfony/polyfill-iconv/zipball/685968b11e61a347c18bf25db32effa478be610f",
+                "reference": "685968b11e61a347c18bf25db32effa478be610f",
                 "shasum": ""
             },
             "require": {
@@ -14693,7 +14726,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.11-dev"
+                    "dev-master": "1.12-dev"
                 }
             },
             "autoload": {
@@ -14727,20 +14760,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-02-06T07:57:58+00:00"
+            "time": "2019-08-06T08:03:45+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.11.0",
+            "version": "v1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "fe5e94c604826c35a32fa832f35bd036b6799609"
+                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/fe5e94c604826c35a32fa832f35bd036b6799609",
-                "reference": "fe5e94c604826c35a32fa832f35bd036b6799609",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/b42a2f66e8f1b15ccf25652c3424265923eb4f17",
+                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17",
                 "shasum": ""
             },
             "require": {
@@ -14752,7 +14785,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.11-dev"
+                    "dev-master": "1.12-dev"
                 }
             },
             "autoload": {
@@ -14786,20 +14819,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-02-06T07:57:58+00:00"
+            "time": "2019-08-06T08:03:45+00:00"
         },
         {
             "name": "symfony/polyfill-php70",
-            "version": "v1.11.0",
+            "version": "v1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php70.git",
-                "reference": "bc4858fb611bda58719124ca079baff854149c89"
+                "reference": "54b4c428a0054e254223797d2713c31e08610831"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php70/zipball/bc4858fb611bda58719124ca079baff854149c89",
-                "reference": "bc4858fb611bda58719124ca079baff854149c89",
+                "url": "https://api.github.com/repos/symfony/polyfill-php70/zipball/54b4c428a0054e254223797d2713c31e08610831",
+                "reference": "54b4c428a0054e254223797d2713c31e08610831",
                 "shasum": ""
             },
             "require": {
@@ -14809,7 +14842,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.11-dev"
+                    "dev-master": "1.12-dev"
                 }
             },
             "autoload": {
@@ -14845,7 +14878,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-02-06T07:57:58+00:00"
+            "time": "2019-08-06T08:03:45+00:00"
         },
         {
             "name": "symfony/process",

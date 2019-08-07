@@ -156,6 +156,10 @@ function gutenberg_form_alter(&$form, FormStateInterface $form_state, $form_id) 
 
     $form['#attached']['library'][] = 'gutenberg/admin';
     $form['actions']['submit']['#submit'][] = '_gutenberg_node_form_submit';
+
+    if (isset($form['actions']['save_continue']['#submit'])) {
+      $form['actions']['save_continue']['#submit'][] = '_gutenberg_node_form_submit';
+    }
   }
 }
 
@@ -575,6 +579,11 @@ function gutenberg_theme() {
     'node_edit_form__gutenberg' => [
       'template' => 'node-edit-form--gutenberg',
     ],
+    'gutenberg_palette' => [
+      'variables' => [
+        'colors' => [],
+      ],
+    ],
   ];
 }
 
@@ -652,6 +661,35 @@ function gutenberg_views_pre_render(ViewExecutable $view) {
     $view->element['#attached']['library'][] = 'gutenberg/admin';
     $view->element['#attached']['library'][] = 'gutenberg/blocks-view';
   }
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function gutenberg_page_attachments(array &$page) {
+  $settings = _gutenberg_get_default_theme_settings();
+
+  if(!isset($settings['theme-support']['colors'])) {
+    return;
+  }
+
+  $palette = [
+    '#theme' => 'gutenberg_palette',
+    '#colors' => $settings['theme-support']['colors'],
+  ];
+
+  $renderPalette = \Drupal::service('renderer')->renderRoot($palette);
+  // Sanitizing the output, like comments etc.
+  $renderPalette = strip_tags($renderPalette);
+  $renderPalette = trim($renderPalette);
+
+  $page['#attached']['html_head'][] = [
+    [
+    '#tag' => 'style',
+    '#value' => $renderPalette,
+    ],
+    'gutenberg_palette'
+  ];
 }
 
 /**
