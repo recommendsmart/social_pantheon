@@ -4304,63 +4304,6 @@
         }
     },
     {
-        "name": "drupal/datatables",
-        "version": "1.0.0-rc1",
-        "version_normalized": "1.0.0.0-RC1",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupalcode.org/project/datatables.git",
-            "reference": "8.x-1.0-rc1"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/datatables-8.x-1.0-rc1.zip",
-            "reference": "8.x-1.0-rc1",
-            "shasum": "ecf4b90565e75babf2cb8f95b2f905cc8ecaf56d"
-        },
-        "require": {
-            "drupal/core": "*"
-        },
-        "type": "drupal-module",
-        "extra": {
-            "branch-alias": {
-                "dev-1.x": "1.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-1.0-rc1",
-                "datestamp": "1472406239",
-                "security-coverage": {
-                    "status": "not-covered",
-                    "message": "RC releases are not covered by Drupal security advisories."
-                }
-            }
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0-or-later"
-        ],
-        "authors": [
-            {
-                "name": "Arkener",
-                "homepage": "https://www.drupal.org/user/2284182"
-            },
-            {
-                "name": "diqidoq",
-                "homepage": "https://www.drupal.org/user/1001934"
-            },
-            {
-                "name": "duellj",
-                "homepage": "https://www.drupal.org/user/168159"
-            }
-        ],
-        "description": "Provides integration of the jquery DataTables plugin into views.",
-        "homepage": "https://www.drupal.org/project/datatables",
-        "support": {
-            "source": "https://git.drupalcode.org/project/datatables"
-        }
-    },
-    {
         "name": "drupal/date_recur",
         "version": "2.0.0",
         "version_normalized": "2.0.0.0",
@@ -8751,62 +8694,6 @@
         "support": {
             "source": "https://cgit.drupalcode.org/rabbit_hole",
             "issues": "https://www.drupal.org/project/issues/rabbit_hole"
-        }
-    },
-    {
-        "name": "drupal/radix",
-        "version": "3.2.0",
-        "version_normalized": "3.2.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupalcode.org/project/radix.git",
-            "reference": "8.x-3.2"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/radix-8.x-3.2.zip",
-            "reference": "8.x-3.2",
-            "shasum": "f230ac292ca84d684b377381cf309c05f19a84cf"
-        },
-        "require": {
-            "drupal/core": "~8.0"
-        },
-        "type": "drupal-theme",
-        "extra": {
-            "branch-alias": {
-                "dev-3.x": "3.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-3.2",
-                "datestamp": "1557122298",
-                "security-coverage": {
-                    "status": "covered",
-                    "message": "Covered by Drupal's security advisory policy"
-                }
-            }
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0+"
-        ],
-        "authors": [
-            {
-                "name": "Arshad Chummun",
-                "homepage": "http://arshad.io",
-                "email": "arshad@chummun.com",
-                "role": "Maintainer"
-            },
-            {
-                "name": "dsnopek",
-                "homepage": "https://www.drupal.org/user/266527"
-            }
-        ],
-        "description": "Radix is a base theme for Drupal. It has Bootstrap, Sass, Gulp, BrowserSync and Font Awesome built-in.",
-        "homepage": "https://www.drupal.org/project/radix",
-        "support": {
-            "source": "https://git.drupalcode.org/project/radix",
-            "issues": "https://www.drupal.org/project/issues/radix"
         }
     },
     {
@@ -16184,17 +16071,17 @@
     },
     {
         "name": "zendframework/zend-diactoros",
-        "version": "1.8.6",
-        "version_normalized": "1.8.6.0",
+        "version": "1.8.7",
+        "version_normalized": "1.8.7.0",
         "source": {
             "type": "git",
             "url": "https://github.com/zendframework/zend-diactoros.git",
-            "reference": "20da13beba0dde8fb648be3cc19765732790f46e"
+            "reference": "a85e67b86e9b8520d07e6415fcbcb8391b44a75b"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/20da13beba0dde8fb648be3cc19765732790f46e",
-            "reference": "20da13beba0dde8fb648be3cc19765732790f46e",
+            "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/a85e67b86e9b8520d07e6415fcbcb8391b44a75b",
+            "reference": "a85e67b86e9b8520d07e6415fcbcb8391b44a75b",
             "shasum": ""
         },
         "require": {
@@ -16211,13 +16098,11 @@
             "phpunit/phpunit": "^5.7.16 || ^6.0.8 || ^7.2.7",
             "zendframework/zend-coding-standard": "~1.0"
         },
-        "time": "2018-09-05T19:29:37+00:00",
+        "time": "2019-08-06T17:53:53+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.8.x-dev",
-                "dev-develop": "1.9.x-dev",
-                "dev-release-2.0": "2.0.x-dev"
+                "dev-release-1.8": "1.8.x-dev"
             }
         },
         "installation-source": "dist",
