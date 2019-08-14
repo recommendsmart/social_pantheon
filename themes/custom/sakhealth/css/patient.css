@@ -1,0 +1,31 @@
+.webform-address--wrapper .form-type-select .select-wrapper {
+  width: 90%;
+}
+.webform-term-checkboxes-scroll .panel-body {
+  overflow-y: scroll;
+  height: 185px;
+}
+.view-recent-providers .table-responsive table.table tr td.views-field-user-picture {
+  width: 20%;
+}
+.view-recent-providers .table-responsive table.table tr td {
+  border-top: none;
+}
+.view-recent-message .private-message {
+  background-image: url("../images/envelope-icon.png");
+  background-repeat: no-repeat;
+  background-color: aliceblue;
+  height: 80px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-position: 10px 10px;
+}
+.view-recent-message .private-message .field--name-created,
+.view-recent-message .private-message .field--name-owner,
+.view-recent-message .private-message .field--name-message {
+  margin-left: 4em;
+}
+.view-recent-message .private-message .field--name-message {
+  height: 20px;
+  overflow-y: hidden;
+}

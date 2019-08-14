@@ -1,0 +1,96 @@
+body:not(.user-logged-in) {
+  background-image: url("../images/backround-img.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  background-attachment: fixed;
+  width: auto;
+}
+body:not(.user-logged-in) #auth_box {
+  width: 70%;
+  padding: 10% 0 0;
+}
+body:not(.user-logged-in) #auth_box #top_part {
+  display: none;
+}
+body:not(.user-logged-in) #auth_box #middle_part {
+  padding: 0px;
+  background: none;
+  border-bottom: 3px solid #33ccff;
+  background: rgba(0, 0, 0, 0.7);
+}
+body:not(.user-logged-in) #auth_box #middle_part h2.title {
+  display: none;
+}
+body:not(.user-logged-in) #auth_box #middle_part #block-loginpagetext {
+  width: 50%;
+  float: left;
+}
+body:not(.user-logged-in) #auth_box #middle_part #block-loginpagetext .field--name-body {
+  text-align: center;
+  padding: 50px;
+}
+body:not(.user-logged-in) #auth_box #middle_part #block-loginpagetext .field--name-body p {
+  color: white;
+  font-size: 25px;
+  font-style: italic;
+  text-decoration: underline;
+  font-family: initial;
+}
+body:not(.user-logged-in) #auth_box #middle_part #user-login-form {
+  width: 50%;
+  float: left;
+  padding: 50px;
+  background-color: #e7f5fe;
+}
+body:not(.user-logged-in) #auth_box #middle_part #user-login-form input[type="text"],
+body:not(.user-logged-in) #auth_box #middle_part #user-login-form input[type="password"],
+body:not(.user-logged-in) #auth_box #middle_part #user-login-form input[type="email"] {
+  width: 95%;
+}
+body:not(.user-logged-in) #auth_box #middle_part nav.tabs ul.tabs--primary li a {
+  color: white;
+}
+body:not(.user-logged-in) #auth_box #middle_part nav.tabs ul.tabs--primary li a:hover,
+body:not(.user-logged-in) #auth_box #middle_part nav.tabs ul.tabs--primary li a:focus {
+  color: black;
+}
+body:not(.user-logged-in) #auth_box #middle_part nav.tabs ul.tabs--primary li.active a {
+  color: black;
+}
+body:not(.user-logged-in) #auth_box #middle_part #user-register-form {
+  padding: 50px;
+}
+body:not(.user-logged-in) #auth_box #middle_part #user-register-form #edit-account label {
+  color: white;
+}
+body:not(.user-logged-in) #auth_box #middle_part #user-register-form .fieldgroup legend span {
+  color: white;
+}
+body:not(.user-logged-in) #auth_box #middle_part #user-register-form #edit-select-roles .form-item-select-roles .control-label {
+  color: white;
+}
+body:not(.user-logged-in) #auth_box #middle_part #user-pass {
+  color: white;
+  padding: 50px;
+}
+body:not(.user-logged-in) #auth_box #bottom_part {
+  display: flex;
+  justify-content: center;
+}
+body:not(.user-logged-in) #auth_box #bottom_part .password_link,
+body:not(.user-logged-in) #auth_box #bottom_part .register_link,
+body:not(.user-logged-in) #auth_box #bottom_part .back_link,
+body:not(.user-logged-in) #auth_box #bottom_part .login_link {
+  margin: 0px 5px;
+  padding: 15px 0 0;
+}
+body:not(.user-logged-in) #auth_box #bottom_part .password_link a,
+body:not(.user-logged-in) #auth_box #bottom_part .register_link a,
+body:not(.user-logged-in) #auth_box #bottom_part .back_link a,
+body:not(.user-logged-in) #auth_box #bottom_part .login_link a {
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.7);
+}

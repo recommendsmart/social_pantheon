@@ -1,0 +1,921 @@
+
+//upper header
+.upper-header {
+    background-color: #1186e3;
+    height: 45px;
+    top:0;
+    z-index: 1;
+    .region-upper-header {
+      display: flex;
+      justify-content: flex-end;
+      .logo {
+        position: absolute;
+        left: 45px;
+        top: -5px;
+        img {
+          height: 40px;
+          width: 40px;
+        }
+      }
+
+      //welcome
+      .block-views-blockwelcome-block-1 {
+        .views-field-name {
+          margin-top: 1em;
+          margin-right: 1em;
+          .field-content {
+            color: white; 
+              a {
+                color: white;
+              }
+            }
+          }
+        }
+
+        //message notification
+        .block-private-message {
+          width: 8em;
+          top: 0.5em;
+          .private-message-notification-wrapper {
+            img {
+              display: none;
+            }
+            .private-message-page-link {
+              top: 5px;
+              height: 25px;
+              width: 25px;
+              background-color: white;
+              border-radius: 50%;
+              display: inline-block;
+            }
+            &:after {
+              content: "Messages";
+              position: absolute;
+              margin-left: 30px;
+              color: white;
+              top: 0.5em;
+            }
+          }
+        }
+        //logout
+        nav#block-sakhealth-account-menu {
+          z-index: 1;
+          ul {
+            li a {
+              color: white;
+              padding-top: 13px;
+              &:hover,&:focus {
+                background: transparent;
+              }
+            }
+          }
+        }
+      }
+    }
+
+//main nav
+.navigation-menu {
+    background-color: #273038;
+    border-color: #273038;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    padding: 0em 2em;
+    //width: 140px;
+    width: 150px;
+    max-height: calc(100vh - 0rem);
+    overflow-y: auto;
+    overflow-x: hidden;
+    ul.menu--main {
+        margin-top: 60px;
+        li {
+            height: 72px;
+            width: 120px;
+            margin-bottom: 10px;
+            a {
+                text-align: center;
+                padding: 30px 0px 0px 0px;
+                color: white;
+                //background: url("../images/navigation-sprites-min.png");
+                height: 100% !important;
+                width: 100% !important;
+                background-repeat: no-repeat;
+                display: block;
+                left: -20px;
+                //left: 0px;
+                //width: 128px;               
+            }           
+        }
+        li.expanded {
+            a:hover,a:focus {
+                background-color: #273038;
+            }
+            a {
+              .caret {
+                    border-left: 4px dashed;
+                    border-top: 4px solid transparent;
+                    border-bottom: 4px solid transparent;
+                }
+            }
+            ul.dropdown-menu {
+                background-color: #273038;
+                top:0em;
+                left: 100px;
+                li {
+                    //background-color: #273038;
+                    height: 50px;                        
+                    a { 
+                        background: none;
+                        padding-top: 10px;
+                        background: none;
+                    }
+                }
+            }
+        }
+        li {
+          a[href="/homepage"] {
+            background: url("../images/navigation-sprites-min.png") no-repeat;
+            background-position: center 5px;
+            &:hover {
+              position: absolute;
+              top: 0;
+              left: -20px;
+              background:   
+              url("../images/navigation-sprites-min.png")  no-repeat 50% 5px, 
+              url("../images/activ-nav-bg.png") no-repeat center;
+            }
+          }
+          a[href="/homepage"].is-active {
+            position: absolute;
+            top: 0;
+            left: -20px;
+            background:   
+            url("../images/navigation-sprites-min.png")  no-repeat 50% 5px, 
+            url("../images/activ-nav-bg.png") no-repeat center; 
+          }
+
+          a[href="/favourites-list"] {
+            background: url("../images/star.png") no-repeat;
+            background-size: 30% 45%;
+            background-position: top;
+            &:hover {
+              position: absolute;
+              top: 0;
+              left: -20px;
+              background:   
+              url("../images/star.png")  no-repeat top, 
+              url("../images/activ-nav-bg.png") no-repeat center;
+              background-size: 30% 45%, cover;
+            }
+          }
+          a[href="/favourites-list"].is-active {
+            position: absolute;
+            top: 0;
+            left: -20px;
+            background:   
+            url("../images/star.png")  no-repeat top, 
+            url("../images/activ-nav-bg.png") no-repeat center;
+            background-size: 30% 45%, cover; 
+          }
+
+          a[href="/my-appointments"], a[href="/hcp-appointments"] {
+            background: url("../images/navigation-sprites-min.png") no-repeat;
+            background-position: center -270px;
+            &:hover {
+              position: absolute;
+              top: 0;
+              left: -20px;
+              background:   
+              url("../images/navigation-sprites-min.png")  no-repeat 50% -266px, 
+              url("../images/activ-nav-bg.png") no-repeat center;
+            }
+          }
+          a[href="/my-appointments"].is-active, a[href="/hcp-appointments"].is-active {
+            position: absolute;
+              top: 0;
+              left: -20px;
+              background:   
+              url("../images/navigation-sprites-min.png")  no-repeat 50% -266px, 
+              url("../images/activ-nav-bg.png") no-repeat center;
+          }
+
+          a[href="/symtoms-form"] {
+            background: url("../images/navigation-sprites-min.png") no-repeat;
+            background-position: center -805px;
+            &:hover {
+              position: absolute;
+              top: 0;
+              left: -20px;
+              background:   
+              url("../images/navigation-sprites-min.png")  no-repeat 50% -802px, 
+              url("../images/activ-nav-bg.png") no-repeat center;
+            }
+          }
+          a[href="/symtoms-form"].is-active {
+            position: absolute;
+              top: 0;
+              left: -20px;
+              background:   
+              url("../images/navigation-sprites-min.png")  no-repeat 50% -802px, 
+              url("../images/activ-nav-bg.png") no-repeat center;
+          }
+
+          a[href="/private_messages"] {
+            background: url("../images/navigation-sprites-min.png") no-repeat;
+            background-position: center -88px;
+            &:hover {
+              position: absolute;
+              top: 0;
+              left: -20px;
+              background:   
+              url("../images/navigation-sprites-min.png")  no-repeat 50% -88px, 
+              url("../images/activ-nav-bg.png") no-repeat center;
+            }
+          }
+          a[href="/private_messages"].is-active {
+            position: absolute;
+            top: 0;
+            left: -20px;
+            background:   
+            url("../images/navigation-sprites-min.png")  no-repeat 50% -88px, 
+            url("../images/activ-nav-bg.png") no-repeat center;
+          }
+
+          a[href="/todo-listing"] {
+            background: url("../images/complete.png") no-repeat;
+            background-size: 30% 45%;
+            background-position: top;
+            &:hover {
+              position: absolute;
+              top: 0;
+              left: -20px;
+              background:   
+              url("../images/complete.png")  no-repeat top, 
+              url("../images/activ-nav-bg.png") no-repeat center;
+              background-size: 30% 45%, cover;
+            }
+          }
+          a[href="/todo-listing"].is-active {
+            position: absolute;
+            top: 0;
+            left: -20px;
+            background:   
+            url("../images/complete.png")  no-repeat top, 
+            url("../images/activ-nav-bg.png") no-repeat center;
+            background-size: 30% 45%, cover; 
+          }
+
+          a[href="/banner-listing"] {
+            background: url("../images/slider.png") no-repeat;
+            background-size: 30% 45%;
+            background-position: top;
+            &:hover {
+              position: absolute;
+              top: 0;
+              left: -20px;
+              background:   
+              url("../images/slider.png")  no-repeat top, 
+              url("../images/activ-nav-bg.png") no-repeat center;
+              background-size: 30% 45%, cover;
+            }
+          }
+          a[href="/banner-listing"].is-active {
+            position: absolute;
+            top: 0;
+            left: -20px;
+            background:   
+            url("../images/slider.png")  no-repeat top, 
+            url("../images/activ-nav-bg.png") no-repeat center;
+            background-size: 30% 45%, cover; 
+          }
+
+          a[href="/resources-listing"] {
+            background: url("../images/reunion.png") no-repeat;
+            background-size: 30% 45%;
+            background-position: top;
+            &:hover {
+              position: absolute;
+              top: 0;
+              left: -20px;
+              background:   
+              url("../images/reunion.png")  no-repeat top, 
+              url("../images/activ-nav-bg.png") no-repeat center;
+              background-size: 30% 45%, cover;
+            }
+          }
+          a[href="/resources-listing"].is-active {
+            position: absolute;
+            top: 0;
+            left: -20px;
+            background:   
+            url("../images/reunion.png")  no-repeat top, 
+            url("../images/activ-nav-bg.png") no-repeat center;
+            background-size: 30% 45%, cover; 
+          }
+        }
+    }
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #273038;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #6d6d6d; 
+}
+
+//dashboard page
+section.block-views-blockadditional-resources-block-1, section.block-views-blockmy-favourites-block-1,
+section.block-views-blockto-do-list-block-1, section.block-total-appointments,
+.block-views-blockrecent-providers-block-1, .block-views-blockrecent-message-block-1 {
+  h2.block-title {
+    font-size: 22px;
+    //border-bottom: 1px solid lightgray;
+    padding-bottom: 5px;
+    font-weight: 600;
+    border-bottom: 1px solid #f2f2f2;
+    background-size: 10% 8px;
+    margin-bottom: 20px;
+  }
+}
+
+//welcome text
+// .block-views-blockwelcome-block-1 {
+//   margin-top: 65px;
+//   font-size: 25px;
+//   margin-bottom: 10px;
+//   border-bottom: 1px solid lightgray;
+//   .views-field-name {
+//       margin-bottom: 10px;
+//       .field-content {
+//         color: white;
+//         font-size: 16px;
+//         a {
+//           color: white;
+//           font-size: 15px;
+//       }
+//     }  
+//   }
+// }
+
+//buttons
+#block-basetheme-diagnosis-block {
+    a {
+        background: rgb(109,179,242); /* Old browsers */
+        background: -moz-linear-gradient(top, rgba(109,179,242,1) 0%, rgba(84,163,238,1) 50%, rgba(54,144,240,1) 51%, rgba(30,105,222,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(109,179,242,1) 0%,rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(30,105,222,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(109,179,242,1) 0%,rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(30,105,222,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6db3f2', endColorstr='#1e69de',GradientType=0 ); /* IE6-9 */
+        border-radius: 5px;
+        padding: 10px;
+        color: white;
+        font-weight: bold;    
+    }
+}
+.view-favourites-list, .view-my-appointments, .view-todo-listing, .view-banner-listing, .view-resources-listing, .view-banner-listing,
+.view-resources-listing {
+    
+    .view-header {
+      display: flex;
+      justify-content: space-between;
+      background-color: #445965;
+      border-radius: 10px;
+      
+      h2.page-title {
+        font-size: 25px;
+        margin-top: 10px;
+        color: white;
+        padding-left: 10px;
+      }
+      .add-fav, .appointments-links, .confirm-appointment, .todo-list , .add-banner, .add-resource{
+        margin-top: 14px;
+        a {
+          background: rgb(109,179,242); /* Old browsers */
+          background: -moz-linear-gradient(top, rgba(109,179,242,1) 0%, rgba(84,163,238,1) 50%, rgba(54,144,240,1) 51%, rgba(30,105,222,1) 100%); /* FF3.6-15 */
+          background: -webkit-linear-gradient(top, rgba(109,179,242,1) 0%,rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(30,105,222,1) 100%); /* Chrome10-25,Safari5.1-6 */
+          background: linear-gradient(to bottom, rgba(109,179,242,1) 0%,rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(30,105,222,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6db3f2', endColorstr='#1e69de',GradientType=0 ); /* IE6-9 */
+          border-radius: 5px;
+          padding: 10px;
+          color: white;
+          font-weight: bold;
+          margin-right: 10px;
+        }
+      }
+      
+    } 
+    .view-content {
+      margin-top: 20px;
+    } 
+    .view-empty {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 5em;
+    }
+    .fc-center {
+      h2 {
+        font-size: 20px;
+      }
+    }
+  }
+
+  //blank page msg
+  .no-result-view {
+    text-align: center;
+      font-weight: bold;
+      margin-top: 1em;
+  }
+  .block-private-message-inbox-block {
+    .field--name-owner {
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+
+  //content
+  .layout--twocol {
+    //padding: 0 50px;
+  }
+
+  .layout--twocol {
+    .layout__region--first {
+        flex: 0 1 48%;
+    }
+    .layout__region--second {
+       flex: 0 1 48%;
+    }
+  }
+
+//page content
+.page-content {
+    position: absolute;
+    top:4em;
+    left: 11em;
+}
+.region-content {
+    h1.page-header {
+        border-radius: 10px;
+        background-color: #445965;
+        text-align: left;
+        color: white;
+        padding-left: 10px;
+    }
+}
+
+  .page-header {
+    border-bottom: none;
+    
+    nav.tabs {
+      position: absolute;
+      left: 15em;
+      width: 100%;
+      top: 2em;
+    }
+    ul.tabs--primary {
+        width: 60%;
+    }
+  }
+
+  //right side
+  .diagnose-history {
+    position: absolute;
+    right: 10em;
+    top: 4em;
+  }
+
+  
+
+//homepage banners
+.block-views-blockbanner-view-block-1 {
+    .banner {
+      h2 {
+        display: none;
+      }
+      .content {
+        position: relative;
+        .field--name-field-banner-description {
+          position: absolute;
+          top: 10px;
+          padding-left: 10px;
+          .field--item {
+            text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+            color: white;
+            font-size: 20px;
+            font-weight: 800;
+          }
+        }
+        .field--name-field-banner-link {
+            display: none;
+        }
+      }
+      
+    }
+  }
+
+ //tables
+  .view-favourites-list, .view-pending-appointment-approvals, .view-todo-listing,
+  .view-patient-pending-appointments, .view-banner-listing, .view-resources-listing {
+    .view-content {
+        table.table {
+            thead tr {
+              background-color: #445965;
+              color: white;
+            }
+        }
+    }
+  }
+
+  //edit forms 
+  .node-my-favourite-edit-form, .node-appointment-edit-form, .node-todo-list-edit-form,
+  .node-banner-edit-form, .node-additional-resource-edit-form, .node-banner-delete-form {
+      margin-top: 4em;
+  }
+  .page-header {
+      nav.tabs {
+          z-index: 1;
+      }
+  }  
+
+  //hide author
+  .author {
+    display: none;
+}
+
+
+//mailbox page
+.path-private-messages, .path-private-message {
+  .page-content {
+    display: flex;
+    .region-mailbox {
+      width: 22%;
+      float: left;
+      margin-right: 14px;
+      .block-private-message {
+        //left box
+        h2.block-title {
+          background-color: lightgray;
+          padding: 5px 10px;
+          color: black;
+          margin-top: 10px;
+        }
+        .private-message-thread {
+          border: dotted lightgray 1px;
+          padding: 0px;
+          margin-top: 10px;
+          .private-message-inbox {
+            .field--name-owner {
+              .field--label {
+                float: left;
+                font-weight: bold;
+                margin-right: 5px;
+              }
+              .field--item {
+                display: flex;
+              }
+            }
+            .field--name-message {
+              .field--item p {
+                text-align: left;
+              }
+            }
+          }
+          &:hover {
+            background-color: #e2f0fb;
+          }
+          .private-message-recipients {
+            display: none;
+          }
+          .private-message {
+            border-left: 5px solid #1186e3;
+            padding-left: 5px;
+          }
+        }
+      }
+      //create msg button
+      nav {
+        ul.menu--message {
+          li a {
+            background: rgb(109,179,242); /* Old browsers */
+            background: -moz-linear-gradient(top, rgba(109,179,242,1) 0%, rgba(84,163,238,1) 50%, rgba(54,144,240,1) 51%, rgba(30,105,222,1) 100%); /* FF3.6-15 */
+            background: -webkit-linear-gradient(top, rgba(109,179,242,1) 0%,rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(30,105,222,1) 100%); /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom, rgba(109,179,242,1) 0%,rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(30,105,222,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6db3f2', endColorstr='#1e69de',GradientType=0 ); /* IE6-9 */
+            border-radius: 5px;
+            padding: 10px;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+    //right section
+    .region-content {
+      border: 1px solid lightgray;
+      padding: 10px;
+      width: 75%;
+      //margin-left: 270px;
+      margin-top: 10px;
+      float: right;
+    #private-message-page{
+      .field--name-owner { font-weight: bold;}
+      .private_message_thread_delete_link_wrapper {
+        right: 0;
+        position: absolute;
+        a {
+          background: rgb(109,179,242); /* Old browsers */
+          background: -moz-linear-gradient(top, rgba(109,179,242,1) 0%, rgba(84,163,238,1) 50%, rgba(54,144,240,1) 51%, rgba(30,105,222,1) 100%); /* FF3.6-15 */
+          background: -webkit-linear-gradient(top, rgba(109,179,242,1) 0%,rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(30,105,222,1) 100%); /* Chrome10-25,Safari5.1-6 */
+          background: linear-gradient(to bottom, rgba(109,179,242,1) 0%,rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(30,105,222,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6db3f2', endColorstr='#1e69de',GradientType=0 ); /* IE6-9 */
+          border-radius: 5px;
+          padding: 10px;
+          color: white;
+          font-weight: bold;
+          margin-right: 10px;
+        }
+      }
+      .field--name-private-messages {
+        margin-bottom: 30px;
+        #load-previous-messages-button-wrapper {
+          border: none;
+          margin-bottom: 10px;
+          a {
+            font-size: 15px;
+            text-decoration: underline;
+          }
+        }
+        .private-message-wrapper {
+          .private-message {
+            margin-bottom: 10px;
+            box-shadow: 0px 0px 10px 0px #bfbfbf;
+            border: none;
+           }
+          .field--name-owner {
+            background-color: #e2f0fb;
+          }
+        }
+      }
+     
+    }
+  }
+}
+    .block-private-message-actions-block {
+      position: absolute;
+      top: 20px;
+      right: 0;
+      margin-right: 90px;
+      a {
+        background: rgb(109,179,242); /* Old browsers */
+        background: -moz-linear-gradient(top, rgba(109,179,242,1) 0%, rgba(84,163,238,1) 50%, rgba(54,144,240,1) 51%, rgba(30,105,222,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(109,179,242,1) 0%,rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(30,105,222,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(109,179,242,1) 0%,rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(30,105,222,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6db3f2', endColorstr='#1e69de',GradientType=0 ); /* IE6-9 */
+        border-radius: 5px;
+        padding: 10px;
+        color: white;
+        font-weight: bold;
+        margin-right: 25px;
+      }
+    }
+  }
+
+  .alert-success {
+      text-align: center;
+      background-color: transparent;
+      border-color: transparent;
+  }
+
+
+  //calender
+  .fc-unthemed td.fc-today {
+      background-color: white;
+  }
+  .fc-time-grid-event {
+      background-color: #018cce;
+  }
+
+//to-do list
+  .block-views-blockto-do-list-block-1, .block-views-blockbanner-view-block-1, .block-views-blockrecent-providers-block-1 {
+    width: 80%;
+    margin-left: 6em;
+  }
+
+
+  // profile
+.user-logged-in{
+  .form-section {
+    .region-content {
+      nav.tabs {
+        background-color: #445965; 
+        ul.tabs--primary {
+          //background-color: #445965; 
+          background-color: #90a4ad;
+          li a {
+            color: white;
+            &:hover,&:focus {
+              color: black;
+            }
+          }
+          li.active a {
+            color: black;
+          }
+        }
+      }
+      article {
+        .field--name-user-picture  {         
+          padding: 10px;
+        }
+        .view-id-profiles {
+          background-color: #e7f5fe;
+          padding: 10px;
+          font-size: 20px;
+          margin-top: 10px;
+          .field--name-field-provider-date-of-birth, .field--name-field-provider-address, .field--name-field-office-phone-no,
+          .field--name-field-mobile-phone-no, .field--name-field-npi,
+          
+          .field--name-field-last-4-digit-of-ssn, .field--name-field-pcp-name, .field--name-field-address,
+          .field--name-field-date-of-birth, .field--name-field-mrn , .field--name-field-primary-phone-number,
+          .field--name-field-secondar{
+            display: flex;
+            width: max-content;
+            .field--label, .field--item {
+              margin: 10px;
+              font-size: 15px;
+            }
+            .field--label {
+              width: max-content;
+            }
+          }
+          .field--name-field-dose {
+            .field--label {
+              margin-right: 5px;
+            }
+            .field--item {
+              float: left;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.page-node-type-appointment {
+  nav.tabs {
+    background-color: #445965; 
+    ul.tabs--primary {
+      background-color: #445965; 
+      li a {
+        color: white;
+        &:hover,&:focus {
+          color: black;
+        }
+      }
+      li.active a {
+        color: black;
+      }
+    }
+  }
+}
+
+//allergy, medication,
+.view-patient-profile, .view-medical-history{
+  margin-top: 10px;
+  .view-header {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    a[href*="/node/add/allergy"], a[href*="/node/add/medication"] {
+      background: rgb(109,179,242); /* Old browsers */
+      background: -moz-linear-gradient(top, rgba(109,179,242,1) 0%, rgba(84,163,238,1) 50%, rgba(54,144,240,1) 51%, rgba(30,105,222,1) 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, rgba(109,179,242,1) 0%,rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(30,105,222,1) 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, rgba(109,179,242,1) 0%,rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(30,105,222,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6db3f2', endColorstr='#1e69de',GradientType=0 ); /* IE6-9 */
+      border-radius: 5px;
+      padding: 10px;
+      color: white;
+      font-weight: bold;
+      
+    }
+  }
+  .table-responsive {
+    table.table {
+      tr th{
+        background-color: #445965;
+        color: white;
+      }
+    }
+  }
+}
+
+.field--name-field-onset-date, .field--name-field-reaction, .field--name-field-reaction-type,
+.field--name-field-severity, .field--name-field-allergy-status, .field--name-field-allergy-type,
+
+.field--name-field-duration, .field--name-field-medication-end-date,
+.field--name-field-frequency, .field--name-field-instructions, .field--name-field-medication-start-date,
+.field--name-field-medication-status{
+  display: flex;
+  width: max-content;
+            .field--label, .field--item {
+              margin: 10px;
+              font-size: 15px;
+            }
+            .field--label {
+              width: max-content;
+            }
+}
+
+//medication dose
+.field-collection-item--name-field-dose {
+  .content {
+    display: flex;
+    .field--item {
+      margin-right: 5px;
+    }
+  }
+}
+
+//history blocks
+.page-node-type-appointment {
+  article.appointment {
+    margin-top: 5px;
+    width: 70%;
+    float: left;
+    .title {
+      font-weight:bold;
+      font-size: 15px;
+      text-decoration: underline;
+      margin-bottom: 5px;
+    }
+  }
+  .block-views-blockdiagnosis-history-block-1 {
+    width: 28%;
+    float: right;
+    .view-diagnosis-history {
+      .view-header {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        a {
+          background: rgb(109,179,242); /* Old browsers */
+          background: -moz-linear-gradient(top, rgba(109,179,242,1) 0%, rgba(84,163,238,1) 50%, rgba(54,144,240,1) 51%, rgba(30,105,222,1) 100%); /* FF3.6-15 */
+          background: -webkit-linear-gradient(top, rgba(109,179,242,1) 0%,rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(30,105,222,1) 100%); /* Chrome10-25,Safari5.1-6 */
+          background: linear-gradient(to bottom, rgba(109,179,242,1) 0%,rgba(84,163,238,1) 50%,rgba(54,144,240,1) 51%,rgba(30,105,222,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6db3f2', endColorstr='#1e69de',GradientType=0 ); /* IE6-9 */
+          border-radius: 5px;
+          padding: 10px;
+          color: white;
+          font-weight: bold;
+          
+        }
+      }
+      
+    }
+  }
+}
+
+
+.page-node-type-diagnosis {
+  article.diagnosis {
+    margin-top: 5px;
+    width: 40%;
+    float: left;
+    padding: 15px;
+  }
+  .block-views-blockappointment-data-on-diagnosis-view-block-1 {
+    width: 60%;
+    float: right;
+    h2.block-title {
+      font-weight: bold;
+      color: #273038;
+      border-bottom: 1px solid #f2f2f2;
+    }
+  }
+}
+
+
+//page titles
+.user-logged-in {
+  h1.page-header {
+    font-size: 25px;
+    padding-top: 5px;
+    margin-bottom: 10px;
+  }
+}
+.block-views-blockdiagnosis-history-block-1 {
+  h2.block-title {
+    font-size: 21px;
+    margin-top: 5px;
+  }
+}  

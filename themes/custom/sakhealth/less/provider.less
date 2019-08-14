@@ -1,0 +1,159 @@
+//fav list
+.view-my-favourites {
+    .item-list {
+      margin-left: -20px;
+      ul {
+          display: flex;
+          flex-wrap: wrap;
+        li {
+          list-style: none;
+          margin: 10px 10px 10px 0px;
+          div.field-content {  
+            width: 120px;
+            text-align: center;
+            //background-color: lightgreen;
+            padding: 15px;
+            height: 60px;
+            border-radius: 10px;          
+            a {
+              color: white;
+              font-weight: bold;
+              &:hover, &:focus {
+                text-decoration: none;
+              }
+            }
+          }
+        }
+        li:nth-child(odd) {
+          div.field-content {
+          background: -moz-linear-gradient(345deg, rgba(244,143,194,1) 0%, rgba(203,57,120,1) 100%); /* ff3.6+ */
+          background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(244,143,194,1)), color-stop(100%, rgba(203,57,120,1))); /* safari4+,chrome */
+          background: -webkit-linear-gradient(345deg, rgba(244,143,194,1) 0%, rgba(203,57,120,1) 100%); /* safari5.1+,chrome10+ */
+          background: -o-linear-gradient(345deg, rgba(244,143,194,1) 0%, rgba(203,57,120,1) 100%); /* opera 11.10+ */
+          background: -ms-linear-gradient(345deg, rgba(244,143,194,1) 0%, rgba(203,57,120,1) 100%); /* ie10+ */
+          background: linear-gradient(115deg, rgba(244,143,194,1) 0%, rgba(203,57,120,1) 90%); /* w3c */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F48FC2', endColorstr='#cb3978',GradientType=1 );  
+          }
+        }
+        li:nth-child(even) {
+          div.field-content {
+          background: -moz-linear-gradient(345deg, rgba(81,208,223,1) 0%, rgba(50,133,209,1) 100%); /* ff3.6+ */
+          background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(81,208,223,1)), color-stop(100%, rgba(50,133,209,1))); /* safari4+,chrome */
+          background: -webkit-linear-gradient(345deg, rgba(81,208,223,1) 0%, rgba(50,133,209,1) 100%); /* safari5.1+,chrome10+ */
+          background: -o-linear-gradient(345deg, rgba(81,208,223,1) 0%, rgba(50,133,209,1) 100%); /* opera 11.10+ */
+          background: -ms-linear-gradient(345deg, rgba(81,208,223,1) 0%, rgba(50,133,209,1) 100%); /* ie10+ */
+          background: linear-gradient(115deg, rgba(81,208,223,1) 0%, rgba(50,133,209,1) 90%); /* w3c */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#51d0df', endColorstr='#3285d1',GradientType=1 );   
+          }
+        }
+      }
+    }
+  }
+
+  //additional resources
+  .view-additional-resources {
+    .table-responsive {
+      .table-bordered {
+        border: none;
+      }
+      .table tbody tr {
+        td {
+        border-top: none;
+        }
+        td.views-field-field-resource-image {
+          width: 20%;
+          border: none;
+        }
+        td.views-field-field-resource-description {
+          width: 80%;
+          border: none;
+          a {
+            line-height: 1.5rem;
+            margin-bottom: 5px;
+            font-size: 16px;
+            font-weight: bold;
+          }
+          p {
+            line-height: 1.5rem;
+            margin-bottom: 5px;
+            margin-top: 5px;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  //doctor todo list
+  .view-to-do-list{
+    .item-list {
+      ul {
+        padding-left: 0em;
+        li {
+          list-style: none;
+          box-shadow: 0px 0px 15px 0px #bfbfbf;
+          padding: 15px;
+          border-radius: 5px;
+          margin-bottom: 15px;
+          position: relative;
+          overflow: auto;
+          background-position: 20px 20px !important;
+          .views-field-title {
+            font-size: 15px;
+          }
+          .views-field-field-start-date-and-time {
+            float: left;
+            margin-right: 20px;
+            font-size: 12px;
+            //color: @blue-lighter;
+            background-position: left;
+            //padding-left: 22px;
+            &:before {
+              content: "\e023";
+              font-family: 'Glyphicons Halflings';
+              position: absolute;
+            }
+            .field-content {
+              margin-left: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  //visit count
+  .block-appointment-summary-block {
+    margin-left: -35px;
+      ul {
+          display: inline-flex;
+          li {
+              list-style: none;
+              width: 180px;
+              height: 85px;
+              background-color: lightblue;
+              border-radius: 10px;
+              text-align: left;
+              padding: 8px 20px;
+              font-weight: bold;
+              margin-right: 10px;
+              span.tvalue, span.cvalue {
+                display: block;
+                font-size: 25px
+              }
+              span.tvalue {
+                color: palevioletred;
+              }
+              span.cvalue {
+                color: purple;
+              }
+              span.confirmapp, span.totalvisit {
+                display: block;
+                font-size: 13px;
+              }
+          }
+      }
+  }
+
+
+

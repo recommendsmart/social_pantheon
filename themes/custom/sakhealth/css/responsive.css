@@ -1,0 +1,244 @@
+@media only screen and (max-width: 450px) {
+  .block-appointment-summary-block .appointment-summary--block ul li {
+    width: 140px;
+    height: auto;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  .path-private-messages .region-mailbox {
+    width: 35% !important;
+  }
+  .path-private-messages .region-content {
+    width: 60% !important;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .user-logged-in .col-sm-11 {
+    display: inline-block;
+    width: calc(100% - 165px);
+  }
+  .block-views-blockto-do-list-block-1,
+  .block-views-blockbanner-view-block-1,
+  .block-views-blockrecent-providers-block-1 {
+    margin-left: 1em;
+  }
+}
+@media screen and (min-width: 768px) {
+  body {
+    margin-top: 0px;
+  }
+  .user-logged-in .form-section {
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 100px;
+    overflow: auto;
+  }
+  .user-logged-in .col-sm-11 {
+    display: inline-block;
+    width: calc(100% - 155px);
+  }
+  .page-node-type-diagnosis .form-section {
+    z-index: -1;
+  }
+  .page-node-type-appointment .form-section {
+    z-index: -1;
+  }
+}
+@media only screen and (max-width: 768px) {
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .user-logged-in .form-section {
+    height: 80%;
+    overflow: auto;
+    padding-bottom: 100px;
+  }
+  .upper-header nav#block-sakhealth-account-menu {
+    position: absolute;
+    top: 0px;
+    right: 5%;
+    width: fit-content;
+  }
+  .upper-header nav#block-sakhealth-account-menu ul li a {
+    padding-top: 5px !important;
+  }
+  .upper-header .block-private-message {
+    position: absolute;
+    top: 0.3em;
+    width: 100%;
+  }
+  #block-loginpagetext {
+    display: none;
+  }
+  #auth_box {
+    width: 90% !important;
+  }
+  #auth_box #middle_part .region-content {
+    display: block !important;
+  }
+  #auth_box #middle_part .region-content #block-loginpagetext,
+  #auth_box #middle_part .region-content #user-login-form {
+    width: 100% !important;
+    padding: 30px !important;
+  }
+  #auth_box #middle_part .region-content nav.tabs {
+    display: none;
+  }
+  #auth_box #bottom_part {
+    display: block !important;
+  }
+  #auth_box #bottom_part .password_link,
+  #auth_box #bottom_part .register_link,
+  #auth_box #bottom_part .back_link {
+    margin: 10px 5px !important;
+  }
+  #auth_box .user-register-form {
+    height: 360px;
+    overflow-y: scroll;
+  }
+  #auth_box input[type="text"] {
+    width: 100%;
+  }
+  .upper-header .block-private-message .private-message-notification-wrapper:after {
+    display: none;
+  }
+  .block-views-blockwelcome-block-1 {
+    width: 15em;
+    top: 0em;
+    position: absolute;
+    margin-right: 2em;
+  }
+  .navigation-menu {
+    display: none;
+  }
+  .mean-bar {
+    margin-top: 45px;
+  }
+  .page-content {
+    top: 8em;
+    left: 0em;
+  }
+  .layout--twocol .layout__region--first,
+  .layout--twocol .layout__region--second {
+    flex: 0 1 98%;
+  }
+  .path-private-messages .region-content,
+  .path-private-message .region-content,
+  .path-private-messages .region-mailbox,
+  .path-private-message .region-mailbox {
+    padding: 0px 15px;
+  }
+  .form-section {
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .form-section .region-content {
+    padding: 0px 15px;
+  }
+  .form-section .block-views-blockto-do-list-block-1,
+  .form-section .block-views-blockbanner-view-block-1,
+  .form-section .block-views-blockrecent-providers-block-1 {
+    margin-left: 0em;
+    width: 100%;
+  }
+  .mean-nav ul.menu--main li a:hover,
+  .mean-nav ul.menu--main li a:focus {
+    background-color: #90a4ad;
+    color: white;
+  }
+  .mean-nav ul.menu--main li a.is-active {
+    background-color: #90a4ad;
+    color: white;
+  }
+  .mean-nav ul.menu--main li.expanded ul.dropdown-menu {
+    position: unset;
+  }
+  .mean-nav ul.menu--main li.expanded a.mean-expand {
+    background-color: #273038;
+    color: white;
+  }
+  .mean-nav ul.menu--main li.expanded a.mean-expand:hover,
+  .mean-nav ul.menu--main li.expanded a.mean-expand:focus {
+    background-color: gray;
+    color: white;
+  }
+  .mean-nav ul.menu--main li.expanded .caret {
+    display: none;
+  }
+  .mean-nav ul.menu--main li.open a.dropdown-toggle {
+    background-color: #273038;
+    color: white;
+  }
+  .mean-nav ul.menu--main li.open a.dropdown-toggle:hover,
+  .mean-nav ul.menu--main li.open a.dropdown-toggle:focus {
+    background-color: #273038;
+    color: white;
+  }
+  .path-private-messages .page-content,
+  .path-private-message .page-content {
+    display: block;
+  }
+  .path-private-messages .page-content .region-mailbox,
+  .path-private-message .page-content .region-mailbox {
+    width: 100%;
+    float: none;
+  }
+  .path-private-messages .page-content .region-content,
+  .path-private-message .page-content .region-content {
+    width: 100%;
+  }
+  .page-node-type-appointment article.appointment,
+  .page-node-type-appointment .block-views-blockdiagnosis-history-block-1 {
+    width: 100%;
+    float: none;
+  }
+  .view-favourites-list .view-header,
+  .view-my-appointments .view-header,
+  .view-todo-listing .view-header,
+  .view-banner-listing .view-header,
+  .view-resources-listing .view-header {
+    display: block;
+    background-color: transparent;
+  }
+  .view-favourites-list .view-header h2.page-title,
+  .view-my-appointments .view-header h2.page-title,
+  .view-todo-listing .view-header h2.page-title,
+  .view-banner-listing .view-header h2.page-title,
+  .view-resources-listing .view-header h2.page-title {
+    font-size: 25px;
+    margin-top: 10px;
+    color: white;
+    background-color: #445965;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+  }
+  .view-my-appointments .fc-center {
+    margin-top: 10px;
+  }
+  .view-my-appointments .fc-center h2 {
+    font-size: 15px;
+  }
+  .page-node-type-diagnosis article.diagnosis,
+  .page-node-type-diagnosis .block-views-blockappointment-data-on-diagnosis-view-block-1 {
+    width: 100%;
+    float: none;
+    padding: 10px;
+  }
+  .webform-multiple-add .btn {
+    vertical-align: top;
+    margin-top: 10px;
+  }
+  .block-footer-data {
+    position: unset;
+    text-align: left;
+    padding: 0px 0px 0px 15px;
+  }
+  .footer {
+    left: 0;
+  }
+}
