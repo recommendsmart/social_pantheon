@@ -1,0 +1,15 @@
+cts.tab:
+  route_name: entity.cts.list
+  base_route: system.themes_page
+  title: Clever Theme Switcher
+  weight: 9999
+
+cts.tab.edit_form:
+  route_name: entity.cts.edit_form
+  base_route: entity.cts.edit_form
+  title: Edit
+
+cts.tab.manage_condition:
+  route_name: entity.cts.manage_conditions
+  base_route: entity.cts.edit_form
+  title: Manage conditions
