@@ -158,7 +158,6 @@ class ComposerStaticInitDrupal8
             'Drupal\\Core\\' => 12,
             'Drupal\\Component\\' => 17,
             'DrupalComposer\\DrupalScaffold\\' => 30,
-            'DrupalCodeBuilder\\' => 18,
             'Doctrine\\Common\\Lexer\\' => 22,
             'Doctrine\\Common\\Cache\\' => 22,
             'Doctrine\\Common\\Annotations\\' => 28,
@@ -172,7 +171,6 @@ class ComposerStaticInitDrupal8
             'CommerceGuys\\Intl\\' => 18,
             'CommerceGuys\\Addressing\\' => 24,
             'Clue\\StreamFilter\\' => 18,
-            'CaseConverter\\' => 14,
         ),
         'B' => 
         array (
@@ -460,10 +458,6 @@ class ComposerStaticInitDrupal8
         array (
             0 => __DIR__ . '/..' . '/drupal-composer/drupal-scaffold/src',
         ),
-        'DrupalCodeBuilder\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/drupal-code-builder/drupal-code-builder',
-        ),
         'Doctrine\\Common\\Lexer\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/lexer/lib/Doctrine/Common/Lexer',
@@ -503,10 +497,6 @@ class ComposerStaticInitDrupal8
         'Clue\\StreamFilter\\' => 
         array (
             0 => __DIR__ . '/..' . '/clue/stream-filter/src',
-        ),
-        'CaseConverter\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/joachim-n/case-converter',
         ),
         'Brumann\\Polyfill\\' => 
         array (
@@ -584,10 +574,6 @@ class ComposerStaticInitDrupal8
         ),
         'D' => 
         array (
-            'Drupal\\Composer' => 
-            array (
-                0 => __DIR__ . '/..' . '/drupal/drupal-library-installer-plugin/src',
-            ),
             'Doctrine\\Common\\Inflector\\' => 
             array (
                 0 => __DIR__ . '/..' . '/doctrine/inflector/lib',

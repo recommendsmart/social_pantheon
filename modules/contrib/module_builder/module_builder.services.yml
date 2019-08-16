@@ -1,3 +1,0 @@
-services:
-  module_builder.drupal_code_builder:
-    class: Drupal\module_builder\DrupalCodeBuilder

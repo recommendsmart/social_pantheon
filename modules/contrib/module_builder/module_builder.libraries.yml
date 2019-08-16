@@ -1,8 +1,0 @@
-module_builder:
-  version: 1.x
-  js:
-    js/hooks.js: {  }
-  header: true
-  dependencies:
-    - core/jquery
-    - core/drupal
