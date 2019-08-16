@@ -1,11 +1,6 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\fences\Tests\FieldOutputTest.
- */
-
-namespace Drupal\fences\Tests;
+namespace Drupal\Tests\fences\Kernel;
 
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\field\Entity\FieldConfig;

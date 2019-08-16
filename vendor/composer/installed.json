@@ -646,17 +646,17 @@
     },
     {
         "name": "composer/installers",
-        "version": "v1.6.0",
-        "version_normalized": "1.6.0.0",
+        "version": "v1.7.0",
+        "version_normalized": "1.7.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/composer/installers.git",
-            "reference": "cfcca6b1b60bc4974324efb5783c13dca6932b5b"
+            "reference": "141b272484481432cda342727a427dc1e206bfa0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/composer/installers/zipball/cfcca6b1b60bc4974324efb5783c13dca6932b5b",
-            "reference": "cfcca6b1b60bc4974324efb5783c13dca6932b5b",
+            "url": "https://api.github.com/repos/composer/installers/zipball/141b272484481432cda342727a427dc1e206bfa0",
+            "reference": "141b272484481432cda342727a427dc1e206bfa0",
             "shasum": ""
         },
         "require": {
@@ -670,7 +670,7 @@
             "composer/composer": "1.0.*@dev",
             "phpunit/phpunit": "^4.8.36"
         },
-        "time": "2018-08-27T06:10:37+00:00",
+        "time": "2019-08-12T15:00:31+00:00",
         "type": "composer-plugin",
         "extra": {
             "class": "Composer\\Installers\\Plugin",
@@ -714,6 +714,7 @@
             "RadPHP",
             "SMF",
             "Thelia",
+            "Whmcs",
             "WolfCMS",
             "agl",
             "aimeos",
@@ -736,6 +737,7 @@
             "installer",
             "itop",
             "joomla",
+            "known",
             "kohana",
             "laravel",
             "lavalite",
@@ -3544,18 +3546,18 @@
     },
     {
         "name": "drupal/content_planner",
-        "version": "1.0.0-beta7",
-        "version_normalized": "1.0.0.0-beta7",
+        "version": "1.0.0-beta8",
+        "version_normalized": "1.0.0.0-beta8",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/content_planner.git",
-            "reference": "8.x-1.0-beta7"
+            "reference": "8.x-1.0-beta8"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/content_planner-8.x-1.0-beta7.zip",
-            "reference": "8.x-1.0-beta7",
-            "shasum": "5dc2cea286b7bcd3b19cb8083bdc68faf412db59"
+            "url": "https://ftp.drupal.org/files/projects/content_planner-8.x-1.0-beta8.zip",
+            "reference": "8.x-1.0-beta8",
+            "shasum": "16e7be7f4a48f01b3227f7b4ea7bb317a1109e54"
         },
         "require": {
             "drupal/core": "*",
@@ -3567,8 +3569,8 @@
                 "dev-1.x": "1.x-dev"
             },
             "drupal": {
-                "version": "8.x-1.0-beta7",
-                "datestamp": "1562496185",
+                "version": "8.x-1.0-beta8",
+                "datestamp": "1565552885",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Beta releases are not covered by Drupal security advisories."
@@ -4287,18 +4289,18 @@
     },
     {
         "name": "drupal/date_recur_modular",
-        "version": "1.0.0-alpha2",
-        "version_normalized": "1.0.0.0-alpha2",
+        "version": "1.0.0-alpha3",
+        "version_normalized": "1.0.0.0-alpha3",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/date_recur_modular.git",
-            "reference": "8.x-1.0-alpha2"
+            "reference": "8.x-1.0-alpha3"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/date_recur_modular-8.x-1.0-alpha2.zip",
-            "reference": "8.x-1.0-alpha2",
-            "shasum": "7793019fc7202ddb7b4ed6bfb9f292732233a5c1"
+            "url": "https://ftp.drupal.org/files/projects/date_recur_modular-8.x-1.0-alpha3.zip",
+            "reference": "8.x-1.0-alpha3",
+            "shasum": "eae5d0a1d4a783ca317f0a2df5fcfec081bb2866"
         },
         "require": {
             "drupal/core": "~8.0",
@@ -4310,11 +4312,11 @@
                 "dev-1.x": "1.x-dev"
             },
             "drupal": {
-                "version": "8.x-1.0-alpha2",
-                "datestamp": "1556602985",
+                "version": "8.x-1.0-alpha3",
+                "datestamp": "1565786289",
                 "security-coverage": {
                     "status": "not-covered",
-                    "message": "Project has not opted into security advisory coverage!"
+                    "message": "Alpha releases are not covered by Drupal security advisories."
                 }
             }
         },
@@ -5495,21 +5497,21 @@
     },
     {
         "name": "drupal/fences",
-        "version": "2.0.0-alpha1",
-        "version_normalized": "2.0.0.0-alpha1",
+        "version": "2.0.0-alpha2",
+        "version_normalized": "2.0.0.0-alpha2",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/fences.git",
-            "reference": "8.x-2.0-alpha1"
+            "reference": "8.x-2.0-alpha2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/fences-8.x-2.0-alpha1.zip",
-            "reference": "8.x-2.0-alpha1",
-            "shasum": "e5a38172b492db2f3aace6d18c7ca646c33a570d"
+            "url": "https://ftp.drupal.org/files/projects/fences-8.x-2.0-alpha2.zip",
+            "reference": "8.x-2.0-alpha2",
+            "shasum": "fbcd74bab8cd7000a679a9679929c188db4115c5"
         },
         "require": {
-            "drupal/core": "~8.0"
+            "drupal/core": "^8.7.0"
         },
         "type": "drupal-module",
         "extra": {
@@ -5517,8 +5519,8 @@
                 "dev-2.x": "2.x-dev"
             },
             "drupal": {
-                "version": "8.x-2.0-alpha1",
-                "datestamp": "1464678839",
+                "version": "8.x-2.0-alpha2",
+                "datestamp": "1565235185",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Alpha releases are not covered by Drupal security advisories."
@@ -5559,7 +5561,7 @@
         "description": "Alter wrapping markup of fields.",
         "homepage": "https://www.drupal.org/project/fences",
         "support": {
-            "source": "http://cgit.drupalcode.org/fences"
+            "source": "https://git.drupalcode.org/project/fences"
         }
     },
     {
@@ -5955,18 +5957,18 @@
     },
     {
         "name": "drupal/forms_steps",
-        "version": "1.1.0",
-        "version_normalized": "1.1.0.0",
+        "version": "1.2.0",
+        "version_normalized": "1.2.0.0",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/forms_steps.git",
-            "reference": "8.x-1.1"
+            "reference": "8.x-1.2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/forms_steps-8.x-1.1.zip",
-            "reference": "8.x-1.1",
-            "shasum": "089440ab29786ea9ccc87a911d6648e92db05885"
+            "url": "https://ftp.drupal.org/files/projects/forms_steps-8.x-1.2.zip",
+            "reference": "8.x-1.2",
+            "shasum": "3284c107ff35cb426158fa0c77e67456f29b6e02"
         },
         "require": {
             "drupal/core": "*"
@@ -5977,8 +5979,8 @@
                 "dev-1.x": "1.x-dev"
             },
             "drupal": {
-                "version": "8.x-1.1",
-                "datestamp": "1559038385",
+                "version": "8.x-1.2",
+                "datestamp": "1565805303",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -6485,18 +6487,18 @@
     },
     {
         "name": "drupal/gutenberg",
-        "version": "1.5.0",
-        "version_normalized": "1.5.0.0",
+        "version": "1.6.0",
+        "version_normalized": "1.6.0.0",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/gutenberg.git",
-            "reference": "8.x-1.5"
+            "reference": "8.x-1.6"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/gutenberg-8.x-1.5.zip",
-            "reference": "8.x-1.5",
-            "shasum": "75418f88a12ce1d7cd4f7f481d8d4a3fde31cb1d"
+            "url": "https://ftp.drupal.org/files/projects/gutenberg-8.x-1.6.zip",
+            "reference": "8.x-1.6",
+            "shasum": "dc83a971b61c19859098097301e49f2755751012"
         },
         "require": {
             "drupal/core": "*"
@@ -6507,8 +6509,8 @@
                 "dev-1.x": "1.x-dev"
             },
             "drupal": {
-                "version": "8.x-1.5",
-                "datestamp": "1564738386",
+                "version": "8.x-1.6",
+                "datestamp": "1565348588",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -6530,12 +6532,12 @@
                 "homepage": "https://www.drupal.org/user/221337"
             },
             {
-                "name": "ppregiel",
-                "homepage": "https://www.drupal.org/user/3558827"
-            },
-            {
                 "name": "roborn",
                 "homepage": "https://www.drupal.org/user/139474"
+            },
+            {
+                "name": "sayco",
+                "homepage": "https://www.drupal.org/user/3517832"
             },
             {
                 "name": "thorandre",
@@ -8113,7 +8115,7 @@
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/pwa.git",
-            "reference": "d8fc73eb3a52dc24aadc26c5a2be16ee34bb63da"
+            "reference": "78292f10006d54bb5f68ec4afbb198a19e4cdb1c"
         },
         "require": {
             "drupal/core": "~8.0"
@@ -8124,8 +8126,8 @@
                 "dev-1.x": "1.x-dev"
             },
             "drupal": {
-                "version": "8.x-1.0-rc3+0-dev",
-                "datestamp": "1565028186",
+                "version": "8.x-1.0-rc3+2-dev",
+                "datestamp": "1565212081",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Dev releases are not covered by Drupal security advisories."
@@ -9577,18 +9579,18 @@
     },
     {
         "name": "drupal/term_reference_fancytree",
-        "version": "1.0.0-rc1",
-        "version_normalized": "1.0.0.0-RC1",
+        "version": "1.0.0-rc7",
+        "version_normalized": "1.0.0.0-RC7",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/term_reference_fancytree.git",
-            "reference": "8.x-1.0-rc1"
+            "reference": "8.x-1.0-rc7"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/term_reference_fancytree-8.x-1.0-rc1.zip",
-            "reference": "8.x-1.0-rc1",
-            "shasum": "2e67a18d07e61d710c2fb827ce83c480a04c2aac"
+            "url": "https://ftp.drupal.org/files/projects/term_reference_fancytree-8.x-1.0-rc7.zip",
+            "reference": "8.x-1.0-rc7",
+            "shasum": "2f70eec912ec6b0f3fb586feb55a3df1349b3c20"
         },
         "require": {
             "drupal/core": "~8.0"
@@ -9599,8 +9601,8 @@
                 "dev-1.x": "1.x-dev"
             },
             "drupal": {
-                "version": "8.x-1.0-rc1",
-                "datestamp": "1564726985",
+                "version": "8.x-1.0-rc7",
+                "datestamp": "1565858284",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "RC releases are not covered by Drupal security advisories."
@@ -10007,6 +10009,64 @@
         }
     },
     {
+        "name": "drupal/viewfield",
+        "version": "3.0.0-beta3",
+        "version_normalized": "3.0.0.0-beta3",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/viewfield.git",
+            "reference": "8.x-3.0-beta3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/viewfield-8.x-3.0-beta3.zip",
+            "reference": "8.x-3.0-beta3",
+            "shasum": "82fca470e3563c58fc37d1204354b2555ff32485"
+        },
+        "require": {
+            "drupal/core": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-3.x": "3.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-3.0-beta3",
+                "datestamp": "1565627287",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Beta releases are not covered by Drupal security advisories."
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "jerdavis",
+                "homepage": "https://www.drupal.org/user/228997"
+            },
+            {
+                "name": "keithm",
+                "homepage": "https://www.drupal.org/user/691250"
+            },
+            {
+                "name": "sun",
+                "homepage": "https://www.drupal.org/user/54136"
+            }
+        ],
+        "description": "Defines an entity reference field type to display a view.",
+        "homepage": "http://drupal.org/project/viewfield",
+        "support": {
+            "source": "https://git.drupalcode.org/project/viewfield",
+            "issues": "https://www.drupal.org/project/issues/viewfield"
+        }
+    },
+    {
         "name": "drupal/views_accordion",
         "version": "1.2.0",
         "version_normalized": "1.2.0.0",
@@ -10054,6 +10114,112 @@
         "support": {
             "source": "https://git.drupalcode.org/project/views_accordion",
             "issues": "https://www.drupal.org/project/issues/views_accordion"
+        }
+    },
+    {
+        "name": "drupal/views_add_button",
+        "version": "1.3.0",
+        "version_normalized": "1.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/views_add_button.git",
+            "reference": "8.x-1.3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/views_add_button-8.x-1.3.zip",
+            "reference": "8.x-1.3",
+            "shasum": "2afdf156103ce1709828d5a2cce95312dacfe1ee"
+        },
+        "require": {
+            "drupal/core": "*",
+            "drupal/token": "~1.5"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.3",
+                "datestamp": "1565320985",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0"
+        ],
+        "authors": [
+            {
+                "name": "Shawn2516",
+                "homepage": "https://www.drupal.org/user/3154563"
+            },
+            {
+                "name": "laboratory.mike",
+                "homepage": "https://www.drupal.org/user/131390"
+            }
+        ],
+        "description": "Views Add Button",
+        "homepage": "https://www.drupal.org/project/views_add_button",
+        "support": {
+            "source": "https://git.drupalcode.org/project/views_add_button",
+            "issues": "https://www.drupal.org/project/issues/search/views_add_button"
+        }
+    },
+    {
+        "name": "drupal/views_add_button_group",
+        "version": "1.2.0",
+        "version_normalized": "1.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/views_add_button_group.git",
+            "reference": "8.x-1.2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/views_add_button_group-8.x-1.2.zip",
+            "reference": "8.x-1.2",
+            "shasum": "b2d6fae157386e1059db4157cb251fe6f8d7c112"
+        },
+        "require": {
+            "drupal/core": "*",
+            "drupal/group": "*",
+            "drupal/views_add_button": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.2",
+                "datestamp": "1565844185",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "laboratory.mike",
+                "homepage": "https://www.drupal.org/user/131390"
+            }
+        ],
+        "description": "Enables add buttons for Groups and Group Content.",
+        "homepage": "https://www.drupal.org/project/views_add_button_group",
+        "support": {
+            "source": "https://git.drupalcode.org/project/views_add_button_group"
         }
     },
     {
@@ -11192,17 +11358,17 @@
     },
     {
         "name": "google/apiclient-services",
-        "version": "v0.107",
-        "version_normalized": "0.107.0.0",
+        "version": "v0.109",
+        "version_normalized": "0.109.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/googleapis/google-api-php-client-services.git",
-            "reference": "0764564d5c3f4e140a3966d9996da758e15458a0"
+            "reference": "1e1e05ed1320573f9c3c364ea87302abba748874"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/0764564d5c3f4e140a3966d9996da758e15458a0",
-            "reference": "0764564d5c3f4e140a3966d9996da758e15458a0",
+            "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/1e1e05ed1320573f9c3c364ea87302abba748874",
+            "reference": "1e1e05ed1320573f9c3c364ea87302abba748874",
             "shasum": ""
         },
         "require": {
@@ -11211,7 +11377,7 @@
         "require-dev": {
             "phpunit/phpunit": "~4.8"
         },
-        "time": "2019-08-05T00:22:58+00:00",
+        "time": "2019-08-10T00:23:38+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -12206,17 +12372,16 @@
     },
     {
         "name": "npm-asset/react",
-        "version": "16.8.6",
-        "version_normalized": "16.8.6.0",
+        "version": "16.9.0",
+        "version_normalized": "16.9.0.0",
         "dist": {
             "type": "tar",
-            "url": "https://registry.npmjs.org/react/-/react-16.8.6.tgz"
+            "url": "https://registry.npmjs.org/react/-/react-16.9.0.tgz"
         },
         "require": {
             "npm-asset/loose-envify": ">=1.1.0,<2.0.0",
             "npm-asset/object-assign": ">=4.1.1,<5.0.0",
-            "npm-asset/prop-types": ">=15.6.2,<16.0.0",
-            "npm-asset/scheduler": ">=0.13.6,<0.14.0"
+            "npm-asset/prop-types": ">=15.6.2,<16.0.0"
         },
         "type": "npm-asset",
         "installation-source": "dist",
@@ -12226,17 +12391,17 @@
     },
     {
         "name": "npm-asset/react-dom",
-        "version": "16.8.6",
-        "version_normalized": "16.8.6.0",
+        "version": "16.9.0",
+        "version_normalized": "16.9.0.0",
         "dist": {
             "type": "tar",
-            "url": "https://registry.npmjs.org/react-dom/-/react-dom-16.8.6.tgz"
+            "url": "https://registry.npmjs.org/react-dom/-/react-dom-16.9.0.tgz"
         },
         "require": {
             "npm-asset/loose-envify": ">=1.1.0,<2.0.0",
             "npm-asset/object-assign": ">=4.1.1,<5.0.0",
             "npm-asset/prop-types": ">=15.6.2,<16.0.0",
-            "npm-asset/scheduler": ">=0.13.6,<0.14.0"
+            "npm-asset/scheduler": ">=0.15.0,<0.16.0"
         },
         "type": "npm-asset",
         "installation-source": "dist",
@@ -12246,11 +12411,11 @@
     },
     {
         "name": "npm-asset/react-is",
-        "version": "16.8.6",
-        "version_normalized": "16.8.6.0",
+        "version": "16.9.0",
+        "version_normalized": "16.9.0.0",
         "dist": {
             "type": "tar",
-            "url": "https://registry.npmjs.org/react-is/-/react-is-16.8.6.tgz"
+            "url": "https://registry.npmjs.org/react-is/-/react-is-16.9.0.tgz"
         },
         "type": "npm-asset",
         "installation-source": "dist",
@@ -12260,11 +12425,11 @@
     },
     {
         "name": "npm-asset/scheduler",
-        "version": "0.13.6",
-        "version_normalized": "0.13.6.0",
+        "version": "0.15.0",
+        "version_normalized": "0.15.0.0",
         "dist": {
             "type": "tar",
-            "url": "https://registry.npmjs.org/scheduler/-/scheduler-0.13.6.tgz"
+            "url": "https://registry.npmjs.org/scheduler/-/scheduler-0.15.0.tgz"
         },
         "require": {
             "npm-asset/loose-envify": ">=1.1.0,<2.0.0",

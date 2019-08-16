@@ -12,8 +12,8 @@ dependencies:
   - drupal:image
   - drupal:file
 
-# Information added by Drupal.org packaging script on 2019-08-02
-version: '8.x-1.5'
+# Information added by Drupal.org packaging script on 2019-08-09
+version: '8.x-1.6'
 core: '8.x'
 project: 'gutenberg'
-datestamp: 1564738390
+datestamp: 1565348592

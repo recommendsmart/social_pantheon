@@ -1,17 +1,16 @@
 <?php
 
+namespace Drupal\Tests\fences\Kernel;
+
 /**
- * @file
- * Contains \Drupal\fences\Tests\StripWhitespaceTrait.
+ * A trait to strip whitespace.
  */
-
-namespace Drupal\fences\Tests;
-
 trait StripWhitespaceTrait {
+
   /**
    * Remove HTML whitespace from a string.
    *
-   * @param $string
+   * @param string $string
    *   The input string.
    *
    * @return string
@@ -22,4 +21,5 @@ trait StripWhitespaceTrait {
     $no_whitespace = str_replace("\n", '', $no_whitespace);
     return $no_whitespace;
   }
+
 }

@@ -65,6 +65,7 @@ class RouteSubscriber extends RouteSubscriberBase {
    *   The entity type manager.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function __construct(
     EntityManagerInterface $entity_manager,

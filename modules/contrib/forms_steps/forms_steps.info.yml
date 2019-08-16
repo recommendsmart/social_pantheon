@@ -10,8 +10,8 @@ dependencies:
   - drupal:field_ui
   - drupal:block
 
-# Information added by Drupal.org packaging script on 2019-05-28
-version: '8.x-1.1'
+# Information added by Drupal.org packaging script on 2019-08-11
+version: '8.x-1.2'
 core: '8.x'
 project: 'forms_steps'
-datestamp: 1559038389
+datestamp: 1565512388

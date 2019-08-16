@@ -38,7 +38,15 @@ class TermReferenceFancytree extends FormElement {
     if (!empty($element['#vocabulary'])) {
 
       // Get the ancestors of the selected items.
-      $ancestors = TermReferenceFancytree::getSelectedAncestors($element['#default_value']);
+      // If we are processing input (submit) we want to pass the state with selected items.
+      if($form_state->isProcessingInput() && $form_state->getUserInput()[$element['#field_name']]){
+        $ancestors = TermReferenceFancytree::getSelectedAncestors($form_state->getUserInput()[$element['#field_name']], TRUE);
+      }
+      // If we are not we want the default values (previously submitted).
+      else{
+        $ancestors = TermReferenceFancytree::getSelectedAncestors($element['#default_value'], FALSE);
+      }
+
       // Build a list of top level nodes, including children if containing
       // selected items.
       $list = TermReferenceFancytree::getTopLevelNodes($element, $ancestors, $form_state);
@@ -63,20 +71,27 @@ class TermReferenceFancytree extends FormElement {
   /**
    * Function that goes through the default values and obtains their ancestors.
    *
-   * @param array $default_values
+   * @param array $values
    *   The selected items.
    *
    * @return array
    *   The list of ancestors.
    */
-  public static function getSelectedAncestors(array $default_values) {
+  public static function getSelectedAncestors(array $values, $processing_input) {
 
     $all_ancestors = [];
 
-    foreach ($default_values as $default_value) {
+    foreach ($values as $value) {
+
+      // Check if we are processing input or not because the structure of
+      // default values and form state differs.
+      if(!$processing_input){
+        $value = $value['target_id'];
+      }
+
       $term_ancestors = \Drupal::entityTypeManager()
         ->getStorage('taxonomy_term')
-        ->loadAllParents($default_value['target_id']);
+        ->loadAllParents($value);
       foreach ($term_ancestors as $ancestor) {
         $all_ancestors[$ancestor->id()] = $ancestor;
       }
@@ -103,7 +118,7 @@ class TermReferenceFancytree extends FormElement {
     // If we have more than one vocabulary, we load the vocabulary names as
     // the initial level.
     if (count($element['#vocabulary']) > 1) {
-      return TermReferenceFancytree::getVocabularyNamesJsonArray($element['#vocabulary'], $element['#default_value'], $ancestors);
+      return TermReferenceFancytree::getVocabularyNamesJsonArray($element, $ancestors, $form_state);
     }
     // Otherwise, we load the list of terms on the first level.
     else {
@@ -212,7 +227,7 @@ class TermReferenceFancytree extends FormElement {
   /**
    * Function that generates the nested list for the JSON array structure.
    */
-  public static function getNestedListJsonArray($terms, $element, $ancestors = NULL, $form_state) {
+  public static function getNestedListJsonArray($terms, $element, $ancestors = NULL, $form_state = NULL) {
     $items = [];
     if (!empty($terms)) {
       foreach ($terms as $term) {
@@ -223,12 +238,12 @@ class TermReferenceFancytree extends FormElement {
 
         // Checking the term against the form state and default values and if present, mark as
         // selected.
-        if($form_state->getUserInput()){
+        if($form_state && $form_state->getUserInput()){
           if(in_array($term->id(), $form_state->getValues()[$element['#field_name']])){
             $item['selected'] = TRUE;
           }
         }
-        elseif ($element['#default_value'] && is_numeric(array_search($term->id(), array_column($element['#default_value'], 'target_id')))) {
+        elseif (isset($element['#default_value']) && is_numeric(array_search($term->id(), array_column($element['#default_value'], 'target_id')))) {
           $item['selected'] = TRUE;
         }
 
@@ -269,8 +284,10 @@ class TermReferenceFancytree extends FormElement {
   /**
    * Function that generates a list of vocabulary names in JSON.
    */
-  public static function getVocabularyNamesJsonArray($vocabularies, $default_values = NULL, $ancestors = NULL) {
+  public static function getVocabularyNamesJsonArray($element, $ancestors = NULL, $form_state) {
     $items = [];
+    $vocabularies = $element['#vocabulary'];
+
     if (!empty($vocabularies)) {
       foreach ($vocabularies as $vocabulary) {
         $item = [
@@ -287,7 +304,7 @@ class TermReferenceFancytree extends FormElement {
         // For each term, check if it's an ancestor of a selected item.
         // If it is, then we need to load the vocabulary folder.
         foreach ($terms as $term) {
-          if ($ancestors[$term->id()]) {
+          if (isset($ancestors[$term->id()])) {
             $item['lazy'] = FALSE;
             break;
           }
@@ -301,7 +318,7 @@ class TermReferenceFancytree extends FormElement {
         // load its children.
         if (!$item['lazy']) {
           $item['extraClasses'] = 'activeTrail';
-          $item['children'] = TermReferenceFancytree::getNestedListJsonArray($terms, $default_values, $ancestors);
+          $item['children'] = TermReferenceFancytree::getNestedListJsonArray($terms, $element, $ancestors, $form_state);
         }
 
         $items[] = $item;

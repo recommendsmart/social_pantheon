@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\fences\TagManager.
- */
-
 namespace Drupal\fences;
 
 use Drupal\Core\Plugin\DefaultPluginManager;
@@ -65,7 +60,7 @@ class TagManager extends DefaultPluginManager implements TagManagerInterface, Pl
    */
   public function getTagOptions() {
     $options = [
-      TagManagerInterface::NO_MARKUP_VALUE => $this->t('None (No wrapping HTML)')
+      TagManagerInterface::NO_MARKUP_VALUE => $this->t('None (No wrapping HTML)'),
     ];
     foreach ($this->getDefinitions() as $id => $definition) {
       $options[$definition['group']][$id] = t('@label (@tag)', ['@label' => $definition['label'], '@tag' => $id]);

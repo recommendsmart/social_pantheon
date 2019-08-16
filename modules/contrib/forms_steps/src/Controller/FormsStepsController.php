@@ -6,6 +6,7 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\forms_steps\Entity\Workflow;
 use Drupal\forms_steps\Exception\AccessDeniedException;
 use Drupal\forms_steps\Exception\FormsStepsNotFoundException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
  * Class FormsStepsController.
@@ -58,6 +59,7 @@ class FormsStepsController extends ControllerBase {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    * @throws \Drupal\forms_steps\Exception\AccessDeniedException
    * @throws \Drupal\forms_steps\Exception\FormsStepsNotFoundException
+   * @throws \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
    */
   public static function getForm($forms_steps, $step, $instance_id = NULL) {
     /** @var \Drupal\forms_steps\Entity\FormsSteps $formsSteps */
@@ -115,10 +117,16 @@ class FormsStepsController extends ControllerBase {
           }
         }
         else {
-          if ($formsSteps->getFirstStep()->id() != $step->id()) {
+          if (!$entity->access('create')) {
+            throw new AccessDeniedHttpException();
+          } else if($formsSteps->getFirstStep()->id() != $step->id()) {
             throw new AccessDeniedException(t('First step of the multi-step forms is required.'));
           }
         }
+      }
+    } else {
+      if (!$entity->access('update')) {
+        throw new AccessDeniedException(t('First step of the multi-step forms is required.'));
       }
     }
 

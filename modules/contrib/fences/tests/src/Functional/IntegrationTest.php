@@ -1,18 +1,16 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\fences\Tests\FencesIntegrationTest
- */
+namespace Drupal\Tests\fences\Functional;
 
-namespace Drupal\fences\Tests;
-
-use Drupal\simpletest\WebTestBase;
+use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
+use Drupal\Tests\fences\Kernel\StripWhitespaceTrait;
 
 /**
+ * A fences integration test.
+ *
  * @group fences
  */
-class IntegrationTest extends WebTestBase {
+class IntegrationTest extends WebDriverTestBase {
 
   use StripWhitespaceTrait;
 
@@ -22,11 +20,15 @@ class IntegrationTest extends WebTestBase {
   public static $modules = ['node', 'field', 'field_ui', 'fences'];
 
   /**
+   * An admin user.
+   *
    * @var \Drupal\user\UserInterface
    */
   protected $adminUser;
 
   /**
+   * A node.
+   *
    * @var \Drupal\node\NodeInterface
    */
   protected $node;
@@ -37,7 +39,11 @@ class IntegrationTest extends WebTestBase {
   public function setUp() {
     parent::setUp();
     $this->drupalCreateContentType(['type' => 'article', 'name' => 'Article']);
-    $this->node = $this->drupalCreateNode(['title' => $this->randomString(), 'type' => 'article', 'body' => 'Body field value.']);
+    $this->node = $this->drupalCreateNode([
+      'title' => $this->randomString(),
+      'type' => 'article',
+      'body' => 'Body field value.',
+    ]);
     $this->adminUser = $this->drupalCreateUser(['access content', 'administer node display']);
     $this->drupalLogin($this->adminUser);
   }
@@ -48,9 +54,11 @@ class IntegrationTest extends WebTestBase {
   public function testBasicSettings() {
     $manage_display = '/admin/structure/types/manage/article/display';
     $this->drupalGet($manage_display);
-    $this->drupalPostAjaxForm(NULL, [], 'body_settings_edit');
 
-    $this->drupalPostAjaxForm(NULL, [
+    $this->submitForm([], 'body_settings_edit');
+    $this->assertSession()->assertWaitOnAjaxRequest();
+
+    $this->submitForm([
       'fields[body][label]' => 'above',
       'fields[body][settings_edit_form][third_party_settings][fences][fences_field_tag]' => 'article',
       'fields[body][settings_edit_form][third_party_settings][fences][fences_field_classes]' => 'my-field-class',
@@ -58,7 +66,9 @@ class IntegrationTest extends WebTestBase {
       'fields[body][settings_edit_form][third_party_settings][fences][fences_field_item_classes]' => 'my-field-item-class',
       'fields[body][settings_edit_form][third_party_settings][fences][fences_label_tag]' => 'h2',
       'fields[body][settings_edit_form][third_party_settings][fences][fences_label_classes]' => 'my-label-class',
-    ], ['body_plugin_settings_update' => 'Update']);
+    ], 'Update');
+    $this->assertSession()->assertWaitOnAjaxRequest();
+
     $this->drupalPostForm(NULL, [], 'Save');
 
     $expected_field_markup = <<<EOD

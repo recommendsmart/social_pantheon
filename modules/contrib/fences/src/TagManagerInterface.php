@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\fences\TagManager.
- */
-
 namespace Drupal\fences;
 
 /**

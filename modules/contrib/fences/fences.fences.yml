@@ -110,6 +110,10 @@ ins:
   label: Insertion
   group: Phrasing
   description: An Addition To The Document
+li:
+  label: List item
+  group: List
+  description: List item
 kbd:
   label: Keyboard
   group: Phrasing
