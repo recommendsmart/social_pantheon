@@ -330,7 +330,7 @@
             "version": "v2.2.8",
             "source": {
                 "type": "git",
-                "url": "git@github.com:DmitryBaranovskiy/raphael.git",
+                "url": "https://github.com/DmitryBaranovskiy/raphael.git",
                 "reference": "6f9a07d8fb8f54c891450d3e28120ce57fe8d30b"
             },
             "dist": {
@@ -2553,17 +2553,17 @@
         },
         {
             "name": "drupal/commerce_funds",
-            "version": "1.0.0-alpha7",
+            "version": "1.0.0-alpha8",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/commerce_funds.git",
-                "reference": "8.x-1.0-alpha7"
+                "reference": "8.x-1.0-alpha8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/commerce_funds-8.x-1.0-alpha7.zip",
-                "reference": "8.x-1.0-alpha7",
-                "shasum": "f3809f3069f26231f67db60e394edce33b8e877b"
+                "url": "https://ftp.drupal.org/files/projects/commerce_funds-8.x-1.0-alpha8.zip",
+                "reference": "8.x-1.0-alpha8",
+                "shasum": "aea43e29a53f14b6ac69324d424e34ddf2ec2d78"
             },
             "require": {
                 "drupal/commerce": "^2.0",
@@ -2580,8 +2580,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha7",
-                    "datestamp": "1564393688",
+                    "version": "8.x-1.0-alpha8",
+                    "datestamp": "1566114785",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Alpha releases are not covered by Drupal security advisories."
@@ -8727,7 +8727,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/social_course.git",
-                "reference": "e05f85b4588273a5785ce0a63d62b61c2c171264"
+                "reference": "44dc516c958696753cec2e1c2b90172ab7c50749"
             },
             "require": {
                 "drupal/core": "*",
@@ -8743,7 +8743,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.x-dev",
-                    "datestamp": "1556035681",
+                    "datestamp": "1561454888",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -8789,7 +8789,8 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/social_course",
                 "error": "Invalid dependency: \"social_topic\" is an unknown drupal 8 package name"
-            }
+            },
+            "time": "2019-08-19T10:32:54+00:00"
         },
         {
             "name": "drupal/social_geolocation",
@@ -11007,16 +11008,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.109",
+            "version": "v0.110",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "1e1e05ed1320573f9c3c364ea87302abba748874"
+                "reference": "9d9e0a4e180cf09a52ab04535ca4f669031f8c54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/1e1e05ed1320573f9c3c364ea87302abba748874",
-                "reference": "1e1e05ed1320573f9c3c364ea87302abba748874",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/9d9e0a4e180cf09a52ab04535ca4f669031f8c54",
+                "reference": "9d9e0a4e180cf09a52ab04535ca4f669031f8c54",
                 "shasum": ""
             },
             "require": {
@@ -11040,20 +11041,20 @@
             "keywords": [
                 "google"
             ],
-            "time": "2019-08-10T00:23:38+00:00"
+            "time": "2019-08-17T00:23:23+00:00"
         },
         {
             "name": "google/auth",
-            "version": "v1.5.1",
+            "version": "v1.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-auth-library-php.git",
-                "reference": "0f75e20e7392e863f5550ed2c2d3d50af21710fb"
+                "reference": "2ee962e5df3e9427fda859f1b0515d6d62c4afa5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/0f75e20e7392e863f5550ed2c2d3d50af21710fb",
-                "reference": "0f75e20e7392e863f5550ed2c2d3d50af21710fb",
+                "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/2ee962e5df3e9427fda859f1b0515d6d62c4afa5",
+                "reference": "2ee962e5df3e9427fda859f1b0515d6d62c4afa5",
                 "shasum": ""
             },
             "require": {
@@ -11091,7 +11092,7 @@
                 "google",
                 "oauth2"
             ],
-            "time": "2019-04-16T18:48:28+00:00"
+            "time": "2019-07-22T21:01:31+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

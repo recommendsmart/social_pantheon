@@ -6,11 +6,13 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Session\AccountProxy;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\commerce_order\Entity\OrderInterface;
 use Drupal\commerce_price\Calculator;
 use Drupal\commerce_funds\Entity\Transaction;
 use Drupal\commerce_funds\Entity\TransactionInterface;
+use Drupal\commerce_funds\Exception\TransactionDeniedException;
 
 /**
  * Transaction manager class.
@@ -34,11 +36,19 @@ class TransactionManager {
   protected $connection;
 
   /**
+   * AccountProxy definition.
+   *
+   * @var \Drupal\Core\Session\AccountProxy
+   */
+  protected $currentUser;
+
+  /**
    * Class constructor.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, Connection $connection) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, Connection $connection, AccountProxy $current_user) {
     $this->entityTypeManager = $entity_type_manager;
     $this->connection = $connection;
+    $this->currentUser = $current_user;
   }
 
   /**
@@ -47,12 +57,16 @@ class TransactionManager {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('entity_type.manager'),
-      $container->get('database')
+      $container->get('database'),
+      $container->get('current_user')
     );
   }
 
   /**
    * Add deposit amount to user balance.
+   *
+   * @param \Drupal\commerce_order\Entity\OrderInterface $order
+   *   The current order.
    */
   public function addDepositToBalance(OrderInterface $order) {
     $deposit_amount = $order->getItems()[0]->getTotalPrice()->getNumber();
@@ -87,40 +101,55 @@ class TransactionManager {
 
   /**
    * Update balances.
+   *
+   * Perfom the transaction operations depending on the type.
+   *
+   * @param \Drupal\commerce_funds\Entity\TransactionInterface $transaction
+   *   The current transaction.
    */
   public function performTransaction(TransactionInterface $transaction) {
 
     $type = $transaction->bundle();
+    $currentUser = $this->currentUser;
 
-    if ($type == 'deposit') {
+    if ($type == 'deposit' && $currentUser->hasPermission('deposit funds')) {
       $this->addFundsToBalance($transaction, $transaction->getIssuer());
       $this->updateSiteBalance($transaction);
     }
 
-    if ($type == 'transfer' || $type == 'payment') {
+    elseif ($type == 'transfer' && $currentUser->hasPermission('transfer funds') || $type == 'payment' && $currentUser->hasPermission('deposit funds')) {
       $this->addFundsToBalance($transaction, $transaction->getRecipient());
       $this->removeFundsFromBalance($transaction, $transaction->getIssuer());
       $this->updateSiteBalance($transaction);
     }
 
-    if ($type == 'escrow') {
+    elseif ($type == 'escrow' && $currentUser->hasPermission('create escrow payment')) {
       $this->removeFundsFromBalance($transaction, $transaction->getIssuer());
     }
 
-    if ($type == 'withdrawal_request') {
+    elseif ($type == 'withdrawal_request' && $currentUser->hasPermission('withdraw funds')) {
       $this->removeFundsFromBalance($transaction, $transaction->getIssuer());
       $this->updateSiteBalance($transaction);
     }
 
-    if ($type == 'conversion') {
+    elseif ($type == 'conversion' && $currentUser->hasPermission('convert currencies')) {
       $this->removeFundsFromBalance($transaction, $transaction->getIssuer());
       $this->addFundsToBalance($transaction, $transaction->getRecipient());
+    }
+
+    else {
+      throw new TransactionDeniedException("Transaction permission denied: " . $transaction->bundle());
     }
 
   }
 
   /**
    * Add funds from balance.
+   *
+   * @param \Drupal\commerce_funds\Entity\TransactionInterface $transaction
+   *   The current transaction.
+   * @param \Drupal\Core\Session\AccountInterface $account
+   *   The current user.
    */
   public function addFundsToBalance(TransactionInterface $transaction, AccountInterface $account) {
     $brut_amount = $transaction->getBrutAmount();
@@ -156,6 +185,11 @@ class TransactionManager {
 
   /**
    * Remove Funds from balance.
+   *
+   * @param \Drupal\commerce_funds\Entity\TransactionInterface $transaction
+   *   The current transaction.
+   * @param \Drupal\Core\Session\AccountInterface $account
+   *   The current user.
    */
   public function removeFundsFromBalance(TransactionInterface $transaction, AccountInterface $account) {
     $net_amount = $transaction->getNetAmount();
@@ -190,6 +224,9 @@ class TransactionManager {
 
   /**
    * Update site balance.
+   *
+   * @param \Drupal\commerce_funds\Entity\TransactionInterface $transaction
+   *   The current transaction.
    */
   public function updateSiteBalance(TransactionInterface $transaction) {
     $currency_code = $transaction->getCurrencyCode();

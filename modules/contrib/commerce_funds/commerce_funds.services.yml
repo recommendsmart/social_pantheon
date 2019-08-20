@@ -13,7 +13,7 @@ services:
 
   commerce_funds.transaction_manager:
     class: Drupal\commerce_funds\Services\TransactionManager
-    arguments: ['@entity_type.manager', '@database']
+    arguments: ['@entity_type.manager', '@database', '@current_user']
 
   commerce_funds.update_account_balance:
     class: Drupal\commerce_funds\EventSubscriber\OrderUpdateSubscriber

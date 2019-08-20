@@ -134,9 +134,7 @@ class ConfirmWithdrawalDecline extends ConfirmFormBase {
     }
 
     // Confirmation message.
-    $this->messenger->addMessage(isset($message) ? $message : $this->t('Request declined. An email with the reason has been sent to @user', [
-      '@user' => $requester->getAccountName(),
-    ]), 'status');
+    $this->messenger->addMessage(isset($message) ? $message : $this->t('Request declined.'), 'status');
 
     // Set redirection.
     $form_state->setRedirect('view.commerce_funds_transactions.withdrawal_requests');

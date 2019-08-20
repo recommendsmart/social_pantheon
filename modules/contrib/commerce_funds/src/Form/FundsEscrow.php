@@ -160,7 +160,7 @@ class FundsEscrow extends ConfigFormBase {
   public function validateForm(array &$form, FormStateInterface $form_state) {
     $amount = $form_state->getValue('amount');
     $currency = $form_state->getValue('currency');
-    $fee_applied = \Drupal::service('commerce_funds.fees_manager')->calculateTransactionFee($amount, $currency, 'transfer');
+    $fee_applied = \Drupal::service('commerce_funds.fees_manager')->calculateTransactionFee($amount, $currency, 'escrow');
 
     $issuer = $this->currentUser;
     $issuer_balance = \Drupal::service('commerce_funds.transaction_manager')->loadAccountBalance($issuer->getAccount(), $currency);

@@ -12,8 +12,8 @@ dependencies:
   - Commerce:commerce_store
 configure: commerce_funds.settings
 
-# Information added by Drupal.org packaging script on 2019-07-29
-version: '8.x-1.0-alpha7'
+# Information added by Drupal.org packaging script on 2019-08-18
+version: '8.x-1.0-alpha8'
 core: '8.x'
 project: 'commerce_funds'
-datestamp: 1564393690
+datestamp: 1566114787
