@@ -152,7 +152,9 @@ class ComposerStaticInitDrupal8
         ),
         'D' => 
         array (
+            'Drupal\\webform_event_dispatcher\\' => 32,
             'Drupal\\social\\Behat\\' => 20,
+            'Drupal\\hook_event_dispatcher\\' => 29,
             'Drupal\\drush9_example\\' => 22,
             'Drupal\\Driver\\' => 14,
             'Drupal\\Core\\' => 12,
@@ -434,9 +436,17 @@ class ComposerStaticInitDrupal8
         array (
             0 => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator',
         ),
+        'Drupal\\webform_event_dispatcher\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/modules/contrib/hook_event_dispatcher/modules/webform_event_dispatcher/src',
+        ),
         'Drupal\\social\\Behat\\' => 
         array (
             0 => __DIR__ . '/../..' . '/profiles/contrib/social/tests/behat/features/bootstrap',
+        ),
+        'Drupal\\hook_event_dispatcher\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/modules/contrib/hook_event_dispatcher/src',
         ),
         'Drupal\\drush9_example\\' => 
         array (

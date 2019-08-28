@@ -1,0 +1,22 @@
+{
+    "name": "drupal/drulma",
+    "description": "Enables the use of Bulma: a free, open source CSS framework based on Flexbox.",
+    "homepage": "https://www.drupal.org/project/drulma",
+    "support": {
+        "source": "https://gitlab.com/upstreamable/drulma",
+        "issues": "https://gitlab.com/upstreamable/drulma/issues"
+    },
+    "require": {
+        "drupal/core": "^8.5"
+    },
+    "require-dev": {
+         "consolidation/robo": "^1"
+    },
+    "suggest": {
+        "drupal/drulma_companion": "Enables Bulma designed blocks and drush commnands"
+    },
+    "type": "drupal-theme",
+    "license": [
+        "GPL-2.0-or-later"
+    ]
+}
