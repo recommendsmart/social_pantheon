@@ -2179,6 +2179,59 @@
         }
     },
     {
+        "name": "drupal/bulma",
+        "version": "1.0.0-beta3",
+        "version_normalized": "1.0.0.0-beta3",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/bulma.git",
+            "reference": "8.x-1.0-beta3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/bulma-8.x-1.0-beta3.zip",
+            "reference": "8.x-1.0-beta3",
+            "shasum": "cfc76cffc10c198afb78a7699690b3f95c5ea950"
+        },
+        "require": {
+            "drupal/core": "~8.0"
+        },
+        "type": "drupal-theme",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.0-beta3",
+                "datestamp": "1566343985",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Beta releases are not covered by Drupal security advisories."
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "nedjo",
+                "homepage": "https://www.drupal.org/user/4481"
+            },
+            {
+                "name": "valic",
+                "homepage": "https://www.drupal.org/user/980550"
+            }
+        ],
+        "description": "Built to use Bulma, a modern CSS framework based on Flexbox.",
+        "homepage": "https://www.drupal.org/project/bulma",
+        "support": {
+            "source": "https://git.drupalcode.org/project/bulma"
+        }
+    },
+    {
         "name": "drupal/button_link",
         "version": "1.1.0",
         "version_normalized": "1.1.0.0",

@@ -89,7 +89,8 @@
         "drupal/clever_theme_switcher": "^3.0",
         "drupal/views_add_button_group": "^1.2",
         "drupal/viewfield": "^3.0",
-        "drupal/rules": "^3.0"						  							 
+        "drupal/rules": "^3.0",
+        "drupal/bulma": "^1.0"						  							 
         },
     "repositories": [
         {
