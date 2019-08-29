@@ -92,7 +92,8 @@
         "drupal/rules": "^3.0",
         "drupal/drulma": "^1.1",
         "drupal/drulma_companion": "^1.2",
-        "drupal/fieldblock": "^2.0"						  							 
+        "drupal/fieldblock": "^2.0",
+        "drupal/ds": "^3.3"						  							 
         },
     "repositories": [
         {
