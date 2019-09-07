@@ -5,8 +5,3 @@ dependencies:
 - drupal:views
 - currency:currency
 - token:token
-
-# Information added by Drupal.org packaging script on 2019-09-06
-version: '8.x-1.x-dev'
-project: 'dfinance'
-datestamp: 1567805291

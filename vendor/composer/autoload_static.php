@@ -107,6 +107,7 @@ class ComposerStaticInitDrupal8
             'Monolog\\' => 8,
             'Minishlink\\WebPush\\' => 19,
             'Mdanter\\Ecc\\' => 12,
+            'MathParser\\' => 11,
             'Masterminds\\' => 12,
         ),
         'L' => 
@@ -154,8 +155,11 @@ class ComposerStaticInitDrupal8
         array (
             'Drupal\\webform_event_dispatcher\\' => 32,
             'Drupal\\social\\Behat\\' => 20,
+            'Drupal\\plugin\\' => 14,
             'Drupal\\hook_event_dispatcher\\' => 29,
             'Drupal\\drush9_example\\' => 22,
+            'Drupal\\dfinance\\' => 16,
+            'Drupal\\currency\\' => 16,
             'Drupal\\Driver\\' => 14,
             'Drupal\\Core\\' => 12,
             'Drupal\\Component\\' => 17,
@@ -170,6 +174,8 @@ class ComposerStaticInitDrupal8
         array (
             'Composer\\Semver\\' => 16,
             'Composer\\Installers\\' => 20,
+            'Commercie\\Currency\\' => 19,
+            'Commercie\\CurrencyExchange\\' => 27,
             'CommerceGuys\\Intl\\' => 18,
             'CommerceGuys\\Addressing\\' => 24,
             'Clue\\StreamFilter\\' => 18,
@@ -350,6 +356,10 @@ class ComposerStaticInitDrupal8
         array (
             0 => __DIR__ . '/..' . '/mdanter/ecc/src',
         ),
+        'MathParser\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mossadal/math-parser/src/MathParser',
+        ),
         'Masterminds\\' => 
         array (
             0 => __DIR__ . '/..' . '/masterminds/html5/src',
@@ -444,6 +454,10 @@ class ComposerStaticInitDrupal8
         array (
             0 => __DIR__ . '/../..' . '/profiles/contrib/social/tests/behat/features/bootstrap',
         ),
+        'Drupal\\plugin\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/modules/contrib/plugin/src',
+        ),
         'Drupal\\hook_event_dispatcher\\' => 
         array (
             0 => __DIR__ . '/../..' . '/modules/contrib/hook_event_dispatcher/src',
@@ -451,6 +465,14 @@ class ComposerStaticInitDrupal8
         'Drupal\\drush9_example\\' => 
         array (
             0 => __DIR__ . '/../..' . '/modules/contrib/duration_field/src',
+        ),
+        'Drupal\\dfinance\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/modules/contrib/dfinance/src',
+        ),
+        'Drupal\\currency\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/modules/contrib/currency/src',
         ),
         'Drupal\\Driver\\' => 
         array (
@@ -495,6 +517,14 @@ class ComposerStaticInitDrupal8
         'Composer\\Installers\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
+        ),
+        'Commercie\\Currency\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/commercie/currency/src',
+        ),
+        'Commercie\\CurrencyExchange\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/commercie/currency-exchange/src',
         ),
         'CommerceGuys\\Intl\\' => 
         array (
