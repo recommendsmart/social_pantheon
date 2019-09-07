@@ -4,7 +4,9 @@
 
     attach: function(context, settings) {
       $(Drupal.ajax.instances).once('disableFormElementsDuringAjaxCallback').each(function (index, instance) {
-        instance.options.beforeSubmit = $.fn.ajaxDisableElements;
+        if ($.inArray('ajaxGetDisplayOptions', instance.callback) !== -1) {
+          instance.options.beforeSubmit = $.fn.ajaxDisableElements;
+        }
       })
     }
   };

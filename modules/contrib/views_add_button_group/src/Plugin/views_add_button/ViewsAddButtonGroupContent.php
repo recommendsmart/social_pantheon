@@ -74,8 +74,13 @@ class ViewsAddButtonGroupContent extends PluginBase implements ViewsAddButtonInt
     if (count($b) === 3) {
       $plugin_id = implode(':', [$b[1], $b[2]]);
     }
-    // Memberships are usually of the type [group_type]-group_membership.
-    elseif (count($b) === 2 && $b[1] === 'group_membership') {
+    /**
+     * Memberships are usually of the type [group_type]-group_membership.
+     *
+     * In some cases, the bundle may be hidden in a long string.
+     */
+    elseif ((count($b) === 2 && $b[1] === 'group_membership') ||
+      (count($b) === 1 && ViewsAddButtonGroupContent::getBundle($bundle) === 'group_membership')) {
       $plugin_id = 'group_membership';
       /*
        * In the case of group membership, we may add a second context parameter,
@@ -110,6 +115,7 @@ class ViewsAddButtonGroupContent extends PluginBase implements ViewsAddButtonInt
     }
     // Create URL from the data above.
     if (empty($route) && isset($c[0]) && !empty($c[0]) && $plugin_id) {
+
       /* If we pass "add" with the group context, we can generate the
        * "relate existing entity to group" link, instead of the create link.
        */
@@ -158,8 +164,13 @@ class ViewsAddButtonGroupContent extends PluginBase implements ViewsAddButtonInt
     if (count($b) === 3) {
       $plugin_id = implode(':', [$b[1], $b[2]]);
     }
-    // Memberships are usually of the type [group_type]-group_membership.
-    elseif (count($b) === 2 && $b[1] === 'group_membership') {
+    /**
+     * Memberships are usually of the type [group_type]-group_membership.
+     *
+     * In some cases, the bundle may be hidden in a long string.
+     */
+    elseif ((count($b) === 2 && $b[1] === 'group_membership') ||
+      (count($b) === 1 && ViewsAddButtonGroupContent::getBundle($bundle) === 'group_membership')) {
       $plugin_id = 'group_membership';
       /*
        * In the case of group membership, we may add a second context

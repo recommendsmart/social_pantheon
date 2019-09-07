@@ -6,6 +6,7 @@ use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Field\FormatterBase;
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\views\Views;
 
 /**
@@ -122,6 +123,7 @@ class ViewfieldFormatterDefault extends FormatterBase {
     }
 
     $elements = [];
+    $cacheability = new CacheableMetadata();
 
     $always_build_output = $this->getSetting('always_build_output');
     $view_title = $this->getSetting('view_title');
@@ -171,6 +173,11 @@ class ViewfieldFormatterDefault extends FormatterBase {
         }
 
         $rendered_view = $view->buildRenderable($display_id, $arguments);
+
+        // Get cache metadata from view and merge.
+        $view_cacheability = CacheableMetadata::createFromRenderArray($view->element);
+        $cacheability = $cacheability->merge($view_cacheability);
+
         if (!empty($view->result) || $always_build_output) {
           $elements[$delta] = [
             '#theme' => 'viewfield_item',
@@ -189,6 +196,9 @@ class ViewfieldFormatterDefault extends FormatterBase {
         }
       }
     }
+
+    // Apply merged cache metadata to $elements.
+    $cacheability->applyTo($elements);
 
     return $elements;
   }

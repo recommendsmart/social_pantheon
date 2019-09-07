@@ -129,13 +129,21 @@ class ViewfieldWidgetSelect extends OptionsSelectWidget {
       '#maxlength' => 255,
     ];
 
+    // Get entity types from the $items.
+    $entity_type = $items->getEntity()->getEntityTypeId();
+
+    // Token expects the value "term" for taxonomy_term entities.
+    if ($entity_type == 'taxonomy_term') {
+      $entity_type = 'term';
+    }
+
     $element['view_options']['token_help'] = [
       '#type' => 'item',
       '#weight' => 30,
       '#states' => ['visible' => $primary_field_visible_test],
       'tokens' => [
         '#theme' => 'token_tree_link',
-        '#token_types' => [$items->getEntity()->getEntityTypeId()],
+        '#token_types' => [$entity_type],
       ],
     ];
 

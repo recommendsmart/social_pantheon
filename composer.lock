@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "920e2f6b283c815c028439988393a49c",
+    "content-hash": "955e0ee4655e984f06f8388a20d56a3c",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -178,7 +178,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/jackmoore/autosize/zipball/6ae70cd3d28888eb858eef1167e6ed75d25dff7f",
-                "reference": "6ae70cd3d28888eb858eef1167e6ed75d25dff7f"
+                "reference": "6ae70cd3d28888eb858eef1167e6ed75d25dff7f",
+                "shasum": null
             },
             "type": "bower-asset"
         },
@@ -193,7 +194,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/dinbror/blazy/zipball/5becad405976695e6016ba301be4f22ba61d5b95",
-                "reference": "5becad405976695e6016ba301be4f22ba61d5b95"
+                "reference": "5becad405976695e6016ba301be4f22ba61d5b95",
+                "shasum": null
             },
             "type": "bower-asset",
             "license": [
@@ -211,7 +213,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/twbs/bootstrap/zipball/68b0d231a13201eb14acd3dc84e51543d16e5f7e",
-                "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
+                "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e",
+                "shasum": null
             },
             "require": {
                 "bower-asset/jquery": ">=1.9.1,<4.0"
@@ -232,7 +235,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/mbostock-bower/d3-bower/zipball/7a826d211d5067867debf9ce24a9987e0cb02b6e",
-                "reference": "7a826d211d5067867debf9ce24a9987e0cb02b6e"
+                "reference": "7a826d211d5067867debf9ce24a9987e0cb02b6e",
+                "shasum": null
             },
             "type": "bower-asset",
             "license": [
@@ -250,7 +254,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/tomasAlabes/eve/zipball/93132d5d47a0ce31dbd1b75208b1d4c0e2ad81e8",
-                "reference": "93132d5d47a0ce31dbd1b75208b1d4c0e2ad81e8"
+                "reference": "93132d5d47a0ce31dbd1b75208b1d4c0e2ad81e8",
+                "shasum": null
             },
             "type": "bower-asset",
             "license": [
@@ -268,7 +273,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/highlightjs/highlight.js/zipball/3026925b1c57c9a9feb0713e663f8d1ef8ff08e9",
-                "reference": "3026925b1c57c9a9feb0713e663f8d1ef8ff08e9"
+                "reference": "3026925b1c57c9a9feb0713e663f8d1ef8ff08e9",
+                "shasum": null
             },
             "type": "bower-asset"
         },
@@ -283,7 +289,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/15bc73803f76bc53b654b9fdbbbc096f56d7c03d",
-                "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
+                "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d",
+                "shasum": null
             },
             "type": "bower-asset",
             "license": [
@@ -301,7 +308,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/mochajs/mocha/zipball/7fc565ee3e225cb7a66bf39ae9c2c05b346675c1",
-                "reference": "7fc565ee3e225cb7a66bf39ae9c2c05b346675c1"
+                "reference": "7fc565ee3e225cb7a66bf39ae9c2c05b346675c1",
+                "shasum": null
             },
             "type": "bower-asset"
         },
@@ -316,7 +324,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/oesmith/morris.js/zipball/d5cf1410eda7055eaf2c7d218d4cb24ec5ed55c8",
-                "reference": "d5cf1410eda7055eaf2c7d218d4cb24ec5ed55c8"
+                "reference": "d5cf1410eda7055eaf2c7d218d4cb24ec5ed55c8",
+                "shasum": null
             },
             "require": {
                 "bower-asset/jquery": ">=2.1.0",
@@ -336,7 +345,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/DmitryBaranovskiy/raphael/zipball/6f9a07d8fb8f54c891450d3e28120ce57fe8d30b",
-                "reference": "6f9a07d8fb8f54c891450d3e28120ce57fe8d30b"
+                "reference": "6f9a07d8fb8f54c891450d3e28120ce57fe8d30b",
+                "shasum": null
             },
             "require": {
                 "bower-asset/eve-raphael": "0.5.0"
@@ -348,16 +358,17 @@
         },
         {
             "name": "bower-asset/select2",
-            "version": "4.0.9",
+            "version": "4.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/select2/select2.git",
-                "reference": "2148b6d3aef965404a33dbee0f9d8cb44fd494a4"
+                "reference": "c4b730a0a014ea38641bfbcb245e4b7aa0ca5657"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/select2/select2/zipball/2148b6d3aef965404a33dbee0f9d8cb44fd494a4",
-                "reference": "2148b6d3aef965404a33dbee0f9d8cb44fd494a4"
+                "url": "https://api.github.com/repos/select2/select2/zipball/c4b730a0a014ea38641bfbcb245e4b7aa0ca5657",
+                "reference": "c4b730a0a014ea38641bfbcb245e4b7aa0ca5657",
+                "shasum": null
             },
             "type": "bower-asset",
             "license": [
@@ -375,7 +386,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/filamentgroup/tablesaw/zipball/6c3387b71d659773e1c7dcb5d7aa5bcb83f53932",
-                "reference": "6c3387b71d659773e1c7dcb5d7aa5bcb83f53932"
+                "reference": "6c3387b71d659773e1c7dcb5d7aa5bcb83f53932",
+                "shasum": null
             },
             "type": "bower-asset"
         },
@@ -390,7 +402,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/jonthornton/jquery-timepicker/zipball/f3c122dbbf0b77642e43a2ea3f6181c9bac2d334",
-                "reference": "f3c122dbbf0b77642e43a2ea3f6181c9bac2d334"
+                "reference": "f3c122dbbf0b77642e43a2ea3f6181c9bac2d334",
+                "shasum": null
             },
             "require": {
                 "bower-asset/jquery": ">=1.7"
@@ -411,7 +424,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/fians/Waves/zipball/1985b7e18327f86f1bb640efe3a2ab4b4fea4078",
-                "reference": "1985b7e18327f86f1bb640efe3a2ab4b4fea4078"
+                "reference": "1985b7e18327f86f1bb640efe3a2ab4b4fea4078",
+                "shasum": null
             },
             "type": "bower-asset",
             "license": [
@@ -608,96 +622,6 @@
             ],
             "description": "Internationalization library powered by CLDR data.",
             "time": "2019-03-31T23:36:43+00:00"
-        },
-        {
-            "name": "commercie/currency",
-            "version": "1.1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Commercie/currency.git",
-                "reference": "64812cb8d5e8cdbc406c2f7c114399c814e2d898"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Commercie/currency/zipball/64812cb8d5e8cdbc406c2f7c114399c814e2d898",
-                "reference": "64812cb8d5e8cdbc406c2f7c114399c814e2d898",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": "~5.5 || ~7.0"
-            },
-            "require-dev": {
-                "justinrainbow/json-schema": "~1.4",
-                "phpunit/phpunit": "~4.0"
-            },
-            "suggest": {
-                "drupal/currency": "Integrates this package with Drupal."
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Commercie\\Currency\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bart Feenstra",
-                    "email": "bart@mynameisbart.com",
-                    "homepage": "http://mynameisbart.com",
-                    "role": "Developer"
-                }
-            ],
-            "time": "2018-05-11T10:11:38+00:00"
-        },
-        {
-            "name": "commercie/currency-exchange",
-            "version": "1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Commercie/currency-exchange.git",
-                "reference": "bb6a0c3b682aaed2eda205ceda5582673cb444af"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Commercie/currency-exchange/zipball/bb6a0c3b682aaed2eda205ceda5582673cb444af",
-                "reference": "bb6a0c3b682aaed2eda205ceda5582673cb444af",
-                "shasum": ""
-            },
-            "require": {
-                "ext-bcmath": "*",
-                "ext-json": "*",
-                "php": "~5.5 || ~7.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "suggest": {
-                "commercie/currency-exchange-yahoo-finance": "Retrieves currency exchange rates from Yahoo! Finance.",
-                "drupal/currency": "Integrates this package with Drupal."
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Commercie\\CurrencyExchange\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bart Feenstra",
-                    "email": "bart@mynameisbart.com"
-                }
-            ],
-            "description": "A library for retrieving currency exchange rates.",
-            "time": "2016-07-01T11:01:48+00:00"
         },
         {
             "name": "composer/installers",
@@ -3671,16 +3595,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "8.7.6",
+            "version": "8.7.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "39164616332832e1456199d32fc3ed11562f4721"
+                "reference": "32e1d7a67bbc28f07dc43d9ff692c0e90a4aeb92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/39164616332832e1456199d32fc3ed11562f4721",
-                "reference": "39164616332832e1456199d32fc3ed11562f4721",
+                "url": "https://api.github.com/repos/drupal/core/zipball/32e1d7a67bbc28f07dc43d9ff692c0e90a4aeb92",
+                "reference": "32e1d7a67bbc28f07dc43d9ff692c0e90a4aeb92",
                 "shasum": ""
             },
             "require": {
@@ -3730,7 +3654,8 @@
                 "zendframework/zend-feed": "^2.4"
             },
             "conflict": {
-                "drush/drush": "<8.1.10"
+                "drush/drush": "<8.1.10",
+                "symfony/dom-crawler": ">=4"
             },
             "replace": {
                 "drupal/action": "self.version",
@@ -3920,7 +3845,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2019-08-07T19:19:20+00:00"
+            "time": "2019-09-04T10:26:35+00:00"
         },
         {
             "name": "drupal/crm_core",
@@ -3928,7 +3853,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/crm_core.git",
-                "reference": "ebeafe7e67c8570f11afe234aae68f7f8ef6a0fd"
+                "reference": "53c3b91376b8cd357a7ff44e8f42a0cd281ce35b"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -3939,7 +3864,7 @@
                 "drupal/crm_core_relationship": "*",
                 "drupal/dynamic_entity_reference": "*",
                 "drupal/entity": "*",
-                "drupal/name": "*",
+                "drupal/name": "^1.0.0-rc2",
                 "drupal/relation": "*",
                 "drupal/search_api": "*"
             },
@@ -3950,7 +3875,7 @@
                 },
                 "drupal": {
                     "version": "8.x-3.x-dev",
-                    "datestamp": "1558928888",
+                    "datestamp": "1567341189",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -4007,7 +3932,8 @@
             "homepage": "https://www.drupal.org/project/crm_core",
             "support": {
                 "source": "https://git.drupalcode.org/project/crm_core"
-            }
+            },
+            "time": "2019-09-01T18:38:45+00:00"
         },
         {
             "name": "drupal/crop",
@@ -4207,68 +4133,6 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/ctools",
                 "issues": "https://www.drupal.org/project/issues/ctools"
-            }
-        },
-        {
-            "name": "drupal/currency",
-            "version": "3.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/currency.git",
-                "reference": "8.x-3.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/currency-8.x-3.1.zip",
-                "reference": "8.x-3.1",
-                "shasum": "4e1f257ba0af2639c9a47f104eae27d65bf05505"
-            },
-            "require": {
-                "commercie/currency": "~1.0",
-                "commercie/currency-exchange": "~1.0",
-                "drupal/core": "~8.0",
-                "drupal/plugin": "*",
-                "ext-bcmath": "*",
-                "php": "~5.5 || ~7.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-3.x": "3.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-3.1",
-                    "datestamp": "1455608932",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Drupal\\currency\\": "src"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Drupal\\Tests\\currency\\": "tests/src"
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Berdir",
-                    "homepage": "https://www.drupal.org/user/214652"
-                }
-            ],
-            "description": "Provides your Drupal site with currency conversion, currency information & metadata, and amount/price display functionality.",
-            "homepage": "https://www.drupal.org/project/currency",
-            "support": {
-                "source": "https://git.drupalcode.org/project/currency"
             }
         },
         {
@@ -4617,56 +4481,6 @@
             }
         },
         {
-            "name": "drupal/dfinance",
-            "version": "dev-1.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/dfinance.git",
-                "reference": "24084f8835aea87079b9ee6f58ab533aab7c72b2"
-            },
-            "require": {
-                "drupal/core": "*",
-                "drupal/currency": "^3.1",
-                "drupal/token": "^1.5",
-                "ext-bcmath": "*",
-                "mossadal/math-parser": "^1.3"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.x-dev",
-                    "datestamp": "1567727580",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Drupal\\dfinance\\": "src"
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "AaronMcHale",
-                    "homepage": "https://www.drupal.org/user/429621"
-                }
-            ],
-            "homepage": "https://www.drupal.org/project/dfinance",
-            "support": {
-                "source": "https://git.drupalcode.org/project/dfinance"
-            },
-            "time": "2019-09-05T20:34:24+00:00"
-        },
-        {
             "name": "drupal/disable_field",
             "version": "2.1.0",
             "source": {
@@ -4833,17 +4647,17 @@
         },
         {
             "name": "drupal/ds",
-            "version": "3.3.0",
+            "version": "3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ds.git",
-                "reference": "8.x-3.3"
+                "reference": "8.x-3.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ds-8.x-3.3.zip",
-                "reference": "8.x-3.3",
-                "shasum": "0f586997908d464c123b1ab8817cf13363666459"
+                "url": "https://ftp.drupal.org/files/projects/ds-8.x-3.4.zip",
+                "reference": "8.x-3.4",
+                "shasum": "ebf070ba2f7cf78a62cf74678a9948546a93e773"
             },
             "require": {
                 "drupal/core": "^8.6"
@@ -4858,8 +4672,8 @@
                     "dev-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-3.3",
-                    "datestamp": "1551355085",
+                    "version": "8.x-3.4",
+                    "datestamp": "1567165687",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6410,17 +6224,17 @@
         },
         {
             "name": "drupal/geocoder",
-            "version": "2.2.0",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/geocoder.git",
-                "reference": "8.x-2.2"
+                "reference": "8.x-2.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/geocoder-8.x-2.2.zip",
-                "reference": "8.x-2.2",
-                "shasum": "fd7f3ded17e20ce971cba69a730d23adf1589674"
+                "url": "https://ftp.drupal.org/files/projects/geocoder-8.x-2.3.zip",
+                "reference": "8.x-2.3",
+                "shasum": "8a1743d10d05b10c219466749a3e5df907bccc40"
             },
             "require": {
                 "drupal/core": "~8.0",
@@ -6442,8 +6256,8 @@
                     "dev-2.x": "2.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-2.2",
-                    "datestamp": "1557719290",
+                    "version": "8.x-2.3",
+                    "datestamp": "1567546388",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6512,7 +6326,7 @@
         },
         {
             "name": "drupal/geocoder_address",
-            "version": "2.2.0",
+            "version": "2.3.0",
             "require": {
                 "drupal/address": "*",
                 "drupal/core": "~8.0",
@@ -6525,8 +6339,8 @@
                     "dev-2.x": "2.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-2.2",
-                    "datestamp": "1557719290",
+                    "version": "8.x-2.3",
+                    "datestamp": "1567546388",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6591,7 +6405,7 @@
         },
         {
             "name": "drupal/geocoder_field",
-            "version": "2.2.0",
+            "version": "2.3.0",
             "require": {
                 "drupal/core": "*",
                 "drupal/geocoder": "self.version"
@@ -6602,8 +6416,8 @@
                     "dev-2.x": "2.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-2.2",
-                    "datestamp": "1557719290",
+                    "version": "8.x-2.3",
+                    "datestamp": "1567546388",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -8321,72 +8135,6 @@
             }
         },
         {
-            "name": "drupal/plugin",
-            "version": "2.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/plugin.git",
-                "reference": "8.x-2.6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/plugin-8.x-2.6.zip",
-                "reference": "8.x-2.6",
-                "shasum": "703b976e6158c2b3e5cd6d7f6358f82ed411689f"
-            },
-            "require": {
-                "drupal/core": "~8.0 || >= 8.0.5",
-                "php": "~5.5|~7.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-2.6",
-                    "datestamp": "1558296181",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Drupal\\plugin\\": "src"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Drupal\\Tests\\plugin\\": "tests/src"
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Berdir",
-                    "homepage": "https://www.drupal.org/user/214652"
-                },
-                {
-                    "name": "bradjones1",
-                    "homepage": "https://www.drupal.org/user/405824"
-                },
-                {
-                    "name": "joachim",
-                    "homepage": "https://www.drupal.org/user/107701"
-                }
-            ],
-            "description": "Provides tools that extend Drupal's plugin system.",
-            "homepage": "https://www.drupal.org/project/plugin",
-            "support": {
-                "source": "https://git.drupalcode.org/project/plugin"
-            }
-        },
-        {
             "name": "drupal/prevent_term_delete",
             "version": "1.1.0-alpha2",
             "source": {
@@ -8569,7 +8317,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/pwa.git",
-                "reference": "b343f48e2404bfc1169879c91a7ba046706ccd3b"
+                "reference": "90919b91ef93c4fc2d90dd8ba1ad858267d8aaf6"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -8580,8 +8328,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0+5-dev",
-                    "datestamp": "1566950885",
+                    "version": "8.x-1.0+9-dev",
+                    "datestamp": "1567700580",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -8615,7 +8363,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/pwa"
             },
-            "time": "2019-08-28T16:36:01+00:00"
+            "time": "2019-09-05T21:07:19+00:00"
         },
         {
             "name": "drupal/quicktabs",
@@ -9556,8 +9304,7 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/social_course",
                 "error": "Invalid dependency: \"social_topic\" is an unknown drupal 8 package name"
-            },
-            "time": "2019-08-19T10:32:54+00:00"
+            }
         },
         {
             "name": "drupal/social_geolocation",
@@ -10049,8 +9796,7 @@
             "homepage": "https://www.drupal.org/project/taxonomy_term_depth",
             "support": {
                 "source": "https://git.drupalcode.org/project/taxonomy_term_depth"
-            },
-            "time": "2019-04-11T10:34:59+00:00"
+            }
         },
         {
             "name": "drupal/term_reference_fancytree",
@@ -10522,17 +10268,17 @@
         },
         {
             "name": "drupal/viewfield",
-            "version": "3.0.0-beta3",
+            "version": "3.0.0-beta4",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/viewfield.git",
-                "reference": "8.x-3.0-beta3"
+                "reference": "8.x-3.0-beta4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/viewfield-8.x-3.0-beta3.zip",
-                "reference": "8.x-3.0-beta3",
-                "shasum": "82fca470e3563c58fc37d1204354b2555ff32485"
+                "url": "https://ftp.drupal.org/files/projects/viewfield-8.x-3.0-beta4.zip",
+                "reference": "8.x-3.0-beta4",
+                "shasum": "84c2e225f0cf130ddc41330a6ef031d66b47383e"
             },
             "require": {
                 "drupal/core": "*"
@@ -10543,8 +10289,8 @@
                     "dev-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-3.0-beta3",
-                    "datestamp": "1565627287",
+                    "version": "8.x-3.0-beta4",
+                    "datestamp": "1567713485",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
@@ -10679,17 +10425,17 @@
         },
         {
             "name": "drupal/views_add_button_group",
-            "version": "1.2.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/views_add_button_group.git",
-                "reference": "8.x-1.2"
+                "reference": "8.x-1.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/views_add_button_group-8.x-1.2.zip",
-                "reference": "8.x-1.2",
-                "shasum": "b2d6fae157386e1059db4157cb251fe6f8d7c112"
+                "url": "https://ftp.drupal.org/files/projects/views_add_button_group-8.x-1.4.zip",
+                "reference": "8.x-1.4",
+                "shasum": "f48a134f532a1157f8a38cfecfbb124d298480f7"
             },
             "require": {
                 "drupal/core": "*",
@@ -10702,8 +10448,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.2",
-                    "datestamp": "1565844185",
+                    "version": "8.x-1.4",
+                    "datestamp": "1567491487",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -11828,16 +11574,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.111",
+            "version": "v0.112",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "3bdb4e5be7fe49f8737f7b3a8a3a32ca68ff8f97"
+                "reference": "0cc6d74aa99f5af8385c7b87599b97460e036dc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/3bdb4e5be7fe49f8737f7b3a8a3a32ca68ff8f97",
-                "reference": "3bdb4e5be7fe49f8737f7b3a8a3a32ca68ff8f97",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/0cc6d74aa99f5af8385c7b87599b97460e036dc2",
+                "reference": "0cc6d74aa99f5af8385c7b87599b97460e036dc2",
                 "shasum": ""
             },
             "require": {
@@ -11861,7 +11607,7 @@
             "keywords": [
                 "google"
             ],
-            "time": "2019-08-25T00:23:03+00:00"
+            "time": "2019-08-31T00:23:10+00:00"
         },
         {
             "name": "google/auth",
@@ -12550,16 +12296,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.24.0",
+            "version": "1.25.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "bfc9ebb28f97e7a24c45bdc3f0ff482e47bb0266"
+                "reference": "70e65a5470a42cfec1a7da00d30edb6e617e8dcf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/bfc9ebb28f97e7a24c45bdc3f0ff482e47bb0266",
-                "reference": "bfc9ebb28f97e7a24c45bdc3f0ff482e47bb0266",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/70e65a5470a42cfec1a7da00d30edb6e617e8dcf",
+                "reference": "70e65a5470a42cfec1a7da00d30edb6e617e8dcf",
                 "shasum": ""
             },
             "require": {
@@ -12624,54 +12370,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2018-11-05T09:00:11+00:00"
-        },
-        {
-            "name": "mossadal/math-parser",
-            "version": "v1.3.16",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mossadal/math-parser.git",
-                "reference": "981b03ca603fd281049e092d75245ac029e13dec"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mossadal/math-parser/zipball/981b03ca603fd281049e092d75245ac029e13dec",
-                "reference": "981b03ca603fd281049e092d75245ac029e13dec",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "phpdocumentor/phpdocumentor": "2.*",
-                "phpunit/php-code-coverage": "6.0.*",
-                "phpunit/phpunit": "7.3.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "MathParser\\": "src/MathParser"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "Frank Wikström",
-                    "email": "frank@mossadal.se",
-                    "role": "Developer"
-                }
-            ],
-            "description": "PHP parser for mathematical expressions, including elementary functions, variables and implicit multiplication. Also supports symbolic differentiation.",
-            "homepage": "https://github.com/mossadal/math-parser",
-            "keywords": [
-                "mathematics",
-                "parser"
-            ],
-            "time": "2018-09-15T22:20:34+00:00"
+            "time": "2019-09-06T13:49:17+00:00"
         },
         {
             "name": "mustangostang/spyc",
@@ -12728,7 +12427,9 @@
             "version": "3.5.0",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/diff/-/diff-3.5.0.tgz"
+                "url": "https://registry.npmjs.org/diff/-/diff-3.5.0.tgz",
+                "reference": null,
+                "shasum": null
             },
             "type": "npm-asset",
             "license": [
@@ -12740,7 +12441,9 @@
             "version": "5.10.2",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-5.10.2.tgz"
+                "url": "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-5.10.2.tgz",
+                "reference": null,
+                "shasum": null
             },
             "type": "npm-asset",
             "license": [
@@ -12752,7 +12455,9 @@
             "version": "3.4.1",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/jquery/-/jquery-3.4.1.tgz"
+                "url": "https://registry.npmjs.org/jquery/-/jquery-3.4.1.tgz",
+                "reference": null,
+                "shasum": null
             },
             "type": "npm-asset",
             "license": [
@@ -12764,7 +12469,9 @@
             "version": "0.3.1",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/jquery.caret/-/jquery.caret-0.3.1.tgz"
+                "url": "https://registry.npmjs.org/jquery.caret/-/jquery.caret-0.3.1.tgz",
+                "reference": null,
+                "shasum": null
             },
             "type": "npm-asset",
             "license": [
@@ -12776,7 +12483,9 @@
             "version": "4.0.0",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz"
+                "url": "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz",
+                "reference": null,
+                "shasum": null
             },
             "type": "npm-asset",
             "license": [
@@ -12788,7 +12497,9 @@
             "version": "1.4.0",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz"
+                "url": "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz",
+                "reference": null,
+                "shasum": null
             },
             "require": {
                 "npm-asset/js-tokens": ">=3.0.0,<4.0.0|>=4.0.0,<5.0.0"
@@ -12803,7 +12514,9 @@
             "version": "4.1.1",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/object-assign/-/object-assign-4.1.1.tgz"
+                "url": "https://registry.npmjs.org/object-assign/-/object-assign-4.1.1.tgz",
+                "reference": null,
+                "shasum": null
             },
             "type": "npm-asset",
             "license": [
@@ -12815,7 +12528,9 @@
             "version": "4.1.3",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/photoswipe/-/photoswipe-4.1.3.tgz"
+                "url": "https://registry.npmjs.org/photoswipe/-/photoswipe-4.1.3.tgz",
+                "reference": null,
+                "shasum": null
             },
             "type": "npm-asset",
             "license": [
@@ -12827,7 +12542,9 @@
             "version": "15.7.2",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/prop-types/-/prop-types-15.7.2.tgz"
+                "url": "https://registry.npmjs.org/prop-types/-/prop-types-15.7.2.tgz",
+                "reference": null,
+                "shasum": null
             },
             "require": {
                 "npm-asset/loose-envify": ">=1.4.0,<2.0.0",
@@ -12844,7 +12561,9 @@
             "version": "16.9.0",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/react/-/react-16.9.0.tgz"
+                "url": "https://registry.npmjs.org/react/-/react-16.9.0.tgz",
+                "reference": null,
+                "shasum": null
             },
             "require": {
                 "npm-asset/loose-envify": ">=1.1.0,<2.0.0",
@@ -12861,7 +12580,9 @@
             "version": "16.9.0",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/react-dom/-/react-dom-16.9.0.tgz"
+                "url": "https://registry.npmjs.org/react-dom/-/react-dom-16.9.0.tgz",
+                "reference": null,
+                "shasum": null
             },
             "require": {
                 "npm-asset/loose-envify": ">=1.1.0,<2.0.0",
@@ -12879,7 +12600,9 @@
             "version": "16.9.0",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/react-is/-/react-is-16.9.0.tgz"
+                "url": "https://registry.npmjs.org/react-is/-/react-is-16.9.0.tgz",
+                "reference": null,
+                "shasum": null
             },
             "type": "npm-asset",
             "license": [
@@ -12891,7 +12614,9 @@
             "version": "0.15.0",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/scheduler/-/scheduler-0.15.0.tgz"
+                "url": "https://registry.npmjs.org/scheduler/-/scheduler-0.15.0.tgz",
+                "reference": null,
+                "shasum": null
             },
             "require": {
                 "npm-asset/loose-envify": ">=1.1.0,<2.0.0",
@@ -12907,7 +12632,9 @@
             "version": "3.2.1",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/shariff/-/shariff-3.2.1.tgz"
+                "url": "https://registry.npmjs.org/shariff/-/shariff-3.2.1.tgz",
+                "reference": null,
+                "shasum": null
             },
             "require": {
                 "npm-asset/fortawesome--fontawesome-free": ">=5.8.2,<6.0.0",
@@ -15971,16 +15698,16 @@
         },
         {
             "name": "zendframework/zend-escaper",
-            "version": "2.6.0",
+            "version": "2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-escaper.git",
-                "reference": "31d8aafae982f9568287cb4dce987e6aff8fd074"
+                "reference": "3801caa21b0ca6aca57fa1c42b08d35c395ebd5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-escaper/zipball/31d8aafae982f9568287cb4dce987e6aff8fd074",
-                "reference": "31d8aafae982f9568287cb4dce987e6aff8fd074",
+                "url": "https://api.github.com/repos/zendframework/zend-escaper/zipball/3801caa21b0ca6aca57fa1c42b08d35c395ebd5f",
+                "reference": "3801caa21b0ca6aca57fa1c42b08d35c395ebd5f",
                 "shasum": ""
             },
             "require": {
@@ -16012,7 +15739,7 @@
                 "escaper",
                 "zf"
             ],
-            "time": "2018-04-25T15:48:53+00:00"
+            "time": "2019-09-05T20:03:20+00:00"
         },
         {
             "name": "zendframework/zend-feed",
@@ -16141,8 +15868,7 @@
         "drupal/term_reference_fancytree": 10,
         "drupal/crm_core": 20,
         "drupal/base_field_override_ui": 10,
-        "drupal/entity_extra_field": 15,
-        "drupal/dfinance": 20
+        "drupal/entity_extra_field": 15
     },
     "prefer-stable": true,
     "prefer-lowest": false,
