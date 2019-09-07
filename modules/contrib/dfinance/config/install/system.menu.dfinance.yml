@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: finance
+label: 'Drupal Finance menu'
+description: 'Menu used by Drupal Finance Organisations to display contextually relevant links'
+locked: true

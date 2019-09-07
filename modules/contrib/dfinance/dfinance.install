@@ -1,0 +1,37 @@
+<?php
+
+use Drupal\Core\Field\BaseFieldDefinition;
+
+/**
+ * Add Organisation Currency Field.
+ */
+function dfinance_update_8001() {
+  $currency_field = BaseFieldDefinition::create('entity_reference')
+    ->setLabel(t('Organisation currency'))
+    ->setDescription('The currency used by this organisation, this will be used by any Financial fields to convert from a foreign currency.')
+    ->setSettings([
+      'target_type' => 'currency',
+      'handler' => 'default',
+    ])
+    ->setDisplayOptions('form', [
+      'type' => 'entity_reference_autocomplete',
+      'weight' => 0,
+      'settings' => [
+        'match_operator' => 'CONTAINS',
+        'size' => 60,
+        'autocomplete_type' => 'tags',
+        'placeholder' => '',
+      ],
+    ])
+    ->setDisplayConfigurable('form', TRUE)
+    ->setDisplayOptions('view', [
+      'type' => 'entity_reference',
+      'label' => 'above',
+      'weight' => 0,
+    ])
+    ->setDisplayConfigurable('view', TRUE)
+    ->setRequired(TRUE);
+
+  \Drupal::entityDefinitionUpdateManager()->installFieldStorageDefinition('currency', 'finance_organisation', 'finance_organisation', $currency_field);
+
+}

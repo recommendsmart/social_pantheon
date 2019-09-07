@@ -1,0 +1,16 @@
+dfinance.organisation_select:
+  path: 'finance'
+  defaults:
+    _controller: \Drupal\dfinance\Controller\OrganisationSelect::page
+    _title: 'Select an organisation'
+  requirements:
+    _permission: 'view finance organisation entities'
+    # todo: https://www.drupal.org/project/dfinance/issues/3007054
+
+dfinance.admin_index:
+  path: '/admin/finance'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'Finance'
+  requirements:
+    _permission: 'use the dfinance administration pages'

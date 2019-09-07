@@ -1,0 +1,6 @@
+financial_field_currency_update:
+  version: VERSION
+  js:
+    assets/js/FinancialFieldCurrencyUpdate.js: {}
+  dependencies:
+    - core/drupal.ajax
