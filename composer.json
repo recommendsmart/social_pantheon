@@ -94,7 +94,8 @@
         "drupal/drulma_companion": "^1.2",
         "drupal/fieldblock": "^2.0",
         "drupal/ds": "^3.3",
-        "drupal/dfinance": "1.x-dev"						  							 
+        "drupal/dfinance": "1.x-dev",
+        "drupal/theme_switcher": "^1.0"						  							 
         },
     "repositories": [
         {
