@@ -58,7 +58,6 @@
         "drupal/fullcalendar_view": "^2.2",
         "drupal/recipe": "^2.0@alpha",
         "drupal/age_field_formatter": "^2.1",
-        "drupal/switch_page_theme": "^1.0",
         "drupal/prevent_term_delete": "^1.1@alpha",
         "drupal/button_link": "^1.1",
         "drupal/linked_field": "^1.1",
