@@ -15,24 +15,23 @@
  * the License.
  */
 
-class Google_Service_Monitoring_ValidateUptimeCheckConfigResponse extends Google_Collection
+class Google_Service_Docs_UnmergeTableCellsRequest extends Google_Model
 {
-  protected $collection_key = 'uptimeCheckResults';
-  protected $uptimeCheckResultsType = 'Google_Service_Monitoring_UptimeCheckResult';
-  protected $uptimeCheckResultsDataType = 'array';
+  protected $tableRangeType = 'Google_Service_Docs_TableRange';
+  protected $tableRangeDataType = '';
 
   /**
-   * @param Google_Service_Monitoring_UptimeCheckResult
+   * @param Google_Service_Docs_TableRange
    */
-  public function setUptimeCheckResults($uptimeCheckResults)
+  public function setTableRange(Google_Service_Docs_TableRange $tableRange)
   {
-    $this->uptimeCheckResults = $uptimeCheckResults;
+    $this->tableRange = $tableRange;
   }
   /**
-   * @return Google_Service_Monitoring_UptimeCheckResult
+   * @return Google_Service_Docs_TableRange
    */
-  public function getUptimeCheckResults()
+  public function getTableRange()
   {
-    return $this->uptimeCheckResults;
+    return $this->tableRange;
   }
 }

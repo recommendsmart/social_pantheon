@@ -4,6 +4,7 @@ namespace Drupal\views_add_button\Plugin\views\field;
 
 use Drupal\views\Plugin\views\field\FieldPluginBase;
 use Drupal\views\ResultRow;
+use Drupal\views_add_button\Plugin\views_add_button\ViewsAddButtonDefault;
 use Drupal\views_add_button\ViewsAddButtonUtilities;
 use Drupal\Core\Entity\ContentEntityType;
 use Drupal\Core\Form\FormStateInterface;
@@ -42,6 +43,7 @@ class ViewsAddButtonField extends FieldPluginBase {
     $options['button_text'] = ['default' => ''];
     $options['button_classes'] = ['default' => ''];
     $options['button_attributes'] = ['default' => ''];
+    $options['button_access_denied'] = ['default' => ['format' => NULL, 'value' => '']];
     $options['button_prefix'] = ['default' => ['format' => NULL, 'value' => '']];
     $options['button_suffix'] = ['default' => ['format' => NULL, 'value' => '']];
     $options['query_string'] = ['default' => ''];
@@ -121,6 +123,15 @@ class ViewsAddButtonField extends FieldPluginBase {
       '#cols' => 60,
       '#rows' => 2,
       '#weight' => -4,
+    ];
+    $form['button_access_denied'] = [
+      '#type' => 'text_format',
+      '#title' => t('Access Denied HTML'),
+      '#description' => t('HTML to inject if access is denied.'),
+      '#cols' => 60,
+      '#rows' => 2,
+      '#weight' => -3,
+      '#default_value' => $this->options['button_access_denied']['value'],
     ];
     $form['button_prefix'] = [
       '#type' => 'text_format',
@@ -290,8 +301,18 @@ class ViewsAddButtonField extends FieldPluginBase {
       }
       $text = $this->options['button_text'] ? $this->options['button_text'] : 'Add ' . $bundle;
       $text = $this->options['tokenize'] ? $this->tokenizeValue($text,$values->index) : $text;
-      $l = Link::fromTextAndUrl(t($text), $url)->toRenderable();
 
+      // Generate the link.
+      $l = NULL;
+      if (method_exists($plugin_class, 'generateLink')) {
+        $l = $plugin_class::generateLink($text, $url, $this->options);
+      }
+      else {
+        $l = ViewsAddButtonDefault::generateLink($text, $url, $this->options);
+      }
+      $l = $l->toRenderable();
+
+      // Add the prefix and suffix.
       if (isset($this->options['button_prefix']) || isset($this->options['button_suffix'])) {
         if (!empty($this->options['button_prefix']['value'])) {
           $prefix = check_markup($this->options['button_prefix']['value'], $this->options['button_prefix']['format']);
@@ -309,7 +330,15 @@ class ViewsAddButtonField extends FieldPluginBase {
       return $l;
     }
     else {
-      return ['#markup' => ''];
+      if (isset($this->options['button_access_denied']['value']) && !empty($this->options['button_access_denied']['value'])) {
+        $markup = check_markup($this->options['button_access_denied']['value'], $this->options['button_access_denied']['format']);
+        $markup = $this->options['tokenize'] ? $this->tokenizeValue($markup) : $markup;
+
+        return ['#markup' => $markup];
+      }
+      else {
+        return ['#markup' => ''];
+      }
     }
   }
 

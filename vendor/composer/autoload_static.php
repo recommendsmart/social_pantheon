@@ -157,6 +157,7 @@ class ComposerStaticInitDrupal8
             'Drupal\\social\\Behat\\' => 20,
             'Drupal\\plugin\\' => 14,
             'Drupal\\hook_event_dispatcher\\' => 29,
+            'Drupal\\facets_pretty_paths\\' => 27,
             'Drupal\\drush9_example\\' => 22,
             'Drupal\\dfinance\\' => 16,
             'Drupal\\currency\\' => 16,
@@ -461,6 +462,10 @@ class ComposerStaticInitDrupal8
         'Drupal\\hook_event_dispatcher\\' => 
         array (
             0 => __DIR__ . '/../..' . '/modules/contrib/hook_event_dispatcher/src',
+        ),
+        'Drupal\\facets_pretty_paths\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/modules/contrib/facets_pretty_paths/src',
         ),
         'Drupal\\drush9_example\\' => 
         array (

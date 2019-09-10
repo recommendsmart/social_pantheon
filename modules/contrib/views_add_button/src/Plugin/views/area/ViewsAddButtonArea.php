@@ -8,6 +8,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
+use Drupal\views_add_button\Plugin\views_add_button\ViewsAddButtonDefault;
 
 /**
  * Defines a views area plugin.
@@ -97,6 +98,7 @@ class ViewsAddButtonArea extends TokenizeAreaPluginBase {
     $options['button_text'] = ['default' => ''];
     $options['button_classes'] = ['default' => ''];
     $options['button_attributes'] = ['default' => ''];
+    $options['button_access_denied'] = ['default' => ['format' => NULL, 'value' => '']];
     $options['button_prefix'] = ['default' => ['format' => NULL, 'value' => '']];
     $options['button_suffix'] = ['default' => ['format' => NULL, 'value' => '']];
     $options['query_string'] = ['default' => ''];
@@ -175,6 +177,15 @@ class ViewsAddButtonArea extends TokenizeAreaPluginBase {
       '#cols' => 60,
       '#rows' => 2,
       '#weight' => -4,
+    ];
+    $form['button_access_denied'] = [
+      '#type' => 'text_format',
+      '#title' => t('Access Denied HTML'),
+      '#description' => t('HTML to inject if access is denied.'),
+      '#cols' => 60,
+      '#rows' => 2,
+      '#weight' => -3,
+      '#default_value' => $this->options['button_access_denied']['value'],
     ];
     $form['button_prefix'] = [
       '#type' => 'text_format',
@@ -321,8 +332,19 @@ class ViewsAddButtonArea extends TokenizeAreaPluginBase {
       }
       $text = $this->options['button_text'] ? $this->options['button_text'] : 'Add ' . $bundle;
       $text = $this->options['tokenize'] ? $this->tokenizeValue($text) : $text;
-      $l = Link::fromTextAndUrl(t($text), $url)->toRenderable();
+      $text = t($text);
 
+      // Generate the link.
+      $l = NULL;
+      if (method_exists($plugin_class, 'generateLink')) {
+        $l = $plugin_class::generateLink($text, $url, $this->options);
+      }
+      else {
+        $l = ViewsAddButtonDefault::generateLink($text, $url, $this->options);
+      }
+      $l = $l->toRenderable();
+
+      // Add the prefix and suffix.
       if (isset($this->options['button_prefix']) || isset($this->options['button_suffix'])) {
         if (!empty($this->options['button_prefix']['value'])) {
           $prefix = check_markup($this->options['button_prefix']['value'], $this->options['button_prefix']['format']);
@@ -339,8 +361,17 @@ class ViewsAddButtonArea extends TokenizeAreaPluginBase {
 
       return $l;
     }
+    // Access is denied.
     else {
-      return ['#markup' => ''];
+      if (isset($this->options['button_access_denied']['value']) && !empty($this->options['button_access_denied']['value'])) {
+        $markup = check_markup($this->options['button_access_denied']['value'], $this->options['button_access_denied']['format']);
+        $markup = $this->options['tokenize'] ? $this->tokenizeValue($markup) : $markup;
+
+        return ['#markup' => $markup];
+      }
+      else {
+        return ['#markup' => ''];
+      }
     }
   }
 

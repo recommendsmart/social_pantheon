@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9c9653cf8cb9caed5469cf851e1a0d33",
+    "content-hash": "e89ccdee44bd02d483eb7f73d1ca0530",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -5677,22 +5677,36 @@
         },
         {
             "name": "drupal/facets_pretty_paths",
-            "version": "1.0.0-beta2",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/facets_pretty_paths.git",
-                "reference": "8.x-1.0-beta2"
+                "reference": "8.x-1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/facets_pretty_paths-8.x-1.0-beta2.zip",
-                "reference": "8.x-1.0-beta2",
-                "shasum": "bba4c51b18e4f2eb83b67f50224530b0f88be540"
+                "url": "https://ftp.drupal.org/files/projects/facets_pretty_paths-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "c6660cd296dd68e2f22d42337035eca65ce94ffb"
             },
             "require": {
                 "drupal/core": "~8.0",
-                "drupal/facets": "*",
-                "drupal/pathauto": "*"
+                "drupal/facets": "~1",
+                "drupal/pathauto": "~1"
+            },
+            "require-dev": {
+                "composer/installers": "^1.2",
+                "cweagans/composer-patches": "~1.4",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+                "drupal-composer/drupal-scaffold": "^2.2",
+                "drupal/admin_toolbar": "^1.24",
+                "drupal/coder": "^8.3",
+                "drupal/config_installer": "~1",
+                "drupal/console": "~1",
+                "drupal/search_api": "~1.5",
+                "drush/drush": "~9",
+                "openeuropa/drupal-core-require-dev": "~8.6@rc",
+                "openeuropa/task-runner": "~1.0-beta2"
             },
             "type": "drupal-module",
             "extra": {
@@ -5700,22 +5714,59 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta2",
-                    "datestamp": "1526299084",
+                    "version": "8.x-1.0",
+                    "datestamp": "1568102885",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
                     }
+                },
+                "composer-exit-on-patch-failure": true,
+                "enable-patching": true,
+                "installer-paths": {
+                    "build/core": [
+                        "type:drupal-core"
+                    ],
+                    "build/modules/contrib/{$name}": [
+                        "type:drupal-module"
+                    ],
+                    "build/profiles/contrib/{$name}": [
+                        "type:drupal-profile"
+                    ],
+                    "build/themes/contrib/{$name}": [
+                        "type:drupal-theme"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Drupal\\facets_pretty_paths\\": "./src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Drupal\\Tests\\facets_pretty_paths\\": "./tests/src"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
+            "scripts": {
+                "drupal-scaffold": [
+                    "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
+                ],
+                "post-install-cmd": [
+                    "./vendor/bin/run drupal:site-setup"
+                ],
+                "post-update-cmd": [
+                    "./vendor/bin/run drupal:site-setup"
+                ]
+            },
             "license": [
-                "GPL-2.0-or-later"
+                "GPL-2.0+"
             ],
             "authors": [
                 {
-                    "name": "StryKaizer",
-                    "homepage": "https://www.drupal.org/user/462700"
+                    "name": "All contributors",
+                    "homepage": "https://www.drupal.org/node/2625160/committers"
                 },
                 {
                     "name": "Upchuk",
@@ -5726,8 +5777,11 @@
                     "homepage": "https://www.drupal.org/user/228295"
                 }
             ],
-            "description": "Pretty paths for Facets.",
+            "description": "Facets Pretty Paths module.",
             "homepage": "https://www.drupal.org/project/facets_pretty_paths",
+            "keywords": [
+                "drupal"
+            ],
             "support": {
                 "source": "https://git.drupalcode.org/project/facets_pretty_paths"
             }
@@ -6359,6 +6413,61 @@
             "homepage": "https://www.drupal.org/project/forms_steps",
             "support": {
                 "source": "https://git.drupalcode.org/project/forms_steps"
+            }
+        },
+        {
+            "name": "drupal/foundation_layouts",
+            "version": "6.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/foundation_layouts.git",
+                "reference": "8.x-6.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/foundation_layouts-8.x-6.0.zip",
+                "reference": "8.x-6.0",
+                "shasum": "435aa6a351e6de667618f49f87fa02e1abe244a4"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-6.x": "6.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-6.0",
+                    "datestamp": "1492945742",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "HongPong",
+                    "homepage": "https://www.drupal.org/user/60005"
+                },
+                {
+                    "name": "abu-zakham",
+                    "homepage": "https://www.drupal.org/user/2836067"
+                },
+                {
+                    "name": "josebc",
+                    "homepage": "https://www.drupal.org/user/1376836"
+                }
+            ],
+            "description": "Provides ZURB Foundation grid system layouts.",
+            "homepage": "https://www.drupal.org/project/foundation_layouts",
+            "support": {
+                "source": "https://git.drupalcode.org/project/foundation_layouts"
             }
         },
         {
@@ -10626,17 +10735,17 @@
         },
         {
             "name": "drupal/views_add_button",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/views_add_button.git",
-                "reference": "8.x-1.3"
+                "reference": "8.x-1.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/views_add_button-8.x-1.3.zip",
-                "reference": "8.x-1.3",
-                "shasum": "2afdf156103ce1709828d5a2cce95312dacfe1ee"
+                "url": "https://ftp.drupal.org/files/projects/views_add_button-8.x-1.4.zip",
+                "reference": "8.x-1.4",
+                "shasum": "5853ec71f6b70b672444ebbc3f509d7f1141ec7b"
             },
             "require": {
                 "drupal/core": "*",
@@ -10648,8 +10757,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.3",
-                    "datestamp": "1565320985",
+                    "version": "8.x-1.4",
+                    "datestamp": "1568009887",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -11063,6 +11172,71 @@
             "homepage": "https://www.drupal.org/project/weight",
             "support": {
                 "source": "http://cgit.drupalcode.org/weight"
+            }
+        },
+        {
+            "name": "drupal/zurb_foundation",
+            "version": "6.0.0-alpha5",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/zurb-foundation.git",
+                "reference": "8.x-6.0-alpha5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/zurb_foundation-8.x-6.0-alpha5.zip",
+                "reference": "8.x-6.0-alpha5",
+                "shasum": "ab1cfb103ca1387cf626026b63eef9c2bc219a25"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-theme",
+            "extra": {
+                "branch-alias": {
+                    "dev-6.x": "6.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-6.0-alpha5",
+                    "datestamp": "1551130084",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Quillen (kevinquillen)",
+                    "homepage": "https://www.drupal.org/u/kevinquillen",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Samuel Mortensen (samuelmortenson)",
+                    "homepage": "https://www.drupal.org/u/samuelmortenson",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "HongPong",
+                    "homepage": "https://www.drupal.org/user/60005"
+                },
+                {
+                    "name": "kevinquillen",
+                    "homepage": "https://www.drupal.org/user/317279"
+                }
+            ],
+            "description": "Base Drupal theme based on Zurb Foundation 6.x.",
+            "homepage": "http://drupal.org/project/zurb_foundation",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/zurb_foundation",
+                "issues": "http://drupal.org/project/issues/zurb_foundation"
             }
         },
         {
@@ -11828,16 +12002,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.112",
+            "version": "v0.113",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "0cc6d74aa99f5af8385c7b87599b97460e036dc2"
+                "reference": "93f926106f53ebb56e68f0219189dbf55fae0a11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/0cc6d74aa99f5af8385c7b87599b97460e036dc2",
-                "reference": "0cc6d74aa99f5af8385c7b87599b97460e036dc2",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/93f926106f53ebb56e68f0219189dbf55fae0a11",
+                "reference": "93f926106f53ebb56e68f0219189dbf55fae0a11",
                 "shasum": ""
             },
             "require": {
@@ -11861,7 +12035,7 @@
             "keywords": [
                 "google"
             ],
-            "time": "2019-08-31T00:23:10+00:00"
+            "time": "2019-09-08T00:23:09+00:00"
         },
         {
             "name": "google/auth",

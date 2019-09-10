@@ -72,6 +72,7 @@ return array(
     'Drupal\\social\\Behat\\' => array($baseDir . '/profiles/contrib/social/tests/behat/features/bootstrap'),
     'Drupal\\plugin\\' => array($baseDir . '/modules/contrib/plugin/src'),
     'Drupal\\hook_event_dispatcher\\' => array($baseDir . '/modules/contrib/hook_event_dispatcher/src'),
+    'Drupal\\facets_pretty_paths\\' => array($baseDir . '/modules/contrib/facets_pretty_paths/src'),
     'Drupal\\drush9_example\\' => array($baseDir . '/modules/contrib/duration_field/src'),
     'Drupal\\dfinance\\' => array($baseDir . '/modules/contrib/dfinance/src'),
     'Drupal\\currency\\' => array($baseDir . '/modules/contrib/currency/src'),
