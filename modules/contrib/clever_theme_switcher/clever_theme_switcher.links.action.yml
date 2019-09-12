@@ -1,5 +1,0 @@
-entity.cts.add_form:
-  route_name: 'entity.cts.add_form'
-  title: 'Add rules for theme'
-  appears_on:
-    - entity.cts.list

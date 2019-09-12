@@ -36,7 +36,6 @@
         "drupal/fences": "^2.0@alpha",
         "drupal/entity_collector": "^1.0",
         "drupal/social_course": "^2.0",
-        "drupal/state_form_entity": "1.x-dev",
         "farmsys/farmsys_asset": "dev-master",
         "farmsys/liability": "dev-master",
         "farmsys/medical": "dev-master",
@@ -85,18 +84,16 @@
         "drupal/commerce_stock": "^1.0",
         "drupal/commerce_reports": "^1.0",
         "drupal/commerce_funds": "^1.0",
-        "drupal/clever_theme_switcher": "^3.0",
         "drupal/views_add_button_group": "^1.2",
         "drupal/viewfield": "^3.0",
         "drupal/rules": "^3.0",
-        "drupal/drulma": "^1.1",
-        "drupal/drulma_companion": "^1.2",
         "drupal/fieldblock": "^2.0",
         "drupal/ds": "^3.3",
         "drupal/dfinance": "1.x-dev",
         "drupal/theme_switcher": "^1.0",
         "drupal/zurb_foundation": "^6.0",
-        "drupal/foundation_layouts": "^6.0"						  							 
+        "drupal/foundation_layouts": "^6.0",
+        "drupal/views_any_route": "^1.0"						  							 
         },
     "repositories": [
         {
