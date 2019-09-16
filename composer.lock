@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7dfbac6b87721376e7bdd64c9a649854",
+    "content-hash": "0466cf7b7aadd8587fa61deba26fc3bd",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -7202,6 +7202,62 @@
             }
         },
         {
+            "name": "drupal/jquery_colorpicker",
+            "version": "2.0.0-rc1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/jquery_colorpicker.git",
+                "reference": "8.x-2.0-rc1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/jquery_colorpicker-8.x-2.0-rc1.zip",
+                "reference": "8.x-2.0-rc1",
+                "shasum": "ec0164be5ba651a7b508f339bacf9f83332e3257"
+            },
+            "require": {
+                "drupal/colorapi": "^1.0",
+                "drupal/core": "~8.0",
+                "drupal/vendor_stream_wrapper": "^1.0",
+                "jaypan/jquery-colorpicker": "^1.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.0-rc1",
+                    "datestamp": "1539053541",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jay Friendly (Jaypan)",
+                    "homepage": "https://www.jaypan.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "plopesc",
+                    "homepage": "https://www.drupal.org/user/282415"
+                }
+            ],
+            "description": "A Drupal integration with the jQuery Colorpicker (https://www.eyecon.ro/colorpicker) module",
+            "homepage": "https://drupal.org/project/jquery_colorpicker",
+            "support": {
+                "source": "https://cgit.drupalcode.org/jquery_colorpicker",
+                "issues": "https://drupal.org/project/issues/jquery_colorpicker"
+            }
+        },
+        {
             "name": "drupal/lazy",
             "version": "2.0.0",
             "source": {
@@ -10172,6 +10228,55 @@
             }
         },
         {
+            "name": "drupal/vendor_stream_wrapper",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/vendor_stream_wrapper.git",
+                "reference": "8.x-1.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/vendor_stream_wrapper-8.x-1.3.zip",
+                "reference": "8.x-1.3",
+                "shasum": "04129dfe35a5d575793a4136400c4e91d9856a64"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.3",
+                    "datestamp": "1559393587",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Jay Friendly (Jaypan)",
+                    "homepage": "https://www.jaypan.com",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Creates the vendor:// stream wrapper, allowing for linking/embedding of CSS and JS files in the vendor directory.",
+            "homepage": "https://drupal.org/project/vendor_stream_wrapper",
+            "support": {
+                "source": "https://cgit.drupalcode.org/vendor_stream_wrapper",
+                "issues": "https://drupal.org/project/issues/vendor_stream_wrapper"
+            }
+        },
+        {
             "name": "drupal/video_embed_field",
             "version": "1.6.0",
             "source": {
@@ -12068,6 +12173,29 @@
                 "hash-map"
             ],
             "time": "2014-12-15T23:03:51+00:00"
+        },
+        {
+            "name": "jaypan/jquery-colorpicker",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jaypan/jquery_colorpicker.git",
+                "reference": "1c1c4cf081387f53470c591505cbba7928164066"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jaypan/jquery_colorpicker/zipball/1c1c4cf081387f53470c591505cbba7928164066",
+                "reference": "1c1c4cf081387f53470c591505cbba7928164066",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "(MIT or GPL-1.0)"
+            ],
+            "description": "The jQuery Colorpicker JS/CSS library",
+            "homepage": "https://www.eyecon.ro/colorpicker/",
+            "time": "2018-09-27T02:07:08+00:00"
         },
         {
             "name": "league/csv",
