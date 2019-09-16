@@ -33,48 +33,78 @@ class JQueryColorpickerServiceTest extends UnitTestCase {
   }
 
   /**
-   * @covers ::validateHexColor
+   * @covers ::formatColor
    *
-   * @dataProvider providerTestValidateHexColor
+   * @dataProvider providerTestFormatColor
    */
-  public function testValidateHexColor($expected, $color) {
-    $this->assertEquals($expected, $this->JQueryColorpickerService->validateHexColor($color));
+  public function testFormatColor($expected, $color) {
+    $this->assertSame($expected, $this->JQueryColorpickerService->formatColor($color));
   }
 
   /**
-   * Provides data for the testValidateHexColor test.
+   * Provides data for the testFormatColor test.
    */
-  public function providerTestValidateHexColor() {
+  public function providerTestFormatcolor() {
+    $data = [];
+    $data[] = ['', NULL];
+    $data[] = ['', ''];
+    $data[] = ["1", TRUE];
+    $data[] = ["", FALSE];
+    $data[] = ["123", 123];
+    $data[] = ["1.23", 1.23];
+    $data[] = ["123456", "123456"];
+    $data[] = ["123456", "#123456"];
+    $data[] = ["", []];
+    $test_class = new \stdClass();
+    $data[] = ["", $test_class];
+
+    return $data;
+  }
+
+  /**
+   * @covers ::validateColor
+   *
+   * @dataProvider providerTestValidateColor
+   */
+  public function testValidateColor($expected, $color) {
+    $this->assertEquals($expected, $this->JQueryColorpickerService->validateColor($color));
+  }
+
+  /**
+   * Provides data for the testValidateColor test.
+   */
+  public function providerTestValidateColor() {
+    $container = new ContainerBuilder();
+    $container->set('string_translation', $this->getStringTranslationStub());
+    \Drupal::setContainer($container);
+
+    $type_error = $this->t('Color must be a string or an integer');
+    $length_error = $this->t('Color values must be exactly six characters in length');
+    $hex_error = $this->t("You entered an invalid value for the color. Colors must be hexadecimal, and can only contain the characters '0-9', 'a-f' and/or 'A-F'.");
 
     $data = [];
-    $data[] = [FALSE, FALSE];
-    $data[] = [FALSE, []];
+    $data[] = [$type_error, TRUE];
+    $data[] = [$type_error, FALSE];
+    $data[] = [$type_error, []];
     $test = new \stdClass();
-    $data[] = [FALSE, $test];
-    $data[] = [FALSE, 1.23];
-    $data[] = [FALSE, 12345];
-    $data[] = [FALSE, "12345"];
-    $data[] = [FALSE, "11111g"];
-    $data[] = [FALSE, "11111G"];
-    $data[] = [FALSE, "fffffg"];
-    $data[] = [FALSE, "fffffG"];
-    $data[] = [FALSE, "FFFFFg"];
-    $data[] = [FALSE, "FFFFFG"];
-    $data[] = [FALSE, "#12345"];
-    $data[] = [FALSE, "#11111g"];
-    $data[] = [FALSE, "#11111G"];
-    $data[] = [FALSE, "#fffffg"];
-    $data[] = [FALSE, "#fffffG"];
-    $data[] = [FALSE, "#FFFFFg"];
-    $data[] = [FALSE, "#FFFFFG"];
+    $data[] = [$type_error, $test];
+    $data[] = [$type_error, 1.23];
+    $data[] = [$length_error, 12345];
+    $data[] = [$length_error, "12345"];
+    $data[] = [$hex_error, "11111g"];
+    $data[] = [$hex_error, "11111G"];
+    $data[] = [$hex_error, "fffffg"];
+    $data[] = [$hex_error, "fffffG"];
+    $data[] = [$hex_error, "FFFFFg"];
+    $data[] = [$hex_error, "FFFFFG"];
 
     // Valid submissions.
-    $data[] = [TRUE, "#FFF"];
-    $data[] = [TRUE, "#123456"];
-    $data[] = [TRUE, "#11111f"];
-    $data[] = [TRUE, "#11111F"];
-    $data[] = [TRUE, "#FFFFF1"];
-    $data[] = [TRUE, "#fffff1"];
+    $data[] = [FALSE, 123456];
+    $data[] = [FALSE, "123456"];
+    $data[] = [FALSE, "11111f"];
+    $data[] = [FALSE, "11111F"];
+    $data[] = [FALSE, "FFFFF1"];
+    $data[] = [FALSE, "fffff1"];
 
     return $data;
   }

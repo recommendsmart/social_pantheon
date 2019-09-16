@@ -12,7 +12,7 @@ use Drupal\Core\Render\Element\FormElement;
  *
  * @FormElement("jquery_colorpicker")
  */
-class JQueryColorpickerElement extends FormElement {
+class JQueryColorpicker extends FormElement {
 
   /**
    * {@inheritdoc}
@@ -49,9 +49,15 @@ class JQueryColorpickerElement extends FormElement {
    */
   public static function validateElement(&$element, FormStateInterface $form_state) {
     if (strlen($element['#value'])) {
-      $valid_color = \Drupal::service('colorapi.service')->isValidHexadecimalColorString($element['#value']);
-      if (!$valid_color) {
-        $form_state->setError($element, t('@value is not a valid hexidecimal color.', ['@value' => $element['#value']]));
+      $jquery_colorpicker_service = \Drupal::service('jquery_colorpicker.service');
+      $color = $jquery_colorpicker_service->formatColor($element['#value']);
+      if ($color != $element['#value']) {
+        $form_state->setValueForElement($element, $color);
+      }
+
+      $error = $jquery_colorpicker_service->validateColor($element['#value']);
+      if ($error) {
+        $form_state->setError($element, $error);
       }
     }
   }
@@ -60,10 +66,10 @@ class JQueryColorpickerElement extends FormElement {
    * {@inheritdoc}
    */
   public static function valueCallback(&$element, $input, FormStateInterface $form_state) {
-    if ($input !== FALSE && $input !== NULL && is_scalar($input)) {
-      if (\Drupal::service('colorapi.service')->isValidHexadecimalColorString($input)) {
-        return strtoupper($input);
-      }
+    if ($input !== FALSE && $input !== NULL) {
+      // This should be a string, but allow other scalars since they might be
+      // valid input in programmatic form submissions.
+      return is_scalar($input) ? (string) $input : '';
     }
 
     return NULL;
@@ -112,7 +118,7 @@ class JQueryColorpickerElement extends FormElement {
 
     // Since we know the background, we can then get the URL of it to pass to
     // the javascript function.
-    $background_url = file_create_url('vendor://jaypan/jquery-colorpicker/images/' . $background);
+    $background_url = file_create_url('libraries/jquery_colorpicker/images/' . $background);
 
     // Next we determine what the default value for the form element is. This
     // will also be passed to the javascript function.

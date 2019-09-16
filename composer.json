@@ -94,7 +94,7 @@
         "drupal/foundation_layouts": "^6.0",
         "drupal/views_any_route": "^1.0",
         "drupal/colorapi": "^1.0",
-        "drupal/jquery_colorpicker": "^2.0"						  							 
+        "drupal/jquery_colorpicker": "^1.4"						  							 
         },
     "repositories": [
         {

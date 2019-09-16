@@ -2,21 +2,49 @@
 
 namespace Drupal\jquery_colorpicker\Plugin\Field\FieldFormatter;
 
+use Drupal\Core\Field\FormatterBase;
+use Drupal\Core\Field\FieldItemListInterface;
+
 /**
- * Hexadecimal string text display formatter for Color Api Color fields.
+ * Formatter class for jquery_colorpicker field.
  *
  * @FieldFormatter(
  *   id = "jquery_colorpicker_text_display",
- *   label = @Translation("Text Color"),
- *   description = @Translation("Displays the color as a hexadecimal string"),
+ *   label = @Translation("Text"),
+ *
  *   field_types = {
  *      "jquery_colorpicker"
  *   }
  * )
- *
- * @deprecated as of Jquery Colorpicker update 8200. Will be removed in Jquery
- *   Colorpicker 8.x-3.x, and/or 9.x-1.x. Running
- *   jquery_colorpicker_update_8200() requires the existence of this formatter,
- *   however the field type is obsolete after that update has been run.
  */
-class JqueryColorpickerTextDisplayFormatter extends JqueryColorpickerDisplayFormatterBase {}
+class JQueryColorpickerTextDisplayFormatter extends FormatterBase {
+
+  /**
+   * {@inheritdoc}
+   */
+  public function settingsSummary() {
+    $summary = [];
+
+    $summary[] = t('Displays textual representation of the color');
+
+    return $summary;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function viewElements(FieldItemListInterface $items, $langcode) {
+    $element = [];
+    foreach ($items as $delta => $item) {
+      $element[$delta] = [
+        '#theme' => 'jquery_colorpicker_text_display',
+        '#entity_delta' => $delta,
+        '#item' => $item,
+        '#color' => $item->value,
+      ];
+    }
+
+    return $element;
+  }
+
+}
