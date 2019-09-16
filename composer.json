@@ -92,7 +92,8 @@
         "drupal/theme_switcher": "^1.0",
         "drupal/zurb_foundation": "^6.0",
         "drupal/foundation_layouts": "^6.0",
-        "drupal/views_any_route": "^1.0"						  							 
+        "drupal/views_any_route": "^1.0",
+        "drupal/colorapi": "^1.0"						  							 
         },
     "repositories": [
         {
