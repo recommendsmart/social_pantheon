@@ -96,7 +96,13 @@
         "drupal/jquery_colorpicker": "^2.0",
         "drupal/group_behavior": "^1.0",
         "drupal/webform_content_creator": "^1.0",
-        "drupal/context_entity_field": "^1.0"						  							 
+        "drupal/context_entity_field": "^1.0",
+        "drupal/taxonomy_term_depth": "^2.3",
+        "drupal/color_field": "^2.0",
+        "drupal/taxonomy_menu": "^3.4",
+        "drupal/commerce_shipping": "^2.0",
+        "drupal/facets": "^1.4",
+        "drupal/facets_pretty_paths": "^1.0"						  							 
         },
     "repositories": [
         {

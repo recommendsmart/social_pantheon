@@ -155,6 +155,7 @@ class ComposerStaticInitDrupal8
         array (
             'Drupal\\social\\Behat\\' => 20,
             'Drupal\\plugin\\' => 14,
+            'Drupal\\facets_pretty_paths\\' => 27,
             'Drupal\\drush9_example\\' => 22,
             'Drupal\\dfinance\\' => 16,
             'Drupal\\currency\\' => 16,
@@ -451,6 +452,10 @@ class ComposerStaticInitDrupal8
         'Drupal\\plugin\\' => 
         array (
             0 => __DIR__ . '/../..' . '/modules/contrib/plugin/src',
+        ),
+        'Drupal\\facets_pretty_paths\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/modules/contrib/facets_pretty_paths/src',
         ),
         'Drupal\\drush9_example\\' => 
         array (
