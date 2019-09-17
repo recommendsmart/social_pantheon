@@ -2,49 +2,21 @@
 
 namespace Drupal\jquery_colorpicker\Plugin\Field\FieldFormatter;
 
-use Drupal\Core\Field\FormatterBase;
-use Drupal\Core\Field\FieldItemListInterface;
-
 /**
- * Formatter class for jquery_colorpicker field.
+ * Raw hexadecimal formatter for Color API Color fields.
  *
  * @FieldFormatter(
  *   id = "jquery_colorpicker_raw_hex_display",
- *   label = @Translation("Raw Hexidecimal"),
- *
+ *   label = @Translation("Raw Hexadecimal Color"),
+ *   description = @Translation("Displays the color in hexadecimal color format, with no wrappers"),
  *   field_types = {
  *      "jquery_colorpicker"
  *   }
  * )
+ *
+ * @deprecated as of Jquery Colorpicker update 8200. Will be removed in Jquery
+ *   Colorpicker 8.x-3.x, and/or 9.x-1.x. Running
+ *   jquery_colorpicker_update_8200() requires the existence of this formatter,
+ *   however the field type is obsolete after that update has been run.
  */
-class JQueryColorpickerRawHexDisplayFormatter extends FormatterBase {
-
-  /**
-   * {@inheritdoc}
-   */
-  public function settingsSummary() {
-
-    $summary = [];
-    $settings = $this->getSettings();
-
-    $summary[] = t('Displays a hexidecimal representation of the color, with no HTML wrappers nor the # prefix');
-
-    return $summary;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function viewElements(FieldItemListInterface $items, $langcode) {
-
-    $element = [];
-    foreach ($items as $delta => $item) {
-      $element[$delta] = [
-        '#markup' => $item->value,
-      ];
-    }
-
-    return $element;
-  }
-
-}
+class JqueryColorpickerRawHexDisplayFormatter extends JqueryColorpickerDisplayFormatterBase {}
