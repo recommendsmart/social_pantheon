@@ -36,8 +36,7 @@ class FieldSyncFormHooks {
    */
   public static function groupTypeBuilder($entity_type, ConfigEntityInterface $type, &$form, FormStateInterface $form_state) {
     $fieldsToSync = $form_state->getValue(['third_party_settings', 'group_behavior', 'field_sync']);
-    dpm($fieldsToSync);
-    $fieldsToSync = array_values($fieldsToSync);
+    $fieldsToSync = array_keys(array_filter($fieldsToSync));
     sort($fieldsToSync);
     $type->setThirdPartySetting('group_behavior', 'field_sync', $fieldsToSync);
   }

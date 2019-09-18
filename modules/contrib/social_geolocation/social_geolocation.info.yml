@@ -1,7 +1,7 @@
 name: 'Social Geolocation'
 description: 'Provides geolocation functionality for groups, events and users'
 type: module
-# core: 8.x
+core: 8.x
 dependencies:
   - address:address
   - geocoder:geocoder
@@ -14,8 +14,7 @@ dependencies:
   - social_profile
 package: Social
 
-# Information added by Drupal.org packaging script on 2019-04-29
-version: '8.x-1.0-alpha6'
-core: '8.x'
+# Information added by Drupal.org packaging script on 2019-09-17
+version: '8.x-1.0-alpha7'
 project: 'social_geolocation'
-datestamp: 1556541492
+datestamp: 1568723298

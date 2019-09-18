@@ -52,8 +52,10 @@ function template_preprocess_views_view_fullcalendar(array &$variables) {
   }
 
   // Can the user add a new event?
+  $entity_manager = \Drupal::entityTypeManager();
+  $access_handler = $entity_manager->getAccessControlHandler($entity_type->id());
   $dbl_click_to_create = FALSE;
-  if (!empty($user) && $user->hasPermission(strtolower("create $event_bundle_type " . $entity_type->getLabel()))) {
+  if ($access_handler->createAccess($event_bundle_type)) {
     $dbl_click_to_create = TRUE;
   }
   // Pass entity type to twig template.
@@ -105,7 +107,16 @@ function template_preprocess_views_view_fullcalendar(array &$variables) {
     $start_field_option['settings']['timezone_override'] : drupal_get_user_timezone();
   // Open a new window for details of an event.
   $title_field = (empty($options['title']) || $options['title'] == 'title') ? 'title' : $options['title'];
-  $link_to_entity = isset($fields[$title_field]->options['settings']['link_to_entity']) ? $fields[$title_field]->options['settings']['link_to_entity'] : FALSE;
+  // Calendar entries linked to entity.
+  $link_to_entity = FALSE;
+  if (isset($fields[$title_field]->options['settings']['link_to_entity'])) {
+    $link_to_entity = $fields[$title_field]->options['settings']['link_to_entity'];
+  }
+  elseif (isset($fields[$title_field]->options['settings']['link'])) {
+    $link_to_entity = $fields[$title_field]->options['settings']['link'];
+  }
+  // Set the first day setting.
+  $first_day = isset($options['firstDay']) ? $options['firstDay'] : 0;
   // Right side buttons.
   $right_buttons = 'month';
   foreach ($options['right_buttons'] as $key => $value) {
@@ -408,6 +419,7 @@ function template_preprocess_views_view_fullcalendar(array &$variables) {
     $variables['#attached']['library'][] = 'fullcalendar_view/fullcalendar';
     // Pass data to js file.
     $variables['#attached']['drupalSettings'] = [
+      'firstDay' => $first_day,
       'fullCalendarView' => $entries,
       'defaultDate' => empty($default_date) ? date('Y-m-d') : $default_date,
       'defaultLang' => $default_lang,
@@ -419,11 +431,13 @@ function template_preprocess_views_view_fullcalendar(array &$variables) {
       'startField' => $start_field,
       'endField' => $end_field,
       'rightButtons' => $right_buttons,
+      'defaultView' => isset($options['default_view']) ? $options['default_view'] : 'month',
       'dblClickToCreate' => $dbl_click_to_create,
       'navLinks' => $options['nav_links'],
       'entityType' => $entity_type->id(),
       'addForm' => isset($add_form) ? $add_form : '',
       'token' => $token,
+      'openEntityInNewTab' => $options['openEntityInNewTab'],
     ];
   }
 }

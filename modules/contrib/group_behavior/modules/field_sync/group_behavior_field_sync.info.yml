@@ -6,7 +6,7 @@ core: 8.x
 dependencies:
   - group_behavior
 
-# Information added by Drupal.org packaging script on 2019-09-16
-version: '8.x-1.0-alpha4'
+# Information added by Drupal.org packaging script on 2019-09-17
+version: '8.x-1.0-alpha5'
 project: 'group_behavior'
-datestamp: 1568636895
+datestamp: 1568738586

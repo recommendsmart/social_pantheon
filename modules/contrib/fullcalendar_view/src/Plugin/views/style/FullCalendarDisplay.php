@@ -84,12 +84,14 @@ class FullCalendarDisplay extends StylePluginBase {
           'listYear' => 'listYear',
         ],
     ];
+    $options['default_view'] = ['default' => 'month'];
     $options['nav_links'] = ['default' => 1];
     $options['defaultLanguage'] = ['default' => 'en'];
     $options['languageSelector'] = ['default' => 0];
     $options['alloweventOverlap'] = ['default' => 1];
     $options['updateConfirm'] = ['default' => 1];
     $options['createEventLink'] = ['default' => 0];
+    $options['openEntityInNewTab'] = ['default' => 1];
     return $options;
   }
 
@@ -185,6 +187,36 @@ class FullCalendarDisplay extends StylePluginBase {
       ],
       '#default_value' => (empty($this->options['right_buttons'])) ? [] : $this->options['right_buttons'],
       '#title' => $this->t('Right side buttons'),
+    ];
+    // Default view.
+    // Todo: filter out disabled view from options.
+    $form['default_view'] = [
+      '#type' => 'radios',
+      '#fieldset' => 'display',
+      '#options' => [
+        'month' => $this->t('Month'),
+        'agendaWeek' => $this->t('Week'),
+        'agendaDay' => $this->t('Day'),
+        'listYear' => $this->t('List'),
+      ],
+      '#default_value' => (empty($this->options['default_view'])) ? 'month' : $this->options['default_view'],
+      '#title' => $this->t('Default view'),
+    ];
+    // First day.
+    $form['firstDay'] = [
+      '#type' => 'radios',
+      '#fieldset' => 'display',
+      '#options' => [
+        '0' => $this->t('Sunday'),
+        '1' => $this->t('Monday'),
+        '2' => $this->t('Tuesday'),
+        '3' => $this->t('Wednesday'),
+        '4' => $this->t('Thursday'),
+        '5' => $this->t('Friday'),
+        '6' => $this->t('Saturday'),
+      ],
+      '#default_value' => (empty($this->options['firstDay'])) ? '0' : $this->options['firstDay'],
+      '#title' => $this->t('First Day'),
     ];
     // Nav Links.
     $form['nav_links'] = [
@@ -305,6 +337,13 @@ class FullCalendarDisplay extends StylePluginBase {
       '#default_value' => (empty($this->options['createEventLink'])) ? 0 : $this->options['createEventLink'],
       '#title' => $this->t('Create a new event via the Off-Canvas dialog.'),
       '#description' => t('If this option is selected, there wiil be an Add Event link below the calendar that provides the ability to create an event In-Place.'),
+    ];
+    // Open details in new window.
+    $form['openEntityInNewTab'] = [
+      '#type' => 'checkbox',
+      '#fieldset' => 'display',
+      '#default_value' => !isset($this->options['openEntityInNewTab']) ? 1 : $this->options['openEntityInNewTab'],
+      '#title' => $this->t('Open entities (calendar items) into new tabs'),
     ];
     // Legend colors.
     $form['colors'] = [
