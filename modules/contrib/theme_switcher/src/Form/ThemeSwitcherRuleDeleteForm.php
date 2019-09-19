@@ -11,8 +11,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Builds the form to delete a theme_switcher_rule.
- *
- * @author: Adrián Marin <amarin@hiberus.com>
  */
 class ThemeSwitcherRuleDeleteForm extends EntityConfirmFormBase {
 

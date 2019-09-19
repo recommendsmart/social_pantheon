@@ -10,8 +10,6 @@ use Drupal\theme_switcher\ThemeSwitcherRuleInterface;
 /**
  * Defines the Theme Switcher Rule entity.
  *
- * @author: Adrián Marin <amarin@hiberus.com>
- *
  * @ConfigEntityType(
  *   id = "theme_switcher_rule",
  *   label = @Translation("Theme Switcher Rule"),

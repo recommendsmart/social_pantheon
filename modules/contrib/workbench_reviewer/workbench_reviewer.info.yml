@@ -1,0 +1,12 @@
+name: Workbench Reviewer
+type: module
+description: Assign pieces of content to users to review
+core: 8.x
+package: Workbench
+dependencies:
+  - drupal:content_moderation (>= 8.4)
+
+# Information added by Drupal.org packaging script on 2019-09-18
+version: '8.x-2.0-alpha2'
+project: 'workbench_reviewer'
+datestamp: 1568835786

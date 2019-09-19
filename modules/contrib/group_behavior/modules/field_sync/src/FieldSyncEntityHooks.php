@@ -56,7 +56,11 @@ class FieldSyncEntityHooks {
    * @param \Drupal\Core\Entity\EntityInterface $entity
    */
   protected static function doPostSave(EntityInterface $entity) {
-    if ($entity instanceof ContentEntityInterface && ($groupContents = GroupContent::loadByEntity($entity))) {
+    if (
+      $entity instanceof ContentEntityInterface
+      && !$entity instanceof UserInterface
+      && ($groupContents = GroupContent::loadByEntity($entity))
+    ) {
       $syncedToThis = FALSE;
       /** @var \Drupal\group\Entity\GroupContentInterface[] $groupContents */
       foreach ($groupContents as $groupContent) {

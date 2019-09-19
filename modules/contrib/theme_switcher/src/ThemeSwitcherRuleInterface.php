@@ -6,8 +6,6 @@ use Drupal\Core\Config\Entity\ConfigEntityInterface;
 
 /**
  * Provides an interface defining a theme_switcher_rule entity.
- *
- * @author: Adrián Marin <amarin@hiberus.com>
  */
 interface ThemeSwitcherRuleInterface extends ConfigEntityInterface {
 

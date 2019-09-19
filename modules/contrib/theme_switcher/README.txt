@@ -1,15 +1,15 @@
-Contents of this file
-=====================
+CONTENTS OF THIS FILE
+---------------------
 
-* Introduction
-* Requirements
-* Installation
-* Configuration
-* FAQ
-* Maintainers
+ * Introduction
+ * Requirements
+ * Installation
+ * Configuration
+ * FAQ
+ * Maintainers
 
 
-Introduction
+INTRODUCTION
 ------------
 
 The Theme Switcher module allows you to create theme-switching rules which 
@@ -20,23 +20,23 @@ longer defined through a hook and they are plugins now.
 
 This modules is currently only available for Drupal 8.
 
-* For a full description of the module, visit the project page:
-  https://www.drupal.org/project/theme_switcher
+ * For a full description of the module, visit the project page:
+   https://www.drupal.org/project/theme_switcher
 
-* To submit bug reports and feature suggestions, or track changes:
-  https://www.drupal.org/project/issues/theme_switcher
+ * To submit bug reports and feature suggestions, or track changes:
+   https://www.drupal.org/project/issues/theme_switcher
   
-* For Conditions further information:
-  https://www.drupal.org/docs/8/modules/d8-rules-essentials/for-developers/conditions
+ * For Conditions further information:
+   https://www.drupal.org/docs/8/modules/d8-rules-essentials/for-developers/conditions
 
 
-Requirements
+REQUIREMENTS
 ------------
 
 The module require PHP >=7.1 and Drupal 8.5 or higher.
 
 
-Installation 
+INSTALLATION
 ------------
 
 Install as you would normally install a contributed Drupal module. See
@@ -44,8 +44,8 @@ https://www.drupal.org/docs/8/extending-drupal-8/installing-drupal-8-modules
 for further information.
 
 
-Configuration
-------------
+CONFIGURATION
+-------------
 
 * Configure the user permissions in Administration >> People >> Permissions:
 
@@ -95,12 +95,12 @@ Configuration
 FAQ
 ---
 
-Q: What can I do with this module?
+ Q: What can I do with this module?
 
-A: You can apply a specific theme to a unique node, use different themes based 
-   on the page language, use contrib conditions like a domain to apply one 
-   theme or another. The best of all is that you can do al of the above at 
-   once!
+ A: You can apply a specific theme to a unique node, use different themes based
+    on the page language, use contrib conditions like a domain to apply one
+    theme or another. The best of all is that you can do al of the above at
+    once!
 
 
 Maintainers

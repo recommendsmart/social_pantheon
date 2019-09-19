@@ -75,14 +75,14 @@ class ThemeSwitcherController extends ControllerBase {
       switch ($op) {
         case 'enable':
           $theme_switcher_rule->enable();
-          $message = $this->t("Theme Switcher Rule '%label' has been enabled.",
+          $message = $this->t("The Theme Switcher Rule '%label' has been enabled.",
             ['%label' => $theme_switcher_rule->label()]
           );
           break;
 
         case 'disable':
           $theme_switcher_rule->disable();
-          $message = $this->t("Theme Switcher Rule '%label' has been disabled.",
+          $message = $this->t("The Theme Switcher Rule '%label' has been disabled.",
             ['%label' => $theme_switcher_rule->label()]
           );
           break;

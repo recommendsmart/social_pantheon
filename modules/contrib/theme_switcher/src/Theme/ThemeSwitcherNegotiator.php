@@ -82,7 +82,7 @@ class ThemeSwitcherNegotiator implements ThemeNegotiatorInterface {
     $configEntities = $storage->getQuery()->sort('weight', 'ASC')->execute();
 
     $rules = $storage->loadMultiple($configEntities);
-    foreach ($rules as $machine_name => $rule) {
+    foreach ($rules as $rule) {
       /** @var \Drupal\theme_switcher\Entity\ThemeSwitcherRule $rule */
 
       // Check whether the rule is enabled and one of the themes is set.
