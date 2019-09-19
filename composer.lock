@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f0dad713e960f9c54edbb1f16a356680",
+    "content-hash": "047992f4b1d9e7dc854d5d31da77ab7f",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -1791,6 +1791,59 @@
                 "source": "http://cgit.drupalcode.org/auto_entitylabel",
                 "issues": "https://www.drupal.org/project/issues/auto_entitylabel"
             }
+        },
+        {
+            "name": "drupal/banana_dashboard",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/banana_dashboard.git",
+                "reference": "3aafc1a7738e57991f3a6df578ac5d198625d3f9"
+            },
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/fontawesome": "*"
+            },
+            "require-dev": {
+                "vijaycs85/drupal-quality-checker": "dev-master"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1568819285",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Ashmika Hirani",
+                    "homepage": "https://github.com/abopche",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Shibin Das (D34dMan)",
+                    "homepage": "https://www.drupal.org/u/d34dman",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Expose simple dashboard for users with links to various section of the site",
+            "homepage": "https://www.drupal.org/project/banana_dashboard",
+            "support": {
+                "source": "http://cgit.drupalcode.org/banana_dashboard",
+                "issues": "https://www.drupal.org/project/issues/banana_dashboard"
+            },
+            "time": "2019-09-18T15:27:51+00:00"
         },
         {
             "name": "drupal/base_field_override_ui",
@@ -6550,6 +6603,70 @@
             "homepage": "https://www.drupal.org/project/flag",
             "support": {
                 "source": "http://cgit.drupalcode.org/flag"
+            }
+        },
+        {
+            "name": "drupal/fontawesome",
+            "version": "2.14.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/fontawesome.git",
+                "reference": "8.x-2.14"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/fontawesome-8.x-2.14.zip",
+                "reference": "8.x-2.14",
+                "shasum": "5bba6b1cba7450256defc36a0cbfdd70744bde1d"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.14",
+                    "datestamp": "1564762385",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel.Moberly",
+                    "homepage": "https://www.drupal.org/user/1160788"
+                },
+                {
+                    "name": "RobLoach",
+                    "homepage": "https://www.drupal.org/user/61114"
+                },
+                {
+                    "name": "inders",
+                    "homepage": "https://www.drupal.org/user/127640"
+                },
+                {
+                    "name": "truls1502",
+                    "homepage": "https://www.drupal.org/user/325866"
+                }
+            ],
+            "description": "The web's most popular icon set and toolkit.",
+            "homepage": "https://www.drupal.org/project/fontawesome",
+            "support": {
+                "source": "https://git.drupalcode.org/project/fontawesome"
             }
         },
         {
@@ -17171,7 +17288,8 @@
         "drupal/crm_core": 20,
         "drupal/base_field_override_ui": 10,
         "drupal/entity_extra_field": 15,
-        "drupal/dfinance": 20
+        "drupal/dfinance": 20,
+        "drupal/banana_dashboard": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

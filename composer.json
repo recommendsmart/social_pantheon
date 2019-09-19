@@ -105,7 +105,8 @@
         "drupal/facets_pretty_paths": "^1.0",
         "drupal/image_delta_formatter": "^1.0",
         "drupal/bee": "^1.0",
-        "drupal/workbench_reviewer": "^2.0"						  							 
+        "drupal/workbench_reviewer": "^2.0",
+        "drupal/banana_dashboard": "1.x-dev"						  							 
         },
     "repositories": [
         {
