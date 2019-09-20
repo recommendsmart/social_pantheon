@@ -1,0 +1,15 @@
+matrix_field.matrix_field_group.*:
+  type: config_entity
+  label: 'Matrix Field Group config'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    uuid:
+      type: string
+    weight:
+      type: integer
+      label: 'Weight'

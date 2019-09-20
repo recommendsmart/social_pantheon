@@ -1,0 +1,14 @@
+{
+  "name": "drupal/matrix_field",
+  "type": "drupal-module",
+  "description": "Provides multi-valued field, that contains items with labels, units and values.",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/matrix_field",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/matrix_field",
+    "source": "http://cgit.drupalcode.org/matrix_field"
+  },
+  "require": { }
+}

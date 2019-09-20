@@ -1,0 +1,10 @@
+name: 'Matrix Field'
+type: module
+description: 'Provides field matrix - one magic field instead of many simple fields.'
+core: 8.x
+package: 'Field types'
+
+# Information added by Drupal.org packaging script on 2019-09-18
+version: '8.x-1.x-dev'
+project: 'matrix_field'
+datestamp: 1568814788

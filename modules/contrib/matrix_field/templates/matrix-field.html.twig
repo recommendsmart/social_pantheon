@@ -1,0 +1,33 @@
+<div class="matrix-field">
+  {% if label %}
+    <div class="matrix-field-label">{{ label }}</div>
+  {% endif %}
+  <div class="matrix-field-items">
+    {% for item in items %}
+      <div class="matrix-field-item">
+        <strong>{{ item.name }}
+          {% if item.description %}
+            <a href="#" class="toggle-popover" data-toggle="popover" data-placement="top" data-content="{{ item.description }}" data-trigger="hover" >?</a>
+          {% endif %}
+        </strong> <span>{{ item.value }} {{ item.unit }}</span>
+      </div>
+    {% endfor %}
+    {% if groups %}
+      {% for group in groups %}
+        <div class="matrix-field-group">
+          <div class="matrix-field-group-title"><strong>{{ group.title }}</strong></div>
+          <div class="matrix-field-group-items">
+            {% for group_item in group.items %}
+              <div class="matrix-field-item">
+                <strong>{{ group_item.name }}
+                  {% if group_item.description %}
+                    <a href="#" class="toggle-popover" data-toggle="popover" data-placement="top" data-content="{{ group_item.description }}" data-trigger="hover" >?</a>
+                  {% endif %}</strong> <span>{{ group_item.value }} {{ group_item.unit }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>

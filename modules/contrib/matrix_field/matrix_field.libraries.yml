@@ -1,0 +1,18 @@
+matrix_fields:
+  version: 1.x
+  js:
+    js/matrix_fields.js: {}
+  css:
+    theme:
+      css/matrix-fields.css: {}
+multiple_select:
+  remote: https://github.com/wenzhixin/multiple-select
+  version: VERSION
+  license:
+    name: MIT
+    gpl-compatible: false
+  js:
+    /libraries/multiple-select/dist/multiple-select.js: {}
+  css:
+    theme:
+      /libraries/multiple-select/dist/multiple-select.css: {}

@@ -1,0 +1,42 @@
+matrix_field.matrix_field.*:
+  type: config_entity
+  label: 'Matrix Field config'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    uuid:
+      type: string
+    description:
+      type: string
+      label: 'Field Description'
+    field_type:
+      type: string
+      label: 'Type'
+    weight:
+      type: integer
+      label: 'Weight'
+    matrices:
+      type: sequence
+      label: 'Matrices'
+      sequence:
+        type: string
+        label: 'Matrix'
+    allowed_values:
+      type: sequence
+      label: 'Allowed Values'
+      sequence:
+        type: string
+        label: 'Value'
+    parent:
+      type: string
+      label: 'Group'
+    unit:
+      type: string
+      label: 'Unit'
+    description:
+      type: string
+      label: 'Description'
