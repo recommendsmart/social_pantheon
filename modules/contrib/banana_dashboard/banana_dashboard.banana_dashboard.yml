@@ -1,5 +1,5 @@
 dashboard:
-  url: admin/banana-dashboard
+  url: banana-dashboard
   title: Dashboard
   access arguments:
     - access administration pages
@@ -44,7 +44,7 @@ dashboard_menu:
   People:
     group: HR
     title: People
-    icon: menu
+    icon: users
     url: /admin/people
     
   Products:

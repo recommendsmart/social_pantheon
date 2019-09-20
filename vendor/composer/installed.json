@@ -2879,57 +2879,6 @@
         }
     },
     {
-        "name": "drupal/colorapi",
-        "version": "1.0.0",
-        "version_normalized": "1.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupalcode.org/project/colorapi.git",
-            "reference": "8.x-1.0"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/colorapi-8.x-1.0.zip",
-            "reference": "8.x-1.0",
-            "shasum": "8753bcf42d26d6b932765efee88aa90c2acea019"
-        },
-        "require": {
-            "drupal/core": "~8.0"
-        },
-        "type": "drupal-module",
-        "extra": {
-            "branch-alias": {
-                "dev-1.x": "1.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-1.0",
-                "datestamp": "1568556480",
-                "security-coverage": {
-                    "status": "covered",
-                    "message": "Covered by Drupal's security advisory policy"
-                }
-            }
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0-or-later"
-        ],
-        "authors": [
-            {
-                "name": "Jay Friendly (Jaypan)",
-                "homepage": "https://www.jaypan.com",
-                "role": "Maintainer"
-            }
-        ],
-        "description": "Provides a full set of functionality around the idea of a 'color' within Drupal, providing low level data types, an optional Color Field, and an optional Color Entity, and related functionality.",
-        "homepage": "https://drupal.org/project/colorapi",
-        "support": {
-            "source": "https://cgit.drupalcode.org/colorapi",
-            "issues": "https://drupal.org/project/issues/colorapi"
-        }
-    },
-    {
         "name": "drupal/commerce",
         "version": "2.14.0",
         "version_normalized": "2.14.0.0",
@@ -8121,64 +8070,6 @@
         }
     },
     {
-        "name": "drupal/jquery_colorpicker",
-        "version": "2.0.0-rc1",
-        "version_normalized": "2.0.0.0-RC1",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupalcode.org/project/jquery_colorpicker.git",
-            "reference": "8.x-2.0-rc1"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/jquery_colorpicker-8.x-2.0-rc1.zip",
-            "reference": "8.x-2.0-rc1",
-            "shasum": "ec0164be5ba651a7b508f339bacf9f83332e3257"
-        },
-        "require": {
-            "drupal/colorapi": "^1.0",
-            "drupal/core": "~8.0",
-            "drupal/vendor_stream_wrapper": "^1.0",
-            "jaypan/jquery-colorpicker": "^1.0"
-        },
-        "type": "drupal-module",
-        "extra": {
-            "branch-alias": {
-                "dev-2.x": "2.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-2.0-rc1",
-                "datestamp": "1539053541",
-                "security-coverage": {
-                    "status": "not-covered",
-                    "message": "RC releases are not covered by Drupal security advisories."
-                }
-            }
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0-or-later"
-        ],
-        "authors": [
-            {
-                "name": "Jay Friendly (Jaypan)",
-                "homepage": "https://www.jaypan.com",
-                "role": "Maintainer"
-            },
-            {
-                "name": "plopesc",
-                "homepage": "https://www.drupal.org/user/282415"
-            }
-        ],
-        "description": "A Drupal integration with the jQuery Colorpicker (https://www.eyecon.ro/colorpicker) module",
-        "homepage": "https://drupal.org/project/jquery_colorpicker",
-        "support": {
-            "source": "https://cgit.drupalcode.org/jquery_colorpicker",
-            "issues": "https://drupal.org/project/issues/jquery_colorpicker"
-        }
-    },
-    {
         "name": "drupal/key",
         "version": "1.10.0",
         "version_normalized": "1.10.0.0",
@@ -8799,106 +8690,6 @@
             "source": "http://cgit.drupalcode.org/office_hours",
             "issues": "http://drupal.org/project/office_hours",
             "irc": "irc://irc.freenode.org/drupal-contribute"
-        }
-    },
-    {
-        "name": "drupal/og",
-        "version": "1.0.0-alpha3",
-        "version_normalized": "1.0.0.0-alpha3",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupalcode.org/project/og.git",
-            "reference": "8.x-1.0-alpha3"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/og-8.x-1.0-alpha3.zip",
-            "reference": "8.x-1.0-alpha3",
-            "shasum": "492d437a1820956bb4a64efcf4de70b9ff1a43f1"
-        },
-        "require": {
-            "drupal/core": "~8.7",
-            "php": ">=7.1.0"
-        },
-        "require-dev": {
-            "drupal/coder": "~8.2"
-        },
-        "type": "drupal-module",
-        "extra": {
-            "branch-alias": {
-                "dev-1.x": "1.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-1.0-alpha3",
-                "datestamp": "1560179584",
-                "security-coverage": {
-                    "status": "not-covered",
-                    "message": "Alpha releases are not covered by Drupal security advisories."
-                }
-            }
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0+"
-        ],
-        "authors": [
-            {
-                "name": "Dries",
-                "homepage": "https://www.drupal.org/user/1"
-            },
-            {
-                "name": "Grayside",
-                "homepage": "https://www.drupal.org/user/346868"
-            },
-            {
-                "name": "RoySegall",
-                "homepage": "https://www.drupal.org/user/1812910"
-            },
-            {
-                "name": "Zen",
-                "homepage": "https://www.drupal.org/user/21209"
-            },
-            {
-                "name": "alesr",
-                "homepage": "https://www.drupal.org/user/150704"
-            },
-            {
-                "name": "amitaibu",
-                "homepage": "https://www.drupal.org/user/57511"
-            },
-            {
-                "name": "dww",
-                "homepage": "https://www.drupal.org/user/46549"
-            },
-            {
-                "name": "merlinofchaos",
-                "homepage": "https://www.drupal.org/user/26979"
-            },
-            {
-                "name": "moshe weitzman",
-                "homepage": "https://www.drupal.org/user/23"
-            },
-            {
-                "name": "mpp",
-                "homepage": "https://www.drupal.org/user/359881"
-            },
-            {
-                "name": "pfrenssen",
-                "homepage": "https://www.drupal.org/user/382067"
-            },
-            {
-                "name": "sethcohn",
-                "homepage": "https://www.drupal.org/user/14944"
-            }
-        ],
-        "description": "API to allow associating content with groups.",
-        "homepage": "https://drupal.org/project/og",
-        "support": {
-            "source": "https://git.drupalcode.org/project/og",
-            "issues": "https://drupal.org/project/issues/og",
-            "irc": "irc://irc.freenode.org/drupal-og",
-            "slack": "https://drupal.slack.com/messages/CELR48EA0"
         }
     },
     {
@@ -11404,57 +11195,6 @@
         }
     },
     {
-        "name": "drupal/vendor_stream_wrapper",
-        "version": "1.3.0",
-        "version_normalized": "1.3.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupalcode.org/project/vendor_stream_wrapper.git",
-            "reference": "8.x-1.3"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/vendor_stream_wrapper-8.x-1.3.zip",
-            "reference": "8.x-1.3",
-            "shasum": "04129dfe35a5d575793a4136400c4e91d9856a64"
-        },
-        "require": {
-            "drupal/core": "~8.0"
-        },
-        "type": "drupal-module",
-        "extra": {
-            "branch-alias": {
-                "dev-1.x": "1.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-1.3",
-                "datestamp": "1559393587",
-                "security-coverage": {
-                    "status": "covered",
-                    "message": "Covered by Drupal's security advisory policy"
-                }
-            }
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0-or-later"
-        ],
-        "authors": [
-            {
-                "name": "Jay Friendly (Jaypan)",
-                "homepage": "https://www.jaypan.com",
-                "role": "Maintainer"
-            }
-        ],
-        "description": "Creates the vendor:// stream wrapper, allowing for linking/embedding of CSS and JS files in the vendor directory.",
-        "homepage": "https://drupal.org/project/vendor_stream_wrapper",
-        "support": {
-            "source": "https://cgit.drupalcode.org/vendor_stream_wrapper",
-            "issues": "https://drupal.org/project/issues/vendor_stream_wrapper"
-        }
-    },
-    {
         "name": "drupal/video_embed_field",
         "version": "1.6.0",
         "version_normalized": "1.6.0.0",
@@ -13736,31 +13476,6 @@
             "assoc-array",
             "hash-map"
         ]
-    },
-    {
-        "name": "jaypan/jquery-colorpicker",
-        "version": "1.0.1",
-        "version_normalized": "1.0.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/jaypan/jquery_colorpicker.git",
-            "reference": "1c1c4cf081387f53470c591505cbba7928164066"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/jaypan/jquery_colorpicker/zipball/1c1c4cf081387f53470c591505cbba7928164066",
-            "reference": "1c1c4cf081387f53470c591505cbba7928164066",
-            "shasum": ""
-        },
-        "time": "2018-09-27T02:07:08+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "(MIT or GPL-1.0)"
-        ],
-        "description": "The jQuery Colorpicker JS/CSS library",
-        "homepage": "https://www.eyecon.ro/colorpicker/"
     },
     {
         "name": "league/csv",
