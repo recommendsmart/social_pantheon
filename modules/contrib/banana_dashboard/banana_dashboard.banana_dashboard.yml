@@ -7,6 +7,8 @@ dashboard:
 dashboard_menu_groups:
   - Content
   - System
+  - HR
+  - Store
 
 dashboard_menu:
   content-list:
@@ -39,4 +41,14 @@ dashboard_menu:
     icon: menu
     url: /admin/structure/menu
 
-
+  People:
+    group: HR
+    title: People
+    icon: menu
+    url: /admin/people
+    
+  Products:
+    group: Store
+    title: Products
+    icon: boxes
+    url: /admin/commerce/products
