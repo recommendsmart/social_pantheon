@@ -1,5 +1,5 @@
 dashboard:
-  url: banana-dashboard
+  url: admin/banana-dashboard
   title: Dashboard
   access arguments:
     - access administration pages
