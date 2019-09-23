@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "06125d0dfb494661d297555139852a49",
+    "content-hash": "502c941daca72f930c9c7ad9257295b3",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -3007,75 +3007,6 @@
             }
         },
         {
-            "name": "drupal/commerce_demo",
-            "version": "1.0.0-rc3",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/commerce_demo.git",
-                "reference": "8.x-1.0-rc3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/commerce_demo-8.x-1.0-rc3.zip",
-                "reference": "8.x-1.0-rc3",
-                "shasum": "b0c82b3f3be99096ef4b99390e81cf6d4eaeb0a3"
-            },
-            "require": {
-                "drupal/color_field": "^2.0",
-                "drupal/commerce": "^2.10",
-                "drupal/commerce_cart": "*",
-                "drupal/commerce_checkout": "*",
-                "drupal/commerce_payment": "*",
-                "drupal/commerce_payment_example": "*",
-                "drupal/commerce_product": "*",
-                "drupal/commerce_promotion": "*",
-                "drupal/commerce_shipping": "^2.0",
-                "drupal/commerce_tax": "*",
-                "drupal/core": "*",
-                "drupal/facets": "^1.0",
-                "drupal/facets_pretty_paths": "^1.0",
-                "drupal/image_delta_formatter": "^1.0",
-                "drupal/pathauto": "^1.0",
-                "drupal/search_api": "^1.9",
-                "drupal/search_api_db": "*",
-                "drupal/taxonomy_menu": "^3.3",
-                "drupal/taxonomy_term_depth": "2.x-dev"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0-rc3",
-                    "datestamp": "1543417380",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "RC releases are not covered by Drupal security advisories."
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "bojanz",
-                    "homepage": "https://www.drupal.org/user/86106"
-                },
-                {
-                    "name": "mglaman",
-                    "homepage": "https://www.drupal.org/user/2416470"
-                }
-            ],
-            "description": "Demo module for Drupal Commerce.",
-            "homepage": "http://drupal.org/project/commerce_demo",
-            "support": {
-                "source": "https://git.drupalcode.org/project/commerce_demo"
-            }
-        },
-        {
             "name": "drupal/commerce_funds",
             "version": "1.0.0-alpha8",
             "source": {
@@ -3254,56 +3185,6 @@
             }
         },
         {
-            "name": "drupal/commerce_payment_example",
-            "version": "2.14.0",
-            "require": {
-                "drupal/commerce": "self.version",
-                "drupal/commerce_payment": "*",
-                "drupal/core": "~8.0"
-            },
-            "type": "metapackage",
-            "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-2.14",
-                    "datestamp": "1567162382",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "bojanz",
-                    "homepage": "https://www.drupal.org/user/86106"
-                },
-                {
-                    "name": "jsacksick",
-                    "homepage": "https://www.drupal.org/user/972218"
-                },
-                {
-                    "name": "mglaman",
-                    "homepage": "https://www.drupal.org/user/2416470"
-                },
-                {
-                    "name": "rszrama",
-                    "homepage": "https://www.drupal.org/user/49344"
-                }
-            ],
-            "description": "Provides payment gateway examples.",
-            "homepage": "https://www.drupal.org/project/commerce",
-            "support": {
-                "source": "https://git.drupalcode.org/project/commerce"
-            }
-        },
-        {
             "name": "drupal/commerce_price",
             "version": "2.14.0",
             "require": {
@@ -3398,56 +3279,6 @@
                 }
             ],
             "description": "Defines the Product entity and associated features.",
-            "homepage": "https://www.drupal.org/project/commerce",
-            "support": {
-                "source": "https://git.drupalcode.org/project/commerce"
-            }
-        },
-        {
-            "name": "drupal/commerce_promotion",
-            "version": "2.14.0",
-            "require": {
-                "drupal/commerce": "self.version",
-                "drupal/commerce_order": "*",
-                "drupal/core": "*"
-            },
-            "type": "metapackage",
-            "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-2.14",
-                    "datestamp": "1567162382",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "bojanz",
-                    "homepage": "https://www.drupal.org/user/86106"
-                },
-                {
-                    "name": "jsacksick",
-                    "homepage": "https://www.drupal.org/user/972218"
-                },
-                {
-                    "name": "mglaman",
-                    "homepage": "https://www.drupal.org/user/2416470"
-                },
-                {
-                    "name": "rszrama",
-                    "homepage": "https://www.drupal.org/user/49344"
-                }
-            ],
-            "description": "Provides a UI for managing promotions.",
             "homepage": "https://www.drupal.org/project/commerce",
             "support": {
                 "source": "https://git.drupalcode.org/project/commerce"
@@ -3705,57 +3536,6 @@
                 }
             ],
             "description": "Defines the Store entity and associated features.",
-            "homepage": "https://www.drupal.org/project/commerce",
-            "support": {
-                "source": "https://git.drupalcode.org/project/commerce"
-            }
-        },
-        {
-            "name": "drupal/commerce_tax",
-            "version": "2.14.0",
-            "require": {
-                "drupal/commerce": "self.version",
-                "drupal/commerce_order": "*",
-                "drupal/commerce_price": "*",
-                "drupal/core": "~8.0"
-            },
-            "type": "metapackage",
-            "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-2.14",
-                    "datestamp": "1567162382",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "bojanz",
-                    "homepage": "https://www.drupal.org/user/86106"
-                },
-                {
-                    "name": "jsacksick",
-                    "homepage": "https://www.drupal.org/user/972218"
-                },
-                {
-                    "name": "mglaman",
-                    "homepage": "https://www.drupal.org/user/2416470"
-                },
-                {
-                    "name": "rszrama",
-                    "homepage": "https://www.drupal.org/user/49344"
-                }
-            ],
-            "description": "Provides tax functionality.",
             "homepage": "https://www.drupal.org/project/commerce",
             "support": {
                 "source": "https://git.drupalcode.org/project/commerce"
@@ -9876,51 +9656,6 @@
             }
         },
         {
-            "name": "drupal/search_api_db",
-            "version": "1.13.0",
-            "require": {
-                "drupal/core": "~8.0",
-                "drupal/search_api": "self.version"
-            },
-            "type": "metapackage",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.13",
-                    "datestamp": "1562599986",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Nick_vh",
-                    "homepage": "https://www.drupal.org/user/122682"
-                },
-                {
-                    "name": "borisson_",
-                    "homepage": "https://www.drupal.org/user/2393360"
-                },
-                {
-                    "name": "drunken monkey",
-                    "homepage": "https://www.drupal.org/user/205582"
-                }
-            ],
-            "description": "Offers an implementation of the Search API that uses database tables for indexing content.",
-            "homepage": "https://www.drupal.org/project/search_api",
-            "support": {
-                "source": "https://git.drupalcode.org/project/search_api"
-            }
-        },
-        {
             "name": "drupal/services",
             "version": "4.0.0-beta5",
             "source": {
@@ -10655,11 +10390,17 @@
         },
         {
             "name": "drupal/taxonomy_term_depth",
-            "version": "dev-2.x",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/taxonomy_term_depth.git",
-                "reference": "33885549d0400607a4cf4189138259ebe7d5c1ad"
+                "reference": "8.x-2.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/taxonomy_term_depth-8.x-2.3.zip",
+                "reference": "8.x-2.3",
+                "shasum": "1eec5c334922c5124923bd6a36bf47d511331aa2"
             },
             "require": {
                 "drupal/core": "*"
@@ -10670,11 +10411,11 @@
                     "dev-2.x": "2.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-2.1+2-dev",
-                    "datestamp": "1554979081",
+                    "version": "8.x-2.3",
+                    "datestamp": "1554979981",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -10696,8 +10437,7 @@
             "homepage": "https://www.drupal.org/project/taxonomy_term_depth",
             "support": {
                 "source": "https://git.drupalcode.org/project/taxonomy_term_depth"
-            },
-            "time": "2019-04-11T10:34:59+00:00"
+            }
         },
         {
             "name": "drupal/term_reference_fancytree",
@@ -12950,16 +12690,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.114",
+            "version": "v0.115",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "22746bfd8d8d5a4f8bbe5e22559d9976810c177c"
+                "reference": "b907bd827f3bfc4a80eebabdf61bee12baaac971"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/22746bfd8d8d5a4f8bbe5e22559d9976810c177c",
-                "reference": "22746bfd8d8d5a4f8bbe5e22559d9976810c177c",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/b907bd827f3bfc4a80eebabdf61bee12baaac971",
+                "reference": "b907bd827f3bfc4a80eebabdf61bee12baaac971",
                 "shasum": ""
             },
             "require": {
@@ -12983,7 +12723,7 @@
             "keywords": [
                 "google"
             ],
-            "time": "2019-09-16T00:23:14+00:00"
+            "time": "2019-09-21T00:23:39+00:00"
         },
         {
             "name": "google/auth",

@@ -104,7 +104,7 @@
         "drupal/workbench_reviewer": "^2.0",
         "drupal/banana_dashboard": "1.x-dev",
         "drupal/matrix_field": "1.x-dev",
-        "drupal/commerce_demo": "^1.0"						  							 
+        "drupal/taxonomy_term_depth": "^2.3"						  							 
         },
     "repositories": [
         {
