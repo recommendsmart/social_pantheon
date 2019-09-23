@@ -94,7 +94,6 @@
         "drupal/group_behavior": "^1.0",
         "drupal/webform_content_creator": "^1.0",
         "drupal/context_entity_field": "^1.0",
-        "drupal/taxonomy_term_depth": "^2.3",
         "drupal/color_field": "^2.0",
         "drupal/taxonomy_menu": "^3.4",
         "drupal/commerce_shipping": "^2.0",
@@ -103,7 +102,9 @@
         "drupal/image_delta_formatter": "^1.0",
         "drupal/bee": "^1.0",
         "drupal/workbench_reviewer": "^2.0",
-        "drupal/banana_dashboard": "1.x-dev"						  							 
+        "drupal/banana_dashboard": "1.x-dev",
+        "drupal/matrix_field": "1.x-dev",
+        "drupal/commerce_demo": "^1.0"						  							 
         },
     "repositories": [
         {
