@@ -59,3 +59,30 @@ entity.finance_supplier.version_history:
   route_name: entity.finance_supplier.version_history
   base_route: entity.finance_supplier.canonical
   title: 'Revisions'
+
+# Account Code routing definition
+
+entity.financial_account_code.collection:
+  title: 'Account Codes'
+  route_name: entity.financial_account_code.collection
+  base_route: entity.financial_account_code.collection
+
+entity.financial_account_code_type.collection:
+  title: 'Account Code types'
+  route_name: entity.financial_account_code_type.collection
+  base_route: entity.financial_account_code.collection
+
+entity.financial_account_code.canonical:
+  route_name: entity.financial_account_code.canonical
+  base_route: entity.financial_account_code.canonical
+  title: 'View'
+
+entity.financial_account_code.edit_form:
+  route_name: entity.financial_account_code.edit_form
+  base_route: entity.financial_account_code.canonical
+  title: 'Edit'
+
+entity.financial_account_code.version_history:
+  route_name: entity.financial_account_code.version_history
+  base_route: entity.financial_account_code.canonical
+  title: 'Revisions'

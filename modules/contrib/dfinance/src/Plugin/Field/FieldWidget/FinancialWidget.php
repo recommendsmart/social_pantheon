@@ -152,7 +152,7 @@ class FinancialWidget extends NumberWidget {
    * @param \Drupal\currency\Entity\CurrencyInterface|NULL $currency
    * @return string
    */
-  protected function getHtmlCurrencySign($currency) {
+  protected function getHtmlCurrencySign(CurrencyInterface $currency = NULL) {
     $currency_sign = $currency instanceof CurrencyInterface ? PlainTextOutput::renderFromHtml($currency->getSign()) : '';
     return "<span class=\"currency-sign\">$currency_sign</span>";
   }

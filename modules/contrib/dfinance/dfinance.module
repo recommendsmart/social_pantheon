@@ -46,6 +46,17 @@ function dfinance_theme() {
     'template' => 'finance_supplier',
   ];
 
+  $theme['financial_account_code'] = [
+    'render element' => 'elements',
+    'file' => 'financial_account_code.page.inc',
+    'template' => 'financial_account_code',
+  ];
+  $theme['financial_account_code_content_add_list'] = [
+    'render element' => 'content',
+    'variables' => ['content' => NULL],
+    'file' => 'financial_account_code.page.inc',
+  ];
+
   return $theme;
 }
 
@@ -63,6 +74,22 @@ function dfinance_theme_suggestions_financial_doc(array $variables) {
   $suggestions[] = 'financial_doc__' . $entity->bundle() . '__' . $sanitized_view_mode;
   $suggestions[] = 'financial_doc__' . $entity->id();
   $suggestions[] = 'financial_doc__' . $entity->id() . '__' . $sanitized_view_mode;
+  return $suggestions;
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function dfinance_theme_suggestions_financial_account_code(array $variables) {
+  $suggestions = [];
+  $entity = $variables['elements']['#financial_account_code'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+  $suggestions[] = 'financial_account_code__' . $sanitized_view_mode;
+  $suggestions[] = 'financial_account_code__' . $entity->bundle();
+  $suggestions[] = 'financial_account_code__' . $entity->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'financial_account_code__' . $entity->id();
+  $suggestions[] = 'financial_account_code__' . $entity->id() . '__' . $sanitized_view_mode;
   return $suggestions;
 }
 

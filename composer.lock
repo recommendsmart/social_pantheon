@@ -4911,7 +4911,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/dfinance.git",
-                "reference": "019042345197aa76f4a2072781720918111091c0"
+                "reference": "e3e1036f4c0335cebd7e3726ffa228d159b76307"
             },
             "require": {
                 "drupal/core": "*",
@@ -4927,7 +4927,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1567727580",
+                    "datestamp": "1567805285",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -4952,7 +4952,8 @@
             "homepage": "https://www.drupal.org/project/dfinance",
             "support": {
                 "source": "https://git.drupalcode.org/project/dfinance"
-            }
+            },
+            "time": "2019-09-23T20:46:57+00:00"
         },
         {
             "name": "drupal/disable_field",
@@ -13599,10 +13600,10 @@
         },
         {
             "name": "npm-asset/fortawesome--fontawesome-free",
-            "version": "5.10.2",
+            "version": "5.11.2",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-5.10.2.tgz"
+                "url": "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-5.11.2.tgz"
             },
             "type": "npm-asset",
             "license": [

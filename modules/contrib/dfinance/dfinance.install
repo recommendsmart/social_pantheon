@@ -33,5 +33,19 @@ function dfinance_update_8001() {
     ->setRequired(TRUE);
 
   \Drupal::entityDefinitionUpdateManager()->installFieldStorageDefinition('currency', 'finance_organisation', 'finance_organisation', $currency_field);
+}
 
+/**
+ * Install Account Code Entity Type and associated View.
+ */
+function dfinance_update_8012() {
+  // Install financial_account_code Entity Type
+  \Drupal::entityDefinitionUpdateManager()->installEntityType(\Drupal::entityTypeManager()->getDefinition('financial_account_code'));
+
+  // Install financial_account_codes View from configuration
+  $confiPath = \Drupal::moduleHandler()->getModule('dfinance')->getPath() . '/config/install';
+  $source = new \Drupal\Core\Config\FileStorage($confiPath);
+  /** @var \Drupal\Core\Config\StorageInterface $configStorage */
+  $configStorage = \Drupal::service('config.storage');
+  $configStorage->write('views.view.financial_account_codes', $source->read('views.view.financial_account_codes'));
 }

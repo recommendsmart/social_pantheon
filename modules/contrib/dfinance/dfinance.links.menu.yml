@@ -38,3 +38,11 @@ entity.finance_supplier.collection:
   route_name: entity.finance_supplier.collection
   description: 'View and manage all Suppliers as well as field configuration.'
   parent: dfinance.admin_index
+
+# Account Code menu items definition
+entity.financial_account_code.collection:
+  title: 'Manage Account Codes'
+  route_name: entity.financial_account_code.collection
+  description: 'View and manage all Account Codes as well as field configuration.'
+  parent: dfinance.admin_index
+  weight: 100

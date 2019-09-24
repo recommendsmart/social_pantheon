@@ -23,3 +23,13 @@ entity.finance_supplier.add_form:
   title: 'Add Supplier'
   appears_on:
   - entity.finance_supplier.collection
+entity.financial_account_code.add_form:
+  route_name: entity.financial_account_code.add_page
+  title: 'Add Account Code'
+  appears_on:
+    - entity.financial_account_code.collection
+entity.financial_account_code_type.add_form:
+  route_name: entity.financial_account_code_type.add_form
+  title: 'Add Account Code type'
+  appears_on:
+    - entity.financial_account_code_type.collection
