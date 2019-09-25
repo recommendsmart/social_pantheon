@@ -1,0 +1,10 @@
+name: 'Task Note'
+type: module
+description: 'A variety of notes for Tasks'
+core: 8.x
+package: 'Task'
+
+# Information added by Drupal.org packaging script on 2019-09-02
+version: '8.x-2.0-alpha5'
+project: 'task'
+datestamp: 1567443794

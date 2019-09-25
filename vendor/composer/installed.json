@@ -4241,95 +4241,6 @@
         "description": "Drupal is an open source content management platform powering millions of websites and applications."
     },
     {
-        "name": "drupal/crm_core",
-        "version": "dev-3.x",
-        "version_normalized": "dev-3.x",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupalcode.org/project/crm_core.git",
-            "reference": "53c3b91376b8cd357a7ff44e8f42a0cd281ce35b"
-        },
-        "require": {
-            "drupal/core": "~8.0"
-        },
-        "require-dev": {
-            "drupal/crm_core_activity": "*",
-            "drupal/crm_core_contact": "*",
-            "drupal/crm_core_relationship": "*",
-            "drupal/dynamic_entity_reference": "*",
-            "drupal/entity": "*",
-            "drupal/name": "^1.0.0-rc2",
-            "drupal/relation": "*",
-            "drupal/search_api": "*"
-        },
-        "type": "drupal-module",
-        "extra": {
-            "branch-alias": {
-                "dev-3.x": "3.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-3.x-dev",
-                "datestamp": "1567341189",
-                "security-coverage": {
-                    "status": "not-covered",
-                    "message": "Dev releases are not covered by Drupal security advisories."
-                }
-            }
-        },
-        "installation-source": "source",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0+"
-        ],
-        "authors": [
-            {
-                "name": "Berdir",
-                "homepage": "https://www.drupal.org/user/214652"
-            },
-            {
-                "name": "Morbus Iff",
-                "homepage": "https://www.drupal.org/user/9034"
-            },
-            {
-                "name": "RoSk0",
-                "homepage": "https://www.drupal.org/user/325151"
-            },
-            {
-                "name": "cr0ss",
-                "homepage": "https://www.drupal.org/user/432492"
-            },
-            {
-                "name": "dealancer",
-                "homepage": "https://www.drupal.org/user/243418"
-            },
-            {
-                "name": "grahl",
-                "homepage": "https://www.drupal.org/user/146040"
-            },
-            {
-                "name": "miro_dietiker",
-                "homepage": "https://www.drupal.org/user/227761"
-            },
-            {
-                "name": "pingers",
-                "homepage": "https://www.drupal.org/user/56282"
-            },
-            {
-                "name": "slashrsm",
-                "homepage": "https://www.drupal.org/user/744628"
-            },
-            {
-                "name": "vlkff",
-                "homepage": "https://www.drupal.org/user/320057"
-            }
-        ],
-        "description": "CRM Core is a set of modules that provide contact management functionality within Drupal web sites.",
-        "homepage": "https://www.drupal.org/project/crm_core",
-        "support": {
-            "source": "https://git.drupalcode.org/project/crm_core"
-        }
-    },
-    {
         "name": "drupal/crop",
         "version": "1.5.0",
         "version_normalized": "1.5.0.0",
@@ -10227,6 +10138,67 @@
         "homepage": "https://www.drupal.org/project/swiftmailer",
         "support": {
             "source": "http://cgit.drupalcode.org/swiftmailer"
+        }
+    },
+    {
+        "name": "drupal/task",
+        "version": "2.0.0-alpha5",
+        "version_normalized": "2.0.0.0-alpha5",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/task.git",
+            "reference": "8.x-2.0-alpha5"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/task-8.x-2.0-alpha5.zip",
+            "reference": "8.x-2.0-alpha5",
+            "shasum": "4e452f9d744ba47743bb0ea898f7c2740d034eb3"
+        },
+        "require": {
+            "drupal/core": "~8.0"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-2.x": "2.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-2.0-alpha5",
+                "datestamp": "1567443785",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Project has not opted into security advisory coverage!"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Ivan Zugec",
+                "homepage": "https://www.drupal.org/user/86970"
+            },
+            {
+                "name": "Shawn2516",
+                "homepage": "https://www.drupal.org/user/3154563"
+            },
+            {
+                "name": "laboratory.mike",
+                "homepage": "https://www.drupal.org/user/131390"
+            }
+        ],
+        "description": "Allows users to create and assign tasks",
+        "homepage": "https://www.drupal.org/project/task",
+        "keywords": [
+            "Drupal"
+        ],
+        "support": {
+            "source": "http://cgit.drupalcode.org/task",
+            "issues": "https://www.drupal.org/project/issues/task"
         }
     },
     {
