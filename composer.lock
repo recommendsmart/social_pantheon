@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "38dc92ecad301e00d6a775efe4ef44cc",
+    "content-hash": "528f06d5fb4bb111ca59187bcdfdcf04",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -1583,53 +1583,6 @@
             }
         },
         {
-            "name": "drupal/age_calculator",
-            "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/age_calculator.git",
-                "reference": "8.x-2.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/age_calculator-8.x-2.0.zip",
-                "reference": "8.x-2.0",
-                "shasum": "2418eb6d267302da85587f1ace62d5763a5eb14a"
-            },
-            "require": {
-                "drupal/core": "~8.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-2.0",
-                    "datestamp": "1514808784",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "kunal.kursija",
-                    "homepage": "https://www.drupal.org/user/2126548"
-                }
-            ],
-            "description": "Provides a very simple user interface from where users can calculate their age.",
-            "homepage": "https://www.drupal.org/project/age_calculator",
-            "support": {
-                "source": "http://cgit.drupalcode.org/age_calculator"
-            }
-        },
-        {
             "name": "drupal/age_field_formatter",
             "version": "2.1.0",
             "source": {
@@ -1678,58 +1631,6 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/age_field_formatter",
                 "issues": "https://www.drupal.org/project/issues/age_field_formatter"
-            }
-        },
-        {
-            "name": "drupal/altering_entity_routes",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/altering_entity_routes.git",
-                "reference": "8.x-1.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/altering_entity_routes-8.x-1.0.zip",
-                "reference": "8.x-1.0",
-                "shasum": "10f19a14abf3baaf31ce6ef25c29ab7ad845a670"
-            },
-            "require": {
-                "drupal/core": "~8.0",
-                "drupal/eck": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0",
-                    "datestamp": "1560872585",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Uming",
-                    "homepage": "https://www.drupal.org/user/3342682"
-                }
-            ],
-            "description": "Altering eck entity existing defaults routes！This is a custom module.",
-            "homepage": "https://www.drupal.org/project/altering_entity_routes",
-            "keywords": [
-                "Drupal"
-            ],
-            "support": {
-                "source": "http://cgit.drupalcode.org/altering_entity_routes",
-                "issues": "https://www.drupal.org/project/issues/altering_entity_routes"
             }
         },
         {
@@ -1842,57 +1743,6 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/banana_dashboard",
                 "issues": "https://www.drupal.org/project/issues/banana_dashboard"
-            }
-        },
-        {
-            "name": "drupal/base_field_override_ui",
-            "version": "1.0.0-beta1",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/base_field_override_ui.git",
-                "reference": "8.x-1.0-beta1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/base_field_override_ui-8.x-1.0-beta1.zip",
-                "reference": "8.x-1.0-beta1",
-                "shasum": "65cbd5ca7d6a2babc8f36a722df82c621385d671"
-            },
-            "require": {
-                "drupal/core": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0-beta1",
-                    "datestamp": "1558411985",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "mnico",
-                    "homepage": "https://www.drupal.org/user/1119544"
-                }
-            ],
-            "description": "Enables the posibility to easily override the base fields of any content entity type with a user interface.",
-            "homepage": "https://www.drupal.org/project/base_field_override_ui",
-            "keywords": [
-                "Drupal"
-            ],
-            "support": {
-                "source": "http://cgit.drupalcode.org/base_field_override_ui",
-                "issues": "https://www.drupal.org/project/issues/base_field_override_ui"
             }
         },
         {
@@ -5302,94 +5152,6 @@
             }
         },
         {
-            "name": "drupal/eck",
-            "version": "1.0.0-alpha5",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/eck.git",
-                "reference": "8.x-1.0-alpha5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/eck-8.x-1.0-alpha5.zip",
-                "reference": "8.x-1.0-alpha5",
-                "shasum": "27f859b0da7dfb3809baa38438c0362662d03add"
-            },
-            "require": {
-                "drupal/core": "^8"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0-alpha5",
-                    "datestamp": "1539887880",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "See contributors",
-                    "homepage": "https://www.drupal.org/node/1155832/committers"
-                },
-                {
-                    "name": "acrazyanimal",
-                    "homepage": "https://www.drupal.org/user/696648"
-                },
-                {
-                    "name": "akalata",
-                    "homepage": "https://www.drupal.org/user/498926"
-                },
-                {
-                    "name": "dpopdan",
-                    "homepage": "https://www.drupal.org/user/2759811"
-                },
-                {
-                    "name": "eric.napier",
-                    "homepage": "https://www.drupal.org/user/501688"
-                },
-                {
-                    "name": "fmizzell",
-                    "homepage": "https://www.drupal.org/user/1312210"
-                },
-                {
-                    "name": "legolasbo",
-                    "homepage": "https://www.drupal.org/user/2480548"
-                },
-                {
-                    "name": "mducharme",
-                    "homepage": "https://www.drupal.org/user/616996"
-                },
-                {
-                    "name": "mihai_brb",
-                    "homepage": "https://www.drupal.org/user/2065978"
-                },
-                {
-                    "name": "pifagor",
-                    "homepage": "https://www.drupal.org/user/2375692"
-                },
-                {
-                    "name": "wjaspers",
-                    "homepage": "https://www.drupal.org/user/813890"
-                }
-            ],
-            "description": "ECK (Entity Construction Kit) allows users to create and administer entity types, bundles and entities from the UI.",
-            "homepage": "https://www.drupal.org/project/eck",
-            "support": {
-                "source": "http://git.drupal.org/project/eck.git",
-                "issues": "https://www.drupal.org/project/issues/eck"
-            }
-        },
-        {
             "name": "drupal/embed",
             "version": "1.0.0",
             "source": {
@@ -5583,77 +5345,6 @@
             "homepage": "http://drupal.org/project/entity",
             "support": {
                 "source": "https://git.drupalcode.org/project/entity"
-            }
-        },
-        {
-            "name": "drupal/entity_collector",
-            "version": "1.0.0-alpha18",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/entity_collector.git",
-                "reference": "8.x-1.0-alpha18"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/entity_collector-8.x-1.0-alpha18.zip",
-                "reference": "8.x-1.0-alpha18",
-                "shasum": "68cedf95363b5a718a5757c3c679c6f79aa5d5c7"
-            },
-            "require": {
-                "drupal/core": "~8.0",
-                "drupal/entity_collector": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0-alpha18",
-                    "datestamp": "1555492085",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Marnix van Balgooi",
-                    "homepage": "https://www.drupal.org/u/mirnaxvb",
-                    "email": "mj.van.balgooi@gmail.com",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Jeffrey Bertoen",
-                    "homepage": "https://www.drupal.org/u/jbertoen",
-                    "email": "jbertoen@gmail.com",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "leonvanderhaas",
-                    "homepage": "https://www.drupal.org/user/3549874"
-                },
-                {
-                    "name": "mycw1991",
-                    "homepage": "https://www.drupal.org/user/3523472"
-                }
-            ],
-            "description": "Provides the functionality to create entity collections and add them to a specific collection.",
-            "homepage": "https://www.drupal.org/project/entity_collector",
-            "keywords": [
-                "Drupal",
-                "collector",
-                "entity"
-            ],
-            "support": {
-                "source": "http://cgit.drupalcode.org/entity_collector",
-                "issues": "https://www.drupal.org/project/issues/entity_collector",
-                "irc": "irc://irc.freenode.org/drupal-contribute"
             }
         },
         {
@@ -6469,57 +6160,6 @@
             "homepage": "https://www.drupal.org/project/file_mdm",
             "support": {
                 "source": "http://cgit.drupalcode.org/file_mdm"
-            }
-        },
-        {
-            "name": "drupal/financial",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/financial.git",
-                "reference": "8.x-1.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/financial-8.x-1.0.zip",
-                "reference": "8.x-1.0",
-                "shasum": "761ebb8a3742f60e8e241da158145a89fe60844a"
-            },
-            "require": {
-                "drupal/core": "~8.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0",
-                    "datestamp": "1498111743",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "gaurav.kapoor",
-                    "homepage": "https://www.drupal.org/user/3495331"
-                },
-                {
-                    "name": "lakshay.kumar",
-                    "homepage": "https://www.drupal.org/user/3561688"
-                }
-            ],
-            "description": "To Provide the useful financial calculator tools for loans, car/auto loans, compound interest, savings, mortgages and more.",
-            "homepage": "https://www.drupal.org/project/financial",
-            "support": {
-                "source": "https://git.drupalcode.org/project/financial"
             }
         },
         {
@@ -8220,52 +7860,6 @@
             }
         },
         {
-            "name": "drupal/matrix_field",
-            "version": "dev-1.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/matrix_field.git",
-                "reference": "ee16f254bd7310d9a68f93bdf0d85e2b83a4e592"
-            },
-            "require": {
-                "drupal/core": "~8.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.x-dev",
-                    "datestamp": "1568813285",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "gun_dose",
-                    "homepage": "https://www.drupal.org/user/3103547"
-                }
-            ],
-            "description": "Provides multi-valued field, that contains items with labels, units and values.",
-            "homepage": "https://www.drupal.org/project/matrix_field",
-            "keywords": [
-                "Drupal"
-            ],
-            "support": {
-                "source": "http://cgit.drupalcode.org/matrix_field",
-                "issues": "https://www.drupal.org/project/issues/matrix_field"
-            },
-            "time": "2019-09-18T13:50:58+00:00"
-        },
-        {
             "name": "drupal/message",
             "version": "1.0.0-rc2",
             "source": {
@@ -9830,55 +9424,6 @@
             }
         },
         {
-            "name": "drupal/simple_calculator",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/simple_calculator.git",
-                "reference": "8.x-1.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/simple_calculator-8.x-1.1.zip",
-                "reference": "8.x-1.1",
-                "shasum": "53a45d028d9d32d2787bf60cc970fb7e37eca589"
-            },
-            "require": {
-                "drupal/core": "~8.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.1",
-                    "datestamp": "1480519983",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "A Ajay Kumar Reddy (ajaykumarreddy1392)",
-                    "homepage": "https://www.drupal.org/u/ajaykumarreddy1392",
-                    "role": "Maintainer"
-                }
-            ],
-            "description": "Simple Calculator Block.",
-            "homepage": "https://www.drupal.org/project/simple_calculator",
-            "support": {
-                "source": "http://cgit.drupalcode.org/simple_calculator",
-                "issues": "http://drupal.org/project/issues/simple_calculator"
-            }
-        },
-        {
             "name": "drupal/social_api",
             "version": "1.1.0",
             "source": {
@@ -10716,54 +10261,6 @@
                 "source": "http://cgit.drupalcode.org/transaction",
                 "issues": "https://www.drupal.org/project/issues/transaction",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
-            }
-        },
-        {
-            "name": "drupal/transaction_workflow",
-            "version": "1.0.0-alpha1",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/transaction_workflow.git",
-                "reference": "8.x-1.0-alpha1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/transaction_workflow-8.x-1.0-alpha1.zip",
-                "reference": "8.x-1.0-alpha1",
-                "shasum": "f6430eee2d155d2f55c4819e293e39c165c18246"
-            },
-            "require": {
-                "drupal/core": "~8.0",
-                "drupal/transaction": "^1.0.0-alpha3"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0-alpha1",
-                    "datestamp": "1520533980",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "manuel.adan",
-                    "homepage": "https://www.drupal.org/user/516420"
-                }
-            ],
-            "description": "Simple and light weight transactional workflow for any entity type.",
-            "homepage": "https://www.drupal.org/project/transaction_workflow",
-            "support": {
-                "source": "http://cgit.drupalcode.org/transaction_workflow"
             }
         },
         {
@@ -17103,11 +16600,9 @@
         "drupal/prevent_term_delete": 15,
         "drupal/term_reference_fancytree": 10,
         "drupal/crm_core": 20,
-        "drupal/base_field_override_ui": 10,
         "drupal/entity_extra_field": 15,
         "drupal/dfinance": 20,
-        "drupal/banana_dashboard": 20,
-        "drupal/matrix_field": 20
+        "drupal/banana_dashboard": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

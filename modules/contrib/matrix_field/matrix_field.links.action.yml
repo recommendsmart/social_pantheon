@@ -1,5 +1,0 @@
-entity.matrix_field_matrix.add_form:
-  route_name: entity.matrix_field_matrix.add_form
-  title: 'Add Matrix'
-  appears_on:
-    - entity.matrix_field_matrix.collection

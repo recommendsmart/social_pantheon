@@ -1,9 +1,0 @@
-
-# Entity collection type menu items definition
-entity.entity_collection_type.collection:
-  title: 'Collection types'
-  route_name: entity.entity_collection_type.collection
-  description: 'List Entity collection type (bundles)'
-  parent: system.admin_structure
-  weight: 99
-
