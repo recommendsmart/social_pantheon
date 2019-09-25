@@ -96,7 +96,8 @@
         "drupal/taxonomy_term_depth": "^2.3",
         "drupal/basic_data": "^1.0",
         "drupal/name": "^1.0",
-        "drupal/crm_core": "3.x-dev"						  							 
+        "drupal/crm_core": "3.x-dev",
+        "drupal/auto_entitylabel": "^3.0"						  							 
         },
     "repositories": [
         {
