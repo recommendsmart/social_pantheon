@@ -41,7 +41,6 @@
         "drupal/date_recur_modular": "^1.0",
         "drupal/social_geolocation": "^1.0",
         "drupal/content_planner": "^1.0",
-        "drupal/auto_entitylabel": "^2.1",
         "drupal/duration_field": "^2.0",
         "drupal/datetime_extras": "^1.0",
         "drupal/views_ef_fieldset": "^1.3",
