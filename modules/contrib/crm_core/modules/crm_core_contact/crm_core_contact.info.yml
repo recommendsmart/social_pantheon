@@ -19,8 +19,3 @@ dependencies:
 
   # @todo Re-add once available and still needed.
 #  - field_group
-
-# Information added by Drupal.org packaging script on 2019-09-01
-version: '8.x-3.x-dev'
-project: 'crm_core'
-datestamp: 1567363387

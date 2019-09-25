@@ -8,8 +8,3 @@ configure: crm_core_user_sync.sync
 
 dependencies:
   - crm_core:crm_core_contact
-
-# Information added by Drupal.org packaging script on 2019-09-01
-version: '8.x-3.x-dev'
-project: 'crm_core'
-datestamp: 1567363387

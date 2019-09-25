@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e60725aae893a60e26162af06f2a4abc",
+    "content-hash": "9bc3c2bee8e94f19ee6440b084f580e5",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -4109,6 +4109,94 @@
             "time": "2019-09-04T10:26:35+00:00"
         },
         {
+            "name": "drupal/crm_core",
+            "version": "dev-3.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/crm_core.git",
+                "reference": "53c3b91376b8cd357a7ff44e8f42a0cd281ce35b"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "require-dev": {
+                "drupal/crm_core_activity": "*",
+                "drupal/crm_core_contact": "*",
+                "drupal/crm_core_relationship": "*",
+                "drupal/dynamic_entity_reference": "*",
+                "drupal/entity": "*",
+                "drupal/name": "^1.0.0-rc2",
+                "drupal/relation": "*",
+                "drupal/search_api": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-3.x-dev",
+                    "datestamp": "1567341189",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Berdir",
+                    "homepage": "https://www.drupal.org/user/214652"
+                },
+                {
+                    "name": "Morbus Iff",
+                    "homepage": "https://www.drupal.org/user/9034"
+                },
+                {
+                    "name": "RoSk0",
+                    "homepage": "https://www.drupal.org/user/325151"
+                },
+                {
+                    "name": "cr0ss",
+                    "homepage": "https://www.drupal.org/user/432492"
+                },
+                {
+                    "name": "dealancer",
+                    "homepage": "https://www.drupal.org/user/243418"
+                },
+                {
+                    "name": "grahl",
+                    "homepage": "https://www.drupal.org/user/146040"
+                },
+                {
+                    "name": "miro_dietiker",
+                    "homepage": "https://www.drupal.org/user/227761"
+                },
+                {
+                    "name": "pingers",
+                    "homepage": "https://www.drupal.org/user/56282"
+                },
+                {
+                    "name": "slashrsm",
+                    "homepage": "https://www.drupal.org/user/744628"
+                },
+                {
+                    "name": "vlkff",
+                    "homepage": "https://www.drupal.org/user/320057"
+                }
+            ],
+            "description": "CRM Core is a set of modules that provide contact management functionality within Drupal web sites.",
+            "homepage": "https://www.drupal.org/project/crm_core",
+            "support": {
+                "source": "https://git.drupalcode.org/project/crm_core"
+            },
+            "time": "2019-09-01T18:38:45+00:00"
+        },
+        {
             "name": "drupal/crop",
             "version": "1.5.0",
             "source": {
@@ -7963,6 +8051,72 @@
             "homepage": "https://www.drupal.org/project/module_filter",
             "support": {
                 "source": "https://git.drupalcode.org/project/module_filter"
+            }
+        },
+        {
+            "name": "drupal/name",
+            "version": "1.0.0-rc2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/name.git",
+                "reference": "8.x-1.0-rc2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/name-8.x-1.0-rc2.zip",
+                "reference": "8.x-1.0-rc2",
+                "shasum": "4ef965b42a3b7298d2d993366b55155bf0bf8c6e"
+            },
+            "require": {
+                "drupal/core": "^8.4"
+            },
+            "require-dev": {
+                "drupal/token": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-rc2",
+                    "datestamp": "1562233398",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Florian Weber",
+                    "homepage": "https://www.drupal.org/u/webflo",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Alan D.",
+                    "homepage": "https://www.drupal.org/u/alan-d",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "See other contributors",
+                    "homepage": "https://www.drupal.org/node/589144/committers",
+                    "role": "contributor"
+                },
+                {
+                    "name": "webflo",
+                    "homepage": "https://www.drupal.org/user/254778"
+                }
+            ],
+            "description": "Defines a persons name field type.",
+            "homepage": "https://www.drupal.org/project/name",
+            "support": {
+                "source": "http://cgit.drupalcode.org/name",
+                "issues": "https://www.drupal.org/project/issues/name"
             }
         },
         {
@@ -16502,19 +16656,14 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/pwa": 20,
         "drupal/entity_serial": 20,
-        "drupal/fences": 15,
         "farmsys/farmsys_asset": 20,
         "farmsys/liability": 20,
         "farmsys/medical": 20,
         "farmsys/milk": 20,
-        "drupal/recipe": 15,
-        "drupal/prevent_term_delete": 15,
-        "drupal/term_reference_fancytree": 10,
-        "drupal/entity_extra_field": 15,
         "drupal/dfinance": 20,
-        "drupal/banana_dashboard": 20
+        "drupal/banana_dashboard": 20,
+        "drupal/crm_core": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
