@@ -9,7 +9,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *
  * @ConfigEntityType(
  *   id ="ifthenelserule",
- *   label = @Translation("Ifthenelse Rule"),
+ *   label = @Translation("If Then Else"),
  *   config_prefix = "ifthenelserule",
  *   handlers = {
  *     "list_builder" = "Drupal\if_then_else\IfthenelseRuleListBuilder",
@@ -28,11 +28,11 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *   links = {
  *     "clone" = "/if_then_else/{ifthenelserule}/clone",
  *     "disable" = "/admin/config/system/ifthenelse/manage/{ifthenelserule}/disable",
- *     "disable-all" = "/admin/config/system/ifthenelse/rule/disable-all",
+ *     "disable-all" = "/admin/config/system/ifthenelse/disable-all",
  *     "enable" = "/admin/config/system/ifthenelse/manage/{ifthenelserule}/enable",
  *     "delete-form" = "/admin/config/system/ifthenelse/manage/{ifthenelserule}/delete",
  *     "edit-form" = "/admin/config/system/ifthenelse/manage/{ifthenelserule}",
- *     "collection" = "/admin/config/system/ifthenelse-rules",
+ *     "collection" = "/admin/config/system/ifthenelse",
  *   },
  *   config_export = {
  *     "id",

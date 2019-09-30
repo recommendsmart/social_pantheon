@@ -97,7 +97,8 @@
         "drupal/basic_data": "^1.0",
         "drupal/name": "^1.0",
         "drupal/crm_core": "3.x-dev",
-        "drupal/auto_entitylabel": "^3.0"						  							 
+        "drupal/auto_entitylabel": "^3.0",
+        "drupal/autosave_form": "^1.0"						  							 
         },
     "repositories": [
         {

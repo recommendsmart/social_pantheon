@@ -226,12 +226,12 @@ class ViewsAnyRouteField extends FieldPluginBase {
       $class_string = $tokenize ? Html::escape($this->viewsTokenReplace($this->options['button_classes'], $this->getRenderTokens($values))) :
         Html::escape($this->options['button_classes']);
       // Also, these are escaped later, so we aren't calling the escape function yet.
-      $attrs_string = $tokenize ? $this->viewsTokenReplace($this->options['attrs_string'], $this->getRenderTokens($values)) : $this->options['attrs_string'];
+      $button_attributes = $tokenize ? $this->viewsTokenReplace($this->options['button_attributes'], $this->getRenderTokens($values)) : $this->options['button_attributes'];
       $query_string = $tokenize ? $this->viewsTokenReplace($this->options['query_string'], $this->getRenderTokens($values)) : $this->options['query_string'];
       $query_string = str_replace('&amp;', '&', $query_string);
 
-      $query = !empty($query_string) ? ViewsAnyRouteUtilities::parameterStringToArray('&', $query_string) : '';
-      $attrs = !empty($attrs_string) ? ViewsAnyRouteUtilities::parameterStringToArray(PHP_EOL, $attrs_string) : [];
+      $query = !empty($query_string) ? ViewsAnyRouteUtilities::parameterStringToArray('&', $query_string) : [];
+      $attrs = !empty($button_attributes) ? ViewsAnyRouteUtilities::parameterStringToArray(PHP_EOL, $button_attributes) : [];
 
       // Create options array.
       $options = [

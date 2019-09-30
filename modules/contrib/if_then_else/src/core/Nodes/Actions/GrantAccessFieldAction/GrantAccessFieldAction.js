@@ -15,6 +15,8 @@ var VueGrantAccessFieldActionControl = {
       type: drupalSettings.if_then_else.nodes.grant_access_field_action.type,
       class: drupalSettings.if_then_else.nodes.grant_access_field_action.class,
       name: drupalSettings.if_then_else.nodes.grant_access_field_action.name,
+      classArg: drupalSettings.if_then_else.nodes.grant_access_field_action.classArg,
+
       options: [],
       form_fields: [],
       value: [],      
@@ -45,7 +47,8 @@ var VueGrantAccessFieldActionControl = {
     this.putData('type',drupalSettings.if_then_else.nodes.grant_access_field_action.type);
     this.putData('class',drupalSettings.if_then_else.nodes.grant_access_field_action.class);
     this.putData('name', drupalSettings.if_then_else.nodes.grant_access_field_action.name);
-
+    this.putData('classArg', drupalSettings.if_then_else.nodes.grant_access_field_action.classArg);
+    
     //setting values of selected fields when rule edit page loads.
     var get_form_fields = this.getData('form_fields');
     if(typeof get_form_fields != 'undefined'){

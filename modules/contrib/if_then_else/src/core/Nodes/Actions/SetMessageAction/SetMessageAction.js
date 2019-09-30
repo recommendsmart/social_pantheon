@@ -17,6 +17,7 @@ var VueSetMessageActionControl = {
       type: drupalSettings.if_then_else.nodes.set_message_action.type,
       class: drupalSettings.if_then_else.nodes.set_message_action.class,
       name: drupalSettings.if_then_else.nodes.set_message_action.name,
+      classArg: drupalSettings.if_then_else.nodes.set_message_action.classArg,
       options: [],
       severity_options: [],
       selected_options: [],
@@ -39,7 +40,8 @@ var VueSetMessageActionControl = {
     this.putData('type',drupalSettings.if_then_else.nodes.set_message_action.type);
     this.putData('class',drupalSettings.if_then_else.nodes.set_message_action.class);
     this.putData('name', drupalSettings.if_then_else.nodes.set_message_action.name);
-
+    this.putData('classArg', drupalSettings.if_then_else.nodes.set_message_action.classArg);
+    
     //setting values of selected fields when rule edit page loads.
     //Setting values of retejs condition nodes when editing rule page loads
     var get_selected_options = this.getData('selected_options');

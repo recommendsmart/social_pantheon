@@ -4,11 +4,13 @@ namespace Drupal\if_then_else\core\Nodes\Events\SystemLogEntryIsCreated;
 
 use Drupal\if_then_else\core\Nodes\Events\Event;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * System Log Entry Is Created event node class.
  */
 class SystemLogEntryIsCreated extends Event {
+  use StringTranslationTrait;
 
   /**
    * Return name of node.
@@ -22,7 +24,8 @@ class SystemLogEntryIsCreated extends Event {
    */
   public function registerNode(NodeSubscriptionEvent $event) {
     $event->nodes[static::getName()] = [
-      'label' => t('System Log Entry Is Created'),
+      'label' => $this->t('System Log Entry Is Created'),
+      'description' => $this->t('System Log Entry Is Created'),
       'type' => 'event',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Events\\SystemLogEntryIsCreated\\SystemLogEntryIsCreated',
     ];

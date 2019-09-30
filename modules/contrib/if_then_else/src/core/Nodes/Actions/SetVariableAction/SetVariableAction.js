@@ -16,6 +16,7 @@ var VueSetVariableActionControl = {
       type: drupalSettings.if_then_else.nodes.set_variable_action.type,
       class: drupalSettings.if_then_else.nodes.set_variable_action.class,
       name: drupalSettings.if_then_else.nodes.set_variable_action.name,
+      classArg: drupalSettings.if_then_else.nodes.set_variable_action.classArg,
       valueText: '',
     }
   },
@@ -34,7 +35,8 @@ var VueSetVariableActionControl = {
     this.putData('type',drupalSettings.if_then_else.nodes.set_variable_action.type);
     this.putData('class',drupalSettings.if_then_else.nodes.set_variable_action.class);
     this.putData('name', drupalSettings.if_then_else.nodes.set_variable_action.name);
-
+    this.putData('classArg', drupalSettings.if_then_else.nodes.set_variable_action.classArg);
+    
     this.valueText = this.getData('valueText');
 
   },

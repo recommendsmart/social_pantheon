@@ -18,4 +18,5 @@ abstract class Condition extends Node {
   public function setSuccess(bool $success) {
     $this->outputs['success'] = $success;
   }
+
 }

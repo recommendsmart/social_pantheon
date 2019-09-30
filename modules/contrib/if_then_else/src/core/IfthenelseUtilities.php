@@ -5,11 +5,80 @@ namespace Drupal\if_then_else\core;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\Core\Entity\ContentEntityType;
 use Drupal\Core\Form\FormInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Entity\EntityTypeBundleInfo;
+use Drupal\Core\Entity\EntityFieldManagerInterface;
+use Drupal\Core\DependencyInjection\ClassResolverInterface;
+use Drupal\Core\Form\FormBuilderInterface;
+use Drupal\Core\Plugin\DefaultPluginManager;
 
 /**
  * Class defined to have common functions for ifthenelse rules processing.
  */
-class IfthenelseUtilities {
+class IfthenelseUtilities extends DefaultPluginManager implements IfthenelseUtilitiesInterface {
+  use StringTranslationTrait;
+
+  /**
+   * The entity manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
+   * The bundle info service.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeBundleInfo
+   */
+  protected $bundleInfo;
+
+  /**
+   * The entity field manager service.
+   *
+   * @var \Drupal\Core\Entity\EntityFieldManagerInterface
+   */
+  protected $entityFieldManager;
+
+  /**
+   * The class resolver.
+   *
+   * @var \Drupal\Core\DependencyInjection\ClassResolverInterface
+   */
+  protected $classResolver;
+
+  /**
+   * The form builder.
+   *
+   * @var \Drupal\Core\Form\FormBuilderInterface
+   */
+  protected $formBuilder;
+
+  /**
+   * Constructs a new RouteSubscriber object.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
+   *   The entity type manager.
+   * @param \Drupal\Core\Entity\EntityTypeBundleInfo $bundleInfo
+   *   The entityTypeManager.
+   * @param \Drupal\Core\Entity\EntityFieldManagerInterface $entityFieldManager
+   *   The entity field manager.
+   * @param \Drupal\Core\DependencyInjection\ClassResolverInterface $class_resolver
+   *   The class resolver.
+   * @param \Drupal\Core\Form\FormBuilderInterface $form_builder
+   *   The form builder.
+   */
+  public function __construct(EntityTypeManagerInterface $entity_manager,
+                                EntityTypeBundleInfo $bundleInfo,
+                                EntityFieldManagerInterface $entityFieldManager,
+                                ClassResolverInterface $class_resolver,
+                                FormBuilderInterface $form_builder) {
+    $this->entityTypeManager = $entity_manager;
+    $this->bundleInfo = $bundleInfo;
+    $this->entityFieldManager = $entityFieldManager;
+    $this->classResolver = $class_resolver;
+    $this->formBuilder = $form_builder;
+  }
 
   /**
    * Check if form class is valid.
@@ -44,8 +113,8 @@ class IfthenelseUtilities {
 
     if (empty($content_entity_types)) {
       // Fetching all entities.
-      $entity_type_definitions = \Drupal::entityTypeManager()->getDefinitions();
-      $bundle_info = \Drupal::service("entity_type.bundle.info")->getAllBundleInfo();
+      $entity_type_definitions = $this->entityTypeManager->getDefinitions();
+      $bundle_info = $this->bundleInfo->getAllBundleInfo();
       /* @var $definition EntityTypeInterface */
       foreach ($entity_type_definitions as $definition) {
 
@@ -55,18 +124,20 @@ class IfthenelseUtilities {
 
           $content_entity_types[$entity_id]['entity_id'] = $entity_id;
           $content_entity_types[$entity_id]['label'] = $definition->getLabel()->__toString();
-          // Fetching all bundles of entity.
-          $entity_bundles = $bundle_info[$entity_id];
+          if (!empty($bundle_info[$entity_id])) {
+            // Fetching all bundles of entity.
+            $entity_bundles = $bundle_info[$entity_id];
 
-          // Getting label of each bundle of an entity.
-          foreach ($entity_bundles as $bundle_id => $bundle) {
-            if (is_object($bundle['label'])) {
-              $content_entity_types[$entity_id]['bundles'][$bundle_id]['label'] = $bundle['label']->__toString();
+            // Getting label of each bundle of an entity.
+            foreach ($entity_bundles as $bundle_id => $bundle) {
+              if (is_object($bundle['label'])) {
+                $content_entity_types[$entity_id]['bundles'][$bundle_id]['label'] = $bundle['label']->__toString();
+              }
+              elseif (!is_object($bundle['label']) && !is_array($bundle['label'])) {
+                $content_entity_types[$entity_id]['bundles'][$bundle_id]['label'] = $bundle['label'];
+              }
+              $content_entity_types[$entity_id]['bundles'][$bundle_id]['bundle_id'] = $bundle_id;
             }
-            elseif (!is_object($bundle['label']) && !is_array($bundle['label'])) {
-              $content_entity_types[$entity_id]['bundles'][$bundle_id]['label'] = $bundle['label'];
-            }
-            $content_entity_types[$entity_id]['bundles'][$bundle_id]['bundle_id'] = $bundle_id;
           }
         }
       }
@@ -80,6 +151,8 @@ class IfthenelseUtilities {
    *
    * @param array $content_entity_types
    *   List of content entities and bundles.
+   * @param string $return_type
+   *   Type of field.
    *
    * @return array
    *   List of fields associated with bundle.
@@ -87,26 +160,35 @@ class IfthenelseUtilities {
   public function getFieldsByEntityBundleId(array $content_entity_types, $return_type = 'field') {
     static $listFields = [];
     static $field_type = [];
+    static $extra_fields_name = ['title', 'status', 'uid'];
 
     if (empty($listFields)) {
-      $entity_field_manager = \Drupal::service('entity_field.manager');
+      $entity_field_manager = $this->entityFieldManager;
 
       foreach ($content_entity_types as $entity) {
         $entity_id = $entity['entity_id'];
-        foreach ($entity['bundles'] as $bundle_id => $bundle) {
-          $fields = $entity_field_manager->getFieldDefinitions($entity_id, $bundle_id);
-          foreach ($fields as $field_name => $field_definition) {
-            if (!empty($field_definition->getTargetBundle() || $field_name == 'title')) {
-              // List of all fields in an entity bundle.
-              $listFields[$field_name]['name'] = $field_definition->getLabel();
-              if (is_object($listFields[$field_name]['name'])) {
-                $listFields[$field_name]['name'] = $listFields[$field_name]['name']->__toString();
-              }
-              $listFields[$field_name]['code'] = $field_name;
-              $listFields[$field_name]['entity_bundle']['entity'][$entity_id] = ['code' => $entity_id, 'name' => $entity['label']];
-              $listFields[$field_name]['entity_bundle'][$entity_id]['bundle'][] = ['code' => $bundle_id, 'name' => $bundle['label']];
+        if ($entity_id == 'user') {
+          $extra_fields_name = array_merge($extra_fields_name, ['name', 'mail']);
+        }
+        if (!empty($entity['bundles'])) {
+          foreach ($entity['bundles'] as $bundle_id => $bundle) {
+            $fields = $entity_field_manager->getFieldDefinitions($entity_id, $bundle_id);
+            foreach ($fields as $field_name => $field_definition) {
+              if (!empty($field_definition->getTargetBundle()) || in_array($field_name, $extra_fields_name)) {
+                // List of all fields in an entity bundle.
+                $listFields[$field_name]['name'] = $field_definition->getLabel();
+                if (is_object($listFields[$field_name]['name'])) {
+                  $listFields[$field_name]['name'] = $listFields[$field_name]['name']->__toString();
+                }
+                if ($field_name == 'status') {
+                  $listFields[$field_name]['name'] = $this->t('Status');
+                }
+                $listFields[$field_name]['code'] = $field_name;
+                $listFields[$field_name]['entity_bundle']['entity'][$entity_id] = ['code' => $entity_id, 'name' => $entity['label']];
+                $listFields[$field_name]['entity_bundle'][$entity_id]['bundle'][] = ['code' => $bundle_id, 'name' => $bundle['label']];
 
-              $field_type[$entity_id][$field_name] = $field_definition->getType();
+                $field_type[$entity_id][$field_name] = $field_definition->getType();
+              }
             }
           }
         }
@@ -118,7 +200,7 @@ class IfthenelseUtilities {
       $listFields = [];
       $i = 0;
       foreach ($listFieldsAssoc as $field) {
-        if($field['name'] == 'Menu link title'){
+        if ($field['name'] == 'Menu link title') {
           $field['name'] = 'Title';
         }
         $listFields[$i]['name'] = $field['name'];
@@ -211,8 +293,8 @@ class IfthenelseUtilities {
       $target_entity = $field->getSettings()['target_type'];
       $bundles = $field->getSettings()['handler_settings']['target_bundles'];
 
-      $list_query = \Drupal::entityQuery($target_entity)
-        ->condition('status', 1);
+      $list_query = $this->entityTypeManager->getStorage($target_entity)
+        ->getQuery()->condition('status', 1);
       if ($target_entity == 'taxonomy_term') {
         $list_query->condition('vid', $bundles, "IN");
       }
@@ -222,7 +304,7 @@ class IfthenelseUtilities {
 
       $nids = $list_query->execute();
 
-      $entities = \Drupal::entityTypeManager()->getStorage($target_entity)->loadMultiple($nids);
+      $entities = $this->entityTypeManager->getStorage($target_entity)->loadMultiple($nids);
       $field_value = [];
       $i = 0;
       foreach ($entities as $entity) {
@@ -298,13 +380,13 @@ class IfthenelseUtilities {
     if (is_string($form_class) && class_exists($form_class)) {
       // Generating class object from class string name to compare
       // if it is instance of FormInterface.
-      $other_form_class = \Drupal::classResolver($form_class);
+      $other_form_class = $this->classResolver->getInstanceFromDefinition($form_class);
       if (!is_object($other_form_class) || !($other_form_class instanceof FormInterface)) {
         // @todo
         // exception if the form class entered is wrong.
       }
       else {
-        $other_form = \Drupal::formBuilder()->getForm($form_class);
+        $other_form = $this->formBuilder->getForm($form_class);
 
         // Iterate all keys of form array.
         foreach ($other_form as $field_name => $field) {
@@ -355,10 +437,10 @@ class IfthenelseUtilities {
    * Get views name and Display ID list.
    */
   public function getViewsNameAndDisplay() {
-    $query = \Drupal::entityQuery('view')
-      ->condition('status', TRUE);
+    $query = $this->entityTypeManager->getStorage('view')
+      ->getQuery()->condition('status', TRUE);
     $views_ids = $query->execute();
-    $views = \Drupal::entityTypeManager()->getStorage('view')->loadMultiple($views_ids);
+    $views = $this->entityTypeManager->getStorage('view')->loadMultiple($views_ids);
     static $views_lists = [];
     foreach ($views as $view) {
       $views_lists[$view->id()]['id'] = $view->id();

@@ -18,6 +18,7 @@ class DateTimeValueControl extends Rete.Control {
                     type: drupalSettings.if_then_else.nodes.date_time_value.type,
                     class: drupalSettings.if_then_else.nodes.date_time_value.class,
                     name: drupalSettings.if_then_else.nodes.date_time_value.name,
+                    classArg: drupalSettings.if_then_else.nodes.date_time_value.classArg,
                     Format: 'hh:mm:ss a',
                     Data: {
                       hh: '',
@@ -48,7 +49,8 @@ class DateTimeValueControl extends Rete.Control {
               this.putData('type',drupalSettings.if_then_else.nodes.date_time_value.type);
               this.putData('class',drupalSettings.if_then_else.nodes.date_time_value.class);
               this.putData('name', drupalSettings.if_then_else.nodes.date_time_value.name);
-
+              this.putData('classArg', drupalSettings.if_then_else.nodes.date_time_value.classArg);
+              
               //setting values of selected fields when rule edit page loads.
               var value = this.getData('value');
               if(typeof value != 'undefined'){

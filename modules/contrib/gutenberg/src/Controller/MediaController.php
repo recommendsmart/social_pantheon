@@ -3,15 +3,69 @@
 namespace Drupal\gutenberg\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Drupal\editor\Entity\Editor;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
+use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Core\File\FileSystemInterface;
+use Drupal\Core\Image\ImageFactory;
+
 /**
  * Returns responses for our image routes.
  */
 class MediaController extends ControllerBase {
+
+  /**
+   * The file system.
+   *
+   * @var \Drupal\Core\File\FileSystemInterface
+   */
+  protected $fileSystem;
+
+  /**
+   * The image factory.
+   *
+   * @var \Drupal\Core\Image\ImageFactory
+   */
+  protected $imageFactory;
+
+  /**
+   * The module handler service.
+   *
+   * @var \Drupal\Core\Extension\ModuleHandlerInterface
+   */
+  protected $moduleHandler;
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('file_system'),
+      $container->get('image.factory'),
+      $container->get('module_handler')
+    );
+  }
+
+  /**
+   * Constructs a MediaController object.
+   *
+   * @param \Drupal\Core\File\FileSystemInterface $file_system
+   *   The file system.
+   * @param \Drupal\Core\Image\ImageFactory $image_factory
+   *   The image factory.
+   * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
+   *   The module handler service.
+   */
+  public function __construct(FileSystemInterface $file_system, ImageFactory $image_factory, ModuleHandlerInterface $module_handler) {
+    $this->fileSystem = $file_system;
+    $this->imageFactory = $image_factory;
+    $this->moduleHandler = $module_handler;
+  }
+
   private function _getImageStyles() {
     $styles = ImageStyle::loadMultiple();
     return $styles;
@@ -49,7 +103,7 @@ class MediaController extends ControllerBase {
   private function _parse(File $file) {
     $uri = $file->getFileUri();
     $media_src = file_url_transform_relative(file_create_url($uri));
-    $image = \Drupal::service('image.factory')->get($uri);
+    $image = $this->imageFactory->get($uri);
 
     $styles = $this->_getImageStyles();
     $sizes = [
@@ -148,7 +202,7 @@ class MediaController extends ControllerBase {
 
     // TODO: File size and image dimensions validations.
     //      Better error handling?
-    if (file_prepare_directory($directory, FILE_CREATE_DIRECTORY)) {
+    if ($this->fileSystem->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY)) {
       $file = file_save_data($data, "{$directory}/{$filename}", FILE_EXISTS_RENAME);
       $file->setTemporary();
       $file->save();
@@ -180,14 +234,18 @@ class MediaController extends ControllerBase {
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   The request.
-   * @param String $search
-   *   Search string.
+   * @param string $type
+   *   The MIME type search string.
+   * @param string $search
+   *   The filename search string.
    *
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    *   The JSON response.
    */
-  public function search(Request $request, String $type = NULL, String $search = NULL) {
+  public function search(Request $request, string $type = NULL, string $search = NULL) {
     $query = \Drupal::entityQuery('file');
+
+    $query->addTag('gutenberg_media_search');
 
     if ($search !== '*') {
       $query->condition('filename', $search, 'CONTAINS');
@@ -202,13 +260,15 @@ class MediaController extends ControllerBase {
     }
     $query->sort('created', 'DESC');
 
+    $this->moduleHandler->invokeAll('gutenberg_media_search_query_alter', [$request, $type, $search, $query]);
+
     $file_ids = $query->execute();
     $files = File::loadMultiple($file_ids);
     $result = [];
 
     foreach ($files as $key => $file) {
       $media_src = file_create_url($file->getFileUri());
-      $image = \Drupal::service('image.factory')->get($file->getFileUri());
+      $image = $this->imageFactory->get($file->getFileUri());
 
       $result[] = $this->_parse($file);
     }

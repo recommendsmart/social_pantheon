@@ -15,6 +15,7 @@ var VueFieldValueControl = {
       type: drupalSettings.if_then_else.nodes.set_form_field_value_action.type,
       class: drupalSettings.if_then_else.nodes.set_form_field_value_action.class,
       name: drupalSettings.if_then_else.nodes.set_form_field_value_action.name,
+      classArg: drupalSettings.if_then_else.nodes.set_form_field_value_action.classArg,
       options: [],
       form_fields: [],
       field_entities: [],
@@ -22,7 +23,7 @@ var VueFieldValueControl = {
       field_bundles: [],
       selected_bundle: '',
       field_type : '',
-      value: [],     
+      value: [],
     }
   },
   template: `<div class="fields-container">
@@ -43,13 +44,13 @@ var VueFieldValueControl = {
   </div>`,
 
   methods: {
-    fieldValueChanged(value){     
+    fieldValueChanged(value){
       if(value !== undefined && value !== null && value !== ''){
         //Triggered when selecting an field.
         var selectedOptions = [];
-        
+
         selectedOptions = {name: value.name, code: value.code};
-        
+
         //check if selected field value is changed.
         var prevSelectedField = this.getData('form_fields');
         if(typeof prevSelectedField != 'undefined' && prevSelectedField.code != value.code){
@@ -68,12 +69,12 @@ var VueFieldValueControl = {
         this.putData('selected_entity','');
         this.putData('selected_bundle','');
         this.value = '';
-        this.field_bundles = [];        
-      }      
+        this.field_bundles = [];
+      }
     },
     entityFieldValueChanged(value){
       if(value !== undefined && value !== null && value !== ''){
-        var selectedentity = [];        
+        var selectedentity = [];
         selectedentity = {name: value.name, code: value.code};
 
         //check if selected entity value is changed.
@@ -101,8 +102,8 @@ var VueFieldValueControl = {
       var selectedbundle = [];
       selectedbundle = {name: value.name, code: value.code};
       this.putData('selected_bundle',selectedbundle);
-      editor.trigger('process');    
-    }   
+      editor.trigger('process');
+    }
   },
 
   mounted(){
@@ -110,12 +111,13 @@ var VueFieldValueControl = {
     this.putData('type',drupalSettings.if_then_else.nodes.set_form_field_value_action.type);
     this.putData('class',drupalSettings.if_then_else.nodes.set_form_field_value_action.class);
     this.putData('name', drupalSettings.if_then_else.nodes.set_form_field_value_action.name);
-
+    this.putData('classArg', drupalSettings.if_then_else.nodes.set_form_field_value_action.classArg);
+    
     //setting values of selected fields when rule edit page loads.
     var get_form_fields = this.getData('form_fields');
     if(typeof get_form_fields != 'undefined'){
       this.value = get_form_fields;
-      
+
       var field_entity = drupalSettings.if_then_else.nodes.set_form_field_value_action.field_entity_bundle;
 
       //setting value for selected entity
@@ -164,20 +166,28 @@ class SetFormFieldValueActionComponent extends Rete.Component {
     var node = drupalSettings.if_then_else.nodes[nodeName];
     super(jsUcfirst(node.type) + ": " + node.label);
   }
-  
+
   //Event node builder
   builder(eventNode) {
 
-    var node_inputs = [];    
+    var node_inputs = [];
+    var nodeName = 'set_form_field_value_action';
+    var node = drupalSettings.if_then_else.nodes[nodeName];
+
     node_inputs['execute'] = new Rete.Input('execute', 'Execute', sockets['bool']);
+    node_inputs['execute']['description'] = node.inputs['execute'].description;
+
     node_inputs['form'] = new Rete.Input('form', 'Form *', sockets['form']);
+    node_inputs['form']['description'] = node.inputs['form'].description;
+
     node_inputs['field_value'] = new Rete.Input('field_value', 'Field Value', sockets['string']);
+    node_inputs['field_value']['description'] = node.inputs['field_value'].description;
+
     eventNode.addInput(node_inputs['execute']);
     eventNode.addInput(node_inputs['form']);
     eventNode.addInput(node_inputs['field_value']);
-    
-    var nodeName = 'set_form_field_value_action';
-    var node = drupalSettings.if_then_else.nodes[nodeName];
+
+
 
     function handleInput(){
     	return function (value) {
@@ -190,12 +200,16 @@ class SetFormFieldValueActionComponent extends Rete.Component {
           socket_in.socket = sockets['bool'];
         }else if(value == 'text_with_summary'){
           socket_in.socket = sockets['object.field.text_with_summary'];
+          makeCompatibleSocketsByName('object.field.text_with_summary');
         }else if(value == 'image'){
           socket_in.socket = sockets['object.field.image'];
+          makeCompatibleSocketsByName('object.field.image');
         }else if(value == 'link'){
           socket_in.socket = sockets['object.field.link'];
+          makeCompatibleSocketsByName('object.field.link');
         }else if(value == 'text' || value == 'text_long'){
           socket_in.socket = sockets['object.field.text_long'];
+          makeCompatibleSocketsByName('object.field.text_long');
         }
         eventNode.inputs.set('field_value',socket_in);
         eventNode.update();
@@ -205,10 +219,13 @@ class SetFormFieldValueActionComponent extends Rete.Component {
     }
 
     eventNode.addControl(new FieldValueControl(this.editor, nodeName,handleInput()));
-    
+
     for (let name in node.outputs) {
-      eventNode.addOutput(new Rete.Output(name, node.outputs[name].label, sockets[node.outputs[name].socket]));
+      let outputObject = new Rete.Output(name, node.outputs[name].label, sockets[node.outputs[name].socket]);
+      outputObject['description'] = node.outputs[name].description;
+      eventNode.addOutput(outputObject);
     }
+    eventNode['description'] = node.description;
   }
   worker(eventNode, inputs, outputs) {
     //outputs['form'] = eventNode.data.event;

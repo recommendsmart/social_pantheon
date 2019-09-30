@@ -4,11 +4,13 @@ namespace Drupal\if_then_else\core\Nodes\Actions\ParseImageFieldValueAction;
 
 use Drupal\if_then_else\core\Nodes\Actions\Action;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Parse Image field value node class.
  */
 class ParseImageFieldValueAction extends Action {
+  use StringTranslationTrait;
 
   /**
    * Return name of Image field value action node.
@@ -22,46 +24,47 @@ class ParseImageFieldValueAction extends Action {
    */
   public function registerNode(NodeSubscriptionEvent $event) {
     $event->nodes[static::getName()] = [
-      'label' => t('Parse Image Field'),
+      'label' => $this->t('Parse Image Field'),
+      'description' => $this->t('Parse Image Field'),
       'type' => 'action',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Actions\\ParseImageFieldValueAction\\ParseImageFieldValueAction',
       'inputs' => [
         'field_value' => [
-          'label' => t('Image field object'),
-          'description' => t('Image field object'),
+          'label' => $this->t('Image field object'),
+          'description' => $this->t('Image field object'),
           'sockets' => ['object.field.image'],
           'required' => TRUE,
         ],
       ],
       'outputs' => [
         'alt' => [
-          'label' => t('Image Alt'),
-          'description' => t('Image Uri'),
+          'label' => $this->t('Image Alt'),
+          'description' => $this->t('Image Uri'),
           'socket' => 'string',
         ],
         'fid' => [
-          'label' => t('Image Fid'),
-          'description' => t('Image Fid'),
+          'label' => $this->t('Image Fid'),
+          'description' => $this->t('Image Fid'),
           'socket' => 'number',
         ],
         'width' => [
-          'label' => t('Image Width'),
-          'description' => t('Image width'),
+          'label' => $this->t('Image Width'),
+          'description' => $this->t('Image width'),
           'socket' => 'number',
         ],
         'height' => [
-          'label' => t('Image Height'),
-          'description' => t('Image Title'),
+          'label' => $this->t('Image Height'),
+          'description' => $this->t('Image Title'),
           'socket' => 'number',
         ],
         'description' => [
-          'label' => t('Image Description'),
-          'description' => t('Image Uri'),
+          'label' => $this->t('Image Description'),
+          'description' => $this->t('Image Uri'),
           'socket' => 'string',
         ],
         'title' => [
-          'label' => t('Image Title'),
-          'description' => t('Image Uri'),
+          'label' => $this->t('Image Title'),
+          'description' => $this->t('Image Uri'),
           'socket' => 'string',
         ],
       ],

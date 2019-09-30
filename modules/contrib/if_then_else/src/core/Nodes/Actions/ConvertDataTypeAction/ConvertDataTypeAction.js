@@ -74,18 +74,22 @@ class ConvertDataTypeActionComponent extends Rete.Component {
     var node = drupalSettings.if_then_else.nodes[nodeName];
     super(jsUcfirst(node.type) + ": " + node.label);
   }
-  
+
   //Event node builder
   builder(eventNode) {
 
-    var node_outputs = [];    
-    node_outputs['success'] = new Rete.Output('success', 'Success', sockets['bool']);
-    node_outputs['output'] = new Rete.Output('output', 'Output', sockets['string']);
-    eventNode.addOutput(node_outputs['success']);
-    eventNode.addOutput(node_outputs['output']);
-
+    var node_outputs = [];
     var nodeName = 'convert_data_type_action';
     var node = drupalSettings.if_then_else.nodes[nodeName];
+
+    node_outputs['success'] = new Rete.Output('success', 'Success', sockets['bool']);
+    node_outputs['success']['description'] = node.outputs['success'].description;
+
+    node_outputs['output'] = new Rete.Output('output', 'Output', sockets['string']);
+    node_outputs['output']['description'] = node.outputs['output'].description;
+
+    eventNode.addOutput(node_outputs['success']);
+    eventNode.addOutput(node_outputs['output']);
 
     function handleInput(){
     	return function (value) {
@@ -106,7 +110,9 @@ class ConvertDataTypeActionComponent extends Rete.Component {
     for (let name in node.inputs) {
       let inputLabel = node.inputs[name].label + (node.inputs[name].required ? ' *' : '');
       if (node.inputs[name].sockets.length === 1) {
-        eventNode.addInput(new Rete.Input(name, inputLabel, sockets[node.inputs[name].sockets[0]]));
+        let  inputObject = new Rete.Input(name, inputLabel, sockets[node.inputs[name].sockets[0]]);
+        inputObject['description'] = node.inputs[name].description;
+        eventNode.addInput(inputObject);
       }
       else if (node.inputs[name].sockets.length > 1) {
         let socketNames = [];
@@ -133,10 +139,12 @@ class ConvertDataTypeActionComponent extends Rete.Component {
             compatibleSockets[node.inputs[name].sockets[idx]].push(socketName);
           }
         }
-
-        eventNode.addInput(new Rete.Input(name, inputLabel, sockets[socketName]));
+        let inputObject = new Rete.Input(name, inputLabel, sockets[socketName]);
+        inputObject['description'] =  node.inputs[name].description;
+        eventNode.addInput(inputObject);
       }
-    }    
+    }
+    eventNode['description'] = node.description;
   }
   worker(eventNode, inputs, outputs) {
     //outputs['form'] = eventNode.data.event;

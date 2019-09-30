@@ -1,6 +1,26 @@
 function jsUcfirst(string) {
 	return string.charAt(0).toUpperCase() + string.slice(1);
 }
+function makeCompatibleSocketsByName(socketName) {
+  let parents = socketName.split('.');
+  if (parents.length > 1) {
+    let parentSocketName = '';
+    for (let idx in parents) {
+      if (parseInt(idx) === parents.length - 1) {
+        continue;
+      }
+
+      if (idx > 0) {
+        parentSocketName += '.';
+      }
+      parentSocketName += parents[idx];
+
+      if (!sockets[socketName].compatibleWith(sockets[parentSocketName])) {
+        sockets[socketName].combineWith(sockets[parentSocketName]);
+      }
+    }
+  }
+}
 
 // Initialize all event nodes.
 let compatibleSockets = {};
@@ -24,6 +44,8 @@ for (let nodeName in drupalSettings.if_then_else.nodes) {
 						this.putData('type', node.type);
 						this.putData('class', node.class);
 						this.putData('name', node.name);
+						this.putData('classArg', node.classArg);
+            this.putData('dependencies', node.dependencies);
 					}
 				};
 			}
@@ -44,7 +66,9 @@ for (let nodeName in drupalSettings.if_then_else.nodes) {
 				for (let name in node.inputs) {
 					let inputLabel = node.inputs[name].label + (node.inputs[name].required ? ' *' : '');
 					if (node.inputs[name].sockets.length === 1) {
-						eventNode.addInput(new Rete.Input(name, inputLabel, sockets[node.inputs[name].sockets[0]]));
+					  let  inputObject = new Rete.Input(name, inputLabel, sockets[node.inputs[name].sockets[0]]);
+            inputObject['description'] = node.inputs[name].description;
+						eventNode.addInput(inputObject);
 					}
 					else if (node.inputs[name].sockets.length > 1) {
 						let socketNames = [];
@@ -71,25 +95,32 @@ for (let nodeName in drupalSettings.if_then_else.nodes) {
 								compatibleSockets[node.inputs[name].sockets[idx]].push(socketName);
 							}
 						}
-
-						eventNode.addInput(new Rete.Input(name, inputLabel, sockets[socketName]));
+            let inputObject = new Rete.Input(name, inputLabel, sockets[socketName]);
+            inputObject['description'] =  node.inputs[name].description;
+						eventNode.addInput(inputObject);
 					}
 				}
 				for (let name in node.outputs) {
-					eventNode.addOutput(new Rete.Output(name, node.outputs[name].label, sockets[node.outputs[name].socket]));
+				  let outputObject = new Rete.Output(name, node.outputs[name].label, sockets[node.outputs[name].socket]);
+          outputObject['description'] = node.outputs[name].description;
+					eventNode.addOutput(outputObject);
 				}
+        eventNode['description'] = node.description;
 			}
 			worker(eventNode, inputs, outputs) {
 				//outputs['form'] = eventNode.data.event;
 			}
 		}
-
-		myComponents.push(new EventComponent());
+    let myComponentObject = new EventComponent();
+    myComponentObject['description'] = node.description;
+		myComponents.push(myComponentObject);
 	}else{
-		myComponents.push(eval('new ' + node.component_class_name + '()'));
+    let myComponentObject = eval('new ' + node.component_class_name + '()');
+    myComponentObject['description'] = node.description;
+		myComponents.push(myComponentObject);
 	}
 
-	
+
 }
 
 // Go through all the output nodes, get their sockets, get those sockets' parent sockets and make them compatible.
@@ -128,20 +159,22 @@ for (let nodeName in drupalSettings.if_then_else.nodes) {
 
 editor.on("updateconnection", function(el, connection, points) {
   let outputSocketName = inverseSocketsMap[el.connection.output.socket.name];
-  let inputSocketNames = el.connection.input.socket.name.split(", ");
-  let compatible = false;
-  for (let i = 0; i < inputSocketNames.length; i++) {
-    let inputSocketName = inverseSocketsMap[inputSocketNames[i].trim()];
-    if (inputSocketName === outputSocketName || compatibleSockets[outputSocketName].includes(inputSocketName)) {
-       compatible = true;
-       break;
-    }
-  }
+	let inputSocketNames = el.connection.input.socket.name.split(", ");
+	if(inputSocketNames.length > 1){
+		let compatible = false;
+		for (let i = 0; i < inputSocketNames.length; i++) {
+			let inputSocketName = inverseSocketsMap[inputSocketNames[i].trim()];
+			if (inputSocketName === outputSocketName || compatibleSockets[outputSocketName].includes(inputSocketName)) {
+				 compatible = true;
+				 break;
+			}
+		}
+		if (!compatible) {
+			// Sockets are not compatible.
+			editor.view.removeConnection(el.connection);
+		}
+	}
 
-  if (!compatible) {
-    // Sockets are not compatible.
-    editor.view.removeConnection(el.connection);
-  }
 });
 
 for (let idx in myComponents) {
@@ -161,12 +194,12 @@ for (let idx in myComponents) {
 						//setting value of rule data from retejs graph
 						jQuery('#ifthenelse-data').val(JSON.stringify(editor.toJSON()));
 				});
-		
+
 				setTimeout(function(){ editor.view.resize(); }, 500);
 				editor.view.resize();
 				AreaPlugin.zoomAt(editor);
 				editor.trigger('process');
-		
+
 			})();
 		}
 		else {
@@ -176,7 +209,7 @@ for (let idx in myComponents) {
 				editor.on("error", err => {
 					alertify.error(err.message);
 				});
-		
+
 				editor.on(
 					"process connectioncreated connectionremoved nodecreated noderemoved",
 					async function() {
@@ -188,7 +221,7 @@ for (let idx in myComponents) {
 						jQuery('#ifthenelse-data').val(JSON.stringify(editor.toJSON()));
 					}
 				);
-		
+
 				editor.trigger("process");
 				editor.view.resize();
 				AreaPlugin.zoomAt(editor);

@@ -55,13 +55,13 @@ class Google_Service_CloudRun_Resource_NamespacesConfigurations extends Google_S
    * background. Please see kubernetes.io/docs/concepts/workloads/controllers
    * /garbage-collection/ for more information.
    * @opt_param string kind Cloud Run currently ignores this parameter.
-   * @return Google_Service_CloudRun_K8sIoApimachineryPkgApisMetaV1Status
+   * @return Google_Service_CloudRun_Status
    */
   public function delete($name, $optParams = array())
   {
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
-    return $this->call('delete', array($params), "Google_Service_CloudRun_K8sIoApimachineryPkgApisMetaV1Status");
+    return $this->call('delete', array($params), "Google_Service_CloudRun_Status");
   }
   /**
    * Get information about a configuration. (configurations.get)

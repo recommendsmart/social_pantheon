@@ -6,11 +6,13 @@ use Drupal\if_then_else\core\Nodes\Actions\Action;
 use Drupal\if_then_else\Event\GraphValidationEvent;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
 use Drupal\if_then_else\Event\NodeValidationEvent;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Calculate value action class.
  */
 class CalculateValueAction extends Action {
+  use StringTranslationTrait;
 
   /**
    * {@inheritdoc}
@@ -24,7 +26,8 @@ class CalculateValueAction extends Action {
    */
   public function registerNode(NodeSubscriptionEvent $event) {
     $event->nodes[static::getName()] = [
-      'label' => t('Calculate Value'),
+      'label' => $this->t('Calculate Value'),
+      'description' =>  $this->t('Calculate Value'),
       'type' => 'action',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Actions\\CalculateValueAction\\CalculateValueAction',
       'library' => 'if_then_else/CalculateValueAction',
@@ -38,22 +41,22 @@ class CalculateValueAction extends Action {
       ],
       'inputs' => [
         'input1' => [
-          'label' => t('Input Value1'),
-          'description' => t('Input Value1.'),
+          'label' => $this->t('Input Value1'),
+          'description' => $this->t('Input Value1.'),
           'sockets' => ['number'],
           'required' => TRUE,
         ],
         'input2' => [
-          'label' => t('Input Value2'),
-          'description' => t('Input Value2.'),
+          'label' => $this->t('Input Value2'),
+          'description' => $this->t('Input Value2.'),
           'sockets' => ['number'],
           'required' => TRUE,
         ],
       ],
       'outputs' => [
         'output' => [
-          'label' => t('Output'),
-          'description' => t('Output'),
+          'label' => $this->t('Output'),
+          'description' => $this->t('Output'),
           'socket' => 'number',
         ],
       ],
@@ -66,7 +69,7 @@ class CalculateValueAction extends Action {
   public function validateNode(NodeValidationEvent $event) {
     // Make sure that data type option is not empty.
     if (empty($event->node->data->operator)) {
-      $event->errors[] = t('Select at least one operator in "@node_name".', ['@node_name' => $event->node->name]);
+      $event->errors[] = $this->t('Select at least one operator in "@node_name".', ['@node_name' => $event->node->name]);
     }
   }
 
@@ -80,11 +83,11 @@ class CalculateValueAction extends Action {
         // To check empty input.
         foreach ($node->outputs->number->connections as $connection) {
           if ($connection->input == 'input1' &&  (!property_exists($node->data, 'value') || !is_numeric($node->data->value))) {
-            $event->errors[] = t('Enter input value1 in "@node_name".', ['@node_name' => $node->name]);
+            $event->errors[] = $this->t('Enter input value1 in "@node_name".', ['@node_name' => $node->name]);
 
           }
           if ($connection->input == 'input2' &&  (!property_exists($node->data, 'value') || !is_numeric($node->data->value))) {
-            $event->errors[] = t('Enter input value2 in "@node_name".', ['@node_name' => $node->name]);
+            $event->errors[] = $this->t('Enter input value2 in "@node_name".', ['@node_name' => $node->name]);
           }
         }
       }

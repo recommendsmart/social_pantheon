@@ -6,11 +6,31 @@ use Drupal\Component\Utility\Html;
 use Drupal\if_then_else\core\Nodes\Actions\Action;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
 use Drupal\if_then_else\Event\NodeValidationEvent;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\if_then_else\core\IfthenelseUtilitiesInterface;
 
 /**
  * Class defined to execute make fields required action node.
  */
 class MakeFieldsRequiredAction extends Action {
+  use StringTranslationTrait;
+
+  /**
+   * The ifthenelse utitlities.
+   *
+   * @var \Drupal\if_then_else\core\IfthenelseUtilitiesInterface
+   */
+  protected $ifthenelseUtilities;
+
+  /**
+   * Constructs a new RouteSubscriber object.
+   *
+   * @param \Drupal\if_then_else\core\IfthenelseUtilitiesInterface $ifthenelse_utilities
+   *   The ifthenelse utitlities.
+   */
+  public function __construct(IfthenelseUtilitiesInterface $ifthenelse_utilities) {
+    $this->ifthenelseUtilities = $ifthenelse_utilities;
+  }
 
   /**
    * Return node name.
@@ -24,21 +44,22 @@ class MakeFieldsRequiredAction extends Action {
    */
   public function registerNode(NodeSubscriptionEvent $event) {
     // Fetch all fields for config entity bundles.
-    $if_then_else_utilities = \Drupal::service('ifthenelse.utilities');
-    $form_entity_info = $if_then_else_utilities->getContentEntitiesAndBundles();
-    $form_fields = $if_then_else_utilities->getFieldsByEntityBundleId($form_entity_info);
+    $form_entity_info = $this->ifthenelseUtilities->getContentEntitiesAndBundles();
+    $form_fields = $this->ifthenelseUtilities->getFieldsByEntityBundleId($form_entity_info);
 
     $event->nodes[static::getName()] = [
-      'label' => t('Make Fields Required'),
+      'label' => $this->t('Make Fields Required'),
+      'description' => $this->t('Make Fields Required'),
       'type' => 'action',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Actions\\MakeFieldsRequiredAction\\MakeFieldsRequiredAction',
+      'classArg' => ['ifthenelse.utilities'],
       'library' => 'if_then_else/MakeFieldsRequiredAction',
       'control_class_name' => 'MakeFieldsRequiredControl',
       'form_fields' => $form_fields,
       'inputs' => [
         'form' => [
-          'label' => t('Form'),
-          'description' => t('Form object.'),
+          'label' => $this->t('Form'),
+          'description' => $this->t('Form object.'),
           'sockets' => ['form'],
           'required' => TRUE,
         ],
@@ -52,7 +73,7 @@ class MakeFieldsRequiredAction extends Action {
   public function validateNode(NodeValidationEvent $event) {
     // Make sure that form_fields array is not empty.
     if (!count($event->node->data->form_fields)) {
-      $event->errors[] = t('Select at least one field in "@node_name".', ['@node_name' => $event->node->name]);
+      $event->errors[] = $this->t('Select at least one field in "@node_name".', ['@node_name' => $event->node->name]);
     }
   }
 

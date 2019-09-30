@@ -6,11 +6,31 @@ use Drupal\if_then_else\core\Nodes\Actions\Action;
 use Drupal\if_then_else\Event\GraphValidationEvent;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
 use Drupal\if_then_else\Event\NodeValidationEvent;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\if_then_else\core\IfthenelseUtilitiesInterface;
 
 /**
  * Class defined to set form error action node.
  */
 class SetFormErrorAction extends Action {
+  use StringTranslationTrait;
+
+  /**
+   * The ifthenelse utitlities.
+   *
+   * @var \Drupal\if_then_else\core\IfthenelseUtilitiesInterface
+   */
+  protected $ifthenelseUtilities;
+
+  /**
+   * Constructs a new RouteSubscriber object.
+   *
+   * @param \Drupal\if_then_else\core\IfthenelseUtilitiesInterface $ifthenelse_utilities
+   *   The ifthenelse utitlities.
+   */
+  public function __construct(IfthenelseUtilitiesInterface $ifthenelse_utilities) {
+    $this->ifthenelseUtilities = $ifthenelse_utilities;
+  }
 
   /**
    * Return name of node.
@@ -24,27 +44,28 @@ class SetFormErrorAction extends Action {
    */
   public function registerNode(NodeSubscriptionEvent $event) {
     // Fetch all fields for config entity bundles.
-    $if_then_else_utilities = \Drupal::service('ifthenelse.utilities');
-    $form_entity_info = $if_then_else_utilities->getContentEntitiesAndBundles();
-    $form_fields = $if_then_else_utilities->getFieldsByEntityBundleId($form_entity_info);
+    $form_entity_info = $this->ifthenelseUtilities->getContentEntitiesAndBundles();
+    $form_fields = $this->ifthenelseUtilities->getFieldsByEntityBundleId($form_entity_info);
 
     $event->nodes[static::getName()] = [
-      'label' => t('Set Form Error'),
+      'label' => $this->t('Set Form Error'),
+      'description' => $this->t('Set Form Error'),
       'type' => 'action',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Actions\\SetFormErrorAction\\SetFormErrorAction',
+      'classArg' => ['ifthenelse.utilities'],
       'library' => 'if_then_else/SetFormErrorAction',
       'control_class_name' => 'SetFormErrorActionControl',
       'form_fields' => $form_fields,
       'inputs' => [
         'form_state' => [
-          'label' => t('Form State'),
-          'description' => t('Form state object.'),
+          'label' => $this->t('Form State'),
+          'description' => $this->t('Form state object.'),
           'sockets' => ['form_state'],
           'required' => TRUE,
         ],
         'message' => [
-          'label' => t('Error message'),
-          'description' => t('Message for form state.'),
+          'label' => $this->t('Error message'),
+          'description' => $this->t('Message for form state.'),
           'sockets' => ['string'],
           'required' => TRUE,
         ],
@@ -58,19 +79,19 @@ class SetFormErrorAction extends Action {
   public function validateNode(NodeValidationEvent $event) {
     // Make sure that form_fields array is not empty.
     if (!count($event->node->data->form_fields)) {
-      $event->errors[] = t('Select at least one field in "@node_name".', ['@node_name' => $event->node->name]);
+      $event->errors[] = $this->t('Select at least one field in "@node_name".', ['@node_name' => $event->node->name]);
     }
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritDoc}.
    */
   public function validateGraph(GraphValidationEvent $event) {
     $nodes = $event->data->nodes;
 
     foreach ($nodes as $node) {
       if ($node->data->type == 'event' && $node->data->name != 'form_validate_event') {
-        $event->errors[] = t('Set Form Error will only work with Form validate Event');
+        $event->errors[] = $this->t('Set Form Error will only work with Form validate Event');
       }
     }
   }

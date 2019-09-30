@@ -29,6 +29,7 @@ class EntityHasBundleConditionControl extends Rete.Control {
           type: drupalSettings.if_then_else.nodes.entity_has_bundle_condition.type,
           class: drupalSettings.if_then_else.nodes.entity_has_bundle_condition.class,
           name: drupalSettings.if_then_else.nodes.entity_has_bundle_condition.name,
+          classArg: drupalSettings.if_then_else.nodes.entity_has_bundle_condition.classArg,
           value: 0,
           showBundleList: true,
           entities: [],
@@ -96,7 +97,8 @@ class EntityHasBundleConditionControl extends Rete.Control {
         this.putData('type', drupalSettings.if_then_else.nodes.entity_has_bundle_condition.type);
         this.putData('class', drupalSettings.if_then_else.nodes.entity_has_bundle_condition.class);
         this.putData('name', drupalSettings.if_then_else.nodes.entity_has_bundle_condition.name);
-
+        this.putData('classArg', drupalSettings.if_then_else.nodes.entity_has_bundle_condition.classArg);
+        
         //Setting values of retejs condition nodes when editing rule page loads
         this.selected_entity = this.getData('selected_entity');
         this.selected_bundle = this.getData('selected_bundle');

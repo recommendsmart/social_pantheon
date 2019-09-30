@@ -4,14 +4,23 @@ class TextValueControl extends Rete.Control {
         super(key);
         this.component = {
             props: ['ikey', 'getData', 'putData', 'emitter'],
-            template: `<textarea class="input" type="text" @blur="change($event)" @dblclick.stop="" 
-            v-model="value"></textarea>`,
+            template: `<div class="fields-container">
+              <textarea class="input" type="text" @blur="change($event)" @dblclick.stop=""  v-model="value"></textarea>
+              
+              <div class="expend_textarea_button" @click="popupActive=true" >Expend</divclass>
+
+              <vs-popup class="holamundo"  title="Text" :active.sync="popupActive">
+                <textarea class="input" type="text"  v-model="value" rows="10" cols="70" @blur="change($event)" @dblclick.stop=""></textarea>
+                <vs-button @click="popupActive=false" color="primary" type="filled">Save</vs-button>
+              </vs-popup>
+            </div>`,
             data() {
                 return {
                     type: drupalSettings.if_then_else.nodes.text_value.type,
                     class: drupalSettings.if_then_else.nodes.text_value.class,
                     name: drupalSettings.if_then_else.nodes.text_value.name,
-                    value: ''
+                    value: '',
+                  popupActive:false,
                 }
             },
             methods: {

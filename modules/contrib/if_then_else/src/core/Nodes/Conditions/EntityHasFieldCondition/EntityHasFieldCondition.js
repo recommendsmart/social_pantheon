@@ -27,6 +27,7 @@ class EntityHasFieldConditionControl extends Rete.Control {
           type: drupalSettings.if_then_else.nodes.entity_has_field_condition.type,
           class: drupalSettings.if_then_else.nodes.entity_has_field_condition.class,
           name: drupalSettings.if_then_else.nodes.entity_has_field_condition.name,
+          classArg: drupalSettings.if_then_else.nodes.entity_has_field_condition.classArg,
           value: [],
           options: [],
           entity_fields: [],
@@ -65,7 +66,7 @@ class EntityHasFieldConditionControl extends Rete.Control {
         this.putData('type',drupalSettings.if_then_else.nodes.entity_has_field_condition.type);
         this.putData('class',drupalSettings.if_then_else.nodes.entity_has_field_condition.class);
         this.putData('name', drupalSettings.if_then_else.nodes.entity_has_field_condition.name);
-
+        this.putData('classArg', drupalSettings.if_then_else.nodes.entity_has_field_condition.classArg);
         //setting values of selected fields when rule edit page loads.
         var get_entity_fields = this.getData('entity_fields');
         if(typeof get_entity_fields != 'undefined'){

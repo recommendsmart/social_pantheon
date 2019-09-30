@@ -5,11 +5,29 @@ namespace Drupal\if_then_else\core\Nodes\Conditions\EntityIsOfTypeCondition;
 use Drupal\if_then_else\core\Nodes\Conditions\Condition;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
 use Drupal\if_then_else\Event\NodeValidationEvent;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\if_then_else\core\IfthenelseUtilitiesInterface;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 
 /**
  * Entity is of type condition class.
  */
 class EntityIsOfTypeCondition extends Condition {
+  use StringTranslationTrait;
+
+  /**
+   * The ifthenelse utilities.
+   *
+   * @var \Drupal\if_then_else\core\IfthenelseUtilitiesInterface
+   */
+  protected $ifthenelseUtilities;
+
+  /**
+   * The logger factory.
+   *
+   * @var \Drupal\Core\Logger\LoggerChannelFactoryInterface
+   */
+  protected $loggerFactory;
 
   /**
    * {@inheritdoc}
@@ -19,33 +37,47 @@ class EntityIsOfTypeCondition extends Condition {
   }
 
   /**
+   * Constructs a new RouteSubscriber object.
+   *
+   * @param \Drupal\if_then_else\core\IfthenelseUtilitiesInterface $ifthenelse_utilities
+   *   The ifthenelse utilities.
+   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $loggerFactory
+   *   The logger factory.
+   */
+  public function __construct(IfthenelseUtilitiesInterface $ifthenelse_utilities, LoggerChannelFactoryInterface $loggerFactory) {
+    $this->ifthenelseUtilities = $ifthenelse_utilities;
+    $this->loggerFactory = $loggerFactory->get('if_then_else');
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function registerNode(NodeSubscriptionEvent $event) {
     // Calling custom service for if then else utilities. To
     // fetch values of entities and bundles.
-    $if_then_else_utilities = \Drupal::service('ifthenelse.utilities');
-    $form_entity_info = $if_then_else_utilities->getContentEntitiesAndBundles();
+    $form_entity_info = $this->ifthenelseUtilities->getContentEntitiesAndBundles();
 
     $event->nodes[static::getName()] = [
-      'label' => t('Entity Type'),
+      'label' => $this->t('Entity Type'),
+      'description' => $this->t('Entity Type'),
       'type' => 'condition',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Conditions\\EntityIsOfTypeCondition\\EntityIsOfTypeCondition',
+      'classArg' => ['ifthenelse.utilities', 'logger.factory'],
       'library' => 'if_then_else/EntityIsOfTypeCondition',
       'control_class_name' => 'EntityIsOfTypeConditionControl',
       'entity_info' => $form_entity_info,
       'inputs' => [
         'entity' => [
-          'label' => t('Entity'),
-          'description' => t('The entity to check for a type.'),
+          'label' => $this->t('Entity'),
+          'description' => $this->t('The entity to check for a type.'),
           'sockets' => ['object.entity'],
           'required' => TRUE,
         ],
       ],
       'outputs' => [
         'success' => [
-          'label' => t('Success'),
-          'description' => t('TRUE if the entity is of the provided type.'),
+          'label' => $this->t('Success'),
+          'description' => $this->t('TRUE if the entity is of the provided type.'),
           'socket' => 'bool',
         ],
       ],
@@ -60,7 +92,7 @@ class EntityIsOfTypeCondition extends Condition {
 
     if (!property_exists($data, 'selected_entity')) {
       // Make sure that both selected_entity and selected_bundle are set.
-      $event->errors[] = t('Select entity type in "@node_name".', ['@node_name' => $event->node->name]);
+      $event->errors[] = $this->t('Select entity type in "@node_name".', ['@node_name' => $event->node->name]);
     }
   }
 
@@ -72,7 +104,7 @@ class EntityIsOfTypeCondition extends Condition {
     $entity = $this->inputs['entity'];
 
     if (!$entity) {
-      \Drupal::logger('if_then_else')->notice(t("Rule @node_name did not run as the instance of the entity could not be found", ['@node_name' => $this->data->name]));
+      $this->loggerFactory->notice($this->t("Rule @node_name did not run as the instance of the entity could not be found", ['@node_name' => $this->data->name]));
       $this->setSuccess(FALSE);
       return;
     }

@@ -29,6 +29,7 @@ var VuePeriodicExecutionCondition = {
       type: drupalSettings.if_then_else.nodes.periodic_execution_condition.type,
       class: drupalSettings.if_then_else.nodes.periodic_execution_condition.class,
       name: drupalSettings.if_then_else.nodes.periodic_execution_condition.name,
+      classArg: drupalSettings.if_then_else.nodes.periodic_execution_condition.classArg,
       options: [],
       form_selection: 'list',
       valueText: '',
@@ -64,7 +65,8 @@ var VuePeriodicExecutionCondition = {
     this.putData('type', drupalSettings.if_then_else.nodes.periodic_execution_condition.type);
     this.putData('class', drupalSettings.if_then_else.nodes.periodic_execution_condition.class);
     this.putData('name', drupalSettings.if_then_else.nodes.periodic_execution_condition.name);
-
+    this.putData('classArg', drupalSettings.if_then_else.nodes.periodic_execution_condition.classArg);
+      
     //setting values of selected compare option when rule edit page loads.
     var get_selected_option = this.getData('selected_option');
     if (typeof get_selected_option != 'undefined') {

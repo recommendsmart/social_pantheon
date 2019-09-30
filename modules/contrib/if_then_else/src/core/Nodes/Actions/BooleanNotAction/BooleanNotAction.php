@@ -4,12 +4,13 @@ namespace Drupal\if_then_else\core\Nodes\Actions\BooleanNotAction;
 
 use Drupal\if_then_else\core\Nodes\Actions\Action;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
-
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Class defined to execute subtract numbers action node.
  */
 class BooleanNotAction extends Action {
+  use StringTranslationTrait;
 
   /**
    * Return node name.
@@ -24,30 +25,32 @@ class BooleanNotAction extends Action {
   public function registerNode(NodeSubscriptionEvent $event) {
 
     $event->nodes[static::getName()] = [
-      'label' => t('Boolean NOT'),
+      'label' => $this->t('Boolean NOT'),
+      'description' => $this->t('Boolean NOT'),
       'type' => 'action',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Actions\\BooleanNotAction\\BooleanNotAction',
       'inputs' => [
-        'input1' => [
-          'label' => t('Input'),
-          'description' => t('Input'),
+        'input' => [
+          'label' => $this->t('Input'),
+          'description' => $this->t('Input'),
           'sockets' => ['bool'],
         ],
       ],
       'outputs' => [
         'output' => [
-          'label' => t('Output'),
-          'description' => t('NOT of the input'),
-          'socket' => 'bool'
+          'label' => $this->t('Output'),
+          'description' => $this->t('NOT of the input'),
+          'socket' => 'bool',
         ],
-      ]
+      ],
     ];
   }
 
   /**
-   * {@inheritDoc}
+   * Process function.
    */
   public function process() {
     $this->outputs['success'] = !$this->inputs['input'];
   }
+
 }

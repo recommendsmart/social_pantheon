@@ -4,6 +4,7 @@ namespace Drupal\if_then_else\core\Sockets;
 
 use Drupal\if_then_else\Event\SocketSubscriptionEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Drupal\if_then_else\core\IfthenelseUtilitiesInterface;
 
 /**
  * Class SocketSubscriber.
@@ -11,6 +12,23 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  * @package Drupal\if_then_else\core\Sockets
  */
 class SocketSubscriber implements EventSubscriberInterface {
+
+  /**
+   * The ifthenelse Utilities.
+   *
+   * @var \Drupal\if_then_else\core\IfthenelseUtilitiesInterface
+   */
+  protected $ifthenelseUtilities;
+
+  /**
+   * Constructs a new RouteSubscriber object.
+   *
+   * @param \Drupal\if_then_else\core\IfthenelseUtilitiesInterface $ifthenelse_utilities
+   *   The ifthenelse Utilities.
+   */
+  public function __construct(IfthenelseUtilitiesInterface $ifthenelse_utilities) {
+    $this->ifthenelseUtilities = $ifthenelse_utilities;
+  }
 
   /**
    * Returns a list of events that this class subscribes to.
@@ -34,16 +52,27 @@ class SocketSubscriber implements EventSubscriberInterface {
     $event->sockets['string.url'] = 'URL';
     $event->sockets['bool'] = 'Boolean';
     $event->sockets['number'] = 'Number';
-    $event->sockets['object.entity.user'] = 'User Object';
-    $event->sockets['object.entity.node'] = 'Node';
     $event->sockets['array'] = 'Array';
-    $event->sockets['object.entity'] = 'Entity';
     $event->sockets['object.view'] = 'ViewExecutable';
-    $event->sockets['field'] = 'Field';
+    $event->sockets['object.field'] = 'Field';
     $event->sockets['object.field.text_with_summary'] = 'Field Text With Summary';
     $event->sockets['object.field.image'] = 'Field Image';
     $event->sockets['object.field.link'] = 'Field Link';
     $event->sockets['object.field.text_long'] = 'Field Text or Text Long';
+
+    $event->sockets['object.entity'] = 'Entity';
+    $if_then_else_utilities = \Drupal::service('ifthenelse.utilities');
+    $entity_infos = $this->ifthenelseUtilities->getContentEntitiesAndBundles();
+    if (!empty($entity_infos)) {
+      foreach ($entity_infos as $entity_info) {
+        $event->sockets['object.entity.' . $entity_info['entity_id']] = $entity_info['label'];
+        if (!empty($entity_info['bundles'])) {
+          foreach ($entity_info['bundles'] as $bundle) {
+            $event->sockets['object.entity.' . $entity_info['entity_id'] . '.' . $bundle['bundle_id']] = $bundle['label'];
+          }
+        }
+      }
+    }
   }
 
 }

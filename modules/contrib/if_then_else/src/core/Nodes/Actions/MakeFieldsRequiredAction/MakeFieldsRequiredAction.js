@@ -25,6 +25,7 @@ var VueMakeFieldsRequiredControl = {
       type: drupalSettings.if_then_else.nodes.make_fields_required_action.type,
       class: drupalSettings.if_then_else.nodes.make_fields_required_action.class,
       name: drupalSettings.if_then_else.nodes.make_fields_required_action.name,
+      classArg: drupalSettings.if_then_else.nodes.make_fields_required_action.classArg,
       value: [],
       options: [],
       form_fields: [],
@@ -65,6 +66,7 @@ var VueMakeFieldsRequiredControl = {
     this.putData('type',drupalSettings.if_then_else.nodes.make_fields_required_action.type);
     this.putData('class',drupalSettings.if_then_else.nodes.make_fields_required_action.class);
     this.putData('name', drupalSettings.if_then_else.nodes.make_fields_required_action.name);
+    this.putData('classArg', drupalSettings.if_then_else.nodes.make_fields_required_action.classArg);
     
     //setting values of selected fields when rule edit page loads.
     var get_form_fields = this.getData('form_fields');

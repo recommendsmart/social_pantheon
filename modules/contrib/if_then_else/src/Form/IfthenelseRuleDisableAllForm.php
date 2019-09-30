@@ -31,7 +31,7 @@ class IfthenelseRuleDisableAllForm extends EntityConfirmFormBase {
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return t('Do you want to disable all rules?');
+    return $this->t('Do you want to disable all If Then Else?');
   }
 
   /**

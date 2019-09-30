@@ -4,11 +4,13 @@ namespace Drupal\if_then_else\core\Nodes\Actions\ParseLinkFieldValueAction;
 
 use Drupal\if_then_else\core\Nodes\Actions\Action;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Parse Link field value node class.
  */
 class ParseLinkFieldValueAction extends Action {
+  use StringTranslationTrait;
 
   /**
    * Return name of Link field value node.
@@ -22,26 +24,27 @@ class ParseLinkFieldValueAction extends Action {
    */
   public function registerNode(NodeSubscriptionEvent $event) {
     $event->nodes[static::getName()] = [
-      'label' => t('Parse Link Field'),
+      'label' => $this->t('Parse Link Field'),
+      'description' => $this->t('Parse Link Field'),
       'type' => 'action',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Actions\\ParseLinkFieldValueAction\\ParseLinkFieldValueAction',
       'inputs' => [
         'field_value' => [
-          'label' => t('Link field object'),
-          'description' => t('Link field object'),
+          'label' => $this->t('Link field object'),
+          'description' => $this->t('Link field object'),
           'sockets' => ['object.field.link'],
           'required' => TRUE,
         ],
       ],
       'outputs' => [
         'uri' => [
-          'label' => t('Link Uri'),
-          'description' => t('Link Uri'),
+          'label' => $this->t('Link Uri'),
+          'description' => $this->t('Link Uri'),
           'socket' => 'string',
         ],
         'title' => [
-          'label' => t('Link title'),
-          'description' => t('Link Title'),
+          'label' => $this->t('Link title'),
+          'description' => $this->t('Link Title'),
           'socket' => 'string',
         ],
       ],

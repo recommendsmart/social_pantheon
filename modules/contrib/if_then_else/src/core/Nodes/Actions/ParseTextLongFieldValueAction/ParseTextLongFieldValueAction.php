@@ -4,11 +4,13 @@ namespace Drupal\if_then_else\core\Nodes\Actions\ParseTextLongFieldValueAction;
 
 use Drupal\if_then_else\core\Nodes\Actions\Action;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Parse Text Long field value action node class.
  */
 class ParseTextLongFieldValueAction extends Action {
+  use StringTranslationTrait;
 
   /**
    * Return name of Text long field value action node.
@@ -22,26 +24,27 @@ class ParseTextLongFieldValueAction extends Action {
    */
   public function registerNode(NodeSubscriptionEvent $event) {
     $event->nodes[static::getName()] = [
-      'label' => t('Parse Text Long Field'),
+      'label' => $this->t('Parse Text Long Field'),
+      'description' => $this->t('Parse Text Long Field'),
       'type' => 'action',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Actions\\ParseTextLongFieldValueAction\\ParseTextLongFieldValueAction',
       'inputs' => [
         'field_value' => [
-          'label' => t('Text Long field object'),
-          'description' => t('Text Long field object'),
+          'label' => $this->t('Text Long field object'),
+          'description' => $this->t('Text Long field object'),
           'sockets' => ['object.field.text_long'],
           'required' => TRUE,
         ],
       ],
       'outputs' => [
         'value' => [
-          'label' => t('Text Field Value'),
-          'description' => t('Text Field Value'),
+          'label' => $this->t('Text Field Value'),
+          'description' => $this->t('Text Field Value'),
           'socket' => 'string',
         ],
         'format' => [
-          'label' => t('Text Field Format'),
-          'description' => t('Text Field Format'),
+          'label' => $this->t('Text Field Format'),
+          'description' => $this->t('Text Field Format'),
           'socket' => 'string',
         ],
       ],

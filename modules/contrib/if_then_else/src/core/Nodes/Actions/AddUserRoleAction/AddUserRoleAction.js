@@ -16,6 +16,7 @@ var VueAddUserRoleActionControl = {
       type: drupalSettings.if_then_else.nodes.add_user_role_action.type,
       class: drupalSettings.if_then_else.nodes.add_user_role_action.class,
       name: drupalSettings.if_then_else.nodes.add_user_role_action.name,
+      classArg: drupalSettings.if_then_else.nodes.add_user_role_action.classArg,
       value: [],
       options: [],
       selected_options: [],
@@ -46,6 +47,7 @@ var VueAddUserRoleActionControl = {
     this.putData('type',drupalSettings.if_then_else.nodes.add_user_role_action.type);
     this.putData('class',drupalSettings.if_then_else.nodes.add_user_role_action.class);
     this.putData('name', drupalSettings.if_then_else.nodes.add_user_role_action.name);
+    this.putData('classArg', drupalSettings.if_then_else.nodes.add_user_role_action.classArg);
 
     //setting values of selected fields when rule edit page loads.
     //Setting values of retejs condition nodes when editing rule page loads

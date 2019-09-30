@@ -7,11 +7,13 @@ use Drupal\if_then_else\Event\EventConditionEvent;
 use Drupal\if_then_else\Event\EventFilterEvent;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
 use Drupal\if_then_else\Event\NodeValidationEvent;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Entity is viewed event class.
  */
 class EntityIsViewedEvent extends Event {
+  use StringTranslationTrait;
 
   /**
    * Return name of node.
@@ -30,16 +32,18 @@ class EntityIsViewedEvent extends Event {
     $form_entity_info = $if_then_else_utilities->getContentEntitiesAndBundles();
 
     $event->nodes[static::getName()] = [
-      'label' => t('Entity Is Viewed'),
+      'label' => $this->t('Entity Is Viewed'),
+      'description' => $this->t('Entity Is Viewed'),
       'type' => 'event',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Events\\EntityIsViewedEvent\\EntityIsViewedEvent',
       'library' => 'if_then_else/EntityIsViewedEvent',
       'control_class_name' => 'EntityIsViewedEventControl',
+      'component_class_name' => 'EntityIsViewedEventComponent',
       'entity_info' => $form_entity_info,
       'outputs' => [
         'entity' => [
-          'label' => t('Entity'),
-          'description' => t('Entity object.'),
+          'label' => $this->t('Entity'),
+          'description' => $this->t('Entity object.'),
           'socket' => 'object.entity',
         ],
       ],
@@ -53,13 +57,13 @@ class EntityIsViewedEvent extends Event {
     $data = $event->node->data;
 
     if (!property_exists($data, 'selection')) {
-      $event->errors[] = t('Select the Match Condition in "@node_name".', ['@node_name' => $event->node->name]);
+      $event->errors[] = $this->t('Select the Match Condition in "@node_name".', ['@node_name' => $event->node->name]);
       return;
     }
 
     if ($data->selection == 'list' && (!property_exists($data, 'selected_entity') || !property_exists($data, 'selected_bundle'))) {
       // Make sure that both selected_entity and selected_bundle are set.
-      $event->errors[] = t('Select both entity and bundle in "@node_name".', ['@node_name' => $event->node->name]);
+      $event->errors[] = $this->t('Select both entity and bundle in "@node_name".', ['@node_name' => $event->node->name]);
     }
   }
 

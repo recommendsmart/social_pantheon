@@ -5,11 +5,13 @@ namespace Drupal\if_then_else\core\Nodes\Actions\AddFormFieldAction;
 use Drupal\if_then_else\core\Nodes\Actions\Action;
 use Drupal\if_then_else\Event\GraphValidationEvent;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Add form field action class.
  */
 class AddFormFieldAction extends Action {
+  use StringTranslationTrait;
 
   /**
    * Return name of node.
@@ -23,25 +25,26 @@ class AddFormFieldAction extends Action {
    */
   public function registerNode(NodeSubscriptionEvent $event) {
     $event->nodes[static::getName()] = [
-      'label' => t('Add Form Field'),
+      'label' => $this->t('Add Form Field'),
+      'description' => $this->t('Add Form Field'),
       'type' => 'action',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Actions\\AddFormFieldAction\\AddFormFieldAction',
       'inputs' => [
         'form' => [
-          'label' => t('Form'),
-          'description' => t('Form object.'),
+          'label' => $this->t('Form'),
+          'description' => $this->t('Form object.'),
           'sockets' => ['form'],
           'required' => TRUE,
         ],
         'name' => [
-          'label' => t('Name'),
-          'description' => t('Set name of form element.'),
+          'label' => $this->t('Name'),
+          'description' => $this->t('Set name of form element.'),
           'sockets' => ['string'],
           'required' => TRUE,
         ],
         'value' => [
-          'label' => t('Value'),
-          'description' => t('Add value to form element.'),
+          'label' => $this->t('Value'),
+          'description' => $this->t('Add value to form element.'),
           'sockets' => ['string'],
           'required' => TRUE,
         ],
@@ -58,7 +61,7 @@ class AddFormFieldAction extends Action {
       if ($node->data->type == 'value' && $node->data->name == 'text_value') {
         // To check empty input.
         if (!property_exists($node->data, 'value') || empty($node->data->value)) {
-          $event->errors[] = t('Enter the name of field in  "@node_name".', ['@node_name' => $node->name]);
+          $event->errors[] = $this->t('Enter the name of field in  "@node_name".', ['@node_name' => $node->name]);
         }
       }
     }
@@ -78,7 +81,7 @@ class AddFormFieldAction extends Action {
 
     $form[$machine_readable] = [
       '#type' => 'hidden',
-      '#title' => t('@name', ['@name' => $name]),
+      '#title' => $this->t('@name', ['@name' => $name]),
       '#value' => $value,
     ];
   }

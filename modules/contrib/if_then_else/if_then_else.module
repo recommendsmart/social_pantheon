@@ -12,6 +12,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\views\ViewExecutable;
+use function GuzzleHttp\json_decode;
 
 /**
  * Implements hook_form_alter().
@@ -24,19 +25,25 @@ function if_then_else_form_alter(&$form, FormStateInterface &$form_state, $form_
   ]);
 
   $form['#validate'][] = 'if_then_else_form_validation_handler';
-  if (!empty($form['actions'])) {
-    foreach (array_keys($form['actions']) as $action) {
-      if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
-        if(isset($form['actions'][$action]['#submit'])){
-          $form['actions'][$action]['#submit'][] = 'if_then_else_form_submit_handler';
-        }else{
-          $form['#submit'][] = 'if_then_else_form_submit_handler';    
+
+  // Added to skip triggering form submit for uninstall confirm form.
+  // It gives error for ifthenelserule entity doesn't exists.
+  if ($form_id != 'system_modules_uninstall_confirm_form') {
+    if (!empty($form['actions'])) {
+      foreach (array_keys($form['actions']) as $action) {
+        if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+          if (isset($form['actions'][$action]['#submit'])) {
+            $form['actions'][$action]['#submit'][] = 'if_then_else_form_submit_handler';
+          }
+          else {
+            $form['#submit'][] = 'if_then_else_form_submit_handler';
+          }
         }
       }
     }
-  }
-  else {
-    $form['#submit'][] = 'if_then_else_form_submit_handler';
+    else {
+      $form['#submit'][] = 'if_then_else_form_submit_handler';
+    }
   }
 }
 
@@ -157,6 +164,7 @@ function if_then_else_entity_update(EntityInterface $entity) {
   if ($entity instanceof ContentEntityInterface) {
     IfThenElseController::process('after_saving_existing_entity_event', [
       'entity' => $entity,
+      'entity_original' => $entity->original,
     ]);
   }
 }
@@ -169,6 +177,7 @@ function if_then_else_entity_presave(EntityInterface $entity) {
   if ($entity instanceof ContentEntityInterface) {
     IfThenElseController::process('before_saving_entity_event', [
       'entity' => $entity,
+      'entity_original' => $entity->original,
     ]);
   }
 }
@@ -199,4 +208,34 @@ function if_then_else_views_post_execute(ViewExecutable $view) {
   IfThenElseController::process('view_is_loaded_event', [
     'view' => $view,
   ]);
+}
+
+/**
+ * Implements hook_modules_uninstalled().
+ */
+function if_then_else_modules_uninstalled($modules) {
+  $query = \Drupal::entityQuery('ifthenelserule')
+    ->condition('active', TRUE);
+  $enabled_rule_ids = $query->execute();
+  $entitys = \Drupal::entityTypeManager()->getStorage('ifthenelserule')->loadMultiple($enabled_rule_ids);
+  foreach ($entitys as $entity) {
+    $status = TRUE;
+    $module_name = '';
+    $data = json_decode($entity->data);
+    foreach ($data->nodes as $node) {
+      if (property_exists($node->data, 'dependencies') && !empty($node->data->dependencies)) {
+        foreach ($modules as $module) {
+          if (in_array($module, $node->data->dependencies)) {
+            $status = FALSE;
+            $module_name = ucfirst($module);
+          }
+        }
+      }
+    }
+    if (empty($status)) {
+      $entity->setActive(FALSE);
+      $entity->save();
+      \Drupal::messenger()->addMessage(t("@module_name module is not enabled. Rule @rule_name has been disabled.", ['@module_name' => $module_name, '@rule_name' => $entity->label()]), 'warning');
+    }
+  }
 }

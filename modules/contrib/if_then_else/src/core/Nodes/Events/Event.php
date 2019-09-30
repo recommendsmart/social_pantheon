@@ -11,6 +11,9 @@ use Drupal\if_then_else\Event\EventFilterEvent;
  */
 abstract class Event extends Node {
 
+  /**
+   * Get subscribed events.
+   */
   public static function getSubscribedEvents() {
     $subscribed_events = parent::getSubscribedEvents();
     $subscribed_events['if_then_else_' . static::getName() . '_event_condition_event'] = 'getConditions';
@@ -26,6 +29,8 @@ abstract class Event extends Node {
   }
 
   /**
+   * Get all condition.
+   *
    * Adds a condition string to $event->conditions array so that relevant rules
    * can be filtered efficiently later.
    *

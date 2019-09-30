@@ -5,11 +5,13 @@ namespace Drupal\if_then_else\core\Nodes\Conditions\ListContainsItemCondition;
 use Drupal\if_then_else\core\Nodes\Conditions\Condition;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * List contains item condition class.
  */
 class ListContainsItemCondition extends Condition {
+  use StringTranslationTrait;
 
   /**
    * {@inheritdoc}
@@ -23,27 +25,28 @@ class ListContainsItemCondition extends Condition {
    */
   public function registerNode(NodeSubscriptionEvent $event) {
     $event->nodes[static::getName()] = [
-      'label' => t('List Contains Item'),
+      'label' => $this->t('List Contains Item'),
+      'description' => $this->t('List Contains Item'),
       'type' => 'condition',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Conditions\\ListContainsItemCondition\\ListContainsItemCondition',
       'inputs' => [
         'list' => [
-          'label' => t('List'),
-          'description' => t('The list to be checked.'),
+          'label' => $this->t('List'),
+          'description' => $this->t('The list to be checked.'),
           'sockets' => ['array'],
           'required' => TRUE,
         ],
         'item' => [
-          'label' => t('Item'),
-          'description' => t('The item to check for.'),
+          'label' => $this->t('Item'),
+          'description' => $this->t('The item to check for.'),
           'sockets' => ['string', 'number', 'object.entity'],
           'required' => TRUE,
         ],
       ],
       'outputs' => [
         'success' => [
-          'label' => t('Success'),
-          'description' => t('Does the list have item?'),
+          'label' => $this->t('Success'),
+          'description' => $this->t('Does the list have item?'),
           'socket' => 'bool',
         ],
       ],

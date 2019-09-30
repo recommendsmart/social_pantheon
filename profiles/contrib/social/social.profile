@@ -146,6 +146,8 @@ function social_form_install_configure_form_alter(&$form, FormStateInterface $fo
     'dynamic_page_cache' => t('Cache pages for any user (highly recommended)'),
     'social_lets_connect_contact' => t('Adds Open Social Links to the main menu.'),
     'social_lets_connect_usage' => t('Shares usage data to the Open Social team.'),
+    'social_group_flexible_group' => t('Flexible group functionality'),
+    'social_group_secret' => t('Secret group functionality'),
   ];
 
   // Checkboxes to enable Optional modules.

@@ -4,11 +4,14 @@ namespace Drupal\if_then_else\core\Nodes\Events\CronMaintenanceTaskIsPerformed;
 
 use Drupal\if_then_else\core\Nodes\Events\Event;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Cron Maintenance Task Is Performed event node class.
  */
 class CronMaintenanceTaskIsPerformed extends Event {
+
+  use StringTranslationTrait;
 
   /**
    * Return name of node.
@@ -22,7 +25,8 @@ class CronMaintenanceTaskIsPerformed extends Event {
    */
   public function registerNode(NodeSubscriptionEvent $event) {
     $event->nodes[static::getName()] = [
-      'label' => t('Cron Run'),
+      'label' => $this->t('Cron Run'),
+      'description' => $this->t('Cron Run'),
       'type' => 'event',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Events\\CronMaintenanceTaskIsPerformed\\CronMaintenanceTaskIsPerformed',
     ];

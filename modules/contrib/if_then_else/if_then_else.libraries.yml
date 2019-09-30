@@ -3,13 +3,16 @@ external:
   css:
     theme:
       https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css: {type: external}
+      https://cdn.jsdelivr.net/npm/vuesax/dist/vuesax.css: {type: external}
       css/custom.css: {}
       css/vue-timepicker.min.css: {}
   js:
     https://code.jquery.com/pep/0.4.3/pep.js: {type: external}
     https://cdn.jsdelivr.net/npm/rete@1.3.0/build/rete.min.js: {type: external, minified: true}
     https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js : {type: external, minified: true}
-    https://cdn.jsdelivr.net/npm/rete-vue-render-plugin@0.3.5/build/vue-render-plugin.min.js: {type: external, minified: true}
+    js/vue-render-plugin.min.js: {}
+    https://cdn.jsdelivr.net/npm/v-tooltip@2.0.2/dist/v-tooltip.umd.min.js : {type: external, minified: true}
+    https://cdn.jsdelivr.net/npm/vuesax/dist/vuesax.umd.js : {type: external, minified: true}
     https://cdn.jsdelivr.net/npm/rete-connection-plugin@0.7.2/build/connection-plugin.min.js: {type: external, minified: true}
     https://cdn.jsdelivr.net/npm/alight@0.14.1/alight.min.js: {type: external, minified: true}
     https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js: {type: external, minified: true}
@@ -273,6 +276,13 @@ SetFieldValue:
   version: 1.0
   js:
     src/core/Nodes/Actions/SetFieldValue/SetFieldValue.js: {}
+  dependencies:
+    - if_then_else/external
+
+AddToLogAction:
+  version: 1.0
+  js:
+    src/core/Nodes/Actions/AddToLogAction/AddToLogAction.js: {}
   dependencies:
     - if_then_else/external
 

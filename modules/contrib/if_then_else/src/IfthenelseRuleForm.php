@@ -2,8 +2,8 @@
 
 namespace Drupal\if_then_else;
 
-use Drupal\Core\Url;
 use Drupal\Core\Entity\EntityForm;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Messenger\MessengerInterface;
@@ -14,6 +14,7 @@ use Drupal\if_then_else\Event\SocketSubscriptionEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use function GuzzleHttp\json_decode;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Defines a class to build a ifthenelseRule entity form.
@@ -23,13 +24,33 @@ use Drupal\if_then_else\Event\NodeSubscriptionEvent;
 class IfthenelseRuleForm extends EntityForm {
 
   /**
+   * The Event dispatcher.
+   *
+   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+   */
+  protected $eventDispatcher;
+
+  /**
+   * The module manager.
+   *
+   * @var \Drupal\Core\Extension\ModuleHandlerInterface
+   */
+  protected $moduleHandler;
+
+  /**
    * Constructs an ExampleForm object.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    *   The entityTypeManager.
+   * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
+   *   The entityTypeManager.
+   * @param \Drupal\Core\Extension\ModuleHandlerInterface $moduleHandler
+   *   The module handler.
    */
-  public function __construct(EntityTypeManagerInterface $entityTypeManager) {
+  public function __construct(EntityTypeManagerInterface $entityTypeManager, EventDispatcherInterface $event_dispatcher, ModuleHandlerInterface $moduleHandler) {
     $this->entityTypeManager = $entityTypeManager;
+    $this->eventDispatcher = $event_dispatcher;
+    $this->moduleHandler = $moduleHandler;
   }
 
   /**
@@ -37,7 +58,9 @@ class IfthenelseRuleForm extends EntityForm {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity_type.manager')
+      $container->get('entity_type.manager'),
+      $container->get('event_dispatcher'),
+      $container->get('module_handler')
     );
   }
 
@@ -52,7 +75,7 @@ class IfthenelseRuleForm extends EntityForm {
     $form['#suffix'] = '</div>';
 
     $socket_subscription_event = new SocketSubscriptionEvent();
-    \Drupal::service('event_dispatcher')->dispatch(SocketSubscriptionEvent::EVENT_NAME, $socket_subscription_event);
+    $this->eventDispatcher->dispatch(SocketSubscriptionEvent::EVENT_NAME, $socket_subscription_event);
     $form['#attached']['drupalSettings']['if_then_else']['sockets'] = $socket_subscription_event->sockets;
 
     // Current entity object.
@@ -62,8 +85,7 @@ class IfthenelseRuleForm extends EntityForm {
     $event = new NodeSubscriptionEvent();
 
     // Get the event_dispatcher server and dispatch the event.
-    $event_dispatcher = \Drupal::service('event_dispatcher');
-    $event_dispatcher->dispatch(NodeSubscriptionEvent::EVENT_NAME, $event);
+    $this->eventDispatcher->dispatch(NodeSubscriptionEvent::EVENT_NAME, $event);
 
     // Adding retejs intialization library.
     $form['#attached']['library'][] = 'if_then_else/initialize_retejs';
@@ -72,6 +94,17 @@ class IfthenelseRuleForm extends EntityForm {
     // Attach all libraries defined by all modules which are subscribing
     // above event.
     foreach ($event->nodes as $node_name => $node) {
+      if (!empty($node['dependencies'])) {
+        $exist = FALSE;
+        foreach ($node['dependencies'] as $module) {
+          if (!$this->moduleHandler->moduleExists($module)) {
+            $exist =TRUE;
+          }
+        }
+        if (!empty($exist)){
+          continue;
+        }
+      }
       $node['name'] = $node_name;
 
       if (isset($node['library'])) {
@@ -88,8 +121,8 @@ class IfthenelseRuleForm extends EntityForm {
         }
         else {
           $execute['execute'] = [
-            'label' => t('Execute'),
-            'description' => t('Should the @type be executed?', ['@type' => $node['type']]),
+            'label' => $this->t('Execute'),
+            'description' => $this->t('Should the @type be executed?', ['@type' => $node['type']]),
             'sockets' => ['bool'],
           ];
         }
@@ -110,8 +143,8 @@ class IfthenelseRuleForm extends EntityForm {
         }
         else {
           $success['success'] = [
-            'label' => t('Success'),
-            'description' => ($node['type'] == 'action') ? t("Did the action execute without any error? This socket can be used to chain actions by connecting to the next action's 'Execute' socket") : t("This socket will always be TRUE for an event and can be used to connect to a condition or action's 'Execute' socket."),
+            'label' => $this->t('Success'),
+            'description' => ($node['type'] == 'action') ? $this->t("Did the action execute without any error? This socket can be used to chain actions by connecting to the next action's 'Execute' socket") : $this->t("This socket will always be TRUE for an event and can be used to connect to a condition or action's 'Execute' socket."),
             'socket' => 'bool',
           ];
 
@@ -135,7 +168,7 @@ class IfthenelseRuleForm extends EntityForm {
 
     $form['label'] = [
       '#type' => 'textfield',
-      '#title' => t('Label'),
+      '#title' => $this->t('Label'),
       '#required' => TRUE,
       '#default_value' => $entity->label(),
       '#weight' => 10,
@@ -154,15 +187,15 @@ class IfthenelseRuleForm extends EntityForm {
 
     $form['active'] = [
       '#type' => 'checkbox',
-      '#title' => t('Active'),
+      '#title' => $this->t('Active'),
       '#default_value' => isset($entity->active) ? $entity->active : '',
       '#weight' => 20,
       '#suffix' => '</div>',
     ];
-    $full_screen_img_path = drupal_get_path('module', 'if_then_else').'/css/images/full_screen.png';
+    $full_screen_img_path = drupal_get_path('module', 'if_then_else') . '/css/images/full_screen.png';
     $form['full_screen_button'] = [
       '#type' => 'image_button',
-      '#title' => t('Enable Full Screen'),
+      '#title' => $this->t('Enable Full Screen'),
       '#src' => $full_screen_img_path,
       '#weight' => -1,
     ];
@@ -185,7 +218,7 @@ class IfthenelseRuleForm extends EntityForm {
 
     $form['module'] = [
       '#type' => 'hidden',
-      '#title' => t('Module'),
+      '#title' => $this->t('Module'),
       '#value' => 'ifthenelse',
       '#default_value' => isset($entity->module) ? $entity->module : '',
     ];
@@ -194,7 +227,7 @@ class IfthenelseRuleForm extends EntityForm {
     // Need to make that dynamic based on what event node is added on retejs
     $form['event'] = [
       '#type' => 'hidden',
-      '#title' => t('Module'),
+      '#title' => $this->t('Module'),
       '#attributes' => [
         'id' => 'ifthenelse-event',
       ],
@@ -203,7 +236,7 @@ class IfthenelseRuleForm extends EntityForm {
 
     $form['data'] = [
       '#type' => 'hidden',
-      '#title' => t('Module'),
+      '#title' => $this->t('Module'),
       '#attributes' => [
         'id' => 'ifthenelse-data',
       ],
@@ -222,9 +255,9 @@ class IfthenelseRuleForm extends EntityForm {
     if (!$this->entity->isNew()) {
       $actions['clone'] = [
         '#type' => 'link',
-        '#title' => t('Clone'),
+        '#title' => $this->t('Clone'),
         '#url' => $this->entity->toUrl('clone'),
-        '#attributes' => ['class' => 'button button--danger', '#id'=>'test'],
+        '#attributes' => ['class' => 'button button--danger', '#id' => 'test'],
       ];
     }
 
@@ -245,8 +278,7 @@ class IfthenelseRuleForm extends EntityForm {
     $event = new NodeSubscriptionEvent();
 
     // Get the event_dispatcher server and dispatch the event.
-    $event_dispatcher = \Drupal::service('event_dispatcher');
-    $event_dispatcher->dispatch(NodeSubscriptionEvent::EVENT_NAME, $event);
+    $this->eventDispatcher->dispatch(NodeSubscriptionEvent::EVENT_NAME, $event);
 
     $data = json_decode($form_state->getValue('data'));
 
@@ -260,14 +292,14 @@ class IfthenelseRuleForm extends EntityForm {
         }
         else {
           // There are two events in this graph. Set an error.
-          $form_state->setErrorByName('rete-container', t('The graph has at least two event nodes. A graph should have exactly one event node.'));
+          $form_state->setErrorByName('rete-container', $this->t('The graph has at least two event nodes. A graph should have exactly one event node.'));
           return;
         }
       }
     }
 
     if (empty($event_name)) {
-      $form_state->setErrorByName('rete-container', t('The graph has no event node. Add one event node to indicate when the graph should execute.'));
+      $form_state->setErrorByName('rete-container', $this->t('The graph has no event node. Add one event node to indicate when the graph should execute.'));
       return;
     }
 
@@ -277,9 +309,16 @@ class IfthenelseRuleForm extends EntityForm {
     $node_errors = [];
     foreach ($data->nodes as $nid => $node) {
       $node_validation_event = new NodeValidationEvent($nid, $node);
-      $event_dispatcher->dispatch('if_then_else_' . $node->data->name . '_node_validation_event', $node_validation_event);
+      $this->eventDispatcher->dispatch('if_then_else_' . $node->data->name . '_node_validation_event', $node_validation_event);
+      if (property_exists($node->data, 'dependencies') && !empty($node->data->dependencies)) {
+        foreach ($node->data->dependencies as $module) {
+          if (!$this->moduleHandler->moduleExists($module)) {
+            $node_errors[] = $this->t("@module_name module is not enabled. Node @node_name can't be added.", ['@module_name' => ucfirst($module), '@node_name' => $node->data->name]);
+          }
+        }
+      }
       if (!empty($node_validation_event->errors)) {
-        $node_errors = array_merge($node_errors, $node_validation_event->errors);
+        $node_errors = array_merge($node_errors, (array) $node_validation_event->errors);
       }
     }
 
@@ -311,7 +350,7 @@ class IfthenelseRuleForm extends EntityForm {
 
       if ($node->data->type == 'event') {
         $event_condition_event = new EventConditionEvent($node->data);
-        $event_dispatcher->dispatch('if_then_else_' . $node->data->name . '_event_condition_event', $event_condition_event);
+        $this->eventDispatcher->dispatch('if_then_else_' . $node->data->name . '_event_condition_event', $event_condition_event);
         $event_condition = implode(',', $event_condition_event->conditions);
       }
 
@@ -319,7 +358,7 @@ class IfthenelseRuleForm extends EntityForm {
       foreach ($defined_inputs as $input_name => $defined_input) {
         if (in_array('required', $defined_input) && $defined_input['required'] && !count($node->inputs->{$input_name}->connections)) {
           // A required input is not connected.
-          $form_state->setErrorByName('rete-container', t('Required input "@input_name" of "@node_name" is not connected.', ['@input_name' => $defined_input['label'], '@node_name' => $node->name]));
+          $form_state->setErrorByName('rete-container', $this->t('Required input "@input_name" of "@node_name" is not connected.', ['@input_name' => $defined_input['label'], '@node_name' => $node->name]));
         }
       }
 
@@ -358,7 +397,7 @@ class IfthenelseRuleForm extends EntityForm {
     $graph_errors = [];
     foreach ($data->nodes as $nid => $node) {
       $graph_validation_event = new GraphValidationEvent($data);
-      $event_dispatcher->dispatch('if_then_else_' . $node->data->name . '_graph_validation_event', $graph_validation_event);
+      $this->eventDispatcher->dispatch('if_then_else_' . $node->data->name . '_graph_validation_event', $graph_validation_event);
       if (!empty($graph_validation_event->errors)) {
         $graph_errors = array_merge($graph_errors, $graph_validation_event->errors);
       }
@@ -410,7 +449,7 @@ class IfthenelseRuleForm extends EntityForm {
 
       if (!$node_processed) {
         // There seems to be circular dependency.
-        $form_state->setErrorByName('rete-container', t('There seems to be circular dependency in the flow.'));
+        $form_state->setErrorByName('rete-container', $this->t('There seems to be circular dependency in the flow.'));
         return;
       }
     }

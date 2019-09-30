@@ -4,11 +4,13 @@ namespace Drupal\if_then_else\core\Nodes\Actions\ParseTextWithSummaryFieldAction
 
 use Drupal\if_then_else\core\Nodes\Actions\Action;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Parse Text with Summary node action class.
  */
 class ParseTextWithSummaryFieldAction extends Action {
+  use StringTranslationTrait;
 
   /**
    * Return name of Text with summary node action.
@@ -22,31 +24,32 @@ class ParseTextWithSummaryFieldAction extends Action {
    */
   public function registerNode(NodeSubscriptionEvent $event) {
     $event->nodes[static::getName()] = [
-      'label' => t('Parse Text With Summary Field'),
+      'label' => $this->t('Parse Text With Summary Field'),
+      'description' => $this->t('Parse Text With Summary Field'),
       'type' => 'action',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Actions\\ParseTextWithSummaryFieldAction\\ParseTextWithSummaryFieldAction',
       'inputs' => [
         'field_value' => [
-          'label' => t('Text with summary field object'),
-          'description' => t('Text with summary field object'),
+          'label' => $this->t('Text with summary field object'),
+          'description' => $this->t('Text with summary field object'),
           'sockets' => ['object.field.text_with_summary'],
           'required' => TRUE,
         ],
       ],
       'outputs' => [
         'summary' => [
-          'label' => t('Summary'),
-          'description' => t('Summary'),
+          'label' => $this->t('Summary'),
+          'description' => $this->t('Summary'),
           'socket' => 'string',
         ],
         'value' => [
-          'label' => t('Field Value'),
-          'description' => t('Field value'),
+          'label' => $this->t('Field Value'),
+          'description' => $this->t('Field value'),
           'socket' => 'string',
         ],
         'format' => [
-          'label' => t('Field Text Format'),
-          'description' => t('Field Text Format'),
+          'label' => $this->t('Field Text Format'),
+          'description' => $this->t('Field Text Format'),
           'socket' => 'string',
         ],
       ],

@@ -35,7 +35,7 @@ class IfthenelseSettingsForm extends ConfigFormBase {
     $form['enable_debugging'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Enable Debugging'),
-      '#description' => $this->t('This will enable debugging for ifthenelse rules.'),
+      '#description' => $this->t('This will enable debugging for If Then Else.'),
       '#default_value' => $config->get('enable_debugging'),
     ];
 

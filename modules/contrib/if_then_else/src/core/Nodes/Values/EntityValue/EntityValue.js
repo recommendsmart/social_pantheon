@@ -30,6 +30,7 @@ var VueEntityValueControl = {
       type: drupalSettings.if_then_else.nodes.entity_value.type,
       class: drupalSettings.if_then_else.nodes.entity_value.class,
       name: drupalSettings.if_then_else.nodes.entity_value.name,
+      classArg: drupalSettings.if_then_else.nodes.entity_value.classArg,
       selected_entity: [],
       entityId: '',
       entities: [],
@@ -70,7 +71,8 @@ var VueEntityValueControl = {
     this.putData('type', drupalSettings.if_then_else.nodes.entity_value.type);
     this.putData('class', drupalSettings.if_then_else.nodes.entity_value.class);
     this.putData('name', drupalSettings.if_then_else.nodes.entity_value.name);
-
+    this.putData('classArg', drupalSettings.if_then_else.nodes.entity_value.classArg);
+    
     this.input_selection = this.getData('input_selection');
 
     //Setting values of retejs condition nodes when editing rule page loads
@@ -126,9 +128,12 @@ class EntityValueComponent extends Rete.Component {
   builder(eventNode) {
 
     var node_outputs = [];
-    node_outputs['success'] = new Rete.Output('success', 'Success', sockets['bool']);
+    var nodeName = 'entity_value';
+    var node = drupalSettings.if_then_else.nodes[nodeName];
+
     node_outputs['entity'] = new Rete.Output('entity', 'Entity', sockets['object.entity']);
-    eventNode.addOutput(node_outputs['success']);
+    node_outputs['entity']['description'] = node.outputs['entity'].description;
+
     eventNode.addOutput(node_outputs['entity']);
 
     var nodeName = 'entity_value';
@@ -137,10 +142,9 @@ class EntityValueComponent extends Rete.Component {
     function handleInput() {
       return function(value) {
         let socket_out = eventNode.outputs.get('entity');
-        if (value == 'user') {
-          socket_out.socket = sockets['object.entity.user'];
-        } else if (value != 'user') {
-          socket_out.socket = sockets['object.entity'];
+        if (value != undefined && typeof value != 'undefined' && value !== '') {
+          socket_out.socket = sockets['object.entity.' + value ];
+          makeCompatibleSocketsByName('object.entity.' + value );
         }
         eventNode.outputs.set('entity', socket_out);
         eventNode.update();
@@ -155,38 +159,13 @@ class EntityValueComponent extends Rete.Component {
     for (let name in node.inputs) {
       let inputLabel = node.inputs[name].label + (node.inputs[name].required ? ' *' : '');
       if (node.inputs[name].sockets.length === 1) {
-        compatibleSockets['object.entity'] = ['object.entity'];
-        compatibleSockets['object.entity.user'] = ['object.entity.user'];
-        eventNode.addInput(new Rete.Input(name, inputLabel, sockets[node.inputs[name].sockets[0]]));
-      } else if (node.inputs[name].sockets.length > 1) {
-        let socketNames = [];
-        let socketLabels = [];
-        for (let idx in node.inputs[name].sockets) {
-          socketNames.push(node.inputs[name].sockets[idx]);
-          socketLabels.push(sockets[node.inputs[name].sockets[idx]].name);
-        }
-        socketNames.sort();
-        socketLabels.sort();
-        let socketLabel = socketLabels.join(', ');
-        let socketName = socketNames.join(', ');
-
-        if (!(socketName in sockets)) {
-          sockets[socketName] = new Rete.Socket(socketLabel);
-        }
-
-        for (let idx in node.inputs[name].sockets) {
-          if (!sockets[node.inputs[name].sockets[idx]].compatibleWith(sockets[socketName])) {
-            sockets[node.inputs[name].sockets[idx]].combineWith(sockets[socketName]);
-            if (typeof compatibleSockets[node.inputs[name].sockets[idx]] === "undefined") {
-              compatibleSockets[node.inputs[name].sockets[idx]] = [];
-            }
-            compatibleSockets[node.inputs[name].sockets[idx]].push(socketName);
-          }
-        }
-
-        eventNode.addInput(new Rete.Input(name, inputLabel, sockets[socketName]));
+        let  inputObject = new Rete.Input(name, inputLabel, sockets[node.inputs[name].sockets[0]]);
+        inputObject['description'] = node.inputs[name].description;
+        eventNode.addInput(inputObject);
       }
     }
+    eventNode['description'] = node.description;
+
   }
   worker(eventNode, inputs, outputs) {
     //outputs['form'] = eventNode.data.event;

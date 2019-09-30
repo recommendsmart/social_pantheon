@@ -18,6 +18,7 @@ var VueCurrentThemeCondition = {
       type: drupalSettings.if_then_else.nodes.current_theme_condition.type,
       class: drupalSettings.if_then_else.nodes.current_theme_condition.class,
       name: drupalSettings.if_then_else.nodes.current_theme_condition.name,
+      classArg: drupalSettings.if_then_else.nodes.current_theme_condition.classArg,
       options: [],
       selected_theme: [],
       value: [],
@@ -43,7 +44,8 @@ var VueCurrentThemeCondition = {
     this.putData('type', drupalSettings.if_then_else.nodes.current_theme_condition.type);
     this.putData('class', drupalSettings.if_then_else.nodes.current_theme_condition.class);
     this.putData('name', drupalSettings.if_then_else.nodes.current_theme_condition.name);
-
+    this.putData('classArg', drupalSettings.if_then_else.nodes.current_theme_condition.classArg);
+    
     //setting values of selected compare option when rule edit page loads.
     var get_selected_theme = this.getData('selected_theme');
     if (typeof get_selected_theme != 'undefined') {

@@ -4,11 +4,13 @@ namespace Drupal\if_then_else\core\Nodes\Actions\RemoveItemFromListAction;
 
 use Drupal\if_then_else\core\Nodes\Actions\Action;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Remove Item From List action class.
  */
 class RemoveItemFromListAction extends Action {
+  use StringTranslationTrait;
 
   /**
    * {@inheritdoc}
@@ -22,27 +24,28 @@ class RemoveItemFromListAction extends Action {
    */
   public function registerNode(NodeSubscriptionEvent $event) {
     $event->nodes[static::getName()] = [
-      'label' => t('Remove Item From List'),
+      'label' => $this->t('Remove Item From List'),
+      'description' => $this->t('Remove Item From List'),
       'type' => 'action',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Actions\\RemoveItemFromListAction\\RemoveItemFromListAction',
       'inputs' => [
         'list' => [
-          'label' => t('List'),
-          'description' => t('An array to remove an item from.'),
+          'label' => $this->t('List'),
+          'description' => $this->t('An array to remove an item from.'),
           'sockets' => ['array'],
           'required' => TRUE,
         ],
         'item' => [
-          'label' => t('Item'),
-          'description' => t('An item to remove from the array.'),
+          'label' => $this->t('Item'),
+          'description' => $this->t('An item to remove from the array.'),
           'sockets' => ['string', 'number', 'array'],
           'required' => TRUE,
         ],
       ],
       'outputs' => [
         'list' => [
-          'label' => t('List'),
-          'description' => t('List'),
+          'label' => $this->t('List'),
+          'description' => $this->t('List'),
           'socket' => 'array',
         ],
       ],

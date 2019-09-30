@@ -18,6 +18,7 @@ var VueSendAccountEmailAction = {
       type: drupalSettings.if_then_else.nodes.send_account_email_action.type,
       class: drupalSettings.if_then_else.nodes.send_account_email_action.class,
       name: drupalSettings.if_then_else.nodes.send_account_email_action.name,
+      classArg: drupalSettings.if_then_else.nodes.send_account_email_action.classArg,
       options: [],
       selected_type: [],
     }
@@ -43,6 +44,7 @@ var VueSendAccountEmailAction = {
     this.putData('type', drupalSettings.if_then_else.nodes.send_account_email_action.type);
     this.putData('class', drupalSettings.if_then_else.nodes.send_account_email_action.class);
     this.putData('name', drupalSettings.if_then_else.nodes.send_account_email_action.name);
+    this.putData('classArg', drupalSettings.if_then_else.nodes.send_account_email_action.classArg);
 
     //setting values of selected compare option when rule edit page loads.
     var get_selected_type = this.getData('selected_type');

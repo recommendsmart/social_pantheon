@@ -4,14 +4,33 @@ namespace Drupal\if_then_else\core\Nodes\Actions\SendAccountEmailAction;
 
 use Drupal\if_then_else\core\Nodes\Actions\Action;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
-use Drupal\user\Entity\User;
 use Drupal\user\UserInterface;
 use Drupal\if_then_else\Event\NodeValidationEvent;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 /**
  * Send account email action class.
  */
 class SendAccountEmailAction extends Action {
+  use StringTranslationTrait;
+
+  /**
+   * The entity manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
+   * Constructs a new RouteSubscriber object.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
+   *   The entity type manager.
+   */
+  public function __construct(EntityTypeManagerInterface $entity_manager) {
+    $this->entityTypeManager = $entity_manager;
+  }
 
   /**
    * {@inheritdoc}
@@ -25,9 +44,11 @@ class SendAccountEmailAction extends Action {
    */
   public function registerNode(NodeSubscriptionEvent $event) {
     $event->nodes[static::getName()] = [
-      'label' => t('Send Account Email'),
+      'label' => $this->t('Send Account Email'),
+      'description' => $this->t('Send Account Email'),
       'type' => 'action',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Actions\\SendAccountEmailAction\\SendAccountEmailAction',
+      'classArg' => ['entity_type.manager'],
       'library' => 'if_then_else/SendAccountEmailAction',
       'control_class_name' => 'SendAccountEmailActionControl',
       'compare_options' => [
@@ -42,8 +63,8 @@ class SendAccountEmailAction extends Action {
       ],
       'inputs' => [
         'user' => [
-          'label' => t('User Id / User object'),
-          'description' => t('User Id or User Object.'),
+          'label' => $this->t('User Id / User object'),
+          'description' => $this->t('User Id or User Object.'),
           'sockets' => ['number', 'object.entity.user'],
           'required' => TRUE,
         ],
@@ -57,7 +78,7 @@ class SendAccountEmailAction extends Action {
   public function validateNode(NodeValidationEvent $event) {
     $data = $event->node->data;
     if (empty($data->selected_type->code)) {
-      $event->errors[] = t('Select type of email to be sent in "@node_name".', ['@node_name' => $event->node->name]);
+      $event->errors[] = $this->t('Select type of email to be sent in "@node_name".', ['@node_name' => $event->node->name]);
     }
   }
 
@@ -69,7 +90,7 @@ class SendAccountEmailAction extends Action {
     $user = $this->inputs['user'];
     $email_type = $this->data->selected_type->code;
     if (is_numeric($user)) {
-      $user = User::load($user);
+      $user = $this->entityTypeManager->getStorage('user')->load($user);
       if (empty($user)) {
         $this->setSuccess(FALSE);
         return;

@@ -10,7 +10,7 @@ use Symfony\Component\EventDispatcher\Event;
 class EventConditionEvent extends Event {
 
   /**
-   * @var \stdClass
+   * @var object
    *   Graph data
    */
   public $data;

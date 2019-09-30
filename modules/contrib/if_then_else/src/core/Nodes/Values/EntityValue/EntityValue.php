@@ -6,10 +6,31 @@ use Drupal\if_then_else\core\Nodes\Values\Value;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
 use Drupal\if_then_else\Event\NodeValidationEvent;
 use Drupal\Component\Utility\Html;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+
 /**
  * Textvalue node class.
  */
 class EntityValue extends Value {
+  use StringTranslationTrait;
+
+  /**
+   * The entity manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
+   * Constructs a new RouteSubscriber object.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
+   *   The entity type manager.
+   */
+  public function __construct(EntityTypeManagerInterface $entity_manager) {
+    $this->entityTypeManager = $entity_manager;
+  }
 
   /**
    * Return name of node.
@@ -23,45 +44,50 @@ class EntityValue extends Value {
    */
   public function registerNode(NodeSubscriptionEvent $event) {
     $event->nodes[static::getName()] = [
-      'label' => t('Entity'),
+      'label' => $this->t('Entity'),
+      'description' => $this->t('Entity'),
       'type' => 'value',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Values\\EntityValue\\EntityValue',
       'library' => 'if_then_else/EntityValue',
       'control_class_name' => 'EntityValueControl',
       'component_class_name' => 'EntityValueComponent',
+      'classArg' => ['entity_type.manager'],
       'inputs' => [
         'data' => [
-          'label' => t('Entity Id'),
-          'description' => t('Take Entity Id input'),
+          'label' => $this->t('Entity Id'),
+          'description' => $this->t('Take Entity Id input'),
           'sockets' => ['number'],
-        ]
-      ] ,   
+        ],
+      ] ,
       'outputs' => [
         'entity' => [
-          'label' => t('Entity'),
-          'description' => t('Entity Object'),
+          'label' => $this->t('Entity'),
+          'description' => $this->t('Entity Object'),
           'socket' => 'object.entity',
         ],
       ],
     ];
   }
 
+  /**
+   * Validate node.
+   */
   public function validateNode(NodeValidationEvent $event) {
     $data = $event->node->data;
-    if(!property_exists($data,'selected_entity')){
-      $event->errors[] = t('Select a Entity type in "@node_name".', ['@node_name' => $event->node->name]);
+    if (!property_exists($data, 'selected_entity')) {
+      $event->errors[] = $this->t('Select a Entity type in "@node_name".', ['@node_name' => $event->node->name]);
     }
 
     if (!property_exists($data, 'input_selection')) {
-      $event->errors[] = t('Provide an entity id in "@node_name".', ['@node_name' => $event->node->name]);
+      $event->errors[] = $this->t('Provide an entity id in "@node_name".', ['@node_name' => $event->node->name]);
     }
 
     $inputs = $event->node->inputs;
     if ($data->input_selection == 'value' && (!property_exists($data, 'entityId') || empty(trim($data->entityId)))) {
-      $event->errors[] = t('Provide an entity id in "@node_name".', ['@node_name' => $event->node->name]);
+      $event->errors[] = $this->t('Provide an entity id in "@node_name".', ['@node_name' => $event->node->name]);
     }
-    elseif ($data->input_selection == 'input' && !sizeof($inputs->data->connections)) {
-      $event->errors[] = t('Provide an entity id in "@node_name".', ['@node_name' => $event->node->name]);
+    elseif ($data->input_selection == 'input' && !count($inputs->data->connections)) {
+      $event->errors[] = $this->t('Provide an entity id in "@node_name".', ['@node_name' => $event->node->name]);
     }
   }
 
@@ -77,9 +103,9 @@ class EntityValue extends Value {
       $entity_id = $this->inputs['data'];
     }
     $entity = $this->data->selected_entity->value;
-    
+
     // Using the storage controller.
-    $entity_object = \Drupal::entityTypeManager()->getStorage($entity)->load($entity_id);
+    $entity_object = $this->entityTypeManager->getStorage($entity)->load($entity_id);
     $this->outputs['entity'] = $entity_object;
   }
 

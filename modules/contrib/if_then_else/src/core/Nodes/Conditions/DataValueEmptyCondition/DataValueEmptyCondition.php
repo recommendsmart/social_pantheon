@@ -4,11 +4,13 @@ namespace Drupal\if_then_else\core\Nodes\Conditions\DataValueEmptyCondition;
 
 use Drupal\if_then_else\core\Nodes\Conditions\Condition;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Data value is empty condition class.
  */
 class DataValueEmptyCondition extends Condition {
+  use StringTranslationTrait;
 
   /**
    * {@inheritdoc}
@@ -22,13 +24,14 @@ class DataValueEmptyCondition extends Condition {
    */
   public function registerNode(NodeSubscriptionEvent $event) {
     $event->nodes[static::getName()] = [
-      'label' => t('Data Value Empty'),
+      'label' => $this->t('Data Value Empty'),
+      'description' => $this->t('Data Value Empty'),
       'type' => 'condition',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Conditions\\DataValueEmptyCondition\\DataValueEmptyCondition',
       'inputs' => [
         'input' => [
-          'label' => t('Data to check'),
-          'description' => t('Data to check.'),
+          'label' => $this->t('Data to check'),
+          'description' => $this->t('Data to check.'),
           'sockets' => [
             'string',
             'number',
@@ -41,8 +44,8 @@ class DataValueEmptyCondition extends Condition {
       ],
       'outputs' => [
         'success' => [
-          'label' => t('Success'),
-          'description' => t('Data value is empty?'),
+          'label' => $this->t('Success'),
+          'description' => $this->t('Data value is empty?'),
           'socket' => 'bool',
         ],
       ],

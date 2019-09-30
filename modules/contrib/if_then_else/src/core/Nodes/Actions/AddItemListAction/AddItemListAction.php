@@ -4,11 +4,13 @@ namespace Drupal\if_then_else\core\Nodes\Actions\AddItemListAction;
 
 use Drupal\if_then_else\core\Nodes\Actions\Action;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Add Item To A List action class.
  */
 class AddItemListAction extends Action {
+  use StringTranslationTrait;
 
   /**
    * {@inheritdoc}
@@ -22,7 +24,8 @@ class AddItemListAction extends Action {
    */
   public function registerNode(NodeSubscriptionEvent $event) {
     $event->nodes[static::getName()] = [
-      'label' => t('Add Item To List'),
+      'label' => $this->t('Add Item To List'),
+      'description' => $this->t('Add Item To List'),
       'type' => 'action',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Actions\\AddItemListAction\\AddItemListAction',
       'library' => 'if_then_else/AddItemListAction',
@@ -33,22 +36,22 @@ class AddItemListAction extends Action {
       ],
       'inputs' => [
         'list' => [
-          'label' => t('List'),
-          'description' => t('A list to which an item is added.'),
+          'label' => $this->t('List'),
+          'description' => $this->t('A list to which an item is added.'),
           'sockets' => ['array'],
           'required' => TRUE,
         ],
         'item' => [
-          'label' => t('Item'),
-          'description' => t('An item being added to the list.'),
+          'label' => $this->t('Item'),
+          'description' => $this->t('An item being added to the list.'),
           'sockets' => ['string', 'number', 'array'],
           'required' => TRUE,
         ],
       ],
       'outputs' => [
         'list' => [
-          'label' => t('List'),
-          'description' => t('List'),
+          'label' => $this->t('List'),
+          'description' => $this->t('List'),
           'socket' => 'array',
         ],
       ],

@@ -31,6 +31,7 @@ var VueFormIdControl = {
       type: drupalSettings.if_then_else.nodes.form_class_condition.type,
       class: drupalSettings.if_then_else.nodes.form_class_condition.class,
       name: drupalSettings.if_then_else.nodes.form_class_condition.name,
+      classArg: drupalSettings.if_then_else.nodes.form_class_condition.classArg,
       value: 0,
       otherFormClass: '',
       showOtherFormField: false,
@@ -116,7 +117,8 @@ var VueFormIdControl = {
     this.putData('type', drupalSettings.if_then_else.nodes.form_class_condition.type);
     this.putData('class', drupalSettings.if_then_else.nodes.form_class_condition.class);
     this.putData('name', drupalSettings.if_then_else.nodes.form_class_condition.name);
-
+    this.putData('classArg', drupalSettings.if_then_else.nodes.form_class_condition.classArg);
+    
     //Setting values of retejs condition nodes when editing rule page loads
     this.selected_entity = this.getData('selected_entity');
     this.selected_bundle = this.getData('selected_bundle');

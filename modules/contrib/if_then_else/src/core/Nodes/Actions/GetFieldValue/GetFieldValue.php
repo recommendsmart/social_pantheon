@@ -7,11 +7,30 @@ use Drupal\if_then_else\Event\NodeSubscriptionEvent;
 use Drupal\if_then_else\Event\GraphValidationEvent;
 use Drupal\if_then_else\Event\NodeValidationEvent;
 use stdClass;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\if_then_else\core\IfthenelseUtilitiesInterface;
 
 /**
  * Class defined to get value of entity field.
  */
 class GetFieldValue extends Action {
+  use StringTranslationTrait;
+  /**
+   * The ifthenelse utitlities.
+   *
+   * @var \Drupal\if_then_else\core\IfthenelseUtilitiesInterface
+   */
+  protected $ifthenelseUtilities;
+
+  /**
+   * Constructs a new RouteSubscriber object.
+   *
+   * @param \Drupal\if_then_else\core\IfthenelseUtilitiesInterface $ifthenelse_utilities
+   *   The ifthenelse utitlities.
+   */
+  public function __construct(IfthenelseUtilitiesInterface $ifthenelse_utilities) {
+    $this->ifthenelseUtilities = $ifthenelse_utilities;
+  }
 
   /**
    * Return name of node.
@@ -25,16 +44,17 @@ class GetFieldValue extends Action {
    */
   public function registerNode(NodeSubscriptionEvent $event) {
     // Fetch all fields for config entity bundles.
-    $if_then_else_utilities = \Drupal::service('ifthenelse.utilities');
-    $form_entity_info = $if_then_else_utilities->getContentEntitiesAndBundles();
-    $form_fields = $if_then_else_utilities->getFieldsByEntityBundleId($form_entity_info);
-    $field_entity = $if_then_else_utilities->getEntityByFieldName($form_fields);
-    $fields_type = $if_then_else_utilities->getFieldsByEntityBundleId($form_entity_info, 'field_type');
+    $form_entity_info = $this->ifthenelseUtilities->getContentEntitiesAndBundles();
+    $form_fields = $this->ifthenelseUtilities->getFieldsByEntityBundleId($form_entity_info);
+    $field_entity = $this->ifthenelseUtilities->getEntityByFieldName($form_fields);
+    $fields_type = $this->ifthenelseUtilities->getFieldsByEntityBundleId($form_entity_info, 'field_type');
 
     $event->nodes[static::getName()] = [
-      'label' => t('Get Form Field Value'),
+      'label' => $this->t('Get Form Field Value'),
+      'description' => $this->t('Get Form Field Value'),
       'type' => 'action',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Actions\\GetFieldValue\\GetFieldValue',
+      'classArg' => ['ifthenelse.utilities'],
       'library' => 'if_then_else/GetFieldValue',
       'control_class_name' => 'GetFieldValueControl',
       'form_fields' => $form_fields,
@@ -43,17 +63,17 @@ class GetFieldValue extends Action {
       'component_class_name' => 'GetFieldValueActionComponent',
       'inputs' => [
         'form_state' => [
-          'label' => t('Form State'),
-          'description' => t('Form state object.'),
+          'label' => $this->t('Form State'),
+          'description' => $this->t('Form state object.'),
           'sockets' => ['form_state'],
           'required' => TRUE,
         ],
       ],
       'outputs' => [
         'field_value' => [
-          'label' => t('Field Value'),
-          'description' => t('Field Value'),
-          'socket' => 'field',
+          'label' => $this->t('Field Value'),
+          'description' => $this->t('Field Value'),
+          'socket' => 'object.field',
         ],
       ],
     ];
@@ -67,7 +87,7 @@ class GetFieldValue extends Action {
 
     foreach ($nodes as $node) {
       if ($node->data->type == 'event' && $node->data->name != 'form_validate_event') {
-        $event->errors[] = t('Get Value of field will only work with Form validate Event');
+        $event->errors[] = $this->t('Get Value of field will only work with Form validate Event');
       }
     }
   }
@@ -78,7 +98,7 @@ class GetFieldValue extends Action {
   public function validateNode(NodeValidationEvent $event) {
     $data = $event->node->data;
     if (empty($data->form_fields)) {
-      $event->errors[] = t('Select a field name to fetch it\' value in "@node_name".', ['@node_name' => $event->node->name]);
+      $event->errors[] = $this->t('Select a field name to fetch it\' value in "@node_name".', ['@node_name' => $event->node->name]);
     }
   }
 
@@ -95,7 +115,6 @@ class GetFieldValue extends Action {
   private function getValueOfField() {
     $form_state = $this->inputs['form_state'];
     $form_fields = $this->data->form_fields;
-    $entity = $this->data->selected_entity->code;
 
     if ($form_fields->code == 'title') {
       $field_value = $form_state->getValue($form_fields->code);
@@ -117,50 +136,163 @@ class GetFieldValue extends Action {
         case 'float':
         case 'integer':
         case 'string_long':
-          $output = $field_value[0]['value'];
+          if (isset($field_value[0]['value'])) {
+            if (count($field_value) == 1) {
+              $output = $field_value[0]['value'];
+            }
+            elseif (count($field_value) > 1) {
+              for ($i = 0; $i < count($field_value); $i++) {
+                if (isset($field_value[$i]['value']) && !empty($field_value[$i]['value'])) {
+                  $output[] = $field_value[$i]['value'];
+                }
+              }
+            }
+          }
+          else {
+            $output = '';
+          }
           break;
 
         case 'boolean':
-          $output = $field_value['value'];
+          if (isset($field_value['value'])) {
+            $output = $field_value['value'];
+          }
+          else {
+            $output = "";
+          }
           break;
 
         case 'text':
         case 'text_long':
-          $output = new stdClass();
-          $output->value = $field_value[0]['value'];
-          $output->format = $field_value[0]['format'];
+          if (isset($field_value[0]['value'])) {
+            $output_value = new stdClass();
+            if (count($field_value) == 1) {
+              $output_value->value = $field_value[0]['value'];
+              $output_value->format = $field_value[0]['format'];
+              $output = $output_value;
+            }
+            elseif (count($field_value) > 1) {
+              for ($i = 0; $i < count($field_value); $i++) {
+                if (isset($field_value[$i]['value'])) {
+                  $output_value->value = $field_value[$i]['value'];
+                  $output_value->format = $field_value[$i]['format'];
+                  $output[] = $output_value;
+                }
+              }
+            }
+          }
+          else {
+            $output = '';
+          }
           break;
 
         case 'text_with_summary':
-          $output = new stdClass();
-          $output->summary = $field_value[0]['summary'];
-          $output->value = $field_value[0]['value'];
-          $output->format = $field_value[0]['format'];
+          if (isset($field_value[0]['value'])) {
+            $output_value = new stdClass();
+            if (count($field_value) == 1) {
+              $output_value->summary = $field_value[0]['summary'];
+              $output_value->value = $field_value[0]['value'];
+              $output_value->format = $field_value[0]['format'];
+              $output = $output_value;
+            }
+            elseif (count($field_value) > 1) {
+              for ($i = 0; $i < count($field_value); $i++) {
+                if (isset($field_value[$i]['value']) || isset($field_value[$i]['summary'])) {
+                  $output_value->summary = $field_value[$i]['summary'];
+                  $output_value->value = $field_value[$i]['value'];
+                  $output_value->format = $field_value[$i]['format'];
+                  $output[] = $output_value;
+                }
+              }
+            }
+          }
+          else {
+            $output = '';
+          }
           break;
 
         case 'entity_reference':
           if (isset($field_value['target_id'][0])) {
-            $output = $field_value['target_id'][0]['target_id'];
+            if (count($field_value['target_id']) == 1) {
+              $output = $field_value['target_id'][0]['target_id'];
+            }
+            elseif (count($field_value['target_id']) > 1) {
+              for ($i = 0; $i < count($field_value['target_id']); $i++) {
+                if (isset($field_value['target_id'][$i]['target_id'])) {
+                  $output[] = $field_value['target_id'][$i]['target_id'];
+                }
+              }
+            }
+          }
+          elseif (isset($field_value[0]['target_id'])) {
+            if (count($field_value) == 1) {
+              $output = $field_value[0]['target_id'];
+            }
+            elseif (count($field_value) > 1) {
+              for ($i = 0; $i < count($field_value); $i++) {
+                if (isset($field_value[$i]['target_id'])) {
+                  $output[] = $field_value[$i]['target_id'];
+                }
+              }
+            }
           }
           else {
-            $output = $field_value[0]['target_id'];
+            $output = "";
           }
           break;
 
         case 'image':
-          $output = new stdClass();
-          $output->alt = $field_value[0]['alt'];
-          $output->fids = $field_value[0]['fids'];
-          $output->width = $field_value[0]['width'];
-          $output->height = $field_value[0]['height'];
-          $output->description = $field_value[0]['description'];
-          $output->title = $field_value[0]['title'];
+          if (isset($field_value[0]['target_id'])) {
+            $output_value = new stdClass();
+            if (count($field_value) == 1) {
+              $output_value->alt = $field_value[0]['alt'];
+              $output_value->fids = $field_value[0]['target_id'];
+              $output_value->width = $field_value[0]['width'];
+              $output_value->height = $field_value[0]['height'];
+              $output_value->description = "";
+              $output_value->title = $field_value[0]['title'];
+              $output = $output_value;
+            }
+            elseif (count($field_value) > 1) {
+              for ($i = 0; $i < count($field_value); $i++) {
+                if (isset($field_value[$i]['target_id'])) {
+                  $output_value->alt = $field_value[$i]['alt'];
+                  $output_value->fids = $field_value[$i]['target_id'];
+                  $output_value->width = $field_value[$i]['width'];
+                  $output_value->height = $field_value[$i]['height'];
+                  $output_value->description = "";
+                  $output_value->title = $field_value[$i]['title'];
+                  $output[] = $output_value;
+                }
+              }
+            }
+          }
+          else {
+            $output = '';
+          }
           break;
 
         case 'link':
-          $output = new stdClass();
-          $output->uri = $field_value[0]['uri'];
-          $output->title = $field_value[0]['title'];
+          if (isset($field_value[0]['uri'])) {
+            $output_value = new stdClass();
+            if (count($field_value) == 1) {
+              $output_value->uri = $field_value[0]['uri'];
+              $output_value->title = $field_value[0]['title'];
+              $output = $output_value;
+            }
+            elseif (count($field_value) > 1) {
+              for ($i = 0; $i < count($field_value); $i++) {
+                if (isset($field_value[$i]['uri'])) {
+                  $output_value->uri = $field_value[$i]['uri'];
+                  $output_value->title = $field_value[$i]['title'];
+                  $output[] = $output_value;
+                }
+              }
+            }
+          }
+          else {
+            $output = '';
+          }
           break;
       }
     }

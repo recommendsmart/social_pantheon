@@ -15,6 +15,7 @@ var VueGetFieldValueControl = {
       type: drupalSettings.if_then_else.nodes.get_form_field_value_action.type,
       class: drupalSettings.if_then_else.nodes.get_form_field_value_action.class,
       name: drupalSettings.if_then_else.nodes.get_form_field_value_action.name,
+      classArg: drupalSettings.if_then_else.nodes.get_form_field_value_action.classArg,
       options: [],
       form_fields: [],
       field_entities: [],
@@ -22,7 +23,7 @@ var VueGetFieldValueControl = {
       field_bundles: [],
       selected_bundle: '',
       field_type : '',
-      value: [],      
+      value: [],
     }
   },
   template: `<div class="fields-container">
@@ -43,13 +44,13 @@ var VueGetFieldValueControl = {
   </div>`,
 
   methods: {
-    fieldValueChanged(value){     
+    fieldValueChanged(value){
       if(value !== undefined && value !== null && value !== ''){
         //Triggered when selecting an field.
         var selectedOptions = [];
-        
+
         selectedOptions = {name: value.name, code: value.code};
-        
+
         //check if selected field value is changed.
         var prevSelectedField = this.getData('form_fields');
         if(typeof prevSelectedField != 'undefined' && prevSelectedField.code != value.code){
@@ -68,12 +69,12 @@ var VueGetFieldValueControl = {
         this.putData('selected_entity','');
         this.putData('selected_bundle','');
         this.value = '';
-        this.field_bundles = [];        
-      }      
+        this.field_bundles = [];
+      }
     },
     entityFieldValueChanged(value){
       if(value !== undefined && value !== null && value !== ''){
-        var selectedentity = [];        
+        var selectedentity = [];
         selectedentity = {name: value.name, code: value.code};
 
         //check if selected entity value is changed.
@@ -101,7 +102,7 @@ var VueGetFieldValueControl = {
       var selectedbundle = [];
       selectedbundle = {name: value.name, code: value.code};
       this.putData('selected_bundle',selectedbundle);
-      editor.trigger('process');    
+      editor.trigger('process');
     }
   },
 
@@ -110,12 +111,13 @@ var VueGetFieldValueControl = {
     this.putData('type',drupalSettings.if_then_else.nodes.get_form_field_value_action.type);
     this.putData('class',drupalSettings.if_then_else.nodes.get_form_field_value_action.class);
     this.putData('name', drupalSettings.if_then_else.nodes.get_form_field_value_action.name);
-
+    this.putData('classArg', drupalSettings.if_then_else.nodes.get_form_field_value_action.classArg);
+ 
     //setting values of selected fields when rule edit page loads.
     var get_form_fields = this.getData('form_fields');
     if(typeof get_form_fields != 'undefined'){
       this.value = get_form_fields;
-      
+
       var field_entity = drupalSettings.if_then_else.nodes.get_form_field_value_action.field_entity_bundle;
 
       //setting value for selected entity
@@ -164,18 +166,23 @@ class GetFieldValueActionComponent extends Rete.Component {
     var node = drupalSettings.if_then_else.nodes[nodeName];
     super(jsUcfirst(node.type) + ": " + node.label);
   }
-  
+
   //Event node builder
   builder(eventNode) {
 
-    var node_outputs = [];    
-    node_outputs['success'] = new Rete.Output('success', 'Success', sockets['bool']);
-    node_outputs['field_value'] = new Rete.Output('field_value', 'Field Value', sockets['string']);
-    eventNode.addOutput(node_outputs['success']);
-    eventNode.addOutput(node_outputs['field_value']);
-    
+    var node_outputs = [];
     var nodeName = 'get_form_field_value_action';
     var node = drupalSettings.if_then_else.nodes[nodeName];
+
+    node_outputs['success'] = new Rete.Output('success', 'Success', sockets['bool']);
+    node_outputs['success']['description'] = node.outputs['success'].description;
+
+    node_outputs['field_value'] = new Rete.Output('field_value', 'Field Value', sockets['string']);
+    node_outputs['field_value']['description'] = node.outputs['field_value'].description;
+
+    eventNode.addOutput(node_outputs['success']);
+    eventNode.addOutput(node_outputs['field_value']);
+
 
     function handleInput(){
     	return function (value) {
@@ -188,12 +195,16 @@ class GetFieldValueActionComponent extends Rete.Component {
           socket_out.socket = sockets['bool'];
         }else if(value == 'text_with_summary'){
           socket_out.socket = sockets['object.field.text_with_summary'];
+          makeCompatibleSocketsByName('object.field.text_with_summary');
         }else if(value == 'image'){
           socket_out.socket = sockets['object.field.image'];
+          makeCompatibleSocketsByName('object.field.image');
         }else if(value == 'link'){
           socket_out.socket = sockets['object.field.link'];
+          makeCompatibleSocketsByName('object.field.link');
         }else if(value == 'text' || value == 'text_long'){
           socket_out.socket = sockets['object.field.text_long'];
+          makeCompatibleSocketsByName('object.field.text_long');
         }
         eventNode.outputs.set('field_value',socket_out);
         eventNode.update();
@@ -206,37 +217,12 @@ class GetFieldValueActionComponent extends Rete.Component {
     for (let name in node.inputs) {
       let inputLabel = node.inputs[name].label + (node.inputs[name].required ? ' *' : '');
       if (node.inputs[name].sockets.length === 1) {
-        eventNode.addInput(new Rete.Input(name, inputLabel, sockets[node.inputs[name].sockets[0]]));
+        let  inputObject = new Rete.Input(name, inputLabel, sockets[node.inputs[name].sockets[0]]);
+        inputObject['description'] = node.inputs[name].description;
+        eventNode.addInput(inputObject);
       }
-      else if (node.inputs[name].sockets.length > 1) {
-        let socketNames = [];
-        let socketLabels = [];
-        for (let idx in node.inputs[name].sockets) {
-          socketNames.push(node.inputs[name].sockets[idx]);
-          socketLabels.push(sockets[node.inputs[name].sockets[idx]].name);
-        }
-        socketNames.sort();
-        socketLabels.sort();
-        let socketLabel = socketLabels.join(', ');
-        let socketName = socketNames.join(', ');
-
-        if (!(socketName in sockets)) {
-          sockets[socketName] = new Rete.Socket(socketLabel);
-        }
-
-        for (let idx in node.inputs[name].sockets) {
-          if (!sockets[node.inputs[name].sockets[idx]].compatibleWith(sockets[socketName])) {
-            sockets[node.inputs[name].sockets[idx]].combineWith(sockets[socketName]);
-            if (typeof compatibleSockets[node.inputs[name].sockets[idx]] === "undefined") {
-              compatibleSockets[node.inputs[name].sockets[idx]] = [];
-            }
-            compatibleSockets[node.inputs[name].sockets[idx]].push(socketName);
-          }
-        }
-
-        eventNode.addInput(new Rete.Input(name, inputLabel, sockets[socketName]));
-      }
-    }    
+    }
+    eventNode['description'] = node.description;
   }
   worker(eventNode, inputs, outputs) {
     //outputs['form'] = eventNode.data.event;

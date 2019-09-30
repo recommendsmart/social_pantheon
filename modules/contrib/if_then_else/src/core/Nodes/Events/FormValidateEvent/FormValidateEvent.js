@@ -52,6 +52,7 @@ class FormValidateEventControl extends Rete.Control {
           type: drupalSettings.if_then_else.nodes.form_validate_event.type,
           class: drupalSettings.if_then_else.nodes.form_validate_event.class,
           name: drupalSettings.if_then_else.nodes.form_validate_event.name,
+          classArg: drupalSettings.if_then_else.nodes.form_validate_event.classArg,
           value: 0,
           otherFormClass: '',
           showOtherFormField: false,
@@ -125,7 +126,8 @@ class FormValidateEventControl extends Rete.Control {
         this.putData('type', drupalSettings.if_then_else.nodes.form_validate_event.type);
         this.putData('class', drupalSettings.if_then_else.nodes.form_validate_event.class);
         this.putData('name', drupalSettings.if_then_else.nodes.form_validate_event.name);
-
+        this.putData('classArg', drupalSettings.if_then_else.nodes.form_validate_event.classArg);
+        
         //Setting values of retejs condition nodes when editing rule page loads
         this.selected_entity = this.getData('selected_entity');
         this.selected_bundle = this.getData('selected_bundle');

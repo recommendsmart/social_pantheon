@@ -31,4 +31,5 @@ class EventFilterEvent extends Event {
     $this->query = $query;
     $this->args = $args;
   }
+
 }

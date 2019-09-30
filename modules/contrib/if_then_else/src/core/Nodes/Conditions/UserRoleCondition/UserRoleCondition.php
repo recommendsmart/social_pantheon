@@ -5,50 +5,75 @@ namespace Drupal\if_then_else\core\Nodes\Conditions\UserRoleCondition;
 use Drupal\if_then_else\core\Nodes\Conditions\Condition;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
 use Drupal\if_then_else\Event\NodeValidationEvent;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 
+/**
+ *
+ */
 class UserRoleCondition extends Condition {
+  use StringTranslationTrait;
 
   /**
-   * {@inheritDoc}
+   * The entity manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
+   * Constructs a new RouteSubscriber object.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
+   *   The entity type manager.
+   */
+  public function __construct(EntityTypeManagerInterface $entity_manager) {
+    $this->entityTypeManager = $entity_manager;
+  }
+
+  /**
+   * {@inheritDoc}.
    */
   public static function getName() {
     return 'user_role_condition';
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritDoc}.
    */
   public function registerNode(NodeSubscriptionEvent $event) {
-    $roles = \Drupal::entityTypeManager()->getStorage('user_role')->loadMultiple();
+    $roles = $this->entityTypeManager->getStorage('user_role')->loadMultiple();
     $role_array = [];
     foreach ($roles as $rid => $role) {
       $role_array[$rid] = $role->label();
     }
 
     $event->nodes[static::getName()] = [
-      'label' => t('User Role'),
+      'label' => $this->t('User Role'),
+      'description' => $this->t('User Role'),
       'type' => 'condition',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Conditions\\UserRoleCondition\\UserRoleCondition',
       'library' => 'if_then_else/UserRoleCondition',
       'control_class_name' => 'UserRoleConditionControl',
       'roles' => $role_array,
+      'classArg' => ['entity_type.manager'],
       'inputs' => [
         'user' => [
-          'label' => t('User'),
-          'description' => t('User object.'),
+          'label' => $this->t('User'),
+          'description' => $this->t('User object.'),
           'sockets' => ['object.entity.user'],
           'required' => TRUE,
         ],
         'roles' => [
-          'label' => t('Roles'),
-          'description' => t('Roles to check for. Can be a comma-separated string of role ids or an array of role ids.'),
+          'label' => $this->t('Roles'),
+          'description' => $this->t('Roles to check for. Can be a comma-separated string of role ids or an array of role ids.'),
           'sockets' => ['string', 'array'],
-        ]
+        ],
       ],
       'outputs' => [
         'success' => [
-          'label' => t('Success'),
-          'description' => t('Does the user have role(s)?'),
+          'label' => $this->t('Success'),
+          'description' => $this->t('Does the user have role(s)?'),
           'socket' => 'bool',
         ],
       ],
@@ -56,19 +81,22 @@ class UserRoleCondition extends Condition {
   }
 
   /**
-   * {@inheritDoc}
+   * {@inheritDoc}.
    */
   public function validateNode(NodeValidationEvent $event) {
     $data = $event->node->data;
     $inputs = $event->node->inputs;
-    if ($data->input_selection != 'list' && !sizeof($inputs->roles->connections)) {
-      $event->errors[] = t('Provide roles that you want to check for in "@node_name".', ['@node_name' => $event->node->name]);
+    if ($data->input_selection != 'list' && !count($inputs->roles->connections)) {
+      $event->errors[] = $this->t('Provide roles that you want to check for in "@node_name".', ['@node_name' => $event->node->name]);
     }
-    elseif ($data->input_selection == 'list' && !sizeof($data->selected_roles)) {
-      $event->errors[] = t('Select roles that you want to check for in "@node_name".', ['@node_name' => $event->node->name]);
+    elseif ($data->input_selection == 'list' && !count($data->selected_roles)) {
+      $event->errors[] = $this->t('Select roles that you want to check for in "@node_name".', ['@node_name' => $event->node->name]);
     }
   }
 
+  /**
+   *
+   */
   public function process() {
     $match = $this->data->match->type;
 
@@ -111,4 +139,5 @@ class UserRoleCondition extends Condition {
       return;
     }
   }
+
 }

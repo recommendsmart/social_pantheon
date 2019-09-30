@@ -8,7 +8,7 @@ configure: webform_content_creator.collection
 dependencies:
   - webform:webform
   - webform_encrypt:webform_encrypt
-# Information added by Drupal.org packaging script on 2019-09-16
-version: '8.x-1.0'
+# Information added by Drupal.org packaging script on 2019-09-25
+version: '8.x-1.1'
 project: 'webform_content_creator'
-datestamp: 1568626993
+datestamp: 1569421989

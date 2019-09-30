@@ -29,6 +29,7 @@ class ViewIsLoadedEventControl extends Rete.Control {
           type: drupalSettings.if_then_else.nodes.view_is_loaded_event.type,
           class: drupalSettings.if_then_else.nodes.view_is_loaded_event.class,
           name: drupalSettings.if_then_else.nodes.view_is_loaded_event.name,
+          classArg: drupalSettings.if_then_else.nodes.view_is_loaded_event.classArg,
           value: 0,
           showDisplayList: true,
           views: [],
@@ -91,7 +92,8 @@ class ViewIsLoadedEventControl extends Rete.Control {
         this.putData('type', drupalSettings.if_then_else.nodes.view_is_loaded_event.type);
         this.putData('class', drupalSettings.if_then_else.nodes.view_is_loaded_event.class);
         this.putData('name', drupalSettings.if_then_else.nodes.view_is_loaded_event.name);
-
+        this.putData('classArg', drupalSettings.if_then_else.nodes.view_is_loaded_event.classArg);
+        
         //Setting values of retejs condition nodes when editing rule page loads
         this.selected_view_name = this.getData('selected_view_name');
         this.selected_display_id = this.getData('selected_display_id');

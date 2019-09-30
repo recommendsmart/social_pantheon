@@ -7,11 +7,31 @@ use Drupal\if_then_else\Event\EventConditionEvent;
 use Drupal\if_then_else\Event\EventFilterEvent;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
 use Drupal\if_then_else\Event\NodeValidationEvent;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\if_then_else\core\IfthenelseUtilitiesInterface;
 
 /**
  * After deleting entity event class.
  */
 class AfterDeletingEntityEvent extends Event {
+  use StringTranslationTrait;
+
+  /**
+   * The ifthenelse utilities.
+   *
+   * @var \Drupal\if_then_else\core\IfthenelseUtilitiesInterface
+   */
+  protected $ifthenelseUtilities;
+
+  /**
+   * Constructs a new RouteSubscriber object.
+   *
+   * @param \Drupal\if_then_else\core\IfthenelseUtilitiesInterface $ifthenelse_utilities
+   *   The ifthenelse utilities.
+   */
+  public function __construct(IfthenelseUtilitiesInterface $ifthenelse_utilities) {
+    $this->ifthenelseUtilities = $ifthenelse_utilities;
+  }
 
   /**
    * Return name of node.
@@ -26,20 +46,22 @@ class AfterDeletingEntityEvent extends Event {
   public function registerNode(NodeSubscriptionEvent $event) {
     // Calling custom service for if then else utilities. To
     // fetch values of entities and bundles.
-    $if_then_else_utilities = \Drupal::service('ifthenelse.utilities');
-    $form_entity_info = $if_then_else_utilities->getContentEntitiesAndBundles();
+    $form_entity_info = $this->ifthenelseUtilities->getContentEntitiesAndBundles();
 
     $event->nodes[static::getName()] = [
-      'label' => t('After Deleting Entity'),
+      'label' => $this->t('After Deleting Entity'),
+      'description' => $this->t('After Deleting Entity'),
       'type' => 'event',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Events\\AfterDeletingEntityEvent\\AfterDeletingEntityEvent',
       'library' => 'if_then_else/AfterDeletingEntityEvent',
       'control_class_name' => 'AfterDeletingEntityEventControl',
+      'component_class_name' => 'AfterDeletingEntityEventComponent',
       'entity_info' => $form_entity_info,
+      'classArg' => ['ifthenelse.utilities'],
       'outputs' => [
         'entity' => [
-          'label' => t('Entity'),
-          'description' => t('Entity object.'),
+          'label' => $this->t('Entity'),
+          'description' => $this->t('Entity object.'),
           'socket' => 'object.entity',
         ],
       ],
@@ -53,13 +75,13 @@ class AfterDeletingEntityEvent extends Event {
     $data = $event->node->data;
 
     if (!property_exists($data, 'selection')) {
-      $event->errors[] = t('Select the Match Condition in "@node_name".', ['@node_name' => $event->node->name]);
+      $event->errors[] = $this->t('Select the Match Condition in "@node_name".', ['@node_name' => $event->node->name]);
       return;
     }
 
     if ($data->selection == 'list' && (!property_exists($data, 'selected_entity') || !property_exists($data, 'selected_bundle'))) {
       // Make sure that both selected_entity and selected_bundle are set.
-      $event->errors[] = t('Select both entity and bundle in "@node_name".', ['@node_name' => $event->node->name]);
+      $event->errors[] = $this->t('Select both entity and bundle in "@node_name".', ['@node_name' => $event->node->name]);
     }
   }
 

@@ -7,11 +7,31 @@ use Drupal\if_then_else\Event\NodeSubscriptionEvent;
 use Drupal\if_then_else\Event\NodeValidationEvent;
 use Drupal\if_then_else\Event\EventConditionEvent;
 use Drupal\if_then_else\Event\EventFilterEvent;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\if_then_else\core\IfthenelseUtilitiesInterface;
 
 /**
  * A view is loaded event class.
  */
 class ViewIsLoadedEvent extends Event {
+  use StringTranslationTrait;
+
+  /**
+   * The ifthenelse Utilities.
+   *
+   * @var \Drupal\if_then_else\core\IfthenelseUtilitiesInterface
+   */
+  protected $ifthenelseUtilities;
+
+  /**
+   * Constructs a new RouteSubscriber object.
+   *
+   * @param \Drupal\if_then_else\core\IfthenelseUtilitiesInterface $ifthenelse_utilities
+   *   The ifthenelse Utilities.
+   */
+  public function __construct(IfthenelseUtilitiesInterface $ifthenelse_utilities) {
+    $this->ifthenelseUtilities = $ifthenelse_utilities;
+  }
 
   /**
    * Return name of node.
@@ -25,20 +45,21 @@ class ViewIsLoadedEvent extends Event {
    */
   public function registerNode(NodeSubscriptionEvent $event) {
     // Fetch values of views name and display ID.
-    $if_then_else_utilities = \Drupal::service('ifthenelse.utilities');
-    $views_lists = $if_then_else_utilities->getViewsNameAndDisplay();
+    $views_lists = $this->ifthenelseUtilities->getViewsNameAndDisplay();
 
     $event->nodes[static::getName()] = [
-      'label' => t('View Load'),
+      'label' => $this->t('View Load'),
+      'description' => $this->t('View Load'),
       'type' => 'event',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Events\\ViewIsLoadedEvent\\ViewIsLoadedEvent',
       'library' => 'if_then_else/ViewIsLoadedEvent',
       'control_class_name' => 'ViewIsLoadedEventControl',
       'entity_info' => $views_lists,
+      'classArg' => ['ifthenelse.utilities'],
       'outputs' => [
         'view' => [
-          'label' => t('View'),
-          'description' => t('View executable object.'),
+          'label' => $this->t('View'),
+          'description' => $this->t('View executable object.'),
           'socket' => 'object.view',
         ],
       ],
@@ -53,7 +74,7 @@ class ViewIsLoadedEvent extends Event {
 
     if (empty($data->selected_display_id) || empty($data->selected_view_name)) {
       // Make sure that both selected_entity and selected_bundle are set.
-      $event->errors[] = t('Select both view name and display ID in "@node_name".', ['@node_name' => $event->node->name]);
+      $event->errors[] = $this->t('Select both view name and display ID in "@node_name".', ['@node_name' => $event->node->name]);
     }
   }
 

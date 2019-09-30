@@ -5,11 +5,31 @@ namespace Drupal\if_then_else\core\Nodes\Actions\DeleteEntityAction;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\if_then_else\core\Nodes\Actions\Action;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 
 /**
  * Delete entity action node class.
  */
 class DeleteEntityAction extends Action {
+  use StringTranslationTrait;
+
+  /**
+   * The logger factory.
+   *
+   * @var \Drupal\Core\Logger\LoggerChannelFactoryInterface
+   */
+  protected $loggerFactory;
+
+  /**
+   * Constructs a new RouteSubscriber object.
+   *
+   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $loggerFactory
+   *   The logger factory.
+   */
+  public function __construct(LoggerChannelFactoryInterface $loggerFactory) {
+    $this->loggerFactory = $loggerFactory->get('if_then_else');
+  }
 
   /**
    * {@inheritdoc}
@@ -23,13 +43,15 @@ class DeleteEntityAction extends Action {
    */
   public function registerNode(NodeSubscriptionEvent $event) {
     $event->nodes[static::getName()] = [
-      'label' => t('Delete Entity'),
+      'label' => $this->t('Delete Entity'),
+      'description' => $this->t('Delete Entity'),
       'type' => 'action',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Actions\\DeleteEntityAction\\DeleteEntityAction',
+      'classArg' => ['logger.factory'],
       'inputs' => [
         'entity' => [
-          'label' => t('Entity'),
-          'description' => t('Entity object.'),
+          'label' => $this->t('Entity'),
+          'description' => $this->t('Entity object.'),
           'sockets' => ['object.entity'],
           'required' => TRUE,
         ],
@@ -45,7 +67,7 @@ class DeleteEntityAction extends Action {
     $entity = $this->inputs['entity'];
 
     if (!$entity instanceof EntityInterface) {
-      \Drupal::logger('if_then_else')->notice(t("Rule @node_name did not run as the instance of the entity could not be found", ['@node_name' => $this->data->name]));
+      $this->loggerFactory->notice($this->t("Rule @node_name did not run as the instance of the entity could not be found", ['@node_name' => $this->data->name]));
       $this->setSuccess(FALSE);
       return;
     }

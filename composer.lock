@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5489dc8ed738d736f2fa8633ebacdba3",
+    "content-hash": "c4174f32c75e7da0cf792bf915342810",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -1699,6 +1699,53 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/auto_entitylabel",
                 "issues": "https://www.drupal.org/project/issues/auto_entitylabel"
+            }
+        },
+        {
+            "name": "drupal/autosave_form",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/autosave_form.git",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/autosave_form-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "c94d99f05ae11c1018f540e4a6bb8e54fe0c76b6"
+            },
+            "require": {
+                "drupal/core": "^8.3"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1554999781",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "hchonov",
+                    "homepage": "https://www.drupal.org/user/2901211"
+                }
+            ],
+            "description": "Adds autosave feature on forms.",
+            "homepage": "https://www.drupal.org/project/autosave_form",
+            "support": {
+                "source": "https://git.drupalcode.org/project/autosave_form"
             }
         },
         {
@@ -7036,17 +7083,17 @@
         },
         {
             "name": "drupal/gutenberg",
-            "version": "1.6.0",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/gutenberg.git",
-                "reference": "8.x-1.6"
+                "reference": "8.x-1.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/gutenberg-8.x-1.6.zip",
-                "reference": "8.x-1.6",
-                "shasum": "dc83a971b61c19859098097301e49f2755751012"
+                "url": "https://ftp.drupal.org/files/projects/gutenberg-8.x-1.8.zip",
+                "reference": "8.x-1.8",
+                "shasum": "7ed0b5ffda48d983d61d3afbccce595238258d35"
             },
             "require": {
                 "drupal/core": "*"
@@ -7057,8 +7104,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.6",
-                    "datestamp": "1565348588",
+                    "version": "8.x-1.8",
+                    "datestamp": "1569430069",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -7146,20 +7193,23 @@
         },
         {
             "name": "drupal/if_then_else",
-            "version": "1.0.0-alpha3",
+            "version": "1.0.0-beta1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/if_then_else.git",
-                "reference": "8.x-1.0-alpha3"
+                "reference": "8.x-1.0-beta1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/if_then_else-8.x-1.0-alpha3.zip",
-                "reference": "8.x-1.0-alpha3",
-                "shasum": "5f312256730ed127482d6bc0999a1cb2689dd3c3"
+                "url": "https://ftp.drupal.org/files/projects/if_then_else-8.x-1.0-beta1.zip",
+                "reference": "8.x-1.0-beta1",
+                "shasum": "852fcbbca1496d2c434333840ea180fc91d02a6d"
             },
             "require": {
                 "drupal/core": "~8.0"
+            },
+            "require-dev": {
+                "drupal/commerce": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -7167,8 +7217,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha3",
-                    "datestamp": "1564651089",
+                    "version": "8.x-1.0-beta1",
+                    "datestamp": "1569485584",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -10791,17 +10841,17 @@
         },
         {
             "name": "drupal/views_any_route",
-            "version": "1.0.0-beta3",
+            "version": "1.0.0-beta5",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/views_any_route.git",
-                "reference": "8.x-1.0-beta3"
+                "reference": "8.x-1.0-beta5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/views_any_route-8.x-1.0-beta3.zip",
-                "reference": "8.x-1.0-beta3",
-                "shasum": "958771fb879a68aea455414180e4fe283f5177d3"
+                "url": "https://ftp.drupal.org/files/projects/views_any_route-8.x-1.0-beta5.zip",
+                "reference": "8.x-1.0-beta5",
+                "shasum": "64fe14d9f433aa44d7735051bbbb7d54e776a914"
             },
             "require": {
                 "drupal/core": "*",
@@ -10813,8 +10863,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta3",
-                    "datestamp": "1568011084",
+                    "version": "8.x-1.0-beta5",
+                    "datestamp": "1569443885",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -11218,17 +11268,17 @@
         },
         {
             "name": "drupal/webform_content_creator",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/webform_content_creator.git",
-                "reference": "8.x-1.0"
+                "reference": "8.x-1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/webform_content_creator-8.x-1.0.zip",
-                "reference": "8.x-1.0",
-                "shasum": "ac3af6bc0a9688b85457a0c5c425161b30232b15"
+                "url": "https://ftp.drupal.org/files/projects/webform_content_creator-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "a1bb8bac57997bdb0bd802ea01409fcb0a3a4a99"
             },
             "require": {
                 "drupal/core": "~8.0",
@@ -11241,8 +11291,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0",
-                    "datestamp": "1568626986",
+                    "version": "8.x-1.1",
+                    "datestamp": "1569421987",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -12087,16 +12137,16 @@
         },
         {
             "name": "goalgorilla/open_social",
-            "version": "6.2.0",
+            "version": "6.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/goalgorilla/open_social.git",
-                "reference": "0eacce28ee0bbea3cd917c1f1cf16b2c8d2154fb"
+                "reference": "1573eb4a125da36021b269a1c0b13d681a884a50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/goalgorilla/open_social/zipball/0eacce28ee0bbea3cd917c1f1cf16b2c8d2154fb",
-                "reference": "0eacce28ee0bbea3cd917c1f1cf16b2c8d2154fb",
+                "url": "https://api.github.com/repos/goalgorilla/open_social/zipball/1573eb4a125da36021b269a1c0b13d681a884a50",
+                "reference": "1573eb4a125da36021b269a1c0b13d681a884a50",
                 "shasum": ""
             },
             "require": {
@@ -12251,7 +12301,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "Open Social is a distribution for building social communities and intranets.",
-            "time": "2019-08-20T10:09:24+00:00"
+            "time": "2019-09-27T14:56:22+00:00"
         },
         {
             "name": "google/apiclient",
@@ -12316,16 +12366,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.115",
+            "version": "v0.116",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "b907bd827f3bfc4a80eebabdf61bee12baaac971"
+                "reference": "91c932fa2bdb37f9fc73a5eee3e7b4734a25f51e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/b907bd827f3bfc4a80eebabdf61bee12baaac971",
-                "reference": "b907bd827f3bfc4a80eebabdf61bee12baaac971",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/91c932fa2bdb37f9fc73a5eee3e7b4734a25f51e",
+                "reference": "91c932fa2bdb37f9fc73a5eee3e7b4734a25f51e",
                 "shasum": ""
             },
             "require": {
@@ -12349,7 +12399,7 @@
             "keywords": [
                 "google"
             ],
-            "time": "2019-09-21T00:23:39+00:00"
+            "time": "2019-09-29T00:23:21+00:00"
         },
         {
             "name": "google/auth",
@@ -13163,16 +13213,16 @@
         },
         {
             "name": "mustangostang/spyc",
-            "version": "0.6.2",
+            "version": "0.6.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/mustangostang/spyc.git",
-                "reference": "23c35ae854d835f2d7bcc3e3ad743d7e57a8c14d"
+                "url": "git@github.com:mustangostang/spyc.git",
+                "reference": "4627c838b16550b666d15aeae1e5289dd5b77da0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mustangostang/spyc/zipball/23c35ae854d835f2d7bcc3e3ad743d7e57a8c14d",
-                "reference": "23c35ae854d835f2d7bcc3e3ad743d7e57a8c14d",
+                "url": "https://api.github.com/repos/mustangostang/spyc/zipball/4627c838b16550b666d15aeae1e5289dd5b77da0",
+                "reference": "4627c838b16550b666d15aeae1e5289dd5b77da0",
                 "shasum": ""
             },
             "require": {
@@ -13209,7 +13259,7 @@
                 "yaml",
                 "yml"
             ],
-            "time": "2017-02-24T16:06:33+00:00"
+            "time": "2019-09-10T13:16:29+00:00"
         },
         {
             "name": "npm-asset/diff",

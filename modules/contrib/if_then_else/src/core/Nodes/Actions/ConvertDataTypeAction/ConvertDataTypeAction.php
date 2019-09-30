@@ -5,11 +5,13 @@ namespace Drupal\if_then_else\core\Nodes\Actions\ConvertDataTypeAction;
 use Drupal\if_then_else\core\Nodes\Actions\Action;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
 use Drupal\if_then_else\Event\NodeValidationEvent;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Convert data type action class.
  */
 class ConvertDataTypeAction extends Action {
+  use StringTranslationTrait;
 
   /**
    * {@inheritdoc}
@@ -23,7 +25,8 @@ class ConvertDataTypeAction extends Action {
    */
   public function registerNode(NodeSubscriptionEvent $event) {
     $event->nodes[static::getName()] = [
-      'label' => t('Convert Data Type'),
+      'label' => $this->t('Convert Data Type'),
+      'description' => $this->t('Convert Data Type'),
       'type' => 'action',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Actions\\ConvertDataTypeAction\\ConvertDataTypeAction',
       'library' => 'if_then_else/ConvertDataTypeAction',
@@ -35,16 +38,16 @@ class ConvertDataTypeAction extends Action {
       ],
       'inputs' => [
         'input' => [
-          'label' => t('Input'),
-          'description' => t('Input'),
+          'label' => $this->t('Input'),
+          'description' => $this->t('Input'),
           'sockets' => ['string', 'number'],
           'required' => TRUE,
         ],
       ],
       'outputs' => [
         'output' => [
-          'label' => t('Output'),
-          'description' => t('Output'),
+          'label' => $this->t('Output'),
+          'description' => $this->t('Output'),
           'socket' => 'string',
         ],
       ],
@@ -57,7 +60,7 @@ class ConvertDataTypeAction extends Action {
   public function validateNode(NodeValidationEvent $event) {
     // Make sure that data type option is not empty.
     if (empty($event->node->data->data_type)) {
-      $event->errors[] = t('Select at least one data type in "@node_name".', ['@node_name' => $event->node->name]);
+      $event->errors[] = $this->t('Select at least one data type in "@node_name".', ['@node_name' => $event->node->name]);
     }
   }
 

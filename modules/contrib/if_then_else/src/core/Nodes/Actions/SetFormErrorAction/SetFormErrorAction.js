@@ -15,6 +15,7 @@ var VueSetFormErrorActionControl = {
       type: drupalSettings.if_then_else.nodes.set_form_error_action.type,
       class: drupalSettings.if_then_else.nodes.set_form_error_action.class,
       name: drupalSettings.if_then_else.nodes.set_form_error_action.name,
+      classArg: drupalSettings.if_then_else.nodes.set_form_error_action.classArg,
       options: [],
       form_fields: [],
       value: [],      
@@ -45,7 +46,8 @@ var VueSetFormErrorActionControl = {
     this.putData('type',drupalSettings.if_then_else.nodes.set_form_error_action.type);
     this.putData('class',drupalSettings.if_then_else.nodes.set_form_error_action.class);
     this.putData('name', drupalSettings.if_then_else.nodes.set_form_error_action.name);
-
+    this.putData('classArg', drupalSettings.if_then_else.nodes.set_form_error_action.classArg);
+    
     //setting values of selected fields when rule edit page loads.
     var get_form_fields = this.getData('form_fields');
     if(typeof get_form_fields != 'undefined'){

@@ -15,6 +15,7 @@ var VueUserHasEntityFieldAccessConditionControl = {
       type: drupalSettings.if_then_else.nodes.user_has_entity_field_access_condition.type,
       class: drupalSettings.if_then_else.nodes.user_has_entity_field_access_condition.class,
       name: drupalSettings.if_then_else.nodes.user_has_entity_field_access_condition.name,
+      classArg: drupalSettings.if_then_else.nodes.user_has_entity_field_access_condition.classArg,
       options: [],
       opt_options: [],
       form_fields: [],
@@ -62,7 +63,8 @@ var VueUserHasEntityFieldAccessConditionControl = {
     this.putData('type',drupalSettings.if_then_else.nodes.user_has_entity_field_access_condition.type);
     this.putData('class',drupalSettings.if_then_else.nodes.user_has_entity_field_access_condition.class);
     this.putData('name', drupalSettings.if_then_else.nodes.user_has_entity_field_access_condition.name);
-
+    this.putData('classArg', drupalSettings.if_then_else.nodes.user_has_entity_field_access_condition.classArg);
+    
     //setting values of selected fields when rule edit page loads.
     var get_form_fields = this.getData('form_fields');
     if(typeof get_form_fields != 'undefined'){

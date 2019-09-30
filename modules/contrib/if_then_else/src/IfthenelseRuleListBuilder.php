@@ -112,8 +112,7 @@ class IfthenelseRuleListBuilder extends DraggableListBuilder {
    */
   public function buildHeader() {
     // Create header of list.
-    $header['label'] = t('Label');
-    // $header['id'] = t('Rule Id');.
+    $header['label'] = $this->t('Label');
     return $header + parent::buildHeader();
   }
 
@@ -123,7 +122,6 @@ class IfthenelseRuleListBuilder extends DraggableListBuilder {
   public function buildRow(EntityInterface $entity) {
     // Create body of list.
     $row['label'] = $entity->label();
-    // $row['id'] = $entity->id();
     return $row + parent::buildRow($entity);
   }
 
@@ -136,7 +134,7 @@ class IfthenelseRuleListBuilder extends DraggableListBuilder {
     $form['enabled'][$this->entitiesKey] = [
       '#type' => 'table',
       '#header' => $this->buildHeader(),
-      '#empty' => t('There are no @label enabled yet.', ['@label' => $this->entityType->getPluralLabel()]),
+      '#empty' => $this->t('There are no @label enabled yet.', ['@label' => $this->entityType->getPluralLabel()]),
       '#tabledrag' => [
         [
           'action' => 'order',
@@ -153,7 +151,7 @@ class IfthenelseRuleListBuilder extends DraggableListBuilder {
     $form['disabled'][$this->entitiesKey] = [
       '#type' => 'table',
       '#header' => $disabled_header,
-      '#empty' => t('There are no @label disabled.', ['@label' => $this->entityType->getPluralLabel()]),
+      '#empty' => $this->t('There are no @label disabled.', ['@label' => $this->entityType->getPluralLabel()]),
       '#weight' => 3,
     ];
 
@@ -189,13 +187,13 @@ class IfthenelseRuleListBuilder extends DraggableListBuilder {
       $form['actions']['#weight'] = -2;
       $form['actions']['submit'] = [
         '#type' => 'submit',
-        '#value' => t('Save'),
+        '#value' => $this->t('Save'),
         '#button_type' => 'primary',
       ];
 
       $form['actions']['disable_rule'] = [
         '#title' => $this
-          ->t('Disable all rules'),
+          ->t('Disable All If Then Else'),
         '#type' => 'link',
         '#url' => Url::fromRoute('entity.ifthenelse.disable_all'),
         '#attributes' => ['class' => 'button js-form-submit form-submit'],

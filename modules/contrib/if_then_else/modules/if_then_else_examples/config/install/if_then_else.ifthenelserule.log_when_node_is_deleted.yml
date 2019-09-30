@@ -1,0 +1,13 @@
+uuid: 4e50f956-5124-4839-a096-7b361aba0523
+langcode: en
+status: true
+dependencies: {  }
+id: log_when_node_is_deleted
+label: 'Log When Node Is Deleted'
+active: 0
+module: ifthenelse
+event: ''
+condition: null
+data: '{"id":"demo@0.1.0","nodes":{"1":{"id":1,"data":{"type":"event","class":"Drupal\\if_then_else\\core\\Nodes\\Events\\AfterDeletingEntityEvent\\AfterDeletingEntityEvent","name":"after_deleting_entity_event","selection":"list","selected_bundle":{"label":"Basic page","value":"page"},"selected_entity":{"label":"Content","value":"node"}},"inputs":{},"outputs":{"success":{"connections":[{"node":2,"input":"execute","data":{}}]},"entity":{"connections":[]}},"position":[-338.515625,-225.75],"name":"Event: After Deleting Entity"},"2":{"id":2,"data":{"type":"action","class":"Drupal\\if_then_else\\core\\Nodes\\Actions\\AddToLogAction\\AddToLogAction","name":"add_to_log_action","selected_severity":{"name":"Info","code":"info"}},"inputs":{"execute":{"connections":[{"node":1,"output":"success","data":{}}]},"message":{"connections":[{"node":3,"output":"text","data":{}}]}},"outputs":{"success":{"connections":[]}},"position":[163.30131505377182,-226.7947006845441],"name":"Action: Log"},"3":{"id":3,"data":{"type":"value","class":"Drupal\\if_then_else\\core\\Nodes\\Values\\TextValue\\TextValue","name":"text_value","value":"Node has been deleted."},"inputs":{"execute":{"connections":[]},"input1":{"connections":[]},"input2":{"connections":[]},"input3":{"connections":[]},"input4":{"connections":[]},"input5":{"connections":[]}},"outputs":{"text":{"connections":[{"node":2,"input":"message","data":{}}]}},"position":[-119.515625,-51.75],"name":"Value: Text"}},"comments":[]}'
+processed_data: ''
+weight: null

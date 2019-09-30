@@ -1,13 +1,13 @@
 class AfterSavingNewEntityEventControl extends Rete.Control {
 
-  constructor(emitter, key, readonly) {
+  constructor(emitter, key, onChange) {
     super(key);
     this.component = {
       components: {
         // Component included for Multiselect.
         Multiselect: window.VueMultiselect.default
       },
-      props: ['readonly', 'emitter', 'ikey', 'getData', 'putData'],
+      props: ['emitter', 'ikey', 'getData', 'putData', 'onChange'],
       template: `
     <div class="fields-container">
       <div class="label">Match Condition</div>
@@ -42,6 +42,7 @@ class AfterSavingNewEntityEventControl extends Rete.Control {
           type: drupalSettings.if_then_else.nodes.after_saving_new_entity_event.type,
           class: drupalSettings.if_then_else.nodes.after_saving_new_entity_event.class,
           name: drupalSettings.if_then_else.nodes.after_saving_new_entity_event.name,
+          classArg: drupalSettings.if_then_else.nodes.after_saving_new_entity_event.classArg,
           value: 0,
           showBundleList: true,
           entities: [],
@@ -69,28 +70,38 @@ class AfterSavingNewEntityEventControl extends Rete.Control {
           this.selected_bundle = [];
           this.bundleSelected();
           this.selected_entity = [];
-          if (value !== null){ //check if an entity is selected
+          if (value !== undefined && value !== null && value !== '') { //check if an entity is selected
             let entity_id = value.value;
-            this.selected_entity = {label: value.label, value: value.value};
+            this.selected_entity = {
+              label: value.label,
+              value: value.value
+            };
             //This value is passed from module.
             let bundle_list = drupalSettings.if_then_else.nodes.after_saving_new_entity_event.entity_info[entity_id]['bundles'];
             this.showBundleList = true;
 
             Object.keys(bundle_list).forEach(itemKey => {
-              this.bundles.push({label: bundle_list[itemKey].label, value: bundle_list[itemKey].bundle_id});
+              this.bundles.push({
+                label: bundle_list[itemKey].label,
+                value: bundle_list[itemKey].bundle_id
+              });
             });
+          } else {
+            this.putData('selected_bundle', []);
           }
 
           //Updating reactive variable of Vue to reflect changes on frontend
-          this.putData('selected_bundle',[]);
-          this.putData('selected_entity',this.selected_entity);
+          this.putData('selected_entity', this.selected_entity);
           editor.trigger('process');
         },
-        bundleSelected(){
+        bundleSelected() {
           //Triggered when a bundle is selected. We are fetching fields using ajax in this function
           this.showLoadingSpinner = false;
 
-          this.putData('selected_bundle',this.selected_bundle);
+          this.putData('selected_bundle', this.selected_bundle);
+          if (this.selected_entity != undefined && typeof this.selected_entity != 'undefined' && this.selected_entity.value !== '' && this.selected_bundle != undefined && typeof this.selected_bundle != 'undefined' && this.selected_bundle !== '') {
+            this.onChange(this.selected_entity.value, this.selected_bundle.value);
+          }
           editor.trigger('process');
         },
         selectionChanged() {
@@ -105,11 +116,14 @@ class AfterSavingNewEntityEventControl extends Rete.Control {
         this.putData('type', drupalSettings.if_then_else.nodes.after_saving_new_entity_event.type);
         this.putData('class', drupalSettings.if_then_else.nodes.after_saving_new_entity_event.class);
         this.putData('name', drupalSettings.if_then_else.nodes.after_saving_new_entity_event.name);
-
+        this.putData('classArg', drupalSettings.if_then_else.nodes.after_saving_new_entity_event.classArg);
+        
         //Setting values of retejs condition nodes when editing rule page loads
         this.selected_entity = this.getData('selected_entity');
         this.selected_bundle = this.getData('selected_bundle');
-
+        if (this.selected_entity != undefined && typeof this.selected_entity != 'undefined' && this.selected_entity !== '' && this.selected_bundle != undefined && typeof this.selected_bundle != 'undefined' && this.selected_bundle !== '') {
+          this.onChange(this.selected_entity.value, this.selected_bundle.value);
+        }
         this.selection = this.getData('selection');
       },
       created() {
@@ -118,30 +132,89 @@ class AfterSavingNewEntityEventControl extends Rete.Control {
         this.radio2_uid = _.uniqueId('radio_');
 
         //Fetching values of fields when editing rule page loads
-        if(drupalSettings.if_then_else.nodes.after_saving_new_entity_event.entity_info){
+        if (drupalSettings.if_then_else.nodes.after_saving_new_entity_event.entity_info) {
           var entities_list = drupalSettings.if_then_else.nodes.after_saving_new_entity_event.entity_info;
           Object.keys(entities_list).forEach(itemKey => {
-            this.entities.push({label: entities_list[itemKey].label, value: entities_list[itemKey].entity_id});
+            this.entities.push({
+              label: entities_list[itemKey].label,
+              value: entities_list[itemKey].entity_id
+            });
           });
 
           // Load the bundle list when form loads for edit
           this.selected_entity = this.getData('selected_entity');
-          if(this.selected_entity != undefined && typeof this.selected_entity != 'undefined' && this.selected_entity !== ''){
+          if (this.selected_entity != undefined && typeof this.selected_entity != 'undefined' && this.selected_entity !== '') {
             let selected_entity = this.selected_entity.value;
             if (drupalSettings.if_then_else.nodes.after_saving_new_entity_event.entity_info) {
               let bundle_list = drupalSettings.if_then_else.nodes.after_saving_new_entity_event.entity_info[selected_entity]['bundles'];
               Object.keys(bundle_list).forEach(itemKey => {
-                this.bundles.push({label: bundle_list[itemKey].label, value: bundle_list[itemKey].bundle_id});
+                this.bundles.push({
+                  label: bundle_list[itemKey].label,
+                  value: bundle_list[itemKey].bundle_id
+                });
               });
             }
           }
         }
       }
     };
-    this.props = { emitter, ikey: key, readonly };
+    this.props = {
+      emitter,
+      ikey: key,
+      onChange
+    };
   }
 
   setValue(val) {
     this.vueContext.value = val;
+  }
+}
+
+
+class AfterSavingNewEntityEventComponent extends Rete.Component {
+  constructor() {
+    var nodeName = 'after_saving_new_entity_event';
+    var node = drupalSettings.if_then_else.nodes[nodeName];
+    super(jsUcfirst(node.type) + ": " + node.label);
+  }
+
+  //Event node builder
+  builder(eventNode) {
+
+    var node_outputs = [];
+    var nodeName = 'after_saving_new_entity_event';
+    var node = drupalSettings.if_then_else.nodes[nodeName];
+    node_outputs['success'] = new Rete.Output('success', 'Success', sockets['bool']);
+    node_outputs['success']['description'] = node.outputs['success'].description;
+
+    node_outputs['entity'] = new Rete.Output('entity', 'Entity', sockets['object.entity']);
+    node_outputs['entity']['description'] = node.outputs['entity'].description;
+
+    eventNode.addOutput(node_outputs['success']);
+    eventNode.addOutput(node_outputs['entity']);
+
+    function handleInput() {
+      return function(entityValue, bundleValue) {
+        let socket_out = eventNode.outputs.get('entity');
+        if (entityValue != undefined && typeof entityValue != 'undefined' && entityValue !== '' && bundleValue != undefined && typeof bundleValue != 'undefined' && bundleValue !== '') {
+          socket_out.socket = sockets['object.entity.' + entityValue + '.' + bundleValue];
+          makeCompatibleSocketsByName('object.entity.' + entityValue + '.' + bundleValue);
+
+          eventNode.outputs.set('entity', socket_out);
+          eventNode.update();
+          editor.view.updateConnections({
+            node: eventNode
+          });
+          editor.trigger('process');
+        }
+      }
+    }
+
+    eventNode.addControl(new AfterSavingNewEntityEventControl(this.editor, nodeName, handleInput()));
+    eventNode['description'] = node.description;
+
+  }
+  worker(eventNode, inputs, outputs) {
+    //outputs['form'] = eventNode.data.event;
   }
 }

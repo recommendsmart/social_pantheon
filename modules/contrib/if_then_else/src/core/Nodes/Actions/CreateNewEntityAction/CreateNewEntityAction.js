@@ -1,13 +1,13 @@
 class CreateNewEntityActionControl extends Rete.Control {
 
-  constructor(emitter, key, readonly) {
+  constructor(emitter, key, onChange) {
     super(key);
     this.component = {
       components: {
         // Component included for Multiselect.
         Multiselect: window.VueMultiselect.default
       },
-      props: ['readonly', 'emitter', 'ikey', 'getData', 'putData'],
+      props: ['emitter', 'ikey', 'getData', 'putData', 'onChange'],
       template: `
         <div class="fields-container">
           <div class="entity-select">
@@ -29,6 +29,7 @@ class CreateNewEntityActionControl extends Rete.Control {
           type: drupalSettings.if_then_else.nodes.create_new_entity_action.type,
           class: drupalSettings.if_then_else.nodes.create_new_entity_action.class,
           name: drupalSettings.if_then_else.nodes.create_new_entity_action.name,
+          classArg: drupalSettings.if_then_else.nodes.create_new_entity_action.classArg,
           value: 0,
           showBundleList: true,
           entities: [],
@@ -54,7 +55,7 @@ class CreateNewEntityActionControl extends Rete.Control {
           this.selected_bundle = [];
           this.bundleSelected();
           this.selected_entity = [];
-          if (value !== null) { //check if an entity is selected
+          if (value !== undefined && value !== null && value !== '') { //check if an entity is selected
             let entity_id = value.value;
             this.selected_entity = {
               label: value.label,
@@ -70,10 +71,11 @@ class CreateNewEntityActionControl extends Rete.Control {
                 value: bundle_list[itemKey].bundle_id
               });
             });
+          } else {
+            this.putData('selected_bundle', []);
           }
 
           //Updating reactive variable of Vue to reflect changes on frontend
-          this.putData('selected_bundle', []);
           this.putData('selected_entity', this.selected_entity);
           editor.trigger('process');
         },
@@ -82,6 +84,9 @@ class CreateNewEntityActionControl extends Rete.Control {
           this.showLoadingSpinner = false;
 
           this.putData('selected_bundle', this.selected_bundle);
+          if (this.selected_entity != undefined && typeof this.selected_entity != 'undefined' && this.selected_entity.value !== '' && this.selected_bundle != undefined && typeof this.selected_bundle != 'undefined' && this.selected_bundle !== '') {
+            this.onChange(this.selected_entity.value, this.selected_bundle.value);
+          }
           editor.trigger('process');
         },
         selectionChanged() {
@@ -96,11 +101,14 @@ class CreateNewEntityActionControl extends Rete.Control {
         this.putData('type', drupalSettings.if_then_else.nodes.create_new_entity_action.type);
         this.putData('class', drupalSettings.if_then_else.nodes.create_new_entity_action.class);
         this.putData('name', drupalSettings.if_then_else.nodes.create_new_entity_action.name);
+        this.putData('classArg', drupalSettings.if_then_else.nodes.create_new_entity_action.classArg);
 
         //Setting values of retejs condition nodes when editing rule page loads
         this.selected_entity = this.getData('selected_entity');
         this.selected_bundle = this.getData('selected_bundle');
-
+        if (this.selected_entity != undefined && typeof this.selected_entity != 'undefined' && this.selected_entity !== '' && this.selected_bundle != undefined && typeof this.selected_bundle != 'undefined' && this.selected_bundle !== '') {
+          this.onChange(this.selected_entity.value, this.selected_bundle.value);
+        }
         this.selection = this.getData('selection');
       },
       created() {
@@ -136,11 +144,66 @@ class CreateNewEntityActionControl extends Rete.Control {
     this.props = {
       emitter,
       ikey: key,
-      readonly
+      onChange
     };
   }
 
   setValue(val) {
     this.vueContext.value = val;
+  }
+}
+
+class CreateNewEntityActionComponent extends Rete.Component {
+  constructor() {
+    var nodeName = 'create_new_entity_action';
+    var node = drupalSettings.if_then_else.nodes[nodeName];
+    super(jsUcfirst(node.type) + ": " + node.label);
+  }
+
+  //Event node builder
+  builder(eventNode) {
+
+    var node_outputs = [];
+    var nodeName = 'create_new_entity_action';
+    var node = drupalSettings.if_then_else.nodes[nodeName];
+
+    node_outputs['success'] = new Rete.Output('success', 'Success', sockets['bool']);
+    node_outputs['success']['description'] = node.outputs['success'].description;
+    node_outputs['entity'] = new Rete.Output('entity', 'Entity', sockets['object.entity']);
+    node_outputs['entity']['description'] = node.outputs['entity'].description;
+    eventNode.addOutput(node_outputs['success']);
+    eventNode.addOutput(node_outputs['entity']);
+
+
+    function handleInput() {
+      return function(entityValue, bundleValue) {
+        let socket_out = eventNode.outputs.get('entity');
+        if (entityValue != undefined && typeof entityValue != 'undefined' && entityValue !== '' && bundleValue != undefined && typeof bundleValue != 'undefined' && bundleValue !== '') {
+          socket_out.socket = sockets['object.entity.' + entityValue + '.' + bundleValue];
+          makeCompatibleSocketsByName('object.entity.' + entityValue + '.' + bundleValue);
+
+          eventNode.outputs.set('entity', socket_out);
+          eventNode.update();
+          editor.view.updateConnections({
+            node: eventNode
+          });
+          editor.trigger('process');
+        }
+      }
+    }
+
+    eventNode.addControl(new CreateNewEntityActionControl(this.editor, nodeName, handleInput()));
+    for (let name in node.inputs) {
+      let inputLabel = node.inputs[name].label + (node.inputs[name].required ? ' *' : '');
+      if (node.inputs[name].sockets.length === 1) {
+        let  inputObject = new Rete.Input(name, inputLabel, sockets[node.inputs[name].sockets[0]]);
+        inputObject['description'] = node.inputs[name].description;
+        eventNode.addInput(inputObject);
+      }
+    }
+    eventNode['description'] = node.description;
+  }
+  worker(eventNode, inputs, outputs) {
+    //outputs['form'] = eventNode.data.event;
   }
 }

@@ -2,10 +2,9 @@ name: If Then Else
 type: module
 description: Configure site's back-end logic using visual programming tools.
 package: other
-# core: 8.x
+core: 8.x
 
-# Information added by Drupal.org packaging script on 2019-08-01
-version: '8.x-1.0-alpha3'
-core: '8.x'
+# Information added by Drupal.org packaging script on 2019-09-26
+version: '8.x-1.0-beta1'
 project: 'if_then_else'
-datestamp: 1564651094
+datestamp: 1569485586

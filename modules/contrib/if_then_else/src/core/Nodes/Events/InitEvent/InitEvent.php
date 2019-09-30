@@ -7,11 +7,13 @@ use Drupal\if_then_else\Event\NodeSubscriptionEvent;
 use Drupal\if_then_else\Event\NodeValidationEvent;
 use Drupal\if_then_else\Event\EventFilterEvent;
 use Drupal\if_then_else\Event\EventConditionEvent;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Init event node class.
  */
 class InitEvent extends Event {
+  use StringTranslationTrait;
 
   /**
    * Return name of node.
@@ -25,15 +27,16 @@ class InitEvent extends Event {
    */
   public function registerNode(NodeSubscriptionEvent $event) {
     $event->nodes[static::getName()] = [
-      'label' => t('Init'),
+      'label' => $this->t('Init'),
+      'description' => $this->t('Init'),
       'type' => 'event',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Events\\InitEvent\\InitEvent',
       'library' => 'if_then_else/InitEvent',
       'control_class_name' => 'InitEventControl',
       'outputs' => [
         'url' => [
-          'label' => t('Requested URL'),
-          'description' => t('Requested URL.'),
+          'label' => $this->t('Requested URL'),
+          'description' => $this->t('Requested URL.'),
           'socket' => 'string.url',
         ],
       ],
@@ -46,11 +49,11 @@ class InitEvent extends Event {
   public function validateNode(NodeValidationEvent $event) {
     $data = $event->node->data;
     if (!property_exists($data, 'form_selection')) {
-      $event->errors[] = t('Select the Match Condition in "@node_name".', ['@node_name' => $event->node->name]);
+      $event->errors[] = $this->t('Select the Match Condition in "@node_name".', ['@node_name' => $event->node->name]);
       return;
     }
     if ($data->form_selection != 'all' && (!property_exists($data, 'valueText') || empty($data->valueText))) {
-      $event->errors[] = t('Enter path to match with requested path in "@node_name".', ['@node_name' => $event->node->name]);
+      $event->errors[] = $this->t('Enter path to match with requested path in "@node_name".', ['@node_name' => $event->node->name]);
     }
   }
 
