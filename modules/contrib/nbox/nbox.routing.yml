@@ -1,0 +1,8 @@
+#nbox.overview:
+nbox.settings:
+  path: '/admin/nbox/settings'
+  defaults:
+    _form: '\Drupal\nbox\Form\NboxSettingsForm'
+    _title: 'Nbox settings'
+  requirements:
+    _permission: 'administer nbox'

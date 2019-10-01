@@ -1,0 +1,241 @@
+<?php
+
+/**
+ * @file
+ * Contains nbox_folders.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity\EntityViewBuilder;
+use Drupal\Core\Render\Element;
+use Drupal\nbox_ui\Entity\Form\NboxForm;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_help().
+ */
+function nbox_ui_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the nbox_ui module.
+    case 'help.page.nbox_ui':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provides a front-end UI to use nbox.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function nbox_ui_theme() {
+  return [
+    'nbox' => [
+      'render element' => 'elements',
+    ],
+    'nbox_thread' => [
+      'render element' => 'elements',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function nbox_ui_theme_suggestions_nbox(array $variables) {
+  $suggestions = [];
+  $entity = $variables['elements']['#nbox'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+  $suggestions[] = 'nbox__' . $sanitized_view_mode;
+  $suggestions[] = 'nbox__' . $entity->bundle();
+  $suggestions[] = 'nbox__' . $entity->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'nbox__' . $entity->id();
+  $suggestions[] = 'nbox__' . $entity->id() . '__' . $sanitized_view_mode;
+  return $suggestions;
+}
+
+/**
+ * Implements hook_entity_type_build().
+ */
+function nbox_ui_entity_type_build(array &$entity_types) {
+
+  $baseNboxUrl = '/nbox';
+  // Replace class annotation "form".
+  $entity_types['nbox']->setFormClass('add', NboxForm::class);
+  $entity_types['nbox']->setFormClass('default', NboxForm::class);
+  // Replace class annotation "links".
+  $entity_types['nbox']->setLinkTemplate('add-page', $baseNboxUrl . '/add');
+  $entity_types['nbox']->setLinkTemplate('add-form', $baseNboxUrl . '/add/{nbox_type}');
+
+  $moduleHandler = \Drupal::moduleHandler();
+  if ($moduleHandler->moduleExists('nbox_folders')) {
+    // Set the forms.
+    $entity_types['nbox_folder']->setFormClass('default', 'Drupal\nbox_ui\Form\NboxFolderForm');
+    $entity_types['nbox_folder']->setFormClass('add', 'Drupal\nbox_ui\Form\NboxFolderForm');
+    $entity_types['nbox_folder']->setFormClass('edit', 'Drupal\nbox_ui\Form\NboxFolderForm');
+    $entity_types['nbox_folder']->setFormClass('delete', 'Drupal\nbox_ui\Form\NboxFolderDeleteForm');
+
+    // Set the links.
+    $baseNboxFolderUrl = '/nbox/folder';
+    $entity_types['nbox_folder']->setLinkTemplate('add-form', $baseNboxFolderUrl . '/add');
+    $entity_types['nbox_folder']->setLinkTemplate('edit-form', $baseNboxFolderUrl . '/{nbox_folder}/edit');
+    $entity_types['nbox_folder']->setLinkTemplate('delete-form', $baseNboxFolderUrl . '/{nbox_folder}/delete');
+
+    // Set the view_builder.
+    $entity_types['nbox_folder']->setViewBuilderClass(EntityViewBuilder::class);
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function nbox_ui_form_nbox_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $formObject = $form_state->getFormObject();
+  $nbox = $formObject->getEntity();
+  $nbox->setPublished(TRUE);
+
+  $form['actions']['submit']['#value'] = \Drupal::translation()->translate('Sent');
+  $form['actions']['submit']['#submit'][] = 'nbox_ui_message_submit';
+
+  $form['actions']['draft'] = [
+    '#type' => 'submit',
+    '#value' => \Drupal::translation()->translate('Save draft'),
+    '#submit' => [
+      '::submitForm',
+      'nbox_ui_draft_submit',
+      '::save',
+      'nbox_ui_message_submit',
+    ],
+    '#weight' => 10,
+  ];
+}
+
+/**
+ * Set draft.
+ */
+function nbox_ui_draft_submit($form, FormStateInterface $form_state) {
+  $formObject = $form_state->getFormObject();
+  $nbox = $formObject->getEntity();
+  $nbox->setPublished(FALSE);
+}
+
+/**
+ * When UI module is enabled redirect to mailboxes page.
+ */
+function nbox_ui_message_submit($form, FormStateInterface $form_state) {
+  $form_state->setRedirect('view.nbox_mailbox.page_1', [
+    'arg_0' => 'inbox',
+  ]);
+}
+
+/**
+ * Implements hook_preprocess_views_view().
+ */
+function nbox_ui_preprocess_views_view(&$variables) {
+  $variables['#cache']['contexts'][] = 'route';
+  if ($variables['view_array']['#name'] === 'nbox_mailbox') {
+    $variables['#attached']['library'][] = 'nbox_ui/mailboxes';
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function nbox_ui_form_alter(&$form, $form_state, $form_id) {
+  if ((FALSE !== strpos($form_id, 'views_form_nbox_mailbox_page') || FALSE !== strpos($form_id, 'views_form_nbox_folder_page')) && count(Element::children($form['header']['bulk_form']['actions']['action_wrapper'])) > 0) {
+    $form['header']['bulk_form']['actions']['select_wrapper'] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'id' => 'select-wrapper',
+      ],
+      '#weight' => '-10',
+    ];
+
+    $selectOptions = [
+      'None',
+      'All',
+      'Read',
+      'Unread',
+      'Starred',
+      'Unstarred',
+    ];
+    foreach ($selectOptions as $selectOption) {
+      $options[strtolower($selectOption)] = $selectOption;
+    }
+    $form['header']['bulk_form']['actions']['select_wrapper']['folder'] = [
+      '#type' => 'select',
+      '#options' => $options,
+      '#default_option' => 'none',
+      '#wrapper_attributes' => [
+        'class' => ['select-threads'],
+      ],
+      '#title' => t('Select'),
+      '#validated' => TRUE,
+      '#attached' => [
+        'library' => [
+          'core/jquery',
+          'core/jquery.once',
+          'nbox_ui/mailbox-actions',
+        ],
+      ],
+    ];
+  }
+}
+
+/**
+ * Prepares variables for nbox templates.
+ *
+ * Default template: nbox.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the user information and any
+ *   - attributes: HTML attributes for the containing element.
+ */
+function template_preprocess_nbox(array &$variables) {
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+  if (array_key_exists('#nbox', $variables['elements'])) {
+    $variables['relative_date'] = $variables['elements']['#nbox']->getSentTimeRelative();
+    $variables['relative_sender'] = $variables['elements']['#nbox']->getSenderRelative();
+    foreach ($variables['elements']['#nbox']->getRecipientsMarkup() as $label => $recipients) {
+      $variables['recipients_' . $label] = $recipients;
+    }
+
+    if ($avatar = $variables['elements']['#nbox']->getOwnerAvatar()) {
+      $variables['avatar'] = $avatar;
+    }
+  }
+}
+
+/**
+ * Prepares variables for nbox thread templates.
+ *
+ * Default template: nbox_thread.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the user information and any
+ *   - attributes: HTML attributes for the containing element.
+ */
+function template_preprocess_nbox_thread(array &$variables) {
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+  if (array_key_exists('#nbox_thread', $variables['elements'])) {
+    $configStore = \Drupal::config('nbox.settings');
+    $variables['subject_per_message'] = $configStore->get('reply_has_subject');
+    if (!$variables['subject_per_message']) {
+      $variables['content']['thread_subject'] = $variables['elements']['#nbox_thread']->getThreadSubject();
+      $variables['attributes']['class'][] = 'subject-per-thread';
+    }
+    $variables['messages'] = $variables['elements']['#messages'];
+    $variables['reply'] = $variables['elements']['#reply_wrapper'];
+    $variables['actions'] = $variables['elements']['#actions'];
+  }
+  $variables['#attached']['library'][] = 'nbox_ui/thread';
+}

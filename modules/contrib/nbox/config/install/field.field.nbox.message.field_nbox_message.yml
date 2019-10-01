@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.nbox.field_nbox_message
+    - nbox.nbox_type.message
+  module:
+    - text
+_core:
+  default_config_hash: nenTBklzkPxnVBBS9Zi84xvwTo73TUmbSKkUOWXrjWI
+id: nbox.message.field_nbox_message
+field_name: field_nbox_message
+entity_type: nbox
+bundle: message
+label: Message
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

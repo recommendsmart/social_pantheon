@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+  - field.storage.nbox.field_nbox_bcc
+  - nbox.nbox_type.message
+  module:
+  - nbox
+_core:
+  default_config_hash: p4qcIBb3s3Z1Th6h08UxIj_siu2f7jWp5kl31x0P3yw
+id: nbox.message.field_nbox_bcc
+field_name: field_nbox_bcc
+entity_type: nbox
+bundle: message
+label: Bcc
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'nbox:user'
+  handler_settings:
+    filter:
+      type: _none
+    target_bundles: null
+    sort:
+      field: _none
+    recipient_type: bcc
+field_type: recipient

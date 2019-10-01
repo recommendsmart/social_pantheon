@@ -1,0 +1,5 @@
+entity.nbox_type.add_form:
+  route_name: entity.nbox_type.add_form
+  title: 'Add Nbox type'
+  appears_on:
+    - entity.nbox_type.collection

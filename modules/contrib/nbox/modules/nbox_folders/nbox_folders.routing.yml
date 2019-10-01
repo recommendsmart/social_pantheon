@@ -1,0 +1,7 @@
+nbox_folder.overview:
+  path: '/admin/nbox/folders'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'Nbox folder overview'
+  requirements:
+    _permission: 'administer nbox'

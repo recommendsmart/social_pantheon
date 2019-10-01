@@ -1,0 +1,12 @@
+{
+  "name": "drupal/nbox_folders",
+  "type": "drupal-module",
+  "description": "Provides personal folders for Nbox messages threads.",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/nbox_folders"
+  },
+  "require": { }
+}

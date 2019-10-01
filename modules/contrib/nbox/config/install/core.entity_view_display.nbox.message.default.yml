@@ -1,0 +1,77 @@
+langcode: en
+status: true
+dependencies:
+  config:
+  - field.field.nbox.message.field_nbox_attachment
+  - field.field.nbox.message.field_nbox_bcc
+  - field.field.nbox.message.field_nbox_cc
+  - field.field.nbox.message.field_nbox_message
+  - field.field.nbox.message.field_nbox_to
+  - nbox.nbox_type.message
+  module:
+  - file
+  - nbox
+  - text
+  - user
+_core:
+  default_config_hash: byAOvZoubgs46t0q8mvY3-cWyy76Pq32CV1WVBDq05Y
+id: nbox.message.default
+targetEntityType: nbox
+bundle: message
+mode: default
+content:
+  field_nbox_attachment:
+    type: file_default
+    weight: 6
+    region: content
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+  field_nbox_bcc:
+    type: recipient_label
+    weight: 3
+    region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+  field_nbox_cc:
+    type: recipient_label
+    weight: 2
+    region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+  field_nbox_message:
+    weight: 5
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_nbox_to:
+    type: recipient_label
+    weight: 1
+    region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+  sender:
+    label: inline
+    type: author
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  subject:
+    label: inline
+    type: string
+    weight: 4
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden: {  }

@@ -1,0 +1,19 @@
+administer nbox:
+  title: 'Administer nbox'
+  description: 'Administer the Nbox module.'
+  restrict access: true
+
+administer nbox entities:
+  title: 'Administer nbox messages'
+  description: 'Allow to access the administration form to configure nbox entities.'
+  restrict access: true
+
+use nbox:
+  title: 'Use the Nbox message system'
+  description: 'Allow users to use the Nbox message system.'
+  restrict access: true
+
+star threads:
+  title: 'Star threads'
+  description: 'Allow users to use star and unstar a message thread.'
+  restrict access: true

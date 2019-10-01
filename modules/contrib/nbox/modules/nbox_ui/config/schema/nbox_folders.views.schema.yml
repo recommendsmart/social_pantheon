@@ -1,0 +1,28 @@
+views.field.nbox_metadata_bulk_form:
+  type: views_field
+  label: 'Views Bulk Operations'
+  mapping:
+    batch:
+      type: integer
+      label: 'Process selected entities in a batch operation'
+    batch_size:
+      type: string
+      label: 'Size of the processing batch'
+    form_step:
+      type: boolean
+      label: 'Display configuration form on a separate page'
+    buttons:
+      type: integer
+      label: 'Display action options as buttons'
+    action_title:
+      type: string
+      label: 'Title of the action selector form element'
+    selected_actions:
+      type: ignore
+      label: 'Selected actions array'
+    preconfiguration:
+      type: ignore
+      label: 'Preliminary configuration array'
+    clear_on_exposed:
+      type: integer
+      label: 'Clear selection when exposed filters change'

@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - nbox
+    - text
+_core:
+  default_config_hash: pJYPxZSIFYvVZSiou8aZIyq8-2F27dr0uvXmsgCfcqk
+id: nbox.field_nbox_message
+field_name: field_nbox_message
+entity_type: nbox
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

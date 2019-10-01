@@ -1,0 +1,14 @@
+{
+  "name": "drupal/nbox_ui",
+  "type": "drupal-module",
+  "description": "Provides a front-end UI to use Nbox.",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/nbox"
+  },
+  "require": {
+    "drupal/nbox": "1.x-dev"
+  }
+}

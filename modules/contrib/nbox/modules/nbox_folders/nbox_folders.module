@@ -1,0 +1,144 @@
+<?php
+
+/**
+ * @file
+ * Contains nbox_folders.module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\nbox\Plugin\MailboxRule;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Render\Element;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Cache\Cache;
+use Drupal\nbox_folders\Entity\NboxFolder;
+use Drupal\Views\ViewExecutable;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+
+/**
+ * Implements hook_help().
+ */
+function nbox_folders_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the nbox_folders module.
+    case 'help.page.nbox_folders':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provides personal folders for nbox messages threads.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_nbox_views_filter_query_alter().
+ */
+function nbox_folders_nbox_views_filter_query_alter(&$viewsQuery) {
+  switch ($viewsQuery['id']) {
+    case 'inbox':
+    case 'sent':
+    case 'draft':
+    case 'trash':
+      $viewsQuery['rules'][] = new MailboxRule('folder', NULL, 'IS NULL');
+      break;
+
+  }
+}
+
+/**
+ * Implements hook_entity_base_field_info().
+ */
+function nbox_folders_entity_base_field_info(EntityTypeInterface $entity_type) {
+  $fields = [];
+
+  if ($entity_type->id() === 'nbox_metadata') {
+    $fields['folder'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Folder'))
+      ->setDescription(t('The folder this message is in.'))
+      ->setSetting('target_type', 'nbox_folder')
+      ->setSetting('handler', 'default')
+      ->setRequired(FALSE);
+  }
+
+  return $fields;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function nbox_folders_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ((FALSE !== strpos($form_id, 'views_form_nbox_mailbox_page') || FALSE !== strpos($form_id, 'views_form_nbox_folder_page')) && count(Element::children($form['header']['bulk_form']['actions']['action_wrapper'])) > 0) {
+    // Add folder action.
+    $folderStorage = \Drupal::entityTypeManager()->getStorage('nbox_folder');
+    $folders = $folderStorage->loadByUser(\Drupal::currentUser()->id());
+    if (count($folders) > 0) {
+      $options = [];
+      // When in folder page allow to remove from folder.
+      if (FALSE !== strpos($form_id, 'views_form_nbox_folder_page')) {
+        $options[0] = '- Remove from folder -';
+      }
+      foreach ($folders as $folder) {
+        $options[$folder->id()] = $folder->label();
+      }
+      $form['header']['bulk_form']['actions']['folder_wrapper'] = [
+        '#type' => 'container',
+        '#attributes' => [
+          'id' => 'folder-wrapper',
+        ],
+      ];
+
+      $form['header']['bulk_form']['actions']['folder_wrapper']['move_folder_thread'] = [
+        '#type' => 'submit',
+        '#value' => t('Move to folder'),
+      ];
+
+      $form['header']['bulk_form']['actions']['folder_wrapper']['move_folder_thread']['#id'] = 'move_to_folder';
+      $form['header']['bulk_form']['actions']['folder_wrapper']['move_folder_thread']['#weight'] = 30;
+      // Get folders per user.
+      $form['header']['bulk_form']['actions']['folder_wrapper']['folder'] = [
+        '#type' => 'select',
+        '#options' => $options,
+        '#wrapper_attributes' => [
+          'class' => ['folder-select'],
+        ],
+        '#title' => t('Folder'),
+        '#weight' => 29,
+      ];
+    }
+  }
+}
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function nbox_folders_views_pre_render(ViewExecutable $view) {
+  // Until https://www.drupal.org/project/drupal/issues/2969262 is fixed, we
+  // need programmatically to override the title and check permissions.
+  if ($view->id() === 'nbox_folder' && array_key_exists(0, $view->args)) {
+    if ($nboxFolder = NboxFolder::load($view->args[0])) {
+      if ($nboxFolder->access('view')) {
+        $view->setTitle($nboxFolder->getName());
+      }
+      else {
+        throw new AccessDeniedHttpException();
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function nbox_folders_nbox_folder_presave(EntityInterface $entity) {
+  Cache::invalidateTags(['block:folders:' . \Drupal::currentUser()->id()]);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_predelete().
+ */
+function nbox_folders_nbox_folder_predelete(EntityInterface $entity) {
+  Cache::invalidateTags(['block:folders:' . \Drupal::currentUser()->id()]);
+}

@@ -1,0 +1,10 @@
+/**
+ * Main menu icons.
+ */
+.toolbar-icon-system-admin-nbox:before {
+  background-image: url(../images/icons/nbox_logo.svg);
+}
+.toolbar-icon-system-admin-nbox:active:before,
+.toolbar-icon-system-admin-nbox.is-active:before {
+  background-image: url(../images/icons/nbox_logo.svg);
+}

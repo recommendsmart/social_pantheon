@@ -1,0 +1,18 @@
+name: 'Nbox'
+type: module
+description: 'The Nbox module provides an full fledged internal mail/messaging system.'
+core: 8.x
+package: 'Nbox'
+configure: 'nbox.settings'
+dependencies:
+  - drupal:field
+  - drupal:text
+  - drupal:filter
+  - drupal:user
+
+php: 7.1
+
+# Information added by Drupal.org packaging script on 2019-09-24
+version: '8.x-1.0-alpha2'
+project: 'nbox'
+datestamp: 1569322387

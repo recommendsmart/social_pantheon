@@ -1,0 +1,16 @@
+mailboxes:
+  version: 1.x
+  css:
+    theme:
+      css/mailboxes.css: {}
+
+thread:
+  version: 1.x
+  css:
+    theme:
+      css/thread.css: {}
+
+mailbox-actions:
+  version: 1.x
+  js:
+    js/mailbox-actions.js: {}

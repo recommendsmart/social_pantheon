@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d89d0e80a23ff70dde0fdcc1bb743204",
+    "content-hash": "8356d036ec9e42c0f0ff6ec75dc3983c",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -8175,6 +8175,60 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/name",
                 "issues": "https://www.drupal.org/project/issues/name"
+            }
+        },
+        {
+            "name": "drupal/nbox",
+            "version": "1.0.0-alpha2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/nbox.git",
+                "reference": "8.x-1.0-alpha2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/nbox-8.x-1.0-alpha2.zip",
+                "reference": "8.x-1.0-alpha2",
+                "shasum": "9b126d734306ad310610f1f66fb554d99095e786"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "require-dev": {
+                "drupal/views_bulk_operations": "^3"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha2",
+                    "datestamp": "1569322385",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "botris",
+                    "homepage": "https://www.drupal.org/user/209246"
+                }
+            ],
+            "description": "The Nbox module provides an full fledged internal mail/messaging system.",
+            "homepage": "https://www.drupal.org/project/nbox",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/nbox",
+                "issues": "https://www.drupal.org/project/issues/nbox"
             }
         },
         {

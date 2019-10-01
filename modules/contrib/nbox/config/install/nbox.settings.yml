@@ -1,0 +1,5 @@
+reply_has_subject: false
+message_has_avatar: false
+message_avatar_style: thumbnail
+date_today: time_without_seconds
+date_other: html_date

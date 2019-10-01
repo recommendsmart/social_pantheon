@@ -1,0 +1,14 @@
+name: 'Nbox UI'
+type: module
+description: 'Provides a front-end UI to use Nbox.'
+core: 8.x
+package: 'Nbox'
+dependencies:
+  - nbox:nbox
+  - drupal:user
+  - views_bulk_operations:views_bulk_operations (>=8.x-3.x)
+
+# Information added by Drupal.org packaging script on 2019-09-24
+version: '8.x-1.0-alpha2'
+project: 'nbox'
+datestamp: 1569322387

@@ -1,0 +1,40 @@
+#nbox-thread h2#thread-subject {
+  margin-bottom: 1em;
+}
+
+#nbox-thread #messages .nbox-message {
+  border-top: 1px solid #dfdfdf;
+  padding: 20px 10px;
+}
+
+#nbox-thread #messages .nbox-message .nbox-avatar {
+  float: left;
+  margin-right: 20px;
+}
+
+#nbox-thread #messages .nbox-message .nbox-date {
+  float: right;
+  margin-left: 20px;
+}
+
+#nbox-thread #messages .nbox-message .nbox-main {
+  overflow: hidden;
+}
+
+#nbox-thread #messages .nbox-message .sender {
+  font-weight: bold;
+}
+
+#nbox-thread.subject-per-thread #messages .field--name-subject,
+#nbox-thread.subject-per-thread #reply-wrapper .field--name-subject {
+  display: none;
+}
+
+#nbox-thread #messages .message-content {
+  margin-top: 10px;
+}
+
+#nbox-thread #reply-wrapper {
+  border-top: 1px solid #dfdfdf;
+  padding: 20px 10px;
+}

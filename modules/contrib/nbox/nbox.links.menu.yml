@@ -1,0 +1,26 @@
+system.admin_nbox:
+  title: 'Nbox'
+  description: 'List messages, Nbox types and Nbox settings.'
+  route_name: entity.nbox_thread.collection
+  parent: system.admin
+  weight: 3
+
+entity.nbox_thread.collection:
+  title: 'Nbox message threads'
+  description: 'List messages, Nbox types and Nbox settings.'
+  route_name: entity.nbox_thread.collection
+  parent: system.admin_nbox
+
+entity.nbox_type.collection:
+  title: 'Nbox types'
+  route_name: entity.nbox_type.collection
+  description: 'Manage Nbox message types'
+  parent: system.admin_nbox
+  weight: 5
+
+nbox.settings:
+  title: 'Settings'
+  description: 'Configure the general Nbox module settings.'
+  route_name: nbox.settings
+  parent: system.admin_nbox
+  weight: 10

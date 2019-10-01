@@ -1,0 +1,4 @@
+services:
+  plugin.manager.mailbox:
+    class: Drupal\nbox\Plugin\MailboxManager
+    parent: default_plugin_manager

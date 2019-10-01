@@ -1,0 +1,13 @@
+name: 'Nbox Folders'
+type: module
+description: 'Provides personal folders for Nbox messages threads.'
+core: 8.x
+package: 'Nbox'
+dependencies:
+  - nbox:nbox
+  - drupal:user
+
+# Information added by Drupal.org packaging script on 2019-09-24
+version: '8.x-1.0-alpha2'
+project: 'nbox'
+datestamp: 1569322387
