@@ -71,7 +71,7 @@ v = new Vue({
             }
         }
     },
-    template: '<div class="dock"><div id="search-container"><div class="search-wrapper"><input placeholder="Search ..." v-model="searchKey" /></div></div><ul><li v-tooltip.top="{content: item.description}" v-bind:class="(item.type)" v-for="item in filtered" v-bind:key="item.title" draggable="true" v-on:dragstart="dragstart(item, $event)" v-on:dragover="$event.preventDefault()" v-on:dragend="drop(item, $event)" v-on:click="click(item, $event)">{{item.title}}</li></ul></div>'
+    template: '<div class="dock"><div id="search-container"><div class="search-wrapper"><input placeholder="Search ..." v-model="searchKey" /></div></div><ul><li v-tooltip.top="{content: item.description, delay: {show: 1000}}" v-bind:class="(item.type)" v-for="item in filtered" v-bind:key="item.title" draggable="true" v-on:dragstart="dragstart(item, $event)" v-on:dragover="$event.preventDefault()" v-on:dragend="drop(item, $event)" v-on:click="click(item, $event)">{{item.title}}</li></ul></div>'
 });
 
 editor.on('componentregister', async c => {

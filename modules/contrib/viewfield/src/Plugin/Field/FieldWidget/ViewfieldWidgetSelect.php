@@ -62,7 +62,7 @@ class ViewfieldWidgetSelect extends OptionsSelectWidget {
     $default_items_to_display = NULL;
     $item_value = $item->getValue();
 
-    // Set the default values from the item or form_state.
+    // Set initial default values from the item if they exist.
     if (isset($item_value['target_id'])) {
       $default_target_id = $item_value['target_id'];
       $display_id_options = $item->getDisplayOptions($item_value['target_id']);
@@ -70,15 +70,15 @@ class ViewfieldWidgetSelect extends OptionsSelectWidget {
       $default_arguments = $item_value['arguments'];
       $default_items_to_display = $item_value['items_to_display'];
     }
-    else {
-      $values = $form_state->getValue($this->fieldDefinition->getName());
-      if (!empty($values[$delta])) {
-        $default_target_id = $values[$delta]['target_id'];
-        $default_display_id = $values[$delta]['display_id'];
-        $default_arguments = $values[$delta]['arguments'];
-        $display_id_options = $item->getDisplayOptions($default_target_id);
-        $default_items_to_display = $values[$delta]['items_to_display'];
-      }
+
+    // Set default values based on values from form_state, if they exist.
+    $values = $form_state->getValue($this->fieldDefinition->getName());
+    if (!empty($values[$delta])) {
+      $default_target_id = $values[$delta]['target_id'];
+      $default_display_id = $values[$delta]['display_id'];
+      $default_arguments = $values[$delta]['arguments'];
+      $display_id_options = $item->getDisplayOptions($default_target_id);
+      $default_items_to_display = $values[$delta]['items_to_display'];
     }
 
     // #default_value needs special handling, otherwise it consists of an array

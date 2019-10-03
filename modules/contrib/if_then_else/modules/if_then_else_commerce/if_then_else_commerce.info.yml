@@ -7,7 +7,7 @@ dependencies:
   - if_then_else:if_then_else
   - commerce:commerce
 
-# Information added by Drupal.org packaging script on 2019-09-26
-version: '8.x-1.0-beta1'
+# Information added by Drupal.org packaging script on 2019-10-02
+version: '8.x-1.0-beta2'
 project: 'if_then_else'
-datestamp: 1569485586
+datestamp: 1570036086

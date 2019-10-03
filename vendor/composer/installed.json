@@ -974,17 +974,17 @@
     },
     {
         "name": "doctrine/annotations",
-        "version": "v1.7.0",
-        "version_normalized": "1.7.0.0",
+        "version": "v1.8.0",
+        "version_normalized": "1.8.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/doctrine/annotations.git",
-            "reference": "fa4c4e861e809d6a1103bd620cce63ed91aedfeb"
+            "reference": "904dca4eb10715b92569fbcd79e201d5c349b6bc"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/doctrine/annotations/zipball/fa4c4e861e809d6a1103bd620cce63ed91aedfeb",
-            "reference": "fa4c4e861e809d6a1103bd620cce63ed91aedfeb",
+            "url": "https://api.github.com/repos/doctrine/annotations/zipball/904dca4eb10715b92569fbcd79e201d5c349b6bc",
+            "reference": "904dca4eb10715b92569fbcd79e201d5c349b6bc",
             "shasum": ""
         },
         "require": {
@@ -993,9 +993,9 @@
         },
         "require-dev": {
             "doctrine/cache": "1.*",
-            "phpunit/phpunit": "^7.5@dev"
+            "phpunit/phpunit": "^7.5"
         },
-        "time": "2019-08-08T18:11:40+00:00",
+        "time": "2019-10-01T18:55:10+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -4043,17 +4043,17 @@
     },
     {
         "name": "drupal/core",
-        "version": "8.7.7",
-        "version_normalized": "8.7.7.0",
+        "version": "8.7.8",
+        "version_normalized": "8.7.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/drupal/core.git",
-            "reference": "32e1d7a67bbc28f07dc43d9ff692c0e90a4aeb92"
+            "reference": "476f491b85306c09101106d9b66a5dbe73c21bf0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/drupal/core/zipball/32e1d7a67bbc28f07dc43d9ff692c0e90a4aeb92",
-            "reference": "32e1d7a67bbc28f07dc43d9ff692c0e90a4aeb92",
+            "url": "https://api.github.com/repos/drupal/core/zipball/476f491b85306c09101106d9b66a5dbe73c21bf0",
+            "reference": "476f491b85306c09101106d9b66a5dbe73c21bf0",
             "shasum": ""
         },
         "require": {
@@ -4091,7 +4091,7 @@
             "symfony/http-kernel": "~3.4.14",
             "symfony/polyfill-iconv": "^1.0",
             "symfony/process": "~3.4.0",
-            "symfony/psr-http-message-bridge": "^1.0",
+            "symfony/psr-http-message-bridge": "^1.1.2",
             "symfony/routing": "~3.4.0",
             "symfony/serializer": "~3.4.0",
             "symfony/translation": "~3.4.0",
@@ -4231,7 +4231,7 @@
             "symfony/debug": "^3.4.0",
             "symfony/phpunit-bridge": "^3.4.3"
         },
-        "time": "2019-09-04T10:26:35+00:00",
+        "time": "2019-10-02T18:41:30+00:00",
         "type": "drupal-core",
         "extra": {
             "merge-plugin": {
@@ -7418,18 +7418,18 @@
     },
     {
         "name": "drupal/if_then_else",
-        "version": "1.0.0-beta1",
-        "version_normalized": "1.0.0.0-beta1",
+        "version": "1.0.0-beta2",
+        "version_normalized": "1.0.0.0-beta2",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/if_then_else.git",
-            "reference": "8.x-1.0-beta1"
+            "reference": "8.x-1.0-beta2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/if_then_else-8.x-1.0-beta1.zip",
-            "reference": "8.x-1.0-beta1",
-            "shasum": "852fcbbca1496d2c434333840ea180fc91d02a6d"
+            "url": "https://ftp.drupal.org/files/projects/if_then_else-8.x-1.0-beta2.zip",
+            "reference": "8.x-1.0-beta2",
+            "shasum": "42829e37baf699b93d10c4177ed88d2e0487fa8d"
         },
         "require": {
             "drupal/core": "~8.0"
@@ -7443,8 +7443,8 @@
                 "dev-1.x": "1.x-dev"
             },
             "drupal": {
-                "version": "8.x-1.0-beta1",
-                "datestamp": "1569485584",
+                "version": "8.x-1.0-beta2",
+                "datestamp": "1570036084",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Project has not opted into security advisory coverage!"
@@ -11086,18 +11086,18 @@
     },
     {
         "name": "drupal/viewfield",
-        "version": "3.0.0-beta4",
-        "version_normalized": "3.0.0.0-beta4",
+        "version": "3.0.0-beta5",
+        "version_normalized": "3.0.0.0-beta5",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/viewfield.git",
-            "reference": "8.x-3.0-beta4"
+            "reference": "8.x-3.0-beta5"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/viewfield-8.x-3.0-beta4.zip",
-            "reference": "8.x-3.0-beta4",
-            "shasum": "84c2e225f0cf130ddc41330a6ef031d66b47383e"
+            "url": "https://ftp.drupal.org/files/projects/viewfield-8.x-3.0-beta5.zip",
+            "reference": "8.x-3.0-beta5",
+            "shasum": "314349e8ab4a547e3c827d3e77a586e57d9dd6d7"
         },
         "require": {
             "drupal/core": "*"
@@ -11108,8 +11108,8 @@
                 "dev-3.x": "3.x-dev"
             },
             "drupal": {
-                "version": "8.x-3.0-beta4",
-                "datestamp": "1567713485",
+                "version": "8.x-3.0-beta5",
+                "datestamp": "1570043892",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Beta releases are not covered by Drupal security advisories."
@@ -12912,17 +12912,17 @@
     },
     {
         "name": "google/auth",
-        "version": "v1.5.2",
-        "version_normalized": "1.5.2.0",
+        "version": "v1.6.0",
+        "version_normalized": "1.6.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/googleapis/google-auth-library-php.git",
-            "reference": "2ee962e5df3e9427fda859f1b0515d6d62c4afa5"
+            "reference": "6d5455b4c0f4a58b1f1b4bdf2ba49221123698b3"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/2ee962e5df3e9427fda859f1b0515d6d62c4afa5",
-            "reference": "2ee962e5df3e9427fda859f1b0515d6d62c4afa5",
+            "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/6d5455b4c0f4a58b1f1b4bdf2ba49221123698b3",
+            "reference": "6d5455b4c0f4a58b1f1b4bdf2ba49221123698b3",
             "shasum": ""
         },
         "require": {
@@ -12941,9 +12941,9 @@
             "sebastian/comparator": ">=1.2.3"
         },
         "suggest": {
-            "phpseclib/phpseclib": "May be used in place of OpenSSL for signing strings. Please require version ^2."
+            "phpseclib/phpseclib": "May be used in place of OpenSSL for signing strings or for token management. Please require version ^2."
         },
-        "time": "2019-07-22T21:01:31+00:00",
+        "time": "2019-10-01T18:35:05+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -17127,17 +17127,17 @@
     },
     {
         "name": "zaporylie/composer-drupal-optimizations",
-        "version": "1.1.0",
-        "version_normalized": "1.1.0.0",
+        "version": "1.1.1",
+        "version_normalized": "1.1.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/zaporylie/composer-drupal-optimizations.git",
-            "reference": "173c198fd7c9aefa5e5b68cd755ee63eb0abf7e8"
+            "reference": "fb231d92adc862a2c9276bccbc90f684816dc75d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/zaporylie/composer-drupal-optimizations/zipball/173c198fd7c9aefa5e5b68cd755ee63eb0abf7e8",
-            "reference": "173c198fd7c9aefa5e5b68cd755ee63eb0abf7e8",
+            "url": "https://api.github.com/repos/zaporylie/composer-drupal-optimizations/zipball/fb231d92adc862a2c9276bccbc90f684816dc75d",
+            "reference": "fb231d92adc862a2c9276bccbc90f684816dc75d",
             "shasum": ""
         },
         "require": {
@@ -17147,7 +17147,7 @@
             "composer/composer": "^1.6",
             "phpunit/phpunit": "^6"
         },
-        "time": "2019-02-20T10:00:17+00:00",
+        "time": "2019-10-02T17:01:11+00:00",
         "type": "composer-plugin",
         "extra": {
             "class": "zaporylie\\ComposerDrupalOptimizations\\Plugin"

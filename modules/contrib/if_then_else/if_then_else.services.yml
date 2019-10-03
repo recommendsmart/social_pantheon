@@ -167,6 +167,11 @@ services:
     tags:
       - { name: 'event_subscriber' }
 
+  if_then_else_get_array_index_value_action_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\GetArrayIndexValueAction\GetArrayIndexValueAction
+    tags:
+      - { name: 'event_subscriber' }
+
   if_then_else_text_value_register:
     class: Drupal\if_then_else\core\Nodes\Values\TextValue\TextValue
     tags:

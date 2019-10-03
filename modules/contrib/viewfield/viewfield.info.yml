@@ -7,7 +7,7 @@ dependencies:
   - drupal:views
   - drupal:field
 
-# Information added by Drupal.org packaging script on 2019-09-05
-version: '8.x-3.0-beta4'
+# Information added by Drupal.org packaging script on 2019-10-02
+version: '8.x-3.0-beta5'
 project: 'viewfield'
-datestamp: 1567713487
+datestamp: 1570043895

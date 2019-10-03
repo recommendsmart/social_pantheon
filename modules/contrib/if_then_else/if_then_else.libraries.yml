@@ -342,6 +342,13 @@ GetEntityFieldAction:
   dependencies:
     - if_then_else/external
 
+GetArrayIndexValueAction:
+  version: 1.0
+  js:
+    src/core/Nodes/Actions/GetArrayIndexValueAction/GetArrayIndexValueAction.js: {}
+  dependencies:
+    - if_then_else/external
+
 IsFieldValueEmptyCondition:
   version: 1.0
   js:

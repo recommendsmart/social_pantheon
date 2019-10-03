@@ -2,8 +2,10 @@
 
 namespace Drupal\viewfield\Plugin\Field\FieldType;
 
+use Drupal\Core\Entity\ContentEntityStorageInterface;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\TypedData\DataDefinition;
 use Drupal\Core\Field\FieldFilteredMarkup;
@@ -30,7 +32,7 @@ class ViewfieldItem extends EntityReferenceItem {
   public static function defaultStorageSettings() {
     return [
       'target_type' => 'view',
-    ] + parent::defaultStorageSettings();
+    ];
   }
 
   /**
@@ -49,7 +51,6 @@ class ViewfieldItem extends EntityReferenceItem {
    */
   public static function schema(FieldStorageDefinitionInterface $field_definition) {
     $schema = parent::schema($field_definition);
-    $schema['columns']['target_id']['description'] = 'The ID of the view.';
 
     $schema['columns']['display_id'] = [
       'description' => 'The ID of the view display.',
