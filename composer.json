@@ -100,7 +100,9 @@
         "drupal/auto_entitylabel": "^3.0",
         "drupal/autosave_form": "^1.0",
         "drupal/taxonomy_entity_index": "^1.0",
-        "drupal/nbox": "^1.0"						  							 
+        "drupal/nbox": "^1.0",
+        "drupal/taxonomy_menu_ui": "^1.0",
+        "drupal/menu_link_content_visibility": "^1.2"						  							 
         },
     "repositories": [
         {

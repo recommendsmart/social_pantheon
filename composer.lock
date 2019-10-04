@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8356d036ec9e42c0f0ff6ec75dc3983c",
+    "content-hash": "f5c58afe35ee0eef6349b429cccaaf4c",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -7919,6 +7919,57 @@
             }
         },
         {
+            "name": "drupal/menu_link_content_visibility",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/menu_link_content_visibility.git",
+                "reference": "8.x-1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/menu_link_content_visibility-8.x-1.2.zip",
+                "reference": "8.x-1.2",
+                "shasum": "ad0f6143308a7034184caa6f1085b4cef027a2e7"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.2",
+                    "datestamp": "1559638085",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "luisortizramos",
+                    "homepage": "https://www.drupal.org/user/347601"
+                },
+                {
+                    "name": "ofauravi",
+                    "homepage": "https://www.drupal.org/user/1909078"
+                }
+            ],
+            "description": "Allows administrators to set visibility on custom menu links.",
+            "homepage": "https://www.drupal.org/project/menu_link_content_visibility",
+            "support": {
+                "source": "https://git.drupalcode.org/project/menu_link_content_visibility"
+            }
+        },
+        {
             "name": "drupal/message",
             "version": "1.0.0-rc2",
             "source": {
@@ -10223,6 +10274,53 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/taxonomy_menu",
                 "issues": "http://drupal.org/project/taxonomy_menu"
+            }
+        },
+        {
+            "name": "drupal/taxonomy_menu_ui",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/taxonomy_menu_ui.git",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/taxonomy_menu_ui-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "69db5c7df77405d911eaf25394a266a2cb6d1ea1"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1565586481",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "lobodacyril",
+                    "homepage": "https://www.drupal.org/user/769176"
+                }
+            ],
+            "description": "Add ability to create menu links for taxonomy terms.",
+            "homepage": "https://www.drupal.org/project/taxonomy_menu_ui",
+            "support": {
+                "source": "https://git.drupalcode.org/project/taxonomy_menu_ui"
             }
         },
         {
