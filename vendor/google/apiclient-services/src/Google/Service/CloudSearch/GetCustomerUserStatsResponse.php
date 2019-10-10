@@ -15,25 +15,24 @@
  * the License.
  */
 
-class Google_Service_DLP_GooglePrivacyDlpV2ListInfoTypesRequest extends Google_Model
+class Google_Service_CloudSearch_GetCustomerUserStatsResponse extends Google_Collection
 {
-  public $filter;
-  public $languageCode;
+  protected $collection_key = 'stats';
+  protected $statsType = 'Google_Service_CloudSearch_CustomerUserStats';
+  protected $statsDataType = 'array';
 
-  public function setFilter($filter)
+  /**
+   * @param Google_Service_CloudSearch_CustomerUserStats
+   */
+  public function setStats($stats)
   {
-    $this->filter = $filter;
+    $this->stats = $stats;
   }
-  public function getFilter()
+  /**
+   * @return Google_Service_CloudSearch_CustomerUserStats
+   */
+  public function getStats()
   {
-    return $this->filter;
-  }
-  public function setLanguageCode($languageCode)
-  {
-    $this->languageCode = $languageCode;
-  }
-  public function getLanguageCode()
-  {
-    return $this->languageCode;
+    return $this->stats;
   }
 }

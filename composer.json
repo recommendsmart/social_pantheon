@@ -25,7 +25,7 @@
         "drupal/blocktabs": "^1.0",
         "drupal/computed_field": "^2.0",
         "drupal/unique_field_ajax": "^1.2",
-        "drupal/pwa": "^1.0",
+        "drupal/pwa": "^1.1",
         "minishlink/web-push": "^2.0",
         "piwik/device-detector": "^3.0",
         "drupal/social_pwa": "^1.0",
@@ -102,7 +102,9 @@
         "drupal/taxonomy_entity_index": "^1.0",
         "drupal/nbox": "^1.0",
         "drupal/taxonomy_menu_ui": "^1.0",
-        "drupal/menu_link_content_visibility": "^1.2"						  							 
+        "drupal/menu_link_content_visibility": "^1.2",
+        "drupal/maxlength": "^1.0",
+        "drupal/field_inheritance": "^1.0"						  							 
         },
     "repositories": [
         {

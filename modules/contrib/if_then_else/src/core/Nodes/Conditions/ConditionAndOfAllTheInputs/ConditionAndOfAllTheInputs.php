@@ -76,9 +76,11 @@ class ConditionAndOfAllTheInputs extends Condition {
     $conditions_all_inputs = $this->inputs;
 
     // Get all the inputs and check condition for all the inputs.
-    if ($conditions_all_inputs) {
-      if (in_array(FALSE, $conditions_all_inputs, TRUE) === TRUE) {
-        $condition_status = FALSE;
+    if (!empty($conditions_all_inputs)) {
+      foreach ($conditions_all_inputs as $conditions_all_input) {
+        if(empty($conditions_all_input)) {
+          $condition_status = FALSE;
+        }
       }
     }
 

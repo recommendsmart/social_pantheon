@@ -69,6 +69,11 @@ class UserStatusCondition extends Condition {
   public function process() {
 
     $user = $this->inputs['user'];
+    
+    if (empty($user)) {
+      return $this->outputs['success'] = FALSE;
+    }
+
     $status = $this->data->selected_status->code;
 
     $output = FALSE;

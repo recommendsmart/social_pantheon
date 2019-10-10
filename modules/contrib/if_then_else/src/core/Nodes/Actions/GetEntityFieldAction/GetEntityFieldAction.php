@@ -144,12 +144,12 @@ class GetEntityFieldAction extends Action {
         case 'boolean':
           if (isset($field_value[0]['value'])) {
             if (count($field_value) == 1) {
-              $output = $field_value[0]['value'];
+              $output = (int) $field_value[0]['value'];
             }
             elseif (count($field_value) > 1) {
               for ($i = 0; $i < count($field_value); $i++) {
                 if (isset($field_value[$i]['value'])) {
-                  $output[] = $field_value[$i]['value'];
+                  $output[] = (int) $field_value[$i]['value'];
                 }
               }
             }

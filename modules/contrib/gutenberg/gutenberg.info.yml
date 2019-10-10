@@ -12,7 +12,7 @@ dependencies:
   - drupal:image
   - drupal:file
 
-# Information added by Drupal.org packaging script on 2019-09-25
-version: '8.x-1.8'
+# Information added by Drupal.org packaging script on 2019-10-09
+version: '8.x-1.9'
 project: 'gutenberg'
-datestamp: 1569419293
+datestamp: 1570639520

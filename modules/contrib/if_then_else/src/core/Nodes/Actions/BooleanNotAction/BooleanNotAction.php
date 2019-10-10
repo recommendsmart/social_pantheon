@@ -50,7 +50,7 @@ class BooleanNotAction extends Action {
    * Process function.
    */
   public function process() {
-    $this->outputs['success'] = !$this->inputs['input'];
+    $this->outputs['output'] = !$this->inputs['input'];
   }
 
 }

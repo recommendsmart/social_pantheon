@@ -15,16 +15,24 @@
  * the License.
  */
 
-class Google_Service_Vision_GoogleCloudVisionV1p4beta1ImageQuality extends Google_Model
+class Google_Service_CloudSearch_GetSearchApplicationSessionStatsResponse extends Google_Collection
 {
-  public $qualityScore;
+  protected $collection_key = 'stats';
+  protected $statsType = 'Google_Service_CloudSearch_SearchApplicationSessionStats';
+  protected $statsDataType = 'array';
 
-  public function setQualityScore($qualityScore)
+  /**
+   * @param Google_Service_CloudSearch_SearchApplicationSessionStats
+   */
+  public function setStats($stats)
   {
-    $this->qualityScore = $qualityScore;
+    $this->stats = $stats;
   }
-  public function getQualityScore()
+  /**
+   * @return Google_Service_CloudSearch_SearchApplicationSessionStats
+   */
+  public function getStats()
   {
-    return $this->qualityScore;
+    return $this->stats;
   }
 }
