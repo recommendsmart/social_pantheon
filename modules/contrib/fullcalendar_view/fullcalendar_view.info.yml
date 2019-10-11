@@ -8,7 +8,7 @@ dependencies:
   - drupal:views
   - drupal:datetime
 
-# Information added by Drupal.org packaging script on 2019-09-17
-version: '8.x-2.3'
+# Information added by Drupal.org packaging script on 2019-10-11
+version: '8.x-2.4'
 project: 'fullcalendar_view'
-datestamp: 1568683094
+datestamp: 1570762693

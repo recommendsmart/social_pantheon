@@ -66,7 +66,8 @@ function template_preprocess_views_view_fullcalendar(array &$variables) {
   // or if this feature is turn off.
   $variables['showAddEvent'] = $dbl_click_to_create
     && $options['createEventLink'];
-
+  // Time format
+  $timeFormat = $options['timeFormat'];
   // Field machine name of start date.
   $start_field = $options['start'];
   // Start date field is critical.
@@ -79,6 +80,9 @@ function template_preprocess_views_view_fullcalendar(array &$variables) {
   $des_field = $options['des'];
   // Field machine name of taxonomy field.
   $tax_field = $options['tax_field'];
+  // Field machine name of excluding dates field.
+  $exc_field = isset($options['excluding_dates']) ? $options['excluding_dates'] : NULL;
+
   // Default date of the calendar.
   switch ($options['default_date_source']) {
     case 'now':
@@ -102,6 +106,7 @@ function template_preprocess_views_view_fullcalendar(array &$variables) {
   // Date fields.
   $start_field_option = $fields[$start_field]->options;
   $end_field_option = empty($end_field) ? NULL : $fields[$end_field]->options;
+  $exc_field_option = empty($exc_field) ? NULL : $fields[$exc_field]->options;
   // Custom timezone or user timezone.
   $timezone = !empty($start_field_option['settings']['timezone_override']) ?
     $start_field_option['settings']['timezone_override'] : drupal_get_user_timezone();
@@ -117,6 +122,8 @@ function template_preprocess_views_view_fullcalendar(array &$variables) {
   }
   // Set the first day setting.
   $first_day = isset($options['firstDay']) ? $options['firstDay'] : 0;
+  // Left side buttons.
+  $left_buttons = 'prev,next today';
   // Right side buttons.
   $right_buttons = 'month';
   foreach ($options['right_buttons'] as $key => $value) {
@@ -319,7 +326,7 @@ function template_preprocess_views_view_fullcalendar(array &$variables) {
           else {
             $format = DATE_ATOM;
           }
-          // By default, Drupal store date time date in UTC timezone.
+          // By default, Drupal store date time in UTC timezone.
           // So we need to convert it into user timezone.
           $entry['start'] = $timezone_service->utcToLocal($start_date, $timezone, $format);
         }
@@ -393,6 +400,35 @@ function template_preprocess_views_view_fullcalendar(array &$variables) {
         $entry['backgroundColor'] = $color_content[$entity_bundle];
       }
 
+      // Collect excluding dates values for recurring event only.
+      if ((!empty($dom) || !empty($dow)) && !empty($exc_field) && !empty($exc_field_option)) {
+        $exc_dates = $current_entity->hasField($exc_field) ? $current_entity->get($exc_field)->getValue() : '';
+        $exc_dates_array = [];
+        foreach ($exc_dates as $exc_date) {
+          if (!empty($exc_date['value'])) {
+            if ($exc_field_option['type'] === 'timestamp') {
+              $date_item = date(DATE_ATOM, intval($exc_date['value']));
+            }
+            elseif (strpos($exc_field_option['type'], 'datetime') !== FALSE) {
+              $date_item = $exc_date['value'];
+              // Drupal store date and time date in UTC timezone.
+              // We need to convert it into local time zone.
+              if (strlen($date_item) > 10) {
+                $date_item = $timezone_service->utcToLocal($date_item, $timezone, 'Y-m-d');
+              }
+            }
+
+            // Only use the first 10 digits since we only care about the date.
+            if (!empty($date_item)) {
+              $exc_dates_array[] = substr($date_item, 0, 10);
+            }
+          }
+        }
+        if (!empty($exc_dates_array)) {
+          $range['excluding_dates'] = $exc_dates_array;
+        }
+      }
+
       if (!empty($dom)) {
         $entry['dom'] = $dom;
         $entry['ranges'] = [$range];
@@ -411,6 +447,15 @@ function template_preprocess_views_view_fullcalendar(array &$variables) {
     // Remove the row_index property as we don't it anymore.
     unset($view->row_index);
 
+    // Title format.
+    // @see https://fullcalendar.io/docs/v3/titleFormat
+    // @see https://fullcalendar.io/docs/v3/date-formatting-string
+    // @see https://momentjs.com/docs/#/displaying/format/
+    $title_format = NULL;
+
+    // Control the column header, as used in the week/agenda display.
+    $column_header_format = NULL;
+
     // Load tooltip plugin.
     if (!empty($des_field)) {
       $variables['#attached']['library'][] = 'fullcalendar_view/tooltip';
@@ -425,11 +470,14 @@ function template_preprocess_views_view_fullcalendar(array &$variables) {
       'defaultLang' => $default_lang,
       'languageSelector' => $options['languageSelector'],
       'alloweventOverlap' => $options['alloweventOverlap'],
+      'updateAllowed' => $options['updateAllowed'],
       'updateConfirm' => $options['updateConfirm'],
       'linkToEntity' => $link_to_entity,
+      'columnHeaderFormat' => $column_header_format,
       'eventBundleType' => $event_bundle_type,
       'startField' => $start_field,
       'endField' => $end_field,
+      'leftButtons' => $left_buttons,
       'rightButtons' => $right_buttons,
       'defaultView' => isset($options['default_view']) ? $options['default_view'] : 'month',
       'dblClickToCreate' => $dbl_click_to_create,
@@ -438,6 +486,8 @@ function template_preprocess_views_view_fullcalendar(array &$variables) {
       'addForm' => isset($add_form) ? $add_form : '',
       'token' => $token,
       'openEntityInNewTab' => $options['openEntityInNewTab'],
+      'timeFormat' => $timeFormat,
+      'titleFormat' => $title_format,
     ];
   }
 }

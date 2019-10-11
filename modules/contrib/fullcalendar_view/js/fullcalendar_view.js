@@ -17,17 +17,20 @@
           }
           $(".js-drupal-fullcalendar").fullCalendar({
             header: {
-              left: "prev,next today",
+              left: drupalSettings.leftButtons,
               center: "title",
               right: drupalSettings.rightButtons
             },
+            titleFormat: drupalSettings.titleFormat,
             defaultDate: drupalSettings.defaultDate,
             firstDay: drupalSettings.firstDay,
             defaultView: drupalSettings.defaultView,
             locale: drupalSettings.defaultLang,
+            timeFormat: drupalSettings.timeFormat,
             // Can click day/week names to navigate views.
             navLinks: drupalSettings.navLinks !== 0,
-            editable: true,
+            columnHeaderFormat: drupalSettings.columnHeaderFormat,
+            editable: drupalSettings.updateAllowed !== 0,
             eventLimit: true, // Allow "more" link when too many events.
             events: drupalSettings.fullCalendarView,
             eventOverlap: drupalSettings.alloweventOverlap !== 0,
@@ -45,6 +48,15 @@
               if (event.ranges) {
                 return (
                   event.ranges.filter(function(range) {
+                    // Eclude dates from renge if exists.
+                    if (range.excluding_dates) {
+                      for (let i = 0; i < range.excluding_dates.length; i++) {
+                        if (event.start.isSame(moment.utc(range.excluding_dates[i], "YYYY-MM-DD"), 'day')) {
+                          return false;
+                        }
+                      }
+                    }
+
                     if (event.dom) {
                       let isTheDay = false;
                       const dom = event.dom;
@@ -209,6 +221,7 @@
               slotDate &&
               drupalSettings.eventBundleType &&
               drupalSettings.dblClickToCreate &&
+              drupalSettings.updateAllowed &&
               drupalSettings.addForm !== ""
             ) {
               const date = slotDate.format();
