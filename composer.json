@@ -106,7 +106,8 @@
         "drupal/maxlength": "^1.0",
         "drupal/field_inheritance": "^1.0",
         "drupal/system_tags": "^1.6",
-        "drupal/number_formatter": "^1.0"						  							 
+        "drupal/number_formatter": "^1.0",
+        "drupal/get_a_quote": "^1.0"						  							 
         },
     "repositories": [
         {

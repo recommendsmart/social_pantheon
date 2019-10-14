@@ -1,0 +1,16 @@
+name: Get a Quote
+type: module
+description: 'Defines Get a Quote functionality for all Commerce products.'
+package: Custom
+
+configure: quote.settings
+dependencies:
+  - commerce
+
+# core: '8.x'
+# project: 'get a quote'
+# Information added by Drupal.org packaging script on 2018-07-23
+version: '8.x-1.0'
+core: '8.x'
+project: 'get_a_quote'
+datestamp: 1532364793

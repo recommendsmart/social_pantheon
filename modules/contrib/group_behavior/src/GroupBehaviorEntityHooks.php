@@ -115,16 +115,21 @@ class GroupBehaviorEntityHooks {
    */
   protected static function updateGroupsAndContentConnectorIfNecessary(EntityInterface $entity) {
     if ($entity instanceof ContentEntityInterface) {
+      $entityLangcode = $entity->language()->getId();
       if ($groupContents = GroupContent::loadByEntity($entity)) {
         /** @var \Drupal\group\Entity\GroupContentInterface[] $groupContents */
         foreach ($groupContents as $groupContent) {
           $groupContentType = $groupContent->getGroupContentType();
           if (GroupBehaviorHelpers::checkGroupContentTypeHasGroupBehavior($groupContentType)) {
-            $groupContent = $groupContent->getTranslation($entity->language()->getId());
+            $groupContent = $groupContent->hasTranslation($entityLangcode) ?
+              $groupContent->getTranslation($entityLangcode) :
+              $groupContent->addTranslation($entityLangcode);
             $groupContent->set('label', $entity->label());
             $groupContent->save();
             $group = $groupContent->getGroup();
-            $group = $group->getTranslation($entity->language()->getId());
+            $group = $group->hasTranslation($entityLangcode) ?
+              $group->getTranslation($entityLangcode) :
+              $group->addTranslation($entityLangcode);
             $group->set('label', $entity->label());
             $group->save();
           }

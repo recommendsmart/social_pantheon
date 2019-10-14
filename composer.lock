@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c9836faac661d65bb86f365b6b98fe2f",
+    "content-hash": "a57688795aaca5decdc653a71966d97c",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -7022,6 +7022,62 @@
             }
         },
         {
+            "name": "drupal/get_a_quote",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/get_a_quote.git",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/get_a_quote-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "09748a6609d4a2811ba8f19c92968b4e57d65fff"
+            },
+            "require": {
+                "drupal/commerce": "*",
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1532364781",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "MahtabAlam",
+                    "homepage": "https://www.drupal.org/user/3198311"
+                },
+                {
+                    "name": "dilipsingh02",
+                    "homepage": "https://www.drupal.org/user/759000"
+                },
+                {
+                    "name": "karuna patel",
+                    "homepage": "https://www.drupal.org/user/2481360"
+                }
+            ],
+            "description": "Defines Get a Quote functionality for all Commerce products.",
+            "homepage": "https://www.drupal.org/project/get_a_quote",
+            "support": {
+                "source": "https://git.drupalcode.org/project/get_a_quote"
+            }
+        },
+        {
             "name": "drupal/group",
             "version": "1.0.0-rc2",
             "source": {
@@ -7082,17 +7138,17 @@
         },
         {
             "name": "drupal/group_behavior",
-            "version": "1.0.0-alpha6",
+            "version": "1.0.0-alpha7",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/group_behavior.git",
-                "reference": "8.x-1.0-alpha6"
+                "reference": "8.x-1.0-alpha7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/group_behavior-8.x-1.0-alpha6.zip",
-                "reference": "8.x-1.0-alpha6",
-                "shasum": "2e93d4e9a0bcbce315407edfd0d5456fff015649"
+                "url": "https://ftp.drupal.org/files/projects/group_behavior-8.x-1.0-alpha7.zip",
+                "reference": "8.x-1.0-alpha7",
+                "shasum": "3e49b842361c6c0509075199b838bb9a2f702896"
             },
             "require": {
                 "drupal/core": "~8.0",
@@ -7104,8 +7160,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha6",
-                    "datestamp": "1568831584",
+                    "version": "8.x-1.0-alpha7",
+                    "datestamp": "1570891384",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -12837,16 +12893,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.117",
+            "version": "v0.118",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "ae2f0f6f626db67d83ea0a0cd15100b9d083874b"
+                "reference": "3db3c3097dcfb2e2cd578053f28be20fe4ad8e01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/ae2f0f6f626db67d83ea0a0cd15100b9d083874b",
-                "reference": "ae2f0f6f626db67d83ea0a0cd15100b9d083874b",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/3db3c3097dcfb2e2cd578053f28be20fe4ad8e01",
+                "reference": "3db3c3097dcfb2e2cd578053f28be20fe4ad8e01",
                 "shasum": ""
             },
             "require": {
@@ -12870,7 +12926,7 @@
             "keywords": [
                 "google"
             ],
-            "time": "2019-10-07T00:23:24+00:00"
+            "time": "2019-10-14T00:24:06+00:00"
         },
         {
             "name": "google/auth",
