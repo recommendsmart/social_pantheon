@@ -30,7 +30,17 @@ class SocialDate extends DateTimeDate {
       $operator = $this->operator;
     }
 
+    // Custom override to ensure that when users
+    // filter on something different than the event type
+    // we also don't use an event field filter.
+    if (!empty($input['type']) && $input['type'] !== 'event') {
+      $input['field_event_date']['value'] = '';
+      $input['field_event_date']['max'] = '';
+      $input['field_event_date']['min'] = '';
+    }
+
     // Fallback for exposed operator.
+    $operatorfromurl = NULL;
     if ($operator === NULL && $this->realField === 'created') {
       // Check if we have it in the query.
       $operatorfromurl = \Drupal::request()->query->get('created_op');
@@ -39,6 +49,10 @@ class SocialDate extends DateTimeDate {
         $input['created_op'] = $operatorfromurl;
         $this->view->exposed_raw_input = $this->view->getExposedInput();
       }
+    }
+
+    if ($operator === NULL && $operatorfromurl === NULL) {
+      return FALSE;
     }
 
     $return = parent::acceptExposedInput($input);

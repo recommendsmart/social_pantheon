@@ -12,15 +12,16 @@
     },
     "require": {
         "composer/installers": "^1.0",
-        "drupal-composer/drupal-scaffold": "^2.0.0",
+        "drupal-composer/drupal-scaffold": "^2.6.1",
         "cweagans/composer-patches": "^1.0",
         "doctrine/cache": "1.6.1",
         "doctrine/collections": "1.4.0",
         "doctrine/common": "2.7.2",
         "doctrine/inflector": "1.1.0",
+		"doctrine/lexer": "1.0.2",
+        "monolog/monolog": "^1.17",
         "drupal/easy_install": "^10.1",
 		"drupal/blizz_dynamic_entitylist": "^2.34",
-        "goalgorilla/open_social": "^6.0",
         "drupal/transaction": "^1.0",
         "drupal/blocktabs": "^1.0",
         "drupal/computed_field": "^2.0",
@@ -58,7 +59,6 @@
         "drupal/term_reference_fancytree": "^1.0",
         "drupal/views_accordion": "^1.2",
         "drupal/entity_extra_field": "^1.0",
-        "drupal/commerce": "^2.14",
         "drupal/form_display_visibility": "^1.0",
         "drupal/gutenberg": "^1.4",
         "drupal/bootstrap_quicktabs": "^1.0",
@@ -107,7 +107,19 @@
         "drupal/field_inheritance": "^1.0",
         "drupal/system_tags": "^1.6",
         "drupal/number_formatter": "^1.0",
-        "drupal/get_a_quote": "^1.0"						  							 
+        "drupal/get_a_quote": "^1.0",
+        "goalgorilla/open_social": "^7.0",
+        "drupal/profile": "1.0-rc6",
+        "drupal/pathauto": "^1.4",
+        "drupal/paragraphs": "^1.8",
+        "drupal/views_bulk_operations": "^3.2",
+        "drupal/csv_serialization": "2.0-beta1",
+        "drupal/search_api":"^1.14",
+		"league/csv": "^9.3",
+		"drupal/group": "1.0-rc4",
+		"drupal/better_exposed_filters": "3.0-alpha6",
+        "drupal/commerce": "^2.14"
+		
         },
     "repositories": [
         {

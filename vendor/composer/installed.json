@@ -2424,6 +2424,71 @@
         }
     },
     {
+        "name": "drupal/better_exposed_filters",
+        "version": "3.0.0-alpha6",
+        "version_normalized": "3.0.0.0-alpha6",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/better_exposed_filters.git",
+            "reference": "8.x-3.0-alpha6"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/better_exposed_filters-8.x-3.0-alpha6.zip",
+            "reference": "8.x-3.0-alpha6",
+            "shasum": "0cd9849aa28eea822e18555107e4539d755d95ef"
+        },
+        "require": {
+            "drupal/core": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-3.x": "3.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-3.0-alpha6",
+                "datestamp": "1550449381",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Alpha releases are not covered by Drupal security advisories."
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "Etroid",
+                "homepage": "https://www.drupal.org/user/3048985"
+            },
+            {
+                "name": "chr.fritsch",
+                "homepage": "https://www.drupal.org/user/2103716"
+            },
+            {
+                "name": "jkopel",
+                "homepage": "https://www.drupal.org/user/66207"
+            },
+            {
+                "name": "mikeker",
+                "homepage": "https://www.drupal.org/user/192273"
+            },
+            {
+                "name": "rlhawk",
+                "homepage": "https://www.drupal.org/user/352283"
+            }
+        ],
+        "description": "Provides advanced options (such as links, checkboxes, or jQueryUI widgets) for exposed Views elements.",
+        "homepage": "https://www.drupal.org/project/better_exposed_filters",
+        "support": {
+            "source": "https://git.drupalcode.org/project/better_exposed_filters"
+        }
+    },
+    {
         "name": "drupal/blizz_dynamic_entitylist",
         "version": "2.34.0",
         "version_normalized": "2.34.0.0",
@@ -3805,7 +3870,7 @@
         "description": "Provides basic revert and update functionality for other modules",
         "homepage": "https://www.drupal.org/project/config_update",
         "support": {
-            "source": "http://cgit.drupalcode.org/config_update"
+            "source": "https://git.drupalcode.org/project/config_update"
         }
     },
     {
@@ -4443,40 +4508,44 @@
         "description": "Provides storage and API for image crops.",
         "homepage": "https://www.drupal.org/project/crop",
         "support": {
-            "source": "http://cgit.drupalcode.org/crop",
+            "source": "https://git.drupalcode.org/project/crop",
             "issues": "https://www.drupal.org/project/issues/crop"
         }
     },
     {
         "name": "drupal/csv_serialization",
-        "version": "1.4.0",
-        "version_normalized": "1.4.0.0",
+        "version": "2.0.0-beta1",
+        "version_normalized": "2.0.0.0-beta1",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/csv_serialization.git",
-            "reference": "8.x-1.4"
+            "reference": "8.x-2.0-beta1"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/csv_serialization-8.x-1.4.zip",
-            "reference": "8.x-1.4",
-            "shasum": "74cfc47c5c8a907f40112ec4819fe108f2775ef1"
+            "url": "https://ftp.drupal.org/files/projects/csv_serialization-8.x-2.0-beta1.zip",
+            "reference": "8.x-2.0-beta1",
+            "shasum": "211b048b4f37a38626fa3c89b2833bd79a7bd70e"
         },
         "require": {
             "drupal/core": "^8.0.4",
-            "league/csv": "^8.0"
+            "league/csv": "^9.1"
+        },
+        "require-dev": {
+            "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+            "drupal/coder": "^8.3"
         },
         "type": "drupal-module",
         "extra": {
             "branch-alias": {
-                "dev-1.x": "1.x-dev"
+                "dev-2.x": "2.x-dev"
             },
             "drupal": {
-                "version": "8.x-1.4",
-                "datestamp": "1531841921",
+                "version": "8.x-2.0-beta1",
+                "datestamp": "1568995088",
                 "security-coverage": {
-                    "status": "covered",
-                    "message": "Covered by Drupal's security advisory policy"
+                    "status": "not-covered",
+                    "message": "Beta releases are not covered by Drupal security advisories."
                 }
             }
         },
@@ -4494,7 +4563,7 @@
         "description": "Provides CSV as a serialization format.",
         "homepage": "https://www.drupal.org/project/csv_serialization",
         "support": {
-            "source": "http://cgit.drupalcode.org/csv_serialization"
+            "source": "https://git.drupalcode.org/project/csv_serialization"
         }
     },
     {
@@ -5433,7 +5502,7 @@
         "description": "Provide a framework for various different types of embeds in WYSIWYG editors, common functionality, interfaces, and standards.",
         "homepage": "https://www.drupal.org/project/embed",
         "support": {
-            "source": "http://cgit.drupalcode.org/embed",
+            "source": "https://git.drupalcode.org/project/embed",
             "issues": "https://www.drupal.org/project/issues/embed",
             "irc": "irc://irc.freenode.org/drupal-media"
         }
@@ -5708,7 +5777,7 @@
             },
             "drupal": {
                 "version": "8.x-1.6",
-                "datestamp": "1539588781",
+                "datestamp": "1570284187",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -5721,6 +5790,10 @@
             "GPL-2.0-or-later"
         ],
         "authors": [
+            {
+                "name": "Berdir",
+                "homepage": "https://www.drupal.org/user/214652"
+            },
             {
                 "name": "Frans",
                 "homepage": "https://www.drupal.org/user/514222"
@@ -5737,7 +5810,7 @@
         "description": "Adds a Entity Reference field type with revision support.",
         "homepage": "https://www.drupal.org/project/entity_reference_revisions",
         "support": {
-            "source": "http://cgit.drupalcode.org/entity_reference_revisions"
+            "source": "https://git.drupalcode.org/project/entity_reference_revisions"
         }
     },
     {
@@ -5833,7 +5906,7 @@
         "description": "Rotates images per their EXIF Orientation",
         "homepage": "https://www.drupal.org/project/exif_orientation",
         "support": {
-            "source": "http://cgit.drupalcode.org/exif_orientation"
+            "source": "https://git.drupalcode.org/project/exif_orientation"
         }
     },
     {
@@ -6072,6 +6145,10 @@
                 "homepage": "https://www.drupal.org/user/31731"
             },
             {
+                "name": "joseph.olstad",
+                "homepage": "https://www.drupal.org/user/1321830"
+            },
+            {
                 "name": "mpotter",
                 "homepage": "https://www.drupal.org/user/616192"
             },
@@ -6087,7 +6164,7 @@
         "description": "Enables administrators to package configuration into modules",
         "homepage": "https://www.drupal.org/project/features",
         "support": {
-            "source": "http://cgit.drupalcode.org/features"
+            "source": "https://git.drupalcode.org/project/features"
         }
     },
     {
@@ -6184,7 +6261,7 @@
             },
             "drupal": {
                 "version": "8.x-3.0-beta1",
-                "datestamp": "1510352338",
+                "datestamp": "1558647185",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Beta releases are not covered by Drupal security advisories."
@@ -6221,7 +6298,7 @@
         "description": "Provides the field_group module.",
         "homepage": "https://www.drupal.org/project/field_group",
         "support": {
-            "source": "http://cgit.drupalcode.org/field_group"
+            "source": "https://git.drupalcode.org/project/field_group"
         }
     },
     {
@@ -6378,7 +6455,7 @@
         "description": "Provides a service to manage file metadata.",
         "homepage": "https://www.drupal.org/project/file_mdm",
         "support": {
-            "source": "http://cgit.drupalcode.org/file_mdm"
+            "source": "https://git.drupalcode.org/project/file_mdm"
         }
     },
     {
@@ -6419,7 +6496,7 @@
         "description": "Provides a file metadata plugin for EXIF image information.",
         "homepage": "https://www.drupal.org/project/file_mdm",
         "support": {
-            "source": "http://cgit.drupalcode.org/file_mdm"
+            "source": "https://git.drupalcode.org/project/file_mdm"
         }
     },
     {
@@ -6460,7 +6537,7 @@
         "description": "Provides a file metadata plugin for TTF/OTF/WOFF font information.",
         "homepage": "https://www.drupal.org/project/file_mdm",
         "support": {
-            "source": "http://cgit.drupalcode.org/file_mdm"
+            "source": "https://git.drupalcode.org/project/file_mdm"
         }
     },
     {
@@ -6508,6 +6585,10 @@
         ],
         "authors": [
             {
+                "name": "Berdir",
+                "homepage": "https://www.drupal.org/user/214652"
+            },
+            {
                 "name": "fago",
                 "homepage": "https://www.drupal.org/user/16747"
             },
@@ -6543,7 +6624,7 @@
         "description": "Create customized flags that users can set on entities.",
         "homepage": "https://www.drupal.org/project/flag",
         "support": {
-            "source": "http://cgit.drupalcode.org/flag"
+            "source": "https://git.drupalcode.org/project/flag"
         }
     },
     {
@@ -7300,21 +7381,22 @@
     },
     {
         "name": "drupal/group",
-        "version": "1.0.0-rc2",
-        "version_normalized": "1.0.0.0-RC2",
+        "version": "1.0.0-rc4",
+        "version_normalized": "1.0.0.0-RC4",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/group.git",
-            "reference": "8.x-1.0-rc2"
+            "reference": "8.x-1.0-rc4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/group-8.x-1.0-rc2.zip",
-            "reference": "8.x-1.0-rc2",
-            "shasum": "b21efa2224d20a704484de900ad6f73e4e605a7d"
+            "url": "https://ftp.drupal.org/files/projects/group-8.x-1.0-rc4.zip",
+            "reference": "8.x-1.0-rc4",
+            "shasum": "d5d55167523a3ddccef7f66159b4c417d950d6f5"
         },
         "require": {
-            "drupal/core": "*"
+            "drupal/core": "^8.6",
+            "drupal/entity": "^1.0-rc1"
         },
         "type": "drupal-module",
         "extra": {
@@ -7322,20 +7404,21 @@
                 "dev-1.x": "1.x-dev"
             },
             "drupal": {
-                "version": "8.x-1.0-rc2",
-                "datestamp": "1560345781",
+                "version": "8.x-1.0-rc4",
+                "datestamp": "1563460085",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "RC releases are not covered by Drupal security advisories."
                 }
             },
             "patches_applied": {
+                "Prevent view.group_nodes.page_1 does not exist": "https://www.drupal.org/files/issues/2019-08-02/group-3062380-15.patch",
                 "Add computed field for Group reference": "https://www.drupal.org/files/issues/add-computed-field-without-FieldItemListComputedInterface-2718195-34.patch",
-                "Add permission to view group overview": "https://www.drupal.org/files/issues/group-2943564-2.patch",
-                "Use VBO together with group permission": "https://www.drupal.org/files/issues/2018-12-18/vbo-and-group-permission-3020883-5.patch",
+                "Use VBO together with group permission": "https://www.drupal.org/files/issues/2019-10-09/vbo-and-group-permission-3020883-10.patch",
                 "Ability to use group tokens in node context": "https://www.drupal.org/files/issues/2018-12-19/group-2774827-41-gnode-tokens.patch",
                 "Group: Don't try to re-save deleted entities": "https://www.drupal.org/files/issues/2018-11-01/3010896-02.patch",
-                "group_type and content_plugin of group_content_type are translatable": "https://www.drupal.org/files/issues/2019-05-14/group-content_schema-3054534-2-D8.patch"
+                "Statically cache loadByEntity()": "https://www.drupal.org/files/issues/2019-01-31/gnode-loadbyentity-3029878-2.patch",
+                "Statically cache gnode_node_grants()": "https://www.drupal.org/files/issues/2019-01-31/gnode-access-grants-3029849-2.patch"
             }
         },
         "installation-source": "dist",
@@ -7345,18 +7428,21 @@
         ],
         "authors": [
             {
-                "name": "kristiaanvandeneynde",
-                "homepage": "https://www.drupal.org/user/1345130"
+                "name": "Kristiaan Van den Eynde",
+                "homepage": "https://www.drupal.org/u/kristiaanvandeneynde",
+                "role": "Maintainer"
             },
             {
-                "name": "ronaldtebrake",
-                "homepage": "https://www.drupal.org/user/2314038"
+                "name": "Ronald te Brake",
+                "homepage": "https://www.drupal.org/u/ronaldtebrake",
+                "role": "Co-maintainer"
             }
         ],
         "description": "This module allows you to group users, content and other entities",
-        "homepage": "https://www.drupal.org/project/group",
+        "homepage": "http://drupal.org/project/group",
         "support": {
-            "source": "https://git.drupalcode.org/project/group"
+            "source": "https://git.drupalcode.org/project/group",
+            "issues": "https://drupal.org/project/issues/group"
         }
     },
     {
@@ -7695,7 +7781,7 @@
         "description": "Provides effects and operations for the Image API.",
         "homepage": "https://www.drupal.org/project/image_effects",
         "support": {
-            "source": "http://cgit.drupalcode.org/image_effects"
+            "source": "https://git.drupalcode.org/project/image_effects"
         }
     },
     {
@@ -8152,7 +8238,7 @@
         "description": "Include CSS files using <link> element instead of @import.",
         "homepage": "https://www.drupal.org/project/link_css",
         "support": {
-            "source": "http://cgit.drupalcode.org/link_css"
+            "source": "https://git.drupalcode.org/project/link_css"
         }
     },
     {
@@ -8255,6 +8341,10 @@
                 "homepage": "https://www.drupal.org/user/84263"
             },
             {
+                "name": "Manuel Garcia",
+                "homepage": "https://www.drupal.org/user/213194"
+            },
+            {
                 "name": "Nafes",
                 "homepage": "https://www.drupal.org/user/2489926"
             },
@@ -8270,7 +8360,7 @@
         "description": "Mail System",
         "homepage": "https://www.drupal.org/project/mailsystem",
         "support": {
-            "source": "http://cgit.drupalcode.org/mailsystem"
+            "source": "https://git.drupalcode.org/project/mailsystem"
         }
     },
     {
@@ -8464,7 +8554,7 @@
             },
             "drupal": {
                 "version": "8.x-1.0-rc2",
-                "datestamp": "1524519784",
+                "datestamp": "1570139286",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "RC releases are not covered by Drupal security advisories."
@@ -8543,7 +8633,7 @@
             },
             "drupal": {
                 "version": "8.x-1.9",
-                "datestamp": "1563995941",
+                "datestamp": "1567099985",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -8977,7 +9067,7 @@
         "description": "Allows permissions to be set on each node option such as published and authoring information.",
         "homepage": "https://www.drupal.org/project/override_node_options",
         "support": {
-            "source": "http://cgit.drupalcode.org/override_node_options"
+            "source": "https://git.drupalcode.org/project/override_node_options"
         }
     },
     {
@@ -9022,7 +9112,7 @@
             },
             "drupal": {
                 "version": "8.x-1.8",
-                "datestamp": "1553618281",
+                "datestamp": "1565881389",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -9089,7 +9179,7 @@
             },
             "drupal": {
                 "version": "8.x-1.4",
-                "datestamp": "1554239887",
+                "datestamp": "1570828084",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -9354,8 +9444,8 @@
                 "homepage": "https://www.drupal.org/user/324696"
             },
             {
-                "name": "aburrows",
-                "homepage": "https://www.drupal.org/user/577844"
+                "name": "anmolgoyal74",
+                "homepage": "https://www.drupal.org/user/3560428"
             },
             {
                 "name": "edutrul",
@@ -9365,7 +9455,7 @@
         "description": "A private message system for users to send messages to each other",
         "homepage": "https://www.drupal.org/project/private_message",
         "support": {
-            "source": "http://cgit.drupalcode.org/private_message"
+            "source": "https://git.drupalcode.org/project/private_message"
         }
     },
     {
@@ -9397,7 +9487,7 @@
             },
             "drupal": {
                 "version": "8.x-1.0-rc6",
-                "datestamp": "1562966885",
+                "datestamp": "1567007888",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "RC releases are not covered by Drupal security advisories."
@@ -10037,21 +10127,24 @@
     },
     {
         "name": "drupal/search_api",
-        "version": "1.13.0",
-        "version_normalized": "1.13.0.0",
+        "version": "1.14.0",
+        "version_normalized": "1.14.0.0",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/search_api.git",
-            "reference": "8.x-1.13"
+            "reference": "8.x-1.14"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/search_api-8.x-1.13.zip",
-            "reference": "8.x-1.13",
-            "shasum": "9f03dd5a4d9ee7c58d47aabc33d9229793d1195f"
+            "url": "https://ftp.drupal.org/files/projects/search_api-8.x-1.14.zip",
+            "reference": "8.x-1.14",
+            "shasum": "bfc45a5ea3965cd8355927cd56a8f6a148cfc5e5"
         },
         "require": {
-            "drupal/core": "^8.5"
+            "drupal/core": "^8.6"
+        },
+        "conflict": {
+            "drupal/search_api_solr": "2.* || 3.0 || 3.1"
         },
         "require-dev": {
             "drupal/search_api_autocomplete": "@dev",
@@ -10068,7 +10161,7 @@
                 "dev-1.x": "1.x-dev"
             },
             "drupal": {
-                "version": "8.x-1.13",
+                "version": "8.x-1.14",
                 "datestamp": "1562599986",
                 "security-coverage": {
                     "status": "covered",
@@ -10364,7 +10457,7 @@
         "description": "Allows login using different social networking services",
         "homepage": "https://www.drupal.org/project/social_auth",
         "support": {
-            "source": "http://cgit.drupalcode.org/social_auth"
+            "source": "https://git.drupalcode.org/project/social_auth"
         }
     },
     {
@@ -10748,7 +10841,7 @@
         "description": "Swiftmailer",
         "homepage": "https://www.drupal.org/project/swiftmailer",
         "support": {
-            "source": "http://cgit.drupalcode.org/swiftmailer"
+            "source": "https://git.drupalcode.org/project/swiftmailer"
         }
     },
     {
@@ -11444,7 +11537,7 @@
         "description": "Allows embedding of URLs using the Drupal 8 WYSIWYG or link fields.",
         "homepage": "https://www.drupal.org/project/url_embed",
         "support": {
-            "source": "http://cgit.drupalcode.org/url_embed",
+            "source": "https://git.drupalcode.org/project/url_embed",
             "issues": "https://www.drupal.org/project/issues/url_embed",
             "irc": "irc://irc.freenode.org/drupal-media"
         }
@@ -11779,30 +11872,30 @@
     },
     {
         "name": "drupal/views_bulk_operations",
-        "version": "2.5.0",
-        "version_normalized": "2.5.0.0",
+        "version": "3.2.0",
+        "version_normalized": "3.2.0.0",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/views_bulk_operations.git",
-            "reference": "8.x-2.5"
+            "reference": "8.x-3.2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/views_bulk_operations-8.x-2.5.zip",
-            "reference": "8.x-2.5",
-            "shasum": "3ec848b4f235720d05cb9713ea80a86415b6909f"
+            "url": "https://ftp.drupal.org/files/projects/views_bulk_operations-8.x-3.2.zip",
+            "reference": "8.x-3.2",
+            "shasum": "8648525ff00f32aa0b3682c104630cc392d08dbc"
         },
         "require": {
-            "drupal/core": "^8.4"
+            "drupal/core": "~8.5"
         },
         "type": "drupal-module",
         "extra": {
             "branch-alias": {
-                "dev-2.x": "2.x-dev"
+                "dev-3.x": "3.x-dev"
             },
             "drupal": {
-                "version": "8.x-2.5",
-                "datestamp": "1550740384",
+                "version": "8.x-3.2",
+                "datestamp": "1570032485",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -11812,6 +11905,12 @@
                 "services": {
                     "drush.services.yml": "^9"
                 }
+            },
+            "patches_applied": {
+                "Make sure select all gets fired for socialbase theme": "https://www.drupal.org/files/issues/2019-09-19/3042494-trigger-vbo-action-on-jquery-checkbox-change-5.patch",
+                "Make sure select all works better": "https://git.drupalcode.org/project/views_bulk_operations/commit/1e9d1e5.patch",
+                "Pass through arguments": "https://www.drupal.org/files/issues/2019-09-30/3084741-pass-arguments-to-view-2.patch",
+                "Save pager data": "https://git.drupalcode.org/project/views_bulk_operations/commit/8f4ac86cd9b118edafc23ebf34ceae78e29d6443.patch"
             }
         },
         "installation-source": "dist",
@@ -13068,17 +13167,17 @@
     },
     {
         "name": "goalgorilla/open_social",
-        "version": "6.3.0",
-        "version_normalized": "6.3.0.0",
+        "version": "7.0.0",
+        "version_normalized": "7.0.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/goalgorilla/open_social.git",
-            "reference": "1573eb4a125da36021b269a1c0b13d681a884a50"
+            "reference": "b6856c76732490be71fc85dbeaa1b9c16d816e7e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/goalgorilla/open_social/zipball/1573eb4a125da36021b269a1c0b13d681a884a50",
-            "reference": "1573eb4a125da36021b269a1c0b13d681a884a50",
+            "url": "https://api.github.com/repos/goalgorilla/open_social/zipball/b6856c76732490be71fc85dbeaa1b9c16d816e7e",
+            "reference": "b6856c76732490be71fc85dbeaa1b9c16d816e7e",
             "shasum": ""
         },
         "require": {
@@ -13099,12 +13198,13 @@
             "drupal-composer/drupal-scaffold": "^2.5.0",
             "drupal/address": "1.7",
             "drupal/admin_toolbar": "1.27",
+            "drupal/better_exposed_filters": "3.0-alpha6",
             "drupal/block_field": "1.0-alpha8",
             "drupal/bootstrap": "3.20",
             "drupal/config_update": "1.6",
             "drupal/core": "~8.7.1",
             "drupal/crop": "1.5",
-            "drupal/csv_serialization": "1.4.0",
+            "drupal/csv_serialization": "2.0-beta1",
             "drupal/ctools": "3.2",
             "drupal/data_policy": "^1.0-beta6",
             "drupal/devel": "2.1",
@@ -13117,7 +13217,7 @@
             "drupal/field_group": "3.0-beta1",
             "drupal/file_mdm": "1.1",
             "drupal/flag": "4.0-alpha3",
-            "drupal/group": "1.0-rc2",
+            "drupal/group": "1.0-rc4",
             "drupal/image_effects": "2.3",
             "drupal/image_widget_crop": "2.2",
             "drupal/lazy": "2.0",
@@ -13132,14 +13232,14 @@
             "drupal/profile": "1.0-rc6",
             "drupal/r4032login": "1.1",
             "drupal/redirect": "1.4",
-            "drupal/search_api": "1.13",
+            "drupal/search_api": "1.14",
             "drupal/shariff": "1.5",
             "drupal/social_api": "1.1",
             "drupal/social_auth": "1.0",
             "drupal/swiftmailer": "1.0-beta2",
             "drupal/token": "1.5",
             "drupal/url_embed": "1.0-alpha1",
-            "drupal/views_bulk_operations": "2.5",
+            "drupal/views_bulk_operations": "3.2",
             "drupal/views_infinite_scroll": "1.6",
             "drupal/votingapi": "3.0-beta1",
             "embed/embed": "v2.7.8",
@@ -13147,7 +13247,7 @@
             "google/apiclient": "^2.1",
             "guzzlehttp/psr7": "^1.3",
             "happyr/linkedin-api-client": "^1.0",
-            "league/csv": "^8.2",
+            "league/csv": "^9.3",
             "npm-asset/diff": "^3.5",
             "npm-asset/jquery.caret": "^0.3.1",
             "npm-asset/photoswipe": "^4.1.2",
@@ -13160,7 +13260,7 @@
             "swiftmailer/swiftmailer": "v5.4.12",
             "zaporylie/composer-drupal-optimizations": "^1.0"
         },
-        "time": "2019-09-27T14:56:22+00:00",
+        "time": "2019-10-15T11:41:51+00:00",
         "type": "drupal-profile",
         "extra": {
             "enable-patching": true,
@@ -13180,12 +13280,13 @@
                     "Automated crop integration": "https://www.drupal.org/files/issues/2018-12-16/2830768-crop-automated_crop_integration-45.patch"
                 },
                 "drupal/group": {
+                    "Prevent view.group_nodes.page_1 does not exist": "https://www.drupal.org/files/issues/2019-08-02/group-3062380-15.patch",
                     "Add computed field for Group reference": "https://www.drupal.org/files/issues/add-computed-field-without-FieldItemListComputedInterface-2718195-34.patch",
-                    "Add permission to view group overview": "https://www.drupal.org/files/issues/group-2943564-2.patch",
-                    "Use VBO together with group permission": "https://www.drupal.org/files/issues/2018-12-18/vbo-and-group-permission-3020883-5.patch",
+                    "Use VBO together with group permission": "https://www.drupal.org/files/issues/2019-10-09/vbo-and-group-permission-3020883-10.patch",
                     "Ability to use group tokens in node context": "https://www.drupal.org/files/issues/2018-12-19/group-2774827-41-gnode-tokens.patch",
                     "Group: Don't try to re-save deleted entities": "https://www.drupal.org/files/issues/2018-11-01/3010896-02.patch",
-                    "group_type and content_plugin of group_content_type are translatable": "https://www.drupal.org/files/issues/2019-05-14/group-content_schema-3054534-2-D8.patch"
+                    "Statically cache loadByEntity()": "https://www.drupal.org/files/issues/2019-01-31/gnode-loadbyentity-3029878-2.patch",
+                    "Statically cache gnode_node_grants()": "https://www.drupal.org/files/issues/2019-01-31/gnode-access-grants-3029849-2.patch"
                 },
                 "drupal/image_widget_crop": {
                     "Remove theme function override for verticalTabs": "https://www.drupal.org/files/issues/2019-02-13/3032584-verticaltabs-theme-override-removal-2.patch"
@@ -13220,6 +13321,12 @@
                 "drupal/lazy": {
                     "Make sure we grab active config for lazy settings": "https://www.drupal.org/files/issues/2019-05-23/3056630-2.patch",
                     "Make sure lazy doesnt do anything on cron": "https://www.drupal.org/files/issues/2019-07-30/3071331-lazy-cron-empty-path-2.patch"
+                },
+                "drupal/views_bulk_operations": {
+                    "Make sure select all gets fired for socialbase theme": "https://www.drupal.org/files/issues/2019-09-19/3042494-trigger-vbo-action-on-jquery-checkbox-change-5.patch",
+                    "Make sure select all works better": "https://git.drupalcode.org/project/views_bulk_operations/commit/1e9d1e5.patch",
+                    "Pass through arguments": "https://www.drupal.org/files/issues/2019-09-30/3084741-pass-arguments-to-view-2.patch",
+                    "Save pager data": "https://git.drupalcode.org/project/views_bulk_operations/commit/8f4ac86cd9b118edafc23ebf34ceae78e29d6443.patch"
                 }
             }
         },
@@ -13734,39 +13841,51 @@
     },
     {
         "name": "league/csv",
-        "version": "8.2.3",
-        "version_normalized": "8.2.3.0",
+        "version": "9.4.0",
+        "version_normalized": "9.4.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/thephpleague/csv.git",
-            "reference": "d2aab1e7bde802582c3879acf03d92716577c76d"
+            "reference": "e7225b6cc853942caef1c9c4d8889b716c34bc04"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/thephpleague/csv/zipball/d2aab1e7bde802582c3879acf03d92716577c76d",
-            "reference": "d2aab1e7bde802582c3879acf03d92716577c76d",
+            "url": "https://api.github.com/repos/thephpleague/csv/zipball/e7225b6cc853942caef1c9c4d8889b716c34bc04",
+            "reference": "e7225b6cc853942caef1c9c4d8889b716c34bc04",
             "shasum": ""
         },
         "require": {
+            "ext-dom": "*",
+            "ext-json": "*",
             "ext-mbstring": "*",
-            "php": ">=5.5.0"
+            "php": ">=7.0.10"
         },
         "require-dev": {
-            "friendsofphp/php-cs-fixer": "^1.9",
-            "phpunit/phpunit": "^4.0"
+            "ext-curl": "*",
+            "friendsofphp/php-cs-fixer": "^2.12",
+            "phpstan/phpstan": "^0.9.2",
+            "phpstan/phpstan-phpunit": "^0.9.4",
+            "phpstan/phpstan-strict-rules": "^0.9.0",
+            "phpunit/phpunit": "^6.0"
         },
-        "time": "2018-02-06T08:27:03+00:00",
+        "suggest": {
+            "ext-iconv": "Needed to ease transcoding CSV using iconv stream filters"
+        },
+        "time": "2019-10-02T18:32:54+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "8.2-dev"
+                "dev-master": "9.x-dev"
             }
         },
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "League\\Csv\\": "src"
-            }
+            },
+            "files": [
+                "src/functions_include.php"
+            ]
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
