@@ -110,7 +110,8 @@
         "drupal/system_tags": "^1.6",
         "drupal/number_formatter": "^1.0",
         "drupal/get_a_quote": "^1.0",
-        "drupal/svg_image": "^1.9"
+        "drupal/svg_image": "^1.9",
+        "drupal/inline_entity_revision_form": "^1.1"
 		
         },
     "repositories": [

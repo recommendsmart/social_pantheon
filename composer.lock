@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8a135cf4752af428ebc0fe5268e0c884",
+    "content-hash": "279bd78aa26d315363886726f1e0c0bd",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -7755,6 +7755,55 @@
             "homepage": "https://www.drupal.org/project/inline_entity_form",
             "support": {
                 "source": "https://git.drupalcode.org/project/inline_entity_form"
+            }
+        },
+        {
+            "name": "drupal/inline_entity_revision_form",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/inline_entity_revision_form.git",
+                "reference": "8.x-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/inline_entity_revision_form-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "9d819a8c3b6025b69918b9bc8b283a277a0f3982"
+            },
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/entity_reference_revisions": "*",
+                "drupal/inline_entity_form": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.1",
+                    "datestamp": "1571126585",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "rajat.dkte",
+                    "homepage": "https://www.drupal.org/user/2500180"
+                }
+            ],
+            "description": "Inline Entity Revision Form.",
+            "homepage": "https://www.drupal.org/project/inline_entity_revision_form",
+            "support": {
+                "source": "https://git.drupalcode.org/project/inline_entity_revision_form"
             }
         },
         {
