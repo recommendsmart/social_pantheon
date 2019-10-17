@@ -67,7 +67,7 @@ final class EmptyEscapeParser
     private static $trim_mask;
 
     /**
-     * @var string|bool
+     * @var string|false
      */
     private static $line;
 
@@ -153,7 +153,10 @@ final class EmptyEscapeParser
         self::$line = self::$document->fgets();
         do {
             $method = 'extractFieldContent';
-            $buffer = ltrim(self::$line, self::$trim_mask);
+            $buffer = '';
+            if (false !== self::$line) {
+                $buffer = ltrim(self::$line, self::$trim_mask);
+            }
             if (($buffer[0] ?? '') === self::$enclosure) {
                 $method = 'extractEnclosedFieldContent';
                 self::$line = $buffer;

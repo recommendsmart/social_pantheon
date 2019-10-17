@@ -111,7 +111,8 @@
         "drupal/number_formatter": "^1.0",
         "drupal/get_a_quote": "^1.0",
         "drupal/svg_image": "^1.9",
-        "drupal/inline_entity_revision_form": "^1.1"
+        "drupal/inline_entity_revision_form": "^1.1",
+        "drupal/membership_entity": "2.x-dev"
 		
         },
     "repositories": [

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "279bd78aa26d315363886726f1e0c0bd",
+    "content-hash": "ca40e95a2edde345a10cb44aaed68841",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -1849,20 +1849,20 @@
         },
         {
             "name": "drupal/bat",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/bat.git",
-                "reference": "8.x-1.1"
+                "reference": "8.x-1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/bat-8.x-1.1.zip",
-                "reference": "8.x-1.1",
-                "shasum": "0708a17799bf5fd4184bcc89f2a4f91232dc16ec"
+                "url": "https://ftp.drupal.org/files/projects/bat-8.x-1.2.zip",
+                "reference": "8.x-1.2",
+                "shasum": "b24fc2f66ab8ee653afc3f7382c246a0af35cdcf"
             },
             "require": {
-                "drupal/core": "~8.0",
+                "drupal/core": "^8.7.0",
                 "roomify/bat": "~1.2"
             },
             "require-dev": {
@@ -1883,8 +1883,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.1",
-                    "datestamp": "1562971385",
+                    "version": "8.x-1.2",
+                    "datestamp": "1571243217",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -1978,7 +1978,7 @@
         },
         {
             "name": "drupal/bat_booking",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "require": {
                 "drupal/bat": "self.version",
                 "drupal/bat_event": "*",
@@ -1990,8 +1990,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.1",
-                    "datestamp": "1562971385",
+                    "version": "8.x-1.2",
+                    "datestamp": "1571243217",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2024,7 +2024,7 @@
         },
         {
             "name": "drupal/bat_event",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "require": {
                 "drupal/bat": "self.version",
                 "drupal/bat_unit": "*",
@@ -2036,8 +2036,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.1",
-                    "datestamp": "1562971385",
+                    "version": "8.x-1.2",
+                    "datestamp": "1571243217",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2070,7 +2070,7 @@
         },
         {
             "name": "drupal/bat_event_ui",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "require": {
                 "drupal/bat": "self.version",
                 "drupal/bat_fullcalendar": "*",
@@ -2082,8 +2082,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.1",
-                    "datestamp": "1562971385",
+                    "version": "8.x-1.2",
+                    "datestamp": "1571243217",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2116,7 +2116,7 @@
         },
         {
             "name": "drupal/bat_fullcalendar",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "require": {
                 "drupal/bat": "self.version",
                 "drupal/bat_api": "*",
@@ -2130,8 +2130,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.1",
-                    "datestamp": "1562971385",
+                    "version": "8.x-1.2",
+                    "datestamp": "1571243217",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2164,7 +2164,7 @@
         },
         {
             "name": "drupal/bat_unit",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "require": {
                 "drupal/bat": "self.version",
                 "drupal/core": "*"
@@ -2175,8 +2175,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.1",
-                    "datestamp": "1562971385",
+                    "version": "8.x-1.2",
+                    "datestamp": "1571243217",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -8267,6 +8267,56 @@
             }
         },
         {
+            "name": "drupal/membership_entity",
+            "version": "dev-2.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/membership_entity.git",
+                "reference": "0a3934d283144c900c383adf924467296ae36120"
+            },
+            "require": {
+                "drupal/core": "~8.5"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.x-dev",
+                    "datestamp": "1523224980",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "davidcsonka",
+                    "homepage": "https://www.drupal.org/user/1761862"
+                },
+                {
+                    "name": "draenen",
+                    "homepage": "https://www.drupal.org/user/689392"
+                }
+            ],
+            "description": "Create and manage memberships",
+            "homepage": "https://www.drupal.org/project/membership_entity",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/membership_entity",
+                "issues": "https://www.drupal.org/project/issues/membership_entity"
+            },
+            "time": "2018-04-08T21:59:28+00:00"
+        },
+        {
             "name": "drupal/menu_link_content_visibility",
             "version": "1.2.0",
             "source": {
@@ -13512,16 +13562,16 @@
         },
         {
             "name": "league/csv",
-            "version": "9.4.0",
+            "version": "9.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/csv.git",
-                "reference": "e7225b6cc853942caef1c9c4d8889b716c34bc04"
+                "reference": "bf83acc23a7d60978fce36a384f97bf9d7d2ea0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/csv/zipball/e7225b6cc853942caef1c9c4d8889b716c34bc04",
-                "reference": "e7225b6cc853942caef1c9c4d8889b716c34bc04",
+                "url": "https://api.github.com/repos/thephpleague/csv/zipball/bf83acc23a7d60978fce36a384f97bf9d7d2ea0c",
+                "reference": "bf83acc23a7d60978fce36a384f97bf9d7d2ea0c",
                 "shasum": ""
             },
             "require": {
@@ -13577,7 +13627,7 @@
                 "read",
                 "write"
             ],
-            "time": "2019-10-02T18:32:54+00:00"
+            "time": "2019-10-17T06:05:32+00:00"
         },
         {
             "name": "lsolesen/pel",
@@ -17468,7 +17518,8 @@
         "farmsys/milk": 20,
         "drupal/dfinance": 20,
         "drupal/banana_dashboard": 20,
-        "drupal/crm_core": 20
+        "drupal/crm_core": 20,
+        "drupal/membership_entity": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
