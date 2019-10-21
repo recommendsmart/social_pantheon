@@ -8,7 +8,7 @@ dependencies:
   - social_event
 package: Social
 
-# Information added by Drupal.org packaging script on 2019-10-09
-version: '8.x-1.0-alpha9'
+# Information added by Drupal.org packaging script on 2019-10-17
+version: '8.x-1.0'
 project: 'social_geolocation'
-datestamp: 1570649288
+datestamp: 1571326395

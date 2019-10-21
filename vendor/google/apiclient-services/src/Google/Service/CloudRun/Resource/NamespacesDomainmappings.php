@@ -28,8 +28,9 @@ class Google_Service_CloudRun_Resource_NamespacesDomainmappings extends Google_S
   /**
    * Create a new domain mapping. (domainmappings.create)
    *
-   * @param string $parent The project ID or project number in which this domain
-   * mapping should be created.
+   * @param string $parent The namespace in which the domain mapping should be
+   * created. For Cloud Run (fully managed), replace {namespace_id} with the
+   * project ID or number.
    * @param Google_Service_CloudRun_DomainMapping $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_CloudRun_DomainMapping
@@ -43,8 +44,8 @@ class Google_Service_CloudRun_Resource_NamespacesDomainmappings extends Google_S
   /**
    * Delete a domain mapping. (domainmappings.delete)
    *
-   * @param string $name The name of the domain mapping being deleted. If needed,
-   * replace {namespace_id} with the project ID.
+   * @param string $name The name of the domain mapping to delete. For Cloud Run
+   * (fully managed), replace {namespace_id} with the project ID or number.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string apiVersion Cloud Run currently ignores this parameter.
@@ -64,8 +65,8 @@ class Google_Service_CloudRun_Resource_NamespacesDomainmappings extends Google_S
   /**
    * Get information about a domain mapping. (domainmappings.get)
    *
-   * @param string $name The name of the domain mapping being retrieved. If
-   * needed, replace {namespace_id} with the project ID.
+   * @param string $name The name of the domain mapping to retrieve. For Cloud Run
+   * (fully managed), replace {namespace_id} with the project ID or number.
    * @param array $optParams Optional parameters.
    * @return Google_Service_CloudRun_DomainMapping
    */
@@ -78,8 +79,9 @@ class Google_Service_CloudRun_Resource_NamespacesDomainmappings extends Google_S
   /**
    * List domain mappings. (domainmappings.listNamespacesDomainmappings)
    *
-   * @param string $parent The project ID or project number from which the domain
-   * mappings should be listed.
+   * @param string $parent The namespace from which the domain mappings should be
+   * listed. For Cloud Run (fully managed), replace {namespace_id} with the
+   * project ID or number.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string labelSelector Allows to filter resources based on a label.
@@ -112,8 +114,8 @@ class Google_Service_CloudRun_Resource_NamespacesDomainmappings extends Google_S
    * May provide metadata.resourceVersion to enforce update from last read for
    * optimistic concurrency control. (domainmappings.replaceDomainMapping)
    *
-   * @param string $name The name of the domain mapping being retrieved. If
-   * needed, replace {namespace_id} with the project ID.
+   * @param string $name The name of the domain mapping being retrieved. For Cloud
+   * Run (fully managed), replace {namespace_id} with the project ID or number.
    * @param Google_Service_CloudRun_DomainMapping $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_CloudRun_DomainMapping

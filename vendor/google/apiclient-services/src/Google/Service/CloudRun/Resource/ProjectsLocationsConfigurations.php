@@ -28,8 +28,9 @@ class Google_Service_CloudRun_Resource_ProjectsLocationsConfigurations extends G
   /**
    * Create a configuration. (configurations.create)
    *
-   * @param string $parent The project ID or project number in which this
-   * configuration should be created.
+   * @param string $parent The namespace in which the configuration should be
+   * created. For Cloud Run (fully managed), replace {namespace_id} with the
+   * project ID or number.
    * @param Google_Service_CloudRun_Configuration $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_CloudRun_Configuration
@@ -45,8 +46,8 @@ class Google_Service_CloudRun_Resource_ProjectsLocationsConfigurations extends G
    * revisions. Prior to calling this, any route referencing the configuration (or
    * revision from the configuration) must be deleted. (configurations.delete)
    *
-   * @param string $name The name of the configuration being deleted. If needed,
-   * replace {namespace_id} with the project ID.
+   * @param string $name The name of the configuration to delete. For Cloud Run
+   * (fully managed), replace {namespace_id} with the project ID or number.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string apiVersion Cloud Run currently ignores this parameter.
@@ -66,8 +67,8 @@ class Google_Service_CloudRun_Resource_ProjectsLocationsConfigurations extends G
   /**
    * Get information about a configuration. (configurations.get)
    *
-   * @param string $name The name of the configuration being retrieved. If needed,
-   * replace {namespace_id} with the project ID.
+   * @param string $name The name of the configuration to retrieve. For Cloud Run
+   * (fully managed), replace {namespace_id} with the project ID or number.
    * @param array $optParams Optional parameters.
    * @return Google_Service_CloudRun_Configuration
    */
@@ -80,10 +81,14 @@ class Google_Service_CloudRun_Resource_ProjectsLocationsConfigurations extends G
   /**
    * List configurations. (configurations.listProjectsLocationsConfigurations)
    *
-   * @param string $parent The project ID or project number from which the
-   * configurations should be listed.
+   * @param string $parent The namespace from which the configurations should be
+   * listed. For Cloud Run (fully managed), replace {namespace_id} with the
+   * project ID or number.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param int limit The maximum number of records that should be returned.
+   * @opt_param bool watch Flag that indicates that the client expects to watch
+   * this resource as well. Not currently used by Cloud Run.
    * @opt_param string labelSelector Allows to filter resources based on a label.
    * Supported operations are =, !=, exists, in, and notIn.
    * @opt_param string resourceVersion The baseline resource version from which
@@ -93,9 +98,6 @@ class Google_Service_CloudRun_Resource_ProjectsLocationsConfigurations extends G
    * specific value for a field name. Send this in a query string format. i.e.
    * 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
    * @opt_param string continue Optional encoded string to continue paging.
-   * @opt_param int limit The maximum number of records that should be returned.
-   * @opt_param bool watch Flag that indicates that the client expects to watch
-   * this resource as well. Not currently used by Cloud Run.
    * @return Google_Service_CloudRun_ListConfigurationsResponse
    */
   public function listProjectsLocationsConfigurations($parent, $optParams = array())
@@ -114,8 +116,8 @@ class Google_Service_CloudRun_Resource_ProjectsLocationsConfigurations extends G
    * May provide metadata.resourceVersion to enforce update from last read for
    * optimistic concurrency control. (configurations.replaceConfiguration)
    *
-   * @param string $name The name of the configuration being retrieved. If needed,
-   * replace {namespace_id} with the project ID.
+   * @param string $name The name of the configuration being replaced. For Cloud
+   * Run (fully managed), replace {namespace_id} with the project ID or number.
    * @param Google_Service_CloudRun_Configuration $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_CloudRun_Configuration
