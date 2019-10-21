@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0419c1c3d2b5939157bc7591a4f382dd",
+    "content-hash": "174d6942751c4dee10e22afe4d0622de",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -351,12 +351,12 @@
             "version": "4.0.10",
             "source": {
                 "type": "git",
-                "url": "git@github.com:ivaynberg/select2.git",
+                "url": "https://github.com/select2/select2.git",
                 "reference": "c4b730a0a014ea38641bfbcb245e4b7aa0ca5657"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ivaynberg/select2/zipball/c4b730a0a014ea38641bfbcb245e4b7aa0ca5657",
+                "url": "https://api.github.com/repos/select2/select2/zipball/c4b730a0a014ea38641bfbcb245e4b7aa0ca5657",
                 "reference": "c4b730a0a014ea38641bfbcb245e4b7aa0ca5657"
             },
             "type": "bower-asset",
@@ -11338,6 +11338,56 @@
             }
         },
         {
+            "name": "drupal/user_bundle",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/user_bundle.git",
+                "reference": "7eb9a2fceac98f6e6d03593957ca8df328a2bb0b"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1539980881",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "amateescu",
+                    "homepage": "https://www.drupal.org/user/729614"
+                },
+                {
+                    "name": "chrisolof",
+                    "homepage": "https://www.drupal.org/user/610882"
+                },
+                {
+                    "name": "mrsimonelliott",
+                    "homepage": "https://www.drupal.org/user/258167"
+                }
+            ],
+            "description": "Provides configurable user account types (user bundles).",
+            "homepage": "https://www.drupal.org/project/user_bundle",
+            "support": {
+                "source": "https://git.drupalcode.org/project/user_bundle"
+            },
+            "time": "2018-10-19T20:23:25+00:00"
+        },
+        {
             "name": "drupal/video_embed_field",
             "version": "1.6.0",
             "source": {
@@ -17519,7 +17569,8 @@
         "drupal/dfinance": 20,
         "drupal/banana_dashboard": 20,
         "drupal/crm_core": 20,
-        "drupal/membership_entity": 20
+        "drupal/membership_entity": 20,
+        "drupal/user_bundle": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
