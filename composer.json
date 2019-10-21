@@ -113,7 +113,8 @@
         "drupal/inline_entity_revision_form": "^1.1",
         "drupal/membership_entity": "2.x-dev",
         "drupal/commerce_funds": "^1.0",
-        "drupal/user_bundle": "1.x-dev"
+        "drupal/user_bundle": "1.x-dev",
+        "drupal/user_attendance": "1.x-dev"
 		
         },
     "repositories": [
