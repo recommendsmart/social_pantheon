@@ -1,0 +1,13 @@
+name: User bundle
+type: module
+description: Provides configurable user account types (user bundles).
+# core: 8.x
+dependencies:
+  - drupal:system (>=8.5.0)
+  - drupal:user
+
+# Information added by Drupal.org packaging script on 2018-10-19
+version: '8.x-1.x-dev'
+core: '8.x'
+project: 'user_bundle'
+datestamp: 1539980884
