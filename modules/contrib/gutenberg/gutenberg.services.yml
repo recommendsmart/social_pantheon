@@ -1,8 +1,0 @@
-services:
-  plugin.manager.gutenberg.plugin:
-    class: Drupal\gutenberg\GutenbergPluginManager
-    parent: default_plugin_manager
-
-  gutenberg.blocks_renderer:
-    class: Drupal\gutenberg\BlocksRendererHelper
-    arguments: ['@renderer', '@plugin.manager.block', '@current_user']
