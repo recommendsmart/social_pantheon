@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "04e2ec3bd6dc841aaac94e01110922d1",
+    "content-hash": "3608a8383454db4d079f78d903ab907f",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -3011,6 +3011,54 @@
             "homepage": "https://www.drupal.org/project/commerce",
             "support": {
                 "source": "https://git.drupalcode.org/project/commerce"
+            }
+        },
+        {
+            "name": "drupal/commerce_vendor",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/commerce_vendor.git",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/commerce_vendor-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "9b6d08d2b130ec3066db7822ff578e8844287082"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1571742187",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "azherbasha",
+                    "homepage": "https://www.drupal.org/user/2810473"
+                }
+            ],
+            "description": "Vendor content entity for commerce module",
+            "homepage": "https://www.drupal.org/project/commerce_vendor",
+            "support": {
+                "source": "http://cgit.drupalcode.org/commerce_vendor",
+                "issues": "https://www.drupal.org/project/issues/commerce_vendor"
             }
         },
         {

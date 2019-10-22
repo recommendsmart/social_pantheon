@@ -1,0 +1,7 @@
+entity.vendor.add_form:
+  route_name: entity.vendor.add_form
+  title: 'Add vendor'
+  appears_on:
+    - entity.vendor.collection
+    - entity.branch.collection
+    - view.branches.page_1

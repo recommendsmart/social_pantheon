@@ -1,0 +1,25 @@
+# Vendor menu items definition
+entity.vendor.collection:
+  title: 'Vendors'
+  route_name: entity.vendor.collection
+  description: 'Manage your vendors.'
+  parent: commerce.admin_commerce
+  weight: -100
+
+vendor.admin.structure.settings:
+  title: 'Vendor settings'
+  description: 'Configure Vendor entities.'
+  route_name: vendor.settings
+  parent: commerce_vendor.vendor_configuration
+
+commerce_vendor.vendor_configuration:
+  title: 'Vendor'
+  route_name: commerce_vendor.vendor_configuration
+  parent: commerce.configuration
+
+# Branch menu items definition
+branch.admin.structure.settings:
+  title: 'Branch settings'
+  description: 'Configure Branch entities.'
+  route_name: branch.settings
+  parent: commerce_vendor.vendor_configuration
