@@ -1,0 +1,11 @@
+name: 会员扩展
+type: module
+description: 用于扩展网站的用户系统
+# core: 8.x
+package: Model
+
+# Information added by Drupal.org packaging script on 2017-08-08
+version: '8.x-1.x-dev'
+core: '8.x'
+project: 'member_info'
+datestamp: 1502160546
