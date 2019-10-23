@@ -1,4 +1,0 @@
-services:
-  member.memberservice:
-    class: Drupal\member\MemberService
-    arguments: ['@database']
