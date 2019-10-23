@@ -600,17 +600,17 @@
     },
     {
         "name": "commerceguys/intl",
-        "version": "v1.0.4",
-        "version_normalized": "1.0.4.0",
+        "version": "v1.0.5",
+        "version_normalized": "1.0.5.0",
         "source": {
             "type": "git",
             "url": "https://github.com/commerceguys/intl.git",
-            "reference": "0fc176165f45d9f3dd9af50a05293c3fa99e4691"
+            "reference": "6a8c7a8da189d51856b642a61aeb8ae5114fec6c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/commerceguys/intl/zipball/0fc176165f45d9f3dd9af50a05293c3fa99e4691",
-            "reference": "0fc176165f45d9f3dd9af50a05293c3fa99e4691",
+            "url": "https://api.github.com/repos/commerceguys/intl/zipball/6a8c7a8da189d51856b642a61aeb8ae5114fec6c",
+            "reference": "6a8c7a8da189d51856b642a61aeb8ae5114fec6c",
             "shasum": ""
         },
         "require": {
@@ -620,7 +620,7 @@
             "mikey179/vfsstream": "1.*",
             "phpunit/phpunit": "~4.0"
         },
-        "time": "2019-03-31T23:36:43+00:00",
+        "time": "2019-10-22T10:40:46+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
