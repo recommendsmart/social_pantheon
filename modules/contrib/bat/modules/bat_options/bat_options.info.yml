@@ -1,0 +1,14 @@
+name: BAT Options
+type: module
+description: Options field type for BAT.
+core: 8.x
+package: bat
+
+dependencies:
+  - bat:bat
+  - commerce:commerce
+
+# Information added by Drupal.org packaging script on 2019-10-16
+version: '8.x-1.2'
+project: 'bat'
+datestamp: 1571242393

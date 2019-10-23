@@ -1,0 +1,15 @@
+name: Booking and Availability Management API
+type: module
+description: Provides API access to BAT Booking and Availability Data for Drupal 8
+# core: 8.x
+package: bat
+dependencies:
+  - bat:bat_event
+  - hal
+  - services
+
+# Information added by Drupal.org packaging script on 2019-03-25
+version: '8.x-1.0'
+core: '8.x'
+project: 'bat_api'
+datestamp: 1553537585

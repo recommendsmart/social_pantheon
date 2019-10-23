@@ -56,3 +56,8 @@ entity.branch.delete_form:
   base_route:  entity.branch.canonical
   title: Delete
   weight: 10
+
+entity.branch.collection:
+  route_name: entity.branch.collection
+  base_route: entity.branch.collection
+  title: 'Branches'

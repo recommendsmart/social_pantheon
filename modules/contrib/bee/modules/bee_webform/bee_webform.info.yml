@@ -1,0 +1,14 @@
+name: BEE Webform
+type: module
+description: Provides a webform component for creating BEE bookings.
+core: 8.x
+package: bat
+
+dependencies:
+  - bee:bee
+  - webform:webform
+
+# Information added by Drupal.org packaging script on 2019-09-16
+version: '8.x-1.0-beta8'
+project: 'bee'
+datestamp: 1568649787

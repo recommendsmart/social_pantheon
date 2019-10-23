@@ -90,6 +90,7 @@ class ComposerStaticInitDrupal8
         ),
         'R' => 
         array (
+            'Roomify\\Bat\\' => 12,
             'RRule\\' => 6,
         ),
         'P' => 
@@ -320,6 +321,10 @@ class ComposerStaticInitDrupal8
         'Social\\' => 
         array (
             0 => __DIR__ . '/../..' . '/profiles/contrib/social/src',
+        ),
+        'Roomify\\Bat\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/roomify/bat/src',
         ),
         'RRule\\' => 
         array (

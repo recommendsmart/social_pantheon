@@ -4,7 +4,7 @@ description: 'Vendor content entity for commerce module'
 core: 8.x
 package: 'Commerce'
 
-# Information added by Drupal.org packaging script on 2019-10-22
-version: '8.x-1.0'
+# Information added by Drupal.org packaging script on 2019-10-23
+version: '8.x-1.1'
 project: 'commerce_vendor'
-datestamp: 1571742189
+datestamp: 1571826787

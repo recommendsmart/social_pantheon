@@ -113,7 +113,8 @@
         "drupal/entity_redirect": "^1.5",
         "drupal/commerce_vendor": "^1.0",
         "drupal/views_templates": "^1.0",
-        "drupal/calendar": "1.x-dev"
+        "drupal/calendar": "1.x-dev",
+        "drupal/bee": "^1.0"
 		
         },
     "repositories": [

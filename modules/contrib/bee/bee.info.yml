@@ -1,0 +1,15 @@
+name: Bookable Entities Everywhere
+type: module
+description: Bookable Entities Everywhere - easily make content types bookable with the BAT module.
+core: 8.x
+package: bat
+
+dependencies:
+  - bat:bat_booking
+  - bat:bat_event_ui
+  - office_hours:office_hours
+
+# Information added by Drupal.org packaging script on 2019-09-16
+version: '8.x-1.0-beta8'
+project: 'bee'
+datestamp: 1568649787
