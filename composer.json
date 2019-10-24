@@ -114,8 +114,7 @@
         "drupal/commerce_vendor": "^1.1",
         "drupal/views_templates": "^1.0",
         "drupal/calendar": "1.x-dev",
-        "drupal/bee": "^1.0",
-        "drupal/datatables": "^1.0"
+        "drupal/bee": "^1.0"
 		
         },
     "repositories": [
