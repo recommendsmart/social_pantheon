@@ -4800,6 +4800,57 @@
         }
     },
     {
+        "name": "drupal/datatables",
+        "version": "dev-1.x",
+        "version_normalized": "dev-1.x",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/datatables.git",
+            "reference": "35298070a902270b1e8eb45038096766d8725707"
+        },
+        "require": {
+            "drupal/core": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.0-rc1+3-dev",
+                "datestamp": "1536783180",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Dev releases are not covered by Drupal security advisories."
+                }
+            }
+        },
+        "installation-source": "source",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "Arkener",
+                "homepage": "https://www.drupal.org/user/2284182"
+            },
+            {
+                "name": "diqidoq",
+                "homepage": "https://www.drupal.org/user/1001934"
+            },
+            {
+                "name": "duellj",
+                "homepage": "https://www.drupal.org/user/168159"
+            }
+        ],
+        "description": "Provides integration of the jquery DataTables plugin into views.",
+        "homepage": "https://www.drupal.org/project/datatables",
+        "support": {
+            "source": "https://git.drupalcode.org/project/datatables"
+        }
+    },
+    {
         "name": "drupal/date_recur",
         "version": "2.0.0",
         "version_normalized": "2.0.0.0",

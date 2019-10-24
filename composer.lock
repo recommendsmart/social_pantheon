@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "af50240c5c32be7609478ba4be3f4c0d",
+    "content-hash": "d37419091f1f61006b9c5fd2239f841c",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -4651,6 +4651,56 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/data_policy"
             }
+        },
+        {
+            "name": "drupal/datatables",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/datatables.git",
+                "reference": "35298070a902270b1e8eb45038096766d8725707"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-rc1+3-dev",
+                    "datestamp": "1536783180",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Arkener",
+                    "homepage": "https://www.drupal.org/user/2284182"
+                },
+                {
+                    "name": "diqidoq",
+                    "homepage": "https://www.drupal.org/user/1001934"
+                },
+                {
+                    "name": "duellj",
+                    "homepage": "https://www.drupal.org/user/168159"
+                }
+            ],
+            "description": "Provides integration of the jquery DataTables plugin into views.",
+            "homepage": "https://www.drupal.org/project/datatables",
+            "support": {
+                "source": "https://git.drupalcode.org/project/datatables"
+            },
+            "time": "2018-09-12T20:08:55+00:00"
         },
         {
             "name": "drupal/date_recur",
@@ -17098,7 +17148,8 @@
         "drupal/membership_entity": 20,
         "drupal/user_bundle": 20,
         "drupal/user_attendance": 20,
-        "drupal/account_field_split": 15
+        "drupal/account_field_split": 15,
+        "drupal/datatables": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

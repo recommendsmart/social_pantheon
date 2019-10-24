@@ -112,7 +112,8 @@
         "drupal/account_field_split": "^1.0@alpha",
         "drupal/entity_redirect": "^1.5",
         "drupal/commerce_vendor": "^1.1",
-        "drupal/bee": "^1.0"
+        "drupal/bee": "^1.0",
+        "drupal/datatables": "1.x-dev"
 		
         },
     "repositories": [
