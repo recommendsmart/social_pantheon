@@ -15,7 +15,9 @@ services:
 
   forms_steps.manager:
     class: Drupal\forms_steps\Service\FormsStepsManager
-    arguments: ['@entity_display.repository']
+    arguments:
+      - '@entity_display.repository'
+      - '@config.factory'
 
   forms_steps.workflow.manager:
     class: Drupal\forms_steps\Service\WorkflowManager

@@ -17,7 +17,7 @@
 
 class Google_Service_CloudShell_Environment extends Google_Collection
 {
-  protected $collection_key = 'publicKeys';
+  protected $collection_key = 'webPorts';
   public $dockerImage;
   public $id;
   public $name;
@@ -30,6 +30,7 @@ class Google_Service_CloudShell_Environment extends Google_Collection
   public $state;
   public $vmSizeExpireTime;
   public $webHost;
+  public $webPorts;
 
   public function setDockerImage($dockerImage)
   {
@@ -124,5 +125,13 @@ class Google_Service_CloudShell_Environment extends Google_Collection
   public function getWebHost()
   {
     return $this->webHost;
+  }
+  public function setWebPorts($webPorts)
+  {
+    $this->webPorts = $webPorts;
+  }
+  public function getWebPorts()
+  {
+    return $this->webPorts;
   }
 }
