@@ -1,0 +1,23 @@
+billing.page:
+  path: '/user/{user}/billing'
+  defaults:
+    _controller: '\Drupal\billing\Controller\PageUserBilling::page'
+    _title: 'Billing'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      user:
+        type: entity:user
+
+billing.add_correction:
+  path: '/user/{user}/billing/add-correction'
+  defaults:
+    _form: '\Drupal\billing\Form\AddCorrection'
+    _title: 'Add Billing Correction'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      user:
+        type: entity:user

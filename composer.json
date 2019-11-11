@@ -115,7 +115,9 @@
         "drupal/bee": "^1.0",
         "drupal/datatables": "1.x-dev",
         "drupal/commerce_invoice": "^1.0",
-        "drupal/commerce_product_tax": "^1.0"
+        "drupal/commerce_product_tax": "^1.0",
+        "drupal/billing": "^1.1",
+        "drupal/taxonomy_unique": "^2.2"
 		
         },
     "repositories": [

@@ -1,0 +1,10 @@
+services:
+  billing.currency:
+    class: Drupal\billing\Service\CurrencyService
+    arguments: []
+  billing.transaction:
+    class: Drupal\billing\Service\TransactionService
+    arguments: []
+  billing.account:
+    class: Drupal\billing\Service\AccountService
+    arguments: []
