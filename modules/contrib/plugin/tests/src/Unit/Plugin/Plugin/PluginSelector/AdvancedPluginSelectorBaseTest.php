@@ -59,7 +59,7 @@ class AdvancedPluginSelectorBaseTest extends PluginSelectorBaseTestBase {
    * @covers ::__construct
    */
   function testCreate() {
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = [
       ['plugin.default_plugin_resolver', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->defaultPluginResolver],
       ['string_translation', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->stringTranslation ],
@@ -78,7 +78,7 @@ class AdvancedPluginSelectorBaseTest extends PluginSelectorBaseTestBase {
    * @covers ::buildPluginForm
    */
   public function testBuildPluginForm() {
-    $form_state = $this->getMock(FormStateInterface::class);
+    $form_state = $this->createMock(FormStateInterface::class);
 
     $plugin_form = [
       '#foo' => $this->randomMachineName(),
@@ -109,7 +109,7 @@ class AdvancedPluginSelectorBaseTest extends PluginSelectorBaseTestBase {
   public function testBuildPluginFormWithoutPluginForm() {
     $form_state = new FormState();
 
-    $plugin = $this->getMock(PluginInspectionInterface::class);
+    $plugin = $this->createMock(PluginInspectionInterface::class);
 
     $method = new \ReflectionMethod($this->sut, 'buildPluginForm');
     $method->setAccessible(TRUE);
@@ -128,7 +128,7 @@ class AdvancedPluginSelectorBaseTest extends PluginSelectorBaseTestBase {
    */
   public function testBuildSelectorFormWithoutAvailablePlugins() {
     $form = [];
-    $form_state = $this->getMock(FormStateInterface::class);
+    $form_state = $this->createMock(FormStateInterface::class);
 
     $this->selectablePluginManager->expects($this->any())
       ->method('getDefinitions')
@@ -167,10 +167,10 @@ class AdvancedPluginSelectorBaseTest extends PluginSelectorBaseTestBase {
    */
   public function testBuildSelectorFormWithOneAvailablePlugin() {
     $form = [];
-    $form_state = $this->getMock(FormStateInterface::class);
+    $form_state = $this->createMock(FormStateInterface::class);
 
     $plugin_id = $this->randomMachineName();
-    $plugin = $this->getMock(PluginInspectionInterface::class);
+    $plugin = $this->createMock(PluginInspectionInterface::class);
 
     $plugin_definitions = [
       $plugin_id => [
@@ -241,14 +241,14 @@ class AdvancedPluginSelectorBaseTest extends PluginSelectorBaseTestBase {
    */
   public function testBuildSelectorFormWithMultipleAvailablePlugins() {
     $form = [];
-    $form_state = $this->getMock(FormStateInterface::class);
+    $form_state = $this->createMock(FormStateInterface::class);
     $cache_contexts = [$this->randomMachineName()];
     $cache_tags = [$this->randomMachineName()];
 
     $plugin_id_a = $this->randomMachineName();
-    $plugin_a = $this->getMock(PluginInspectionInterface::class);
+    $plugin_a = $this->createMock(PluginInspectionInterface::class);
     $plugin_id_b = $this->randomMachineName();
-    $plugin_b = $this->getMock(AdvancedPluginSelectorBaseUnitTestPluginFormPluginInterface::class);
+    $plugin_b = $this->createMock(AdvancedPluginSelectorBaseUnitTestPluginFormPluginInterface::class);
     $this->configureMockCacheableDependency($plugin_b, $cache_contexts, mt_rand(), $cache_tags);
 
     $plugin_definitions = [
@@ -309,7 +309,7 @@ class AdvancedPluginSelectorBaseTest extends PluginSelectorBaseTestBase {
         ],
       ],
     ];
-    $form_state = $this->getMock(FormStateInterface::class);
+    $form_state = $this->createMock(FormStateInterface::class);
 
     $plugin = $this->getMockForAbstractClass(AdvancedPluginSelectorBaseUnitTestPluginFormPluginInterface::class);
     $plugin->expects($this->once())
@@ -358,7 +358,7 @@ class AdvancedPluginSelectorBaseTest extends PluginSelectorBaseTestBase {
 
     // The plugin is set for the first time. The plugin form must not be
     // validated, as there is no input for it yet.
-    $form_state = $this->getMock(FormStateInterface::class);
+    $form_state = $this->createMock(FormStateInterface::class);
     $form_state->expects($this->atLeastOnce())
       ->method('getValues')
       ->willReturn([
@@ -381,7 +381,7 @@ class AdvancedPluginSelectorBaseTest extends PluginSelectorBaseTestBase {
 
     // The form is validated, but the plugin remains unchanged, and as such
     // should validate its own form as well.
-    $form_state = $this->getMock(FormStateInterface::class);
+    $form_state = $this->createMock(FormStateInterface::class);
     $form_state->expects($this->atLeastOnce())
       ->method('getValues')
       ->willReturn([
@@ -407,7 +407,7 @@ class AdvancedPluginSelectorBaseTest extends PluginSelectorBaseTestBase {
 
     // The plugin has changed. The plugin form must not be validated, as there
     // is no input for it yet.
-    $form_state = $this->getMock(FormStateInterface::class);
+    $form_state = $this->createMock(FormStateInterface::class);
     $form_state->expects($this->atLeastOnce())
       ->method('getValues')
       ->willReturn([
@@ -430,7 +430,7 @@ class AdvancedPluginSelectorBaseTest extends PluginSelectorBaseTestBase {
 
     // Change the plugin ID back to the original. No new plugin may be
     // instantiated, nor must the plugin form be validated.
-    $form_state = $this->getMock(FormStateInterface::class);
+    $form_state = $this->createMock(FormStateInterface::class);
     $form_state->expects($this->atLeastOnce())
       ->method('getValues')
       ->willReturn([
@@ -457,7 +457,7 @@ class AdvancedPluginSelectorBaseTest extends PluginSelectorBaseTestBase {
    */
   public function testRebuildForm() {
     $form = [];
-    $form_state = $this->getMock(FormStateInterface::class);
+    $form_state = $this->createMock(FormStateInterface::class);
     $form_state->expects($this->once())
       ->method('setRebuild')
       ->with(TRUE);
@@ -470,7 +470,7 @@ class AdvancedPluginSelectorBaseTest extends PluginSelectorBaseTestBase {
    */
   public function testBuildNoAvailablePlugins() {
     $element = [];
-    $form_state = $this->getMock(FormStateInterface::class);
+    $form_state = $this->createMock(FormStateInterface::class);
     $form = [];
 
     $label = $this->randomMachineName();
@@ -517,7 +517,7 @@ class AdvancedPluginSelectorBaseTest extends PluginSelectorBaseTestBase {
     $element = [
       '#available_plugins' => [$plugin],
     ];
-    $form_state = $this->getMock(FormStateInterface::class);
+    $form_state = $this->createMock(FormStateInterface::class);
     $form = [];
 
     $label = $this->randomMachineName();
@@ -555,12 +555,12 @@ class AdvancedPluginSelectorBaseTest extends PluginSelectorBaseTestBase {
    * @covers ::buildMultipleAvailablePlugins
    */
   public function testbuildMultipleAvailablePlugins() {
-    $plugin = $this->getMock(PluginInspectionInterface::class);
+    $plugin = $this->createMock(PluginInspectionInterface::class);
 
     $element = [
       '#available_plugins' => [$plugin],
     ];
-    $form_state = $this->getMock(FormStateInterface::class);
+    $form_state = $this->createMock(FormStateInterface::class);
     $form = [];
 
     $plugin_form = [
@@ -606,7 +606,7 @@ class AdvancedPluginSelectorBaseTest extends PluginSelectorBaseTestBase {
    * @covers ::getSelectedPlugin
    */
   public function testGetPlugin() {
-    $plugin = $this->getMock(PluginInspectionInterface::class);
+    $plugin = $this->createMock(PluginInspectionInterface::class);
     $this->assertSame($this->sut, $this->sut->setSelectedPlugin($plugin));
     $this->assertSame($plugin, $this->sut->getSelectedPlugin());
   }
@@ -624,7 +624,7 @@ class AdvancedPluginSelectorBaseTest extends PluginSelectorBaseTestBase {
 
     $plugin_id = $this->randomMachineName();
     $plugin_label = $this->randomMachineName();
-    $plugin = $this->getMock(PluginInspectionInterface::class);
+    $plugin = $this->createMock(PluginInspectionInterface::class);
     $plugin->expects($this->any())
       ->method('getPluginId')
       ->willReturn($plugin_id);
@@ -634,7 +634,7 @@ class AdvancedPluginSelectorBaseTest extends PluginSelectorBaseTestBase {
     $element = [
       '#parents' => ['foo', 'bar'],
     ];
-    $form_state = $this->getMock(FormStateInterface::class);
+    $form_state = $this->createMock(FormStateInterface::class);
     $available_plugins = [$plugin];
 
     $expected_build_change = [

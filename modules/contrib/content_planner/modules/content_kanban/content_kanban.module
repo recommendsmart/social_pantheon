@@ -46,7 +46,9 @@ function content_kanban_theme($existing, $type, $theme, $path) {
         'entity_id' => '',
         'entity_type_config' => NULL,
         'user_picture' => NULL,
+        'workflow_state' => NULL,
         'operation_links' => NULL,
+        'item_options' => [],
       ],
     ],
 

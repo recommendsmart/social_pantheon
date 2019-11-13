@@ -2,6 +2,7 @@
 
 namespace Drupal\plugin\Plugin\DataType;
 
+use Drupal\Component\Plugin\ConfigurableInterface;
 use Drupal\Component\Plugin\ConfigurablePluginInterface;
 use Drupal\Core\TypedData\DataDefinitionInterface;
 use Drupal\Core\TypedData\TypedData;
@@ -51,7 +52,7 @@ class PluginConfiguration extends TypedData {
   public function setValue($value, $notify = TRUE) {
     $value = (array) $value;
     $plugin_instance = $this->parent->getContainedPluginInstance();
-    if ($plugin_instance instanceof ConfigurablePluginInterface) {
+    if ($plugin_instance instanceof ConfigurableInterface || $plugin_instance instanceof ConfigurablePluginInterface) {
       $plugin_instance->setConfiguration($value);
     }
     $this->parent->onChange($this->getName());
@@ -62,7 +63,7 @@ class PluginConfiguration extends TypedData {
    */
   public function getValue() {
     $plugin_instance = $this->parent->getContainedPluginInstance();
-    if ($plugin_instance instanceof ConfigurablePluginInterface) {
+    if ($plugin_instance instanceof ConfigurableInterface || $plugin_instance instanceof ConfigurablePluginInterface) {
       return $plugin_instance->getConfiguration();
     }
     return [];

@@ -12,6 +12,8 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Database\Driver\mysql\Connection;
 use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\content_kanban\Form\KanbanFilterForm;
 
 /**
  * Class KanbanService.
@@ -294,7 +296,7 @@ class KanbanService {
     // Basic table.
     if (!empty($entityIds)) {
       $query = [];
-      // Build the query dinamically for all entities.
+      // Build the query dynamically for all entities.
       foreach ($entityIds as $entityTypeName => $entityId) {
         try {
           $entityStorage = $this->entityTypeManager->getStorage($entityTypeName);
@@ -305,11 +307,23 @@ class KanbanService {
           $query[$entityTypeName]->addField('nfd', 'created');
           $query[$entityTypeName]->addField('nfd', 'status');
           $query[$entityTypeName]->addField('nfd', 'type');
+
           // Join with users table to get the username who added the entity.
           $query[$entityTypeName]->addField('ufd', 'name', 'username');
           $query[$entityTypeName]->addField('nfd', $entityKeys['uid']);
           $query[$entityTypeName]->condition('nfd.' . $entityKeys['id'], $entityIds[$entityTypeName], 'in');
           $query[$entityTypeName]->innerJoin('users_field_data', 'ufd', 'nfd.' . $entityKeys['uid'] . ' = ufd.uid');
+
+          // Filter by Starting Date.
+          if (KanbanFilterForm::getDateRangeFilter()) {
+
+            $searchFromTime = time() - (86400 * KanbanFilterForm::getDateRangeFilter());
+
+            //@todo how about non mysql systems?
+            $query[$entityTypeName]->condition('nfd.created',$searchFromTime,'>=');
+          }
+
+
           // Sort.
           if ($this->database->schema()->fieldExists($entityTypeName . '_field_data', 'publish_on') && $this->contentCalendarModuleIsEnabled()) {
             $query[$entityTypeName]->orderBy('nfd.publish_on', 'ASC');
@@ -317,6 +331,7 @@ class KanbanService {
           else {
             $query[$entityTypeName]->orderBy('nfd.created', 'ASC');
           }
+
           $result[$entityTypeName] = $query[$entityTypeName]->execute()->fetchAll();
         }
         catch (InvalidPluginDefinitionException $e) {

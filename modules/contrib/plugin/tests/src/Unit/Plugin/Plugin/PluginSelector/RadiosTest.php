@@ -58,7 +58,7 @@ class RadiosTest extends PluginSelectorBaseTestBase {
    */
   public function testBuildSelectorFormWithoutAvailablePlugins() {
     $form = [];
-    $form_state = $this->getMock(FormStateInterface::class);
+    $form_state = $this->createMock(FormStateInterface::class);
 
     $this->selectablePluginManager->expects($this->any())
       ->method('getDefinitions')
@@ -82,11 +82,11 @@ class RadiosTest extends PluginSelectorBaseTestBase {
 
     $plugin_id = $this->randomMachineName();
     $plugin_label = $this->randomMachineName();
-    $plugin_definition = $this->getMock(PluginLabelDefinitionInterface::class);
+    $plugin_definition = $this->createMock(PluginLabelDefinitionInterface::class);
     $plugin_definition->expects($this->atLeastOnce())
       ->method('getLabel')
       ->willReturn($plugin_label);
-    $plugin = $this->getMock(PluginInspectionInterface::class);
+    $plugin = $this->createMock(PluginInspectionInterface::class);
     $plugin->expects($this->atLeastOnce())
       ->method('getPluginDefinition')
       ->willReturn($plugin_definition);
@@ -108,7 +108,7 @@ class RadiosTest extends PluginSelectorBaseTestBase {
       '#parents' => array('foo', 'bar'),
       '#title' => $selector_title,
     );
-    $form_state = $this->getMock(FormStateInterface::class);
+    $form_state = $this->createMock(FormStateInterface::class);
     $available_plugins = array($plugin);
 
     $expected_build_plugin_id = array(

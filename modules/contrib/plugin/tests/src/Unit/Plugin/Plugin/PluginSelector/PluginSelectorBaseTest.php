@@ -39,7 +39,7 @@ class PluginSelectorBaseTest extends PluginSelectorBaseTestBase {
    * @covers ::__construct
    */
   function testCreate() {
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = [
       ['plugin.default_plugin_resolver', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->defaultPluginResolver],
     ];
@@ -113,7 +113,7 @@ class PluginSelectorBaseTest extends PluginSelectorBaseTestBase {
    * @covers ::getPreviouslySelectedPlugins
    */
   public function testGetPreviouslySelectedPlugins() {
-    $plugin = $this->getMock(PluginInspectionInterface::class);
+    $plugin = $this->createMock(PluginInspectionInterface::class);
     $this->sut->setPreviouslySelectedPlugins([$plugin]);
     $this->assertSame([$plugin], $this->sut->getPreviouslySelectedPlugins());
   }
@@ -126,7 +126,7 @@ class PluginSelectorBaseTest extends PluginSelectorBaseTestBase {
    */
   public function testGetKeepPreviouslySelectedPlugins() {
     $keep = (bool) mt_rand(0, 1);
-    $plugin = $this->getMock(PluginInspectionInterface::class);
+    $plugin = $this->createMock(PluginInspectionInterface::class);
     $this->sut->setPreviouslySelectedPlugins([$plugin]);
     $this->assertSame($this->sut, $this->sut->setKeepPreviouslySelectedPlugins($keep));
     $this->assertSame($keep, $this->sut->getKeepPreviouslySelectedPlugins());
@@ -143,7 +143,7 @@ class PluginSelectorBaseTest extends PluginSelectorBaseTestBase {
    */
   public function testGetSelectedPlugin() {
     $this->sut->setSelectablePluginType($this->selectablePluginType);
-    $plugin = $this->getMock(PluginInspectionInterface::class);
+    $plugin = $this->createMock(PluginInspectionInterface::class);
     $this->assertSame($this->sut, $this->sut->setSelectedPlugin($plugin));
     $this->assertSame($plugin, $this->sut->getSelectedPlugin());
   }

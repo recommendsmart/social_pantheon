@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\content_planner\Annotation\DashboardBlock.
- */
-
 namespace Drupal\content_planner\Annotation;
 
 use Drupal\Component\Annotation\Plugin;

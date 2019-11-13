@@ -44,7 +44,7 @@ class PluginCollectionItemDeriverTest extends UnitTestCase {
 
     $this->container = $this->prophesize(ContainerInterface::class);
 
-    $this->pluginTypeManager = $this->getMock(PluginTypeManagerInterface::class);
+    $this->pluginTypeManager = $this->createMock(PluginTypeManagerInterface::class);
 
     $this->sut = new PluginCollectionItemDeriver($this->pluginTypeManager);
   }
@@ -54,7 +54,7 @@ class PluginCollectionItemDeriverTest extends UnitTestCase {
    * @covers ::__construct
    */
   function testCreate() {
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = [
       ['plugin.plugin_type_manager', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->pluginTypeManager],
     ];
@@ -72,9 +72,9 @@ class PluginCollectionItemDeriverTest extends UnitTestCase {
   function testGetDerivativeDefinitions() {
     $string_translation = $this->getStringTranslationStub();
 
-    $class_resolver = $this->getMock(ClassResolverInterface::class);
+    $class_resolver = $this->createMock(ClassResolverInterface::class);
 
-    $typed_config_manager = $this->getMock(TypedConfigManagerInterface::class);
+    $typed_config_manager = $this->createMock(TypedConfigManagerInterface::class);
     $typed_config_manager->expects($this->atLeastOnce())
       ->method('hasConfigSchema')
       ->willReturn(TRUE);

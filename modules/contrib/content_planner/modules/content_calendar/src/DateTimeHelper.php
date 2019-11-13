@@ -2,13 +2,15 @@
 
 namespace Drupal\content_calendar;
 
+use Drupal\Core\Datetime\DateHelper;
+
 abstract class DateTimeHelper {
 
   static $formatMYSQLDateOnlyRegex = '\d{4}\-\d{2}\-\d{2}';
   static $formatMYSQLDateOnly = 'Y-m-d';
 
   /**
-   * Get Month label by its number
+   * Get Month label by its number.
    *
    * @param int $number
    *
@@ -16,9 +18,9 @@ abstract class DateTimeHelper {
    */
   public static function getMonthLabelByNumber($number) {
 
-    if(is_numeric($number) && ($number >= 1 && $number <= 12)) {
+    if (is_numeric($number) && ($number >= 1 && $number <= 12)) {
 
-      $month_labels = array(
+      $month_labels = [
         1 => t('January'),
         2 => t('February'),
         3 => t('March'),
@@ -31,7 +33,7 @@ abstract class DateTimeHelper {
         10 => t('October'),
         11 => t('November'),
         12 => t('December'),
-      );
+      ];
 
       return $month_labels[$number];
     }
@@ -40,7 +42,7 @@ abstract class DateTimeHelper {
   }
 
   /**
-   * Get the count of days in a given month of a given year
+   * Get the count of days in a given month of a given year.
    *
    * @param int $month
    * @param int $year
@@ -52,7 +54,7 @@ abstract class DateTimeHelper {
   }
 
   /**
-   * Get the first day of a given month and year
+   * Get the first day of a given month and year.
    *
    * @param int $month
    * @param int $year
@@ -87,7 +89,7 @@ abstract class DateTimeHelper {
   }
 
   /**
-   * Convert unix timestamp to Datetime object
+   * Convert unix timestamp to Datetime object.
    *
    * @param int $unix_timestamp
    *
@@ -102,7 +104,7 @@ abstract class DateTimeHelper {
   }
 
   /**
-   * Check is a given string is a date of the MySQL Date Only format
+   * Check is a given string is a date of the MySQL Date Only format.
    *
    * @param string $value
    *

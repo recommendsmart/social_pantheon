@@ -35,9 +35,9 @@ class PluginContextDefinitionTraitTest extends UnitTestCase {
    */
   public function testGetContextDefinitions() {
     $context_definition_name_a = $this->randomMachineName();
-    $context_definition_a = $this->getMock(ContextDefinitionInterface::class);
+    $context_definition_a = $this->createMock(ContextDefinitionInterface::class);
     $context_definition_name_b = $this->randomMachineName();
-    $context_definition_b = $this->getMock(ContextDefinitionInterface::class);
+    $context_definition_b = $this->createMock(ContextDefinitionInterface::class);
 
     $context_definitions = [
       $context_definition_name_a => $context_definition_a,
@@ -70,7 +70,7 @@ class PluginContextDefinitionTraitTest extends UnitTestCase {
    */
   public function testGetContextDefinition() {
     $name = $this->randomMachineName();
-    $context_definition = $this->getMock(ContextDefinitionInterface::class);
+    $context_definition = $this->createMock(ContextDefinitionInterface::class);
 
     $this->assertSame($this->sut, $this->sut->setContextDefinition($name, $context_definition));
     $this->assertSame($context_definition, $this->sut->getContextDefinition($name));

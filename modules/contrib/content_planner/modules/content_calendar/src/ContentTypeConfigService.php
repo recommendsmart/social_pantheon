@@ -25,7 +25,7 @@ class ContentTypeConfigService {
   }
 
   /**
-   * Load all config entities
+   * Load all config entities.
    *
    * @return \Drupal\content_calendar\Entity\ContentTypeConfig[]
    */
@@ -34,7 +34,7 @@ class ContentTypeConfigService {
   }
 
   /**
-   * Load config entity by Content Type
+   * Load config entity by Content Type.
    *
    * @param string $content_type
    *
@@ -42,7 +42,7 @@ class ContentTypeConfigService {
    */
   public function loadEntityByContentType($content_type) {
 
-    if($entity = ContentTypeConfig::load($content_type)) {
+    if ($entity = ContentTypeConfig::load($content_type)) {
       return $entity;
     }
 
@@ -50,7 +50,7 @@ class ContentTypeConfigService {
   }
 
   /**
-   * Create new config entity
+   * Create new config entity.
    *
    * @param string $node_type
    * @param string $label
@@ -60,11 +60,11 @@ class ContentTypeConfigService {
    */
   public function createEntity($node_type, $label, $color = '#0074bd') {
 
-    $entity_build = array(
+    $entity_build = [
       'id' => $node_type,
       'label' => $label,
       'color' => $color,
-    );
+    ];
 
     $entity = ContentTypeConfig::create($entity_build);
 

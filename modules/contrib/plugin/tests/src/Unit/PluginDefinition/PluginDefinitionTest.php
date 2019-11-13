@@ -45,7 +45,7 @@ class PluginDefinitionTest extends UnitTestCase {
    * @covers ::getClass
    */
   public function testGetClass() {
-    $class = get_class($this->getMock(PluginInspectionInterface::class));
+    $class = get_class($this->createMock(PluginInspectionInterface::class));
 
     $this->assertSame($this->sut, $this->sut->setClass($class));
     $this->assertSame($class, $this->sut->getClass());

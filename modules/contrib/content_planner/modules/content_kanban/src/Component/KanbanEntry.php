@@ -88,9 +88,12 @@ class KanbanEntry {
     $datetime = new \DateTime();
     // Get the entity type and its keys.
     $entityType = \Drupal::entityTypeManager()->getStorage($this->entityTypeConfig->getEntityType());
+
     if ($entityType instanceof EntityStorageInterface) {
+
       $entityKeys = $entityType->getEntityType()->getKeys();
       $entityId = $entityKeys['id'];
+
       // Set needed info on the object.
       $this->entity->time = $datetime->format('H:i');
       $this->entity->entityLoaded = $entityType->load($this->entity->$entityId);
@@ -104,10 +107,14 @@ class KanbanEntry {
         '#entity_type' => $this->entityTypeConfig->getEntityType(),
         '#entity_type_config' => $this->entityTypeConfig,
         '#user_picture' => $user_picture,
+        '#workflow_state' => $this->contentModerationStatus,
         '#operation_links' => [
           'add' => $this->entity->entityLoaded->toUrl(),
           'edit' => $this->entity->entityLoaded->toUrl('edit-form'),
           'delete' => $this->entity->entityLoaded->toUrl('delete-form'),
+        ],
+        '#item_options' => [
+          'background_color' => ($this->entity->entityLoaded->isPublished()) ? 'white' : '#fff4f4',
         ],
       ];
     }

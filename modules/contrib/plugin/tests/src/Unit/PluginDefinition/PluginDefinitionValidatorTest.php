@@ -26,7 +26,7 @@ class PluginDefinitionValidatorTest extends UnitTestCase {
    */
   public function testValidateClass($valid, $class) {
     if (!$valid) {
-      $this->setExpectedException('\InvalidArgumentException');
+      $this->expectException('\InvalidArgumentException');
     }
     $this->assertNull(PluginDefinitionValidator::validateClass($class));
   }
@@ -57,7 +57,7 @@ class PluginDefinitionValidatorTest extends UnitTestCase {
    */
   public function testValidateDeriverClass($valid, $class) {
     if (!$valid) {
-      $this->setExpectedException('\InvalidArgumentException');
+      $this->expectException('\InvalidArgumentException');
     }
     $this->assertNull(PluginDefinitionValidator::validateDeriverClass($class));
   }
@@ -87,7 +87,7 @@ class PluginDefinitionValidatorTest extends UnitTestCase {
    */
   public function testValidateContextDefinitions($valid, array $definitions) {
     if (!$valid) {
-      $this->setExpectedException('\InvalidArgumentException');
+      $this->expectException('\InvalidArgumentException');
     }
     $this->assertNull(PluginDefinitionValidator::validateContextDefinitions($definitions));
   }
@@ -98,7 +98,7 @@ class PluginDefinitionValidatorTest extends UnitTestCase {
   public function providerValidateContextDefinitions() {
     return [
       [TRUE, []],
-      [TRUE, [$this->getMock(ContextDefinitionInterface::class)]],
+      [TRUE, [$this->createMock(ContextDefinitionInterface::class)]],
       [FALSE, [$this->getMockClass(ContextDefinitionInterface::class)]],
       [FALSE, [$this->randomMachineName()]],
       [FALSE, [ContextDefinitionInterface::class]],

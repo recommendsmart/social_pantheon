@@ -37,7 +37,7 @@ class EventBasedDefaultPluginResolverTest extends UnitTestCase {
   public function setUp() {
     parent::setUp();
 
-    $this->eventDispatcher = $this->getMock(EventDispatcherInterface::class);
+    $this->eventDispatcher = $this->createMock(EventDispatcherInterface::class);
 
     $this->sut = new EventBasedDefaultPluginResolver($this->eventDispatcher);
   }
@@ -58,7 +58,7 @@ class EventBasedDefaultPluginResolverTest extends UnitTestCase {
       ->method('dispatch')
       ->with(PluginEvents::RESOLVE_DEFAULT_PLUGIN, $this->isInstanceOf(ResolveDefaultPlugin::class));
 
-    $plugin_type = $this->getMock(PluginTypeInterface::class);
+    $plugin_type = $this->createMock(PluginTypeInterface::class);
 
     $this->assertNull($this->sut->createDefaultPluginInstance($plugin_type));
   }
@@ -67,7 +67,7 @@ class EventBasedDefaultPluginResolverTest extends UnitTestCase {
    * @covers ::createDefaultPluginInstance
    */
   public function testCreateDefaultPluginInstanceWithDefaultPluginInstance() {
-    $default_plugin_instance = $this->getMock(PluginInspectionInterface::class);
+    $default_plugin_instance = $this->createMock(PluginInspectionInterface::class);
 
     $this->eventDispatcher->expects($this->once())
       ->method('dispatch')
@@ -76,7 +76,7 @@ class EventBasedDefaultPluginResolverTest extends UnitTestCase {
         $event->setDefaultPluginInstance($default_plugin_instance);
       });
 
-    $plugin_type = $this->getMock(PluginTypeInterface::class);
+    $plugin_type = $this->createMock(PluginTypeInterface::class);
 
     $this->assertSame($default_plugin_instance, $this->sut->createDefaultPluginInstance($plugin_type));
   }

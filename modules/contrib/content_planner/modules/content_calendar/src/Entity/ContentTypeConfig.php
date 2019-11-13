@@ -62,13 +62,13 @@ class ContentTypeConfig extends ConfigEntityBase implements ContentTypeConfigInt
   protected $color = NULL;
 
   /**
-   * Get the saved color value
+   * Get the saved color value.
    *
    * @return string
    */
   public function getColor() {
 
-    if($this->color) {
+    if ($this->color) {
       return $this->color;
     }
 

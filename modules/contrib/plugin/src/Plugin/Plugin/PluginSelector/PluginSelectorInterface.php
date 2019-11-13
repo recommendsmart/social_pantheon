@@ -2,7 +2,7 @@
 
 namespace Drupal\plugin\Plugin\Plugin\PluginSelector;
 
-use Drupal\Component\Plugin\ConfigurablePluginInterface;
+use Drupal\Component\Plugin\ConfigurableInterface;
 use Drupal\Component\Plugin\Discovery\DiscoveryInterface;
 use Drupal\Component\Plugin\Factory\FactoryInterface;
 use Drupal\Component\Plugin\PluginInspectionInterface;
@@ -12,7 +12,7 @@ use Drupal\plugin\PluginType\PluginTypeInterface;
 /**
  * Defines a plugin to select and configure another plugin.
  */
-interface PluginSelectorInterface extends PluginInspectionInterface, ConfigurablePluginInterface {
+interface PluginSelectorInterface extends PluginInspectionInterface, ConfigurableInterface {
 
   /**
    * Sets the human-readable label.

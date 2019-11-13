@@ -41,7 +41,7 @@ class PluginManagerDecoratorTest extends UnitTestCase {
    * @covers ::createInstance
    */
   public function testCreateInstanceWithExistingPlugin() {
-    $plugin_manager = $this->getMock(PluginManagerInterface::class);
+    $plugin_manager = $this->createMock(PluginManagerInterface::class);
 
     $this->decoratedDiscovery = $plugin_manager;
 
@@ -51,7 +51,7 @@ class PluginManagerDecoratorTest extends UnitTestCase {
 
     $plugin_id = $this->randomMachineName();
 
-    $plugin = $this->getMock(PluginInspectionInterface::class);
+    $plugin = $this->createMock(PluginInspectionInterface::class);
 
     $plugin_definitions = [
       $plugin_id => [
@@ -76,9 +76,9 @@ class PluginManagerDecoratorTest extends UnitTestCase {
    * @covers ::createInstance
    */
   public function testCreateInstanceWithExistingPluginAndOverriddenDiscovery() {
-    $plugin_manager = $this->getMock(PluginManagerInterface::class);
+    $plugin_manager = $this->createMock(PluginManagerInterface::class);
 
-    $this->decoratedDiscovery = $this->getMock(DiscoveryInterface::class);
+    $this->decoratedDiscovery = $this->createMock(DiscoveryInterface::class);
 
     $this->decoratedFactory = $plugin_manager;
 
@@ -86,7 +86,7 @@ class PluginManagerDecoratorTest extends UnitTestCase {
 
     $plugin_id = $this->randomMachineName();
 
-    $plugin = $this->getMock(PluginInspectionInterface::class);
+    $plugin = $this->createMock(PluginInspectionInterface::class);
 
     $plugin_definitions = [
       $plugin_id => [
@@ -113,7 +113,7 @@ class PluginManagerDecoratorTest extends UnitTestCase {
    * @expectedException \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function testCreateInstanceWithNonExistingPlugin() {
-    $plugin_manager = $this->getMock(PluginManagerInterface::class);
+    $plugin_manager = $this->createMock(PluginManagerInterface::class);
 
     $this->decoratedDiscovery = $plugin_manager;
 
@@ -140,9 +140,9 @@ class PluginManagerDecoratorTest extends UnitTestCase {
    * @expectedException \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   public function testCreateInstanceWithNonExistingPluginAndOverriddenDiscovery() {
-    $plugin_manager = $this->getMock(PluginManagerInterface::class);
+    $plugin_manager = $this->createMock(PluginManagerInterface::class);
 
-    $this->decoratedDiscovery = $this->getMock(DiscoveryInterface::class);
+    $this->decoratedDiscovery = $this->createMock(DiscoveryInterface::class);
 
     $this->decoratedFactory = $plugin_manager;
 
@@ -166,7 +166,7 @@ class PluginManagerDecoratorTest extends UnitTestCase {
    * @expectedException \BadMethodCallException
    */
   public function testGetInstance() {
-    $plugin_manager = $this->getMock(PluginManagerInterface::class);
+    $plugin_manager = $this->createMock(PluginManagerInterface::class);
 
     $this->sut = new PluginManagerDecorator($plugin_manager);
 

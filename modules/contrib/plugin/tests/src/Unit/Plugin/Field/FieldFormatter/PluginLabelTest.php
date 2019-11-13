@@ -37,7 +37,7 @@ class PluginLabelTest extends UnitTestCase {
    * {@inheritdoc}
    */
   protected function setUp() {
-    $this->fieldDefinition = $this->getMock(FieldDefinitionInterface::class);
+    $this->fieldDefinition = $this->createMock(FieldDefinitionInterface::class);
 
     $this->sut = new PluginLabel('plugin_label', [], $this->fieldDefinition, [], $this->randomMachineName(), $this->randomMachineName(), []);
   }
@@ -47,33 +47,33 @@ class PluginLabelTest extends UnitTestCase {
    */
   public function testViewElements() {
     $plugin_definition_label_a = $this->randomMachineName();
-    $plugin_definition_a = $this->getMock(PluginLabelDefinitionInterface::class);
+    $plugin_definition_a = $this->createMock(PluginLabelDefinitionInterface::class);
     $plugin_definition_a->expects($this->atLeastOnce())
       ->method('getLabel')
       ->willReturn($plugin_definition_label_a);
 
     $plugin_definition_id_b = $this->randomMachineName();
-    $plugin_definition_b = $this->getMock(PluginDefinitionInterface::class);
+    $plugin_definition_b = $this->createMock(PluginDefinitionInterface::class);
     $plugin_definition_b->expects($this->atLeastOnce())
       ->method('getId')
       ->willReturn($plugin_definition_id_b);
 
-    $plugin_instance_a = $this->getMock(PluginInspectionInterface::class);
+    $plugin_instance_a = $this->createMock(PluginInspectionInterface::class);
     $plugin_instance_a->expects($this->atLeastOnce())
       ->method('getPluginDefinition')
       ->willReturn($plugin_definition_a);
 
-    $plugin_instance_b = $this->getMock(PluginInspectionInterface::class);
+    $plugin_instance_b = $this->createMock(PluginInspectionInterface::class);
     $plugin_instance_b->expects($this->atLeastOnce())
       ->method('getPluginDefinition')
       ->willReturn($plugin_definition_b);
 
-    $item_a = $this->getMock(PluginCollectionItemInterface::class);
+    $item_a = $this->createMock(PluginCollectionItemInterface::class);
     $item_a->expects($this->atLeastOnce())
       ->method('getContainedPluginInstance')
       ->willReturn($plugin_instance_a);
 
-    $item_b = $this->getMock(PluginCollectionItemInterface::class);
+    $item_b = $this->createMock(PluginCollectionItemInterface::class);
     $item_b->expects($this->atLeastOnce())
       ->method('getContainedPluginInstance')
       ->willReturn($plugin_instance_b);
@@ -81,7 +81,7 @@ class PluginLabelTest extends UnitTestCase {
     /** @var \Drupal\plugin\Plugin\Field\FieldType\PluginCollectionItemInterface[]|\PHPUnit_Framework_MockObject_MockObject[] $items */
     $items = [$item_a, $item_b];
 
-    $plugin_type = $this->getMock(PluginTypeInterface::class);
+    $plugin_type = $this->createMock(PluginTypeInterface::class);
     $plugin_type->expects($this->atLeastOnce())
       ->method('ensureTypedPluginDefinition')
       ->willReturnArgument(0);

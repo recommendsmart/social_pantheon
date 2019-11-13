@@ -70,9 +70,9 @@ class ListPluginTypesTest extends UnitTestCase {
 
     $this->container = $this->prophesize(ContainerInterface::class);
 
-    $this->moduleHandler = $this->getMock(ModuleHandlerInterface::class);
+    $this->moduleHandler = $this->createMock(ModuleHandlerInterface::class);
 
-    $this->pluginTypeManager = $this->getMock(PluginTypeManagerInterface::class);
+    $this->pluginTypeManager = $this->createMock(PluginTypeManagerInterface::class);
 
     $this->stringTranslation = new TranslationMock();
 
@@ -84,7 +84,7 @@ class ListPluginTypesTest extends UnitTestCase {
    * @covers ::__construct
    */
   function testCreate() {
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = [
       ['module_handler', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->moduleHandler],
       ['plugin.plugin_type_manager', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->pluginTypeManager],
@@ -102,9 +102,9 @@ class ListPluginTypesTest extends UnitTestCase {
    * @covers ::execute
    */
   public function testExecute() {
-    $class_resolver = $this->getMock(ClassResolverInterface::class);
+    $class_resolver = $this->createMock(ClassResolverInterface::class);
 
-    $typed_config_manager = $this->getMock(TypedConfigManagerInterface::class);
+    $typed_config_manager = $this->createMock(TypedConfigManagerInterface::class);
     $typed_config_manager->expects($this->atLeastOnce())
       ->method('hasConfigSchema')
       ->willReturn(TRUE);

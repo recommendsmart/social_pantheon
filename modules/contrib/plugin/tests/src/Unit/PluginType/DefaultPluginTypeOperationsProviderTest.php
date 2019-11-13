@@ -53,7 +53,7 @@ class DefaultPluginTypeOperationsProviderTest extends UnitTestCase {
    * @covers ::__construct
    */
   function testCreate() {
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = [];
     foreach ($this->services as $service_id => $service) {
       $map[] = [$service_id, ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $service];

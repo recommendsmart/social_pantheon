@@ -40,9 +40,9 @@ class TypedDefinitionEnsuringPluginDiscoveryDecoratorTest extends UnitTestCase {
    * {@inheritdoc}
    */
   public function setUp() {
-    $this->pluginManager = $this->getMock(PluginManagerInterface::class);
+    $this->pluginManager = $this->createMock(PluginManagerInterface::class);
 
-    $this->pluginType = $this->getMock(PluginTypeInterface::class);
+    $this->pluginType = $this->createMock(PluginTypeInterface::class);
 
     $this->sut = new TypedDefinitionEnsuringPluginDiscoveryDecorator($this->pluginType, $this->pluginManager);
   }
@@ -78,8 +78,8 @@ class TypedDefinitionEnsuringPluginDiscoveryDecoratorTest extends UnitTestCase {
       ->method('getDefinitions')
       ->willReturn($decorated_plugin_definitions);
 
-    $typed_plugin_definition_a = $this->getMock(PluginDefinitionInterface::class);
-    $typed_plugin_definition_b = $this->getMock(PluginDefinitionInterface::class);
+    $typed_plugin_definition_a = $this->createMock(PluginDefinitionInterface::class);
+    $typed_plugin_definition_b = $this->createMock(PluginDefinitionInterface::class);
 
     $map = [
       [$decorated_plugin_definition_a, $typed_plugin_definition_a],

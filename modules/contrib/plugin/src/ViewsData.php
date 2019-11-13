@@ -61,7 +61,7 @@ class ViewsData {
     // available per entity type.
     foreach ($this->entityTypeManager->getDefinitions() as $entity_type) {
       // Skip non-fieldable entity types.
-      if (!$entity_type->isSubclassOf(FieldableEntityInterface::class)) {
+      if (!$entity_type->entityClassImplements(FieldableEntityInterface::class)) {
         continue;
       }
 

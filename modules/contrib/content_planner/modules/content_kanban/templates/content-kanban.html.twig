@@ -2,18 +2,6 @@
 
   <h2 id="{{ kanban_id }}">{{ kanban_label }}</h2>
 
-  {% if permissions.create_entity %}
-    <ul class="action-links">
-      {% for bundle, button_label in permissions.create_entity %}
-        <li>
-          {% if addEntitiesLinks[bundle] %}
-            <a class="button button-action button--primary button--small" href="{{ addEntitiesLinks[bundle] }}?destination={{ path('content_kanban.kanban') }}">{{ button_label }}</a>
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-
   {{ filter_form }}
 
   <table class="kanban-columns kanban-{{ columns|length }}-columns">

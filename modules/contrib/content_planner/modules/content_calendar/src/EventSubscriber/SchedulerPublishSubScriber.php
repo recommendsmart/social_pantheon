@@ -6,6 +6,9 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\scheduler\SchedulerEvent;
 use Drupal\scheduler\SchedulerEvents;
 
+/**
+ *
+ */
 class SchedulerPublishSubScriber implements EventSubscriberInterface {
 
   /**
@@ -18,25 +21,25 @@ class SchedulerPublishSubScriber implements EventSubscriberInterface {
   }
 
   /**
-   * Act upon a node publish
+   * Act upon a node publish.
    *
    * @param \Drupal\scheduler\SchedulerEvent $event
    */
   public function onNodePublish(SchedulerEvent $event) {
 
-    //If the Content Kanban module exists
-    if(\Drupal::moduleHandler()->moduleExists('content_kanban')) {
+    // If the Content Kanban module exists.
+    if (\Drupal::moduleHandler()->moduleExists('content_kanban')) {
 
       /** @var \Drupal\node\Entity\Node $node */
       $node = $event->getNode();
 
-      //Set status to published
+      // Set status to published.
       $node->setPublished(TRUE);
 
-      //Set Moderation state to published
+      // Set Moderation state to published.
       $node->moderation_state->value = 'published';
 
-      //Return updated node to event which in turn returns it to the scheduler module
+      // Return updated node to event which in turn returns it to the scheduler module.
       $event->setNode($node);
 
     }

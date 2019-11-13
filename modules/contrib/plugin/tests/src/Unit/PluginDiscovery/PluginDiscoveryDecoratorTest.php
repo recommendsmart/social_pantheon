@@ -29,7 +29,7 @@ class PluginDiscoveryDecoratorTest extends UnitTestCase {
   protected $sut;
 
   public function setUp() {
-    $this->decoratedDiscovery = $this->getMock(DiscoveryInterface::class);
+    $this->decoratedDiscovery = $this->createMock(DiscoveryInterface::class);
 
     $this->sut = new PluginDiscoveryDecorator($this->decoratedDiscovery);
   }

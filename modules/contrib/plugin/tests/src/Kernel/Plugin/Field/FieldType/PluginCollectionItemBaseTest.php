@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\plugin\Tests\Plugin\Field\FieldType;
+namespace Drupal\Tests\plugin\Kernel\Plugin\Field\FieldType;
 
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\KernelTests\KernelTestBase;

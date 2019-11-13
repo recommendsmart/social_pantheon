@@ -17,11 +17,15 @@ use Drupal\Core\Form\FormStateInterface;
 class DashboardSettingsForm extends ConfigFormBase {
 
   /**
+   * The dashboard settings service.
+   *
    * @var \Drupal\content_planner\DashboardSettingsService
    */
   protected $dashboardSettingsService;
 
   /**
+   * The dashboard block plugin manager.
+   *
    * @var \Drupal\content_planner\DashboardBlockPluginManager
    */
   protected $dashboardBlockPluginManager;
@@ -30,12 +34,13 @@ class DashboardSettingsForm extends ConfigFormBase {
    * SettingsForm constructor.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The config factory.
    */
   public function __construct(ConfigFactoryInterface $config_factory) {
 
     parent::__construct($config_factory);
 
-    //Get config
+    // Get config.
     $this->dashboardSettingsService = \Drupal::service('content_planner.dashboard_settings_service');
     $this->dashboardBlockPluginManager = \Drupal::service('content_planner.dashboard_block_plugin_manager');
   }
@@ -61,40 +66,45 @@ class DashboardSettingsForm extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state, Request $request = NULL) {
 
-    //Get block configurations from settings
+    // Get block configurations from settings.
     $block_configurations = $this->dashboardSettingsService->getBlockConfigurations();
 
-    //Get registered Plugins
+    // Get registered Plugins.
     $plugins = $this->dashboardBlockPluginManager->getDefinitions();
-    uksort($plugins, function($a, $b) {return strnatcmp($a, $b);});
+    uksort($plugins, function ($a, $b) {
+      return strnatcmp($a, $b);
+    });
 
-    $block_options = array();
+    $block_options = [];
 
-    //Loop over every plugin and generate renderable array
+    // Loop over every plugin and generate renderable array.
     foreach ($plugins as $plugin_id => $plugin) {
 
       $block_options[$plugin_id] = $plugin['name'];
 
-      if(array_key_exists($plugin_id, $block_configurations)) {
+      if (array_key_exists($plugin_id, $block_configurations)) {
 
         $config_link = Link::createFromRoute(
           $this->t('Configure'),
           'content_planner.dashboard_block_config_form',
-          array('block_id' => $plugin_id),
-          array('query' => array(
-            'destination' => Url::fromRoute('content_planner.dashboard_settings')->toString()
-          ))
+          ['block_id' => $plugin_id],
+          [
+            'query' => [
+              'destination' => Url::fromRoute('content_planner.dashboard_settings')->toString(),
+            ],
+          ]
         );
 
         $block_options[$plugin_id] .= ' (' . $config_link->toString() . ')';
       }
     }
 
-    //default value
-    if($block_configurations) {
+    // Default value.
+    if ($block_configurations) {
       $default_value = array_keys($block_configurations);
-    } else {
-      $default_value = array();
+    }
+    else {
+      $default_value = [];
     }
 
     $form['available_dashboard_blocks'] = [
@@ -108,11 +118,10 @@ class DashboardSettingsForm extends ConfigFormBase {
       '#type' => 'checkboxes',
       '#title' => t('Available Dashboard Widgets'),
       '#description' => t('Select which Widgets should be displayed in the Dashboard.'),
-      //'#required' => TRUE,
+      // '#required' => TRUE,.
       '#options' => $block_options,
       '#default_value' => $default_value,
     ];
-
 
     return parent::buildForm($form, $form_state);
   }
@@ -124,35 +133,34 @@ class DashboardSettingsForm extends ConfigFormBase {
 
     $block_configurations = $this->dashboardSettingsService->getBlockConfigurations();
 
-    //Get values
+    // Get values.
     $values = $form_state->getValues();
 
-    foreach($values['enabled_blocks'] as $key => $selected) {
+    foreach ($values['enabled_blocks'] as $key => $selected) {
 
-      if($selected) {
+      if ($selected) {
 
-        //If the block is not in the config already
-        if(!array_key_exists($key, $block_configurations)) {
+        // If the block is not in the config already.
+        if (!array_key_exists($key, $block_configurations)) {
           $config = DashboardBlockBase::getBasicConfigStructure();
 
           $config['plugin_id'] = $key;
           $block_configurations[$key] = $config;
         }
 
+      }
+      else {
 
-      } else {
-
-        //Delete block if deselecte
-        if(array_key_exists($key, $block_configurations)) {
+        // Delete block if deselecte.
+        if (array_key_exists($key, $block_configurations)) {
           unset($block_configurations[$key]);
         }
 
       }
     }
 
-    //Save
+    // Save.
     $this->dashboardSettingsService->saveBlockConfigurations($block_configurations);
   }
-
 
 }

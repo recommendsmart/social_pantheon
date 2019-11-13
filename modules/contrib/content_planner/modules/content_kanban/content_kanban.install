@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Entity\EntityStorageException;
+use Drupal\Core\Field\BaseFieldDefinition;
 
 /**
  * Implements hook_uninstall().
@@ -15,40 +16,41 @@ function content_kanban_uninstall() {
 }
 
 /**
- * Updates the Kanban log entity with the new base fields data.
+ * Updates the Kanban log entity create new field entity id.
  */
 function content_kanban_update_8001() {
+  $field_storage_definition = BaseFieldDefinition::create('string')
+    ->setLabel(t('Entity ID'))
+    ->setDescription(t('The ID of the Entity this Log refers to'));
+
+  \Drupal::entityDefinitionUpdateManager()
+    ->installFieldStorageDefinition('entity_id', 'content_kanban_log', 'content_kanban_log', $field_storage_definition);
+}
+
+/**
+ * Updates the Kanban log entity create new field entity_type.
+ */
+function content_kanban_update_8002() {
+  $field_storage_definition = BaseFieldDefinition::create('string')
+    ->setLabel(t('Entity Type'))
+    ->setDescription(t('The type of the entity.'))
+    ->setDefaultValue('');
+  
+  \Drupal::entityDefinitionUpdateManager()
+    ->installFieldStorageDefinition('entity_type', 'content_kanban_log', 'content_kanban_log', $field_storage_definition);
+}
+
+/**
+ * Flush all entities of kanban log once as content_kanban_log structure has changed
+ */
+function content_kanban_update_8003() { 
   $database = \Drupal::database();
-  $table = 'content_kanban_log';
-  // Store the existing values.
-  $nids = $database->select($table)
-    ->fields($table, ['id', 'nid'])
-    ->execute()
-    ->fetchAllKeyed();
-  // Clear out the values.
-  $database->update($table)
-    ->fields(['nid' => NULL])
-    ->execute();
+  $entity_type = 'content_kanban_log';
+ 
+  $query = \Drupal::entityQuery($entity_type);
+  $ids = $query->execute();
 
-  $manager = \Drupal::entityDefinitionUpdateManager();
-  // Check for entity updates.
-  if ($manager->needsUpdates()) {
-    try {
-      $manager->applyUpdates();
-    }
-    catch (EntityStorageException $e) {
-      watchdog_exception('content_kanban', $e);
-    }
-  }
-  // Update the new columns values with old ones.
-  foreach ($nids as $id => $nid) {
-    $database->update($table)
-      ->fields([
-        'entity_id' => $nid,
-        'entity_type' => 'node',
-      ])
-      ->condition('id', $id)
-      ->execute();
-  }
-
+  $storage_handler = \Drupal::entityTypeManager()->getStorage($entity_type);
+  $entities = $storage_handler->loadMultiple($ids);
+  $storage_handler->delete($entities);
 }

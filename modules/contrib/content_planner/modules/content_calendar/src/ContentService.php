@@ -26,6 +26,9 @@ class ContentService {
     return $this->contentTypeConfig;
   }
 
+  /**
+   *
+   */
   public function getRecentContent($limit) {
     $configs = $this->getContentTypeConfig();
     $types = [];
@@ -50,6 +53,9 @@ class ContentService {
     return $nodes = Node::loadMultiple($ids);
   }
 
+  /**
+   *
+   */
   public function getFollowingContent($limit) {
     $configs = $this->getContentTypeConfig();
     $types = [];
@@ -74,4 +80,5 @@ class ContentService {
 
     return $nodes = Node::loadMultiple($ids);
   }
+
 }

@@ -32,7 +32,7 @@ class ResolveDefaultPluginTest extends UnitTestCase {
    * {@inheritdoc}
    */
   public function setUp() {
-    $this->pluginType = $this->getMock(PluginTypeInterface::class);
+    $this->pluginType = $this->createMock(PluginTypeInterface::class);
 
     $this->sut = new ResolveDefaultPlugin($this->pluginType);
   }
@@ -57,7 +57,7 @@ class ResolveDefaultPluginTest extends UnitTestCase {
    * @covers ::setDefaultPluginInstance
    */
   public function testGetDefaultPluginInstance() {
-    $default_plugin_instance = $this->getMock(PluginInspectionInterface::class);
+    $default_plugin_instance = $this->createMock(PluginInspectionInterface::class);
     $this->assertNull($this->sut->getDefaultPluginInstance());
     $this->assertSame($this->sut, $this->sut->setDefaultPluginInstance($default_plugin_instance));
     $this->assertSame($default_plugin_instance, $this->sut->getDefaultPluginInstance());

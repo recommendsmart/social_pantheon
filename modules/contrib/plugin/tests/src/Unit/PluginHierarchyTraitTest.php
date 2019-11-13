@@ -38,20 +38,20 @@ class PluginHierarchyTraitTest extends UnitTestCase {
   public function testBuildPluginHierarchy() {
     $plugin_definition_id_a = $this->randomMachineName();
     $plugin_definition_label_a = 'foo';
-    $plugin_definition_a = $this->getMock(PluginLabelDefinitionInterface::class);
+    $plugin_definition_a = $this->createMock(PluginLabelDefinitionInterface::class);
     $plugin_definition_a->expects($this->any())
       ->method('getLabel')
       ->willReturn($plugin_definition_label_a);
 
     $plugin_definition_id_b = $this->randomMachineName();
     $plugin_definition_label_b = 'Bar';
-    $plugin_definition_b = $this->getMock(PluginLabelDefinitionInterface::class);
+    $plugin_definition_b = $this->createMock(PluginLabelDefinitionInterface::class);
     $plugin_definition_b->expects($this->any())
       ->method('getLabel')
       ->willReturn($plugin_definition_label_b);
 
     $plugin_definition_id_c = $this->randomMachineName();
-    $plugin_definition_c = $this->getMock(PluginHierarchyDefinitionInterface::class);
+    $plugin_definition_c = $this->createMock(PluginHierarchyDefinitionInterface::class);
     $plugin_definition_c->expects($this->any())
       ->method('getId')
       ->willReturn($plugin_definition_id_c);
@@ -59,7 +59,7 @@ class PluginHierarchyTraitTest extends UnitTestCase {
       ->method('getParentId')
       ->willReturn($plugin_definition_id_a);
 
-    $plugin_discovery = $this->getMock(TypedDiscoveryInterface::class);
+    $plugin_discovery = $this->createMock(TypedDiscoveryInterface::class);
     $plugin_discovery->expects($this->any())
       ->method('getDefinitions')
       ->willReturn([

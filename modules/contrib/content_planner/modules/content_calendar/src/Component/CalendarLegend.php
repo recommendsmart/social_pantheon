@@ -2,6 +2,9 @@
 
 namespace Drupal\content_calendar\Component;
 
+/**
+ *
+ */
 abstract class CalendarLegend {
 
   /**
@@ -11,10 +14,10 @@ abstract class CalendarLegend {
    */
   public static function build(array $content_config_entities) {
 
-    $build = array(
+    $build = [
       '#theme' => 'content_calendar_legend',
       '#content_type_configs' => $content_config_entities,
-    );
+    ];
 
     return $build;
 

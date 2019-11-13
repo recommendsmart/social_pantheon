@@ -64,7 +64,7 @@ class CalendarController extends ControllerBase {
   }
 
   /**
-   * Show Calendar year
+   * Show Calendar year.
    */
   public function showCurrentCalendarYear() {
 
@@ -74,25 +74,25 @@ class CalendarController extends ControllerBase {
   }
 
   /**
-   * Show Calendar year
+   * Show Calendar year.
    */
   public function showCalendarYear($year) {
 
-    $calendars = array();
+    $calendars = [];
 
-    //Get content type config entities
+    // Get content type config entities.
     $content_type_config_entities = $this->contentTypeConfigService->loadAllEntities();
 
-    //Check if Content Calendar has been configured
-    if(!$content_type_config_entities) {
+    // Check if Content Calendar has been configured.
+    if (!$content_type_config_entities) {
       $this->messenger()->addMessage($this->t('Content Calendar is not configured yet. Please do this in the settings tab.'), 'error');
-      return array();
+      return [];
     }
 
-    //Generate calendar structures
-    foreach(range(1, 12) as $month) {
+    // Generate calendar structures.
+    foreach (range(1, 12) as $month) {
 
-      //Create new Calendar
+      // Create new Calendar.
       $calender = new Calendar(
         $this->contentTypeConfigService,
         $this->contentCalendarService,
@@ -104,80 +104,81 @@ class CalendarController extends ControllerBase {
       $calendars[] = $calender->build();
     }
 
-    //Get Filter Form
-    $form_params = array(
+    // Get Filter Form.
+    $form_params = [
       'current_year' => date('Y'),
       'selected_year' => $year,
-    );
+    ];
     $filters_form = \Drupal::formBuilder()->getForm('Drupal\content_calendar\Form\CalenderOverviewFilterForm', $form_params);
 
-    $build = array(
+    $build = [
       '#theme' => 'content_calendar_overview',
       '#calendars' => $calendars,
       '#filters_form' => $filters_form,
-    );
+    ];
 
     return $build;
   }
 
   /**
-   * Update creation date of a given Node
+   * Update creation date of a given Node.
    *
    * @param \Drupal\node\NodeInterface $node
    * @param string $date
    *
    * @return \Zend\Diactoros\Response\JsonResponse
+   *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function updateNodePublishDate(NodeInterface $node, $date) {
 
-    $data = array(
+    $data = [
       'success' => FALSE,
       'message' => NULL,
-    );
+    ];
 
-    //Get content type config entities
+    // Get content type config entities.
     $content_type_config_entities = $this->contentTypeConfigService->loadAllEntities();
 
-    //Check for allowed types, marked in the Content Calendar settings
-    if(!array_key_exists($node->getType(), $content_type_config_entities)) {
+    // Check for allowed types, marked in the Content Calendar settings.
+    if (!array_key_exists($node->getType(), $content_type_config_entities)) {
 
-      $data['message'] = $this->t('Action is not allowed for Nodes of type @type', array('@type' => $node->getType()));
+      $data['message'] = $this->t('Action is not allowed for Nodes of type @type', ['@type' => $node->getType()]);
       return new JsonResponse($data);
     }
 
-    //Get publish on timestamp
+    // Get publish on timestamp.
     $publish_on_timestamp = $node->get('publish_on')->getValue();
     $publish_on_timestamp_value = $publish_on_timestamp[0]['value'];
 
-    //Get the Node's publish ondate and return a datetime object
+    // Get the Node's publish ondate and return a datetime object.
     $original_publish_datetime = DateTimeHelper::convertUnixTimestampToDatetime($publish_on_timestamp_value);
 
-    //Extract hour, minutes and seconds
+    // Extract hour, minutes and seconds.
     $hour = $original_publish_datetime->format('H');
     $minutes = $original_publish_datetime->format('i');
     $seconds = $original_publish_datetime->format('s');
 
-    //Create a new datetime object from the given date
+    // Create a new datetime object from the given date.
     $new_publish_datetime = \DateTime::createFromFormat('Y-m-d', $date);
 
-    //Set hour, minutes and seconds
+    // Set hour, minutes and seconds.
     $new_publish_datetime->setTime($hour, $minutes, $seconds);
 
-    //set created time
+    // Set created time.
     $node->set('publish_on', $new_publish_datetime->getTimestamp());
 
-    //Save
-    if($node->save() == SAVED_UPDATED) {
+    // Save.
+    if ($node->save() == SAVED_UPDATED) {
       $data['success'] = TRUE;
-      $data['message'] = $this->t('The creation date for Node @id has been updated', array('@id' => $node->id()));
+      $data['message'] = $this->t('The creation date for Node @id has been updated', ['@id' => $node->id()]);
     }
 
     return new JsonResponse($data);
   }
 
   /**
-   * Redirect to current Calendar
+   * Redirect to current Calendar.
    *
    * @return \Symfony\Component\HttpFoundation\RedirectResponse
    */
@@ -185,11 +186,11 @@ class CalendarController extends ControllerBase {
 
     $calendar_id = date('Y-n');
 
-    return $this->redirect('content_calendar.calendar', array(), array('fragment' => $calendar_id));
+    return $this->redirect('content_calendar.calendar', [], ['fragment' => $calendar_id]);
   }
 
   /**
-   * Redirect and jump to a given Calendar directly
+   * Redirect and jump to a given Calendar directly.
    *
    * @param string $calendar_id
    *
@@ -201,17 +202,18 @@ class CalendarController extends ControllerBase {
 
     return $this->redirect(
       'content_calendar.calendar',
-      array('year' => $year),
-      array('fragment' => $fragment)
+      ['year' => $year],
+      ['fragment' => $fragment]
     );
   }
 
   /**
-   * Duplicate Node
+   * Duplicate Node.
    *
    * @param \Drupal\node\NodeInterface $node
    *
    * @return \Symfony\Component\HttpFoundation\RedirectResponse
+   *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function duplicateNode(NodeInterface $node) {

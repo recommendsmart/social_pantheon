@@ -41,7 +41,7 @@ class PluginSelectorTest extends BrowserTestBase {
       sprintf('default_value_input[field_%s][0][plugin_selector][container][select][container][plugin_id]', $field_name) => $default_selected_plugin_id,
     ], t('Choose'));
     $this->drupalPostForm(NULL, [], t('Save settings'));
-    \Drupal::entityManager()->clearCachedFieldDefinitions();
+    \Drupal::service('entity_field.manager')->clearCachedFieldDefinitions();
     // Get all plugin fields.
     $field_storage_id = 'user.field_' . $field_name;
     $field_storage = FieldStorageConfig::load($field_storage_id);
@@ -62,7 +62,9 @@ class PluginSelectorTest extends BrowserTestBase {
 
     // Test whether the widget displays field values.
     /** @var \Drupal\Core\Entity\ContentEntityInterface $user */
-    $user = entity_load_unchanged('user', $user->id());
-    $this->assertEqual($user->get('field_' . $field_name)->get(0)->get('plugin_id')->getValue(), $entity_selected_plugin_id);
+    $storage = \Drupal::entityTypeManager()->getStorage('user');
+    $storage->resetCache();
+    $user = $storage->load($user->id());
+    $this->assertEquals($entity_selected_plugin_id, $user->get('field_' . $field_name)->get(0)->get('plugin_id')->getValue());
   }
 }

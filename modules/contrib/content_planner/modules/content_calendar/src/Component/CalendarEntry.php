@@ -2,18 +2,14 @@
 
 namespace Drupal\content_calendar\Component;
 
-use Drupal\content_calendar\ContentTypeConfigService;
-use Drupal\content_calendar\ContentCalendarService;
 use Drupal\content_calendar\DateTimeHelper;
 use Drupal\content_calendar\Entity\ContentTypeConfig;
 use Drupal\content_calendar\Form\SettingsForm;
 use Drupal\content_planner\UserProfileImage;
-use Drupal\file\Entity\File;
-use Drupal\image\Entity\ImageStyle;
 use Drupal\user\Entity\User;
 
 /**
- * Class CalendarEntry
+ * Class CalendarEntry.
  *
  * @package Drupal\content_calendar\Component
  */
@@ -40,11 +36,11 @@ class CalendarEntry {
   protected $node;
 
   /**
-   * Internal cache for user pictures, used to avoid performance issues
+   * Internal cache for user pictures, used to avoid performance issues.
    *
    * @var array
    */
-  static $userPictureCache = array();
+  static $userPictureCache = [];
 
   /**
    * @var \Drupal\Core\Config\ImmutableConfig
@@ -74,7 +70,7 @@ class CalendarEntry {
   }
 
   /**
-   * Get Node ID
+   * Get Node ID.
    *
    * @return mixed
    */
@@ -85,13 +81,13 @@ class CalendarEntry {
   /**
    * Get the relevant date for the current node.
    *
-   * When the Scheduler date is empty, then take the creation date
+   * When the Scheduler date is empty, then take the creation date.
    *
    * @return int
    */
   public function getRelevantDate() {
 
-    if($this->node->publish_on) {
+    if ($this->node->publish_on) {
       return $this->node->publish_on;
     }
 
@@ -99,7 +95,7 @@ class CalendarEntry {
   }
 
   /**
-   * Format creation date as MySQL Date only
+   * Format creation date as MySQL Date only.
    *
    * @return string
    */
@@ -111,73 +107,72 @@ class CalendarEntry {
   }
 
   /**
-   * Build
+   * Build.
    *
    * @return array
    */
   public function build() {
 
-    //Get User Picture
+    // Get User Picture.
     $user_picture = $this->getUserPictureURL();
 
-    //Add time to node object
+    // Add time to node object.
     $this->node->publish_on_time = DateTimeHelper::convertUnixTimestampToDatetime($this->getRelevantDate())->format('H:i');
 
-    //Build options
+    // Build options.
     $options = $this->buildOptions();
 
-    $build = array(
+    $build = [
       '#theme' => 'content_calendar_entry',
       '#node' => $this->node,
       '#node_type_config' => $this->contentTypeConfig,
       '#month' => $this->month,
       '#year' => $this->year,
       '#user_picture' => $user_picture,
-      '#options' => $options
-    );
+      '#options' => $options,
+    ];
 
     return $build;
   }
 
   /**
-   * Build options before rendering
+   * Build options before rendering.
    *
    * @return array
    */
   protected function buildOptions() {
 
-    $options = array();
+    $options = [];
 
-    //Background color for unpublished content
+    // Background color for unpublished content.
     $options['bg_color_unpublished_content'] = ($this->config->get('bg_color_unpublished_content'))
       ? $this->config->get('bg_color_unpublished_content')
       : SettingsForm::$defaultBgColorUnpublishedContent;
-
 
     return $options;
   }
 
   /**
-   * Get the URL of the user picture
+   * Get the URL of the user picture.
    *
    * @return bool|string
    */
   protected function getUserPictureURL() {
 
-    //If show user thumb is active
-    if($this->config->get('show_user_thumb')) {
+    // If show user thumb is active.
+    if ($this->config->get('show_user_thumb')) {
 
       $style_url = FALSE;
 
-      //If a user picture is not in the internal cache, then create one
-      if(!array_key_exists($this->node->uid, self::$userPictureCache)) {
+      // If a user picture is not in the internal cache, then create one.
+      if (!array_key_exists($this->node->uid, self::$userPictureCache)) {
 
-        //Load User
-        if($user = User::load($this->node->uid)) {
+        // Load User.
+        if ($user = User::load($this->node->uid)) {
           $style_url = UserProfileImage::generateProfileImageUrl($user, 'content_calendar_user_thumb');
         }
 
-        //Store in Cache
+        // Store in Cache.
         self::$userPictureCache[$this->node->uid] = $style_url;
       }
 

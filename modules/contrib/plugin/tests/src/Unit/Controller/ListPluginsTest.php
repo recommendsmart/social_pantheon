@@ -74,9 +74,9 @@ class ListPluginsTest extends UnitTestCase {
 
     $this->container = $this->prophesize(ContainerInterface::class);
 
-    $this->classResolver = $this->getMock(ClassResolverInterface::class);
+    $this->classResolver = $this->createMock(ClassResolverInterface::class);
 
-    $this->moduleHandler = $this->getMock(ModuleHandlerInterface::class);
+    $this->moduleHandler = $this->createMock(ModuleHandlerInterface::class);
 
     $this->stringTranslation = $this->getStringTranslationStub();
 
@@ -88,7 +88,7 @@ class ListPluginsTest extends UnitTestCase {
    * @covers ::__construct
    */
   function testCreate() {
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = [
       ['class_resolver', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->classResolver],
       ['module_handler', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->moduleHandler],
@@ -106,9 +106,9 @@ class ListPluginsTest extends UnitTestCase {
    * @covers ::title
    */
   public function testTitle() {
-    $class_resolver = $this->getMock(ClassResolverInterface::class);
+    $class_resolver = $this->createMock(ClassResolverInterface::class);
 
-    $typed_config_manager = $this->getMock(TypedConfigManagerInterface::class);
+    $typed_config_manager = $this->createMock(TypedConfigManagerInterface::class);
     $typed_config_manager->expects($this->atLeastOnce())
       ->method('hasConfigSchema')
       ->willReturn(TRUE);
@@ -132,11 +132,11 @@ class ListPluginsTest extends UnitTestCase {
    * @covers ::execute
    */
   public function testExecute() {
-    $plugin_manager = $this->getMock(PluginManagerInterface::class);
+    $plugin_manager = $this->createMock(PluginManagerInterface::class);
 
     $plugin_definition_id_a = $this->randomMachineName();
     $plugin_definition_label_a = $this->randomMachineName();
-    $plugin_definition_a = $this->getMock(PluginLabelDefinitionInterface::class);
+    $plugin_definition_a = $this->createMock(PluginLabelDefinitionInterface::class);
     $plugin_definition_a->expects($this->atLeastOnce())
       ->method('getId')
       ->willReturn($plugin_definition_id_a);
@@ -146,7 +146,7 @@ class ListPluginsTest extends UnitTestCase {
 
     $plugin_definition_id_b = $this->randomMachineName();
     $plugin_definition_description_b = $this->randomMachineName();
-    $plugin_definition_b = $this->getMock(PluginDescriptionDefinitionInterface::class);
+    $plugin_definition_b = $this->createMock(PluginDescriptionDefinitionInterface::class);
     $plugin_definition_b->expects($this->atLeastOnce())
       ->method('getId')
       ->willReturn($plugin_definition_id_b);
@@ -161,12 +161,12 @@ class ListPluginsTest extends UnitTestCase {
         'url' => new Url('foo'),
       ],
     ];
-    $plugin_definition_operations_provider_c = $this->getMock(PluginOperationsProviderInterface::class);
+    $plugin_definition_operations_provider_c = $this->createMock(PluginOperationsProviderInterface::class);
     $plugin_definition_operations_provider_c->expects($this->atLeastOnce())
       ->method('getOperations')
       ->with($plugin_definition_id_c)
       ->willReturn($plugin_definition_operations_c);
-    $plugin_definition_c = $this->getMock(PluginOperationsProviderDefinitionInterface::class);
+    $plugin_definition_c = $this->createMock(PluginOperationsProviderDefinitionInterface::class);
     $plugin_definition_c->expects($this->atLeastOnce())
       ->method('getId')
       ->willReturn($plugin_definition_id_c);
@@ -189,7 +189,7 @@ class ListPluginsTest extends UnitTestCase {
       ->method('getDefinitions')
       ->willReturn($plugin_definitions);
 
-    $plugin_type = $this->getMock(PluginTypeInterface::class);
+    $plugin_type = $this->createMock(PluginTypeInterface::class);
     $plugin_type->expects($this->atLeastOnce())
       ->method('ensureTypedPluginDefinition')
       ->willReturnArgument(0);

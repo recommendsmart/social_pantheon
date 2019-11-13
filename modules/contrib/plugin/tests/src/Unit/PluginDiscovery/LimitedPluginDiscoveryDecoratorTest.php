@@ -30,7 +30,7 @@ class LimitedPluginDiscoveryDecoratorTest extends UnitTestCase {
   protected $sut;
 
   public function setUp() {
-    $this->pluginManager = $this->getMock(PluginManagerInterface::class);
+    $this->pluginManager = $this->createMock(PluginManagerInterface::class);
 
     $this->sut = new LimitedPluginDiscoveryDecorator($this->pluginManager);
   }

@@ -205,7 +205,7 @@ class Kanban {
 
     foreach ($this->states as $state_id => $state) {
 
-      //If the State filter has been set, only get data which set by the filter
+      // If the State filter has been set, only get data which set by the filter.
       if ($filter_state && $filter_state != $state_id) {
         // Add empty Kanban column when the column is filtered.
         $emptyColumn = new KanbanColumn(
@@ -250,25 +250,7 @@ class Kanban {
       // Build render array for Kanban.
       $columns[] = $kanban_column->build();
     }
-    // Build the 'add' links for entities.
-    $addEntitiesLinks = [];
-    foreach ($this->entityTypes as $entityTypeId => $bundles) {
-      try {
-        $entityDefinition = \Drupal::entityTypeManager()->getDefinition($entityTypeId);
-        foreach ($bundles as $bundle) {
-          if ($entityDefinition instanceof ContentEntityType && $entityDefinition->hasLinkTemplate('add-form')) {
-            $addEntitiesLinks[$bundle] = $entityDefinition->getLinkTemplate('add-form');
-          }
-          elseif ($entityTypeId === 'node') {
-            $addEntitiesLinks[$bundle] = Url::fromRoute('node.add', ['node_type' => $bundle]);
 
-          }
-        }
-      }
-      catch (PluginNotFoundException $e) {
-        watchdog_exception('content_kanban', $e);
-      }
-    }
     // Permissions.
     $permissions = [
       'create_entity' => $this->getCreateEntityPermissions($entityTypeConfigs),
@@ -282,7 +264,6 @@ class Kanban {
       '#permissions' => $permissions,
       '#headers' => $this->buildHeaders(),
       '#columns' => $columns,
-      '#addEntitiesLinks' => $addEntitiesLinks,
       '#attached' => [
         'library' => ['content_kanban/kanban'],
       ],

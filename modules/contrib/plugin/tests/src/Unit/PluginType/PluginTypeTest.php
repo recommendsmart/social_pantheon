@@ -56,16 +56,16 @@ class PluginTypeTest extends UnitTestCase {
       'field_type' => (bool) mt_rand(0, 1),
     ];
 
-    $class_resolver = $this->getMock(ClassResolverInterface::class);
+    $class_resolver = $this->createMock(ClassResolverInterface::class);
 
-    $typed_config_manager = $this->getMock(TypedConfigManagerInterface::class);
+    $typed_config_manager = $this->createMock(TypedConfigManagerInterface::class);
     $typed_config_manager->expects($this->atLeastOnce())
       ->method('hasConfigSchema')
       ->willReturn(TRUE);
 
-    $this->pluginManager = $this->getMock(PluginManagerInterface::class);
+    $this->pluginManager = $this->createMock(PluginManagerInterface::class);
 
-    $this->container = $this->getMock(ContainerInterface::class);
+    $this->container = $this->createMock(ContainerInterface::class);
     $map = [
       ['class_resolver', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $class_resolver],
       ['config.typed', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $typed_config_manager],
@@ -181,7 +181,7 @@ class PluginTypeTest extends UnitTestCase {
    * @covers ::__construct
    */
   public function testEnsureTypedPluginDefinitionWithAlreadyTypedDefinition() {
-    $decorated_plugin_definition = $this->getMock(PluginDefinitionInterface::class);
+    $decorated_plugin_definition = $this->createMock(PluginDefinitionInterface::class);
 
     $typed_plugin_definition = $this->sut->ensureTypedPluginDefinition($decorated_plugin_definition);
 

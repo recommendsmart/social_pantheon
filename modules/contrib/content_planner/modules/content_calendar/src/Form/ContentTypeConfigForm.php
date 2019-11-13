@@ -62,13 +62,13 @@ class ContentTypeConfigForm extends EntityForm {
 
     switch ($status) {
       case SAVED_NEW:
-        drupal_set_message($this->t('Created the %label Content Type Config.', [
+        $this->messenger()->addMessage($this->t('Created the %label Content Type Config.', [
           '%label' => $config_entity->label(),
         ]));
         break;
 
       default:
-        drupal_set_message($this->t('Saved the %label Content Type Config.', [
+        $this->messenger()->addMessage($this->t('Saved the %label Content Type Config.', [
           '%label' => $config_entity->label(),
         ]));
     }

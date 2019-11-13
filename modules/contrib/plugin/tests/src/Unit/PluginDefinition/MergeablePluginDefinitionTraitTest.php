@@ -34,7 +34,7 @@ class MergeablePluginDefinitionTraitTest extends UnitTestCase {
    * @covers ::doMergeDefaultDefinition
    */
   public function testMergeDefaultDefinition() {
-    $other_definition = $this->getMock(PluginDefinitionInterface::class);
+    $other_definition = $this->createMock(PluginDefinitionInterface::class);
 
     $this->sut->expects($this->atLeastOnce())
       ->method('isDefinitionCompatible')
@@ -54,7 +54,7 @@ class MergeablePluginDefinitionTraitTest extends UnitTestCase {
    * @expectedException \InvalidArgumentException
    */
   public function testMergeDefaultDefinitionWithInvalidOtherDefinition() {
-    $other_definition = $this->getMock(PluginDefinitionInterface::class);
+    $other_definition = $this->createMock(PluginDefinitionInterface::class);
 
     $this->sut->expects($this->atLeastOnce())
       ->method('isDefinitionCompatible')
@@ -69,7 +69,7 @@ class MergeablePluginDefinitionTraitTest extends UnitTestCase {
    * @covers ::doMergeOverrideDefinition
    */
   public function testMergeOverrideDefinition() {
-    $other_definition = $this->getMock(PluginDefinitionInterface::class);
+    $other_definition = $this->createMock(PluginDefinitionInterface::class);
 
     $this->sut->expects($this->atLeastOnce())
       ->method('isDefinitionCompatible')
@@ -89,7 +89,7 @@ class MergeablePluginDefinitionTraitTest extends UnitTestCase {
    * @expectedException \InvalidArgumentException
    */
   public function testMergeOverrideDefinitionWithInvalidOtherDefinition() {
-    $other_definition = $this->getMock(PluginDefinitionInterface::class);
+    $other_definition = $this->createMock(PluginDefinitionInterface::class);
 
     $this->sut->expects($this->atLeastOnce())
       ->method('isDefinitionCompatible')

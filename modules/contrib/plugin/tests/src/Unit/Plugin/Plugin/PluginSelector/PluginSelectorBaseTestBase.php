@@ -68,18 +68,18 @@ abstract class PluginSelectorBaseTestBase extends UnitTestCase {
    *
    */
   public function setUp() {
-    $this->defaultPluginResolver = $this->getMock(DefaultPluginResolverInterface::class);
+    $this->defaultPluginResolver = $this->createMock(DefaultPluginResolverInterface::class);
 
     $this->pluginId = $this->randomMachineName();
 
-    $this->selectablePluginManager = $this->getMock(PluginManagerInterface::class);
+    $this->selectablePluginManager = $this->createMock(PluginManagerInterface::class);
 
-    $this->selectablePluginType = $this->getMock(PluginTypeInterface::class);
+    $this->selectablePluginType = $this->createMock(PluginTypeInterface::class);
     $this->selectablePluginType->expects($this->any())
       ->method('getPluginManager')
       ->willReturn($this->selectablePluginManager);
 
-    $this->selectedPlugin = $this->getMock(PluginInspectionInterface::class);
+    $this->selectedPlugin = $this->createMock(PluginInspectionInterface::class);
   }
 
 }

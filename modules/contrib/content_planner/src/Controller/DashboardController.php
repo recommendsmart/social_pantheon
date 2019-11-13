@@ -23,21 +23,29 @@ class DashboardController extends ControllerBase {
   protected $database;
 
   /**
+   * The config factory.
+   *
    * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
   protected $configFactory;
 
   /**
+   * The dashboard settings service.
+   *
    * @var \Drupal\content_planner\DashboardSettingsService
    */
   protected $dashboardSettingsService;
 
   /**
+   * The dashboard service.
+   *
    * @var \Drupal\content_planner\DashboardService
    */
   protected $dashboardService;
 
   /**
+   * The dashboard block plugin manager.
+   *
    * @var \Drupal\content_planner\DashboardBlockPluginManager
    */
   protected $dashboardBlockPluginManager;
@@ -76,77 +84,79 @@ class DashboardController extends ControllerBase {
    * Showdashboard.
    *
    * @return array
+   *   The content planner dashboard render array.
    */
   public function showDashboard() {
 
-    //Check if Content Calendar or Kanban is enabled
-    if(!$this->dashboardService->isContentCalendarEnabled() &&
+    // Check if Content Calendar or Kanban is enabled.
+    if (!$this->dashboardService->isContentCalendarEnabled() &&
       !$this->dashboardService->isContentKanbanEnabled()) {
 
       $this->messenger()->addMessage($this->t('This dashboard can only be used with Content Calendar or Content Kanban enabled'), 'error');
-      return array();
+      return [];
     }
 
-    //Get enabled blocks
+    // Get enabled blocks.
     $blocks = $this->dashboardSettingsService->getBlockConfigurations();
 
-    //If there are no blocks enabled, display error message
-    if(!$blocks) {
+    // If there are no blocks enabled, display error message.
+    if (!$blocks) {
       $this->messenger()->addMessage($this->t('Dashboard is not configured yet. Please do this in the Settings tab.'), 'error');
-      return array();
+      return [];
     }
 
-    //Get registered Plugins
+    // Get registered Plugins.
     $plugins = $this->dashboardBlockPluginManager->getDefinitions();
 
-    //Build blocks
+    // Build blocks.
     $block_builds = $this->buildBlocks($blocks, $plugins);
 
-    $build = array(
+    $build = [
       '#theme' => 'content_planner_dashboard',
       '#blocks' => $block_builds,
-      '#attached' => array(
-        'library' => array('content_planner/dashboard')
-      ),
-    );
+      '#attached' => [
+        'library' => ['content_planner/dashboard'],
+      ],
+    ];
 
     return $build;
   }
 
   /**
-   * Build blocks
+   * Build blocks.
    *
    * @param array $blocks
-   * @param $plugins
+   *   The blocks to render.
+   * @param array $plugins
+   *   The block plugins.
    *
    * @return array
+   *   Array of content block render arrays.
    */
-  protected function buildBlocks(array &$blocks, &$plugins) {
+  protected function buildBlocks(array &$blocks, array &$plugins) {
 
-    $block_builds = array();
+    $block_builds = [];
 
-    //Loop over every enabled block
-    foreach($blocks as $block_id => $block) {
+    // Loop over every enabled block.
+    foreach ($blocks as $block_id => $block) {
 
-      //If a Dashboard Block plugin exists
-      if(array_key_exists($block_id, $plugins)) {
+      // If a Dashboard Block plugin exists.
+      if (array_key_exists($block_id, $plugins)) {
 
-        /**
-         * @var $instance \Drupal\content_planner\DashboardBlockInterface
-         */
+        /* @var $instance \Drupal\content_planner\DashboardBlockInterface */
         $instance = $this->dashboardBlockPluginManager->createInstance($block_id, $block);
 
-        //Build block render array
-        if($block_build = $instance->build()) {
+        // Build block render array.
+        if ($block_build = $instance->build()) {
 
-          $block_builds[$block_id] = array(
+          $block_builds[$block_id] = [
             '#theme' => 'content_planner_dashboard_block',
             '#css_id' => str_replace('_', '-', $block_id),
             '#block_id' => $block_id,
             '#name' => (isset($block['title']) && $block['title']) ? $block['title'] : $instance->getName(),
             '#block' => $block_build,
             '#weight' => $block['weight'],
-          );
+          ];
         }
       }
     }

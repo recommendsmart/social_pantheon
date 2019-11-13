@@ -2,9 +2,15 @@
 
 namespace Drupal\content_kanban\Plugin\DashboardBlock;
 
+use Drupal\Core\Entity\EntityTypeManager;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\content_planner\DashboardBlockBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\Core\Messenger\MessengerTrait;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\workflows\Entity\Workflow;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -15,7 +21,9 @@ use Symfony\Component\HttpFoundation\Request;
  *   name = @Translation("Content Status Widget")
  * )
  */
-class ContentStateStatistic extends DashboardBlockBase {
+class ContentStateStatistic extends DashboardBlockBase implements ContainerFactoryPluginInterface {
+
+  use MessengerTrait;
 
   /**
    * The Kanban Statistic service.
@@ -27,12 +35,28 @@ class ContentStateStatistic extends DashboardBlockBase {
   /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition) {
+  public function __construct(array $configuration, 
+    $plugin_id, 
+    $plugin_definition, EntityTypeManagerInterface $entity_type_manager, MessengerInterface $messenger) {
 
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
-
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_type_manager);
+    $this->setMessenger($messenger);
     $this->kanbanStatisticService = \Drupal::service('content_kanban.kanban_statistic_service');
   }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('entity_type.manager'),
+      $container->get('messenger')
+    );
+  }
+
 
   /**
    * {@inheritdoc}
@@ -84,7 +108,7 @@ class ContentStateStatistic extends DashboardBlockBase {
     // If workflow does not exist.
     if (!$workflow) {
       $message = t('Content Status Statistic: Workflow with ID @id does not exist. Block will not be shown.', ['@id' => $workflow_id]);
-      drupal_set_message($message, 'error');
+      $this->messenger()->addError($message);
       return [];
     }
 

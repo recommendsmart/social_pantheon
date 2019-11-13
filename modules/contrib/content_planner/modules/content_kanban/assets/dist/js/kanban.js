@@ -49,6 +49,28 @@
       }
     });
 
+    // Instant search for Kanban
+    jQuery(".content-kanban-filter-form #edit-search").keyup(function(){
+      var divs =  jQuery(".content-kanban-entry");
+      if (jQuery(this).val().length >= 2)
+      {
+        var noElem	 = true;
+        var val = jQuery.trim(this.value).toLowerCase();
+
+        el = divs.filter(function() {
+          console.log(jQuery(this).clone().children().remove().end().text());
+          return jQuery(this).text().toLowerCase().match(val);
+        });
+        if (el.length >= 1) {
+          noElem	 = false;
+        }
+        divs.not(el).hide();
+        el.show();
+      } else {
+        divs.show();
+      }
+    });
+
   });
 
 })(jQuery);

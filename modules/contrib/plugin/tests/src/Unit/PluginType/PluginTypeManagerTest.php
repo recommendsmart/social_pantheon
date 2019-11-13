@@ -103,15 +103,15 @@ EOT;
     ];
 
     $this->pluginManagers = [
-      $plugin_type_id_a => $this->getMock(PluginManagerInterface::class),
-      $plugin_type_id_b => $this->getMock(PluginManagerInterface::class),
+      $plugin_type_id_a => $this->createMock(PluginManagerInterface::class),
+      $plugin_type_id_b => $this->createMock(PluginManagerInterface::class),
     ];
 
     vfsStreamWrapper::register();
     $root = new vfsStreamDirectory('modules');
     vfsStreamWrapper::setRoot($root);
 
-    $this->moduleHandler = $this->getMock(ModuleHandlerInterface::class);
+    $this->moduleHandler = $this->createMock(ModuleHandlerInterface::class);
     $this->moduleHandler->expects($this->any())
       ->method('getModuleDirectories')
       ->willReturn(array(
@@ -119,11 +119,11 @@ EOT;
         'module_b' => vfsStream::url('modules/module_b'),
       ));
 
-    $class_resolver = $this->getMock(ClassResolverInterface::class);
+    $class_resolver = $this->createMock(ClassResolverInterface::class);
 
-    $this->typedConfigurationManager = $this->getMock(TypedConfigManagerInterface::class);
+    $this->typedConfigurationManager = $this->createMock(TypedConfigManagerInterface::class);
 
-    $this->container = $this->getMock(ContainerInterface::class);
+    $this->container = $this->createMock(ContainerInterface::class);
     $map = [
       ['class_resolver', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $class_resolver],
       ['config.typed', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->typedConfigurationManager],
@@ -160,7 +160,11 @@ EOT;
   public function testHasPluginType($expected, $plugin_type_id, $module_name, $module_exists) {
     $modules = [];
     if ($module_exists) {
-      $modules[] = new Extension('', 'module', sprintf('modules/%s/%s.info.yml', $module_name, $module_name));
+      $extension = $this->getMockBuilder(Extension::class)->disableOriginalConstructor()->getMock();
+      $extension->expects($this->atLeastOnce())
+        ->method('getName')
+        ->willReturn($module_name);
+      $modules[] = $extension;
     }
     $this->moduleHandler->expects($this->any())
       ->method('getModuleList')
@@ -199,7 +203,11 @@ EOT;
   public function testGetPluginType($expected_success, $plugin_type_id, $module_name, $module_exists) {
     $modules = [];
     if ($module_exists) {
-      $modules[] = new Extension('', 'module', sprintf('modules/%s/%s.info.yml', $module_name, $module_name));
+      $extension = $this->getMockBuilder(Extension::class)->disableOriginalConstructor()->getMock();
+      $extension->expects($this->atLeastOnce())
+        ->method('getName')
+        ->willReturn($module_name);
+      $modules[] = $extension;
     }
     $this->moduleHandler->expects($this->any())
       ->method('getModuleList')
@@ -214,7 +222,7 @@ EOT;
       $this->assertInstanceOf(PluginTypeInterface::class, $this->sut->getPluginType($plugin_type_id));
     }
     else {
-      $this->setExpectedException('\InvalidArgumentException');
+      $this->expectException('\InvalidArgumentException');
       $this->sut->getPluginType($plugin_type_id);
     }
   }
@@ -254,8 +262,11 @@ EOT;
    */
   public function testGetPluginTypes() {
     $modules = array_map(function(array $plugin_type_definition) {
-      $name = $plugin_type_definition['provider'];
-      return new Extension('', 'module', sprintf('modules/%s/%s.info.yml', $name, $name));
+      $extension = $this->getMockBuilder(Extension::class)->disableOriginalConstructor()->getMock();
+      $extension->expects($this->atLeastOnce())
+        ->method('getName')
+        ->willReturn($plugin_type_definition['provider']);
+      return $extension;
     }, $this->pluginTypeDefinitions);
     $this->moduleHandler->expects($this->any())
       ->method('getModuleList')

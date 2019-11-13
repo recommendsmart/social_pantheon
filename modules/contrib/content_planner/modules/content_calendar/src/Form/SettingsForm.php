@@ -2,7 +2,6 @@
 
 namespace Drupal\content_calendar\Form;
 
-use Drupal\content_calendar\Entity\ContentTypeConfig;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Link;
@@ -27,14 +26,14 @@ class SettingsForm extends ConfigFormBase {
   protected $config;
 
   /**
-   * Config name
+   * Config name.
    *
    * @var string
    */
   static $configName = 'content_calendar.settings';
 
   /**
-   * The default background color value for unpublished content
+   * The default background color value for unpublished content.
    *
    * @var string
    */
@@ -45,13 +44,13 @@ class SettingsForm extends ConfigFormBase {
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    */
-  public function __construct(\Drupal\Core\Config\ConfigFactoryInterface $config_factory) {
+  public function __construct(ConfigFactoryInterface $config_factory) {
 
     parent::__construct($config_factory);
 
     $this->contentTypeConfigService = \Drupal::service('content_calendar.content_type_config_service');
 
-    //Get config
+    // Get config.
     $this->config = $this->config(self::$configName);
   }
 
@@ -76,45 +75,45 @@ class SettingsForm extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state, Request $request = NULL) {
 
-    //Get select options for content types
+    // Get select options for content types.
     $content_type_options = $this->getConfiguredContentTypes();
 
-    if(!$content_type_options) {
+    if (!$content_type_options) {
       $message = $this->t('Content Calendar can only be used with Scheduler. At least one Content Type needs to have the scheduling options enabled.');
       $this->messenger()->addMessage($message, 'error');
-      return array();
+      return [];
     }
 
-    //Build Content Type configuration
+    // Build Content Type configuration.
     $this->buildContentTypeConfiguration($form, $form_state);
 
-    //Build Calendar Options
+    // Build Calendar Options.
     $this->buildCalendarOptions($form, $form_state);
 
-    //Build form
+    // Build form.
     $build_form = parent::buildForm($form, $form_state);
 
     return $build_form;
   }
 
   /**
-   * Build Content Type select options
+   * Build Content Type select options.
    *
    * @return array
    */
   protected function getConfiguredContentTypes() {
 
-    $display_options = array();
+    $display_options = [];
 
-    //Load Node Type configurations
+    // Load Node Type configurations.
     $node_types = NodeType::loadMultiple();
 
-    foreach($node_types as $node_type_key => $node_type) {
+    foreach ($node_types as $node_type_key => $node_type) {
 
-      if($scheduler = $node_type->getThirdPartySettings('scheduler')) {
+      if ($scheduler = $node_type->getThirdPartySettings('scheduler')) {
 
-        if($scheduler['publish_enable'] == TRUE) {
-          $display_options[$node_type_key] =  $node_type->label();
+        if ($scheduler['publish_enable'] == TRUE) {
+          $display_options[$node_type_key] = $node_type->label();
         }
 
       }
@@ -124,20 +123,20 @@ class SettingsForm extends ConfigFormBase {
   }
 
   /**
-   * Build Content type configuration
+   * Build Content type configuration.
    *
    * @param array $form
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    */
   protected function buildContentTypeConfiguration(array &$form, FormStateInterface $form_state) {
 
-    //Get select options for content types
+    // Get select options for content types.
     $content_type_options = $this->getConfiguredContentTypes();
 
-    //Get all config entities
+    // Get all config entities.
     $entities = $this->contentTypeConfigService->loadAllEntities();
 
-    //Get all config entities keys
+    // Get all config entities keys.
     $entity_keys = array_keys($entities);
 
     $form['content_type_configuration'] = [
@@ -156,61 +155,61 @@ class SettingsForm extends ConfigFormBase {
       '#default_value' => $entity_keys,
     ];
 
-    if($entities) {
+    if ($entities) {
 
-      $rows = array();
+      $rows = [];
 
-      foreach($entities as $entity_key => $entity) {
+      foreach ($entities as $entity_key => $entity) {
 
-        $options = array(
-          'query' => array(
-            'destination' => Url::fromRoute('content_calendar.settings')->toString()
-          ),
-        );
+        $options = [
+          'query' => [
+            'destination' => Url::fromRoute('content_calendar.settings')->toString(),
+          ],
+        ];
 
         $edit_link = Link::createFromRoute(
           $this->t('Configure'),
           'entity.content_type_config.edit_form',
-          array('content_type_config' => $entity_key),
+          ['content_type_config' => $entity_key],
           $options
         );
 
-        $row = array(
+        $row = [
           $entity->label(),
           $entity->id(),
           $entity->getColor(),
-          $edit_link->toString()
-        );
+          $edit_link->toString(),
+        ];
 
         $rows[] = $row;
       }
 
-      $headers = array(
+      $headers = [
         $this->t('Content Type'),
         $this->t('ID'),
         $this->t('Color'),
-        $this->t('Actions')
-      );
+        $this->t('Actions'),
+      ];
 
-      $form['content_type_configuration']['table'] = array(
+      $form['content_type_configuration']['table'] = [
         '#type' => 'table',
         '#header' => $headers,
         '#rows' => $rows,
-        '#weight' => 20
-      );
+        '#weight' => 20,
+      ];
     }
 
   }
 
   /**
-   * Build the form elements for the calendar options
+   * Build the form elements for the calendar options.
    *
    * @param array $form
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    */
   protected function buildCalendarOptions(array &$form, FormStateInterface $form_state) {
 
-    //Fieldset
+    // Fieldset.
     $form['options'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Display Options'),
@@ -218,7 +217,7 @@ class SettingsForm extends ConfigFormBase {
       '#collapsed' => FALSE,
     ];
 
-    //Show user thumb checkbox
+    // Show user thumb checkbox.
     $user_picture_field_exists = !$this->config('field.field.user.user.user_picture')->isNew();
 
     $form['options']['show_user_thumb'] = [
@@ -244,30 +243,30 @@ class SettingsForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
 
-    //Get form values
+    // Get form values.
     $values = $form_state->getValues();
 
-    //Save show user image thumbnail option
+    // Save show user image thumbnail option.
     $this->config(self::$configName)
       ->set('show_user_thumb', $values['show_user_thumb'])
       ->set('bg_color_unpublished_content', $values['bg_color_unpublished_content'])
       ->save();
 
-    //Get selected Content Types
+    // Get selected Content Types.
     $selected_content_types = $this->getSelectedContentTypes($form_state);
 
-    //Load config entities
+    // Load config entities.
     $config_entities = $this->contentTypeConfigService->loadAllEntities();
 
-    //Check which config entity needs to be added
+    // Check which config entity needs to be added.
     $this->addNewConfigEntities($selected_content_types, $config_entities);
 
-    //Check which config entity needs to be deleted
+    // Check which config entity needs to be deleted.
     $this->deleteObsoleteConfigEntities($selected_content_types, $config_entities);
   }
 
   /**
-   * Get selected content types
+   * Get selected content types.
    *
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *
@@ -275,15 +274,15 @@ class SettingsForm extends ConfigFormBase {
    */
   protected function getSelectedContentTypes(FormStateInterface &$form_state) {
 
-    //Get values
+    // Get values.
     $values = $form_state->getValues();
 
-    //Save Content types to be displayed
-    $selected_content_types = array();
+    // Save Content types to be displayed.
+    $selected_content_types = [];
 
-    foreach($values['content_types'] as $key => $selected) {
+    foreach ($values['content_types'] as $key => $selected) {
 
-      if($selected) {
+      if ($selected) {
         $selected_content_types[] = $key;
       }
     }
@@ -292,43 +291,44 @@ class SettingsForm extends ConfigFormBase {
   }
 
   /**
-   * Check which config entity needs to be deleted
+   * Check which config entity needs to be deleted.
    *
    * @param array $selected_content_types
    * @param \Drupal\content_calendar\Entity\ContentTypeConfig[] $config_entities
    */
   protected function addNewConfigEntities(array $selected_content_types, array &$config_entities) {
 
-    //Get entity keys
+    // Get entity keys.
     $entity_keys = array_keys($config_entities);
 
-    foreach($selected_content_types as $selected_content_type) {
+    foreach ($selected_content_types as $selected_content_type) {
 
-      if(!in_array($selected_content_type, $entity_keys)) {
+      if (!in_array($selected_content_type, $entity_keys)) {
 
-        if($node_type = NodeType::load($selected_content_type)) {
+        if ($node_type = NodeType::load($selected_content_type)) {
           $this->contentTypeConfigService->createEntity($selected_content_type, $node_type->label());
-          $this->messenger()->addMessage(t('Content Type @name has been added and can be configured below.', array('@name' => $node_type->label())));
+          $this->messenger()->addMessage(t('Content Type @name has been added and can be configured below.', ['@name' => $node_type->label()]));
         }
       }
     }
   }
 
   /**
-   * Check which config entity needs to be deleted
+   * Check which config entity needs to be deleted.
    *
    * @param array $selected_content_types
    * @param \Drupal\content_calendar\Entity\ContentTypeConfig[] $config_entities
    */
   protected function deleteObsoleteConfigEntities(array $selected_content_types, array &$config_entities) {
 
-    foreach($config_entities as $config_entity_id => $config_entity) {
+    foreach ($config_entities as $config_entity_id => $config_entity) {
 
-      if(!in_array($config_entity_id, $selected_content_types)) {
-        $this->messenger()->addMessage(t('Content Type @name has been removed from Content Calendar.', array('@name' => $config_entity->label())));
+      if (!in_array($config_entity_id, $selected_content_types)) {
+        $this->messenger()->addMessage(t('Content Type @name has been removed from Content Calendar.', ['@name' => $config_entity->label()]));
         $config_entity->delete();
       }
     }
 
   }
+
 }

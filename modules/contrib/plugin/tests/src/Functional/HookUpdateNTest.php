@@ -8,6 +8,7 @@ use Drupal\FunctionalTests\Update\UpdatePathTestBase;
  * Tests hook_update_N() implementations.
  *
  * @group Plugin
+ * @group legacy
  */
 class HookUpdateNTest extends UpdatePathTestBase {
 

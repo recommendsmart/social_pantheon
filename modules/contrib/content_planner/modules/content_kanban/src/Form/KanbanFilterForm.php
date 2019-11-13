@@ -10,6 +10,7 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\content_kanban\Form\SettingsForm;
 
 /**
  * KanbanFilterForm class.
@@ -76,13 +77,15 @@ class KanbanFilterForm extends FormBase {
       '#title' => $this->t('Filters'),
       '#collapsible' => FALSE,
       '#collapsed' => FALSE,
+      '#attributes' => [
+        'class' => ['form--inline'],
+      ],
     ];
 
     // User ID.
     $form['filters']['filter_uid'] = [
       '#type' => 'select',
       '#title' => $this->t('User'),
-      '#description' => $this->t('Filter by User. Only Users with at least one moderated content are listed here.'),
       '#options' => $this->getUserOptions(),
       '#required' => FALSE,
       '#empty_value' => '',
@@ -99,6 +102,22 @@ class KanbanFilterForm extends FormBase {
       '#empty_value' => '',
       '#empty_option' => $this->t('All'),
       '#default_value' => self::getStateFilter(),
+    ];
+
+    $form['filters']['filter_date_range'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Date range'),
+      '#options' => self::getDateRangeOptions(),
+      '#required' => FALSE,
+      '#empty_value' => '',
+      '#empty_option' => $this->t('All'),
+      '#default_value' => self::getDateRangeFilter(),
+    ];
+
+    $form['filters']['search'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Instant Search'),
+      '#required' => FALSE,
     ];
 
     // Actions.
@@ -186,6 +205,26 @@ class KanbanFilterForm extends FormBase {
   }
 
   /**
+   * Gets the Date Range options.
+   *
+   * @return array
+   *   Returns an array with the date range options.
+   */
+  public static function getDateRangeOptions() {
+
+    //static for now, maybe it needs to be more dynamic later
+    $options = [];
+    //@todo t() is bad - how can we get the translation service (without using global context)
+    $options['1']    = t('1 Day');
+    $options['7']   = t('7 Days');
+    $options['30']  = t('30 Days');
+    $options['90']  = t('90 Days');
+    $options['365'] = t('Year');
+
+    return $options;
+  }
+
+  /**
    * Gets the User ID filter from request.
    *
    * @return int|null
@@ -213,6 +252,29 @@ class KanbanFilterForm extends FormBase {
     }
 
     return NULL;
+  }
+
+  /**
+   * Gets the State Date Range from request.
+   *
+   * @return int|null
+   *   Returns the filter_date_range value if it exists, NULL otherwise.
+   */
+  public static function getDateRangeFilter() {
+
+    if (\Drupal::request()->query->has('filter_date_range')) {
+      return \Drupal::request()->query->get('filter_date_range');
+    } else {
+      $config = \Drupal::config(SettingsForm::$configName);
+
+      $date_range = $config->get('default_filter_date_range');
+
+      if ($date_range) {
+        return $date_range;
+      }
+    }
+
+    return SettingsForm::DEFAULT_DATE_RANGE_VALUE;
   }
 
   /**

@@ -33,6 +33,8 @@
           display: block;
         }
 
+
+
         .user-info {
 
           .user-picture {
@@ -50,6 +52,28 @@
           a {
             color: inherit;
             font-weight: bold;
+          }
+        }
+
+        .node-publication-info {
+
+          span {
+            display: inline-block;
+
+          }
+          .publish-on {
+            float: right;
+          }
+
+          .workflow-state {
+            color: white;
+            padding: 2px 3px;
+            border-radius: 3px;
+            max-width: 60%;
+            font-size: 0.7em;
+            font-weight: bold;
+            line-height: 1.2;
+            background-color: #333333;
           }
         }
 

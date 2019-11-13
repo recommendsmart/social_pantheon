@@ -35,7 +35,7 @@ class PluginDeriverDefinitionTraitTest extends UnitTestCase {
    * @covers ::getDeriverClass
    */
   public function testGetDeriverClass() {
-    $class = get_class($this->getMock(DeriverInterface::class));
+    $class = get_class($this->createMock(DeriverInterface::class));
 
     $this->assertSame($this->sut, $this->sut->setDeriverClass($class));
     $this->assertSame($class, $this->sut->getDeriverClass());

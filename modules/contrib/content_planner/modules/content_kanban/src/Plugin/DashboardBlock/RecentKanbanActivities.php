@@ -5,10 +5,15 @@ namespace Drupal\content_kanban\Plugin\DashboardBlock;
 use Drupal\content_kanban\Entity\KanbanLog;
 use Drupal\content_planner\DashboardBlockBase;
 use Drupal\content_planner\UserProfileImage;
+use Drupal\Core\Datetime\DateFormatter;
+use Drupal\Core\Datetime\DateFormatterInterface;
+use Drupal\Core\Datetime\Entity\DateFormat;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\user\Entity\User;
 use Drupal\content_kanban\KanbanWorkflowService;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -38,12 +43,29 @@ class RecentKanbanActivities extends DashboardBlockBase {
   /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition) {
+  public function __construct(
+    array $configuration,
+    $plugin_id,
+    $plugin_definition,
+    EntityTypeManagerInterface $entity_type_manager,
+    DateFormatterInterface $date_formatter
+  ) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_type_manager);
 
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->dateFormatter = $date_formatter;
+  }
 
-    $this->dateFormatter = \Drupal::service('date.formatter');
-
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('entity_type.manager'),
+      $container->get('date.formatter')
+    );
   }
 
   /**

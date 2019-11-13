@@ -2,7 +2,7 @@
 
 namespace Drupal\Tests\plugin\Unit;
 
-use Drupal\Component\Utility\SafeMarkup;
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\StringTranslation\TranslationInterface;
 
@@ -25,21 +25,21 @@ class TranslationMock implements TranslationInterface {
    * {@inheritdoc}
    */
   public function translateString(TranslatableMarkup $translatable_string) {
-    return SafeMarkup::format($translatable_string->getUntranslatedString(), $translatable_string->getArguments());
+    return new FormattableMarkup($translatable_string->getUntranslatedString(), $translatable_string->getArguments());
   }
 
   /**
    * {@inheritdoc}
    */
   public function formatPlural($count, $singular, $plural, array $args = array(), array $options = array()) {
-    return $count === 1 ? SafeMarkup::format($singular, $args) : SafeMarkup::format($plural, $args + ['@count' => $count]);
+    return $count === 1 ? new FormattableMarkup($singular, $args) : new FormattableMarkup($plural, $args + ['@count' => $count]);
   }
 
   /**
    * {@inheritdoc}
    */
   public function formatPluralTranslated($count, $translation, array $args = array(), array $options = array()) {
-    return SafeMarkup::format($translation, $args);
+    return new FormattableMarkup($translation, $args);
   }
 
   /**

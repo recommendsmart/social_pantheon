@@ -72,20 +72,20 @@ class SelectListTest extends PluginSelectorBaseTestBase {
 
     $plugin_id_a = $this->randomMachineName();
     $plugin_label_a = $this->randomMachineName();
-    $plugin_definition_a = $this->getMock(PluginLabelDefinitionInterface::class);
+    $plugin_definition_a = $this->createMock(PluginLabelDefinitionInterface::class);
     $plugin_definition_a->expects($this->atLeastOnce())
       ->method('getLabel')
       ->willReturn($plugin_label_a);
-    $plugin_a = $this->getMock(PluginInspectionInterface::class);
+    $plugin_a = $this->createMock(PluginInspectionInterface::class);
     $plugin_a->expects($this->atLeastOnce())
       ->method('getPluginId')
       ->willReturn($plugin_id_a);
     $plugin_id_b = $this->randomMachineName();
-    $plugin_definition_b = $this->getMock(PluginDefinitionInterface::class);
+    $plugin_definition_b = $this->createMock(PluginDefinitionInterface::class);
     $plugin_definition_b->expects($this->atLeastOnce())
       ->method('getId')
       ->willReturn($plugin_id_b);
-    $plugin_b = $this->getMock(PluginInspectionInterface::class);
+    $plugin_b = $this->createMock(PluginInspectionInterface::class);
 
     $this->sut->setSelectedPlugin($plugin_a);
     $selector_title = $this->randomMachineName();
@@ -96,7 +96,7 @@ class SelectListTest extends PluginSelectorBaseTestBase {
     $element = array(
       '#parents' => array('foo', 'bar'),
     );
-    $form_state = $this->getMock(FormStateInterface::class);
+    $form_state = $this->createMock(FormStateInterface::class);
     $available_plugins = [$plugin_a, $plugin_b];
 
     $this->selectablePluginManager->expects($this->atLeastOnce())

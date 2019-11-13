@@ -46,7 +46,7 @@ class ArrayPluginDefinitionDecoratorTest extends UnitTestCase {
       'deriver' => $this->getMockClass(DeriverInterface::class),
       'operations_provider' => $this->getMockClass(PluginOperationsProviderInterface::class),
       'context' => [
-        $this->randomMachineName() => $this->getMock(ContextDefinitionInterface::class),
+        $this->randomMachineName() => $this->createMock(ContextDefinitionInterface::class),
       ],
       'config_dependencies' => [
         'module' => [$this->randomMachineName()],
@@ -263,9 +263,9 @@ class ArrayPluginDefinitionDecoratorTest extends UnitTestCase {
 
     // Test changing the value through the setter.
     $context_definition_name_a = $this->randomMachineName();
-    $context_definition_a = $this->getMock(ContextDefinitionInterface::class);
+    $context_definition_a = $this->createMock(ContextDefinitionInterface::class);
     $context_definition_name_b = $this->randomMachineName();
-    $context_definition_b = $this->getMock(ContextDefinitionInterface::class);
+    $context_definition_b = $this->createMock(ContextDefinitionInterface::class);
     $value = [
       $context_definition_name_a => $context_definition_a,
       $context_definition_name_b => $context_definition_b,
@@ -277,9 +277,9 @@ class ArrayPluginDefinitionDecoratorTest extends UnitTestCase {
 
     // Test changing the value through array access.
     $context_definition_name_a = $this->randomMachineName();
-    $context_definition_a = $this->getMock(ContextDefinitionInterface::class);
+    $context_definition_a = $this->createMock(ContextDefinitionInterface::class);
     $context_definition_name_b = $this->randomMachineName();
-    $context_definition_b = $this->getMock(ContextDefinitionInterface::class);
+    $context_definition_b = $this->createMock(ContextDefinitionInterface::class);
     $value = [
       $context_definition_name_a => $context_definition_a,
       $context_definition_name_b => $context_definition_b,
@@ -319,7 +319,7 @@ class ArrayPluginDefinitionDecoratorTest extends UnitTestCase {
    */
   public function testGetContextDefinition() {
     $name = $this->randomMachineName();
-    $context_definition = $this->getMock(ContextDefinitionInterface::class);
+    $context_definition = $this->createMock(ContextDefinitionInterface::class);
 
     $this->assertSame($this->sut, $this->sut->setContextDefinition($name, $context_definition));
     $this->assertSame($context_definition, $this->sut->getContextDefinition($name));
@@ -383,7 +383,7 @@ class ArrayPluginDefinitionDecoratorTest extends UnitTestCase {
    * @expectedException \InvalidArgumentException
    */
   public function testMergeDefaultDefinitionWithInvalidOtherDefinition() {
-    $other_definition = $this->getMock(PluginDefinitionInterface::class);
+    $other_definition = $this->createMock(PluginDefinitionInterface::class);
 
     $this->sut->mergeDefaultDefinition($other_definition);
   }
@@ -430,7 +430,7 @@ class ArrayPluginDefinitionDecoratorTest extends UnitTestCase {
    * @expectedException \InvalidArgumentException
    */
   public function testMergeOverrideDefinitionWithInvalidOtherDefinition() {
-    $other_definition = $this->getMock(PluginDefinitionInterface::class);
+    $other_definition = $this->createMock(PluginDefinitionInterface::class);
 
     $this->sut->mergeOverrideDefinition($other_definition);
   }

@@ -2,10 +2,12 @@
 
 namespace Drupal\content_calendar\Form;
 
-
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 
+/**
+ *
+ */
 class CalenderOverviewFilterForm extends FormBase {
 
   /**
@@ -18,9 +20,9 @@ class CalenderOverviewFilterForm extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, $params = array()) {
+  public function buildForm(array $form, FormStateInterface $form_state, $params = []) {
 
-    //Add Calendar select box
+    // Add Calendar select box.
     $this->addCalendarYearSelectBox($form, $form_state, $params);
 
     $this->addJumpLinks($form, $form_state, $params);
@@ -29,7 +31,7 @@ class CalenderOverviewFilterForm extends FormBase {
   }
 
   /**
-   * Add Calendar select box
+   * Add Calendar select box.
    *
    * @param array $form
    * @param \Drupal\Core\Form\FormStateInterface $formState
@@ -37,7 +39,7 @@ class CalenderOverviewFilterForm extends FormBase {
    */
   protected function addCalendarYearSelectBox(array &$form, FormStateInterface &$formState, $params) {
 
-    //Date range
+    // Date range.
     $year_range = range(($params['current_year'] - 3), ($params['current_year'] + 3));
 
     $years = array_combine($year_range, $year_range);
@@ -51,11 +53,14 @@ class CalenderOverviewFilterForm extends FormBase {
 
   }
 
+  /**
+   *
+   */
   protected function addJumpLinks(array &$form, FormStateInterface &$formState, $params) {
 
-    $jump_liks = array();
+    $jump_liks = [];
 
-    $months = array(
+    $months = [
       1 => t('Jan'),
       2 => t('Feb'),
       3 => t('Mar'),
@@ -68,16 +73,19 @@ class CalenderOverviewFilterForm extends FormBase {
       10 => t('Oct'),
       11 => t('Nov'),
       12 => t('Dec'),
-    );
+    ];
 
-    $form['jump_links'] = array(
+    $form['jump_links'] = [
       '#theme' => 'content_calendar_jump_links',
       '#months' => $months,
-      '#year' => $params['selected_year']
-    );
+      '#year' => $params['selected_year'],
+    ];
 
   }
 
+  /**
+   *
+   */
   public function submitForm(array &$form, FormStateInterface $form_state) {}
 
 }

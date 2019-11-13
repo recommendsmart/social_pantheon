@@ -1,5 +1,5 @@
 name: Plugin Test (Plugin configurable field)
-# core: 8.x
+core_version_requirement: ^8.7.7 || ^9
 type: module
 dependencies:
   - drupal:node
@@ -8,8 +8,7 @@ dependencies:
   - drupal:views
 hidden: true
 
-# Information added by Drupal.org packaging script on 2019-05-19
-version: '8.x-2.6'
-core: '8.x'
+# Information added by Drupal.org packaging script on 2019-11-12
+version: '8.x-2.7'
 project: 'plugin'
-datestamp: 1558296185
+datestamp: 1573598284

@@ -117,7 +117,9 @@
         "drupal/commerce_invoice": "^1.0",
         "drupal/commerce_product_tax": "^1.0",
         "drupal/billing": "^1.1",
-        "drupal/taxonomy_unique": "^2.2"
+        "drupal/taxonomy_unique": "^2.2",
+        "tecnickcom/tcpdf": "^6.3",
+        "mikehaertl/phpwkhtmltopdf": "^2.4"
 		
         },
     "repositories": [

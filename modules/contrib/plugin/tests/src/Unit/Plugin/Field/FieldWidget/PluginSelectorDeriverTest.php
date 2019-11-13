@@ -31,7 +31,7 @@ class PluginSelectorDeriverTest extends UnitTestCase {
   public function setUp() {
     parent::setUp();
 
-    $this->pluginSelectorManager = $this->getMock(PluginSelectorManagerInterface::class);
+    $this->pluginSelectorManager = $this->createMock(PluginSelectorManagerInterface::class);
 
     $this->sut = new PluginSelectorDeriver($this->pluginSelectorManager);
   }
@@ -41,7 +41,7 @@ class PluginSelectorDeriverTest extends UnitTestCase {
    * @covers ::__construct
    */
   function testCreate() {
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = [
       ['plugin.manager.plugin.plugin_selector', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->pluginSelectorManager],
     ];

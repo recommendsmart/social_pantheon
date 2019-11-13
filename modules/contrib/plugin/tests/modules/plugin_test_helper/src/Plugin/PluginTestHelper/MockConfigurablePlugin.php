@@ -2,7 +2,7 @@
 
 namespace Drupal\plugin_test_helper\Plugin\PluginTestHelper;
 
-use Drupal\Component\Plugin\ConfigurablePluginInterface;
+use Drupal\Component\Plugin\ConfigurableInterface;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\PluginBase;
@@ -11,7 +11,7 @@ use Drupal\Core\Plugin\PluginFormInterface;
 /**
  * Provides a configurable mock plugin.
  */
-class MockConfigurablePlugin extends PluginBase implements ConfigurablePluginInterface, PluginFormInterface, MockPluginInterface {
+class MockConfigurablePlugin extends PluginBase implements ConfigurableInterface, PluginFormInterface, MockPluginInterface {
 
   /**
    * Constructs a new instance.

@@ -3,4 +3,3 @@ entity.content_type_config.add_form:
   title: 'Add Content Type Config'
   appears_on:
     - entity.content_type_config.collection
-

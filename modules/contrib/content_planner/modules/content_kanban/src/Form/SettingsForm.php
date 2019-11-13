@@ -22,6 +22,11 @@ class SettingsForm extends ConfigFormBase {
   static public $configName = 'content_kanban.settings';
 
   /**
+   *  Default Date Range value.
+   */
+  Const DEFAULT_DATE_RANGE_VALUE = 30;
+
+  /**
    * The stored config for the form.
    *
    * @var \Drupal\Core\Config\Config|\Drupal\Core\Config\ImmutableConfig
@@ -113,6 +118,22 @@ class SettingsForm extends ConfigFormBase {
       '#default_value' => $this->config->get('show_user_thumb'),
     ];
 
+    $default_date_range_value = self::DEFAULT_DATE_RANGE_VALUE;
+
+    if ($this->config->get('default_filter_date_range')) {
+      $default_date_range_value = $this->config->get('default_filter_date_range');
+    }
+
+    $form['options']['default_filter_date_range'] = [
+       '#type' => 'select',
+       '#title' => $this->t('Date range'),
+       '#options' => \Drupal\content_kanban\Form\KanbanFilterForm::getDateRangeOptions(),
+       '#required' => FALSE,
+       '#empty_value' => '',
+       '#empty_option' => $this->t('All'),
+       '#default_value' => $default_date_range_value,
+    ];
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -138,6 +159,7 @@ class SettingsForm extends ConfigFormBase {
     // Save show user image thumbnail option.
     $this->config(self::$configName)
       ->set('show_user_thumb', $values['show_user_thumb'])
+      ->set('default_filter_date_range', $values['default_filter_date_range'])
       ->save();
   }
 
