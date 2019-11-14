@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d7e99457a08d58857d7574dd2e6146e5",
+    "content-hash": "3d3d1e9b71604c982579b3bb2b811cc1",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -1744,6 +1744,56 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/age_field_formatter",
                 "issues": "https://www.drupal.org/project/issues/age_field_formatter"
+            }
+        },
+        {
+            "name": "drupal/ala",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/ala.git",
+                "reference": "8.x-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/ala-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "0de29f964d4f1a65ff5ef1c7dcfbc4cb0dbee544"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.1",
+                    "datestamp": "1573562887",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "iaconba",
+                    "homepage": "https://www.drupal.org/user/3314043"
+                },
+                {
+                    "name": "kushan4157",
+                    "homepage": "https://www.drupal.org/user/3619158"
+                }
+            ],
+            "homepage": "https://www.drupal.org/project/ala",
+            "support": {
+                "source": "https://git.drupalcode.org/project/ala"
             }
         },
         {
@@ -7762,6 +7812,80 @@
                 "issues": "https://www.drupal.org/project/issues/membership_entity"
             },
             "time": "2018-04-08T21:59:28+00:00"
+        },
+        {
+            "name": "drupal/menu_token",
+            "version": "1.0.0-alpha3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/menu_token.git",
+                "reference": "8.x-1.0-alpha3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/menu_token-8.x-1.0-alpha3.zip",
+                "reference": "8.x-1.0-alpha3",
+                "shasum": "900549b00d9ea83474fd4bc7d77104257dba6c78"
+            },
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/token": "^1.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha3",
+                    "datestamp": "1573517280",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "See contributors",
+                    "homepage": "https://www.drupal.org/node/353073/committers",
+                    "role": "Developer"
+                },
+                {
+                    "name": "dealancer",
+                    "homepage": "https://www.drupal.org/user/243418"
+                },
+                {
+                    "name": "develCuy",
+                    "homepage": "https://www.drupal.org/user/125473"
+                },
+                {
+                    "name": "fubhy",
+                    "homepage": "https://www.drupal.org/user/761344"
+                },
+                {
+                    "name": "nhaarish",
+                    "homepage": "https://www.drupal.org/user/3388728"
+                },
+                {
+                    "name": "peter.draucbaher",
+                    "homepage": "https://www.drupal.org/user/2409142"
+                },
+                {
+                    "name": "ygerasimov",
+                    "homepage": "https://www.drupal.org/user/257311"
+                }
+            ],
+            "description": "Menu Token module provides tokens, that can be used in title or in path of menu items (links).",
+            "homepage": "http://drupal.org/project/menu_token",
+            "support": {
+                "source": "https://git.drupalcode.org/project/menu_token",
+                "issues": "http://drupal.org/project/issues/menu_token"
+            }
         },
         {
             "name": "drupal/message",

@@ -110,7 +110,9 @@
         "drupal/billing": "^1.1",
         "drupal/taxonomy_unique": "^2.2",
         "tecnickcom/tcpdf": "^6.3",
-        "mikehaertl/phpwkhtmltopdf": "^2.4"
+        "mikehaertl/phpwkhtmltopdf": "^2.4",
+        "drupal/ala": "^1.1",
+        "drupal/menu_token": "^1.0"
 		
         },
     "repositories": [
