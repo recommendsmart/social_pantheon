@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Element\CurrencySignTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Element;
 
 use Commercie\Currency\InputInterface;
@@ -53,9 +48,9 @@ class CurrencySignTest extends UnitTestCase {
    * {@inheritdoc}
    */
   public function setUp() {
-    $this->currencyStorage = $this->getMock(EntityStorageInterface::class);
+    $this->currencyStorage = $this->createMock(EntityStorageInterface::class);
 
-    $this->input = $this->getMock(InputInterface::class);
+    $this->input = $this->createMock(InputInterface::class);
 
     $this->stringTranslation = $this->getStringTranslationStub();
 
@@ -71,13 +66,13 @@ class CurrencySignTest extends UnitTestCase {
    * @covers ::__construct
    */
   function testCreate() {
-    $entity_type_manager = $this->getMock(EntityTypeManagerInterface::class);
+    $entity_type_manager = $this->createMock(EntityTypeManagerInterface::class);
     $entity_type_manager->expects($this->once())
       ->method('getStorage')
       ->with('currency')
       ->willReturn($this->currencyStorage);
 
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = array(
       array(
         'entity_type.manager',

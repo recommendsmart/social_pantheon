@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Definition of Drupal\currency\Entity\Currency\CurrencyForm.
- */
-
 namespace Drupal\currency\Entity\Currency;
 
 use Commercie\Currency\InputInterface;
@@ -65,10 +60,10 @@ class CurrencyForm extends EntityForm {
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-    /** @var \Drupal\Core\Entity\EntityManagerInterface $entity_manager */
-    $entity_manager = $container->get('entity.manager');
+    /** @var \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager */
+    $entity_type_manager = $container->get('entity_type.manager');
 
-    return new static($container->get('string_translation'), $container->get('link_generator'), $entity_manager->getStorage('currency'), $container->get('currency.input'));
+    return new static($container->get('string_translation'), $container->get('link_generator'), $entity_type_manager->getStorage('currency'), $container->get('currency.input'));
   }
 
   /**
@@ -164,7 +159,7 @@ class CurrencyForm extends EntityForm {
   public function save(array $form, FormStateInterface $form_state) {
     $currency = $this->getEntity($form_state);
     $currency->save();
-    drupal_set_message($this->t('The currency %label has been saved.', array(
+    $this->messenger()->addMessage($this->t('The currency %label has been saved.', array(
       '%label' => $currency->label(),
     )));
     $form_state->setRedirect('entity.currency.collection');
@@ -183,7 +178,7 @@ class CurrencyForm extends EntityForm {
       $loaded_currency = $this->currencyStorage->load($currency_code);
       if ($loaded_currency) {
         $form_state->setError($element, $this->t('The currency code is already in use by @link.', array(
-          '@link' => $this->linkGenerator->generate($loaded_currency->label(), $loaded_currency->urlInfo('edit-form')),
+          '@link' => $this->linkGenerator->generate($loaded_currency->label(), $loaded_currency->toUrl('edit-form')),
         )));
       }
     }
@@ -205,7 +200,7 @@ class CurrencyForm extends EntityForm {
       if ($loaded_currencies) {
         $loaded_currency = reset($loaded_currencies);
         $form_state->setError($element, $this->t('The currency number is already in use by @link.', array(
-          '@link' => $this->linkGenerator->generate($loaded_currency->label(), $loaded_currency->urlInfo('edit-form')),
+          '@link' => $this->linkGenerator->generate($loaded_currency->label(), $loaded_currency->toUrl('edit-form')),
         )));
       }
     }

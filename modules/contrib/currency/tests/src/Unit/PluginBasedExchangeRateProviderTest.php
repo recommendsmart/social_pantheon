@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @file Contains \Drupal\Tests\currency\Unit\PluginBasedExchangeRateProviderTest.
- */
-
 namespace Drupal\Tests\currency\Unit;
 
 use Commercie\CurrencyExchange\ExchangeRate;
@@ -49,15 +45,8 @@ class PluginBasedExchangeRateProviderTest extends UnitTestCase {
       ->disableOriginalConstructor()
       ->getMock();
 
-    $this->currencyExchangeRateProviderManager = $this->getMock(ExchangeRateProviderManagerInterface::class);
+    $this->currencyExchangeRateProviderManager = $this->createMock(ExchangeRateProviderManagerInterface::class);
 
-    $this->sut = new PluginBasedExchangeRateProvider($this->currencyExchangeRateProviderManager, $this->configFactory);
-  }
-
-  /**
-   * @covers ::__construct
-   */
-  public function testConstruct() {
     $this->sut = new PluginBasedExchangeRateProvider($this->currencyExchangeRateProviderManager, $this->configFactory);
   }
 
@@ -157,7 +146,7 @@ class PluginBasedExchangeRateProviderTest extends UnitTestCase {
     $exchange_rate_provider_id_a = $this->randomMachineName();
 
     $exchange_rate_provider_id_b = $this->randomMachineName();
-    $exchange_rate_provider_b = $this->getMock('\Commercie\CurrencyExchange\ExchangeRateProviderInterface');
+    $exchange_rate_provider_b = $this->createMock('\Commercie\CurrencyExchange\ExchangeRateProviderInterface');
     $exchange_rate_provider_b->expects($this->once())
       ->method('load')
       ->with($currency_code_from, $currency_code_to)

@@ -1,15 +1,10 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Entity\CurrencyLocale\CurrencyLocaleListBuilderTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Entity\CurrencyLocale;
 
-use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\currency\Entity\CurrencyLocale\CurrencyLocaleListBuilder;
@@ -63,11 +58,11 @@ class CurrencyLocaleListBuilderTest extends UnitTestCase {
    * {@inheritdoc}
    */
   public function setUp() {
-    $this->entityStorage = $this->getMock(EntityStorageInterface::class);
+    $this->entityStorage = $this->createMock(EntityStorageInterface::class);
 
-    $this->entityType = $this->getMock(EntityTypeInterface::class);
+    $this->entityType = $this->createMock(EntityTypeInterface::class);
 
-    $this->moduleHandler = $this->getMock(ModuleHandlerInterface::class);
+    $this->moduleHandler = $this->createMock(ModuleHandlerInterface::class);
 
     $this->stringTranslation = $this->getStringTranslationStub();
 
@@ -83,15 +78,15 @@ class CurrencyLocaleListBuilderTest extends UnitTestCase {
       ->method('id')
       ->willReturn('currency');
 
-    $entity_manager = $this->getMock(EntityManagerInterface::class);
-    $entity_manager->expects($this->once())
+    $entity_type_manager = $this->createMock(EntityTypeManagerInterface::class);
+    $entity_type_manager->expects($this->once())
       ->method('getStorage')
       ->with('currency')
       ->willReturn($this->entityStorage);
 
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = array(
-      array('entity.manager', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $entity_manager),
+      array('entity_type.manager', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $entity_type_manager),
       array('module_handler', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->moduleHandler),
       array('string_translation', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->stringTranslation),
     );
@@ -119,7 +114,7 @@ class CurrencyLocaleListBuilderTest extends UnitTestCase {
   function testBuildRow() {
     $entity_label = $this->randomMachineName();
 
-    $currency_locale = $this->getMock(CurrencyLocaleInterface::class);
+    $currency_locale = $this->createMock(CurrencyLocaleInterface::class);
     $currency_locale->expects($this->any())
       ->method('label')
       ->willReturn($entity_label);

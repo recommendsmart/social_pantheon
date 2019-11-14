@@ -1,13 +1,9 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\ConfigImporterTest.
- */
-
 namespace Drupal\Tests\currency\Unit;
 
 use Commercie\Currency\ResourceRepository;
+use Drupal\Component\FileCache\FileCacheFactory;
 use Drupal\Core\Config\StorageInterface;
 use Drupal\Core\Config\TypedConfigManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -18,7 +14,6 @@ use Drupal\currency\ConfigImporter;
 use Drupal\currency\Entity\CurrencyInterface;
 use Drupal\currency\Entity\CurrencyLocaleInterface;
 use Drupal\Tests\UnitTestCase;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * @coversDefaultClass \Drupal\currency\ConfigImporter
@@ -56,13 +51,6 @@ class ConfigImporterTest extends UnitTestCase {
   protected $entityTypeManager;
 
   /**
-   * The event dispatcher.
-   *
-   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface|\PHPUnit_Framework_MockObject_MockObject
-   */
-  protected $eventDispatcher;
-
-  /**
    * The module handler.
    *
    * @var \Drupal\Core\Extension\ModuleHandlerInterface|\PHPUnit_Framework_MockObject_MockObject
@@ -87,35 +75,33 @@ class ConfigImporterTest extends UnitTestCase {
    * {@inheritdoc}
    */
   public function setUp() {
-    $this->configStorage = $this->getMock(StorageInterface::class);
+    $this->configStorage = $this->createMock(StorageInterface::class);
 
-    $this->currencyStorage = $this->getMock(EntityStorageInterface::class);
+    $this->currencyStorage = $this->createMock(EntityStorageInterface::class);
 
-    $this->currencyLocaleStorage = $this->getMock(EntityStorageInterface::class);
+    $this->currencyLocaleStorage = $this->createMock(EntityStorageInterface::class);
 
-    $this->eventDispatcher = $this->getMock(EventDispatcherInterface::class);
+    $this->moduleHandler = $this->createMock(ModuleHandlerInterface::class);
 
-    $this->moduleHandler = $this->getMock(ModuleHandlerInterface::class);
-
-    $this->typedConfigManager = $this->getMock(TypedConfigManagerInterface::class);
+    $this->typedConfigManager = $this->createMock(TypedConfigManagerInterface::class);
 
     $map = [
       ['currency', $this->currencyStorage],
       ['currency_locale', $this->currencyLocaleStorage],
     ];
-    $this->entityTypeManager = $this->getMock(EntityTypeManagerInterface::class);
+    $this->entityTypeManager = $this->createMock(EntityTypeManagerInterface::class);
     $this->entityTypeManager->expects($this->atLeastOnce())
       ->method('getStorage')
       ->willReturnMap($map);
 
-    $this->sut = new ConfigImporter($this->moduleHandler, $this->eventDispatcher, $this->typedConfigManager, $this->entityTypeManager);
+    $this->sut = new ConfigImporter($this->moduleHandler, $this->typedConfigManager, $this->entityTypeManager);
   }
 
   /**
    * @covers ::__construct
    */
   public function testConstruct() {
-    $this->sut = new ConfigImporter($this->moduleHandler, $this->eventDispatcher, $this->typedConfigManager, $this->entityTypeManager);
+    $this->sut = new ConfigImporter($this->moduleHandler, $this->typedConfigManager, $this->entityTypeManager);
   }
 
   /**
@@ -126,7 +112,9 @@ class ConfigImporterTest extends UnitTestCase {
     $method_get = new \ReflectionMethod($this->sut, 'getConfigStorage');
     $method_get->setAccessible(TRUE);
 
-    $extension = new Extension($this->randomMachineName(), $this->randomMachineName(), $this->randomMachineName());
+    FileCacheFactory::setPrefix('prefix');
+
+    $extension = $this->getMockBuilder(Extension::class)->disableOriginalConstructor()->getMock();
 
     $this->moduleHandler->expects($this->atLeastOnce())
       ->method('getModule')
@@ -134,7 +122,7 @@ class ConfigImporterTest extends UnitTestCase {
 
     $this->assertInstanceof(StorageInterface::class, $method_get->invoke($this->sut));
 
-    $config_storage = $this->getMock(StorageInterface::class);
+    $config_storage = $this->createMock(StorageInterface::class);
     $this->sut->setConfigStorage($config_storage);
     $this->assertSame($config_storage, $method_get->invoke($this->sut));
   }
@@ -151,13 +139,13 @@ class ConfigImporterTest extends UnitTestCase {
     // exclusive, randomized samples of the currencies available in the
     // repository.
     shuffle($resource_repository_currency_codes);
-    list($importable_currency_codes, $stored_currency_codes) = array_chunk($resource_repository_currency_codes, ceil(count($resource_repository_currency_codes) / 2));
+    list($expected_importable_currency_codes, $stored_currency_codes) = array_chunk($resource_repository_currency_codes, ceil(count($resource_repository_currency_codes) / 2));
 
-    $currency = $this->getMock(CurrencyInterface::class);
+    $currency = $this->createMock(CurrencyInterface::class);
 
     $stored_currencies = [];
     foreach ($stored_currency_codes as $stored_currency_code) {
-      $stored_currencies[$stored_currency_code] = $this->getMock(CurrencyInterface::class);
+      $stored_currencies[$stored_currency_code] = $this->createMock(CurrencyInterface::class);
     }
 
     $this->currencyStorage->expects($this->atLeastOnce())
@@ -169,8 +157,10 @@ class ConfigImporterTest extends UnitTestCase {
       ->willReturn($stored_currencies);
 
     $importable_currencies = $this->sut->getImportableCurrencies();
+    sort($expected_importable_currency_codes);
+    $importable_currency_codes = array_keys($importable_currencies);
     sort($importable_currency_codes);
-    $this->assertEquals($importable_currency_codes, array_keys($importable_currencies));
+    $this->assertSame($expected_importable_currency_codes, $importable_currency_codes);
   }
 
   /**
@@ -178,16 +168,16 @@ class ConfigImporterTest extends UnitTestCase {
    */
   public function testGetImportableCurrencyLocales() {
     $locale_a = $this->randomMachineName();
-    $currency_locale_a = $this->getMock(CurrencyLocaleInterface::class);
+    $currency_locale_a = $this->createMock(CurrencyLocaleInterface::class);
 
     $locale_b = $this->randomMachineName();
-    $currency_locale_b = $this->getMock(CurrencyLocaleInterface::class);
+    $currency_locale_b = $this->createMock(CurrencyLocaleInterface::class);
 
     $locale_c = $this->randomMachineName();
     $currency_locale_data_c = [
       'id' => $locale_c,
     ];
-    $currency_locale_c = $this->getMock(CurrencyLocaleInterface::class);
+    $currency_locale_c = $this->createMock(CurrencyLocaleInterface::class);
 
     $stored_currencies = [
       $locale_a => $currency_locale_a,
@@ -228,7 +218,7 @@ class ConfigImporterTest extends UnitTestCase {
     $currency_codes = $resource_repository->listCurrencies();
     $currency_code = $currency_codes[array_rand($currency_codes)];
 
-    $currency = $this->getMock(CurrencyInterface::class);
+    $currency = $this->createMock(CurrencyInterface::class);
 
     $this->currencyStorage->expects($this->atLeastOnce())
       ->method('create')
@@ -245,7 +235,7 @@ class ConfigImporterTest extends UnitTestCase {
    */
   public function testImportCurrencyWithExistingCurrency() {
     $currency_code = $this->randomMachineName();
-    $currency = $this->getMock(CurrencyInterface::class);
+    $currency = $this->createMock(CurrencyInterface::class);
 
     $this->currencyStorage->expects($this->never())
       ->method('create');
@@ -270,7 +260,7 @@ class ConfigImporterTest extends UnitTestCase {
     $currency_locale_data = [
       'id' => $locale,
     ];
-    $currency_locale = $this->getMock(CurrencyLocaleInterface::class);
+    $currency_locale = $this->createMock(CurrencyLocaleInterface::class);
 
     $this->currencyLocaleStorage->expects($this->atLeastOnce())
       ->method('create')
@@ -292,7 +282,7 @@ class ConfigImporterTest extends UnitTestCase {
    */
   public function testImportCurrencyLocaleWithExistingCurrency() {
     $locale = $this->randomMachineName();
-    $currency_locale = $this->getMock(CurrencyLocaleInterface::class);
+    $currency_locale = $this->createMock(CurrencyLocaleInterface::class);
 
     $this->currencyLocaleStorage->expects($this->never())
       ->method('create');

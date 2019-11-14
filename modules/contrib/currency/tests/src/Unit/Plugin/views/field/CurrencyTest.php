@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Plugin\views\field\CurrencyTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Plugin\views\field;
 
 use Drupal\Component\Render\MarkupInterface;
@@ -68,18 +63,10 @@ class CurrencyTest extends UnitTestCase {
     $plugin_id = $this->randomMachineName();
     $this->pluginDefinition = [];
 
-    $this->currencyStorage = $this->getMock(EntityStorageInterface::class);
+    $this->currencyStorage = $this->createMock(EntityStorageInterface::class);
 
     $this->stringTranslation = $this->getStringTranslationStub();
 
-    $this->sut = new Currency($this->pluginConfiguration, $plugin_id, $this->pluginDefinition, $this->stringTranslation, $this->currencyStorage);
-  }
-
-  /**
-   * @covers ::__construct
-   */
-  public function testConstruct() {
-    $plugin_id = $this->randomMachineName();
     $this->sut = new Currency($this->pluginConfiguration, $plugin_id, $this->pluginDefinition, $this->stringTranslation, $this->currencyStorage);
   }
 
@@ -113,13 +100,13 @@ class CurrencyTest extends UnitTestCase {
    * @covers ::__construct
    */
   function testCreate() {
-    $entity_type_manager = $this->getMock(EntityTypeManagerInterface::class);
+    $entity_type_manager = $this->createMock(EntityTypeManagerInterface::class);
     $entity_type_manager->expects($this->atLeastOnce())
       ->method('getStorage')
       ->with('currency')
       ->willReturn($this->currencyStorage);
 
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = [
       ['entity_type.manager', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $entity_type_manager],
       ['string_translation', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->stringTranslation],
@@ -148,7 +135,7 @@ class CurrencyTest extends UnitTestCase {
       $field_alias => $currency_code,
     ]);
 
-    $currency = $this->getMock(CurrencyInterface::class);
+    $currency = $this->createMock(CurrencyInterface::class);
     $currency->expects($this->atLeastOnce())
       ->method($this->pluginConfiguration['currency_method'])
       ->willReturn($currency_method_return_value);

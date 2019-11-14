@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Plugin\Filter\CurrencyExchangeTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Plugin\Filter;
 
 use Commercie\Currency\InputInterface;
@@ -86,9 +81,9 @@ class CurrencyExchangeTest extends UnitTestCase {
       ->method('assertValidTokens')
       ->willReturn(TRUE);
 
-    $this->exchangeRateProvider = $this->getMock(ExchangeRateProviderInterface::class);
+    $this->exchangeRateProvider = $this->createMock(ExchangeRateProviderInterface::class);
 
-    $this->input = $this->getMock(InputInterface::class);
+    $this->input = $this->createMock(InputInterface::class);
 
     $this->stringTranslation = $this->getStringTranslationStub();
 
@@ -104,7 +99,7 @@ class CurrencyExchangeTest extends UnitTestCase {
    * @covers ::__construct
    */
   function testCreate() {
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = [
       ['currency.input', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->input],
       ['string_translation', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->stringTranslation],
@@ -184,9 +179,6 @@ class CurrencyExchangeTest extends UnitTestCase {
    */
   public function testTips() {
     $tips = $this->sut->tips();
-    $this->logicalOr(
-      new \PHPUnit_Framework_Constraint_IsType('string', $tips),
-      new \PHPUnit_Framework_Constraint_IsInstanceOf(TranslatableMarkup::class, $tips)
-    );
+    $this->assertInstanceOf(TranslatableMarkup::class, $tips);
   }
 }

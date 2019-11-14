@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @file Contains \Drupal\Tests\currency\Unit\LocaleResolverTest.
- */
-
 namespace Drupal\Tests\currency\Unit;
 
 use Drupal\Core\Config\Config;
@@ -72,27 +68,20 @@ class LocaleResolverTest extends UnitTestCase {
    * {@inheritdoc}
    */
   public function setUp() {
-    $this->configFactory = $this->getMock(ConfigFactoryInterface::class);
+    $this->configFactory = $this->createMock(ConfigFactoryInterface::class);
 
-    $this->currencyLocaleStorage = $this->getMock(EntityStorageInterface::class);
+    $this->currencyLocaleStorage = $this->createMock(EntityStorageInterface::class);
 
-    $this->entityTypeManager = $this->getMock(EntityTypeManagerInterface::class);
+    $this->entityTypeManager = $this->createMock(EntityTypeManagerInterface::class);
     $this->entityTypeManager->expects($this->any())
       ->method('getStorage')
       ->with('currency_locale')
       ->willReturn($this->currencyLocaleStorage);
 
-    $this->eventDispatcher = $this->getMock(EventDispatcherInterface::class);
+    $this->eventDispatcher = $this->createMock(EventDispatcherInterface::class);
 
-    $this->languageManager = $this->getMock(LanguageManagerInterface::class);
+    $this->languageManager = $this->createMock(LanguageManagerInterface::class);
 
-    $this->sut = new LocaleResolver($this->entityTypeManager, $this->languageManager, $this->configFactory, $this->eventDispatcher);
-  }
-
-  /**
-   * @covers ::__construct
-   */
-  public function testConstruct() {
     $this->sut = new LocaleResolver($this->entityTypeManager, $this->languageManager, $this->configFactory, $this->eventDispatcher);
   }
 
@@ -107,7 +96,7 @@ class LocaleResolverTest extends UnitTestCase {
       ->method('resolveCountryCode')
       ->willReturn($request_country_code);
 
-    $currency_locale = $this->getMock(CurrencyLocaleInterface::class);
+    $currency_locale = $this->createMock(CurrencyLocaleInterface::class);
 
     $this->currencyLocaleStorage->expects($this->any())
       ->method('load')
@@ -136,10 +125,10 @@ class LocaleResolverTest extends UnitTestCase {
 
     $this->configFactory->expects($this->once())
       ->method('get')
-      ->with('system.data')
+      ->with('system.date')
       ->willReturn($config);
 
-    $currency_locale = $this->getMock(CurrencyLocaleInterface::class);
+    $currency_locale = $this->createMock(CurrencyLocaleInterface::class);
 
     $this->currencyLocaleStorage->expects($this->any())
       ->method('load')
@@ -166,10 +155,10 @@ class LocaleResolverTest extends UnitTestCase {
 
     $this->configFactory->expects($this->once())
       ->method('get')
-      ->with('system.data')
+      ->with('system.date')
       ->willReturn($config);
 
-    $currency_locale = $this->getMock(CurrencyLocaleInterface::class);
+    $currency_locale = $this->createMock(CurrencyLocaleInterface::class);
 
     $this->currencyLocaleStorage->expects($this->any())
       ->method('load')
@@ -198,7 +187,7 @@ class LocaleResolverTest extends UnitTestCase {
 
     $this->configFactory->expects($this->once())
       ->method('get')
-      ->with('system.data')
+      ->with('system.date')
       ->willReturn($config);
 
     $this->currencyLocaleStorage->expects($this->any())
@@ -215,7 +204,7 @@ class LocaleResolverTest extends UnitTestCase {
    */
   protected function prepareLanguageManager() {
     $language_code = $this->randomMachineName(2);
-    $language = $this->getMock(LanguageInterface::class);
+    $language = $this->createMock(LanguageInterface::class);
     $language->expects($this->atLeastOnce())
       ->method('getId')
       ->willReturn($language_code);

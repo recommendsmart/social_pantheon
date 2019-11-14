@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Definition of Drupal\currency\Entity\CurrencyLocale\CurrencyLocaleDeleteForm.
- */
-
 namespace Drupal\currency\Entity\CurrencyLocale;
 
 use Drupal\Core\Entity\EntityConfirmFormBase;
@@ -64,7 +59,7 @@ class CurrencyLocaleDeleteForm extends EntityConfirmFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $currency_locale = $this->getEntity();
     $currency_locale->delete();
-    drupal_set_message($this->t('The currency locale %label has been deleted.', array(
+    $this->messenger()->addMessage($this->t('The currency locale %label has been deleted.', array(
       '%label' => $currency_locale->label(),
     )));
     $form_state->setRedirectUrl($this->getCancelUrl());

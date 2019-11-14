@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tests\currency_intl\Unit\Plugin\Currency\AmountFormatter\IntlTest.
- */
-
 namespace Drupal\Tests\currency_intl\Unit\Plugin\Currency\AmountFormatter;
 
 use Commercie\Currency\CurrencyInterface;
@@ -44,7 +39,7 @@ class IntlTest extends UnitTestCase {
     $plugin_id = $this->randomMachineName();
     $plugin_definition = array();
 
-    $this->localeResolver = $this->getMock(LocaleResolverInterface::class);
+    $this->localeResolver = $this->createMock(LocaleResolverInterface::class);
 
     $this->formatter = new Intl($configuration, $plugin_id, $plugin_definition, $this->localeResolver);
   }
@@ -54,7 +49,7 @@ class IntlTest extends UnitTestCase {
    * @covers ::__construct
    */
   function testCreate() {
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $container->expects($this->once())
       ->method('get')
       ->with('currency.locale_resolver')
@@ -76,7 +71,7 @@ class IntlTest extends UnitTestCase {
     $pattern = '¤-#,##0.00¤¤';
     $decimal_separator = '@';
     $grouping_separator ='%';
-    $currency_locale = $this->getMock(CurrencyLocaleInterface::class);
+    $currency_locale = $this->createMock(CurrencyLocaleInterface::class);
     $currency_locale->expects($this->any())
       ->method('getLocale')
       ->willReturn($locale);
@@ -101,7 +96,7 @@ class IntlTest extends UnitTestCase {
     // (nl_NL).
     $currency_sign = '₴';
     $currency_code = 'UAH';
-    $currency = $this->getMock(CurrencyInterface::class);
+    $currency = $this->createMock(CurrencyInterface::class);
     $currency->expects($this->any())
       ->method('getCurrencyCode')
       ->willReturn($currency_code);
@@ -122,7 +117,7 @@ class IntlTest extends UnitTestCase {
     );
     foreach ($results as $amount=> $expected) {
       $formatted = $this->formatter->formatAmount($currency, $amount);
-      $this->assertSame($formatted, $expected);
+      $this->assertSame($expected, $formatted);
     }
   }
 }

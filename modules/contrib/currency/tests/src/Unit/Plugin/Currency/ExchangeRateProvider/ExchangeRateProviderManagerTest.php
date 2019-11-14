@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file Contains
- * \Drupal\Tests\currency\Unit\Plugin\Currency\ExchangeRateProvider\ExchangeRateProviderManagerTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Plugin\Currency\ExchangeRateProvider;
 
 use Drupal\Component\Plugin\Discovery\DiscoveryInterface;
@@ -69,17 +64,17 @@ class ExchangeRateProviderManagerTest extends UnitTestCase {
    * {@inheritdoc}
    */
   public function setUp() {
-    $this->classResolver = $this->getMock(ClassResolverInterface::class);
+    $this->classResolver = $this->createMock(ClassResolverInterface::class);
 
-    $this->discovery = $this->getMock(DiscoveryInterface::class);
+    $this->discovery = $this->createMock(DiscoveryInterface::class);
 
     $this->factory = $this->getMockBuilder(DefaultFactory::class)
       ->disableOriginalConstructor()
       ->getMock();
 
-    $this->moduleHandler = $this->getMock(ModuleHandlerInterface::class);
+    $this->moduleHandler = $this->createMock(ModuleHandlerInterface::class);
 
-    $this->cache = $this->getMock(CacheBackendInterface::class);
+    $this->cache = $this->createMock(CacheBackendInterface::class);
 
     $namespaces = new ArrayObject();
 
@@ -90,14 +85,6 @@ class ExchangeRateProviderManagerTest extends UnitTestCase {
     $factory_property = new \ReflectionProperty($this->sut, 'factory');
     $factory_property->setAccessible(TRUE);
     $factory_property->setValue($this->sut, $this->factory);
-  }
-
-  /**
-   * @covers ::__construct
-   */
-  public function testConstruct() {
-    $namespaces = new ArrayObject();
-    $this->sut = new ExchangeRateProviderManager($namespaces, $this->cache, $this->moduleHandler, $this->classResolver);
   }
 
   /**

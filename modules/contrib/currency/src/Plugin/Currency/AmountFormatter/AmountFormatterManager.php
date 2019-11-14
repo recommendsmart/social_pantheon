@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file Contains
- * \Drupal\currency\Plugin\Currency\AmountFormatter\AmountFormatterManager.
- */
-
 namespace Drupal\currency\Plugin\Currency\AmountFormatter;
 
 use Drupal\Component\Plugin\FallbackPluginManagerInterface;
@@ -57,7 +52,7 @@ class AmountFormatterManager extends DefaultPluginManager implements AmountForma
    * {@inheritdoc}
    */
   public function getDefaultPluginId() {
-    return $this->configFactory->get('currency.amount_formatter')
+    return $this->configFactory->get('currency.amount_formatting')
       ->get('plugin_id');
   }
 
@@ -65,7 +60,7 @@ class AmountFormatterManager extends DefaultPluginManager implements AmountForma
    * {@inheritdoc}
    */
   public function setDefaultPluginId($plugin_id) {
-    $this->configFactory->get('currency.amount_formatter')
+    $this->configFactory->get('currency.amount_formatting')
       ->set('plugin_id', $plugin_id)
       ->save();
 

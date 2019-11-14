@@ -62,7 +62,7 @@ function currency_tokens($type, array $tokens, array $data, array $options, Bubb
     }
     if ($tokens) {
       /** @var \Drupal\currency\Entity\CurrencyInterface $currency */
-      $currency = \Drupal::entityManager()->getStorage('currency')->load($currency_code);
+      $currency = \Drupal::entityTypeManager()->getStorage('currency')->load($currency_code);
       if ($currency) {
         $bubbleable_metadata->addCacheableDependency($currency);
         foreach ($tokens as $token => $original) {

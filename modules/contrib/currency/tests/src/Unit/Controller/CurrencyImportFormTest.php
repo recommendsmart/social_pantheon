@@ -1,23 +1,19 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Controller\CurrencyImportFormTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Controller {
 
   use Drupal\Core\Form\FormStateInterface;
+  use Drupal\Core\Messenger\MessengerInterface;
   use Drupal\Core\Url;
   use Drupal\currency\ConfigImporterInterface;
-  use Drupal\currency\Controller\CurrencyImportForm;
+  use Drupal\currency\Form\CurrencyImportForm;
   use Drupal\currency\Entity\CurrencyInterface;
   use Drupal\currency\FormHelperInterface;
   use Drupal\Tests\UnitTestCase;
   use Symfony\Component\DependencyInjection\ContainerInterface;
 
   /**
-   * @coversDefaultClass \Drupal\currency\Controller\CurrencyImportForm
+   * @coversDefaultClass \Drupal\currency\Form\CurrencyImportForm
    *
    * @group Currency
    */
@@ -45,9 +41,16 @@ namespace Drupal\Tests\currency\Unit\Controller {
     protected $stringTranslation;
 
     /**
+     * The messenger.
+     *
+     * @var \Drupal\Core\Messenger\MessengerInterface|\PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $messenger;
+
+    /**
      * The class under test.
      *
-     * @var \Drupal\currency\Controller\CurrencyImportForm
+     * @var \Drupal\currency\Form\CurrencyImportForm
      */
     protected $sut;
 
@@ -55,13 +58,16 @@ namespace Drupal\Tests\currency\Unit\Controller {
      * {@inheritdoc}
      */
     public function setUp() {
-      $this->configImporter = $this->getMock(ConfigImporterInterface::class);
+      $this->configImporter = $this->createMock(ConfigImporterInterface::class);
 
-      $this->formHelper = $this->getMock(FormHelperInterface::class);
+      $this->formHelper = $this->createMock(FormHelperInterface::class);
 
       $this->stringTranslation = $this->getStringTranslationStub();
 
+      $this->messenger = $this->createMock(MessengerInterface::class);
+
       $this->sut = new CurrencyImportForm($this->stringTranslation, $this->configImporter, $this->formHelper);
+      $this->sut->setMessenger($this->messenger);
     }
 
     /**
@@ -69,7 +75,7 @@ namespace Drupal\Tests\currency\Unit\Controller {
      * @covers ::__construct
      */
     function testCreate() {
-      $container = $this->getMock(ContainerInterface::class);
+      $container = $this->createMock(ContainerInterface::class);
       $map = [
         ['currency.config_importer', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->configImporter],
         ['currency.form_helper', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->formHelper],
@@ -98,7 +104,7 @@ namespace Drupal\Tests\currency\Unit\Controller {
         ->method('getImportableCurrencies')
         ->willReturn([]);
 
-      $form_state = $this->getMock(FormStateInterface::class);
+      $form_state = $this->createMock(FormStateInterface::class);
 
       $form = $this->sut->buildForm([], $form_state);
 
@@ -113,14 +119,14 @@ namespace Drupal\Tests\currency\Unit\Controller {
      * @covers ::buildForm
      */
     public function testBuildFormWithImportableCurrencies() {
-      $currency_a = $this->getMock(CurrencyInterface::class);
-      $currency_b = $this->getMock(CurrencyInterface::class);
+      $currency_a = $this->createMock(CurrencyInterface::class);
+      $currency_b = $this->createMock(CurrencyInterface::class);
 
       $this->configImporter->expects($this->once())
         ->method('getImportableCurrencies')
         ->willReturn([$currency_a, $currency_b]);
 
-      $form_state = $this->getMock(FormStateInterface::class);
+      $form_state = $this->createMock(FormStateInterface::class);
 
       $form = $this->sut->buildForm([], $form_state);
 
@@ -137,7 +143,7 @@ namespace Drupal\Tests\currency\Unit\Controller {
     public function testSubmitFormImport() {
       $currency_code = $this->randomMachineName();
 
-      $currency = $this->getMock(CurrencyInterface::class);
+      $currency = $this->createMock(CurrencyInterface::class);
 
       $this->configImporter->expects($this->once())
         ->method('importCurrency')
@@ -154,7 +160,7 @@ namespace Drupal\Tests\currency\Unit\Controller {
           ],
         ],
       ];
-      $form_state = $this->getMock(FormStateInterface::class);
+      $form_state = $this->createMock(FormStateInterface::class);
       $form_state->expects($this->atLeastOnce())
         ->method('getValues')
         ->willReturn([
@@ -177,9 +183,9 @@ namespace Drupal\Tests\currency\Unit\Controller {
 
       $url = new Url($this->randomMachineName());
 
-      $currency = $this->getMock(CurrencyInterface::class);
+      $currency = $this->createMock(CurrencyInterface::class);
       $currency->expects($this->atLeastOnce())
-        ->method('urlInfo')
+        ->method('toUrl')
         ->with('edit-form')
         ->willReturn($url);
 
@@ -198,7 +204,7 @@ namespace Drupal\Tests\currency\Unit\Controller {
           ],
         ],
       ];
-      $form_state = $this->getMock(FormStateInterface::class);
+      $form_state = $this->createMock(FormStateInterface::class);
       $form_state->expects($this->atLeastOnce())
         ->method('getValues')
         ->willReturn([
@@ -213,14 +219,6 @@ namespace Drupal\Tests\currency\Unit\Controller {
       $this->sut->submitForm($form, $form_state);
     }
 
-  }
-
-}
-
-namespace {
-
-  if (!function_exists('drupal_set_message')) {
-    function drupal_set_message() {}
   }
 
 }

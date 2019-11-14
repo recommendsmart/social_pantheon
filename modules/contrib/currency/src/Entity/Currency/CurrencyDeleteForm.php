@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\currency\Entity\Currency\CurrencyDeleteForm.
- */
-
 namespace Drupal\currency\Entity\Currency;
 
 use Drupal\Core\Entity\EntityConfirmFormBase;
@@ -66,7 +61,7 @@ class CurrencyDeleteForm extends EntityConfirmFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $currency = $this->getEntity();
     $currency->delete();
-    drupal_set_message($this->t('The %label has been deleted.', array(
+    $this->messenger()->addMessage($this->t('The %label has been deleted.', array(
       '%label' => $currency->label(),
     )));
     $form_state->setRedirectUrl($this->getCancelUrl());

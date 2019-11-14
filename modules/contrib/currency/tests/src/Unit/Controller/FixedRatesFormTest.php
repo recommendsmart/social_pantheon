@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Controller\FixedRatesFormTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Controller {
 
   use Commercie\CurrencyExchange\ExchangeRateInterface;
@@ -12,7 +7,8 @@ namespace Drupal\Tests\currency\Unit\Controller {
   use Drupal\Core\Entity\EntityTypeManagerInterface;
   use Drupal\Core\Entity\EntityStorageInterface;
   use Drupal\Core\Form\FormStateInterface;
-  use Drupal\currency\Controller\FixedRatesForm;
+  use Drupal\Core\Messenger\MessengerInterface;
+  use Drupal\currency\Form\FixedRatesForm;
   use Drupal\currency\Entity\CurrencyInterface;
   use Drupal\currency\FormHelperInterface;
   use Drupal\currency\Plugin\Currency\ExchangeRateProvider\ExchangeRateProviderInterface;
@@ -22,7 +18,7 @@ namespace Drupal\Tests\currency\Unit\Controller {
   use Symfony\Component\DependencyInjection\ContainerInterface;
 
   /**
- * @coversDefaultClass \Drupal\currency\Controller\FixedRatesForm
+ * @coversDefaultClass \Drupal\currency\Form\FixedRatesForm
  *
  * @group Currency
  */
@@ -64,9 +60,16 @@ class FixedRatesFormTest extends UnitTestCase {
   protected $stringTranslation;
 
   /**
+   * The messenger.
+   *
+   * @var \Drupal\Core\Messenger\MessengerInterface|\PHPUnit_Framework_MockObject_MockObject
+   */
+  protected $messenger;
+
+  /**
    * The class under test.
    *
-   * @var \Drupal\currency\Controller\FixedRatesForm
+   * @var \Drupal\currency\Form\FixedRatesForm
    */
   protected $sut;
 
@@ -74,17 +77,20 @@ class FixedRatesFormTest extends UnitTestCase {
    * {@inheritdoc}
    */
   public function setUp() {
-    $this->configFactory = $this->getMock(ConfigFactoryInterface::class);
+    $this->configFactory = $this->createMock(ConfigFactoryInterface::class);
 
-    $this->currencyExchangeRateProviderManager = $this->getMock(ExchangeRateProviderManagerInterface::class);
+    $this->currencyExchangeRateProviderManager = $this->createMock(ExchangeRateProviderManagerInterface::class);
 
-    $this->currencyStorage = $this->getMock(EntityStorageInterface::class);
+    $this->currencyStorage = $this->createMock(EntityStorageInterface::class);
 
-    $this->formHelper = $this->getMock(FormHelperInterface::class);
+    $this->formHelper = $this->createMock(FormHelperInterface::class);
 
     $this->stringTranslation = $this->getStringTranslationStub();
 
+    $this->messenger = $this->createMock(MessengerInterface::class);
+
     $this->sut = new FixedRatesForm($this->configFactory, $this->stringTranslation, $this->currencyStorage, $this->currencyExchangeRateProviderManager, $this->formHelper);
+    $this->sut->setMessenger($this->messenger);
   }
 
   /**
@@ -92,13 +98,13 @@ class FixedRatesFormTest extends UnitTestCase {
    * @covers ::__construct
    */
   function testCreate() {
-    $entity_type_manager = $this->getMock(EntityTypeManagerInterface::class);
+    $entity_type_manager = $this->createMock(EntityTypeManagerInterface::class);
     $entity_type_manager->expects($this->once())
       ->method('getStorage')
       ->with('currency')
       ->willReturn($this->currencyStorage);
 
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = array(
       array('config.factory', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->configFactory),
       array('currency.form_helper', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->formHelper),
@@ -132,13 +138,13 @@ class FixedRatesFormTest extends UnitTestCase {
 
     $rate = NULL;
     if (!is_null($rate_rate)) {
-      $rate = $this->getMock(ExchangeRateInterface::class);
+      $rate = $this->createMock(ExchangeRateInterface::class);
       $rate->expects($this->once())
         ->method('getRate')
         ->willReturn($rate_rate);
     }
 
-    $plugin = $this->getMock(ExchangeRateProviderInterface::class);
+    $plugin = $this->createMock(ExchangeRateProviderInterface::class);
     $plugin->expects($this->once())
       ->method('load')
       ->with($currency_code_from, $currency_code_to)
@@ -161,7 +167,7 @@ class FixedRatesFormTest extends UnitTestCase {
     unset($currency_options['XXX']);
 
     $form = array();
-    $form_state = $this->getMock(FormStateInterface::class);
+    $form_state = $this->createMock(FormStateInterface::class);
     $build = $this->sut->buildForm($form, $form_state, $currency_code_from, $currency_code_to);
 
     $expected_build['currency_code_from'] = array(
@@ -225,15 +231,6 @@ class FixedRatesFormTest extends UnitTestCase {
   }
 
   /**
-   * @covers ::validateForm
-   */
-  public function testValidateForm() {
-    $form = array();
-    $form_state = $this->getMock(FormStateInterface::class);
-    $this->sut->validateForm($form, $form_state);
-  }
-
-  /**
    * @covers ::submitForm
    */
   public function testSubmitFormWithSave() {
@@ -262,7 +259,7 @@ class FixedRatesFormTest extends UnitTestCase {
       ],
     ];
 
-    $form_state = $this->getMock(FormStateInterface::class);
+    $form_state = $this->createMock(FormStateInterface::class);
     $form_state->expects($this->atLeastOnce())
       ->method('getTriggeringElement')
       ->willReturn($form['actions']['save']);
@@ -285,8 +282,8 @@ class FixedRatesFormTest extends UnitTestCase {
       ->with('currency_fixed_rates')
       ->willReturn($exchange_rate_provider);
 
-    $currency_from = $this->getMock(CurrencyInterface::class);
-    $currency_to = $this->getMock(CurrencyInterface::class);
+    $currency_from = $this->createMock(CurrencyInterface::class);
+    $currency_to = $this->createMock(CurrencyInterface::class);
 
     $map = [
       [$currency_code_from, $currency_from],
@@ -324,7 +321,7 @@ class FixedRatesFormTest extends UnitTestCase {
       ],
     ];
 
-    $form_state = $this->getMock(FormStateInterface::class);
+    $form_state = $this->createMock(FormStateInterface::class);
     $form_state->expects($this->atLeastOnce())
       ->method('getTriggeringElement')
       ->willReturn($form['actions']['delete']);
@@ -347,8 +344,8 @@ class FixedRatesFormTest extends UnitTestCase {
       ->with('currency_fixed_rates')
       ->willReturn($exchange_rate_provider);
 
-    $currency_from = $this->getMock(CurrencyInterface::class);
-    $currency_to = $this->getMock(CurrencyInterface::class);
+    $currency_from = $this->createMock(CurrencyInterface::class);
+    $currency_to = $this->createMock(CurrencyInterface::class);
 
     $map = [
       [$currency_code_from, $currency_from],
@@ -362,13 +359,5 @@ class FixedRatesFormTest extends UnitTestCase {
   }
 
 }
-
-}
-
-namespace {
-
-  if (!function_exists('drupal_set_message')) {
-    function drupal_set_message() {}
-  }
 
 }

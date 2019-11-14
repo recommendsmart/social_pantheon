@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file Contains
- * \Drupal\Tests\currency\Unit\Plugin\Currency\ExchangeRateProvider\FixedRatesTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Plugin\Currency\ExchangeRateProvider;
 
 use Drupal\Core\Config\Config;
@@ -49,7 +44,7 @@ class FixedRatesTest extends UnitTestCase {
     $plugin_id = $this->randomMachineName();
     $plugin_definition = array();
 
-    $this->configFactory = $this->getMock(ConfigFactoryInterface::class);
+    $this->configFactory = $this->createMock(ConfigFactoryInterface::class);
 
     $this->sut = new FixedRates($configuration, $plugin_id, $plugin_definition, $this->configFactory);
   }
@@ -59,7 +54,7 @@ class FixedRatesTest extends UnitTestCase {
    * @covers ::__construct
    */
   function testCreate() {
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = array(
       array('config.factory', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->configFactory),
     );

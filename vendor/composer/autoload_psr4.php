@@ -43,7 +43,6 @@ return array(
     'Symfony\\Bridge\\PsrHttpMessage\\' => array($vendorDir . '/symfony/psr-http-message-bridge'),
     'Svg\\' => array($vendorDir . '/phenx/php-svg-lib/src/Svg'),
     'Social\\' => array($baseDir . '/profiles/contrib/social/src'),
-    'Roomify\\Bat\\' => array($vendorDir . '/roomify/bat/src'),
     'RRule\\' => array($vendorDir . '/rlanvin/php-rrule/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),

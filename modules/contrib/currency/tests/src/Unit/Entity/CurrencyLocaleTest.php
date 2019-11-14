@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Tests\currency\Unit\Entity\CurrencyLocaleTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Entity;
 
 use Drupal\Core\Language\LanguageManager;
@@ -47,7 +42,7 @@ class CurrencyLocaleTest extends UnitTestCase {
    * @covers ::setCountryManager
    */
   function setUp() {
-    $this->countryManager = $this->getMock(CountryManagerInterface::class);
+    $this->countryManager = $this->createMock(CountryManagerInterface::class);
 
     $this->stringTranslation = $this->getStringTranslationStub();
 
@@ -161,32 +156,6 @@ class CurrencyLocaleTest extends UnitTestCase {
     $this->sut->setLocale($language_code, $country_code_b);
 
     $this->assertInstanceOf(TranslatableMarkup::class, $this->sut->label());
-  }
-
-  /**
-   * @covers ::toArray
-   */
-  public function testToArray() {
-    $language_code = strtolower($this->randomMachineName());
-
-    $country_code = strtoupper($this->randomMachineName());
-
-    $expected_array = [
-      'decimalSeparator' => $this->randomMachineName(),
-      'groupingSeparator' => $this->randomMachineName(),
-      'locale' => $language_code . '_' . $country_code,
-      'pattern' => $this->randomMachineName(),
-    ];
-
-    $this->sut->setLocale($language_code, $country_code);
-    $this->sut->setDecimalSeparator($expected_array['decimalSeparator']);
-    $this->sut->setGroupingSeparator($expected_array['groupingSeparator']);
-    $this->sut->setPattern($expected_array['pattern']);
-
-    $array = $this->sut->toArray();
-    $this->assertArrayHasKey('uuid', $array);
-    unset($array['uuid']);
-    $this->assertEquals($expected_array, $array);
   }
 
 }

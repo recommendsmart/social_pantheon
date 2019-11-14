@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\EventDispatcherTest.
- */
-
 namespace Drupal\Tests\currency\Unit;
 
 use Drupal\currency\Event\CurrencyEvents;
@@ -38,16 +33,9 @@ class EventDispatcherTest extends UnitTestCase {
    * {@inheritdoc}
    */
   public function setUp() {
-    $this->symfonyEventDispatcher = $this->getMock(EventDispatcherInterface::class);
+    $this->symfonyEventDispatcher = $this->createMock(EventDispatcherInterface::class);
 
     $this->sut = new EventDispatcher($this->symfonyEventDispatcher);
-  }
-
-  /**
-   * @covers ::__construct
-   */
-  public function testConstruct() {
-    new EventDispatcher($this->symfonyEventDispatcher);
   }
 
   /**

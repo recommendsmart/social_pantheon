@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Plugin\views\field\CurrencyTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Plugin\views\filter;
 
 use Drupal\currency\FormHelperInterface;
@@ -41,7 +36,7 @@ class CurrencyTest extends UnitTestCase {
     $plugin_id = $this->randomMachineName();
     $plugin_definition = [];
 
-    $this->formHelper = $this->getMock(FormHelperInterface::class);
+    $this->formHelper = $this->createMock(FormHelperInterface::class);
 
     $this->sut = new Currency($configuration, $plugin_id, $plugin_definition, $this->formHelper);
   }
@@ -51,7 +46,7 @@ class CurrencyTest extends UnitTestCase {
    * @covers ::__construct
    */
   function testCreate() {
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = [
       ['currency.form_helper', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->formHelper],
     ];

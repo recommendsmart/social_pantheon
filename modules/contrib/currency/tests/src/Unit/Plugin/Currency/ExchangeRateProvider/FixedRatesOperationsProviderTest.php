@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Plugin\Currency\ExchangeRateProvider\FixedRatesOperationsProviderTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Plugin\Currency\ExchangeRateProvider;
 
 use Drupal\Core\Routing\RedirectDestinationInterface;
@@ -46,7 +41,7 @@ class FixedRatesOperationsProviderTest extends UnitTestCase {
   public function setUp() {
     parent::setUp();
 
-    $this->redirectDestination = $this->getMock(RedirectDestinationInterface::class);
+    $this->redirectDestination = $this->createMock(RedirectDestinationInterface::class);
 
     $this->stringTranslation = $this->getStringTranslationStub();
 
@@ -58,7 +53,7 @@ class FixedRatesOperationsProviderTest extends UnitTestCase {
    * @covers ::__construct
    */
   function testCreate() {
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = [
       ['redirect.destination', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->redirectDestination],
       ['string_translation', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->stringTranslation],

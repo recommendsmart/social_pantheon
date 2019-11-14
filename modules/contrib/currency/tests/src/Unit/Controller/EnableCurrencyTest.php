@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Controller\EnableCurrencyTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Controller;
 
 use Drupal\Core\Routing\UrlGeneratorInterface;
@@ -39,7 +34,7 @@ class EnableCurrencyTest extends UnitTestCase {
    * {@inheritdoc}
    */
   public function setUp() {
-    $this->urlGenerator = $this->getMock(UrlGeneratorInterface::class);
+    $this->urlGenerator = $this->createMock(UrlGeneratorInterface::class);
 
     $this->sut = new EnableCurrency($this->urlGenerator);
   }
@@ -49,7 +44,7 @@ class EnableCurrencyTest extends UnitTestCase {
    * @covers ::__construct
    */
   function testCreate() {
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = array(
       array('url_generator', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->urlGenerator),
     );
@@ -67,7 +62,7 @@ class EnableCurrencyTest extends UnitTestCase {
   public function testExecute() {
     $url = $this->randomMachineName();
 
-    $currency = $this->getMock(CurrencyInterface::class);
+    $currency = $this->createMock(CurrencyInterface::class);
     $currency->expects($this->once())
       ->method('enable');
     $currency->expects($this->once())

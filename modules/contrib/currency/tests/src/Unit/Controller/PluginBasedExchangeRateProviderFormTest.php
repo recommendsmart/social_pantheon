@@ -1,21 +1,17 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Controller\PluginBasedExchangeRateProviderFormTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Controller {
 
   use Drupal\Core\Form\FormState;
-  use Drupal\currency\Controller\PluginBasedExchangeRateProviderForm;
+  use Drupal\Core\Messenger\MessengerInterface;
+  use Drupal\currency\Form\PluginBasedExchangeRateProviderForm;
   use Drupal\currency\Plugin\Currency\ExchangeRateProvider\ExchangeRateProviderManagerInterface;
   use Drupal\currency\PluginBasedExchangeRateProvider;
   use Drupal\Tests\UnitTestCase;
   use Symfony\Component\DependencyInjection\ContainerInterface;
 
   /**
-   * @coversDefaultClass \Drupal\currency\Controller\PluginBasedExchangeRateProviderForm
+   * @coversDefaultClass \Drupal\currency\Form\PluginBasedExchangeRateProviderForm
    *
    * @group Currency
    */
@@ -43,9 +39,16 @@ namespace Drupal\Tests\currency\Unit\Controller {
     protected $stringTranslation;
 
     /**
+     * The messenger.
+     *
+     * @var \Drupal\Core\Messenger\MessengerInterface|\PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $messenger;
+
+    /**
      * The class under test.
      *
-     * @var \Drupal\currency\Controller\PluginBasedExchangeRateProviderForm
+     * @var \Drupal\currency\Form\PluginBasedExchangeRateProviderForm
      */
     protected $sut;
 
@@ -53,7 +56,7 @@ namespace Drupal\Tests\currency\Unit\Controller {
      * {@inheritdoc}
      */
     public function setUp() {
-      $this->currencyExchangeRateProviderManager = $this->getMock(ExchangeRateProviderManagerInterface::class);
+      $this->currencyExchangeRateProviderManager = $this->createMock(ExchangeRateProviderManagerInterface::class);
 
       $this->exchangeRateProvider = $this->getMockBuilder(PluginBasedExchangeRateProvider::class)
         ->disableOriginalConstructor()
@@ -61,7 +64,10 @@ namespace Drupal\Tests\currency\Unit\Controller {
 
       $this->stringTranslation = $this->getStringTranslationStub();
 
+      $this->messenger = $this->createMock(MessengerInterface::class);
+
       $this->sut = new PluginBasedExchangeRateProviderForm($this->stringTranslation, $this->exchangeRateProvider, $this->currencyExchangeRateProviderManager);
+      $this->sut->setMessenger($this->messenger);
     }
 
     /**
@@ -69,7 +75,7 @@ namespace Drupal\Tests\currency\Unit\Controller {
      * @covers ::__construct
      */
     function testCreate() {
-      $container = $this->getMock(ContainerInterface::class);
+      $container = $this->createMock(ContainerInterface::class);
       $map = [
         ['plugin.manager.currency.exchange_rate_provider', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->currencyExchangeRateProviderManager],
         ['currency.exchange_rate_provider', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->exchangeRateProvider],
@@ -190,20 +196,11 @@ namespace Drupal\Tests\currency\Unit\Controller {
 
       $this->exchangeRateProvider->expects($this->once())
         ->method('saveConfiguration')
-        ->with(new \PHPUnit_Framework_Constraint_IsIdentical($configuration));
+        ->with($configuration);
 
       $this->sut->submitForm($form, $form_state);
     }
 
-  }
-
-}
-
-namespace {
-
-  if (!function_exists('drupal_set_message')) {
-    function drupal_set_message() {
-    }
   }
 
 }

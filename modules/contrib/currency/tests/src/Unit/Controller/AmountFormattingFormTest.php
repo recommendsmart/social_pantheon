@@ -1,25 +1,20 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Controller\AmountFormattingFormTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Controller {
 
   use Drupal\Core\Config\Config;
   use Drupal\Core\Config\ConfigFactoryInterface;
   use Drupal\Core\Form\FormState;
   use Drupal\Core\Form\FormStateInterface;
+  use Drupal\Core\Messenger\MessengerInterface;
   use Drupal\Core\Render\Element\Radios;
-  use Drupal\Core\StringTranslation\TranslatableMarkup;
-  use Drupal\currency\Controller\AmountFormattingForm;
+  use Drupal\currency\Form\AmountFormattingForm;
   use Drupal\currency\Plugin\Currency\AmountFormatter\AmountFormatterManagerInterface;
   use Drupal\Tests\UnitTestCase;
   use Symfony\Component\DependencyInjection\ContainerInterface;
 
   /**
-   * @coversDefaultClass \Drupal\currency\Controller\AmountFormattingForm
+   * @coversDefaultClass \Drupal\currency\Form\AmountFormattingForm
    *
    * @group Currency
    */
@@ -35,7 +30,7 @@ namespace Drupal\Tests\currency\Unit\Controller {
     /**
      * The controller under test.
      *
-     * @var \Drupal\currency\Controller\AmountFormattingForm
+     * @var \Drupal\currency\Form\AmountFormattingForm
      */
     protected $controller;
 
@@ -54,16 +49,26 @@ namespace Drupal\Tests\currency\Unit\Controller {
     protected $stringTranslation;
 
     /**
+     * The messenger.
+     *
+     * @var \Drupal\Core\Messenger\MessengerInterface|\PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $messenger;
+
+    /**
      * {@inheritdoc}
      */
     public function setUp() {
-      $this->configFactory = $this->getMock(ConfigFactoryInterface::class);
+      $this->configFactory = $this->createMock(ConfigFactoryInterface::class);
 
-      $this->currencyAmountFormatterManager = $this->getMock(AmountFormatterManagerInterface::class);
+      $this->currencyAmountFormatterManager = $this->createMock(AmountFormatterManagerInterface::class);
 
       $this->stringTranslation = $this->getStringTranslationStub();
 
+      $this->messenger = $this->createMock(MessengerInterface::class);
+
       $this->controller = new AmountFormattingForm($this->configFactory, $this->stringTranslation, $this->currencyAmountFormatterManager);
+      $this->controller->setMessenger($this->messenger);
     }
 
     /**
@@ -71,7 +76,7 @@ namespace Drupal\Tests\currency\Unit\Controller {
      * @covers ::__construct
      */
     function testCreate() {
-      $container = $this->getMock(ContainerInterface::class);
+      $container = $this->createMock(ContainerInterface::class);
       $map = array(
         array('config.factory', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->configFactory),
         array('plugin.manager.currency.amount_formatter', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->currencyAmountFormatterManager),
@@ -97,7 +102,7 @@ namespace Drupal\Tests\currency\Unit\Controller {
      */
     public function testBuildForm() {
       $form = array();
-      $form_state = $this->getMock(FormStateInterface::class);
+      $form_state = $this->createMock(FormStateInterface::class);
 
       $definitions = array(
         'foo' => array(
@@ -204,14 +209,6 @@ namespace Drupal\Tests\currency\Unit\Controller {
       $this->controller->submitForm($form, $form_state);
     }
 
-  }
-
-}
-
-namespace {
-
-  if (!function_exists('drupal_set_message')) {
-    function drupal_set_message() {}
   }
 
 }

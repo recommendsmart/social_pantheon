@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\currency\LocaleResolver.
- */
-
 namespace Drupal\currency;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
@@ -84,7 +79,7 @@ class LocaleResolver implements LocaleResolverInterface {
 
       // Try the site's default country code.
       if (!$currency_locale) {
-        $country_code = $this->configFactory->get('system.data')->get('country.default');
+        $country_code = $this->configFactory->get('system.date')->get('country.default');
         if ($country_code) {
           $currency_locale = $this->currencyLocaleStorage->load($language_code . '_' . $country_code);
         }

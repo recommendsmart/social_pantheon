@@ -1,0 +1,33 @@
+<?php
+
+namespace Drupal\Tests\currency\Functional\Entity\Currency;
+
+use Drupal\Tests\BrowserTestBase;
+
+/**
+ * \Drupal\currency\Entity\CurrencyDeleteForm web test.
+ *
+ * @group Currency
+ */
+class CurrencyDeleteFormWebTest extends BrowserTestBase {
+
+  public static $modules = array('currency');
+
+  /**
+   * Tests the form.
+   */
+  function testForm() {
+    $user = $this->drupalCreateUser(array('currency.currency.delete'));
+    $this->drupalLogin($user);
+
+    $storage = \Drupal::entityTypeManager()->getStorage('currency');
+
+    $currency = $storage->create(array(
+      'currencyCode' => 'ABC',
+    ));
+    $currency->save();
+    $this->drupalPostForm('admin/config/regional/currency/' . $currency->id() . '/delete', array(), t('Delete'));
+    $storage->resetCache();
+    $this->assertFalse((bool) $storage->load($currency->id()));
+  }
+}

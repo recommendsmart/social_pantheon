@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Definition of Drupal\currency\Entity\CurrencyLocale.
- */
-
 namespace Drupal\currency\Entity;
 
 use Drupal\Core\Config\Entity\ConfigEntityBase;
@@ -30,6 +25,13 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
  *     "label" = "locale",
  *     "uuid" = "uuid",
  *     "status" = "status"
+ *   },
+ *   config_export = {
+ *     "decimalSeparator",
+ *     "groupingSeparator",
+ *     "locale",
+ *     "pattern",
+ *     "uuid",
  *   },
  *   id = "currency_locale",
  *   label = @Translation("Currency currency locale"),
@@ -192,19 +194,6 @@ class CurrencyLocale extends ConfigEntityBase implements CurrencyLocaleInterface
       $fragments = explode('_', $this->id());
       return $fragments[1];
     }
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function toArray() {
-    $properties['decimalSeparator'] = $this->getDecimalSeparator();
-    $properties['groupingSeparator'] = $this->getGroupingSeparator();
-    $properties['locale'] = $this->id();
-    $properties['pattern'] = $this->getPattern();
-    $properties['uuid'] = $this->uuid();
-
-    return $properties;
   }
 
   /**

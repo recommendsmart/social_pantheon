@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Entity\CurrencyLocale\CurrencyLocaleAccessControlHandlerTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Entity\CurrencyLocale;
 
 use Drupal\Core\Cache\Context\CacheContextsManager;
@@ -70,9 +65,9 @@ class CurrencyLocaleAccessControlHandlerTest extends UnitTestCase {
     $container->set('cache_contexts_manager', $this->cacheContextsManager);
     \Drupal::setContainer($container);
 
-    $this->entityType = $this->getMock(EntityTypeInterface::class);
+    $this->entityType = $this->createMock(EntityTypeInterface::class);
 
-    $this->moduleHandler = $this->getMock(ModuleHandlerInterface::class);
+    $this->moduleHandler = $this->createMock(ModuleHandlerInterface::class);
 
     $this->sut = new CurrencyLocaleAccessControlHandler($this->entityType, $this->moduleHandler);
   }
@@ -82,7 +77,7 @@ class CurrencyLocaleAccessControlHandlerTest extends UnitTestCase {
    * @covers ::__construct
    */
   function testCreateInstance() {
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $container->expects($this->once())
       ->method('get')
       ->with('module_handler')
@@ -98,13 +93,13 @@ class CurrencyLocaleAccessControlHandlerTest extends UnitTestCase {
    * @dataProvider providerTestCheckAccess
    */
   function testCheckAccess($expected_value, $operation, $has_permission, $permission, $locale = NULL) {
-    $account = $this->getMock(AccountInterface::class);
+    $account = $this->createMock(AccountInterface::class);
     $account->expects($this->any())
       ->method('hasPermission')
       ->with($permission)
       ->willReturn((bool) $has_permission);
 
-    $currency_locale = $this->getMock(CurrencyLocaleInterface::class);
+    $currency_locale = $this->createMock(CurrencyLocaleInterface::class);
     $currency_locale->expects($this->any())
       ->method('getLocale')
       ->willReturn($locale);
@@ -143,7 +138,7 @@ class CurrencyLocaleAccessControlHandlerTest extends UnitTestCase {
    * @dataProvider providerTestCheckCreateAccess
    */
   function testCheckCreateAccess($expected_value, $has_permission) {
-    $account = $this->getMock(AccountInterface::class);
+    $account = $this->createMock(AccountInterface::class);
     $account->expects($this->once())
       ->method('hasPermission')
       ->with('currency.currency_locale.create')

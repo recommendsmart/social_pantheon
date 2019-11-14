@@ -36,7 +36,7 @@ function currency_test_install() {
     'amount_currency_undefined' => 123.456,
   );
   foreach ($currency_codes as $currency_code) {
-    db_insert('currency_test')
+    \Drupal::database()->insert('currency_test')
       ->fields(array(
         'currency_code' => $currency_code,
       ) + $amounts)

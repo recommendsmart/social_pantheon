@@ -1,15 +1,11 @@
 <?php
 
-/**
- * @file
- * Definition of Drupal\currency\Entity\Currency.
- */
-
 namespace Drupal\currency\Entity;
 
 use Commercie\Currency\Usage;
 use Drupal\Core\Config\Entity\ConfigEntityBase;
 use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\currency\Plugin\Currency\AmountFormatter\AmountFormatterManagerInterface;
 
@@ -31,6 +27,18 @@ use Drupal\currency\Plugin\Currency\AmountFormatter\AmountFormatterManagerInterf
  *     "label" = "label",
  *     "uuid" = "uuid",
  *     "status" = "status"
+ *   },
+ *   config_export = {
+ *     "alternativeSigns",
+ *     "currencyCode",
+ *     "currencyNumber",
+ *     "label",
+ *     "roundingStep",
+ *     "sign",
+ *     "subunits",
+ *     "status",
+ *     "usages",
+ *     "uuid",
  *   },
  *   id = "currency",
  *   label = @Translation("Currency"),
@@ -74,11 +82,11 @@ class Currency extends ConfigEntityBase implements CurrencyInterface {
   protected $currencyNumber;
 
   /**
-   * The entity manager.
+   * The entity type manager.
    *
-   * @var \Drupal\Core\Entity\EntityManagerInterface
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityManager;
+  protected $entityTypeManager;
 
   /**
    * The human-readable name.
@@ -316,6 +324,8 @@ class Currency extends ConfigEntityBase implements CurrencyInterface {
    * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
    *
    * @return $this
+   *
+   * @deprecated
    */
   public function setEntityManager(EntityManagerInterface $entity_manager) {
     $this->entityManager = $entity_manager;
@@ -324,16 +334,30 @@ class Currency extends ConfigEntityBase implements CurrencyInterface {
   }
 
   /**
-   * Gets the entity manager.
+   * Sets the entity type manager.
    *
-   * @return \Drupal\Core\Entity\EntityManagerInterface
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
+   *
+   * @return $this
    */
-  protected function entityManager() {
-    if (!$this->entityManager) {
-      $this->entityManager = parent::entityManager();
+  public function setEntityTypeManager(EntityTypeManagerInterface $entity_type_manager) {
+    $this->entityTypeManager = $entity_type_manager;
+
+    return $this;
+  }
+
+  /**
+   * Gets the entity type manager.
+   *
+   * @return \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected function entityTypeManager() {
+    if (!$this->entityTypeManager) {
+      $this->entityTypeManager = parent::entityTypeManager();
     }
 
-    return $this->entityManager;
+    return $this->entityTypeManager;
   }
 
   /**
@@ -409,14 +433,7 @@ class Currency extends ConfigEntityBase implements CurrencyInterface {
    * {@inheritdoc}
    */
   public function toArray() {
-    $properties['alternativeSigns'] = $this->getAlternativeSigns();
-    $properties['currencyCode'] = $this->id();
-    $properties['currencyNumber'] = $this->getCurrencyNumber();
-    $properties['label'] = $this->label();
-    $properties['roundingStep'] = $this->roundingStep;
-    $properties['sign'] = $this->getSign();
-    $properties['subunits'] = $this->getSubunits();
-    $properties['status'] = $this->status();
+    $properties = parent::toArray();
     $properties['usages'] = [];
     foreach ($this->getUsages() as $usage) {
       $properties['usages'][] = array(
@@ -425,8 +442,7 @@ class Currency extends ConfigEntityBase implements CurrencyInterface {
         'countryCode' => $usage->getCountryCode(),
       );
     }
-    $properties['uuid'] = $this->uuid();
-
     return $properties;
   }
+
 }

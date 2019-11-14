@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Definition of Drupal\currency\Entity\CurrencyLocale\CurrencyLocaleListBuilder.
- */
-
 namespace Drupal\currency\Entity\CurrencyLocale;
 
 use Drupal\Core\Config\Entity\ConfigEntityListBuilder;
@@ -42,10 +37,10 @@ class CurrencyLocaleListBuilder extends ConfigEntityListBuilder {
    * {@inheritdoc}
    */
   public static function createInstance(ContainerInterface $container, EntityTypeInterface $entity_type) {
-    /** @var \Drupal\Core\Entity\EntityManagerInterface $entity_manager */
-    $entity_manager = $container->get('entity.manager');
+    /** @var \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager */
+    $entity_type_manager = $container->get('entity_type.manager');
 
-    return new static($entity_type, $entity_manager->getStorage($entity_type->id()), $container->get('string_translation'), $container->get('module_handler'));
+    return new static($entity_type, $entity_type_manager->getStorage($entity_type->id()), $container->get('string_translation'), $container->get('module_handler'));
   }
 
   /**

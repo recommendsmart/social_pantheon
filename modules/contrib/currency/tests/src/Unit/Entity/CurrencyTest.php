@@ -1,15 +1,10 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Entity\CurrencyTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Entity;
 
 use Commercie\Currency\Usage;
-use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\currency\Entity\Currency;
 use Drupal\currency\Plugin\Currency\AmountFormatter\AmountFormatterInterface;
 use Drupal\currency\Plugin\Currency\AmountFormatter\AmountFormatterManagerInterface;
@@ -30,11 +25,11 @@ class CurrencyTest extends UnitTestCase {
   protected $currencyAmountFormatterManager;
 
   /**
-   * The entity manager.
+   * The entity type manager.
    *
-   * @var \Drupal\Core\Entity\EntityManagerInterface|\PHPUnit_Framework_MockObject_MockObject
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface|\PHPUnit_Framework_MockObject_MockObject
    */
-  protected $entityManager;
+  protected $entityTypeManager;
 
   /**
    * The entity type ID.
@@ -56,20 +51,13 @@ class CurrencyTest extends UnitTestCase {
   function setUp() {
     $this->entityTypeId = $this->randomMachineName();
 
-    $this->currencyAmountFormatterManager = $this->getMock(AmountFormatterManagerInterface::class);
+    $this->currencyAmountFormatterManager = $this->createMock(AmountFormatterManagerInterface::class);
 
-    $this->entityManager = $this->getMock(EntityManagerInterface::class);
+    $this->entityTypeManager = $this->createMock(EntityTypeManagerInterface::class);
 
     $this->sut = new Currency([], $this->entityTypeId);
     $this->sut->setCurrencyAmountFormatterManager($this->currencyAmountFormatterManager);
-    $this->sut->setEntityManager($this->entityManager);
-  }
-
-  /**
-   * @covers ::__construct
-   */
-  public function testConstruct() {
-    $this->sut = new Currency([], $this->entityTypeId);
+    $this->sut->setEntityTypeManager($this->entityTypeManager);
   }
 
   /**
@@ -85,15 +73,15 @@ class CurrencyTest extends UnitTestCase {
   }
 
   /**
-   * @covers ::setEntityManager
-   * @covers ::entityManager
+   * @covers ::setEntityTypeManager
+   * @covers ::entityTypeManager
    */
-  public function testEntityManager() {
-    $method = new \ReflectionMethod($this->sut, 'entityManager');
+  public function testEntityTypeManager() {
+    $method = new \ReflectionMethod($this->sut, 'entityTypeManager');
     $method->setAccessible(TRUE);
 
-    $this->assertSame($this->sut, $this->sut->setEntityManager($this->entityManager));
-    $this->assertSame($this->entityManager, $method->invoke($this->sut));
+    $this->assertSame($this->sut, $this->sut->setEntityTypeManager($this->entityTypeManager));
+    $this->assertSame($this->entityTypeManager, $method->invoke($this->sut));
   }
 
   /**
@@ -135,7 +123,7 @@ class CurrencyTest extends UnitTestCase {
    * @dataProvider providerTestFormatAmount
    */
   function testFormatAmount($expected, $amount, $amount_with_currency_precision_applied) {
-    $amount_formatter = $this->getMock(AmountFormatterInterface::class);
+    $amount_formatter = $this->createMock(AmountFormatterInterface::class);
     $amount_formatter->expects($this->atLeastOnce())
       ->method('formatAmount')
       ->with($this->sut, $amount_with_currency_precision_applied)
@@ -238,13 +226,13 @@ class CurrencyTest extends UnitTestCase {
    * @covers ::setLabel
    */
   function testLabel() {
-    $entity_type = $this->getMock(EntityTypeInterface::class);
+    $entity_type = $this->createMock(EntityTypeInterface::class);
     $entity_type->expects($this->atLeastOnce())
       ->method('getKey')
       ->with('label')
       ->willReturn('label');
 
-    $this->entityManager->expects($this->atLeastOnce())
+    $this->entityTypeManager->expects($this->atLeastOnce())
       ->method('getDefinition')
       ->with($this->entityTypeId)
       ->willReturn($entity_type);
@@ -284,93 +272,6 @@ class CurrencyTest extends UnitTestCase {
     ->setEnd(date('o') + 1 . '-02-28');
     $this->assertSame($this->sut, $this->sut->setUsages([$usage]));
     $this->assertSame([$usage], $this->sut->getUsages());
-  }
-
-  /**
-   * @covers ::toArray
-   */
-  public function testToArray() {
-    $entity_type = $this->getMock(EntityTypeInterface::class);
-    $entity_type->expects($this->atLeastOnce())
-      ->method('getKey')
-      ->with('label')
-      ->willReturn('label');
-
-    $this->entityManager->expects($this->atLeastOnce())
-      ->method('getDefinition')
-      ->with($this->entityTypeId)
-      ->willReturn($entity_type);
-
-    $alternative_signs = [$this->randomMachineName(), $this->randomMachineName(), $this->randomMachineName()];
-    $currency_code = $this->randomMachineName();
-    $currency_number = mt_rand();
-    $exchange_rates = [
-      $this->randomMachineName() => mt_rand(),
-      $this->randomMachineName() => mt_rand(),
-      $this->randomMachineName() => mt_rand(),
-    ];
-    $rounding_step = mt_rand();
-    $sign = $this->randomMachineName();
-    $subunits = mt_rand();
-    $status = TRUE;
-    $label = $this->randomMachineName();
-
-    $usage_start_a = mt_rand();
-    $usage_end_a = mt_rand();
-    $usage_country_code_a = $this->randomMachineName();
-    $usage_start_b = mt_rand();
-    $usage_end_b = mt_rand();
-    $usage_country_code_b = $this->randomMachineName();
-    $usage_start_c = mt_rand();
-    $usage_end_c = mt_rand();
-    $usage_country_code_c = $this->randomMachineName();
-    /** @var \Drupal\currency\Usage[] $usages */
-    $usages = [
-      (new Usage())->setStart($usage_start_a)->setEnd($usage_end_a)->setCountryCode($usage_country_code_a),
-      (new Usage())->setStart($usage_start_b)->setEnd($usage_end_b)->setCountryCode($usage_country_code_b),
-      (new Usage())->setStart($usage_start_c)->setEnd($usage_end_c)->setCountryCode($usage_country_code_c),
-    ];
-
-    $expected_array['alternativeSigns'] = $alternative_signs;
-    $expected_array['currencyCode'] = $currency_code;
-    $expected_array['currencyNumber'] = $currency_number;
-    $expected_array['label'] = $label;
-    $expected_array['roundingStep'] = $rounding_step;
-    $expected_array['sign'] = $sign;
-    $expected_array['subunits'] = $subunits;
-    $expected_array['status'] = $status;
-    $expected_array['usages'] = [
-      [
-        'start' => $usage_start_a,
-        'end' => $usage_end_a,
-        'countryCode' => $usage_country_code_a,
-      ],
-      [
-        'start' => $usage_start_b,
-        'end' => $usage_end_b,
-        'countryCode' => $usage_country_code_b,
-      ],
-      [
-        'start' => $usage_start_c,
-        'end' => $usage_end_c,
-        'countryCode' => $usage_country_code_c,
-      ],
-    ];
-
-    $this->sut->setAlternativeSigns($expected_array['alternativeSigns']);
-    $this->sut->setLabel($label);
-    $this->sut->setUsages($usages);
-    $this->sut->setSubunits($subunits);
-    $this->sut->setRoundingStep($rounding_step);
-    $this->sut->setSign($sign);
-    $this->sut->setStatus($status);
-    $this->sut->setCurrencyCode($currency_code);
-    $this->sut->setCurrencyNumber($currency_number);
-
-    $array = $this->sut->toArray();
-    $this->assertArrayHasKey('uuid', $array);
-    unset($array['uuid']);
-    $this->assertEquals($expected_array, $array);
   }
 
 }

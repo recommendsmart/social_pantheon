@@ -1,4 +1,0 @@
-services:
-  plugin.manager.views_any_route:
-    class: Drupal\views_any_route\ViewsAnyRouteManager
-    arguments: ['@container.namespaces', '@cache.default', '@module_handler']

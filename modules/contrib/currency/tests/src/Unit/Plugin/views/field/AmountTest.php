@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Plugin\views\field\AmountTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Plugin\views\field {
 
   use Drupal\Core\Config\Config;
@@ -14,7 +9,6 @@ namespace Drupal\Tests\currency\Unit\Plugin\views\field {
   use Drupal\Core\Extension\ModuleHandlerInterface;
   use Drupal\Core\Form\FormState;
   use Drupal\Core\Render\RendererInterface;
-  use Drupal\Core\Utility\UnroutedUrlAssemblerInterface;
   use Drupal\currency\Entity\CurrencyInterface;
   use Drupal\currency\Plugin\views\field\Amount;
   use Drupal\Tests\UnitTestCase;
@@ -113,13 +107,13 @@ namespace Drupal\Tests\currency\Unit\Plugin\views\field {
         'title' => $this->randomMachineName(),
       ];
 
-      $this->configFactory = $this->getMock(ConfigFactoryInterface::class);
+      $this->configFactory = $this->createMock(ConfigFactoryInterface::class);
 
-      $this->currencyStorage = $this->getMock(EntityStorageInterface::class);
+      $this->currencyStorage = $this->createMock(EntityStorageInterface::class);
 
-      $this->moduleHandler = $this->getMock(ModuleHandlerInterface::class);
+      $this->moduleHandler = $this->createMock(ModuleHandlerInterface::class);
 
-      $this->renderer = $this->getMock(RendererInterface::class);
+      $this->renderer = $this->createMock(RendererInterface::class);
 
       $this->stringTranslation = $this->getStringTranslationStub();
 
@@ -151,13 +145,13 @@ namespace Drupal\Tests\currency\Unit\Plugin\views\field {
      * @covers ::__construct
      */
     public function testCreate() {
-      $entity_type_manager = $this->getMock(EntityTypeManagerInterface::class);
+      $entity_type_manager = $this->createMock(EntityTypeManagerInterface::class);
       $entity_type_manager->expects($this->atLeastOnce())
         ->method('getStorage')
         ->with('currency')
         ->willReturn($this->currencyStorage);
 
-      $container = $this->getMock(ContainerInterface::class);
+      $container = $this->createMock(ContainerInterface::class);
       $map = [
         ['entity_type.manager', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $entity_type_manager],
         ['module_handler', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->moduleHandler],
@@ -207,14 +201,8 @@ namespace Drupal\Tests\currency\Unit\Plugin\views\field {
         ->with('views.settings')
         ->willReturn($views_settings_config);
 
-      $unrouted_url_assembler = $this->getMock(UnroutedUrlAssemblerInterface::class);
-      $unrouted_url_assembler->expects($this->atLeastOnce())
-        ->method('assemble')
-        ->willReturn($this->randomMachineName());
-
       $container = new ContainerBuilder();
       $container->set('config.factory', $this->configFactory);
-      $container->set('unrouted_url_assembler', $unrouted_url_assembler);
       \Drupal::setContainer($container);
 
       $form = [];
@@ -277,7 +265,7 @@ namespace Drupal\Tests\currency\Unit\Plugin\views\field {
      * @covers ::getCurrency
      */
     function testGetCurrencyWithFallbackCurrency() {
-      $currency = $this->getMock(CurrencyInterface::class);
+      $currency = $this->createMock(CurrencyInterface::class);
 
       $map = [
         ['XXX', $currency],
@@ -300,7 +288,7 @@ namespace Drupal\Tests\currency\Unit\Plugin\views\field {
     function testGetCurrencyWithFixedCurrency() {
       $currency_code = $this->randomMachineName();
 
-      $currency = $this->getMock(CurrencyInterface::class);
+      $currency = $this->createMock(CurrencyInterface::class);
 
       $map = [
         [$currency_code, $currency],
@@ -332,7 +320,7 @@ namespace Drupal\Tests\currency\Unit\Plugin\views\field {
 
       $currency_code_field = $this->randomMachineName();
 
-      $currency = $this->getMock(CurrencyInterface::class);
+      $currency = $this->createMock(CurrencyInterface::class);
 
       $map = [
         [$currency_code, $currency],
@@ -381,7 +369,7 @@ namespace Drupal\Tests\currency\Unit\Plugin\views\field {
 
       $currency_code = $this->randomMachineName();
 
-      $currency = $this->getMock(CurrencyInterface::class);
+      $currency = $this->createMock(CurrencyInterface::class);
       $currency->expects($this->atLeastOnce())
         ->method('formatAmount')
         ->with($amount, $round)
@@ -421,13 +409,6 @@ namespace Drupal\Tests\currency\Unit\Plugin\views\field {
       ];
     }
 
-    /**
-     * @covers ::query
-     */
-    function testQuery() {
-      $this->sut->query();
-    }
-
   }
 
 }
@@ -436,10 +417,6 @@ namespace {
 
   if (!function_exists('t')) {
     function t() {
-    }
-  }
-  if (!function_exists('drupal_render')) {
-    function drupal_render() {
     }
   }
 

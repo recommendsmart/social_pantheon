@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Definition of Drupal\currency\Entity\CurrencyLocale\CurrencyLocaleFormController.
- */
-
 namespace Drupal\currency\Entity\CurrencyLocale;
 
 use Drupal\Core\Entity\EntityForm;
@@ -66,10 +61,10 @@ class CurrencyLocaleForm extends EntityForm {
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-    /** @var \Drupal\Core\Entity\EntityManagerInterface $entity_manager */
-    $entity_manager = $container->get('entity.manager');
+    /** @var \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager */
+    $entity_type_manager = $container->get('entity_type.manager');
 
-    return new static($container->get('string_translation'), $container->get('link_generator'), $entity_manager->getStorage('currency_locale'), $container->get('country_manager'));
+    return new static($container->get('string_translation'), $container->get('link_generator'), $entity_type_manager->getStorage('currency_locale'), $container->get('country_manager'));
   }
 
   /**
@@ -166,7 +161,7 @@ class CurrencyLocaleForm extends EntityForm {
   public function save(array $form, FormStateInterface $form_state) {
     $currency_locale = $this->getEntity($form_state);
     $currency_locale->save();
-    drupal_set_message($this->t('The currency locale %label has been saved.', array(
+    $this->messenger()->addMessage($this->t('The currency locale %label has been saved.', array(
       '%label' => $currency_locale->label(),
     )));
     $form_state->setRedirect('entity.currency_locale.collection');

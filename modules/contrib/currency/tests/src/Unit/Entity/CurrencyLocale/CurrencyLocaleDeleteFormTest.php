@@ -1,13 +1,9 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Entity\CurrencyLocale\CurrencyLocaleDeleteFormTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Entity\CurrencyLocale {
 
   use Drupal\Core\Form\FormStateInterface;
+  use Drupal\Core\Messenger\MessengerInterface;
   use Drupal\Core\StringTranslation\TranslatableMarkup;
   use Drupal\Core\Url;
   use Drupal\currency\Entity\CurrencyLocale\CurrencyLocaleDeleteForm;
@@ -37,6 +33,13 @@ namespace Drupal\Tests\currency\Unit\Entity\CurrencyLocale {
     protected $stringTranslation;
 
     /**
+     * The messenger.
+     *
+     * @var \Drupal\Core\Messenger\MessengerInterface|\PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $messenger;
+
+    /**
      * The class under test.
      *
      * @var \Drupal\currency\Entity\CurrencyLocale\CurrencyLocaleDeleteForm
@@ -47,12 +50,15 @@ namespace Drupal\Tests\currency\Unit\Entity\CurrencyLocale {
      * {@inheritdoc}
      */
     public function setUp() {
-      $this->currency = $this->getMock(CurrencyLocaleInterface::class);
+      $this->currency = $this->createMock(CurrencyLocaleInterface::class);
 
       $this->stringTranslation = $this->getStringTranslationStub();
 
+      $this->messenger = $this->createMock(MessengerInterface::class);
+
       $this->sut = new CurrencyLocaleDeleteForm($this->stringTranslation);
       $this->sut->setEntity($this->currency);
+      $this->sut->setMessenger($this->messenger);
     }
 
     /**
@@ -60,7 +66,7 @@ namespace Drupal\Tests\currency\Unit\Entity\CurrencyLocale {
      * @covers ::__construct
      */
     function testCreate() {
-      $container = $this->getMock(ContainerInterface::class);
+      $container = $this->createMock(ContainerInterface::class);
       $container->expects($this->once())
         ->method('get')
         ->with('string_translation')
@@ -101,7 +107,7 @@ namespace Drupal\Tests\currency\Unit\Entity\CurrencyLocale {
         ->method('delete');
 
       $form = array();
-      $form_state = $this->getMock(FormStateInterface::class);
+      $form_state = $this->createMock(FormStateInterface::class);
       $form_state->expects($this->once())
         ->method('setRedirectUrl');
 
@@ -109,13 +115,5 @@ namespace Drupal\Tests\currency\Unit\Entity\CurrencyLocale {
     }
 
   }
-
-}
-
-namespace {
-
-if (!function_exists('drupal_set_message')) {
-  function drupal_set_message() {}
-}
 
 }

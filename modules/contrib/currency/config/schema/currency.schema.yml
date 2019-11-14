@@ -7,8 +7,8 @@ currency.currency.*:
       type: sequence
       label: Alternative signs
       sequence:
-        - type: string
-          label: Alternative sign
+        type: string
+        label: Alternative sign
     currencyCode:
       label: Currency code
       type: string
@@ -31,18 +31,18 @@ currency.currency.*:
       type: sequence
       label: Usages
       sequence:
-        - type: mapping
-          label: Usage
-          mapping:
-            countryCode:
-              label: Country code
-              type: string
-            start:
-              label: Start date
-              type: string
-            end:
-              label: End date
-              type: string
+        type: mapping
+        label: Usage
+        mapping:
+          countryCode:
+            label: Country code
+            type: string
+          start:
+            label: Start date
+            type: string
+          end:
+            label: End date
+            type: string
 
 # Currency locale entities.
 currency.currency_locale.*:
@@ -77,15 +77,15 @@ currency.exchange_rate_provider:
     plugins:
       type: sequence
       sequence:
-        - type: mapping
-          label: Plugin
-          mapping:
-            plugin_id:
-              label: Plugin ID
-              type: string
-            status:
-              label: Status
-              type: boolean
+        type: mapping
+        label: Plugin
+        mapping:
+          plugin_id:
+            label: Plugin ID
+            type: string
+          status:
+            label: Status
+            type: boolean
 
 # Fixed exchange rates for the "Fixed rates" currency exchange rate provider
 # plugin. Note that this is not plugin configuration.
@@ -96,18 +96,18 @@ currency.exchanger.fixed_rates:
     rates:
       type: sequence
       sequence:
-        - type: mapping
-          label: Exchange rate
-          mapping:
-            currency_code_from:
-              label: Source currency code
-              type: string
-            currency_code_to:
-              label: Destination currency code
-              type: string
-            rate:
-              label: Exchange rate
-              type: string
+        type: mapping
+        label: Plugin
+        mapping:
+          currency_code_from:
+            label: Source currency code
+            type: string
+          currency_code_to:
+            label: Destination currency code
+            type: string
+          rate:
+            label: Exchange rate
+            type: string
 
 # The fallback schema for exchange rate provider plugins.
 plugin.plugin_configuration.currency_exchange_rate_provider.*:

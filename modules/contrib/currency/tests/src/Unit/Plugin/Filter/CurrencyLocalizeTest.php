@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Plugin\Filter\CurrencyLocalizeTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Plugin\Filter;
 
 use Commercie\Currency\InputInterface;
@@ -88,9 +83,9 @@ class CurrencyLocalizeTest extends UnitTestCase {
       ->method('assertValidTokens')
       ->willReturn(TRUE);
 
-    $this->currencyStorage = $this->getMock(EntityStorageInterface::class);
+    $this->currencyStorage = $this->createMock(EntityStorageInterface::class);
 
-    $this->input = $this->getMock(InputInterface::class);
+    $this->input = $this->createMock(InputInterface::class);
 
     $this->stringTranslation = $this->getStringTranslationStub();
 
@@ -106,13 +101,13 @@ class CurrencyLocalizeTest extends UnitTestCase {
    * @covers ::__construct
    */
   function testCreate() {
-    $entity_type_manager = $this->getMock(EntityTypeManagerInterface::class);
+    $entity_type_manager = $this->createMock(EntityTypeManagerInterface::class);
     $entity_type_manager->expects($this->atLeastOnce())
       ->method('getStorage')
       ->with('currency')
       ->willReturn($this->currencyStorage);
 
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = [
       ['entity_type.manager', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $entity_type_manager],
       ['currency.input', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->input],
@@ -140,7 +135,7 @@ class CurrencyLocalizeTest extends UnitTestCase {
       ['1.99', TRUE, LanguageInterface::TYPE_CONTENT, '€1.99'],
       ['2.99', TRUE, LanguageInterface::TYPE_CONTENT, '€2.99'],
     ];
-    $currency = $this->getMock(CurrencyInterface::class);
+    $currency = $this->createMock(CurrencyInterface::class);
     $currency->expects($this->any())
       ->method('formatAmount')
       ->willReturnMap($map);
@@ -201,9 +196,6 @@ class CurrencyLocalizeTest extends UnitTestCase {
    */
   public function testTips() {
     $tips = $this->sut->tips();
-    $this->logicalOr(
-      new \PHPUnit_Framework_Constraint_IsType('string', $tips),
-      new \PHPUnit_Framework_Constraint_IsInstanceOf(TranslatableMarkup::class, $tips)
-    );
+    $this->assertInstanceOf(TranslatableMarkup::class, $tips);
   }
 }

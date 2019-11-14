@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file Contains
- * \Drupal\Tests\currency\Unit\Plugin\Currency\ExchangeRateProvider\ExchangeRateProviderDecoratorTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Plugin\Currency\ExchangeRateProvider;
 
 use Commercie\CurrencyExchange\ExchangeRateProviderInterface;
@@ -45,24 +40,13 @@ class ExchangeRateProviderDecoratorTest extends UnitTestCase {
    * {@inheritdoc}
    */
   public function setUp() {
-    $this->exchangeRateProvider = $this->getMock(ExchangeRateProviderInterface::class);
+    $this->exchangeRateProvider = $this->createMock(ExchangeRateProviderInterface::class);
 
     $configuration = array();
     $this->pluginId = $this->randomMachineName();
     $plugin_definition = array();
 
     $this->sut = new ExchangeRateProviderDecorator($configuration, $this->pluginId, $plugin_definition, $this->exchangeRateProvider);
-  }
-
-  /**
-   * @covers ::__construct
-   */
-  public function testConstruct() {
-    $configuration = array();
-    $plugin_id = $this->randomMachineName();
-    $plugin_definition = array();
-
-    $this->sut = new ExchangeRateProviderDecorator($configuration, $plugin_id, $plugin_definition, $this->exchangeRateProvider);
   }
 
   /**

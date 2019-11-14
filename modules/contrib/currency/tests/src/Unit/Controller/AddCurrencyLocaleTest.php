@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Controller\AddCurrencyLocaleTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Controller;
 
 use Drupal\Core\Entity\EntityFormBuilderInterface;
@@ -48,9 +43,9 @@ class AddCurrencyLocaleTest extends UnitTestCase {
    * {@inheritdoc}
    */
   public function setUp() {
-    $this->currencyLocaleStorage = $this->getMock(EntityStorageInterface::class);
+    $this->currencyLocaleStorage = $this->createMock(EntityStorageInterface::class);
 
-    $this->entityFormBuilder = $this->getMock(EntityFormBuilderInterface::class);
+    $this->entityFormBuilder = $this->createMock(EntityFormBuilderInterface::class);
 
     $this->sut = new AddCurrencyLocale($this->entityFormBuilder, $this->currencyLocaleStorage);
   }
@@ -60,13 +55,13 @@ class AddCurrencyLocaleTest extends UnitTestCase {
    * @covers ::__construct
    */
   function testCreate() {
-    $entity_type_manager = $this->getMock(EntityTypeManagerInterface::class);
+    $entity_type_manager = $this->createMock(EntityTypeManagerInterface::class);
     $entity_type_manager->expects($this->atLeastOnce())
       ->method('getStorage')
       ->with('currency_locale')
       ->willReturn($this->currencyLocaleStorage);
 
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = array(
       array('entity.form_builder', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->entityFormBuilder),
       array('entity_type.manager', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $entity_type_manager),
@@ -83,14 +78,14 @@ class AddCurrencyLocaleTest extends UnitTestCase {
    * @covers ::execute
    */
   public function testExecute() {
-    $currency_locale = $this->getMock(CurrencyLocaleInterface::class);
+    $currency_locale = $this->createMock(CurrencyLocaleInterface::class);
 
     $this->currencyLocaleStorage->expects($this->once())
       ->method('create')
       ->with(array())
       ->willReturn($currency_locale);
 
-    $form = $this->getMock(EntityFormInterface::class);
+    $form = $this->createMock(EntityFormInterface::class);
 
     $this->entityFormBuilder->expects($this->once())
       ->method('getForm')

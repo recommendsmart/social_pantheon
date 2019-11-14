@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Controller\EditCurrencyLocaleTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Controller;
 
 use Drupal\Core\StringTranslation\TranslatableMarkup;
@@ -48,7 +43,7 @@ class EditCurrencyLocaleTest extends UnitTestCase {
    * @covers ::__construct
    */
   function testCreate() {
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = array(
       array('string_translation', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->stringTranslation),
     );
@@ -66,7 +61,7 @@ class EditCurrencyLocaleTest extends UnitTestCase {
   public function testTitle() {
     $label = $this->randomMachineName();
 
-    $currency_locale = $this->getMock(CurrencyLocaleInterface::class);
+    $currency_locale = $this->createMock(CurrencyLocaleInterface::class);
     $currency_locale->expects($this->once())
       ->method('label')
       ->willReturn($label);

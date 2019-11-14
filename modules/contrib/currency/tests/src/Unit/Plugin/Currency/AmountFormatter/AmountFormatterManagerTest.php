@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file Contains
- * \Drupal\Tests\currency\Unit\Plugin\Currency\AmountFormatter\AmountFormatterManagerTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Plugin\Currency\AmountFormatter;
 
 use Drupal\Component\Plugin\Discovery\DiscoveryInterface;
@@ -71,17 +66,17 @@ class AmountFormatterManagerTest extends UnitTestCase {
    * {@inheritdoc}
    */
   public function setUp() {
-    $this->discovery = $this->getMock(DiscoveryInterface::class);
+    $this->discovery = $this->createMock(DiscoveryInterface::class);
 
     $this->factory = $this->getMockBuilder(DefaultFactory::class)
       ->disableOriginalConstructor()
       ->getMock();
 
-    $this->moduleHandler = $this->getMock(ModuleHandlerInterface::class);
+    $this->moduleHandler = $this->createMock(ModuleHandlerInterface::class);
 
-    $this->cache = $this->getMock(CacheBackendInterface::class);
+    $this->cache = $this->createMock(CacheBackendInterface::class);
 
-    $this->configFactory = $this->getMock(ConfigFactoryInterface::class);
+    $this->configFactory = $this->createMock(ConfigFactoryInterface::class);
 
     $namespaces = new ArrayObject();
 
@@ -92,14 +87,6 @@ class AmountFormatterManagerTest extends UnitTestCase {
     $factory_property = new \ReflectionProperty($this->sut, 'factory');
     $factory_property->setAccessible(TRUE);
     $factory_property->setValue($this->sut, $this->factory);
-  }
-
-  /**
-   * @covers ::__construct
-   */
-  public function testConstruct() {
-    $namespaces = new ArrayObject();
-    $this->sut = new AmountFormatterManager($namespaces, $this->cache, $this->moduleHandler, $this->configFactory);
   }
 
   /**
@@ -127,7 +114,7 @@ class AmountFormatterManagerTest extends UnitTestCase {
 
     $this->configFactory->expects($this->once())
       ->method('get')
-      ->with('currency.amount_formatter')
+      ->with('currency.amount_formatting')
       ->willReturn($config);
 
     $this->assertSame($plugin_id, $this->sut->getDefaultPluginId());
@@ -151,7 +138,7 @@ class AmountFormatterManagerTest extends UnitTestCase {
 
     $this->configFactory->expects($this->once())
       ->method('get')
-      ->with('currency.amount_formatter')
+      ->with('currency.amount_formatting')
       ->willReturn($config);
 
     $this->assertSame(spl_object_hash($this->sut), spl_object_hash($this->sut->setDefaultPluginId($plugin_id)));
@@ -165,7 +152,7 @@ class AmountFormatterManagerTest extends UnitTestCase {
 
     $default_plugin_id = $this->randomMachineName();
 
-    $formatter = $this->getMock(AmountFormatterInterface::class);
+    $formatter = $this->createMock(AmountFormatterInterface::class);
 
     /** @var \Drupal\currency\Plugin\Currency\AmountFormatter\AmountFormatterManager|\PHPUnit_Framework_MockObject_MockObject $currency_amount_formatter_manager */
     $currency_amount_formatter_manager = $this->getMockBuilder(AmountFormatterManager::class)

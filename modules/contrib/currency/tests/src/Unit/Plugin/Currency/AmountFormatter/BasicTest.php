@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Plugin\Currency\AmountFormatter\BasicTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Plugin\Currency\AmountFormatter;
 
 use Commercie\Currency\CurrencyInterface;
@@ -51,7 +46,7 @@ class BasicTest extends UnitTestCase {
     $plugin_id = $this->randomMachineName();
     $plugin_definition = array();
 
-    $this->localeResolver = $this->getMock(LocaleResolverInterface::class);
+    $this->localeResolver = $this->createMock(LocaleResolverInterface::class);
 
     $this->stringTranslation = $this->getStringTranslationStub();
 
@@ -63,7 +58,7 @@ class BasicTest extends UnitTestCase {
    * @covers ::__construct
    */
   function testCreate() {
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = array(
       array('currency.locale_resolver', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->localeResolver),
       array('string_translation', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->stringTranslation),
@@ -86,7 +81,7 @@ class BasicTest extends UnitTestCase {
   function testFormatAmount() {
     $decimal_separator = '@';
     $grouping_separator ='%';
-    $currency_locale = $this->getMock(CurrencyLocaleInterface::class);
+    $currency_locale = $this->createMock(CurrencyLocaleInterface::class);
     $currency_locale->expects($this->any())
       ->method('getDecimalSeparator')
       ->willReturn($decimal_separator);
@@ -104,7 +99,7 @@ class BasicTest extends UnitTestCase {
     $currency_sign = '₴';
     $currency_code = 'UAH';
     $currency_decimals = 2;
-    $currency = $this->getMock(CurrencyInterface::class);
+    $currency = $this->createMock(CurrencyInterface::class);
     $currency->expects($this->any())
       ->method('getCurrencyCode')
       ->willReturn($currency_code);
@@ -117,12 +112,15 @@ class BasicTest extends UnitTestCase {
 
     $translation = 'UAH 987%654@321';
 
-    $formatted_amount = $this->sut->formatAmount($currency, $amount);
-    $this->logicalOr(
-      new \PHPUnit_Framework_Constraint_IsType('string', $formatted_amount),
-      new \PHPUnit_Framework_Constraint_IsInstanceOf(TranslatableMarkup::class, $formatted_amount)
+    $arguments = array (
+      '@currency_code' => 'UAH',
+      '@currency_sign' => '₴',
+      '@amount' => '987%654@321',
     );
 
-    $this->assertSame($translation, (string) $formatted_amount);
+    $formatted_amount = $this->sut->formatAmount($currency, $amount);
+    $this->assertInstanceOf(TranslatableMarkup::class, $formatted_amount);
+    $this->assertSame('@currency_code @amount', $formatted_amount->getUntranslatedString());
+    $this->assertSame($arguments, $formatted_amount->getArguments());
   }
 }

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\ExchangeRateTest.
- */
-
 namespace Drupal\Tests\currency\Unit;
 
 use Commercie\CurrencyExchange\ExchangeRate as GenericExchangeRate;
@@ -29,18 +24,6 @@ class ExchangeRateTest extends UnitTestCase {
    * {@inheritdoc}
    */
   public function setUp() {
-    $exchange_rate_provider_id = $this->randomMachineName();
-    $timestamp = mt_rand();
-    $source_currency_code = $this->randomMachineName(3);
-    $destination_currency_code = $this->randomMachineName(3);
-    $rate = mt_rand();
-    $this->sut = new ExchangeRate($exchange_rate_provider_id, $timestamp, $source_currency_code, $destination_currency_code, $rate);
-  }
-
-  /**
-   * @covers ::__construct
-   */
-  public function testConstruct() {
     $exchange_rate_provider_id = $this->randomMachineName();
     $timestamp = mt_rand();
     $source_currency_code = $this->randomMachineName(3);

@@ -1,18 +1,14 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Entity\CurrencyLocale\CurrencyLocaleFormTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Entity\CurrencyLocale {
 
-  use Drupal\Core\Entity\EntityManagerInterface;
+  use Drupal\Core\Entity\EntityTypeManagerInterface;
   use Drupal\Core\Entity\EntityStorageInterface;
   use Drupal\Core\Form\FormStateInterface;
   use Drupal\Core\Form\FormValidatorInterface;
   use Drupal\Core\Language\LanguageInterface;
   use Drupal\Core\Locale\CountryManagerInterface;
+  use Drupal\Core\Messenger\MessengerInterface;
   use Drupal\Core\Utility\LinkGeneratorInterface;
   use Drupal\currency\Entity\CurrencyLocale\CurrencyLocaleForm;
   use Drupal\currency\Entity\CurrencyLocaleInterface;
@@ -77,20 +73,29 @@ namespace Drupal\Tests\currency\Unit\Entity\CurrencyLocale {
     protected $formValidator;
 
     /**
+     * The messenger.
+     *
+     * @var \Drupal\Core\Messenger\MessengerInterface|\PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $messenger;
+
+    /**
      * {@inheritdoc}
      */
     public function setUp() {
-      $this->countryManager = $this->getMock(CountryManagerInterface::class);
+      $this->countryManager = $this->createMock(CountryManagerInterface::class);
 
-      $this->currencyLocale = $this->getMock(CurrencyLocaleInterface::class);
+      $this->currencyLocale = $this->createMock(CurrencyLocaleInterface::class);
 
-      $this->currencyLocaleStorage = $this->getMock(EntityStorageInterface::class);
+      $this->currencyLocaleStorage = $this->createMock(EntityStorageInterface::class);
 
-      $this->linkGenerator = $this->getMock(LinkGeneratorInterface::class);
+      $this->linkGenerator = $this->createMock(LinkGeneratorInterface::class);
 
       $this->stringTranslation = $this->getStringTranslationStub();
 
-      $this->formValidator = $this->getMock(FormValidatorInterface::class);
+      $this->formValidator = $this->createMock(FormValidatorInterface::class);
+
+      $this->messenger = $this->createMock(MessengerInterface::class);
 
       $container = new ContainerBuilder();
       $container->set('form_validator', $this->formValidator);
@@ -98,6 +103,7 @@ namespace Drupal\Tests\currency\Unit\Entity\CurrencyLocale {
 
       $this->sut = new CurrencyLocaleForm($this->stringTranslation, $this->linkGenerator, $this->currencyLocaleStorage, $this->countryManager);
       $this->sut->setEntity($this->currencyLocale);
+      $this->sut->setMessenger($this->messenger);
     }
 
     /**
@@ -105,17 +111,17 @@ namespace Drupal\Tests\currency\Unit\Entity\CurrencyLocale {
      * @covers ::__construct
      */
     function testCreate() {
-      $entity_manager = $this->getMock(EntityManagerInterface::class);
-      $entity_manager->expects($this->once())
+      $entity_type_manager = $this->createMock(EntityTypeManagerInterface::class);
+      $entity_type_manager->expects($this->once())
         ->method('getStorage')
         ->with('currency_locale')
         ->willReturn($this->currencyLocaleStorage);
 
-      $container = $this->getMock(ContainerInterface::class);
+      $container = $this->createMock(ContainerInterface::class);
 
       $map = array(
         array('country_manager', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->countryManager),
-        array('entity.manager', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $entity_manager),
+        array('entity_type.manager', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $entity_type_manager),
         array('link_generator', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->linkGenerator),
         array('string_translation', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->stringTranslation),
       );
@@ -151,7 +157,7 @@ namespace Drupal\Tests\currency\Unit\Entity\CurrencyLocale {
         ->with($grouping_separator);
 
       $form = array();
-      $form_state = $this->getMock(FormStateInterface::class);
+      $form_state = $this->createMock(FormStateInterface::class);
       $form_state->expects($this->atLeastOnce())
         ->method('getValues')
         ->willReturn(array(
@@ -194,7 +200,7 @@ namespace Drupal\Tests\currency\Unit\Entity\CurrencyLocale {
         ->method('getGroupingSeparator')
         ->willReturn($grouping_separator);
 
-      $language = $this->getMock(LanguageInterface::class);
+      $language = $this->createMock(LanguageInterface::class);
 
       $this->currencyLocale->expects($this->any())
         ->method('language')
@@ -208,7 +214,7 @@ namespace Drupal\Tests\currency\Unit\Entity\CurrencyLocale {
         ->willReturn($country_list);
 
       $form = array();
-      $form_state = $this->getMock(FormStateInterface::class);
+      $form_state = $this->createMock(FormStateInterface::class);
 
       $build = $this->sut->form($form, $form_state);
       unset($build['langcode']);
@@ -217,106 +223,11 @@ namespace Drupal\Tests\currency\Unit\Entity\CurrencyLocale {
       $expected['language_code'] = [
         '#default_value' => $language_code,
         '#empty_value' => '',
-        '#options' => array(
-          'af' => 'Afrikaans',
-              'sq' => 'Albanian',
-              'am' => 'Amharic',
-              'ar' => 'Arabic',
-              'hy' => 'Armenian',
-              'ast' => 'Asturian',
-              'az' => 'Azerbaijani',
-              'ms' => 'Bahasa Malaysia',
-              'eu' => 'Basque',
-              'be' => 'Belarusian',
-              'bn' => 'Bengali',
-              'bs' => 'Bosnian',
-              'bg' => 'Bulgarian',
-              'my' => 'Burmese',
-              'ca' => 'Catalan',
-              'zh-hans' => 'Chinese, Simplified',
-              'zh-hant' => 'Chinese, Traditional',
-              'hr' => 'Croatian',
-              'cs' => 'Czech',
-              'da' => 'Danish',
-              'nl' => 'Dutch',
-              'dz' => 'Dzongkha',
-              'en' => 'English',
-              'eo' => 'Esperanto',
-              'et' => 'Estonian',
-              'fo' => 'Faeroese',
-              'fil' => 'Filipino',
-              'fi' => 'Finnish',
-              'fr' => 'French',
-              'fy' => 'Frisian, Western',
-              'gl' => 'Galician',
-              'ka' => 'Georgian',
-              'de' => 'German',
-              'el' => 'Greek',
-              'gu' => 'Gujarati',
-              'ht' => 'Haitian Creole',
-              'he' => 'Hebrew',
-              'hi' => 'Hindi',
-              'hu' => 'Hungarian',
-              'is' => 'Icelandic',
-              'id' => 'Indonesian',
-              'ga' => 'Irish',
-              'it' => 'Italian',
-              'ja' => 'Japanese',
-              'jv' => 'Javanese',
-              'kn' => 'Kannada',
-              'kk' => 'Kazakh',
-              'km' => 'Khmer',
-              'ko' => 'Korean',
-              'ku' => 'Kurdish',
-              'ky' => 'Kyrgyz',
-              'lo' => 'Lao',
-              'lv' => 'Latvian',
-              'lt' => 'Lithuanian',
-              'xx-lolspeak' => 'Lolspeak',
-              'mk' => 'Macedonian',
-              'mg' => 'Malagasy',
-              'ml' => 'Malayalam',
-              'mr' => 'Marathi',
-              'mn' => 'Mongolian',
-              'ne' => 'Nepali',
-              'se' => 'Northern Sami',
-              'nb' => 'Norwegian Bokmål',
-              'nn' => 'Norwegian Nynorsk',
-              'oc' => 'Occitan',
-              'fa' => 'Persian, Farsi',
-              'pl' => 'Polish',
-              'pt-br' => 'Portuguese, Brazil',
-              'pt-pt' => 'Portuguese, Portugal',
-              'pa' => 'Punjabi',
-              'ro' => 'Romanian',
-              'ru' => 'Russian',
-              'sco' => 'Scots',
-              'gd' => 'Scots Gaelic',
-              'sr' => 'Serbian',
-              'si' => 'Sinhala',
-              'sk' => 'Slovak',
-              'sl' => 'Slovenian',
-              'es' => 'Spanish',
-              'sw' => 'Swahili',
-              'sv' => 'Swedish',
-              'gsw-berne' => 'Swiss German',
-              'ta' => 'Tamil',
-              'ta-lk' => 'Tamil, Sri Lanka',
-              'te' => 'Telugu',
-              'th' => 'Thai',
-              'bo' => 'Tibetan',
-              'tr' => 'Turkish',
-              'tyv' => 'Tuvan',
-              'uk' => 'Ukrainian',
-              'ur' => 'Urdu',
-              'ug' => 'Uyghur',
-              'vi' => 'Vietnamese',
-              'cy' => 'Welsh',
-        ),
         '#required' => TRUE,
         '#type' => 'select',
       ];
       unset($build['language_code']['#title']);
+      unset($build['language_code']['#options']);
       $expected['country_code'] = [
         '#default_value' => $country_code,
         '#empty_value' => '',
@@ -365,7 +276,7 @@ namespace Drupal\Tests\currency\Unit\Entity\CurrencyLocale {
         ->method('save');
 
       $form = array();
-      $form_state = $this->getMock(FormStateInterface::class);
+      $form_state = $this->createMock(FormStateInterface::class);
       $form_state->expects($this->once())
         ->method('setRedirect')
         ->with('entity.currency_locale.collection');
@@ -383,7 +294,7 @@ namespace Drupal\Tests\currency\Unit\Entity\CurrencyLocale {
           '#foo' => $this->randomMachineName(),
         ),
       );
-      $form_state = $this->getMock(FormStateInterface::class);
+      $form_state = $this->createMock(FormStateInterface::class);
       $form_state->expects($this->any())
         ->method('getValues')
         ->willReturn(array(
@@ -397,7 +308,7 @@ namespace Drupal\Tests\currency\Unit\Entity\CurrencyLocale {
 
       if ($currency_locale_is_new) {
         if ($locale_is_used) {
-          $loaded_currency_locale = $this->getMock(CurrencyLocaleInterface::class);
+          $loaded_currency_locale = $this->createMock(CurrencyLocaleInterface::class);
 
           $this->currencyLocaleStorage->expects($this->once())
             ->method('load')
@@ -441,14 +352,6 @@ namespace Drupal\Tests\currency\Unit\Entity\CurrencyLocale {
       );
     }
 
-  }
-
-}
-
-namespace {
-
-  if (!function_exists('drupal_set_message')) {
-    function drupal_set_message() {}
   }
 
 }

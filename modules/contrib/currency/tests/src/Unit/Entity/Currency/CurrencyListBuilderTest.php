@@ -1,15 +1,10 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Entity\Currency\CurrencyListBuilderTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Entity\Currency;
 
-use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\currency\Entity\Currency\CurrencyListBuilder;
@@ -63,11 +58,11 @@ class CurrencyListBuilderTest extends UnitTestCase {
    * {@inheritdoc}
    */
   public function setUp() {
-    $this->entityStorage = $this->getMock(EntityStorageInterface::class);
+    $this->entityStorage = $this->createMock(EntityStorageInterface::class);
 
-    $this->entityType = $this->getMock(EntityTypeInterface::class);
+    $this->entityType = $this->createMock(EntityTypeInterface::class);
 
-    $this->moduleHandler = $this->getMock(ModuleHandlerInterface::class);
+    $this->moduleHandler = $this->createMock(ModuleHandlerInterface::class);
 
     $this->stringTranslation = $this->getStringTranslationStub();
 
@@ -79,15 +74,15 @@ class CurrencyListBuilderTest extends UnitTestCase {
    * @covers ::__construct
    */
   function testCreateInstance() {
-    $entity_manager = $this->getMock(EntityManagerInterface::class);
-    $entity_manager->expects($this->once())
+    $entity_type_manager = $this->createMock(EntityTypeManagerInterface::class);
+    $entity_type_manager->expects($this->once())
       ->method('getStorage')
       ->with('currency')
       ->willReturn($this->entityStorage);
 
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = array(
-      array('entity.manager', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $entity_manager),
+      array('entity_type.manager', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $entity_type_manager),
       array('module_handler', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->moduleHandler),
       array('string_translation', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->stringTranslation),
     );
@@ -116,7 +111,7 @@ class CurrencyListBuilderTest extends UnitTestCase {
     $entity_id = $this->randomMachineName();
     $entity_label = $this->randomMachineName();
 
-    $currency = $this->getMock(CurrencyInterface::class);
+    $currency = $this->createMock(CurrencyInterface::class);
     $currency->expects($this->any())
       ->method('id')
       ->willReturn($entity_id);

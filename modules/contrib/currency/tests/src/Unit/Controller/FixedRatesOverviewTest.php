@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Controller\FixedRatesOverviewTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Controller;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -72,15 +67,15 @@ class FixedRatesOverviewTest extends UnitTestCase {
    * {@inheritdoc}
    */
   public function setUp() {
-    $this->currencyStorage = $this->getMock(EntityStorageInterface::class);
+    $this->currencyStorage = $this->createMock(EntityStorageInterface::class);
 
-    $this->currencyAmountFormatterManager = $this->getMock(AmountFormatterManagerInterface::class);
+    $this->currencyAmountFormatterManager = $this->createMock(AmountFormatterManagerInterface::class);
 
-    $this->currencyExchangeRateProviderManager = $this->getMock(ExchangeRateProviderManagerInterface::class);
+    $this->currencyExchangeRateProviderManager = $this->createMock(ExchangeRateProviderManagerInterface::class);
 
     $this->stringTranslation = $this->getStringTranslationStub();
 
-    $this->urlGenerator = $this->getMock(UrlGeneratorInterface::class);
+    $this->urlGenerator = $this->createMock(UrlGeneratorInterface::class);
 
     $this->sut = new FixedRatesOverview($this->stringTranslation, $this->urlGenerator, $this->currencyStorage, $this->currencyAmountFormatterManager, $this->currencyExchangeRateProviderManager);
   }
@@ -90,13 +85,13 @@ class FixedRatesOverviewTest extends UnitTestCase {
    * @covers ::__construct
    */
   function testCreate() {
-    $entity_type_manager = $this->getMock(EntityTypeManagerInterface::class);
+    $entity_type_manager = $this->createMock(EntityTypeManagerInterface::class);
     $entity_type_manager->expects($this->atLeastOnce())
       ->method('getStorage')
       ->with('currency')
       ->willReturn($this->currencyStorage);
 
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = array(
       array('entity_type.manager', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $entity_type_manager),
       array('plugin.manager.currency.amount_formatter', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->currencyAmountFormatterManager),
@@ -120,11 +115,11 @@ class FixedRatesOverviewTest extends UnitTestCase {
     $currency_code_to = 'NLG';
     $rate = '2.20371';
 
-    $currency_from = $this->getMock(CurrencyInterface::class);
+    $currency_from = $this->createMock(CurrencyInterface::class);
     $currency_from->expects($this->once())
       ->method('label');
 
-    $currency_to = $this->getMock(CurrencyInterface::class);
+    $currency_to = $this->createMock(CurrencyInterface::class);
     $currency_to->expects($this->once())
       ->method('label');
 
@@ -157,7 +152,7 @@ class FixedRatesOverviewTest extends UnitTestCase {
       ->method('generateFromRoute')
       ->with('currency.exchange_rate_provider.fixed_rates.add');
 
-    $amount_formatter = $this->getMock(AmountFormatterInterface::class);
+    $amount_formatter = $this->createMock(AmountFormatterInterface::class);
     $amount_formatter->expects($this->once())
       ->method('formatAmount')
       ->with($currency_to, $rate);

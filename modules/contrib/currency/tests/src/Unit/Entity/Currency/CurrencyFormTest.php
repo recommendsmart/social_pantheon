@@ -1,17 +1,13 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Entity\Currency\CurrencyFormTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Entity\Currency {
 
   use Commercie\Currency\InputInterface;
-  use Drupal\Core\Entity\EntityManagerInterface;
   use Drupal\Core\Entity\EntityStorageInterface;
+  use Drupal\Core\Entity\EntityTypeManagerInterface;
   use Drupal\Core\Form\FormStateInterface;
   use Drupal\Core\Language\LanguageInterface;
+  use Drupal\Core\Messenger\MessengerInterface;
   use Drupal\Core\Url;
   use Drupal\Core\Utility\LinkGeneratorInterface;
   use Drupal\currency\Entity\Currency\CurrencyForm;
@@ -62,6 +58,13 @@ namespace Drupal\Tests\currency\Unit\Entity\Currency {
     protected $stringTranslation;
 
     /**
+     * The messenger.
+     *
+     * @var \Drupal\Core\Messenger\MessengerInterface|\PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $messenger;
+
+    /**
      * The class under test.
      *
      * @var \Drupal\currency\Entity\Currency\CurrencyForm
@@ -72,18 +75,21 @@ namespace Drupal\Tests\currency\Unit\Entity\Currency {
      * {@inheritdoc}
      */
     public function setUp() {
-      $this->currency = $this->getMock(CurrencyInterface::class);
+      $this->currency = $this->createMock(CurrencyInterface::class);
 
-      $this->currencyStorage = $this->getMock(EntityStorageInterface::class);
+      $this->currencyStorage = $this->createMock(EntityStorageInterface::class);
 
-      $this->linkGenerator = $this->getMock(LinkGeneratorInterface::class);
+      $this->linkGenerator = $this->createMock(LinkGeneratorInterface::class);
 
-      $this->inputParser = $this->getMock(InputInterface::class);
+      $this->inputParser = $this->createMock(InputInterface::class);
 
       $this->stringTranslation = $this->getStringTranslationStub();
 
+      $this->messenger = $this->createMock(MessengerInterface::class);
+
       $this->sut = new CurrencyForm($this->stringTranslation, $this->linkGenerator, $this->currencyStorage, $this->inputParser);
       $this->sut->setEntity($this->currency);
+      $this->sut->setMessenger($this->messenger);
     }
 
     /**
@@ -91,16 +97,16 @@ namespace Drupal\Tests\currency\Unit\Entity\Currency {
      * @covers ::__construct
      */
     function testCreate() {
-      $entity_manager = $this->getMock(EntityManagerInterface::class);
-      $entity_manager->expects($this->once())
+      $entity_type_manager = $this->createMock(EntityTypeManagerInterface::class);
+      $entity_type_manager->expects($this->once())
         ->method('getStorage')
         ->with('currency')
         ->willReturn($this->currencyStorage);
 
-      $container = $this->getMock(ContainerInterface::class);
+      $container = $this->createMock(ContainerInterface::class);
 
       $map = array(
-        array('entity.manager', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $entity_manager),
+        array('entity_type.manager', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $entity_type_manager),
         array('currency.input', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->inputParser),
         array('link_generator', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->linkGenerator),
         array('string_translation', ContainerInterface::EXCEPTION_ON_INVALID_REFERENCE, $this->stringTranslation),
@@ -148,7 +154,7 @@ namespace Drupal\Tests\currency\Unit\Entity\Currency {
         ->with($currency_status);
 
       $form = array();
-      $form_state = $this->getMock(FormStateInterface::class);
+      $form_state = $this->createMock(FormStateInterface::class);
       $form_state->expects($this->atLeastOnce())
         ->method('getValues')
         ->willReturn(array(
@@ -201,14 +207,14 @@ namespace Drupal\Tests\currency\Unit\Entity\Currency {
         ->method('status')
         ->willReturn($currency_status);
 
-      $language = $this->getMock(LanguageInterface::class);
+      $language = $this->createMock(LanguageInterface::class);
 
       $this->currency->expects($this->any())
         ->method('language')
         ->willReturn($language);
 
       $form = array();
-      $form_state = $this->getMock(FormStateInterface::class);
+      $form_state = $this->createMock(FormStateInterface::class);
 
       $build = $this->sut->form($form, $form_state);
       unset($build['langcode']);
@@ -280,7 +286,7 @@ namespace Drupal\Tests\currency\Unit\Entity\Currency {
         ->method('save');
 
       $form = array();
-      $form_state = $this->getMock(FormStateInterface::class);
+      $form_state = $this->createMock(FormStateInterface::class);
       $form_state->expects($this->once())
         ->method('setRedirect')
         ->with('entity.currency.collection');
@@ -297,7 +303,7 @@ namespace Drupal\Tests\currency\Unit\Entity\Currency {
         '#value' => $currency_code,
       );
       $form = array();
-      $form_state = $this->getMock(FormStateInterface::class);
+      $form_state = $this->createMock(FormStateInterface::class);
 
       $this->currency->expects($this->any())
         ->method('isNew')
@@ -312,12 +318,12 @@ namespace Drupal\Tests\currency\Unit\Entity\Currency {
         $loaded_currency_label = $this->randomMachineName();
         $loaded_currency_url = new Url($this->randomMachineName());
 
-        $loaded_currency = $this->getMock(CurrencyInterface::class);
+        $loaded_currency = $this->createMock(CurrencyInterface::class);
         $loaded_currency->expects($this->any())
           ->method('label')
           ->willReturn($loaded_currency_label);
         $loaded_currency->expects($this->atLeastOnce())
-          ->method('urlInfo')
+          ->method('toUrl')
           ->willReturn($loaded_currency_url);
 
         $this->currencyStorage->expects($this->once())
@@ -369,7 +375,7 @@ namespace Drupal\Tests\currency\Unit\Entity\Currency {
         '#value' => $currency_number,
       );
       $form = array();
-      $form_state = $this->getMock(FormStateInterface::class);
+      $form_state = $this->createMock(FormStateInterface::class);
 
       $this->currency->expects($this->any())
         ->method('isNew')
@@ -385,7 +391,7 @@ namespace Drupal\Tests\currency\Unit\Entity\Currency {
         $loaded_currency_label = $this->randomMachineName();
         $loaded_currency_url = new Url($this->randomMachineName());
 
-        $loaded_currency = $this->getMock(CurrencyInterface::class);
+        $loaded_currency = $this->createMock(CurrencyInterface::class);
         $loaded_currency->expects($this->any())
           ->method('id')
           ->willReturn($loaded_currency_code);
@@ -393,7 +399,7 @@ namespace Drupal\Tests\currency\Unit\Entity\Currency {
           ->method('label')
           ->willReturn($loaded_currency_label);
         $loaded_currency->expects($this->atLeastOnce())
-          ->method('urlInfo')
+          ->method('toUrl')
           ->willReturn($loaded_currency_url);
 
         $this->currencyStorage->expects($this->once())
@@ -449,7 +455,7 @@ namespace Drupal\Tests\currency\Unit\Entity\Currency {
         '#value' => $input_value,
       );
       $form = array();
-      $form_state = $this->getMock(FormStateInterface::class);
+      $form_state = $this->createMock(FormStateInterface::class);
 
       $this->inputParser->expects($this->once())
         ->method('parseAmount')
@@ -485,13 +491,5 @@ namespace Drupal\Tests\currency\Unit\Entity\Currency {
     }
 
   }
-
-}
-
-namespace {
-
-if (!function_exists('drupal_set_message')) {
-  function drupal_set_message() {}
-}
 
 }

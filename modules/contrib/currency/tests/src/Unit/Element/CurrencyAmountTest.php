@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\currency\Unit\Element\CurrencyAmountTest.
- */
-
 namespace Drupal\Tests\currency\Unit\Element;
 
 use Commercie\Currency\InputInterface;
@@ -63,11 +58,11 @@ class CurrencyAmountTest extends UnitTestCase {
    * {@inheritdoc}
    */
   public function setUp() {
-    $this->currencyStorage = $this->getMock(EntityStorageInterface::class);
+    $this->currencyStorage = $this->createMock(EntityStorageInterface::class);
 
-    $this->formHelper = $this->getMock(FormHelperInterface::class);
+    $this->formHelper = $this->createMock(FormHelperInterface::class);
 
-    $this->input = $this->getMock(InputInterface::class);
+    $this->input = $this->createMock(InputInterface::class);
 
     $this->stringTranslation = $this->getStringTranslationStub();
 
@@ -83,13 +78,13 @@ class CurrencyAmountTest extends UnitTestCase {
    * @covers ::__construct
    */
   function testCreate() {
-    $entity_type_manager = $this->getMock(EntityTypeManagerInterface::class);
+    $entity_type_manager = $this->createMock(EntityTypeManagerInterface::class);
     $entity_type_manager->expects($this->once())
       ->method('getStorage')
       ->with('currency')
       ->willReturn($this->currencyStorage);
 
-    $container = $this->getMock(ContainerInterface::class);
+    $container = $this->createMock(ContainerInterface::class);
     $map = array(
       array(
         'currency.form_helper',
@@ -257,7 +252,7 @@ class CurrencyAmountTest extends UnitTestCase {
     $currency_code_b = $this->randomMachineName();
     $currency_code_c = $this->randomMachineName();
 
-    $currency = $this->getMock(CurrencyInterface::class);
+    $currency = $this->createMock(CurrencyInterface::class);
 
     $currency_options = [
       $currency_code_a => $this->randomMachineName(),
