@@ -1,0 +1,26 @@
+entity.commerce_stock_type.collection:
+  title: 'Stock types'
+  route_name: 'entity.commerce_stock_type.collection'
+  parent: 'commerce.configuration'
+  description: 'Manage your stock types.'
+
+entity.commerce_stock_location.collection:
+  title: 'Stock locations'
+  route_name: 'entity.commerce_stock_location.collection'
+  parent: 'commerce.admin_commerce'
+  description: 'Manage commerce stock locations.'
+  weight: 9
+
+commerce_stock.inventory_control:
+  title: 'Inventory Control'
+  route_name: 'commerce_stock.inventory_control'
+  parent: 'commerce.admin_commerce'
+  description: 'Control inventory and oversee stock movements.'
+  weight: 9
+
+view.stock_on_hand.page_1:
+  title: 'Stock on hand'
+  route_name: 'view.stock_on_hand.page_1'
+  parent: 'commerce.admin_commerce'
+  description: 'Stock on hand overview.'
+  weight: 9
