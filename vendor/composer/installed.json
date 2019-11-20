@@ -7755,21 +7755,21 @@
     },
     {
         "name": "drupal/mailsystem",
-        "version": "4.1.0",
-        "version_normalized": "4.1.0.0",
+        "version": "4.2.0",
+        "version_normalized": "4.2.0.0",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/mailsystem.git",
-            "reference": "8.x-4.1"
+            "reference": "8.x-4.2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/mailsystem-8.x-4.1.zip",
-            "reference": "8.x-4.1",
-            "shasum": "318b87f1fdf96e6db30b04a98108af02a0fc3dcc"
+            "url": "https://ftp.drupal.org/files/projects/mailsystem-8.x-4.2.zip",
+            "reference": "8.x-4.2",
+            "shasum": "51d3f4831cdc3fd2748efc750d4946ddb5b50c3c"
         },
         "require": {
-            "drupal/core": "^8.0.5"
+            "drupal/core": "^8.7.7 || ^9"
         },
         "type": "drupal-module",
         "extra": {
@@ -7777,8 +7777,8 @@
                 "dev-4.x": "4.x-dev"
             },
             "drupal": {
-                "version": "8.x-4.1",
-                "datestamp": "1467993646",
+                "version": "8.x-4.2",
+                "datestamp": "1574194688",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -9904,7 +9904,7 @@
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/social_course.git",
-            "reference": "44dc516c958696753cec2e1c2b90172ab7c50749"
+            "reference": "e11b49e921ae41b9c1da345ae3bf786c477efdaf"
         },
         "require": {
             "drupal/core": "*",
@@ -9920,7 +9920,7 @@
             },
             "drupal": {
                 "version": "8.x-2.x-dev",
-                "datestamp": "1561454888",
+                "datestamp": "1566215584",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Project has not opted into security advisory coverage!"
@@ -9934,16 +9934,12 @@
         ],
         "authors": [
             {
-                "name": "GoalGorilla",
-                "homepage": "https://www.drupal.org/user/272162"
-            },
-            {
                 "name": "Kingdutch",
                 "homepage": "https://www.drupal.org/user/1868952"
             },
             {
-                "name": "RobertRagas",
-                "homepage": "https://www.drupal.org/user/2723261"
+                "name": "Open Social",
+                "homepage": "https://www.drupal.org/user/272162"
             },
             {
                 "name": "bramtenhove",
@@ -9956,6 +9952,10 @@
             {
                 "name": "jochemvn",
                 "homepage": "https://www.drupal.org/user/2521788"
+            },
+            {
+                "name": "robertragas@getopensocial.com",
+                "homepage": "https://www.drupal.org/user/2723261"
             },
             {
                 "name": "ronaldtebrake",
@@ -13802,17 +13802,17 @@
     },
     {
         "name": "npm-asset/react-dom",
-        "version": "16.11.0",
-        "version_normalized": "16.11.0.0",
+        "version": "16.12.0",
+        "version_normalized": "16.12.0.0",
         "dist": {
             "type": "tar",
-            "url": "https://registry.npmjs.org/react-dom/-/react-dom-16.11.0.tgz"
+            "url": "https://registry.npmjs.org/react-dom/-/react-dom-16.12.0.tgz"
         },
         "require": {
             "npm-asset/loose-envify": ">=1.1.0,<2.0.0",
             "npm-asset/object-assign": ">=4.1.1,<5.0.0",
             "npm-asset/prop-types": ">=15.6.2,<16.0.0",
-            "npm-asset/scheduler": ">=0.17.0,<0.18.0"
+            "npm-asset/scheduler": ">=0.18.0,<0.19.0"
         },
         "type": "npm-asset",
         "installation-source": "dist",
@@ -13822,11 +13822,11 @@
     },
     {
         "name": "npm-asset/react-is",
-        "version": "16.11.0",
-        "version_normalized": "16.11.0.0",
+        "version": "16.12.0",
+        "version_normalized": "16.12.0.0",
         "dist": {
             "type": "tar",
-            "url": "https://registry.npmjs.org/react-is/-/react-is-16.11.0.tgz"
+            "url": "https://registry.npmjs.org/react-is/-/react-is-16.12.0.tgz"
         },
         "type": "npm-asset",
         "installation-source": "dist",
@@ -13836,11 +13836,11 @@
     },
     {
         "name": "npm-asset/scheduler",
-        "version": "0.17.0",
-        "version_normalized": "0.17.0.0",
+        "version": "0.18.0",
+        "version_normalized": "0.18.0.0",
         "dist": {
             "type": "tar",
-            "url": "https://registry.npmjs.org/scheduler/-/scheduler-0.17.0.tgz"
+            "url": "https://registry.npmjs.org/scheduler/-/scheduler-0.18.0.tgz"
         },
         "require": {
             "npm-asset/loose-envify": ">=1.1.0,<2.0.0",
@@ -14080,17 +14080,17 @@
     },
     {
         "name": "pear/pear-core-minimal",
-        "version": "v1.10.9",
-        "version_normalized": "1.10.9.0",
+        "version": "v1.10.10",
+        "version_normalized": "1.10.10.0",
         "source": {
             "type": "git",
             "url": "https://github.com/pear/pear-core-minimal.git",
-            "reference": "742be8dd68c746a01e4b0a422258e9c9cae1c37f"
+            "reference": "625a3c429d9b2c1546438679074cac1b089116a7"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/pear/pear-core-minimal/zipball/742be8dd68c746a01e4b0a422258e9c9cae1c37f",
-            "reference": "742be8dd68c746a01e4b0a422258e9c9cae1c37f",
+            "url": "https://api.github.com/repos/pear/pear-core-minimal/zipball/625a3c429d9b2c1546438679074cac1b089116a7",
+            "reference": "625a3c429d9b2c1546438679074cac1b089116a7",
             "shasum": ""
         },
         "require": {
@@ -14100,7 +14100,7 @@
         "replace": {
             "rsky/pear-core-min": "self.version"
         },
-        "time": "2019-03-13T18:15:44+00:00",
+        "time": "2019-11-19T19:00:24+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
