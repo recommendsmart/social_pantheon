@@ -209,7 +209,7 @@
         "version_normalized": "3.4.1.0",
         "source": {
             "type": "git",
-            "url": "git@github.com:twbs/bootstrap.git",
+            "url": "https://github.com/twbs/bootstrap.git",
             "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
         },
         "dist": {
@@ -309,7 +309,7 @@
         "version_normalized": "1.17.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/mochajs/mocha.git",
+            "url": "git@github.com:mochajs/mocha.git",
             "reference": "7fc565ee3e225cb7a66bf39ae9c2c05b346675c1"
         },
         "dist": {
@@ -9335,6 +9335,100 @@
         }
     },
     {
+        "name": "drupal/redhen",
+        "version": "1.0.0-alpha3",
+        "version_normalized": "1.0.0.0-alpha3",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/redhen.git",
+            "reference": "8.x-1.0-alpha3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/redhen-8.x-1.0-alpha3.zip",
+            "reference": "8.x-1.0-alpha3",
+            "shasum": "ee65a457ae4f5f091d99edc15220617a450d710d"
+        },
+        "require": {
+            "drupal/core": "~8.0"
+        },
+        "require-dev": {
+            "drupal/entity": "*",
+            "drupal/redhen_contact": "*",
+            "drupal/redhen_org": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.0-alpha3",
+                "datestamp": "1508196403",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Alpha releases are not covered by Drupal security advisories."
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "aprice42",
+                "homepage": "https://www.drupal.org/user/369147"
+            },
+            {
+                "name": "bdimaggio",
+                "homepage": "https://www.drupal.org/user/70688"
+            },
+            {
+                "name": "brendanthinkshout",
+                "homepage": "https://www.drupal.org/user/3578399"
+            },
+            {
+                "name": "gcb",
+                "homepage": "https://www.drupal.org/user/1682976"
+            },
+            {
+                "name": "levelos",
+                "homepage": "https://www.drupal.org/user/54135"
+            },
+            {
+                "name": "mariacha1",
+                "homepage": "https://www.drupal.org/user/2210776"
+            },
+            {
+                "name": "nrackleff",
+                "homepage": "https://www.drupal.org/user/463332"
+            },
+            {
+                "name": "olivier.bouwman",
+                "homepage": "https://www.drupal.org/user/2799483"
+            },
+            {
+                "name": "tauno",
+                "homepage": "https://www.drupal.org/user/105595"
+            },
+            {
+                "name": "wxactly",
+                "homepage": "https://www.drupal.org/user/3181097"
+            }
+        ],
+        "description": "RedHen CRM",
+        "homepage": "https://www.drupal.org/project/redhen",
+        "keywords": [
+            "Drupal"
+        ],
+        "support": {
+            "source": "http://cgit.drupalcode.org/redhen",
+            "issues": "https://drupal.org/project/issues/redhen"
+        }
+    },
+    {
         "name": "drupal/redirect",
         "version": "1.4.0",
         "version_normalized": "1.4.0.0",
@@ -13783,11 +13877,11 @@
     },
     {
         "name": "npm-asset/react",
-        "version": "16.11.0",
-        "version_normalized": "16.11.0.0",
+        "version": "16.12.0",
+        "version_normalized": "16.12.0.0",
         "dist": {
             "type": "tar",
-            "url": "https://registry.npmjs.org/react/-/react-16.11.0.tgz"
+            "url": "https://registry.npmjs.org/react/-/react-16.12.0.tgz"
         },
         "require": {
             "npm-asset/loose-envify": ">=1.1.0,<2.0.0",
@@ -14031,20 +14125,20 @@
     },
     {
         "name": "pear/console_getopt",
-        "version": "v1.4.2",
-        "version_normalized": "1.4.2.0",
+        "version": "v1.4.3",
+        "version_normalized": "1.4.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/pear/Console_Getopt.git",
-            "reference": "6c77aeb625b32bd752e89ee17972d103588b90c0"
+            "reference": "a41f8d3e668987609178c7c4a9fe48fecac53fa0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/pear/Console_Getopt/zipball/6c77aeb625b32bd752e89ee17972d103588b90c0",
-            "reference": "6c77aeb625b32bd752e89ee17972d103588b90c0",
+            "url": "https://api.github.com/repos/pear/Console_Getopt/zipball/a41f8d3e668987609178c7c4a9fe48fecac53fa0",
+            "reference": "a41f8d3e668987609178c7c4a9fe48fecac53fa0",
             "shasum": ""
         },
-        "time": "2019-02-06T16:52:33+00:00",
+        "time": "2019-11-20T18:27:48+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -14061,11 +14155,6 @@
         ],
         "authors": [
             {
-                "name": "Greg Beaver",
-                "email": "cellog@php.net",
-                "role": "Helper"
-            },
-            {
                 "name": "Andrei Zmievski",
                 "email": "andrei@php.net",
                 "role": "Lead"
@@ -14074,6 +14163,11 @@
                 "name": "Stig Bakken",
                 "email": "stig@php.net",
                 "role": "Developer"
+            },
+            {
+                "name": "Greg Beaver",
+                "email": "cellog@php.net",
+                "role": "Helper"
             }
         ],
         "description": "More info available on: http://pear.php.net/package/Console_Getopt"

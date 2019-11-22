@@ -111,7 +111,8 @@
         "tecnickcom/tcpdf": "^6.3",
         "mikehaertl/phpwkhtmltopdf": "^2.4",
         "drupal/ala": "^1.1",
-        "drupal/menu_token": "^1.0"
+        "drupal/menu_token": "^1.0",
+        "drupal/redhen": "^1.0"
 		
         },
     "repositories": [
