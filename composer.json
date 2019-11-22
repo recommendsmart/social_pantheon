@@ -112,7 +112,8 @@
         "mikehaertl/phpwkhtmltopdf": "^2.4",
         "drupal/ala": "^1.1",
         "drupal/menu_token": "^1.0",
-        "drupal/redhen": "^1.0"
+        "drupal/redhen": "^1.0",
+        "drupal/redhen_asset": "^1.0"
 		
         },
     "repositories": [
