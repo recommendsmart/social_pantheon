@@ -1,0 +1,9 @@
+name: Views Pretty Path
+description: Rewrites URL query parameters into clean URL components for specified views.
+core: 8.x
+type: module
+
+# Information added by Drupal.org packaging script on 2019-11-26
+version: '8.x-1.0'
+project: 'views_pretty_path'
+datestamp: 1574795284

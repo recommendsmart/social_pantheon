@@ -1,0 +1,20 @@
+smart_content.smart_variation_set.*:
+  type: config_entity
+  label: 'Smart variation set'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    variations_settings:
+      type: sequence
+      label: 'Settings for all variations'
+      sequence:
+        type: 'smart_content.variation.plugin.[plugin_id]'
+    variation_set_type_settings:
+      type: smart_content.variation_set_type.plugin.[plugin_id]
+    default_variation:
+      type: string
+      label: 'Default variation ID'

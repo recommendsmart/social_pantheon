@@ -1,0 +1,16 @@
+smart_content.variation:
+  type: config_object
+  label: 'Variation settings'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    plugin_id:
+      type: string
+      label: 'Plugin ID'
+    weight:
+      type: integer
+      label: 'Variation Weight'
+
+smart_content.variation.plugin.*:
+  type: smart_content.variation

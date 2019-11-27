@@ -108,6 +108,7 @@ class ComposerStaticInitDrupal8
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
             'Psr\\Cache\\' => 10,
+            'PNX\\NestedSet\\' => 14,
         ),
         'O' => 
         array (
@@ -375,6 +376,10 @@ class ComposerStaticInitDrupal8
         'Psr\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/cache/src',
+        ),
+        'PNX\\NestedSet\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/previousnext/nested-set/src',
         ),
         'OomphInc\\ComposerInstallersExtender\\' => 
         array (
@@ -658,6 +663,10 @@ class ComposerStaticInitDrupal8
         ),
         'D' => 
         array (
+            'Doctrine\\DBAL\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/doctrine/dbal/lib',
+            ),
             'Doctrine\\Common\\Inflector\\' => 
             array (
                 0 => __DIR__ . '/..' . '/doctrine/inflector/lib',

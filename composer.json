@@ -113,7 +113,12 @@
         "drupal/ala": "^1.1",
         "drupal/menu_token": "^1.0",
         "drupal/redhen": "^1.0",
-        "drupal/redhen_asset": "^1.0"
+        "drupal/redhen_asset": "^1.0",
+        "drupal/interval": "^1.4",
+        "drupal/smart_content": "^1.0@beta",
+        "drupal/views_pretty_path": "^1.0",
+        "drupal/entity_hierarchy": "^2.9",
+        "drupal/role_inheritance": "^1.0"
 		
         },
     "repositories": [

@@ -1,0 +1,89 @@
+smart_content.condition:
+  type: config_object
+  label: 'Condition settings'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    plugin_id:
+      type: string
+      label: 'Plugin ID'
+    weight:
+      type: integer
+      label: 'Condition Weight'
+    type:
+      type: string
+      label: 'Type'
+
+smart_content.condition.plugin.*:
+  type: smart_content.condition
+
+"smart_content.condition.plugin.type:*":
+  type: smart_content.condition
+  mapping:
+    conditions_type_settings:
+      type: mapping
+      label: 'Condition Type Settings'
+
+"smart_content.condition.plugin.type:boolean":
+  type: smart_content.condition
+  mapping:
+    conditions_type_settings:
+      type: mapping
+      label: 'Condition Type Settings'
+      mapping:
+        negate:
+          type: integer
+          label: 'Negate'
+
+"smart_content.condition.plugin.type:textfield":
+  type: smart_content.condition
+  mapping:
+    conditions_type_settings:
+      type: mapping
+      label: 'Condition Type Settings'
+      mapping:
+        negate:
+          type: integer
+          label: 'Negate'
+        op:
+          type: string
+          label: 'Operator'
+        value:
+          type: string
+          label: 'Value'
+
+"smart_content.condition.plugin.type:key_value":
+  type: smart_content.condition
+  mapping:
+    conditions_type_settings:
+      type: mapping
+      label: 'Condition Type Settings'
+      mapping:
+        negate:
+          type: integer
+          label: 'Negate'
+        op:
+          type: string
+          label: 'Operator'
+        key:
+          type: string
+          label: 'Value'
+        value:
+          type: string
+          label: 'Value'
+
+"smart_content.condition.plugin.plugin:group":
+  type: smart_content.condition
+  mapping:
+    negate:
+      type: integer
+      label: 'Negate'
+    op:
+      type: string
+      label: 'Operator'
+    conditions_settings:
+      type: sequence
+      label: 'Array of conditions with settings.'
+      sequence:
+        type: 'smart_content.condition.plugin.[type]'
