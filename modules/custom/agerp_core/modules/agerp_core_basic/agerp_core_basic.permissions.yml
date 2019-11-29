@@ -1,0 +1,12 @@
+administer party types:
+  title: 'Administer party types'
+  description: 'Allows the user to edit the types of parties such as Customer.'
+view all agerp_core_party revisions:
+  title: 'View all agerp_core_party revisions'
+  'restrict access': TRUE
+revert all agerp_core_party revisions:
+  title: 'Revert all agerp_core_party revisions'
+  'restrict access': TRUE
+
+permission_callbacks:
+  - \Drupal\agerp_core_basic\BasicPermissions::permissions

@@ -1,0 +1,11 @@
+agerp_core_party.add:
+  route_name: entity.agerp_core_party.add_page
+  title: 'Add a party'
+  appears_on:
+    - entity.agerp_core_party.collection
+
+entity.agerp_core_party_type.add_form:
+  route_name: entity.agerp_core_party_type.add_form
+  title: 'Add party type'
+  appears_on:
+    - entity.agerp_core_party_type.collection

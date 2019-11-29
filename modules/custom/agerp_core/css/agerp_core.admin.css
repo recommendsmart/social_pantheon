@@ -1,0 +1,10 @@
+/**
+ * Main menu icons.
+ */
+.toolbar-icon-agerp-core-overview:before {
+  background-image: url(../icons/agerpiac.svg);
+}
+.toolbar-icon-agerp-core-overview:active:before,
+.toolbar-icon-agerp-core-overview.is-active:before {
+  background-image: url(../icons/agerpac.svg);
+}

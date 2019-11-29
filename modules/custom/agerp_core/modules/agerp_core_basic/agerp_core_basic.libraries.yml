@@ -1,0 +1,6 @@
+drupal.agerp_core_basic.merge-basics:
+  version: 1.x
+  js:
+    js/merge_table.js: {}
+  dependencies:
+    - core/jquery

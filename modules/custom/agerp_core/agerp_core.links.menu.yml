@@ -1,0 +1,24 @@
+agerp_core.manage:
+  title: 'AGERP'
+  description: 'Manage contact types, activity types and contact relationship types.'
+  route_name: agerp_core.manage
+  parent: system.admin_structure
+
+agerp_core.overview:
+  route_name: agerp_core.overview
+  parent: system.admin
+  description: 'AGERP Overview. Manage Contacts, Activities and Relationships.'
+  title: 'AGERP'
+
+agerp_core.config_overview:
+  route_name: agerp_core.config_overview
+  parent: system.admin_config
+  title: 'AGERP'
+  description: 'AGERP module and feature settings.'
+
+agerp_core.settings:
+  title: 'General settings'
+  description: 'General settings for AGERP'
+  route_name: agerp_core.settings
+  parent: agerp_core.config_overview
+  weight: 0
