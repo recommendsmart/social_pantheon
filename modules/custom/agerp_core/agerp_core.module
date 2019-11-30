@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * CRM Core module hooks.
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_page_attachments().
+ */
+function agerp_core_page_attachments(array &$attachments) {
+  if (Url::fromRoute('agerp_core.overview')->access() && \Drupal::currentUser()->hasPermission('access toolbar')) {
+    $attachments['#attached']['library'][] = 'agerp_core/admin';
+  }
+}
