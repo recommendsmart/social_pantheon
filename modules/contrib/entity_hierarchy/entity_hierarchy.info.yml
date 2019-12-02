@@ -11,7 +11,7 @@ test_dependencies:
   - workbench_access:workbench_access
   - workbench_moderation:workbench_moderation
 
-# Information added by Drupal.org packaging script on 2019-11-27
-version: '8.x-2.9'
+# Information added by Drupal.org packaging script on 2019-11-29
+version: '8.x-2.10'
 project: 'entity_hierarchy'
-datestamp: 1574820794
+datestamp: 1574994790

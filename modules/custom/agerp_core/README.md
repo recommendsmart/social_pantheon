@@ -1,4 +1,0 @@
-# AGERP Core
-
-## Summary
-

@@ -80,7 +80,7 @@ function disable_field_form_field_config_edit_form_alter(&$form, FormStateInterf
       ],
       '#default_value' => !empty($settings['edit_disable']) ? $settings['edit_disable'] : 'none',
     ];
-    $form['disable_field']['edit_disable_roles'] = [
+    $form['disable_field']['edit']['edit_disable_roles'] = [
       '#type' => 'select',
       '#options' => $roles,
       '#title' => t('Disable field on the edit content form for next roles:'),
@@ -93,7 +93,7 @@ function disable_field_form_field_config_edit_form_alter(&$form, FormStateInterf
       ],
       '#default_value' => !empty($settings['edit_disable_roles']) ? $settings['edit_disable_roles'] : [],
     ];
-    $form['disable_field']['edit_enable_roles'] = [
+    $form['disable_field']['edit']['edit_enable_roles'] = [
       '#type' => 'select',
       '#options' => $roles,
       '#title' => t('Enable field on the edit content form for next roles:'),
@@ -106,7 +106,6 @@ function disable_field_form_field_config_edit_form_alter(&$form, FormStateInterf
       ],
       '#default_value' => !empty($settings['edit_enable_roles']) ? $settings['edit_enable_roles'] : [],
     ];
-    $form['#attached']['library'][] = 'disable_field/disable_field';
     // Add validate and submit handlers.
     array_unshift($form['#validate'], 'disable_field_disable_validate');
     $form['#entity_builders'][] = 'disable_field_form_field_config_form_builder';
@@ -125,6 +124,7 @@ function disable_field_form_field_config_form_builder($entity_type, FieldConfig 
   $type->setThirdPartySetting(
     'disable_field', 'add_disable_roles', $roles
   );
+
   // Save settings for "edit disable".
   $roles = $form_state->getValue('edit_disable') == 'roles' ? $form_state->getValue('edit_disable_roles') : [];
   $type->setThirdPartySetting(
@@ -140,13 +140,15 @@ function disable_field_form_field_config_form_builder($entity_type, FieldConfig 
   $type->setThirdPartySetting(
     'disable_field', 'add_enable_roles', $roles_enable
   );
-  // Save settings for "edit disable".
+
+  // Save settings for "edit enable".
   $roles_enable = $form_state->getValue('edit_disable') == 'roles_enable' ? $form_state->getValue('edit_enable_roles') : [];
   $type->setThirdPartySetting(
     'disable_field', 'edit_disable', $form_state->getValue('edit_disable')
   );
-  $type->setThirdPartySetting('disable_field', 'edit_enable_roles', $roles_enable);
-
+  $type->setThirdPartySetting(
+    'disable_field', 'edit_enable_roles', $roles_enable
+  );
 }
 
 /**
@@ -156,29 +158,28 @@ function disable_field_disable_validate(array &$form, FormStateInterface $form_s
   $values = $form_state->getValues();
   $add_disable = $values['add_disable'];
   $edit_disable = $values['edit_disable'];
-  // For add checkbox;
+
+  // For add disable roles option.
   if ($add_disable == 'roles') {
     if (empty($values['add_disable_roles'])) {
       $form_state->setErrorByName('roles_add', t('Please, choose at least one role.'));
     }
   }
-  // For Edit checkbox.
+  // For edit disable roles option.
   if ($edit_disable == 'roles') {
     if (empty($values['edit_disable_roles'])) {
       $form_state->setErrorByName('roles_edit', t('Please, choose at least one role.'));
     }
   }
 
-  $add_enable = $values['add_enable'];
-  $edit_enable = $values['edit_enable'];
-  // For add checkbox;
-  if ($add_enable == 'roles_enable') {
+  // For add enable roles option.
+  if ($add_disable == 'roles_enable') {
     if (empty($values['add_enable_roles'])) {
       $form_state->setErrorByName('roles_add', t('Please, choose at least one role.'));
     }
   }
-  // For Edit checkbox.
-  if ($edit_enable == 'roles_enable') {
+  // For edit enable roles option.
+  if ($edit_disable == 'roles_enable') {
     if (empty($values['edit_enable_roles'])) {
       $form_state->setErrorByName('roles_edit', t('Please, choose at least one role.'));
     }
