@@ -713,7 +713,7 @@ display:
           group_type: group
           admin_label: ''
           operator: '='
-          value: false
+          value: All
           group: 1
           exposed: true
           expose:
@@ -790,7 +790,7 @@ display:
         title: Resource
         description: ''
         expanded: false
-        parent: ''
+        parent: system.admin_content
         weight: 0
         context: '0'
         menu_name: admin
