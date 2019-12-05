@@ -351,12 +351,12 @@
             "version": "4.0.12",
             "source": {
                 "type": "git",
-                "url": "git@github.com:ivaynberg/select2.git",
+                "url": "https://github.com/select2/select2.git",
                 "reference": "5765090318c4d382ae56463cfa25ba8ca7bdd495"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ivaynberg/select2/zipball/5765090318c4d382ae56463cfa25ba8ca7bdd495",
+                "url": "https://api.github.com/repos/select2/select2/zipball/5765090318c4d382ae56463cfa25ba8ca7bdd495",
                 "reference": "5765090318c4d382ae56463cfa25ba8ca7bdd495"
             },
             "type": "bower-asset",
@@ -2590,17 +2590,17 @@
         },
         {
             "name": "drupal/commerce_funds",
-            "version": "1.0.0-alpha8",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/commerce_funds.git",
-                "reference": "8.x-1.0-alpha8"
+                "reference": "8.x-1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/commerce_funds-8.x-1.0-alpha8.zip",
-                "reference": "8.x-1.0-alpha8",
-                "shasum": "aea43e29a53f14b6ac69324d424e34ddf2ec2d78"
+                "url": "https://ftp.drupal.org/files/projects/commerce_funds-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "7e20d4f55f277bc46e8fc0f28a15a435e9e73d2d"
             },
             "require": {
                 "drupal/commerce": "^2.0",
@@ -2617,11 +2617,11 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha8",
-                    "datestamp": "1566114785",
+                    "version": "8.x-1.0",
+                    "datestamp": "1575488580",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Alpha releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -14136,16 +14136,16 @@
         },
         {
             "name": "pear/archive_tar",
-            "version": "1.4.8",
+            "version": "1.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pear/Archive_Tar.git",
-                "reference": "442bdffb7edb84c898cfd94f7ac8500e49d5bbb5"
+                "reference": "c5b00053770e1d72128252c62c2c1a12c26639f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pear/Archive_Tar/zipball/442bdffb7edb84c898cfd94f7ac8500e49d5bbb5",
-                "reference": "442bdffb7edb84c898cfd94f7ac8500e49d5bbb5",
+                "url": "https://api.github.com/repos/pear/Archive_Tar/zipball/c5b00053770e1d72128252c62c2c1a12c26639f0",
+                "reference": "c5b00053770e1d72128252c62c2c1a12c26639f0",
                 "shasum": ""
             },
             "require": {
@@ -14198,7 +14198,7 @@
                 "archive",
                 "tar"
             ],
-            "time": "2019-10-21T13:31:24+00:00"
+            "time": "2019-12-04T10:17:28+00:00"
         },
         {
             "name": "pear/console_getopt",

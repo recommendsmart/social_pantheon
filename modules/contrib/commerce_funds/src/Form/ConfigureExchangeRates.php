@@ -152,8 +152,8 @@ class ConfigureExchangeRates extends ConfigFormBase {
         '#type' => 'textfield',
         '#size' => '60',
         '#description' => $this->t('Don\'t know how to generate a token? Visit <a href="@token-url" target="_blank">here</a>. Rates are updated on <a href="@cron-url">cron</a> run.<br>
-        Register a sandbox account <a href="@sandbox-account">here</a> to generate the token, live API tokens are disallowed.', [
-          '@url' => 'https://transferwise.com/help/article/2958908/transferwise-for-business/whats-a-personal-api-token-and-how-do-i-get-one',
+        Register a sandbox account <a href="@sandbox-account" target="_blank">here</a> to generate the token, live API tokens are disallowed.', [
+          '@sandbox-account' => 'https://transferwise.com/help/article/2958908/transferwise-for-business/whats-a-personal-api-token-and-how-do-i-get-one',
           '@token-url' => 'https://sandbox.transferwise.tech/register#/',
           '@cron-url' => Url::fromRoute('system.cron_settings')->toString(),
         ]),

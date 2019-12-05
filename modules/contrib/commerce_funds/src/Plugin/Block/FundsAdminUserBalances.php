@@ -17,7 +17,7 @@ use Drupal\commerce_funds\Services\TransactionManager;
  *
  * @Block(
  *   id = "admin_user_balances",
- *   admin_label = @Translation("User balances")
+ *   admin_label = @Translation("Admin user balances")
  * )
  */
 class FundsAdminUserBalances extends BlockBase implements ContainerFactoryPluginInterface {

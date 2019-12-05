@@ -63,10 +63,8 @@ class ConfigureMails extends ConfigFormBase {
       '#markup' => $this->t('Enable and customize emails sent when a transaction is triggerd.
       <ul>
       <li>By default, emails are sent in plain text. To send HTML emails you can use the <a href="@mimemail-url" target="_blank">Mime Mail</a> module.</li>
-      <li>By default, tokens are really limitated. To enable more tokens and get the list of available one you can use the <a href="@token-url" target="_blank">Token</a> module.
       </ul>', [
         '@mimemail-url' => 'https://www.drupal.org/project/mimemail',
-        '@token-url' => 'https://www.drupal.org/project/token',
       ]),
     ];
 

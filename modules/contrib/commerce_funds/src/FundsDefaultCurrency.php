@@ -67,7 +67,7 @@ final class FundsDefaultCurrency {
     $currency_qty = count($currencies);
 
     if ($currency_qty > 1) {
-      return t('Unit(s) (of selected currency)');
+      return t('unit(s) of selected currency');
     }
     elseif ($currency_qty == 1) {
       return $this->defaultCurrencyCode;

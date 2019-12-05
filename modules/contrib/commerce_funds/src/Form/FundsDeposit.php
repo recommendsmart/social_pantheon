@@ -66,9 +66,10 @@ class FundsDeposit extends ConfigFormBase {
 
     $form['amount'] = [
       '#type' => 'number',
-      '#min' => 1,
+      '#min' => 0.0,
       '#title' => $this->t('Deposit Amount'),
       '#description' => $this->t('Please enter the amount you wish to deposit.'),
+      '#step' => 0.01,
       '#default_value' => 0,
       '#size' => 30,
       '#maxlength' => 128,
