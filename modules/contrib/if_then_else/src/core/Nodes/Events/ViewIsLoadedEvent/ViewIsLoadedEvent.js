@@ -12,14 +12,14 @@ class ViewIsLoadedEventControl extends Rete.Control {
         <div class="fields-container">
           <div class="entity-select">
             <label class="typo__label">View Name</label>
-            <multiselect v-model="selected_view_name" :show-labels="false" :options="views" 
+            <multiselect @wheel.native.stop="wheel" v-model="selected_view_name" :show-labels="false" :options="views" 
             placeholder="View Name" @input="viewNameSelected" label="label" 
             track-by="value"></multiselect>
           </div>
             
           <div class="bundle-select" v-if="showDisplayList">    
             <label class="typo__label">Display Id</label>
-            <multiselect v-model="selected_display_id" :options="displays" :show-labels="false" 
+            <multiselect @wheel.native.stop="wheel" v-model="selected_display_id" :options="displays" :show-labels="false" 
             placeholder="Display Id" @input="displayIdSelected" label="label" 
             track-by="value"></multiselect>
           </div>

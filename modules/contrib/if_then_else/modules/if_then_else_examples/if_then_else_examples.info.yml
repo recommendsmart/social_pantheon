@@ -6,7 +6,7 @@ core: 8.x
 dependencies:
   - if_then_else:if_then_else
 
-# Information added by Drupal.org packaging script on 2019-10-03
-version: '8.x-1.0-beta3'
+# Information added by Drupal.org packaging script on 2019-12-10
+version: '8.x-1.0-beta4'
 project: 'if_then_else'
-datestamp: 1570121888
+datestamp: 1575958691

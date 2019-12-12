@@ -8,7 +8,7 @@ var VueSetMessageActionControl = {
     <div class="fields-container">
       <div class="form-fields-selection" >
         <label for="one">Severity</label>
-        <multiselect v-model="selected_options" :show-labels="false" :options="options" 
+        <multiselect @wheel.native.stop="wheel" v-model="selected_options" :show-labels="false" :options="options" 
         :multiple="false" placeholder="Severity" @input="updateSelected" label="label" track-by="name"></multiselect>
       </div>
     </div>`,

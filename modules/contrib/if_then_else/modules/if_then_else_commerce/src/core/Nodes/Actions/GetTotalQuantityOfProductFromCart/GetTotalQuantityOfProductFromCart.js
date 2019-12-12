@@ -24,7 +24,7 @@ class GetTotalQuantityOfProductFromCartControl extends Rete.Control {
       
       <div v-if="form_selection === 'list'">
         <div class="product-type-select">
-          <multiselect v-model="selected_product_type" :show-labels="false" :options="product_types" 
+          <multiselect @wheel.native.stop="wheel" v-model="selected_product_type" :show-labels="false" :options="product_types" 
           placeholder="Product Type" @input="productTypeSelected" label="label" 
           track-by="id" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
         </div>
@@ -37,7 +37,7 @@ class GetTotalQuantityOfProductFromCartControl extends Rete.Control {
       
       <div class="other-form-field" v-if="form_selection === 'other'" >
         <div class="product-type-select">
-          <multiselect v-model="selected_product_sku" :show-labels="false" :options="product_skus" 
+          <multiselect @wheel.native.stop="wheel" v-model="selected_product_sku" :show-labels="false" :options="product_skus" 
           placeholder="Product SKU" @input="productSkuSelected" label="label" 
           track-by="id" :multiple="true" :taggable="true" @tag="addSkuTag"></multiselect>
         </div>

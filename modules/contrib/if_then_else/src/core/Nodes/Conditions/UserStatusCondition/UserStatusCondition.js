@@ -8,7 +8,7 @@ var VueUserStatusCondition = {
   template: `<div class="fields-container">
   <div class="entity-select">
     <label class="typo__label">Status</label>
-    <multiselect v-model="selected_status" :options="options" @input="fieldValueChanged" label="name" track-by="code" 
+    <multiselect @wheel.native.stop="wheel" v-model="selected_status" :options="options" @input="fieldValueChanged" label="name" track-by="code" 
     :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Select status">
     </multiselect>
   </div>    

@@ -11,7 +11,7 @@ var VueMakeFieldsRequiredControl = {
           <input type="radio" id="one" value="list" v-model="field_selection" @change="fieldSelectionChanged">
           <label for="one">Select Field List</label>
         </div>
-        <multiselect v-if="field_selection=='list'" v-model="value" :show-labels="false" tag-placeholder="Add this as new tag" placeholder="Select Fields" label="name" track-by="code" :options="options" :multiple="true" :taggable="true" @input="updateSelected" @tag="addTag"></multiselect>
+        <multiselect @wheel.native.stop="wheel" v-if="field_selection=='list'" v-model="value" :show-labels="false" tag-placeholder="Add this as new tag" placeholder="Select Fields" label="name" track-by="code" :options="options" :multiple="true" :taggable="true" @input="updateSelected" @tag="addTag"></multiselect>
         <br>
         <div class="radio">
           <input type="radio" id="two" value="input" v-model="field_selection" @change="fieldSelectionChanged">

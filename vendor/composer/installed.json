@@ -209,7 +209,7 @@
         "version_normalized": "3.4.1.0",
         "source": {
             "type": "git",
-            "url": "git@github.com:twbs/bootstrap.git",
+            "url": "https://github.com/twbs/bootstrap.git",
             "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
         },
         "dist": {
@@ -272,12 +272,12 @@
         "version_normalized": "9.15.10.0",
         "source": {
             "type": "git",
-            "url": "git@github.com:isagalaev/highlight.js.git",
+            "url": "https://github.com/highlightjs/highlight.js.git",
             "reference": "3026925b1c57c9a9feb0713e663f8d1ef8ff08e9"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/isagalaev/highlight.js/zipball/3026925b1c57c9a9feb0713e663f8d1ef8ff08e9",
+            "url": "https://api.github.com/repos/highlightjs/highlight.js/zipball/3026925b1c57c9a9feb0713e663f8d1ef8ff08e9",
             "reference": "3026925b1c57c9a9feb0713e663f8d1ef8ff08e9"
         },
         "type": "bower-asset",
@@ -309,7 +309,7 @@
         "version_normalized": "1.17.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/mochajs/mocha.git",
+            "url": "git@github.com:mochajs/mocha.git",
             "reference": "7fc565ee3e225cb7a66bf39ae9c2c05b346675c1"
         },
         "dist": {
@@ -371,12 +371,12 @@
         "version_normalized": "4.0.12.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/select2/select2.git",
+            "url": "git@github.com:ivaynberg/select2.git",
             "reference": "5765090318c4d382ae56463cfa25ba8ca7bdd495"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/select2/select2/zipball/5765090318c4d382ae56463cfa25ba8ca7bdd495",
+            "url": "https://api.github.com/repos/ivaynberg/select2/zipball/5765090318c4d382ae56463cfa25ba8ca7bdd495",
             "reference": "5765090318c4d382ae56463cfa25ba8ca7bdd495"
         },
         "type": "bower-asset",
@@ -2237,73 +2237,6 @@
         }
     },
     {
-        "name": "drupal/billing",
-        "version": "1.1.0",
-        "version_normalized": "1.1.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupalcode.org/project/billing.git",
-            "reference": "8.x-1.1"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/billing-8.x-1.1.zip",
-            "reference": "8.x-1.1",
-            "shasum": "c52798cfaf0ec916bd61824801b0e914a2bcbf40"
-        },
-        "require": {
-            "drupal/core": "~8.0",
-            "drupal/currency": "^3.1",
-            "drupal/queue_ui": "*"
-        },
-        "type": "drupal-module",
-        "extra": {
-            "branch-alias": {
-                "dev-1.x": "1.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-1.1",
-                "datestamp": "1572527898",
-                "security-coverage": {
-                    "status": "not-covered",
-                    "message": "Project has not opted into security advisory coverage!"
-                }
-            }
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0-or-later"
-        ],
-        "authors": [
-            {
-                "name": "APolitsin",
-                "homepage": "https://www.drupal.org/user/400653"
-            },
-            {
-                "name": "Kseniya Myarkovskaya",
-                "homepage": "https://www.drupal.org/user/3590754"
-            },
-            {
-                "name": "masdzen",
-                "homepage": "https://www.drupal.org/user/1511844"
-            },
-            {
-                "name": "politsin",
-                "homepage": "https://www.drupal.org/user/1820324"
-            },
-            {
-                "name": "yaroslav.kostenyuk",
-                "homepage": "https://www.drupal.org/user/3558262"
-            }
-        ],
-        "description": "user billing",
-        "homepage": "https://www.drupal.org/project/billing",
-        "support": {
-            "source": "https://git.drupalcode.org/project/billing"
-        }
-    },
-    {
         "name": "drupal/block_field",
         "version": "1.0.0-alpha8",
         "version_normalized": "1.0.0.0-alpha8",
@@ -2498,18 +2431,18 @@
     },
     {
         "name": "drupal/commerce",
-        "version": "2.15.0",
-        "version_normalized": "2.15.0.0",
+        "version": "2.16.0",
+        "version_normalized": "2.16.0.0",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/commerce.git",
-            "reference": "8.x-2.15"
+            "reference": "8.x-2.16"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/commerce-8.x-2.15.zip",
-            "reference": "8.x-2.15",
-            "shasum": "935f40a5f9a36425109b4e3acb182e7a8d1d158f"
+            "url": "https://ftp.drupal.org/files/projects/commerce-8.x-2.16.zip",
+            "reference": "8.x-2.16",
+            "shasum": "9c3297f4f18d1276bd76d2129aac3b4476dc5db5"
         },
         "require": {
             "commerceguys/intl": "^1.0.0",
@@ -2543,8 +2476,8 @@
                 "dev-2.x": "2.x-dev"
             },
             "drupal": {
-                "version": "8.x-2.15",
-                "datestamp": "1573079392",
+                "version": "8.x-2.16",
+                "datestamp": "1576074180",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -2582,8 +2515,8 @@
     },
     {
         "name": "drupal/commerce_cart",
-        "version": "2.15.0",
-        "version_normalized": "2.15.0.0",
+        "version": "2.16.0",
+        "version_normalized": "2.16.0.0",
         "require": {
             "drupal/commerce": "self.version",
             "drupal/commerce_order": "*",
@@ -2596,8 +2529,8 @@
                 "dev-2.x": "2.x-dev"
             },
             "drupal": {
-                "version": "8.x-2.15",
-                "datestamp": "1573079392",
+                "version": "8.x-2.16",
+                "datestamp": "1576074180",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -2634,8 +2567,8 @@
     },
     {
         "name": "drupal/commerce_checkout",
-        "version": "2.15.0",
-        "version_normalized": "2.15.0.0",
+        "version": "2.16.0",
+        "version_normalized": "2.16.0.0",
         "require": {
             "drupal/commerce": "self.version",
             "drupal/commerce_cart": "*",
@@ -2648,8 +2581,8 @@
                 "dev-2.x": "2.x-dev"
             },
             "drupal": {
-                "version": "8.x-2.15",
-                "datestamp": "1573079392",
+                "version": "8.x-2.16",
+                "datestamp": "1576074180",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -2831,8 +2764,8 @@
     },
     {
         "name": "drupal/commerce_number_pattern",
-        "version": "2.15.0",
-        "version_normalized": "2.15.0.0",
+        "version": "2.16.0",
+        "version_normalized": "2.16.0.0",
         "require": {
             "drupal/commerce": "self.version",
             "drupal/commerce_store": "*",
@@ -2844,8 +2777,8 @@
                 "dev-2.x": "2.x-dev"
             },
             "drupal": {
-                "version": "8.x-2.15",
-                "datestamp": "1573079392",
+                "version": "8.x-2.16",
+                "datestamp": "1576074180",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -2882,8 +2815,8 @@
     },
     {
         "name": "drupal/commerce_order",
-        "version": "2.15.0",
-        "version_normalized": "2.15.0.0",
+        "version": "2.16.0",
+        "version_normalized": "2.16.0.0",
         "require": {
             "drupal/commerce": "self.version",
             "drupal/commerce_number_pattern": "*",
@@ -2900,8 +2833,8 @@
                 "dev-2.x": "2.x-dev"
             },
             "drupal": {
-                "version": "8.x-2.15",
-                "datestamp": "1573079392",
+                "version": "8.x-2.16",
+                "datestamp": "1576074180",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -2938,8 +2871,8 @@
     },
     {
         "name": "drupal/commerce_payment",
-        "version": "2.15.0",
-        "version_normalized": "2.15.0.0",
+        "version": "2.16.0",
+        "version_normalized": "2.16.0.0",
         "require": {
             "drupal/commerce": "self.version",
             "drupal/commerce_order": "*",
@@ -2952,8 +2885,8 @@
                 "dev-2.x": "2.x-dev"
             },
             "drupal": {
-                "version": "8.x-2.15",
-                "datestamp": "1573079392",
+                "version": "8.x-2.16",
+                "datestamp": "1576074180",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -2990,8 +2923,8 @@
     },
     {
         "name": "drupal/commerce_price",
-        "version": "2.15.0",
-        "version_normalized": "2.15.0.0",
+        "version": "2.16.0",
+        "version_normalized": "2.16.0.0",
         "require": {
             "drupal/commerce": "self.version",
             "drupal/core": "~8.0"
@@ -3002,8 +2935,8 @@
                 "dev-2.x": "2.x-dev"
             },
             "drupal": {
-                "version": "8.x-2.15",
-                "datestamp": "1573079392",
+                "version": "8.x-2.16",
+                "datestamp": "1576074180",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -3040,8 +2973,8 @@
     },
     {
         "name": "drupal/commerce_product",
-        "version": "2.15.0",
-        "version_normalized": "2.15.0.0",
+        "version": "2.16.0",
+        "version_normalized": "2.16.0.0",
         "require": {
             "drupal/commerce": "self.version",
             "drupal/commerce_price": "*",
@@ -3054,8 +2987,8 @@
                 "dev-2.x": "2.x-dev"
             },
             "drupal": {
-                "version": "8.x-2.15",
-                "datestamp": "1573079392",
+                "version": "8.x-2.16",
+                "datestamp": "1576074180",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -3360,8 +3293,8 @@
     },
     {
         "name": "drupal/commerce_store",
-        "version": "2.15.0",
-        "version_normalized": "2.15.0.0",
+        "version": "2.16.0",
+        "version_normalized": "2.16.0.0",
         "require": {
             "drupal/commerce": "self.version",
             "drupal/commerce_price": "*",
@@ -3373,8 +3306,8 @@
                 "dev-2.x": "2.x-dev"
             },
             "drupal": {
-                "version": "8.x-2.15",
-                "datestamp": "1573079392",
+                "version": "8.x-2.16",
+                "datestamp": "1576074180",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -3411,8 +3344,8 @@
     },
     {
         "name": "drupal/commerce_tax",
-        "version": "2.15.0",
-        "version_normalized": "2.15.0.0",
+        "version": "2.16.0",
+        "version_normalized": "2.16.0.0",
         "require": {
             "drupal/commerce": "self.version",
             "drupal/commerce_order": "*",
@@ -3425,8 +3358,8 @@
                 "dev-2.x": "2.x-dev"
             },
             "drupal": {
-                "version": "8.x-2.15",
-                "datestamp": "1573079392",
+                "version": "8.x-2.16",
+                "datestamp": "1576074180",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -4572,6 +4505,64 @@
         }
     },
     {
+        "name": "drupal/dashboards",
+        "version": "1.0.0-beta3",
+        "version_normalized": "1.0.0.0-beta3",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/dashboards.git",
+            "reference": "8.x-1.0-beta3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/dashboards-8.x-1.0-beta3.zip",
+            "reference": "8.x-1.0-beta3",
+            "shasum": "e17f00a90e213ede8e1698f26ac521ebcd69d741"
+        },
+        "require": {
+            "drupal/core": "*"
+        },
+        "require-dev": {
+            "drupal/matomo": "*",
+            "drupal/matomo_reporting_api": "*",
+            "drupal/webform": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.0-beta3",
+                "datestamp": "1576067881",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Project has not opted into security advisory coverage!"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Erik Seifert",
+                "homepage": "https://www.drupal.org/user/161429"
+            }
+        ],
+        "description": "Layout builder",
+        "homepage": "https://www.drupal.org/project/layout_builder_enhancements",
+        "keywords": [
+            "Drupal"
+        ],
+        "support": {
+            "source": "http://cgit.drupalcode.org/layout_builder_enhancements",
+            "issues": "https://www.drupal.org/project/issues/layout_builder_enhancements"
+        }
+    },
+    {
         "name": "drupal/data_policy",
         "version": "1.0.0-beta6",
         "version_normalized": "1.0.0.0-beta6",
@@ -5081,21 +5072,25 @@
     },
     {
         "name": "drupal/disable_field",
-        "version": "2.2.0",
-        "version_normalized": "2.2.0.0",
+        "version": "2.3.0",
+        "version_normalized": "2.3.0.0",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/disable_field.git",
-            "reference": "8.x-2.2"
+            "reference": "8.x-2.3"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/disable_field-8.x-2.2.zip",
-            "reference": "8.x-2.2",
-            "shasum": "8ee23ddeb6b60e53d4843919c1f02d32f1c0868f"
+            "url": "https://ftp.drupal.org/files/projects/disable_field-8.x-2.3.zip",
+            "reference": "8.x-2.3",
+            "shasum": "85a25625bf9815ea14a0fa58203a54e33a6f344c"
         },
         "require": {
-            "drupal/core": "~8.0"
+            "drupal/core": "*"
+        },
+        "require-dev": {
+            "drupal/base_field_override_ui": "^1.0@beta",
+            "drupal/paragraphs": "^1.10"
         },
         "type": "drupal-module",
         "extra": {
@@ -5103,8 +5098,8 @@
                 "dev-2.x": "2.x-dev"
             },
             "drupal": {
-                "version": "8.x-2.2",
-                "datestamp": "1574926984",
+                "version": "8.x-2.3",
+                "datestamp": "1575972480",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -5114,30 +5109,35 @@
         "installation-source": "dist",
         "notification-url": "https://packages.drupal.org/8/downloads",
         "license": [
-            "GPL-2.0-or-later"
+            "GPL-2.0+"
         ],
         "authors": [
             {
-                "name": "JeroenT",
-                "homepage": "https://www.drupal.org/user/2228934"
+                "name": "A AjayKumar Reddy (ajaykumarreddy1392)",
+                "homepage": "https://www.drupal.org/u/ajay_reddy",
+                "role": "Maintainer"
             },
             {
-                "name": "ajay_reddy",
-                "homepage": "https://www.drupal.org/user/3261994"
+                "name": "Viraj Rajankar (virajrajankar)",
+                "homepage": "https://www.drupal.org/u/virajrajankar",
+                "role": "Maintainer"
             },
             {
-                "name": "eugene.ilyin",
-                "homepage": "https://www.drupal.org/user/1767626"
+                "name": "Eugene Ilyin (eugene.ilyin)",
+                "homepage": "https://www.drupal.org/u/eugeneilyin",
+                "role": "Maintainer"
             },
             {
-                "name": "virajrajankar",
-                "homepage": "https://www.drupal.org/user/3164807"
+                "name": "Jeroen Tubex (JeroenT)",
+                "homepage": "https://www.drupal.org/u/jeroent",
+                "role": "Maintainer"
             }
         ],
-        "description": "Allows to disable field of entities on the forms",
-        "homepage": "https://www.drupal.org/project/disable_field",
+        "description": "Allows to disable field of entities on the forms.",
+        "homepage": "https://drupal.org/project/disable_field",
         "support": {
-            "source": "https://git.drupalcode.org/project/disable_field"
+            "source": "https://git.drupalcode.org/project/disable_field",
+            "issues": "https://www.drupal.org/project/issues/disable_field"
         }
     },
     {
@@ -6898,18 +6898,18 @@
     },
     {
         "name": "drupal/geocoder",
-        "version": "2.3.0",
-        "version_normalized": "2.3.0.0",
+        "version": "2.4.0",
+        "version_normalized": "2.4.0.0",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/geocoder.git",
-            "reference": "8.x-2.3"
+            "reference": "8.x-2.4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/geocoder-8.x-2.3.zip",
-            "reference": "8.x-2.3",
-            "shasum": "8a1743d10d05b10c219466749a3e5df907bccc40"
+            "url": "https://ftp.drupal.org/files/projects/geocoder-8.x-2.4.zip",
+            "reference": "8.x-2.4",
+            "shasum": "820b565d267ea5c9aa05ff433fde53a43706fd18"
         },
         "require": {
             "drupal/core": "~8.0",
@@ -6931,8 +6931,8 @@
                 "dev-2.x": "2.x-dev"
             },
             "drupal": {
-                "version": "8.x-2.3",
-                "datestamp": "1567546388",
+                "version": "8.x-2.4",
+                "datestamp": "1575971284",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -7369,24 +7369,26 @@
     },
     {
         "name": "drupal/if_then_else",
-        "version": "1.0.0-beta3",
-        "version_normalized": "1.0.0.0-beta3",
+        "version": "1.0.0-beta4",
+        "version_normalized": "1.0.0.0-beta4",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/if_then_else.git",
-            "reference": "8.x-1.0-beta3"
+            "reference": "8.x-1.0-beta4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/if_then_else-8.x-1.0-beta3.zip",
-            "reference": "8.x-1.0-beta3",
-            "shasum": "d7b7cdff7ef2b9bc649418626bd73ad8beeb328d"
+            "url": "https://ftp.drupal.org/files/projects/if_then_else-8.x-1.0-beta4.zip",
+            "reference": "8.x-1.0-beta4",
+            "shasum": "fdc775d51155edd2873b03a390bb6390cf4b08f7"
         },
         "require": {
             "drupal/core": "~8.0"
         },
         "require-dev": {
-            "drupal/commerce": "*"
+            "drupal/commerce": "*",
+            "drupal/flag": "*",
+            "drupal/group": "*"
         },
         "type": "drupal-module",
         "extra": {
@@ -7394,8 +7396,8 @@
                 "dev-1.x": "1.x-dev"
             },
             "drupal": {
-                "version": "8.x-1.0-beta3",
-                "datestamp": "1570121886",
+                "version": "8.x-1.0-beta4",
+                "datestamp": "1575958688",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Project has not opted into security advisory coverage!"
@@ -9457,71 +9459,6 @@
         }
     },
     {
-        "name": "drupal/queue_ui",
-        "version": "2.0.0",
-        "version_normalized": "2.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupalcode.org/project/queue_ui.git",
-            "reference": "8.x-2.0"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/queue_ui-8.x-2.0.zip",
-            "reference": "8.x-2.0",
-            "shasum": "7edf7715d7ca5d255fc3ea86aff27997617af8ea"
-        },
-        "require": {
-            "drupal/core": "~8.0"
-        },
-        "type": "drupal-module",
-        "extra": {
-            "branch-alias": {
-                "dev-2.x": "2.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-2.0",
-                "datestamp": "1530874421",
-                "security-coverage": {
-                    "status": "covered",
-                    "message": "Covered by Drupal's security advisory policy"
-                }
-            }
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0-or-later"
-        ],
-        "authors": [
-            {
-                "name": "bceyssens",
-                "homepage": "https://www.drupal.org/user/2743951"
-            },
-            {
-                "name": "coltrane",
-                "homepage": "https://www.drupal.org/user/91990"
-            },
-            {
-                "name": "floretan",
-                "homepage": "https://www.drupal.org/user/66163"
-            },
-            {
-                "name": "jochemh",
-                "homepage": "https://www.drupal.org/user/2811585"
-            },
-            {
-                "name": "tsphethean",
-                "homepage": "https://www.drupal.org/user/881620"
-            }
-        ],
-        "description": "Interface and manager for Drupal queues.",
-        "homepage": "https://www.drupal.org/project/queue_ui",
-        "support": {
-            "source": "https://git.drupalcode.org/project/queue_ui"
-        }
-    },
-    {
         "name": "drupal/r4032login",
         "version": "1.1.0",
         "version_normalized": "1.1.0.0",
@@ -10567,18 +10504,18 @@
     },
     {
         "name": "drupal/social_geolocation",
-        "version": "1.0.0",
-        "version_normalized": "1.0.0.0",
+        "version": "1.2.0",
+        "version_normalized": "1.2.0.0",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/social_geolocation.git",
-            "reference": "8.x-1.0"
+            "reference": "8.x-1.2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/social_geolocation-8.x-1.0.zip",
-            "reference": "8.x-1.0",
-            "shasum": "d068ed8ba8bf2c1e010d493f0025fdc6b6190849"
+            "url": "https://ftp.drupal.org/files/projects/social_geolocation-8.x-1.2.zip",
+            "reference": "8.x-1.2",
+            "shasum": "70543b3d8e7a2a7bc32c70e8f989a02ac844d1e7"
         },
         "require": {
             "commerceguys/addressing": "^1.0.0",
@@ -10593,6 +10530,7 @@
         "require-dev": {
             "drupal/geolocation_leaflet": "*",
             "drupal/search_api_location": "*",
+            "drupal/social_event": "*",
             "drupal/social_search": "*",
             "roave/security-advisories": "dev-master"
         },
@@ -10602,8 +10540,8 @@
                 "dev-1.x": "1.x-dev"
             },
             "drupal": {
-                "version": "8.x-1.0",
-                "datestamp": "1571326388",
+                "version": "8.x-1.2",
+                "datestamp": "1575643984",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Project has not opted into security advisory coverage!"
@@ -10617,15 +10555,15 @@
         ],
         "authors": [
             {
-                "name": "GoalGorilla",
-                "homepage": "https://www.drupal.org/user/272162"
-            },
-            {
                 "name": "Kingdutch",
                 "homepage": "https://www.drupal.org/user/1868952"
             },
             {
-                "name": "RobertRagas",
+                "name": "Open Social",
+                "homepage": "https://www.drupal.org/user/272162"
+            },
+            {
+                "name": "Robert Ragas",
                 "homepage": "https://www.drupal.org/user/2723261"
             },
             {
@@ -12115,18 +12053,18 @@
     },
     {
         "name": "drupal/views_pretty_path",
-        "version": "1.0.0",
-        "version_normalized": "1.0.0.0",
+        "version": "1.1.0",
+        "version_normalized": "1.1.0.0",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/views_pretty_path.git",
-            "reference": "8.x-1.0"
+            "reference": "8.x-1.1"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/views_pretty_path-8.x-1.0.zip",
-            "reference": "8.x-1.0",
-            "shasum": "4c5ef85328a7a4fa102934f5204dd6842b42347c"
+            "url": "https://ftp.drupal.org/files/projects/views_pretty_path-8.x-1.1.zip",
+            "reference": "8.x-1.1",
+            "shasum": "b75ffc557f2ee8d1860069d800ca54a2505da389"
         },
         "require": {
             "drupal/core": "~8.0"
@@ -12137,8 +12075,8 @@
                 "dev-1.x": "1.x-dev"
             },
             "drupal": {
-                "version": "8.x-1.0",
-                "datestamp": "1574795280",
+                "version": "8.x-1.1",
+                "datestamp": "1576094285",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Project has not opted into security advisory coverage!"
@@ -13318,17 +13256,17 @@
     },
     {
         "name": "guzzlehttp/guzzle",
-        "version": "6.4.1",
-        "version_normalized": "6.4.1.0",
+        "version": "6.5.0",
+        "version_normalized": "6.5.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/guzzle/guzzle.git",
-            "reference": "0895c932405407fd3a7368b6910c09a24d26db11"
+            "reference": "dbc2bc3a293ed6b1ae08a3651e2bfd213d19b6a5"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/guzzle/guzzle/zipball/0895c932405407fd3a7368b6910c09a24d26db11",
-            "reference": "0895c932405407fd3a7368b6910c09a24d26db11",
+            "url": "https://api.github.com/repos/guzzle/guzzle/zipball/dbc2bc3a293ed6b1ae08a3651e2bfd213d19b6a5",
+            "reference": "dbc2bc3a293ed6b1ae08a3651e2bfd213d19b6a5",
             "shasum": ""
         },
         "require": {
@@ -13343,13 +13281,14 @@
             "psr/log": "^1.1"
         },
         "suggest": {
+            "ext-intl": "Required for Internationalized Domain Name (IDN) support",
             "psr/log": "Required for using the Log middleware"
         },
-        "time": "2019-10-23T15:58:00+00:00",
+        "time": "2019-12-07T18:20:45+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "6.3-dev"
+                "dev-master": "6.5-dev"
             }
         },
         "installation-source": "dist",
@@ -14775,17 +14714,17 @@
     },
     {
         "name": "pear/pear_exception",
-        "version": "v1.0.0",
-        "version_normalized": "1.0.0.0",
+        "version": "v1.0.1",
+        "version_normalized": "1.0.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/pear/PEAR_Exception.git",
-            "reference": "8c18719fdae000b690e3912be401c76e406dd13b"
+            "reference": "dbb42a5a0e45f3adcf99babfb2a1ba77b8ac36a7"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/pear/PEAR_Exception/zipball/8c18719fdae000b690e3912be401c76e406dd13b",
-            "reference": "8c18719fdae000b690e3912be401c76e406dd13b",
+            "url": "https://api.github.com/repos/pear/PEAR_Exception/zipball/dbb42a5a0e45f3adcf99babfb2a1ba77b8ac36a7",
+            "reference": "dbb42a5a0e45f3adcf99babfb2a1ba77b8ac36a7",
             "shasum": ""
         },
         "require": {
@@ -14794,7 +14733,7 @@
         "require-dev": {
             "phpunit/phpunit": "*"
         },
-        "time": "2015-02-10T20:07:52+00:00",
+        "time": "2019-12-10T10:24:42+00:00",
         "type": "class",
         "extra": {
             "branch-alias": {
@@ -14803,9 +14742,9 @@
         },
         "installation-source": "dist",
         "autoload": {
-            "psr-0": {
-                "PEAR": ""
-            }
+            "classmap": [
+                "PEAR/"
+            ]
         },
         "notification-url": "https://packagist.org/downloads/",
         "include-path": [

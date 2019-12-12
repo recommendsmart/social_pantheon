@@ -61,7 +61,6 @@ class SocketSubscriber implements EventSubscriberInterface {
     $event->sockets['object.field.text_long'] = 'Field Text or Text Long';
 
     $event->sockets['object.entity'] = 'Entity';
-    $if_then_else_utilities = \Drupal::service('ifthenelse.utilities');
     $entity_infos = $this->ifthenelseUtilities->getContentEntitiesAndBundles();
     if (!empty($entity_infos)) {
       foreach ($entity_infos as $entity_info) {
@@ -72,6 +71,16 @@ class SocketSubscriber implements EventSubscriberInterface {
           }
         }
       }
+
+      // Sockets for field types.
+      $event->sockets['array.string'] = 'Array Strings';
+      $event->sockets['array.string.url'] = 'Array URLs';
+      $event->sockets['array.bool'] = 'Array Booleans';
+      $event->sockets['array.number'] = 'Array Numbers';
+      $event->sockets['array.object.field.text_with_summary'] = 'Array Field Text With Summaries';
+      $event->sockets['array.object.field.image'] = 'Array Field Text With Summaries';
+      $event->sockets['array.object.field.link'] = 'Array Field Text With Summaries';
+      $event->sockets['array.object.field.text_long'] = 'Array Field Text With Summaries';
     }
   }
 

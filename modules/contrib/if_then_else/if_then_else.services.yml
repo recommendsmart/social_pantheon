@@ -31,6 +31,12 @@ services:
     tags:
       - { name: 'event_subscriber' }
 
+  if_then_else_convert_entity_action_event_register:
+    class: Drupal\if_then_else\core\Nodes\Actions\ConvertEntityAction\ConvertEntityAction
+    arguments: ['@ifthenelse.utilities', '@entity_type.manager']
+    tags:
+      - { name: 'event_subscriber' }
+
   if_then_else_socket_register:
     class: Drupal\if_then_else\core\Sockets\SocketSubscriber
     arguments: ['@ifthenelse.utilities']
@@ -151,7 +157,7 @@ services:
 
   if_then_else_get_value_action_register:
     class: Drupal\if_then_else\core\Nodes\Actions\GetFieldValue\GetFieldValue
-    arguments: ['@ifthenelse.utilities']
+    arguments: ['@ifthenelse.utilities', '@event_dispatcher']
     tags:
       - { name: 'event_subscriber' }
 
@@ -163,7 +169,7 @@ services:
 
   if_then_else_get_entity_field_action_register:
     class: Drupal\if_then_else\core\Nodes\Actions\GetEntityFieldAction\GetEntityFieldAction
-    arguments: ['@ifthenelse.utilities', '@date.formatter']
+    arguments: ['@ifthenelse.utilities', '@date.formatter', '@event_dispatcher']
     tags:
       - { name: 'event_subscriber' }
 
@@ -179,6 +185,11 @@ services:
 
   if_then_else_number_value_register:
     class: Drupal\if_then_else\core\Nodes\Values\NumberValue\NumberValue
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_boolean_value_register:
+    class: Drupal\if_then_else\core\Nodes\Values\BooleanValue\BooleanValue
     tags:
       - { name: 'event_subscriber' }
 
@@ -436,6 +447,11 @@ services:
     tags:
       - { name: 'event_subscriber' }
 
+  if_then_else_condition_xor_of_all_the_inputs_register:
+    class: Drupal\if_then_else\core\Nodes\Conditions\ConditionXorOfAllTheInputs\ConditionXorOfAllTheInputs
+    tags:
+      - { name: 'event_subscriber' }
+
   if_then_else_compare_string_inputs_register:
     class: Drupal\if_then_else\core\Nodes\Conditions\CompareStringInputs\CompareStringInputs
     tags:
@@ -498,5 +514,90 @@ services:
 
   if_then_else_boolean_not_action_register:
     class: Drupal\if_then_else\core\Nodes\Actions\BooleanNotAction\BooleanNotAction
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_string_field_type_process_event:
+    class: Drupal\if_then_else\core\FieldTypes\StringFieldType
+    tags:
+      - { name: 'event_subscriber' }
+  
+  if_then_else_list_string_field_type_process_event:
+    class: Drupal\if_then_else\core\FieldTypes\ListStringFieldType
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_email_field_type_process_event:
+    class: Drupal\if_then_else\core\FieldTypes\EmailFieldType
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_list_float_field_type_process_event:
+    class: Drupal\if_then_else\core\FieldTypes\ListFloatFieldType
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_list_integer_field_type_process_event:
+    class: Drupal\if_then_else\core\FieldTypes\ListIntegerFieldType
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_decimal_field_type_process_event:
+    class: Drupal\if_then_else\core\FieldTypes\DecimalFieldType
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_float_field_type_process_event:
+    class: Drupal\if_then_else\core\FieldTypes\FloatFieldType
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_integer_field_type_process_event:
+    class: Drupal\if_then_else\core\FieldTypes\IntegerFieldType
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_string_long_field_type_process_event:
+    class: Drupal\if_then_else\core\FieldTypes\StringLongFieldType
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_boolean_field_type_process_event:
+    class: Drupal\if_then_else\core\FieldTypes\BooleanFieldType
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_datetime_field_type_process_event:
+    class: Drupal\if_then_else\core\FieldTypes\DateTimeFieldType
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_text_field_type_process_event:
+    class: Drupal\if_then_else\core\FieldTypes\TextFieldType
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_text_long_field_type_process_event:
+    class: Drupal\if_then_else\core\FieldTypes\TextLongFieldType
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_text_with_summary_field_type_process_event:
+    class: Drupal\if_then_else\core\FieldTypes\TextWithSummaryFieldType
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_entity_reference_field_type_process_event:
+    class: Drupal\if_then_else\core\FieldTypes\EntityReferenceFieldType
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_image_field_type_process_event:
+    class: Drupal\if_then_else\core\FieldTypes\ImageFieldType
+    tags:
+      - { name: 'event_subscriber' }
+
+  if_then_else_link_field_type_process_event:
+    class: Drupal\if_then_else\core\FieldTypes\LinkFieldType
     tags:
       - { name: 'event_subscriber' }

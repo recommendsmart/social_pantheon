@@ -1,17 +1,17 @@
-# Schema for the configuration files of the ifthenelse config entity. 
+# Schema for the configuration files of the ifthenelse config entity.
 
-if_then_else.rule.*:
-  type: config_entity 
-  label: 'If Then Else Rules'
-  mapping: 
-    id: 
-      type: string 
-      label: 'ID' 
-    label: 
-      type: label 
-      label: 'Label' 
-    active: 
-      type: boolean 
+if_then_else.config.*:
+  type: config_entity
+  label: 'If Then Else'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    active:
+      type: boolean
       label: 'Active'
     module:
       type: string

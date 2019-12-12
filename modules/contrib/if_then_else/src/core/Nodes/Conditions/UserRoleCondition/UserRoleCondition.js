@@ -11,14 +11,14 @@ class UserRoleConditionControl extends Rete.Control {
       template: `
     <div class="fields-container">
       <label>Match Criterion</label>
-      <multiselect v-model="match" :show-labels="false" label="label" track-by="type" 
+      <multiselect @wheel.native.stop="wheel" v-model="match" :show-labels="false" label="label" track-by="type" 
         :options="match_options" @input="updateMatchCriterion" :allow-empty="false"></multiselect>
       <label>Roles</label>
       <div class="radio">
         <input type="radio" :id="radio1_uid" value="list" v-model="input_selection" @change="inputSelectionChanged">
         <label :for="radio1_uid">Select From List</label>
       </div>
-      <multiselect v-if="input_selection === 'list'" v-model="selected_roles" :show-labels="false" :options="roles" 
+      <multiselect @wheel.native.stop="wheel" v-if="input_selection === 'list'" v-model="selected_roles" :show-labels="false" :options="roles" 
         :multiple="true" placeholder="Role" @input="roleSelected" label="label" track-by="name"></multiselect>
       <div class="radio">
         <input type="radio" :id="radio2_uid" value="input" v-model="input_selection" @change="inputSelectionChanged">

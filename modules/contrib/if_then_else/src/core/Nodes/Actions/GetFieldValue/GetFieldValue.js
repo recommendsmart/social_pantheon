@@ -23,21 +23,22 @@ var VueGetFieldValueControl = {
       field_bundles: [],
       selected_bundle: '',
       field_type : '',
+      field_cardinality: 1,
       value: [],
     }
   },
   template: `<div class="fields-container">
     <div class="entity-select">
       <label class="typo__label">Field</label>
-      <multiselect v-model="value" :options="options" @input="fieldValueChanged" label="name" track-by="code" 
+      <multiselect @wheel.native.stop="wheel" v-model="value" :options="options" @input="fieldValueChanged" label="name" track-by="code" 
       :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Select a field">
       </multiselect>
       <label v-if="value != ''" v-model="selected_entity" class="typo__label">Entity</label>
-      <multiselect v-if="value != ''" v-model="selected_entity" :options="field_entities" @input="entityFieldValueChanged" label="name" track-by="code" 
+      <multiselect @wheel.native.stop="wheel" v-if="value != ''" v-model="selected_entity" :options="field_entities" @input="entityFieldValueChanged" label="name" track-by="code" 
       :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Select an Entity">
       </multiselect>
       <label v-if="value != '' && selected_entity" class="typo__label">Bundle</label>
-      <multiselect v-if="value != '' && selected_entity" v-model="selected_bundle" :options="field_bundles" @input="bundleFieldValueChanged" label="name" track-by="code" 
+      <multiselect @wheel.native.stop="wheel" v-if="value != '' && selected_entity" v-model="selected_bundle" :options="field_bundles" @input="bundleFieldValueChanged" label="name" track-by="code" 
       :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Select a Bundle">
       </multiselect>  
     </div>
@@ -87,9 +88,11 @@ var VueGetFieldValueControl = {
         var field_entity = drupalSettings.if_then_else.nodes.get_form_field_value_action.field_entity_bundle;
         this.field_bundles = field_entity[this.value.code][value.code]['bundle'];
         this.putData('selected_entity',selectedentity);
+        var field_cardinality = drupalSettings.if_then_else.nodes.get_entity_field_action.form_fields_cardinality[selectedentity.code][this.value.code];
+        this.putData('field_cardinality', field_cardinality);
         var field_type = drupalSettings.if_then_else.nodes.get_form_field_value_action.form_fields_type[selectedentity.code][this.value.code];
         this.putData('field_type',field_type);
-        this.onChange(field_type);
+        this.onChange(field_type, field_cardinality);
         editor.trigger('process');
       }else{
         this.field_bundles = [];
@@ -130,6 +133,8 @@ var VueGetFieldValueControl = {
         var field_type = this.getData('field_type');
         if(typeof field_type != 'undefined'){
           this.onChange(field_type);
+          var field_cardinality = drupalSettings.if_then_else.nodes.get_form_field_value_action.form_fields_cardinality[this.selected_entity.code][this.value.code];
+          this.putData('field_cardinality', field_cardinality);
         }
 
         //setting value for selected bundle
@@ -185,27 +190,13 @@ class GetFieldValueActionComponent extends Rete.Component {
 
 
     function handleInput(){
-    	return function (value) {
+    	return function (value, field_cardinality) {
         let socket_out = eventNode.outputs.get('field_value');
-        if(value == 'email' || value == 'list_string' || value == 'datetime' || value == 'string' || value == 'string_long'){
-          socket_out.socket = sockets['string'];
-        }else if(value == 'entity_reference' || value == 'list_integer' || value == 'list_float' || value == 'decimal' || value == 'float' || value == 'integer'){
-          socket_out.socket = sockets['number'];
-        }else if(value == 'boolean'){
-          socket_out.socket = sockets['bool'];
-        }else if(value == 'text_with_summary'){
-          socket_out.socket = sockets['object.field.text_with_summary'];
-          makeCompatibleSocketsByName('object.field.text_with_summary');
-        }else if(value == 'image'){
-          socket_out.socket = sockets['object.field.image'];
-          makeCompatibleSocketsByName('object.field.image');
-        }else if(value == 'link'){
-          socket_out.socket = sockets['object.field.link'];
-          makeCompatibleSocketsByName('object.field.link');
-        }else if(value == 'text' || value == 'text_long'){
-          socket_out.socket = sockets['object.field.text_long'];
-          makeCompatibleSocketsByName('object.field.text_long');
+
+        if(typeof window[value+'_type_field_socket'] == 'function'){
+          socket_out.socket = window[value+'_type_field_socket'](field_cardinality);
         }
+        
         eventNode.outputs.set('field_value',socket_out);
         eventNode.update();
         editor.view.updateConnections({node: eventNode});

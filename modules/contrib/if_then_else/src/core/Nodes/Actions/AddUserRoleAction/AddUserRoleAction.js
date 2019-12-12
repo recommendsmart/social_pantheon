@@ -7,7 +7,7 @@ var VueAddUserRoleActionControl = {
     <div class="fields-container">
       <div class="form-fields-selection" >
         <label for="one">User Roles</label>   
-        <multiselect v-model="value" :show-labels="false" tag-placeholder="Add this as new tag" placeholder="Roles" label="label" track-by="name" :options="options" :multiple="true" :taggable="true" @input="updateSelected" @tag="addTag"></multiselect>
+        <multiselect @wheel.native.stop="wheel" v-model="value" :show-labels="false" tag-placeholder="Add this as new tag" placeholder="Roles" label="label" track-by="name" :options="options" :multiple="true" :taggable="true" @input="updateSelected" @tag="addTag"></multiselect>
         <br>
       </div>
     </div>`,

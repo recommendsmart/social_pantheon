@@ -47,7 +47,8 @@ abstract class AbstractFilterHandler implements ViewsPrettyPathFilterHandlerInte
    * @return string
    */
   protected function encodeWordForUrl($word) {
-    $processed_word = trim(strtolower($word));
+    $processed_word = str_replace('/', '%2F', $word); // Encode slash.
+    $processed_word = trim(strtolower($processed_word));
     $processed_word = implode('-',array_map(function($word_item) { return UrlHelper::encodePath($word_item); }, explode('-', $processed_word)));
     return $processed_word;
   }
@@ -59,6 +60,7 @@ abstract class AbstractFilterHandler implements ViewsPrettyPathFilterHandlerInte
    * @return string
    */
   protected function decodeUrlWord($word) {
+    $word = str_replace('%252f', '%2F', str_replace('%252F', '%2F', $word)); // Decode slash.
     return urldecode($word);
   }
 }

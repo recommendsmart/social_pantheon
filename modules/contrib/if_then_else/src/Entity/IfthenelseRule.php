@@ -10,7 +10,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  * @ConfigEntityType(
  *   id ="ifthenelserule",
  *   label = @Translation("If Then Else"),
- *   config_prefix = "ifthenelserule",
+ *   config_prefix = "config",
  *   handlers = {
  *     "list_builder" = "Drupal\if_then_else\IfthenelseRuleListBuilder",
  *     "form" = {
@@ -64,10 +64,41 @@ class IfthenelseRule extends ConfigEntityBase implements IfthenelseRuleInterface
   public $id;
 
   /**
+   * Set Entity to active.
+   *
    * {@inheritdoc}
+   *
+   * @param string $status
+   *   Variable containing the status of entity.
+   *
+   * @return array
+   *   ifthenelse array
    */
   public function setActive($status) {
     $this->set('active', $status);
+    return $this;
+  }
+
+  /**
+   * Set Value for the field.
+   *
+   * {@inheritdoc}
+   *
+   * @param string $field_name
+   *   Variable
+   *                            containing
+   *                            the
+   *                            field
+   *                            name.
+   * @param array $field_value
+   *   Variable
+   *                           containing
+   *                           array
+   *                           of
+   *                           values.
+   */
+  public function setValue($field_name, array $field_value) {
+    $this->set($field_name, $field_value);
     return $this;
   }
 

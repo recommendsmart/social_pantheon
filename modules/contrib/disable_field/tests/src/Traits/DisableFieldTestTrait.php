@@ -15,9 +15,19 @@ trait DisableFieldTestTrait {
    * @param string $field_name
    *   The field name to check.
    */
-  protected function checkIfFieldIsNotDisabled(string $field_name) {
-    $this->assertSession()->elementExists('css', sprintf('#edit-%s-0-value', str_replace('_', '-', $field_name)));
-    $this->assertSession()->elementNotExists('css', sprintf('#edit-%s-0-value[disabled]', str_replace('_', '-', $field_name)));
+  protected function checkIfFieldIsNotDisabledByFieldName(string $field_name) {
+    $this->checkIfFieldIsNotDisabledById(sprintf('edit-%s-0-value', str_replace('_', '-', $field_name)));
+  }
+
+  /**
+   * Check if the given field with the given ID exists, but is not disabled.
+   *
+   * @param string $id
+   *   The ID to check.
+   */
+  protected function checkIfFieldIsNotDisabledById(string $id) {
+    $this->assertSession()->elementExists('css', sprintf('#%s', $id));
+    $this->assertSession()->elementNotExists('css', sprintf('#%s[disabled]', $id));
   }
 
   /**
@@ -26,8 +36,18 @@ trait DisableFieldTestTrait {
    * @param string $field_name
    *   The field name to check.
    */
-  protected function checkIfFieldIsDisabled(string $field_name) {
-    $this->assertSession()->elementExists('css', sprintf('#edit-%s-0-value[disabled]', str_replace('_', '-', $field_name)));
+  protected function checkIfFieldIsDisabledByFieldName(string $field_name) {
+    $this->checkIfFieldIsDisabledById(sprintf('edit-%s-0-value', str_replace('_', '-', $field_name)));
+  }
+
+  /**
+   * Check if the element with the given ID is disabled.
+   *
+   * @param string $id
+   *   The ID to check.
+   */
+  protected function checkIfFieldIsDisabledById(string $id) {
+    $this->assertSession()->elementExists('css', sprintf('#%s[disabled]', $id));
   }
 
 }

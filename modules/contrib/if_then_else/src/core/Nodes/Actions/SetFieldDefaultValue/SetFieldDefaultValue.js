@@ -29,15 +29,15 @@ var VueFieldDefaultValueControl = {
   template: `<div class="fields-container">
     <div class="entity-select">
       <label class="typo__label">Field</label>
-      <multiselect v-model="value" :options="options" @input="fieldValueChanged" label="name" track-by="code" 
+      <multiselect @wheel.native.stop="wheel" v-model="value" :options="options" @input="fieldValueChanged" label="name" track-by="code" 
       :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Select a field">
       </multiselect>
       <label v-if="value != ''" v-model="selected_entity" class="typo__label">Entity</label>
-      <multiselect v-if="value != ''" v-model="selected_entity" :options="field_entities" @input="entityFieldValueChanged" label="name" track-by="code" 
+      <multiselect @wheel.native.stop="wheel" v-if="value != ''" v-model="selected_entity" :options="field_entities" @input="entityFieldValueChanged" label="name" track-by="code" 
       :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Select an Entity">
       </multiselect>
       <label v-if="value != '' && selected_entity" class="typo__label">Bundle</label>
-      <multiselect v-if="value != '' && selected_entity" v-model="selected_bundle" :options="field_bundles" @input="bundleFieldValueChanged" label="name" track-by="code" 
+      <multiselect @wheel.native.stop="wheel" v-if="value != '' && selected_entity" v-model="selected_bundle" :options="field_bundles" @input="bundleFieldValueChanged" label="name" track-by="code" 
       :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Select a Bundle">
       </multiselect>  
     </div>

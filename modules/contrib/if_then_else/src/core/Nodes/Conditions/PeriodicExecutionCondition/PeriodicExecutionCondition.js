@@ -12,7 +12,7 @@ var VuePeriodicExecutionCondition = {
       <label :for="radio1_uid">Select An Hour</label>
     </div>  
     <div class="entity-select" v-if="form_selection === 'list'">
-      <multiselect v-model="selected_option" :options="options" @input="fieldValueChanged" label="name" track-by="code" 
+      <multiselect @wheel.native.stop="wheel" v-model="selected_option" :options="options" @input="fieldValueChanged" label="name" track-by="code" 
       :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Select compare operation">
       </multiselect>
     </div>    

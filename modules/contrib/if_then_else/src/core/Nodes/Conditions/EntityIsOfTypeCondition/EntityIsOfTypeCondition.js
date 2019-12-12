@@ -12,7 +12,7 @@ class EntityIsOfTypeConditionControl extends Rete.Control {
         <div class="fields-container">
           <div class="entity-select">
             <label class="typo__label">Type</label>
-            <multiselect v-model="selected_entity" :show-labels="false" :options="entities" 
+            <multiselect  @wheel.native.stop="wheel" v-model="selected_entity" :show-labels="false" :options="entities" 
             placeholder="Entity" @input="entitySelected" label="label" 
             track-by="value"></multiselect>
           </div>

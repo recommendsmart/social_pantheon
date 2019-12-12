@@ -20,12 +20,12 @@ class FormSubmissionEventControl extends Rete.Control {
       <div v-if="form_selection === 'list'">
         <div class="entity-select">
           <label class="typo__label">Entity</label>
-          <multiselect v-model="selected_entity" :show-labels="false" :options="entities" 
+          <multiselect @wheel.native.stop="wheel" v-model="selected_entity" :show-labels="false" :options="entities" 
           placeholder="Entity" @input="entitySelected" label="label" 
           track-by="value"></multiselect></div><div class="bundle-select" v-if="showBundleList">
         
           <label class="typo__label">Bundle</label>
-          <multiselect v-model="selected_bundle" :options="bundles" :show-labels="false" 
+          <multiselect @wheel.native.stop="wheel" v-model="selected_bundle" :options="bundles" :show-labels="false" 
           placeholder="Bundle" @input="bundleSelected" label="label" 
           track-by="value"></multiselect>
         </div>

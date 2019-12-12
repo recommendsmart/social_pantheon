@@ -5,6 +5,7 @@ namespace Drupal\Tests\disable_field\Functional;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\disable_field\Traits\DisableFieldTestTrait;
 use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
+use Drupal\Tests\paragraphs\FunctionalJavascript\ParagraphsTestBaseTrait;
 
 /**
  * Disable field tests.
@@ -13,13 +14,21 @@ use Drupal\Tests\field_ui\Traits\FieldUiTestTrait;
  */
 class DisableFieldTest extends BrowserTestBase {
 
-  use FieldUiTestTrait;
   use DisableFieldTestTrait;
+  use FieldUiTestTrait;
+  use ParagraphsTestBaseTrait;
 
   /**
    * {@inheritdoc}
    */
-  protected static $modules = ['disable_field', 'block', 'field_ui', 'node'];
+  protected static $modules = [
+    'disable_field',
+    'block',
+    'field_ui',
+    'node',
+    'paragraphs',
+    'base_field_override_ui',
+  ];
 
   /**
    * The admin user.
@@ -59,15 +68,6 @@ class DisableFieldTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $permissions = [
-    'access content',
-    'edit any test content',
-    'create test content',
-  ];
-
-  /**
-   * {@inheritdoc}
-   */
   public function setUp() {
     parent::setUp();
 
@@ -84,7 +84,7 @@ class DisableFieldTest extends BrowserTestBase {
       'administer node fields',
       'administer node form display',
       'administer node display',
-      'disable textfield module',
+      'administer disable field settings',
     ]);
     $this->role2 = $this->drupalCreateRole([
       'access content',
@@ -109,34 +109,34 @@ class DisableFieldTest extends BrowserTestBase {
     $this->fieldUIAddNewField('admin/structure/types/manage/test', 'test', 'Test field', 'string');
 
     $this->drupalGet('node/add/test');
-    $this->checkIfFieldIsNotDisabled('field_test');
+    $this->checkIfFieldIsNotDisabledByFieldName('field_test');
 
     $this->drupalLogin($this->user1);
     $this->drupalGet('node/add/test');
-    $this->checkIfFieldIsNotDisabled('field_test');
+    $this->checkIfFieldIsNotDisabledByFieldName('field_test');
 
     $this->drupalLogin($this->user2);
     $this->drupalGet('node/add/test');
-    $this->checkIfFieldIsNotDisabled('field_test');
+    $this->checkIfFieldIsNotDisabledByFieldName('field_test');
   }
 
   /**
    * Disable the field for all roles on the content add form.
    */
   public function testDisableFieldOnAddFormDisableForAllRoles(): void {
-    $this->fieldUIAddNewField('admin/structure/types/manage/test', 'test', 'Test field', 'string', [], ['add_disable' => 'all']);
+    $this->fieldUIAddNewField('admin/structure/types/manage/test', 'test', 'Test field', 'string', [], ['disable_field[add][disable]' => 'all']);
 
     // Make sure the field is disabled for all roles. Even the admin user.
     $this->drupalGet('node/add/test');
-    $this->checkIfFieldIsDisabled('field_test');
+    $this->checkIfFieldIsDisabledByFieldName('field_test');
 
     $this->drupalLogin($this->user1);
     $this->drupalGet('node/add/test');
-    $this->checkIfFieldIsDisabled('field_test');
+    $this->checkIfFieldIsDisabledByFieldName('field_test');
 
     $this->drupalLogin($this->user2);
     $this->drupalGet('node/add/test');
-    $this->checkIfFieldIsDisabled('field_test');
+    $this->checkIfFieldIsDisabledByFieldName('field_test');
   }
 
   /**
@@ -144,21 +144,21 @@ class DisableFieldTest extends BrowserTestBase {
    */
   public function testDisableFieldOnAddFormDisableForCertainRoles(): void {
     $this->fieldUIAddNewField('admin/structure/types/manage/test', 'test', 'Test field', 'string', [], [
-      'add_disable' => 'roles',
-      'add_disable_roles[]' => [$this->role1],
+      'disable_field[add][disable]' => 'roles',
+      'disable_field[add][roles][]' => [$this->role1],
     ]);
 
     // Make sure the field is disabled for all roles. Even the admin user.
     $this->drupalGet('node/add/test');
-    $this->checkIfFieldIsNotDisabled('field_test');
+    $this->checkIfFieldIsNotDisabledByFieldName('field_test');
 
     $this->drupalLogin($this->user1);
     $this->drupalGet('node/add/test');
-    $this->checkIfFieldIsDisabled('field_test');
+    $this->checkIfFieldIsDisabledByFieldName('field_test');
 
     $this->drupalLogin($this->user2);
     $this->drupalGet('node/add/test');
-    $this->checkIfFieldIsNotDisabled('field_test');
+    $this->checkIfFieldIsNotDisabledByFieldName('field_test');
   }
 
   /**
@@ -166,21 +166,21 @@ class DisableFieldTest extends BrowserTestBase {
    */
   public function testDisableFieldOnAddFormEnableForCertainRoles(): void {
     $this->fieldUIAddNewField('admin/structure/types/manage/test', 'test', 'Test field', 'string', [], [
-      'add_disable' => 'roles_enable',
-      'add_enable_roles[]' => [$this->role1],
+      'disable_field[add][disable]' => 'roles_enable',
+      'disable_field[add][roles][]' => [$this->role1],
     ]);
 
     // Make sure the field is disabled for all roles. Even the admin user.
     $this->drupalGet('node/add/test');
-    $this->checkIfFieldIsDisabled('field_test');
+    $this->checkIfFieldIsDisabledByFieldName('field_test');
 
     $this->drupalLogin($this->user1);
     $this->drupalGet('node/add/test');
-    $this->checkIfFieldIsNotDisabled('field_test');
+    $this->checkIfFieldIsNotDisabledByFieldName('field_test');
 
     $this->drupalLogin($this->user2);
     $this->drupalGet('node/add/test');
-    $this->checkIfFieldIsDisabled('field_test');
+    $this->checkIfFieldIsDisabledByFieldName('field_test');
   }
 
   /**
@@ -192,35 +192,39 @@ class DisableFieldTest extends BrowserTestBase {
     $node = $this->drupalCreateNode(['type' => 'test']);
 
     $this->drupalGet($node->toUrl('edit-form'));
-    $this->checkIfFieldIsNotDisabled('field_test');
+    $this->checkIfFieldIsNotDisabledByFieldName('field_test');
 
     $this->drupalLogin($this->user1);
     $this->drupalGet($node->toUrl('edit-form'));
-    $this->checkIfFieldIsNotDisabled('field_test');
+    $this->checkIfFieldIsNotDisabledByFieldName('field_test');
 
     $this->drupalLogin($this->user2);
     $this->drupalGet($node->toUrl('edit-form'));
-    $this->checkIfFieldIsNotDisabled('field_test');
+    $this->checkIfFieldIsNotDisabledByFieldName('field_test');
   }
 
   /**
    * Disable the field for all roles on the content edit form.
    */
   public function testDisableFieldOnEditFormDisableForAllRoles(): void {
-    $this->fieldUIAddNewField('admin/structure/types/manage/test', 'test', 'Test field', 'string', [], ['edit_disable' => 'all']);
+    $this->fieldUIAddNewField('admin/structure/types/manage/test', 'test', 'Test field', 'string', [], ['disable_field[edit][disable]' => 'all']);
+
+    // Make sure the field is not disabled on the field config edit page.
+    $this->drupalGet('/admin/structure/types/manage/test/fields/node.test.field_test');
+    $this->checkIfFieldIsNotDisabledByFieldName('default-value-input-field-test');
 
     $node = $this->drupalCreateNode(['type' => 'test']);
 
     $this->drupalGet($node->toUrl('edit-form'));
-    $this->checkIfFieldIsDisabled('field_test');
+    $this->checkIfFieldIsDisabledByFieldName('field_test');
 
     $this->drupalLogin($this->user1);
     $this->drupalGet($node->toUrl('edit-form'));
-    $this->checkIfFieldIsDisabled('field_test');
+    $this->checkIfFieldIsDisabledByFieldName('field_test');
 
     $this->drupalLogin($this->user2);
     $this->drupalGet($node->toUrl('edit-form'));
-    $this->checkIfFieldIsDisabled('field_test');
+    $this->checkIfFieldIsDisabledByFieldName('field_test');
   }
 
   /**
@@ -228,22 +232,22 @@ class DisableFieldTest extends BrowserTestBase {
    */
   public function testDisableFieldOnEditFormDisableForCertainRoles(): void {
     $this->fieldUIAddNewField('admin/structure/types/manage/test', 'test', 'Test field', 'string', [], [
-      'edit_disable' => 'roles',
-      'edit_disable_roles[]' => [$this->role1],
+      'disable_field[edit][disable]' => 'roles',
+      'disable_field[edit][roles][]' => [$this->role1],
     ]);
 
     $node = $this->drupalCreateNode(['type' => 'test']);
 
     $this->drupalGet($node->toUrl('edit-form'));
-    $this->checkIfFieldIsNotDisabled('field_test');
+    $this->checkIfFieldIsNotDisabledByFieldName('field_test');
 
     $this->drupalLogin($this->user1);
     $this->drupalGet($node->toUrl('edit-form'));
-    $this->checkIfFieldIsDisabled('field_test');
+    $this->checkIfFieldIsDisabledByFieldName('field_test');
 
     $this->drupalLogin($this->user2);
     $this->drupalGet($node->toUrl('edit-form'));
-    $this->checkIfFieldIsNotDisabled('field_test');
+    $this->checkIfFieldIsNotDisabledByFieldName('field_test');
   }
 
   /**
@@ -251,22 +255,22 @@ class DisableFieldTest extends BrowserTestBase {
    */
   public function testDisableFieldOnEditFormEnableForCertainRoles(): void {
     $this->fieldUIAddNewField('admin/structure/types/manage/test', 'test', 'Test field', 'string', [], [
-      'edit_disable' => 'roles_enable',
-      'edit_enable_roles[]' => [$this->role1],
+      'disable_field[edit][disable]' => 'roles_enable',
+      'disable_field[edit][roles][]' => [$this->role1],
     ]);
 
     $node = $this->drupalCreateNode(['type' => 'test']);
 
     $this->drupalGet($node->toUrl('edit-form'));
-    $this->checkIfFieldIsDisabled('field_test');
+    $this->checkIfFieldIsDisabledByFieldName('field_test');
 
     $this->drupalLogin($this->user1);
     $this->drupalGet($node->toUrl('edit-form'));
-    $this->checkIfFieldIsNotDisabled('field_test');
+    $this->checkIfFieldIsNotDisabledByFieldName('field_test');
 
     $this->drupalLogin($this->user2);
     $this->drupalGet($node->toUrl('edit-form'));
-    $this->checkIfFieldIsDisabled('field_test');
+    $this->checkIfFieldIsDisabledByFieldName('field_test');
   }
 
   /**
@@ -278,13 +282,13 @@ class DisableFieldTest extends BrowserTestBase {
 
     $this->drupalLogin($this->user1);
     $this->drupalGet('/admin/structure/types/manage/test/fields/node.test.field_test');
-    $assert_session->elementExists('css', 'select[name="add_disable"]');
-    $assert_session->elementExists('css', 'select[name="edit_disable"]');
+    $assert_session->elementExists('css', 'select[name="disable_field[add][disable]"]');
+    $assert_session->elementExists('css', 'select[name="disable_field[edit][disable]"]');
 
     $this->drupalLogin($this->user2);
     $this->drupalGet('/admin/structure/types/manage/test/fields/node.test.field_test');
-    $assert_session->elementNotExists('css', 'select[name="add_disable"]');
-    $assert_session->elementNotExists('css', 'select[name="edit_disable"]');
+    $assert_session->elementNotExists('css', 'select[name="disable_field[add][disable]"]');
+    $assert_session->elementNotExists('css', 'select[name="disable_field[edit][disable]"]');
   }
 
   /**
@@ -293,14 +297,17 @@ class DisableFieldTest extends BrowserTestBase {
   public function testDisableFieldKeepValuesOnDisabledState() {
     $assert_session = $this->assertSession();
     $this->fieldUIAddNewField('admin/structure/types/manage/test', 'test', 'Test field', 'string', [], [
-      'edit_disable' => 'roles',
-      'edit_disable_roles[]' => [$this->role1],
+      'default_value_input[field_test][0][value]' => 'default_test_value',
+      'disable_field[add][disable]' => 'roles',
+      'disable_field[add][roles][]' => [$this->role1],
+      'disable_field[edit][disable]' => 'roles',
+      'disable_field[edit][roles][]' => [$this->role1],
     ]);
     $node = $this->drupalCreateNode(['type' => 'test']);
 
     // The admin user can edit the field. Make sure the value is saved.
     $this->drupalGet($node->toUrl('edit-form'));
-    $this->checkIfFieldIsNotDisabled('field_test');
+    $this->checkIfFieldIsNotDisabledByFieldName('field_test');
     $this->submitForm(['field_test[0][value]' => 'test_value'], 'Save');
     $this->drupalGet($node->toUrl('edit-form'));
     $assert_session->elementAttributeContains('css', 'input[name="field_test[0][value]"]', 'value', 'test_value');
@@ -308,7 +315,7 @@ class DisableFieldTest extends BrowserTestBase {
     // User 1 cannot edit the field. Make sure the value stays the same.
     $this->drupalLogin($this->user1);
     $this->drupalGet($node->toUrl('edit-form'));
-    $this->checkIfFieldIsDisabled('field_test');
+    $this->checkIfFieldIsDisabledByFieldName('field_test');
     $assert_session->elementAttributeContains('css', 'input[name="field_test[0][value]"]', 'value', 'test_value');
     $this->submitForm([], 'Save');
     $this->drupalGet($node->toUrl('edit-form'));
@@ -317,9 +324,60 @@ class DisableFieldTest extends BrowserTestBase {
     // User 1 cannot edit the field. Make sure the value stays the same.
     // Even when the user is tampering with the data.
     $this->drupalGet($node->toUrl('edit-form'));
+    $this->checkIfFieldIsDisabledByFieldName('field_test');
     $this->submitForm(['field_test[0][value]' => 'new_value'], 'Save');
     $this->drupalGet($node->toUrl('edit-form'));
     $assert_session->elementAttributeContains('css', 'input[name="field_test[0][value]"]', 'value', 'test_value');
+
+    // Check if a disabled field keeps it default value.
+    $this->drupalGet('/node/add/test');
+    $this->checkIfFieldIsDisabledByFieldName('field_test');
+    $this->submitForm(['title[0][value]' => 'test_title'], 'Save');
+    $node = $this->drupalGetNodeByTitle('test_title');
+    $this->drupalGet($node->toUrl('edit-form'));
+    $this->checkIfFieldIsDisabledByFieldName('field_test');
+    $assert_session->elementAttributeContains('css', 'input[name="field_test[0][value]"]', 'value', 'default_test_value');
+    $this->submitForm(['field_test[0][value]' => 'new_value'], 'Save');
+    $this->drupalGet($node->toUrl('edit-form'));
+    $assert_session->elementAttributeContains('css', 'input[name="field_test[0][value]"]', 'value', 'default_test_value');
+  }
+
+  /**
+   * Test the disable_field module with a paragraphs field.
+   */
+  public function testDisableFieldWithParagraphsField() {
+    $this->addParagraphedContentType('paragraphed_content_type');
+
+    // Disable the paragraph field on the add and edit form.
+    $this->drupalGet('/admin/structure/types/manage/test/fields/node.paragraphed_content_type.field_paragraphs');
+    $this->submitForm([
+      'disable_field[add][disable]' => 'all',
+      'disable_field[edit][disable]' => 'all',
+    ], 'Save settings');
+
+    // Add a Paragraph type.
+    $paragraph_type = 'text_paragraph';
+    $this->addParagraphsType($paragraph_type);
+
+    // Add a text field to the text_paragraph type.
+    $this->fieldUIAddNewField('admin/structure/paragraphs_type/' . $paragraph_type, 'text', 'Text', 'text_long');
+
+    $this->drupalGet('/node/add/paragraphed_content_type');
+    $this->checkIfFieldIsDisabledById('edit-field-paragraphs-0-subform-field-text-0-value');
+    $this->checkIfFieldIsDisabledById('field-paragraphs-text-paragraph-add-more');
+  }
+
+  /**
+   * Test disable_field module for base fields using base_field override ui.
+   */
+  public function testDisableFieldWithBaseFieldOverrideUi() {
+    $this->drupalGet('/admin/structure/types/manage/test/fields/base-field-override/title/add');
+    $this->submitForm([
+      'disable_field[add][disable]' => 'all',
+      'disable_field[edit][disable]' => 'all',
+    ], 'Save settings');
+    $this->drupalGet('node/add/test');
+    $this->checkIfFieldIsDisabledByFieldName('title');
   }
 
 }

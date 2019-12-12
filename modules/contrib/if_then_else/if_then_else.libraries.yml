@@ -97,6 +97,13 @@ CreateNewEntityAction:
   dependencies:
     - if_then_else/external
 
+ConvertEntityAction:
+  version: 1.0
+  js:
+    src/core/Nodes/Actions/ConvertEntityAction/ConvertEntityAction.js: {}
+  dependencies:
+    - if_then_else/external
+
 EntityHasBundleCondition:
   version: 1.0
   js:
@@ -367,6 +374,13 @@ NumberValue:
   version: 1.0
   js:
     src/core/Nodes/Values/NumberValue/NumberValue.js: {}
+  dependencies:
+    - if_then_else/external
+
+BooleanValue:
+  version: 1.0
+  js:
+    src/core/Nodes/Values/BooleanValue/BooleanValue.js: {}
   dependencies:
     - if_then_else/external
 

@@ -20,12 +20,12 @@ class AfterSavingNewEntityEventControl extends Rete.Control {
       <div v-if="selection === 'list'">
         <div class="entity-select">
           <label class="typo__label">Entity</label>
-          <multiselect v-model="selected_entity" :show-labels="false" :options="entities" 
+          <multiselect @wheel.native.stop="wheel" v-model="selected_entity" :show-labels="false" :options="entities" 
           placeholder="Entity" @input="entitySelected" label="label" 
           track-by="value"></multiselect></div><div class="bundle-select" v-if="showBundleList">
         
           <label class="typo__label">Bundle</label>
-          <multiselect v-model="selected_bundle" :options="bundles" :show-labels="false" 
+          <multiselect @wheel.native.stop="wheel" v-model="selected_bundle" :options="bundles" :show-labels="false" 
           placeholder="Bundle" @input="bundleSelected" label="label" 
           track-by="value"></multiselect>
         </div>
@@ -106,6 +106,11 @@ class AfterSavingNewEntityEventControl extends Rete.Control {
         },
         selectionChanged() {
           this.putData('selection', this.selection);
+          if (typeof this.selected_entity != 'undefined' && this.selected_entity.value !== '' && this.selected_bundle != undefined && typeof this.selected_bundle != 'undefined' && this.selected_bundle !== '') {
+            this.onChange(this.selected_entity.value, this.selected_bundle.value, this.selection);
+          } else {
+            this.onChange('', '', this.selection);
+          }
           editor.trigger('process');
         }
       },
@@ -194,19 +199,24 @@ class AfterSavingNewEntityEventComponent extends Rete.Component {
     eventNode.addOutput(node_outputs['entity']);
 
     function handleInput() {
-      return function(entityValue, bundleValue) {
+      return function(entityValue, bundleValue, selection) {
         let socket_out = eventNode.outputs.get('entity');
-        if (entityValue != undefined && typeof entityValue != 'undefined' && entityValue !== '' && bundleValue != undefined && typeof bundleValue != 'undefined' && bundleValue !== '') {
-          socket_out.socket = sockets['object.entity.' + entityValue + '.' + bundleValue];
-          makeCompatibleSocketsByName('object.entity.' + entityValue + '.' + bundleValue);
-
+        if (selection == 'all') {
+          socket_out.socket = sockets['object.entity'];
           eventNode.outputs.set('entity', socket_out);
-          eventNode.update();
-          editor.view.updateConnections({
-            node: eventNode
-          });
-          editor.trigger('process');
+        } else {
+         if (entityValue != undefined && typeof entityValue != 'undefined' && entityValue !== '' && bundleValue != undefined && typeof bundleValue != 'undefined' && bundleValue !== '') {
+           socket_out.socket = sockets['object.entity.' + entityValue + '.' + bundleValue];
+           makeCompatibleSocketsByName('object.entity.' + entityValue + '.' + bundleValue);
+
+           eventNode.outputs.set('entity', socket_out);
+          }
         }
+        eventNode.update();
+        editor.view.updateConnections({
+          node: eventNode
+        });
+        editor.trigger('process');  
       }
     }
 

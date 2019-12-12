@@ -8,7 +8,7 @@ var VueAddItemListAction = {
   template: `<div class="fields-container">
   <div class="entity-select">
     <label class="typo__label">Position</label>
-    <multiselect v-model="value" :options="options" @input="fieldValueChanged" label="name" track-by="code" 
+    <multiselect @wheel.native.stop="wheel" v-model="value" :options="options" @input="fieldValueChanged" label="name" track-by="code" 
     :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Select position">
     </multiselect>
     <div class="radio">

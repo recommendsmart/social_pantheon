@@ -147,21 +147,24 @@ class ViewsPrettyPathProcessor implements InBoundPathProcessorInterface, Outboun
   public function processInbound($path, Request $request) {
     $new_path = $path;
     // Check if the path should be rewritten.
-    if ($alias = $this->shouldPathBeRewritten($request->getRequestUri())) {
-      // Ensure the filter subpath is in the path, and that the alias matches a system path.
-      if (($this->isFilterInPath($alias, $request)) && ($system_path_of_alias = $this->aliasManager->getPathByAlias($alias))) {
-        $this->setViewsFieldNameMap();
-        if (!$this->changedInboundOnce) {
-          $this->changedInboundOnce = TRUE;
-          $this->originalRewrittenInboundPath = str_replace(' ', '+', $path);
-          $this->replaceQueryParameters($alias, $request);
-          $new_path = $system_path_of_alias;
-        }
-        elseif ($this->originalRewrittenInboundPath == strtok($request->getRequestUri(), '?')) {
-          $this->replaceQueryParameters($alias, $request);
-          $new_path = $system_path_of_alias;
-        }
-      };
+    // Ensure the filter subpath is in the path, and that the alias matches a system path.
+    if (
+      ($alias = $this->shouldPathBeRewritten($request->getRequestUri())) &&
+      ($this->isFilterInPath($alias, $request)) &&
+      (!$this->doViewsParametersExistByAlias($alias)) &&
+      ($system_path_of_alias = $this->aliasManager->getPathByAlias($alias))
+    ) {
+      $this->setViewsFieldNameMap();
+      if (!$this->changedInboundOnce) {
+        $this->changedInboundOnce = TRUE;
+        $this->originalRewrittenInboundPath = $path;
+        $this->replaceQueryParameters($alias, $request);
+        $new_path = $system_path_of_alias;
+      }
+      elseif ($this->originalRewrittenInboundPath == urldecode(strtok($request->getRequestUri(), '?'))) {
+        $this->replaceQueryParameters($alias, $request);
+        $new_path = $system_path_of_alias;
+      }
     }
     return $new_path;
   }
@@ -442,18 +445,19 @@ class ViewsPrettyPathProcessor implements InBoundPathProcessorInterface, Outboun
    */
   public function handleViewsExposedFormSubmit($form, $form_state) {
     // Check if it's been submitted.
-    if ($alias = $this->shouldPathBeRewritten($this->currentRequest->getRequestUri())) {
-      if ($this->shouldAliasViewBeRewritten($alias, $form_state->get('view')->id()) && $this->requestHasQueryParams()) {
-        $this->formState = $form_state;
-        $redirect_response = $this->translateSubmittedValuesIntoRewrittenRedirect($alias);
-        $redirect_response->send();
-        exit(); // Required to prevent infinite redirects.
-      }
+    if (
+      ($alias = $this->shouldPathBeRewritten($this->currentRequest->getRequestUri())) &&
+      ($this->doViewsParametersExistByAlias($alias, $form_state->get('view')->id()))
+    ) {
+      $this->formState = $form_state;
+      $redirect_response = $this->translateSubmittedValuesIntoRewrittenRedirect($alias);
+      $redirect_response->send();
+      exit(); // Required to prevent infinite redirects.
     }
   }
-
   /**
-   * Should the combination of an alias and a view be rewritten
+   * Should the combination of an alias and a view be rewritten, and do the
+   * correct views parameters exist
    *
    * - Controls for multiple views on a page, with different action URLs
    *
@@ -461,13 +465,19 @@ class ViewsPrettyPathProcessor implements InBoundPathProcessorInterface, Outboun
    * @param string $view_id
    * @return boolean
    */
-  protected function shouldAliasViewBeRewritten($alias, $view_id) {
-    if ($this->pathsViewsToRewrite[$alias]['view'] === $view_id) {
-      return TRUE;
+  protected function doViewsParametersExistByAlias($alias, $view_id = NULL) {
+    if ($this->pathsViewsToRewrite[$alias]['view'] === $view_id || $view_id === NULL) {
+      if(is_null($view_id)) {
+        $view_id = $this->pathsViewsToRewrite[$alias]['view'];
+      }
+      // Check to ensure that the query string has a
+      $filter_names = array_keys($this->getExposedFiltersDataByView($this->pathsViewsToRewrite[$alias]));
+      $query_parameter_names = array_keys($_GET);
+      $views_parameters_in_query = array_intersect($filter_names, $query_parameter_names);
+      return count($views_parameters_in_query) > 0 ? TRUE : FALSE;
     }
     return FALSE;
   }
-
   /**
    * Translate the submitted values into the rewritten URL
    *
@@ -520,20 +530,6 @@ class ViewsPrettyPathProcessor implements InBoundPathProcessorInterface, Outboun
       return $this->viewsFieldNameMap[$field_name];
     }
     return $field_name;
-  }
-
-  /**
-   * Determine whether the current request is an old views URL
-   *
-   * @return boolean
-   */
-  protected function requestHasQueryParams() {
-    $get_params = $_GET;
-    unset($get_params['page']);
-    if (empty($get_params)) {
-      return FALSE;
-    }
-    return TRUE;
   }
 
 }

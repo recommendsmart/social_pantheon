@@ -16,21 +16,22 @@ var VueGetEntityFieldActionControl = {
       field_bundles: [],
       selected_bundle: '',
       field_type: '',
+      field_cardinality: 1,
       value: [],
     }
   },
   template: `<div class="fields-container">
     <div class="entity-select">
       <label class="typo__label">Field</label>
-      <multiselect v-model="value" :options="options" @input="fieldValueChanged" label="name" track-by="code" 
+      <multiselect @wheel.native.stop="wheel" v-model="value" :options="options" @input="fieldValueChanged" label="name" track-by="code" 
       :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Select a field">
       </multiselect>
       <label v-if="value != ''" v-model="selected_entity" class="typo__label">Entity</label>
-      <multiselect v-if="value != ''" v-model="selected_entity" :options="field_entities" @input="entityFieldValueChanged" label="name" track-by="code" 
+      <multiselect @wheel.native.stop="wheel" v-if="value != ''" v-model="selected_entity" :options="field_entities" @input="entityFieldValueChanged" label="name" track-by="code" 
       :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Select an Entity">
       </multiselect>
       <label v-if="value != '' && selected_entity" class="typo__label">Bundle</label>
-      <multiselect v-if="value != '' && selected_entity" v-model="selected_bundle" :options="field_bundles" @input="bundleFieldValueChanged" label="name" track-by="code" 
+      <multiselect @wheel.native.stop="wheel" v-if="value != '' && selected_entity" v-model="selected_bundle" :options="field_bundles" @input="bundleFieldValueChanged" label="name" track-by="code" 
       :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Select a Bundle">
       </multiselect>  
     </div>
@@ -84,6 +85,8 @@ var VueGetEntityFieldActionControl = {
         //Triggered when selecting an field.
         var field_entity = drupalSettings.if_then_else.nodes.get_entity_field_action.field_entity_bundle;
         this.field_bundles = field_entity[this.value.code][value.code]['bundle'];
+        var field_cardinality = drupalSettings.if_then_else.nodes.get_entity_field_action.form_fields_cardinality[selectedentity.code][this.value.code];
+	      this.putData('field_cardinality', field_cardinality);
         this.putData('selected_entity', selectedentity);
         var field_type = drupalSettings.if_then_else.nodes.get_entity_field_action.form_fields_type[selectedentity.code][this.value.code];
         this.putData('field_type', field_type);
@@ -103,7 +106,8 @@ var VueGetEntityFieldActionControl = {
       };
       this.putData('selected_bundle', selectedbundle);
       if (this.selected_entity != undefined && typeof this.selected_entity != 'undefined' && this.selected_entity.value !== '' && this.selected_bundle != undefined && typeof this.selected_bundle != 'undefined' && this.selected_bundle !== '') {
-        this.onChange(this.getData('field_type'), this.selected_entity.code, this.selected_bundle.code);
+        var field_cardinality = drupalSettings.if_then_else.nodes.get_entity_field_action.form_fields_cardinality[this.selected_entity.code][this.value.code];
+        this.onChange(this.getData('field_type'), this.selected_entity.code, this.selected_bundle.code, field_cardinality);
       }
       editor.trigger('process');
     }
@@ -137,7 +141,9 @@ var VueGetEntityFieldActionControl = {
           this.field_bundles = field_entity[get_form_fields.code][this.selected_entity.code]['bundle'];
           this.selected_bundle = get_selected_bundle;
           if (typeof field_type != 'undefined') {
-            this.onChange(field_type, this.selected_entity.code, this.selected_bundle.code);
+            var field_cardinality = drupalSettings.if_then_else.nodes.get_entity_field_action.form_fields_cardinality[this.selected_entity.code][this.value.code];		
+	          this.putData('field_cardinality', field_cardinality);
+            this.onChange(field_type, this.selected_entity.code, this.selected_bundle.code, field_cardinality);
           }
 
         }
@@ -191,27 +197,12 @@ class GetEntityFieldActionComponent extends Rete.Component {
 
 
     function handleInput() {
-      return function(value, entityValue = null, bundleValue = null) {
+      return function(value, entityValue = null, bundleValue = null, field_cardinality = 1) {
         let socket_out = eventNode.outputs.get('field_value');
         let socket_in = eventNode.inputs.get('entity');
-        if (value == 'email' || value == 'list_string' || value == 'datetime' || value == 'string' || value == 'string_long') {
-          socket_out.socket = sockets['string'];
-        } else if (value == 'entity_reference' || value == 'list_integer' || value == 'list_float' || value == 'decimal' || value == 'float' || value == 'integer') {
-          socket_out.socket = sockets['number'];
-        } else if (value == 'boolean') {
-          socket_out.socket = sockets['bool'];
-        } else if (value == 'text_with_summary') {
-          socket_out.socket = sockets['object.field.text_with_summary'];
-          makeCompatibleSocketsByName('object.field.text_with_summary');
-        } else if (value == 'image') {
-          socket_out.socket = sockets['object.field.image'];
-          makeCompatibleSocketsByName('object.field.image');
-        } else if (value == 'link') {
-          socket_out.socket = sockets['object.field.link'];
-          makeCompatibleSocketsByName('object.field.link');
-        } else if (value == 'text' || value == 'text_long') {
-          socket_out.socket = sockets['object.field.text_long'];
-          makeCompatibleSocketsByName('object.field.text_long');
+
+        if(typeof window[value+'_type_field_socket'] == 'function'){
+          socket_out.socket = window[value+'_type_field_socket'](field_cardinality);
         }
 
         if (entityValue != undefined && typeof entityValue != 'undefined' && entityValue !== '' && bundleValue != undefined && typeof bundleValue != 'undefined' && bundleValue !== '') {
@@ -243,4 +234,152 @@ class GetEntityFieldActionComponent extends Rete.Component {
   worker(eventNode, inputs, outputs) {
     //outputs['form'] = eventNode.data.event;
   }
+}
+
+function email_type_field_socket(field_cardinality){
+  if (field_cardinality == 1) {
+    return sockets['string'];
+  } else {
+    makeCompatibleSocketsByName('array.string');
+    return sockets['array.string'];
+  }
+}
+
+function list_string_type_field_socket(field_cardinality){
+  if (field_cardinality == 1) {
+    return sockets['string'];
+  } else {
+    makeCompatibleSocketsByName('array.string');
+    return sockets['array.string'];
+  }
+}
+
+function datetime_type_field_socket(field_cardinality){
+  if (field_cardinality == 1) {
+    return sockets['string'];
+  } else {
+    makeCompatibleSocketsByName('array.string');
+    return sockets['array.string'];
+  }
+}
+
+function string_type_field_socket(field_cardinality){
+  if (field_cardinality == 1) {
+    return sockets['string'];
+  } else {
+    makeCompatibleSocketsByName('array.string');
+    return sockets['array.string'];
+  }
+}
+
+function string_long_type_field_socket(field_cardinality){
+  if (field_cardinality == 1) {
+    return sockets['string'];
+  } else {
+    makeCompatibleSocketsByName('array.string');
+    return sockets['array.string'];
+  }
+}
+
+function entity_reference_type_field_socket(field_cardinality){
+  if (field_cardinality == 1) {
+    return sockets['number'];
+  } else {
+    makeCompatibleSocketsByName('array.number');
+    return sockets['array.number'];
+  }
+}
+
+function list_integer_type_field_socket(field_cardinality){
+  if (field_cardinality == 1) {
+    return sockets['number'];
+  } else {
+    makeCompatibleSocketsByName('array.number');
+    return sockets['array.number'];
+  }
+}
+
+function list_float_type_field_socket(field_cardinality){
+  if (field_cardinality == 1) {
+    return sockets['number'];
+  } else {
+    makeCompatibleSocketsByName('array.number');
+    return sockets['array.number'];
+  }
+}
+
+function decimal_type_field_socket(field_cardinality){
+  if (field_cardinality == 1) {
+    return sockets['number'];
+  } else {
+    makeCompatibleSocketsByName('array.number');
+    return sockets['array.number'];
+  }
+}
+
+function float_type_field_socket(field_cardinality){
+  if (field_cardinality == 1) {
+    return sockets['number'];
+  } else {
+    makeCompatibleSocketsByName('array.number');
+    return sockets['array.number'];
+  }
+}
+
+function integer_type_field_socket(field_cardinality){
+  if (field_cardinality == 1) {
+    return sockets['number'];
+  } else {
+    makeCompatibleSocketsByName('array.number');
+    return sockets['array.number'];
+  }
+}
+
+function boolean_type_field_socket(field_cardinality){
+  if (field_cardinality == 1){
+    return sockets['bool'];
+  } else {
+    makeCompatibleSocketsByName('array.bool');
+    return sockets['array.bool'];
+  }
+}
+
+function text_with_summary_type_field_socket(field_cardinality){
+  if (field_cardinality == 1){
+    makeCompatibleSocketsByName('object.field.text_with_summary');
+    return sockets['object.field.text_with_summary'];
+  } else {
+    makeCompatibleSocketsByName('array.object.field.text_with_summary');
+    return sockets['array.object.field.text_with_summary'];
+  }
+}
+
+function image_type_field_socket(field_cardinality){
+  if (field_cardinality == 1) {
+    makeCompatibleSocketsByName('object.field.image');
+    return sockets['object.field.image'];
+  } else {
+    makeCompatibleSocketsByName('array.object.field.image');
+    return sockets['array.object.field.image'];
+  }
+}
+
+function link_type_field_socket(field_cardinality){
+  if (field_cardinality == 1) {
+    makeCompatibleSocketsByName('object.field.link');
+    return sockets['object.field.link'];
+  } else {
+    makeCompatibleSocketsByName('array.object.field.link');
+    return sockets['array.object.field.link'];
+  }
+}
+
+function text_type_field_socket(field_cardinality){
+  makeCompatibleSocketsByName('object.field.text_long');
+  return sockets['object.field.text_long'];
+}
+
+function text_long_type_field_socket(field_cardinality){
+  makeCompatibleSocketsByName('object.field.text_long');
+  return sockets['object.field.text_long'];
 }

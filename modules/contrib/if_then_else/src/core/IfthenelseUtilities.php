@@ -160,6 +160,7 @@ class IfthenelseUtilities extends DefaultPluginManager implements IfthenelseUtil
   public function getFieldsByEntityBundleId(array $content_entity_types, $return_type = 'field') {
     static $listFields = [];
     static $field_type = [];
+    static $field_cardinality = [];
     static $extra_fields_name = ['title', 'status', 'uid'];
 
     if (empty($listFields)) {
@@ -188,6 +189,7 @@ class IfthenelseUtilities extends DefaultPluginManager implements IfthenelseUtil
                 $listFields[$field_name]['entity_bundle'][$entity_id]['bundle'][] = ['code' => $bundle_id, 'name' => $bundle['label']];
 
                 $field_type[$entity_id][$field_name] = $field_definition->getType();
+                $field_cardinality[$entity_id][$field_name] = $field_definition->getFieldStorageDefinition()->getCardinality();
               }
             }
           }
@@ -221,6 +223,8 @@ class IfthenelseUtilities extends DefaultPluginManager implements IfthenelseUtil
     }
     elseif ($return_type == 'field_type') {
       return $field_type;
+    }elseif ($return_type == 'field_cardinality') {
+      return $field_cardinality;
     }
   }
 

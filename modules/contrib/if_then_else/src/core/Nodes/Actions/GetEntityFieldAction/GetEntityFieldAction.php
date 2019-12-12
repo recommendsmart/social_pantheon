@@ -2,14 +2,14 @@
 
 namespace Drupal\if_then_else\core\Nodes\Actions\GetEntityFieldAction;
 
-use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\if_then_else\core\Nodes\Actions\Action;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
 use Drupal\if_then_else\Event\NodeValidationEvent;
-use stdClass;
+use Drupal\if_then_else\Event\FieldValueProcessEvent;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\if_then_else\core\IfthenelseUtilitiesInterface;
 use Drupal\Core\Datetime\DateFormatterInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Class GetEntityFieldAction.
@@ -27,6 +27,13 @@ class GetEntityFieldAction extends Action {
   protected $ifthenelseUtilities;
 
   /**
+   * The Event dispatcher.
+   *
+   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+   */
+  protected $eventDispatcher;
+
+  /**
    * The Date Formatter.
    *
    * @var \Drupal\Core\Datetime\DateFormatterInterface
@@ -41,9 +48,10 @@ class GetEntityFieldAction extends Action {
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The Date Formatter.
    */
-  public function __construct(IfthenelseUtilitiesInterface $ifthenelse_utilities, DateFormatterInterface $date_formatter) {
+  public function __construct(IfthenelseUtilitiesInterface $ifthenelse_utilities, DateFormatterInterface $date_formatter, EventDispatcherInterface $event_dispatcher) {
     $this->ifthenelseUtilities = $ifthenelse_utilities;
     $this->dateFormatter = $date_formatter;
+    $this->eventDispatcher = $event_dispatcher;
   }
 
   /**
@@ -62,18 +70,20 @@ class GetEntityFieldAction extends Action {
     $form_fields = $this->ifthenelseUtilities->getFieldsByEntityBundleId($form_entity_info);
     $field_entity = $this->ifthenelseUtilities->getEntityByFieldName($form_fields);
     $fields_type = $this->ifthenelseUtilities->getFieldsByEntityBundleId($form_entity_info, 'field_type');
+    $fields_cardinality = $this->ifthenelseUtilities->getFieldsByEntityBundleId($form_entity_info, 'field_cardinality');
 
     $event->nodes[static::getName()] = [
       'label' => $this->t('Get Entity Field Value'),
       'description' => $this->t('Get Entity Field Value'),
       'type' => 'action',
       'class' => 'Drupal\\if_then_else\\core\\Nodes\\Actions\\GetEntityFieldAction\\GetEntityFieldAction',
-      'classArg' => ['ifthenelse.utilities', 'date.formatter'],
+      'classArg' => ['ifthenelse.utilities', 'date.formatter', 'event_dispatcher'],
       'library' => 'if_then_else/GetEntityFieldAction',
       'control_class_name' => 'GetEntityFieldActionControl',
       'component_class_name' => 'GetEntityFieldActionComponent',
       'form_fields' => $form_fields,
       'form_fields_type' => $fields_type,
+      'form_fields_cardinality' => $fields_cardinality,
       'field_entity_bundle' => $field_entity,
       'inputs' => [
         'entity' => [
@@ -128,176 +138,20 @@ class GetEntityFieldAction extends Action {
       $output = $entity->getTitle();
     }
     else {
+      if ($entity->get($form_fields->code) == NULL) {
+        $this->setSuccess(FALSE);
+        return;
+      }
       $field_value = $entity->get($form_fields->code)->getValue();
       $field_type = $this->data->field_type;
+      $field_cardinality = $this->data->field_cardinality;
+      $output = "";
 
-      switch ($field_type) {
-        case 'list_string':
-        case 'string':
-        case 'email':
-        case 'list_float':
-        case 'list_integer':
-        case 'decimal':
-        case 'float':
-        case 'integer':
-        case 'string_long':
-        case 'boolean':
-          if (isset($field_value[0]['value'])) {
-            if (count($field_value) == 1) {
-              $output = (int) $field_value[0]['value'];
-            }
-            elseif (count($field_value) > 1) {
-              for ($i = 0; $i < count($field_value); $i++) {
-                if (isset($field_value[$i]['value'])) {
-                  $output[] = (int) $field_value[$i]['value'];
-                }
-              }
-            }
-          }
-          else {
-            $output = '';
-          }
-          break;
+      $field_process_event = new FieldValueProcessEvent($field_value, $field_cardinality, $output);
+      // Get the event_dispatcher service and dispatch the event.
+      $this->eventDispatcher->dispatch('if_then_else_' . $field_type . '_field_type_process_event', $field_process_event);
 
-        case 'datetime':
-          $date_original = new DrupalDateTime($field_value[0]['value'], 'UTC');
-          $output = $this->dateFormatter->format($date_original->getTimestamp(), 'custom', 'Y-m-d H:i:s');
-          break;
-
-        case 'text':
-        case 'text_long':
-          if (isset($field_value[0]['value'])) {
-            $output_value = new stdClass();
-            if (count($field_value) == 1) {
-              $output_value->value = $field_value[0]['value'];
-              $output_value->format = $field_value[0]['format'];
-              $output = $output_value;
-            }
-            elseif (count($field_value) > 1) {
-              for ($i = 0; $i < count($field_value); $i++) {
-                if (isset($field_value[$i]['value'])) {
-                  $output_value->value = $field_value[$i]['value'];
-                  $output_value->format = $field_value[$i]['format'];
-                  $output[] = $output_value;
-                }
-              }
-            }
-          }
-          else {
-            $output = '';
-          }
-
-          break;
-
-        case 'text_with_summary':
-          if (isset($field_value[0]['value'])) {
-            $output_value = new stdClass();
-            if (count($field_value) == 1) {
-              $output_value->summary = $field_value[0]['summary'];
-              $output_value->value = $field_value[0]['value'];
-              $output_value->format = $field_value[0]['format'];
-              $output = $output_value;
-            }
-            elseif (count($field_value) > 1) {
-              for ($i = 0; $i < count($field_value); $i++) {
-                if (isset($field_value[$i]['value']) || isset($field_value[$i]['summary'])) {
-                  $output_value->summary = $field_value[$i]['summary'];
-                  $output_value->value = $field_value[$i]['value'];
-                  $output_value->format = $field_value[$i]['format'];
-                  $output[] = $output_value;
-                }
-              }
-            }
-          }
-          else {
-            $output = '';
-          }
-          break;
-
-        case 'entity_reference':
-          if (isset($field_value['target_id'][0])) {
-            if (count($field_value['target_id']) == 1) {
-              $output = $field_value['target_id'][0]['target_id'];
-            }
-            elseif (count($field_value['target_id']) > 1) {
-              for ($i = 0; $i < count($field_value['target_id']); $i++) {
-                if (isset($field_value['target_id'][$i]['target_id'])) {
-                  $output[] = $field_value['target_id'][$i]['target_id'];
-                }
-              }
-            }
-          }
-          elseif (isset($field_value[0]['target_id'])) {
-            if (count($field_value) == 1) {
-              $output = $field_value[0]['target_id'];
-            }
-            elseif (count($field_value) > 1) {
-              for ($i = 0; $i < count($field_value); $i++) {
-                if (isset($field_value[$i]['target_id'])) {
-                  $output[] = $field_value[$i]['target_id'];
-                }
-              }
-            }
-          }
-          else {
-            $output = "";
-          }
-          break;
-
-        case 'image':
-          if (isset($field_value[0]['target_id'])) {
-            $output_value = new stdClass();
-            if (count($field_value) == 1) {
-              $output_value->alt = $field_value[0]['alt'];
-              $output_value->fids = $field_value[0]['target_id'];
-              $output_value->width = $field_value[0]['width'];
-              $output_value->height = $field_value[0]['height'];
-              $output_value->description = "";
-              $output_value->title = $field_value[0]['title'];
-              $output = $output_value;
-            }
-            elseif (count($field_value) > 1) {
-              for ($i = 0; $i < count($field_value); $i++) {
-                if (isset($field_value[$i]['target_id'])) {
-                  $output_value->alt = $field_value[$i]['alt'];
-                  $output_value->fids = $field_value[$i]['target_id'];
-                  $output_value->width = $field_value[$i]['width'];
-                  $output_value->height = $field_value[$i]['height'];
-                  $output_value->description = "";
-                  $output_value->title = $field_value[$i]['title'];
-                  $output[] = $output_value;
-                }
-              }
-            }
-          }
-          else {
-            $output = '';
-          }
-          break;
-
-        case 'link':
-          if (isset($field_value[0]['uri'])) {
-            $output_value = new stdClass();
-            if (count($field_value) == 1) {
-              $output_value->uri = $field_value[0]['uri'];
-              $output_value->title = $field_value[0]['title'];
-              $output = $output_value;
-            }
-            elseif (count($field_value) > 1) {
-              for ($i = 0; $i < count($field_value); $i++) {
-                if (isset($field_value[$i]['uri'])) {
-                  $output_value->uri = $field_value[$i]['uri'];
-                  $output_value->title = $field_value[$i]['title'];
-                  $output[] = $output_value;
-                }
-              }
-            }
-          }
-          else {
-            $output = '';
-          }
-          break;
-      }
+      $output = $field_process_event->output;
     }
 
     if (!isset($output) && empty($output)) {

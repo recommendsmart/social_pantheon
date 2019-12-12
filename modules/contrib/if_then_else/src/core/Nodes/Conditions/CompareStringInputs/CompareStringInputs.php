@@ -38,6 +38,7 @@ class CompareStringInputs extends Condition {
         ['code' => 'contains', 'name' => 'Input 2 Contains Input 1'],
         ['code' => 'startswith', 'name' => 'Input 2 Starts With Input 1'],
         ['code' => 'endswith', 'name' => 'Input 2 Ends With Input 1'],
+        ['code' => 'regular_expression', 'name' => 'Input 1 Regular Expression and Input 2 string'],
       ],
       'inputs' => [
         'input1' => [
@@ -153,6 +154,11 @@ class CompareStringInputs extends Condition {
         }
 
         break;
+      
+      case 'regular_expression':
+        if (preg_match($input1, $input2)) {
+          $output = TRUE;
+        }
     }
 
     $this->outputs['success'] = $output;

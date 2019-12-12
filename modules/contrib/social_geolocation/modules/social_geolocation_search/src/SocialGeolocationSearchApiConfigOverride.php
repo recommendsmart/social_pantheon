@@ -7,7 +7,6 @@ use Drupal\Core\Config\ConfigFactoryOverrideInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Config\StorageInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
-use Drupal\Core\Serialization\Yaml;
 
 /**
  * Config override sapi social_all social_content social_groups social_users.
@@ -159,9 +158,7 @@ class SocialGeolocationSearchApiConfigOverride implements ConfigFactoryOverrideI
    * {@inheritdoc}
    */
   public function getCacheableMetadata($name) {
-    // This configuration override is invalidated if the enabled modules
-    // are changed.
-    return (new CacheableMetadata())->addCacheTags(['config:core.extension']);
+    return new CacheableMetadata();
   }
 
   /**

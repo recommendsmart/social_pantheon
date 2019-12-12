@@ -4,7 +4,6 @@ namespace Drupal\if_then_else\core\Nodes\Actions\GetArrayIndexValueAction;
 
 use Drupal\if_then_else\core\Nodes\Actions\Action;
 use Drupal\if_then_else\Event\NodeSubscriptionEvent;
-use Drupal\Component\Utility\Html;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
@@ -52,7 +51,14 @@ class GetArrayIndexValueAction extends Action {
    * Process function for Textvalue node.
    */
   public function process() {
-    $this->outputs['index_value'] = '';
+    $index = (int) $this->data->value;
+
+    if (isset($this->inputs['input_array'][$index])) {
+      return $this->outputs['index_value'] = $this->inputs['input_array'][$index];
+    }
+    else {
+      $this->outputs['index_value'] = '';
+    }
   }
 
 }

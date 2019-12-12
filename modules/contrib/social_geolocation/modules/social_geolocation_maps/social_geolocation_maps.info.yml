@@ -3,12 +3,12 @@ description: 'Provides Map providers for showing Social Geolocation data in View
 type: module
 core: 8.x
 dependencies:
-  - social_geolocation
   - geolocation:geolocation_leaflet
-  - social_event
+  - social:social_event
+  - social_geolocation:social_geolocation
 package: Social
 
-# Information added by Drupal.org packaging script on 2019-10-17
-version: '8.x-1.0'
+# Information added by Drupal.org packaging script on 2019-12-06
+version: '8.x-1.2'
 project: 'social_geolocation'
-datestamp: 1571326395
+datestamp: 1575643986

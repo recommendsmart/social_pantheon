@@ -27,13 +27,13 @@ var VueUserHasEntityFieldAccessConditionControl = {
   template: `<div class="fields-container">
     <div class="entity-select">
       <label class="typo__label">Field</label>
-      <multiselect v-model="value" :options="options" @input="fieldValueChanged" label="name" track-by="code" 
+      <multiselect @wheel.native.stop="wheel" v-model="value" :options="options" @input="fieldValueChanged" label="name" track-by="code" 
       :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Select a field">
       </multiselect>      
     </div>
     <div class="operation-select">
       <label class="typo__label">Operation</label>
-      <multiselect v-model="opt_value" :options="opt_options" @input="optFieldValueChanged" label="name" track-by="code" 
+      <multiselect @wheel.native.stop="wheel" v-model="opt_value" :options="opt_options" @input="optFieldValueChanged" label="name" track-by="code" 
       :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Select Operation Access">
       </multiselect>      
     </div>    
