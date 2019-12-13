@@ -6,7 +6,7 @@ core: 8.x
 dependencies:
   - commerce_invoice:commerce_invoice
 
-# Information added by Drupal.org packaging script on 2019-11-07
-version: '8.x-1.0-beta1'
+# Information added by Drupal.org packaging script on 2019-11-27
+version: '8.x-2.0-beta1'
 project: 'commerce_invoice'
-datestamp: 1573127887
+datestamp: 1574885586

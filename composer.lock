@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "739bc83eadb4bb431928630691cefa42",
+    "content-hash": "9da675a7b82778ec345cbbdba6743009",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -2598,17 +2598,17 @@
         },
         {
             "name": "drupal/commerce_invoice",
-            "version": "1.0.0-beta1",
+            "version": "2.0.0-beta1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/commerce_invoice.git",
-                "reference": "8.x-1.0-beta1"
+                "reference": "8.x-2.0-beta1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/commerce_invoice-8.x-1.0-beta1.zip",
-                "reference": "8.x-1.0-beta1",
-                "shasum": "147a08ac854b7be7685a9c9015c00a6eb2d75b56"
+                "url": "https://ftp.drupal.org/files/projects/commerce_invoice-8.x-2.0-beta1.zip",
+                "reference": "8.x-2.0-beta1",
+                "shasum": "23e1041321fcafc34b618b6ad6a79cf6a987fa21"
             },
             "require": {
                 "drupal/commerce": "^2.15",
@@ -2625,11 +2625,11 @@
             "type": "drupal-module",
             "extra": {
                 "branch-alias": {
-                    "dev-1.x": "1.x-dev"
+                    "dev-2.x": "2.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta1",
-                    "datestamp": "1573127885",
+                    "version": "8.x-2.0-beta1",
+                    "datestamp": "1574885584",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
@@ -6410,6 +6410,53 @@
             "homepage": "https://www.drupal.org/project/flag",
             "support": {
                 "source": "https://git.drupalcode.org/project/flag"
+            }
+        },
+        {
+            "name": "drupal/flexible_views",
+            "version": "1.0.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/flexible_views.git",
+                "reference": "8.x-1.0-beta1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/flexible_views-8.x-1.0-beta1.zip",
+                "reference": "8.x-1.0-beta1",
+                "shasum": "eb82dd7108264844d361d90e0863417e26a06122"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta1",
+                    "datestamp": "1575978184",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "daveiano",
+                    "homepage": "https://www.drupal.org/user/2526160"
+                }
+            ],
+            "description": "Adds better usability and some improvements to Core Views module.",
+            "homepage": "https://www.drupal.org/project/flexible_views",
+            "support": {
+                "source": "https://git.drupalcode.org/project/flexible_views"
             }
         },
         {
