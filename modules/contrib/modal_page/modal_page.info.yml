@@ -1,0 +1,15 @@
+name: Modal Page
+description: Create modal for specifics pages.
+type: module
+core: '8.x'
+core_version_requirement: ^8 || ^9
+package: User interface
+configure: modal_page.settings
+dependencies:
+  - drupal:views
+  - 'drupal:system (>= 8.5)'
+
+# Information added by Drupal.org packaging script on 2019-12-13
+version: '8.x-2.6'
+project: 'modal_page'
+datestamp: 1576254186

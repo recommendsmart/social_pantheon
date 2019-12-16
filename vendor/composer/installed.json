@@ -289,7 +289,7 @@
         "version_normalized": "3.4.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/jquery/jquery-dist.git",
+            "url": "git@github.com:jquery/jquery-dist.git",
             "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
         },
         "dist": {
@@ -5848,6 +5848,54 @@
         }
     },
     {
+        "name": "drupal/entity_vistors",
+        "version": "1.0.0-alpha1",
+        "version_normalized": "1.0.0.0-alpha1",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/entity_vistors.git",
+            "reference": "8.x-1.0-alpha1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/entity_vistors-8.x-1.0-alpha1.zip",
+            "reference": "8.x-1.0-alpha1",
+            "shasum": "0297949ddfa2285d3178d8985208a962a0cf194e"
+        },
+        "require": {
+            "drupal/core": "~8.0"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.0-alpha1",
+                "datestamp": "1576338787",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Project has not opted into security advisory coverage!"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "midobel",
+                "homepage": "https://www.drupal.org/user/3526167"
+            }
+        ],
+        "homepage": "https://www.drupal.org/project/entity_vistors",
+        "support": {
+            "source": "https://git.drupalcode.org/project/entity_vistors"
+        }
+    },
+    {
         "name": "drupal/exif_orientation",
         "version": "1.0.0",
         "version_normalized": "1.0.0.0",
@@ -8328,57 +8376,6 @@
         }
     },
     {
-        "name": "drupal/membership_entity",
-        "version": "dev-2.x",
-        "version_normalized": "dev-2.x",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupalcode.org/project/membership_entity.git",
-            "reference": "0a3934d283144c900c383adf924467296ae36120"
-        },
-        "require": {
-            "drupal/core": "~8.5"
-        },
-        "type": "drupal-module",
-        "extra": {
-            "branch-alias": {
-                "dev-2.x": "2.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-2.x-dev",
-                "datestamp": "1523224980",
-                "security-coverage": {
-                    "status": "not-covered",
-                    "message": "Dev releases are not covered by Drupal security advisories."
-                }
-            }
-        },
-        "installation-source": "source",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0+"
-        ],
-        "authors": [
-            {
-                "name": "davidcsonka",
-                "homepage": "https://www.drupal.org/user/1761862"
-            },
-            {
-                "name": "draenen",
-                "homepage": "https://www.drupal.org/user/689392"
-            }
-        ],
-        "description": "Create and manage memberships",
-        "homepage": "https://www.drupal.org/project/membership_entity",
-        "keywords": [
-            "Drupal"
-        ],
-        "support": {
-            "source": "http://cgit.drupalcode.org/membership_entity",
-            "issues": "https://www.drupal.org/project/issues/membership_entity"
-        }
-    },
-    {
         "name": "drupal/menu_token",
         "version": "1.0.0-alpha3",
         "version_normalized": "1.0.0.0-alpha3",
@@ -8594,6 +8591,75 @@
         "support": {
             "source": "http://cgit.drupalcode.org/metatag",
             "issues": "http://drupal.org/project/issues/metatag"
+        }
+    },
+    {
+        "name": "drupal/modal_page",
+        "version": "2.6.0",
+        "version_normalized": "2.6.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/modal_page.git",
+            "reference": "8.x-2.6"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/modal_page-8.x-2.6.zip",
+            "reference": "8.x-2.6",
+            "shasum": "f04af5cbe447065123a564ccf13095af4cb9b499"
+        },
+        "require": {
+            "drupal/core": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-2.x": "2.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-2.6",
+                "datestamp": "1576254184",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Renato Gonçalves (RenatoG)",
+                "homepage": "https://www.drupal.org/u/RenatoG",
+                "email": "renatog@ciandt.com",
+                "role": "Maintainer"
+            },
+            {
+                "name": "Lucas Arruda (larruda)",
+                "homepage": "https://www.drupal.org/u/larruda",
+                "email": "lucas@ciandt.com",
+                "role": "Maintainer"
+            },
+            {
+                "name": "Felipe Ribeiro (felribeiro)",
+                "homepage": "https://www.drupal.org/u/felribeiro",
+                "email": "fribeiro@ciandt.com",
+                "role": "Maintainer"
+            },
+            {
+                "name": "thalles",
+                "homepage": "https://www.drupal.org/user/3589086"
+            }
+        ],
+        "description": "Create modal for specifics pages.",
+        "homepage": "https://www.drupal.org/project/modal_page",
+        "support": {
+            "source": "https://cgit.drupalcode.org/modal_page",
+            "issues": "https://www.drupal.org/project/issues/modal_page",
+            "irc": "irc://irc.freenode.org/drupal-contribute"
         }
     },
     {
@@ -13648,17 +13714,17 @@
     },
     {
         "name": "league/csv",
-        "version": "9.4.1",
-        "version_normalized": "9.4.1.0",
+        "version": "9.5.0",
+        "version_normalized": "9.5.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/thephpleague/csv.git",
-            "reference": "bf83acc23a7d60978fce36a384f97bf9d7d2ea0c"
+            "reference": "b348d09d0d258a4f068efb50a2510dc63101c213"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/thephpleague/csv/zipball/bf83acc23a7d60978fce36a384f97bf9d7d2ea0c",
-            "reference": "bf83acc23a7d60978fce36a384f97bf9d7d2ea0c",
+            "url": "https://api.github.com/repos/thephpleague/csv/zipball/b348d09d0d258a4f068efb50a2510dc63101c213",
+            "reference": "b348d09d0d258a4f068efb50a2510dc63101c213",
             "shasum": ""
         },
         "require": {
@@ -13678,7 +13744,7 @@
         "suggest": {
             "ext-iconv": "Needed to ease transcoding CSV using iconv stream filters"
         },
-        "time": "2019-10-17T06:05:32+00:00",
+        "time": "2019-12-15T19:51:41+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -14300,11 +14366,11 @@
     },
     {
         "name": "npm-asset/fortawesome--fontawesome-free",
-        "version": "5.12.0-patch1",
-        "version_normalized": "5.12.0.0-patch1",
+        "version": "5.12.0-patch2",
+        "version_normalized": "5.12.0.0-patch2",
         "dist": {
             "type": "tar",
-            "url": "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-5.12.0-1.tgz"
+            "url": "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-5.12.0-2.tgz"
         },
         "type": "npm-asset",
         "installation-source": "dist",

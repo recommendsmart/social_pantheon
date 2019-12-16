@@ -1,0 +1,20 @@
+add entity visitors entities:
+  title: 'Create new Entity visitors entities'
+
+administer entity visitors entities:
+  title: 'Administer Entity visitors entities'
+  description: 'Allow to access the administration form to configure Entity visitors entities.'
+  restrict access: true
+
+delete entity visitors entities:
+  title: 'Delete Entity visitors entities'
+
+edit entity visitors entities:
+  title: 'Edit Entity visitors entities'
+
+view published entity visitors entities:
+  title: 'View published Entity visitors entities'
+
+view unpublished entity visitors entities:
+  title: 'View unpublished Entity visitors entities'
+

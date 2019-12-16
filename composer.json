@@ -93,7 +93,6 @@
         "drupal/get_a_quote": "^1.0",
         "drupal/svg_image": "^1.9",
         "drupal/inline_entity_revision_form": "^1.1",
-        "drupal/membership_entity": "2.x-dev",
         "drupal/commerce_funds": "^1.0",
         "drupal/user_bundle": "1.x-dev",
         "drupal/user_attendance": "1.x-dev",
@@ -120,7 +119,9 @@
         "drupal/social_pwa": "^1.0@alpha",
         "drupal/commerce_stock": "^1.0@alpha",
         "drupal/dashboards": "^1.0",
-        "drupal/flexible_views": "^1.0"
+        "drupal/flexible_views": "^1.0",
+        "drupal/entity_vistors": "^1.0",
+        "drupal/modal_page": "^2.6"
 
         },
     "repositories": [

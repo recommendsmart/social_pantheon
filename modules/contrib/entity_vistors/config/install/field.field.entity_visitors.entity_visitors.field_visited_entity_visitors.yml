@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.entity_visitors.field_visited_entity_visitors
+  enforced:
+    module:
+      - entity_visitors
+id: entity_visitors.entity_visitors.field_visited_entity_visitors
+field_name: field_visited_entity_visitors
+entity_type: entity_visitors
+bundle: entity_visitors
+label: 'Visited entity visitors'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    include_anonymous: true
+    filter:
+      type: _none
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference

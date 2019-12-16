@@ -1,0 +1,28 @@
+<?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\entity_visitors\Event\UserLoginEvent;
+use Drupal\user\UserInterface;
+
+/**
+ * TODO LIST:
+ *  - show people who viewed this profile.
+ *  - filter the people who viewed this profile by role (think of it you want to show only non premium users).
+ */
+
+/**
+ * Implements hook_help().
+ */
+function entity_visitors_help($route_name, RouteMatchInterface $route_match)
+{
+  switch ($route_name) {
+    // Main module help for the entity_visitors module.
+    case 'entity_visitors':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module will create a block for each user showing the people who viewed their profile') . '</p>';
+      return $output;
+    default:
+  }
+}
+

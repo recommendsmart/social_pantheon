@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+  enforced:
+    module:
+      - entity_visitors
+third_party_settings:
+  field_permissions:
+    permission_type: public
+id: entity_visitors.field_visited_entity_visitors
+field_name: field_visited_entity_visitors
+entity_type: entity_visitors
+type: entity_reference
+settings:
+  target_type: user
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

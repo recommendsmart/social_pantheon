@@ -1,0 +1,10 @@
+name: 'Entity Visitors'
+type: module
+description: 'This modules provides you with blocks to view the users who visited the current entity.'
+core: 8.x
+package: 'Custom'
+
+# Information added by Drupal.org packaging script on 2019-12-14
+version: '8.x-1.0-alpha1'
+project: 'entity_vistors'
+datestamp: 1576338790

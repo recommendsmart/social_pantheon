@@ -1,0 +1,5 @@
+entity.entity_visitors.add_form:
+  route_name: entity.entity_visitors.add_form
+  title: 'Add Entity visitors'
+  appears_on:
+    - entity.entity_visitors.collection

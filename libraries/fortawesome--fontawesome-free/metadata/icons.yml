@@ -384,7 +384,7 @@ android:
   changes:
     - '3.2'
     - 5.0.0
-    - 5.12.0-1
+    - unreleased
   label: Android
   search:
     terms:
@@ -1004,7 +1004,7 @@ atlassian:
 atom:
   changes:
     - 5.2.0
-    - 5.12.0-1
+    - unreleased
   label: Atom
   search:
     terms:
@@ -1193,7 +1193,7 @@ bacon:
 bahai:
   changes:
     - 5.3.0
-    - 5.12.0-1
+    - unreleased
   label: Bahá'í
   search:
     terms:
@@ -1225,7 +1225,7 @@ balance-scale-left:
   changes:
     - 5.0.13
     - 5.9.0
-    - 5.12.0-1
+    - unreleased
   label: Balance Scale (Left-Weighted)
   search:
     terms:
@@ -1242,7 +1242,7 @@ balance-scale-right:
   changes:
     - 5.0.13
     - 5.9.0
-    - 5.12.0-1
+    - unreleased
   label: Balance Scale (Right-Weighted)
   search:
     terms:
@@ -1380,7 +1380,7 @@ bath:
   changes:
     - '4.7'
     - 5.0.0
-    - 5.12.0-1
+    - unreleased
   label: Bath
   search:
     terms:
@@ -1482,10 +1482,10 @@ bed:
   search:
     terms:
       - lodging
-      - mattress
       - rest
       - sleep
       - travel
+      - mattress
   styles:
     - solid
   unicode: f236
@@ -2892,7 +2892,7 @@ car-side:
   voted: false
 caravan:
   changes:
-    - 5.12.0-1
+    - unreleased
   label: Caravan
   search:
     terms:
@@ -2903,7 +2903,7 @@ caravan:
       - travel
   styles:
     - solid
-  unicode: f8ff
+  unicode: auto
   voted: true
 caret-down:
   changes:
@@ -4602,7 +4602,7 @@ compress-alt:
   changes:
     - '1'
     - 5.0.0
-    - 5.12.0-1
+    - unreleased
   label: Alternate Compress
   search:
     terms:
@@ -5656,7 +5656,7 @@ docker:
 dog:
   changes:
     - 5.4.0
-    - 5.12.0-1
+    - unreleased
   label: Dog
   search:
     terms:
@@ -6250,7 +6250,7 @@ envelope-open-text:
   changes:
     - 5.3.0
     - 5.10.1
-    - 5.12.0-1
+    - unreleased
   label: Envelope Open-text
   search:
     terms:
@@ -6498,7 +6498,7 @@ expand-alt:
   changes:
     - '1'
     - 5.0.0
-    - 5.12.0-1
+    - unreleased
   label: Alternate Expand
   search:
     terms:
@@ -7400,7 +7400,7 @@ firefox:
     - '4.4'
     - 5.0.0
     - 5.0.1
-    - 5.12.0-1
+    - unreleased
   label: Firefox
   search:
     terms:
@@ -7411,14 +7411,14 @@ firefox:
   voted: false
 firefox-browser:
   changes:
-    - 5.12.0-1
+    - unreleased
   label: Firefox Browser
   search:
     terms:
       - browser
   styles:
     - brands
-  unicode: f907
+  unicode: auto
   voted: false
 first-aid:
   changes:
@@ -7859,7 +7859,7 @@ free-code-camp:
   changes:
     - '4.7'
     - 5.0.0
-    - 5.12.0-1
+    - unreleased
   label: freeCodeCamp
   search:
     terms: []
@@ -8937,7 +8937,7 @@ grin-tongue-wink:
     - 5.1.0
     - 5.11.0
     - 5.11.1
-    - 5.12.0-1
+    - unreleased
   label: Winking Face With Tongue
   search:
     terms:
@@ -9399,7 +9399,7 @@ hand-spock:
   changes:
     - '4.4'
     - 5.0.0
-    - 5.12.0-1
+    - unreleased
   label: Spock (Hand)
   search:
     terms:
@@ -10279,13 +10279,13 @@ id-card-alt:
   voted: false
 ideal:
   changes:
-    - 5.12.0-1
+    - unreleased
   label: iDeal
   search:
     terms: []
   styles:
     - brands
-  unicode: f913
+  unicode: auto
   voted: true
 igloo:
   changes:
@@ -12173,7 +12173,7 @@ mercury:
 meteor:
   changes:
     - 5.5.0
-    - 5.12.0-1
+    - unreleased
   label: Meteor
   search:
     terms:
@@ -12188,13 +12188,13 @@ meteor:
   voted: false
 microblog:
   changes:
-    - 5.12.0-1
+    - unreleased
   label: Micro.blog
   search:
     terms: []
   styles:
     - brands
-  unicode: f91a
+  unicode: auto
   voted: true
 microchip:
   changes:
@@ -13815,7 +13815,7 @@ pied-piper:
     - '4.6'
     - 5.0.0
     - 5.0.10
-    - 5.12.0-1
+    - unreleased
   label: Pied Piper Logo
   search:
     terms: []
@@ -13859,13 +13859,13 @@ pied-piper-pp:
   voted: false
 pied-piper-square:
   changes:
-    - 5.12.0-1
+    - unreleased
   label: Pied Piper Square Logo (Old)
   search:
     terms: []
   styles:
     - brands
-  unicode: f91e
+  unicode: auto
   voted: false
 piggy-bank:
   changes:
@@ -14074,7 +14074,7 @@ plug:
   changes:
     - '4.2'
     - 5.0.0
-    - 5.12.0-1
+    - unreleased
   label: Plug
   search:
     terms:
@@ -15101,7 +15101,7 @@ road:
 robot:
   changes:
     - 5.0.13
-    - 5.12.0-1
+    - unreleased
   label: Robot
   search:
     terms:
@@ -15118,7 +15118,7 @@ rocket:
     - '3.1'
     - 5.0.0
     - 5.7.0
-    - 5.12.0-1
+    - unreleased
   label: rocket
   search:
     terms:
@@ -15345,7 +15345,7 @@ safari:
   changes:
     - '4.4'
     - 5.0.0
-    - 5.12.0-1
+    - unreleased
   label: Safari
   search:
     terms:
@@ -15378,7 +15378,7 @@ satellite:
   changes:
     - 5.6.0
     - 5.10.1
-    - 5.12.0-1
+    - unreleased
   label: Satellite
   search:
     terms:
@@ -15393,7 +15393,7 @@ satellite:
 satellite-dish:
   changes:
     - 5.6.0
-    - 5.12.0-1
+    - unreleased
   label: Satellite Dish
   search:
     terms:
@@ -15402,6 +15402,7 @@ satellite-dish:
       - hardware
       - receiver
       - saucer
+      - space
       - signal
   styles:
     - solid
@@ -15667,7 +15668,7 @@ servicestack:
 shapes:
   changes:
     - 5.2.0
-    - 5.12.0-1
+    - unreleased
   label: Shapes
   search:
     terms:
@@ -15893,7 +15894,7 @@ shower:
   changes:
     - '4.7'
     - 5.0.0
-    - 5.12.0-1
+    - unreleased
   label: Shower
   search:
     terms:
@@ -16832,6 +16833,7 @@ space-shuttle:
       - machine
       - nasa
       - rocket
+      - space
       - transportation
   styles:
     - solid
@@ -18680,7 +18682,7 @@ traffic-light:
   voted: false
 trailer:
   changes:
-    - 5.12.0-1
+    - unreleased
   label: Trailer
   search:
     terms:
@@ -18690,7 +18692,7 @@ trailer:
       - travel
   styles:
     - solid
-  unicode: f941
+  unicode: auto
   voted: true
 train:
   changes:
@@ -19017,7 +19019,7 @@ twitch:
   changes:
     - '4.2'
     - 5.0.0
-    - 5.12.0-1
+    - unreleased
   label: Twitch
   search:
     terms: []
@@ -19198,13 +19200,13 @@ uniregistry:
   voted: false
 unity:
   changes:
-    - 5.12.0-1
+    - unreleased
   label: Unity 3D
   search:
     terms: []
   styles:
     - brands
-  unicode: f949
+  unicode: auto
   voted: true
 universal-access:
   changes:
@@ -19607,7 +19609,7 @@ user-ninja:
 user-nurse:
   changes:
     - 5.7.0
-    - 5.12.0-1
+    - unreleased
   label: Nurse
   search:
     terms:
