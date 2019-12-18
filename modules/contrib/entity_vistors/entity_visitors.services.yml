@@ -1,9 +1,0 @@
-services:
-  entity_visitors_route_subscriber:
-    class: '\Drupal\entity_visitors\EventSubscriber\EntityRouteMatchSubscriber'
-    tags:
-      - { name: 'event_subscriber' }
-    arguments: ['@entity_visitors.manager']
-  entity_visitors.manager:
-    class: Drupal\entity_visitors\Service\EntityVisitorsManager
-    arguments: [ '@config.manager', '@current_user', '@current_route_match', '@event_dispatcher', '@entity_type.manager', '@entity_type.bundle.info']

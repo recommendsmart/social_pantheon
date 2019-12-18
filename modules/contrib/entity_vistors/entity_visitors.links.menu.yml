@@ -1,6 +1,0 @@
-entity_visitors.entity_visitiors_config:
-  title: 'Entity Visitors Settings'
-  route_name: entity_visitors.entity_visitiors_config
-  description: 'Edit the Entity Visitors configurations'
-  parent: system.admin_config_system
-  weight: 99

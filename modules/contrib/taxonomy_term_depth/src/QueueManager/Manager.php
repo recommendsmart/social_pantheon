@@ -46,10 +46,7 @@ class Manager {
     $query = $this->getTermsQuery();
 
     if (!$queue_all) {
-      $query->condition(
-        (new Condition())
-          ->condition('td.depth_level', '', 'IS NULL')
-      );
+      $query->isNull('td.depth_level');
     }
     else {
       // Delete queue if have one.

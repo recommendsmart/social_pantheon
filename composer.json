@@ -118,10 +118,7 @@
         "drupal/role_inheritance": "^1.0",
         "drupal/social_pwa": "^1.0@alpha",
         "drupal/commerce_stock": "^1.0@alpha",
-        "drupal/dashboards": "^1.0",
-        "drupal/flexible_views": "^1.0",
-        "drupal/entity_vistors": "^1.0",
-        "drupal/modal_page": "^2.6"
+        "drupal/flexible_views": "^1.0"
 
         },
     "repositories": [
