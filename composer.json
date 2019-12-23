@@ -67,7 +67,6 @@
         "drupal/fieldblock": "^2.0",
         "drupal/dfinance": "1.x-dev",
         "drupal/zurb_foundation": "^6.0",
-        "drupal/foundation_layouts": "^6.0",
         "drupal/group_behavior": "^1.0",
         "drupal/context_entity_field": "^1.0",
         "drupal/color_field": "^2.0",
@@ -90,7 +89,6 @@
         "drupal/field_inheritance": "^1.0",
         "drupal/system_tags": "^1.6",
         "drupal/number_formatter": "^1.0",
-        "drupal/get_a_quote": "^1.0",
         "drupal/svg_image": "^1.9",
         "drupal/inline_entity_revision_form": "^1.1",
         "drupal/commerce_funds": "^1.0",
@@ -118,7 +116,8 @@
         "drupal/role_inheritance": "^1.0",
         "drupal/social_pwa": "^1.0@alpha",
         "drupal/commerce_stock": "^1.0@alpha",
-        "drupal/flexible_views": "^1.0"
+        "drupal/flexible_views": "^1.0",
+        "drupal/entity_theme_engine": "^1.0"
 
         },
     "repositories": [
