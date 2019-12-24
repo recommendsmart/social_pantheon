@@ -1,23 +1,23 @@
 <?php
 
-namespace Drupal\invoicer\Plugin\Field\FieldWidget;
+namespace Drupal\orders\Plugin\Field\FieldWidget;
 
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Witget for line_item elements.
+ * Witget for order_line_item elements.
  *
  * @FieldWidget(
- *   id = "line_item_widget",
- *   label = @Translation("Line item widget"),
+ *   id = "order_line_item_widget",
+ *   label = @Translation("Order Line item widget"),
  *   field_types = {
- *     "line_item"
+ *     "order_line_item"
  *   }
  * )
  */
-class LineItemWidget extends WidgetBase {
+class OrderLineItemWidget extends WidgetBase {
 
   /**
    * {@inheritdoc}
@@ -60,7 +60,7 @@ class LineItemWidget extends WidgetBase {
     $gst = $items->get($delta)->get('gst')->getValue();
     $gst = (!is_null($gst) ? $gst : 0);
 
-    $config = \Drupal::service('config.factory')->get('invoicer.settings');
+    $config = \Drupal::service('config.factory')->get('orders.settings');
     $gstOptions = $config->get('gst_types');
     $options = [];
     foreach ($gstOptions as $gstOption) {
@@ -73,17 +73,16 @@ class LineItemWidget extends WidgetBase {
       '#type' => 'select',
       '#title' => t('GST'),
       '#default_value' => $gst,
-      '#scale' => '4',
       '#options' => $options,
       '#attributes' => ['class' => ['gst']],
     ];
 
-	$elements['base_price'] = [
+  $elements['base_price'] = [
       '#type' => 'number',
       '#title' => t('Price before Tax'),
       '#default_value' => $quantity * $amount,
       '#step' => 0.01,
-      '#size' => 20,
+      '#size' => 10,
       '#scale' => 2,
       '#maxlength' => 10,
       '#step' => 0.01,
@@ -92,9 +91,9 @@ class LineItemWidget extends WidgetBase {
 
     $elements['total_price'] = [
       '#type' => 'number',
-      '#title' => t('Price with Tax'),
+      '#title' => t('Price with Tax/Discount'),
       '#default_value' => $quantity * $amount * (1 + $gst * (0.01)),
-      '#size' => 20,
+      '#size' => 10,
       '#scale' => 2,
       '#step' => 0.01,
       '#maxlength' => 12,

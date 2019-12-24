@@ -1,0 +1,4 @@
+orders_form:
+  version: 1.x
+  js:
+    js/OrdersForm.js: {}

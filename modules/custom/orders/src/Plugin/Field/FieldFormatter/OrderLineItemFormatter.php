@@ -1,23 +1,23 @@
 <?php
 
-namespace Drupal\invoicer\Plugin\Field\FieldFormatter;
+namespace Drupal\orders\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Field\FieldItemListInterface;
 
 /**
- * Plugin implementation of the 'field_line_item' formatter.
+ * Plugin implementation of the 'order_field_line_item' formatter.
  *
  * @FieldFormatter(
- *   id = "line_item_formatter",
- *   module = "invoicer",
- *   label = @Translation("Line Item formatter"),
+ *   id = "order_line_item_formatter",
+ *   module = "orders",
+ *   label = @Translation("Order Line Item formatter"),
  *   field_types = {
- *     "line_item"
+ *     "order_line_item"
  *   }
  * )
  */
-class LineItemFormatter extends FormatterBase {
+class OrderLineItemFormatter extends FormatterBase {
 
   /**
    * {@inheritdoc}

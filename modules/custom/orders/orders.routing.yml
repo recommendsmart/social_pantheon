@@ -1,0 +1,7 @@
+orders.settings.form:
+  path: '/admin/config/orders'
+  defaults:
+    _form: '\Drupal\orders\Form\OrdersConfigForm'
+    _title: 'Orders Configure'
+  requirements:
+    _permission: 'administer Orders settings'
