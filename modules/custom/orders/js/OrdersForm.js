@@ -13,7 +13,7 @@
      * @prop {Drupal~behaviorAttach} attach
      *   Adds behaviors to the field storage add form.
      */
-    Drupal.behaviors.ordersOrder = {
+    Drupal.behaviors.ordersOrders = {
         attach: function (context) {
             $(".quantity").change(updateLinePrice);
             $(".amount").change(updateLinePrice);
