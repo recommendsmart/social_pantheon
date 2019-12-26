@@ -16,3 +16,8 @@ entity.orders_type.collection:
   parent: system.admin_structure
   weight: 99
 
+orders.settings:
+  title: 'Orders settings'
+  parent: system.admin_config_system
+  description: 'Manage orders settings.'
+  route_name: orders.settings.form

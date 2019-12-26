@@ -17,11 +17,11 @@
   float: left;
 }
 
-.field--type-order-line-item .form-item .form-number {
+.field--type-line-item .form-item .form-number {
   width: 5rem;
 }
 
-.field--type-order-line-item .form-item .form-number.quantity {
+.field--type-line-item .form-item .form-number.quantity {
   width: 4rem;
 }
 
