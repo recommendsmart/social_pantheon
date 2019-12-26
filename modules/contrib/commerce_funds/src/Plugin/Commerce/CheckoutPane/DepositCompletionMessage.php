@@ -29,10 +29,12 @@ class DepositCompletionMessage extends CheckoutPaneBase {
    * {@inheritdoc}
    */
   public function buildPaneForm(array $pane_form, FormStateInterface $form_state, array &$complete_form) {
-    $pane_form['#theme'] = 'commerce_funds_deposit_completion_message';
-    $pane_form['#order_entity'] = $this->order;
-    $pane_form['#amount'] = number_format($this->order->getItems()[0]->getTotalPrice()->getNumber(), '2');
-    $pane_form['#currency_code'] = $this->order->getItems()[0]->getTotalPrice()->getCurrencyCode();
+    $pane_form['message'] = [
+      '#theme' => 'commerce_funds_deposit_completion_message',
+      '#order_entity' => $this->order,
+      '#amount' => number_format($this->order->getItems()[0]->getTotalPrice()->getNumber(), '2'),
+      '#currency_code' => $this->order->getItems()[0]->getTotalPrice()->getCurrencyCode(),
+    ];
 
     return $pane_form;
   }

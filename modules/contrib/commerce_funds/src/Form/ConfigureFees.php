@@ -141,6 +141,7 @@ class ConfigureFees extends ConfigFormBase {
       '#required' => TRUE,
     ];
 
+    /* Experimental
     $form['commerce_funds']['payment_rate'] = [
       '#type' => 'number',
       '#min' => 0,
@@ -164,7 +165,7 @@ class ConfigureFees extends ConfigFormBase {
       '#maxlength' => 3,
       '#required' => TRUE,
     ];
-
+    */
     $form['deposit'] = [
       '#type' => 'details',
       '#title' => $this->t('Deposit Fees'),

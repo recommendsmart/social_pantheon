@@ -221,10 +221,12 @@ class FeesManager {
       $transaction_amount_after_fee_fixed = Calculator::subtract($brut_amount, $fee_fixed);
       $transaction_amount_after_fees = min([$transaction_amount_after_fee_rate, $transaction_amount_after_fee_fixed]);
     }
-    $rate = Calculator::divide($fee_rate, '100');
-    $transaction_amount_after_fee_rate = Calculator::round(Calculator::multiply((string) $brut_amount, Calculator::add('1', $rate)), 2);
-    $transaction_amount_after_fee_fixed = Calculator::add((string) $brut_amount, $fee_fixed);
-    $transaction_amount_after_fees = max([$transaction_amount_after_fee_rate, $transaction_amount_after_fee_fixed]);
+    else {
+      $rate = Calculator::divide($fee_rate, '100');
+      $transaction_amount_after_fee_rate = Calculator::round(Calculator::multiply((string) $brut_amount, Calculator::add('1', $rate)), 2);
+      $transaction_amount_after_fee_fixed = Calculator::add((string) $brut_amount, $fee_fixed);
+      $transaction_amount_after_fees = max([$transaction_amount_after_fee_rate, $transaction_amount_after_fee_fixed]);
+    }
 
     $fee = Calculator::subtract($transaction_amount_after_fees, (string) $brut_amount);
 

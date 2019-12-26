@@ -200,10 +200,6 @@ class TransactionManager {
       $net_amount = $transaction->getBrutAmount();
     }
 
-    if ($transaction->bundle() == 'payment') {
-      $net_amount = $transaction->getBrutAmount();
-    }
-
     $balance = $this->loadAccountBalance($account);
     $balance[$currency_code] = isset($balance[$currency_code]) ? $balance[$currency_code] : 0;
     $balance[$currency_code] = Calculator::subtract((string) $balance[$currency_code], (string) $net_amount, 2);

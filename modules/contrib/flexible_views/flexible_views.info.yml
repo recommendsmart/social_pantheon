@@ -6,7 +6,7 @@ package: 'Views'
 dependencies:
   - drupal:views
 
-# Information added by Drupal.org packaging script on 2019-12-10
-version: '8.x-1.0-beta1'
+# Information added by Drupal.org packaging script on 2019-12-22
+version: '8.x-1.0-beta2'
 project: 'flexible_views'
-datestamp: 1575978198
+datestamp: 1577048887
