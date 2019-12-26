@@ -1,6 +1,6 @@
 /**
  * @file
- * Attaches the behaviors for the invoicer module.
+ * Attaches the behaviors for the orders module.
  */
 
 (function ($, Drupal, drupalSettings) {
@@ -13,7 +13,7 @@
      * @prop {Drupal~behaviorAttach} attach
      *   Adds behaviors to the field storage add form.
      */
-    Drupal.behaviors.ordersOrders = {
+    Drupal.behaviors.orders = {
         attach: function (context) {
             $(".quantity").change(updateLinePrice);
             $(".amount").change(updateLinePrice);

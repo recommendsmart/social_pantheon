@@ -19,6 +19,8 @@ class OrdersForm extends ContentEntityForm {
     /* @var $entity \Drupal\orders\Entity\Orders */
     $form = parent::buildForm($form, $form_state);
 
+	$form['#attached']['library'][] = 'orders/orders_form';
+	
     if (!$this->entity->isNew()) {
       $form['new_revision'] = [
         '#type' => 'checkbox',
