@@ -91,7 +91,7 @@ class OrderLineItemWidget extends WidgetBase {
 
     $elements['total_price'] = [
       '#type' => 'number',
-      '#title' => t('Price with Tax/Discount'),
+      '#title' => t('Price with Tax'),
       '#default_value' => $quantity * $amount * (1 + $gst * (0.01)),
       '#size' => 10,
       '#scale' => 2,

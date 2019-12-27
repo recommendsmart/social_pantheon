@@ -105,6 +105,8 @@ class Orders extends RevisionableContentEntityBase implements OrdersInterface {
    */
   public function preSave(EntityStorageInterface $storage) {
     parent::preSave($storage);
+    $date = strtotime($this->date->value);
+    $this->set('series', date('Y', $date));
 
     foreach (array_keys($this->getTranslationLanguages()) as $langcode) {
       $translation = $this->getTranslation($langcode);
@@ -249,6 +251,45 @@ class Orders extends RevisionableContentEntityBase implements OrdersInterface {
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE)
       ->setRequired(TRUE);
+      $fields['date'] = BaseFieldDefinition::create('datetime')
+        ->setLabel(t('Date'))
+        ->setDescription(t('Date of the invoice.'))
+        ->setSetting('datetime_type', 'date')
+        ->setDefaultValue('')
+        ->setDisplayOptions('form', [
+          'label' => 'above',
+          'weight' => -4,
+          'type' => 'datetime_default',
+        ])
+        ->setDisplayOptions('view', [
+          'label' => 'above',
+          'type' => 'datetime_default',
+          'weight' => 0,
+        ])
+        ->setDisplayConfigurable('form', TRUE)
+        ->setDisplayConfigurable('view', TRUE);
+
+      $fields['number'] = BaseFieldDefinition::create('integer')
+        ->setLabel(t('Number'))
+        ->setDisplayOptions('form', [
+          'label' => 'above',
+          'type' => 'number',
+          'weight' => -4,
+        ])
+        ->setDisplayOptions('view', array(
+          'label' => 'above',
+          'weight' => 0,
+        ))
+        ->setDisplayConfigurable('form', TRUE)
+        ->setDisplayConfigurable('view', TRUE);
+
+      $fields['series'] = BaseFieldDefinition::create('string')
+        ->setLabel(t('Series'))
+        ->setDisplayOptions('view', array(
+          'label' => 'above',
+          'weight' => 0,
+        ))
+        ->setDisplayConfigurable('view', TRUE);
 
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Publishing status'))
@@ -259,6 +300,154 @@ class Orders extends RevisionableContentEntityBase implements OrdersInterface {
         'type' => 'boolean_checkbox',
         'weight' => -3,
       ]);
+
+      // Customer info.
+      $fields['customer_id'] = BaseFieldDefinition::create('string')
+        ->setLabel(t('Customer ID'))
+        ->setSettings(['max_length' => 16, 'text_processing' => 0])
+        ->setDisplayOptions('form', [
+          'label' => 'above',
+          'type' => 'string_textfield',
+          'weight' => 0,
+        ])
+        ->setDisplayConfigurable('form', TRUE)
+        ->setDisplayOptions('view', [
+          'label' => 'above',
+          'weight' => 0,
+        ])
+        ->setDisplayConfigurable('view', TRUE);
+
+      $fields['customer_name'] = BaseFieldDefinition::create('string')
+        ->setLabel(t('Customer name'))
+        ->setSettings(['max_length' => 16])
+        ->setDisplayOptions('form', [
+          'label' => 'above',
+          'type' => 'string_textfield',
+          'weight' => 0,
+        ])
+        ->setDisplayConfigurable('form', TRUE)
+        ->setDisplayOptions('view', [
+          'label' => 'above',
+          'weight' => 0,
+        ])
+        ->setDisplayConfigurable('view', TRUE);
+
+      $fields['customer_address'] = BaseFieldDefinition::create('string_long')
+        ->setLabel(t('Customer address'))
+        ->setSettings(['max_length' => 256, 'text_processing' => 1])
+        ->setDisplayOptions('form', [
+          'label' => 'above',
+          'weight' => 0,
+        ])
+        ->setDisplayConfigurable('form', TRUE)
+        ->setDisplayOptions('view', [
+          'label' => 'above',
+          'weight' => 0,
+        ])
+        ->setDisplayConfigurable('view', TRUE);
+
+      // Provider info.
+      $fields['provider_id'] = BaseFieldDefinition::create('string')
+        ->setLabel(t('Provider ID'))
+        ->setSettings(['max_length' => 16, 'text_processing' => 0])
+        ->setDisplayOptions('form', [
+          'label' => 'above',
+          'type' => 'string_textfield',
+          'weight' => 0,
+        ])
+        ->setDisplayConfigurable('form', TRUE)
+        ->setDisplayOptions('view', [
+          'label' => 'above',
+          'weight' => 0,
+        ])
+        ->setDisplayConfigurable('view', TRUE);
+
+      $fields['provider_name'] = BaseFieldDefinition::create('string')
+        ->setLabel(t('Provider name'))
+        ->setSettings(['max_length' => 16])
+        ->setDisplayOptions('form', [
+          'label' => 'above',
+          'type' => 'string_textfield',
+          'weight' => 0,
+        ])
+        ->setDisplayConfigurable('form', TRUE)
+        ->setDisplayOptions('view', [
+          'label' => 'above',
+          'weight' => 0,
+        ])
+        ->setDisplayConfigurable('view', TRUE);
+
+      $fields['provider_address'] = BaseFieldDefinition::create('string_long')
+        ->setLabel(t('Provider address'))
+        ->setSettings(['max_length' => 256, 'text_processing' => 1])
+        ->setDisplayOptions('form', [
+          'label' => 'above',
+          'weight' => 0,
+        ])
+        ->setDisplayConfigurable('form', TRUE)
+        ->setDisplayOptions('view', [
+          'label' => 'above',
+          'weight' => 0,
+        ])
+        ->setDisplayConfigurable('view', TRUE);
+
+      // Subtotal.
+      $fields['sub_total'] = BaseFieldDefinition::create('decimal')
+        ->setLabel(t('Subtotal'))
+        ->setSettings(['precision' => 32, 'scale' => 2])
+        ->setDisplayOptions('form', [
+          'label' => 'above',
+          'weight' => 0,
+        ])
+        ->setDisplayConfigurable('form', TRUE)
+        ->setDisplayOptions('view', [
+          'label' => 'above',
+          'weight' => 0,
+        ])
+        ->setDisplayConfigurable('view', TRUE);
+
+      $fields['gst'] = BaseFieldDefinition::create('decimal')
+        ->setLabel(t('GST'))
+        ->setSettings(['precision' => 32, 'scale' => 2])
+        ->setDisplayOptions('form', [
+          'label' => 'above',
+          'weight' => 0,
+        ])
+        ->setDisplayConfigurable('form', TRUE)
+        ->setDisplayOptions('view', [
+          'label' => 'above',
+          'weight' => 0,
+        ])
+        ->setDisplayConfigurable('view', TRUE);
+
+      $fields['total'] = BaseFieldDefinition::create('decimal')
+        ->setLabel(t('Total'))
+        ->setSettings(['precision' => 32, 'scale' => 2])
+        ->setDisplayOptions('form', [
+          'label' => 'above',
+          'weight' => 0,
+        ])
+        ->setDisplayOptions('view', [
+          'label' => 'above',
+          'weight' => 0,
+        ])
+        ->setDisplayConfigurable('view', TRUE);
+
+      // General.
+      $fields['comments'] = BaseFieldDefinition::create('string_long')
+        ->setLabel(t('Comments'))
+        ->setSettings(['max_length' => 256, 'text_processing' => 1])
+        ->setDisplayOptions('form', ['label' => 'above'])
+        ->setDisplayConfigurable('form', TRUE)
+        ->setDisplayOptions('form', [
+          'label' => 'above',
+          'weight' => 5,
+        ])
+        ->setDisplayOptions('view', [
+          'label' => 'above',
+          'weight' => 0,
+        ])
+        ->setDisplayConfigurable('view', TRUE);
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))
@@ -277,5 +466,4 @@ class Orders extends RevisionableContentEntityBase implements OrdersInterface {
 
     return $fields;
   }
-
 }

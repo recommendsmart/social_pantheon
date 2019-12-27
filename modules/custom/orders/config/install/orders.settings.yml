@@ -8,6 +8,9 @@ gst_types:
   - 4:
     value: 4
     value_label: '4%'
+  - 5:
+    value: 5
+    value_label: '5%'
   - 6:
     value: 6
     value_label: '6%'
@@ -38,3 +41,6 @@ gst_types:
   - 21:
     value: 21
     value_label: '21%'
+  - 28:
+    value: 28
+    value_label: '28%'
