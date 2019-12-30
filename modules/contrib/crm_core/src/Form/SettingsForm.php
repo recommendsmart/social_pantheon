@@ -13,6 +13,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class SettingsForm extends ConfigFormBase {
 
+  /**
+   * Theme Handler.
+   *
+   * @var \Drupal\Core\Extension\ThemeHandlerInterface
+   */
   protected $themeHandler;
 
   /**
@@ -24,6 +29,7 @@ class SettingsForm extends ConfigFormBase {
    *   Theme manager.
    */
   public function __construct(ConfigFactoryInterface $config_factory, ThemeHandlerInterface $theme_handler) {
+    parent::__construct($config_factory, $theme_handler);
     $this->setConfigFactory($config_factory);
     $this->themeHandler = $theme_handler;
   }

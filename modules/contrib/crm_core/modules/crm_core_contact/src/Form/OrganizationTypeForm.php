@@ -5,7 +5,6 @@ namespace Drupal\crm_core_contact\Form;
 use Drupal\Core\Entity\BundleEntityFormBase;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Url;
 
 /**
  * Class OrganizationTypeForm.

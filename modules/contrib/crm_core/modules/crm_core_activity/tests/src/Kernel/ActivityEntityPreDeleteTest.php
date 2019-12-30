@@ -10,7 +10,7 @@ use Drupal\KernelTests\KernelTestBase;
  * Tests crm_core_activity_entity_predelete().
  *
  * @group crm_core
- * @covers crm_core_activity_entity_predelete
+ * @covers ::crm_core_activity_entity_predelete
  */
 class ActivityEntityPreDeleteTest extends KernelTestBase {
 

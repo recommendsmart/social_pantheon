@@ -17,6 +17,11 @@ class CrmCoreDemoTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+  protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
   public static $modules = [
     'views',
     'dynamic_entity_reference',

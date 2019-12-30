@@ -3,14 +3,13 @@
 namespace Drupal\crm_core_activity;
 
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Entity\EntityChangedInterface;
 use Drupal\crm_core_contact\ContactInterface;
 use Drupal\user\EntityOwnerInterface;
 
 /**
  * Defines methods for CRM Activity entities.
  */
-interface ActivityInterface extends ContentEntityInterface, EntityChangedInterface, EntityOwnerInterface {
+interface ActivityInterface extends ContentEntityInterface, EntityOwnerInterface {
 
   /**
    * Add a participant to the activity.

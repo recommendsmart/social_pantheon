@@ -4,7 +4,6 @@ namespace Drupal\crm_core_user_sync;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannelInterface;
-use Drupal\crm_core_contact\Entity\Individual;
 use Drupal\crm_core_contact\IndividualInterface;
 use Drupal\crm_core_user_sync\Entity\Relation;
 use Drupal\user\UserInterface;
@@ -172,9 +171,9 @@ class CrmCoreUserSyncRelation implements CrmCoreUserSyncRelationInterface {
 
       $config = \Drupal::config('crm_core_user_sync.settings');
       if ($config->get('auto_sync_user_relate') && isset($fields['email']) && !empty($fields['email'])) {
-        $matches =  $this->individualStorage->loadByProperties([
+        $matches = $this->individualStorage->loadByProperties([
           $fields['email'] => $account->getEmail(),
-            'type' => $contact_type
+          'type' => $contact_type,
         ]);
         if (count($matches) === 1) {
           $contact = reset($matches);

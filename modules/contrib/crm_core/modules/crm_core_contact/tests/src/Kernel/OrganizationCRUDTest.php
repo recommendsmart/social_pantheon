@@ -59,7 +59,7 @@ class OrganizationCRUDTest extends KernelTestBase {
       ]
     );
     $organization_type_id = $organization_type->id();
-    $this->assertTrue(isset($organization_type_id) && $organization_type_id == $id, t('New organization type @id exists.', ['@id' => $id]));
+    $this->assertSame($organization_type_id, $id, "New organization type $id exists.");
     $this->assertEquals(SAVED_NEW, $organization_type->save(), 'Organization type saved.');
 
     // Load.
@@ -68,11 +68,11 @@ class OrganizationCRUDTest extends KernelTestBase {
     $this->assertEquals($organization_type->label(), $organization_type_load->label(), 'Loaded organization type has same label.');
     $this->assertEquals($organization_type->getDescription(), $organization_type_load->getDescription(), 'Loaded organization type has same description.');
     $uuid = $organization_type_load->uuid();
-    $this->assertTrue(!empty($uuid), 'Loaded organization type has uuid.');
+    $this->assertNotEmpty($uuid, 'Loaded organization type has uuid.');
 
     // Test OrganizationType::getNames().
     $organization_type_labels = OrganizationType::getNames();
-    $this->assertTrue($organization_type->label() == $organization_type_labels[$organization_type->id()]);
+    $this->assertSame($organization_type->label(), $organization_type_labels[$organization_type->id()]);
 
     // Delete.
     $organization_type_load->delete();
@@ -100,7 +100,7 @@ class OrganizationCRUDTest extends KernelTestBase {
     // Load.
     $organization_load = Organization::load($organization->id());
     $uuid = $organization_load->uuid();
-    $this->assertTrue(!empty($uuid), 'Loaded organization has uuid.');
+    $this->assertNotEmpty($uuid, 'Loaded organization has uuid.');
 
     $activity_type = ActivityType::create(['type' => 'activity_test']);
     $activity_type->save();
@@ -113,7 +113,7 @@ class OrganizationCRUDTest extends KernelTestBase {
 
     // Load activity.
     $activity_load = Activity::load($activity->id());
-    $this->assertTrue(!empty($activity_load->uuid()), 'Loaded activity has uuid.');
+    $this->assertNotEmpty($activity_load->uuid(), 'Loaded activity has uuid.');
 
     // Delete first organization, activity should'n be deleted because it's
     // related to second organization.

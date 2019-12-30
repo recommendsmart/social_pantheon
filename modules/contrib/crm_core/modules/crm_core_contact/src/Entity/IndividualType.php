@@ -149,14 +149,20 @@ class IndividualType extends ConfigEntityBundleBase implements ContactTypeInterf
   }
 
   /**
+   * Get primary fields.
+   *
    * @return array
+   *   Primary fields.
    */
   public function getPrimaryFields(): array {
     return $this->primary_fields;
   }
 
   /**
+   * Set primary fields.
+   *
    * @param array $primary_fields
+   *   Primary fields.
    */
   public function setPrimaryFields(array $primary_fields): void {
     $this->primary_fields = $primary_fields;

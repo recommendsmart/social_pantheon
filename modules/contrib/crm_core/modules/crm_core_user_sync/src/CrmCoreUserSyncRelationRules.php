@@ -18,7 +18,19 @@ class CrmCoreUserSyncRelationRules {
    */
   protected $configFactory;
 
+  /**
+   * Rules.
+   *
+   * @var array
+   */
   protected $rules;
+
+  /**
+   * Config name.
+   *
+   * @var string
+   */
+  private $configName;
 
   /**
    * Constructs a CrmCoreUserSyncRelationRules object.

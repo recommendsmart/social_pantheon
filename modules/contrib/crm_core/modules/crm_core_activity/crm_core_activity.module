@@ -31,9 +31,6 @@ function crm_core_activity_entity_predelete(EntityInterface $entity) {
  *
  * @param Drupal\Core\Entity\EntityInterface $entity
  *   The entity ID to be looked for from participants.
- *
- * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
- * @throws \Drupal\Core\Entity\EntityStorageException
  */
 function crm_core_activity_pre_delete_checker(EntityInterface $entity) {
   $activities_to_remove = [];

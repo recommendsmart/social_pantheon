@@ -2,12 +2,15 @@
 
 namespace Drupal\crm_core_activity;
 
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\views\EntityViewsData;
 
 /**
  * Provides the views data for the activity entity type.
  */
 class ActivityViewsData extends EntityViewsData {
+
+  use StringTranslationTrait;
 
   /**
    * {@inheritdoc}
@@ -16,10 +19,10 @@ class ActivityViewsData extends EntityViewsData {
     $data = parent::getViewsData();
 
     $data['crm_core_activity']['activity_preview'] = [
-      'title' => t('Activity preview field'),
+      'title' => $this->t('Activity preview field'),
       'field' => [
-        'title' => t('Activity preview'),
-        'help' => t('Provide preview of activity'),
+        'title' => $this->t('Activity preview'),
+        'help' => $this->t('Provide preview of activity'),
         'id' => 'activity_preview',
         'field' => 'activity_id',
       ],

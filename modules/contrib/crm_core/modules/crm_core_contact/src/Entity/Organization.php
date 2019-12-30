@@ -5,6 +5,7 @@ namespace Drupal\crm_core_contact\Entity;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\crm_core\EntityOwnerTrait;
 use Drupal\crm_core_contact\OrganizationInterface;
 use Drupal\entity\Revision\RevisionableContentEntityBase;
@@ -45,6 +46,11 @@ use Drupal\entity\Revision\RevisionableContentEntityBase;
  *     "label" = "name",
  *     "langcode" = "langcode",
  *   },
+ *   revision_metadata_keys = {
+ *     "revision_user" = "revision_user",
+ *     "revision_created" = "revision_created",
+ *     "revision_log_message" = "revision_log_message",
+ *   },
  *   bundle_entity_type = "crm_core_organization_type",
  *   field_ui_base_route = "entity.crm_core_organization_type.edit_form",
  *   permission_granularity = "bundle",
@@ -69,6 +75,7 @@ class Organization extends RevisionableContentEntityBase implements Organization
 
   use EntityChangedTrait;
   use EntityOwnerTrait;
+  use StringTranslationTrait;
 
   /**
    * {@inheritdoc}
@@ -167,7 +174,7 @@ class Organization extends RevisionableContentEntityBase implements Organization
   public function label() {
     $label = $this->get('name')->value;
     if (empty($label)) {
-      $label = t('Nameless #@id', ['@id' => $this->id()]);
+      $label = $this->t('Nameless #@id', ['@id' => $this->id()]);
     }
     \Drupal::moduleHandler()->alter('crm_core_organization_label', $label, $this);
 

@@ -7,6 +7,7 @@ use Drupal\crm_core_activity_plugin_test\Plugin\crm_core_activity\ActivityType\A
 use Drupal\crm_core_activity\Plugin\crm_core_activity\ActivityType\Generic;
 use Drupal\crm_core_contact\Entity\Individual;
 use Drupal\KernelTests\KernelTestBase;
+use Psr\Log\Test\TestLogger;
 
 /**
  * Unit test for activity type plugin.
@@ -37,6 +38,7 @@ class ActivityTypePluginTest extends KernelTestBase {
     'datetime',
     'name',
     'options',
+    'field',
   ];
 
   /**
@@ -47,6 +49,7 @@ class ActivityTypePluginTest extends KernelTestBase {
     $this->installEntitySchema('crm_core_activity');
     $this->installEntitySchema('crm_core_individual');
     $this->pluginManager = $this->container->get('plugin.manager.crm_core_activity.activity_type');
+    $this->container->set('logger.channel.crm_core_activity', new TestLogger());
   }
 
   /**
@@ -80,6 +83,14 @@ class ActivityTypePluginTest extends KernelTestBase {
       'email_type' => 'corporate',
     ]);
     $individual_2->save();
+    $individual_3 = Individual::create([
+      'type' => 'customer',
+      'name' => ['given' => 'Jane', 'family' => 'Smith'],
+      'email_value' => 'test3@example.com',
+      'email_type' => 'corporate',
+    ]);
+    $individual_3->save();
+    /** @var \Drupal\crm_core_activity\Entity\Activity $activity */
     $activity = Activity::create([
       'type' => 'test_type',
       'title' => 'Activity title',
@@ -89,6 +100,11 @@ class ActivityTypePluginTest extends KernelTestBase {
     $this->assertEquals($instance->display($activity), []);
     $this->assertEquals($instance->label($activity), $activity->label());
     $this->assertEquals($activity->label(), 'Activity title');
+    $this->assertTrue($activity->hasParticipant($individual_1));
+    $this->assertFalse($activity->hasParticipant($individual_3));
+    $this->assertEqual($activity->get('created')->value, $activity->getChangedTime()->value);
+    $activity->addParticipant($individual_3);
+    $this->assertTrue($activity->hasParticipant($individual_3));
   }
 
   /**
@@ -144,6 +160,38 @@ class ActivityTypePluginTest extends KernelTestBase {
       ->loadUnchanged('test_type');
     $this->assertInstanceOf(ActivityTypeWithConfig::class, $activity_type->getPlugin(), 'Correct plugin instance was returned.');
     $this->assertEquals(['configuration_variable' => 'bar'], $activity_type->getPlugin()->getConfiguration(), 'Correct plugin configuration returned.');
+  }
+
+  /**
+   * Test deletion.
+   */
+  public function testDeletion(): void {
+    /** @var \Drupal\crm_core_activity\Entity\ActivityType $activity_type */
+    $activity_type = $this->container->get('entity_type.manager')
+      ->getStorage('crm_core_activity_type')
+      ->create(
+        [
+          'name' => 'Test type',
+          'type' => 'test_type',
+          'description' => 'Test type description.',
+        ]
+      );
+    $activity_type->save();
+    /** @var \Drupal\crm_core_activity\Entity\ActivityType $activity_type */
+    $activity = $this->container->get('entity_type.manager')
+      ->getStorage('crm_core_activity')
+      ->create(
+        [
+          'name' => 'Test activity',
+          'type' => 'test_type',
+          'description' => 'Test type description.',
+        ]
+      );
+    $activity->save();
+    $activity_type->delete();
+    /** @var \Psr\Log\Test\TestLogger $logger */
+    $logger = $this->container->get('logger.channel.crm_core_activity');
+    $logger->hasInfoThatContains('Deleted 1 activities due to deletion of activity type.');
   }
 
 }

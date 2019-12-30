@@ -23,7 +23,6 @@ function crm_core_contact_theme() {
   ];
 }
 
-
 /**
  * Process variables for CRM Core Individual.
  *
@@ -70,9 +69,8 @@ function crm_core_contact_common_template_preprocess(string $entity_id, array &$
 
   // Add classes based on the type of contact.
   $variables['attributes']['class'][] = $entity_id;
-  $variables['attributes']['class'][] = $entity_id. '-' . $entity->bundle();
+  $variables['attributes']['class'][] = $entity_id . '-' . $entity->bundle();
 }
-
 
 /**
  * Implements hook_theme_suggestions_HOOK().
@@ -103,12 +101,15 @@ function crm_core_contact_theme_suggestions_crm_core_organization(array $variabl
  *   Entity.
  * @param \Drupal\crm_core_contact\IndividualInterface|\Drupal\crm_core_contact\OrganizationInterface $entity
  *   Entity.
+ * @param string $view_mode
+ *  View mode.
  *
  * @return array
+ *   Suggestions.
  */
 function crm_core_contact_theme_suggestions_common(string $entity_id, $entity, string $view_mode): array {
   $suggestions = [];
-  $sanitized_view_mode = strtr($view_mode, '.', '_');
+  $sanitized_view_mode = str_replace('.', '_', $view_mode);
 
   // Add template suggestions.
   $suggestions[] = $entity_id . '__' . $sanitized_view_mode;
@@ -133,9 +134,9 @@ function crm_core_contact_mail($key, &$message, $params) {
  *
  * Adding contact activities and relationships as dependencies.
  */
-function crm_core_contact_entity_dependencies($entity, $entity_type) {
+  function crm_core_contact_entity_dependencies($entity, $entity_type) {
   $dependencies = [];
-  if ($entity_type == 'crm_core_contact') {
+  if ($entity_type === 'crm_core_contact') {
     // Lets check activities.
     if (module_exists('crm_core_activity')) {
       $query = new EntityFieldQuery();

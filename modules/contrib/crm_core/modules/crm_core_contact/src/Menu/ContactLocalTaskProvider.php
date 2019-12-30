@@ -16,9 +16,16 @@ class ContactLocalTaskProvider extends DefaultEntityLocalTaskProvider {
   public function buildLocalTasks(EntityTypeInterface $entity_type) {
     // See #1834002 and #3044371 for context.
     $link_templates = [];
-    foreach (['canonical', 'edit-form', 'duplicate-form', 'delete-form', 'version-history'] as $rel) {
-      if ($entity_type->hasLinkTemplate($rel)) {
-        $link_templates[] = str_replace('-', '_', $rel);
+    $types = [
+      'canonical',
+      'edit-form',
+      'duplicate-form',
+      'delete-form',
+      'version-history',
+    ];
+    foreach ($types as $type) {
+      if ($entity_type->hasLinkTemplate($type)) {
+        $link_templates[] = str_replace('-', '_', $type);
       }
     }
 
@@ -36,10 +43,10 @@ class ContactLocalTaskProvider extends DefaultEntityLocalTaskProvider {
       ];
 
       $weight = 0;
-      foreach ($link_templates as $rel) {
-        $route_name = "entity.$entity_type_id.$rel";
+      foreach ($link_templates as $template) {
+        $route_name = "entity.$entity_type_id.$template";
         $tasks[$route_name] = [
-          'title' => $titles[$rel],
+          'title' => $titles[$template],
           'route_name' => $route_name,
           'base_route' => "entity.$entity_type_id.$base",
           'weight' => $weight,

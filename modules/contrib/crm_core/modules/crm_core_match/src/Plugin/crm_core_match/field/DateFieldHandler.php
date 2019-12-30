@@ -2,6 +2,7 @@
 
 namespace Drupal\crm_core_match\Plugin\crm_core_match\field;
 
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\crm_core_contact\ContactInterface;
 
 /**
@@ -9,14 +10,16 @@ use Drupal\crm_core_contact\ContactInterface;
  */
 class DateFieldHandler extends FieldHandlerBase {
 
+  use StringTranslationTrait;
+
   /**
    * {@inheritdoc}
    */
   public function getOperators($property = 'value') {
     $operators = [
-      '=' => t('Equals'),
-      '>=' => t('Greater than'),
-      '<=' => t('Less than'),
+      '=' => $this->t('Equals'),
+      '>=' => $this->t('Greater than'),
+      '<=' => $this->t('Less than'),
     ];
 
     return $operators;

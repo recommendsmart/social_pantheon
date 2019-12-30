@@ -2,6 +2,7 @@
 
 namespace Drupal\Tests\crm_core_match\Kernel;
 
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\crm_core_contact\Entity\Individual;
 use Drupal\crm_core_contact\Entity\IndividualType;
 use Drupal\crm_core_match\Entity\Matcher;
@@ -15,6 +16,8 @@ use Drupal\KernelTests\KernelTestBase;
  * @group crm_core
  */
 class FieldMatcherTest extends KernelTestBase {
+
+  use StringTranslationTrait;
 
   /**
    * {@inheritdoc}
@@ -159,7 +162,7 @@ class FieldMatcherTest extends KernelTestBase {
       'field_name' => 'individual_text',
       'entity_type' => 'crm_core_individual',
       'bundle' => 'customer',
-      'label' => t('Text'),
+      'label' => $this->t('Text'),
       'required' => FALSE,
     ])->save();
     $config = [
@@ -199,7 +202,7 @@ class FieldMatcherTest extends KernelTestBase {
       'field_name' => 'individual_mail',
       'entity_type' => 'crm_core_individual',
       'bundle' => 'customer',
-      'label' => t('Email'),
+      'label' => $this->t('Email'),
       'required' => FALSE,
     ])->save();
 

@@ -2,6 +2,7 @@
 
 namespace Drupal\crm_core_match\Plugin\crm_core_match\field;
 
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\crm_core_contact\ContactInterface;
 
 /**
@@ -13,6 +14,13 @@ use Drupal\crm_core_contact\ContactInterface;
  */
 class NameFieldHandler extends FieldHandlerBase {
 
+  use StringTranslationTrait;
+
+  /**
+   * Configuration.
+   *
+   * @var array
+   */
   protected $configuration = [
     'title' => [
       'score' => 3,
@@ -53,7 +61,7 @@ class NameFieldHandler extends FieldHandlerBase {
    */
   public function getOperators($property = 'value') {
     return [
-      'CONTAINS' => t('Contains'),
+      'CONTAINS' => $this->t('Contains'),
     ];
   }
 

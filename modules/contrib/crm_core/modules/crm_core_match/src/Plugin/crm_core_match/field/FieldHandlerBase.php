@@ -67,9 +67,9 @@ abstract class FieldHandlerBase implements FieldHandlerInterface, ContainerFacto
    *   Entity Type Manager.
    * @param array $configuration
    *   Configuration.
-   * @param $id
+   * @param string $id
    *   ID.
-   * @param $definition
+   * @param mixed $definition
    *   Definition.
    */
   public function __construct(FieldDefinitionInterface $field, EntityTypeManagerInterface $entity_type_manager, array $configuration, $id, $definition) {

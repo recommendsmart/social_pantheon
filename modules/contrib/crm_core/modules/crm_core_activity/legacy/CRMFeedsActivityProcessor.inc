@@ -3,6 +3,9 @@
 /**
  * @file
  * Class definition of CRMFeedsActivityProcessor.
+ * @TODO: Remove Feeds integration
+ *
+ * phpcs:ignoreFile
  */
 
 use Drupal\crm_core_activity\Entity\Activity;

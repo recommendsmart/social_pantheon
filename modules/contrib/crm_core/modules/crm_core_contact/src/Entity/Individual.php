@@ -5,6 +5,7 @@ namespace Drupal\crm_core_contact\Entity;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\crm_core\EntityOwnerTrait;
 use Drupal\crm_core_contact\IndividualInterface;
 use Drupal\entity\Revision\RevisionableContentEntityBase;
@@ -44,6 +45,11 @@ use Drupal\entity\Revision\RevisionableContentEntityBase;
  *     "uuid" = "uuid",
  *     "langcode" = "langcode",
  *   },
+ *   revision_metadata_keys = {
+ *     "revision_user" = "revision_user",
+ *     "revision_created" = "revision_created",
+ *     "revision_log_message" = "revision_log_message",
+ *   },
  *   bundle_entity_type = "crm_core_individual_type",
  *   field_ui_base_route = "entity.crm_core_individual_type.edit_form",
  *   permission_granularity = "bundle",
@@ -68,6 +74,7 @@ class Individual extends RevisionableContentEntityBase implements IndividualInte
 
   use EntityChangedTrait;
   use EntityOwnerTrait;
+  use StringTranslationTrait;
 
   /**
    * {@inheritdoc}
@@ -170,7 +177,7 @@ class Individual extends RevisionableContentEntityBase implements IndividualInte
       $label = "$item->given $item->family";
     }
     if (empty(trim($label))) {
-      $label = t('Nameless #@id', ['@id' => $this->id()]);
+      $label = $this->t('Nameless #@id', ['@id' => $this->id()]);
     }
     \Drupal::moduleHandler()->alter('crm_core_individual_label', $label, $this);
 

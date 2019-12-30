@@ -2,6 +2,8 @@
 
 namespace Drupal\crm_core_match\Plugin\crm_core_match\field;
 
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+
 /**
  * Class for evaluating address field fields.
  *
@@ -9,8 +11,10 @@ namespace Drupal\crm_core_match\Plugin\crm_core_match\field;
  */
 class AddressFieldHandler extends FieldHandlerBase {
 
+  use StringTranslationTrait;
+
   /**
-   * This function is going to add all addressfield components..
+   * This function is going to add all addressfield components.
    *
    * @see DefaultMatchingEngineFieldType::fieldRender()
    */
@@ -56,7 +60,7 @@ class AddressFieldHandler extends FieldHandlerBase {
    */
   public function getOperators($property = 'value') {
     return [
-      'equals' => t('Equals'),
+      'equals' => $this->t('Equals'),
     ];
   }
 

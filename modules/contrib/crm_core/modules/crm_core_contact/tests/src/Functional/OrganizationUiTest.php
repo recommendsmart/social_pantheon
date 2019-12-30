@@ -16,6 +16,11 @@ class OrganizationUiTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+  protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
   public static $modules = [
     'crm_core_contact',
     'crm_core_activity',
@@ -68,12 +73,12 @@ class OrganizationUiTest extends BrowserTestBase {
     $this->drupalLogin($user);
 
     $this->drupalGet('crm-core');
-    $this->assertSession()->linkExists(t('CRM Organizations'));
-    $this->clickLink(t('CRM Organizations'));
+    $this->assertSession()->linkExists('CRM Organizations');
+    $this->clickLink('CRM Organizations');
     // There should be no organizations available after fresh installation and
     // there is a link to create new organizations.
-    $this->assertText(t('There are no organizations available.'), 'No organizations available after fresh installation.');
-    $this->assertSession()->linkExists(t('Add an organization'));
+    $this->assertText('There are no organizations available.');
+    $this->assertSession()->linkExists('Add an organization');
 
     $household_values = [
       'name[0][value]' => 'Fam. Johnson',
@@ -125,13 +130,15 @@ class OrganizationUiTest extends BrowserTestBase {
     $this->assertSession()->linkExists('Updated');
     $this->assertSession()->pageTextContains('Operations');
 
-    $labels = $this->xpath('//form[@class="views-exposed-form"]/div/div/label[text()="Type"]');
-    $this->assertEquals(1, count($labels), 'Individual type is an exposed filter.');
+    $labels = $this->xpath('//form[@class="views-exposed-form"]/div/label[text()="Type"]');
+    $this->assertCount(1, $labels, 'Organization type is an exposed filter.');
 
-    $labels = $this->xpath('//form[@class="views-exposed-form"]/div/div/label[text()="Name"]');
-    $this->assertEquals(1, count($labels), 'Name is an exposed filter.');
+    $labels = $this->xpath('//form[@class="views-exposed-form"]/div/label[text()="Name"]');
+    $this->assertCount(1, $labels, 'Name is an exposed filter.');
 
-    $organizations = \Drupal::entityTypeManager()->getStorage('crm_core_organization')->loadByProperties(['name' => 'Example ltd']);
+    $organizations = \Drupal::entityTypeManager()
+      ->getStorage('crm_core_organization')
+      ->loadByProperties(['name' => 'Example ltd']);
     $organization = current($organizations);
 
     // Create another user.
@@ -174,11 +181,11 @@ class OrganizationUiTest extends BrowserTestBase {
     $this->assertSession()->linkExists('Another Example ltd', 0, 'Updated organization title listed.');
 
     // Delete organizations.
-    $this->drupalPostForm('crm-core/organization/1/delete', [], t('Delete'));
-    $this->drupalPostForm('crm-core/organization/2/delete', [], t('Delete'));
-    $this->drupalPostForm('crm-core/organization/3/delete', [], t('Delete'));
+    $this->drupalPostForm('crm-core/organization/1/delete', [], 'Delete');
+    $this->drupalPostForm('crm-core/organization/2/delete', [], 'Delete');
+    $this->drupalPostForm('crm-core/organization/3/delete', [], 'Delete');
     $this->assertUrl('crm-core/organization');
-    $this->assertSession()->linkNotExists('Another Example ltd', 0, 'Deleted organization title no more listed.');
+    $this->assertSession()->linkNotExists('Another Example ltd', 'Deleted organization title no more listed.');
 
     // Assert that there are no organizations.
     $this->assertSession()->pageTextContains('There are no organizations available.');
@@ -238,14 +245,30 @@ class OrganizationUiTest extends BrowserTestBase {
       'administer crm_core_organization display',
       'administer crm_core_organization form display',
       'administer crm_core_organization fields',
+      'administer organization types',
     ]);
     $this->drupalLogin($user);
 
-    $this->drupalGet('admin/structure/crm-core/organization-types/supplier/fields');
+    // List of all types.
+    $this->drupalGet('admin/structure/crm-core/organization-types');
+    $this->assertSession()->linkExists('Edit');
+    $this->assertSession()->linkExists('Manage fields');
+    $this->assertSession()->linkExists('Manage form display');
+    $this->assertSession()->linkExists('Manage display');
 
-    $this->assertSession()->pageTextContains('Manage fields');
-    $this->assertSession()->pageTextContains('Manage form display');
-    $this->assertSession()->pageTextContains('Manage display');
+    // Edit on type.
+    $this->drupalGet('admin/structure/crm-core/organization-types/supplier');
+    $this->assertSession()->linkExists('Edit');
+    $this->assertSession()->linkExists('Manage fields');
+    $this->assertSession()->linkExists('Manage form display');
+    $this->assertSession()->linkExists('Manage display');
+
+    // Manage fields on type.
+    $this->drupalGet('admin/structure/crm-core/organization-types/supplier/fields');
+    $this->assertSession()->linkExists('Edit');
+    $this->assertSession()->linkExists('Manage fields');
+    $this->assertSession()->linkExists('Manage form display');
+    $this->assertSession()->linkExists('Manage display');
 
     $this->drupalGet('admin/structure/crm-core/organization-types/supplier/form-display');
     $this->assertSession()->pageTextContains('Name');

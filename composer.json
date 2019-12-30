@@ -44,7 +44,6 @@
         "drupal/scheduled_updates": "^1.0",
         "drupal/physical": "^1.0",
         "drupal/ordered_list": "^1.2",
-        "drupal/module_filter": "^3.1",
         "drupal/fullcalendar_view": "^2.4",
         "drupal/recipe": "^2.0",
         "drupal/age_field_formatter": "^2.1",
@@ -52,7 +51,6 @@
         "drupal/linked_field": "^1.1",
         "drupal/responsive_views_grid": "^1.1",
         "drupal/term_reference_fancytree": "^1.0",
-        "drupal/views_accordion": "^1.2",
         "drupal/entity_extra_field": "^1.0",
         "drupal/form_display_visibility": "^1.0",
         "drupal/icon_api": "^2.0",
@@ -60,7 +58,6 @@
         "drupal/disable_field": "^2.3",
         "drupal/if_then_else": "^1.0",
 		"drupal/commerce": "^2.16",
-        "drupal/commerce_reports": "^1.0",
         "drupal/views_add_button_group": "^1.2",
         "drupal/viewfield": "^3.0",
         "drupal/rules": "^3.0",
@@ -115,7 +112,8 @@
         "drupal/social_pwa": "^1.0@alpha",
         "drupal/commerce_stock": "^1.0@alpha",
         "drupal/flexible_views": "^1.0",
-        "drupal/fragments": "^1.0"
+        "drupal/fragments": "^1.0",
+        "drupal/eva": "^2.0"
 
         },
     "repositories": [

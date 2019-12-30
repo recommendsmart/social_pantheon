@@ -17,5 +17,8 @@ dependencies:
   - drupal:views
   - name:name (>=8.x-1.0-rc2)
 
-  # @todo Re-add once available and still needed.
-#  - field_group
+test_dependencies:
+  - address:address
+  # To be removed once we have crm_core_relationship ported.
+  - relation:relation
+  - relation:relation_endpoint

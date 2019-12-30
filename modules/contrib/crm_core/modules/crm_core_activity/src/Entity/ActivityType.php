@@ -132,7 +132,7 @@ class ActivityType extends ConfigEntityBundleBase implements ActivityTypeInterfa
       $activities = Activity::loadMultiple($results);
       \Drupal::entityTypeManager()->getStorage('crm_core_activity')->delete($activities);
       // @todo Handle singular and plural.
-      \Drupal::logger('crm_core_activity')->info('Delete !count activities due to deletion of activity type.', ['!count' => count($results)]);
+      \Drupal::logger('crm_core_activity')->info('Deleted !count activities due to deletion of activity type.', ['!count' => count($results)]);
     }
   }
 

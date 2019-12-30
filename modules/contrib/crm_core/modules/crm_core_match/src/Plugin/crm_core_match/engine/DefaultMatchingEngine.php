@@ -135,11 +135,7 @@ class DefaultMatchingEngine extends MatchEngineBase {
       '#default_value' => $this->getConfigurationItem('threshold'),
     ];
 
-    $return_description = $this->t(<<<EOF
-If two or more contact records result in matches with identical scores, CRM Core
-will give preference to one over the other base on selected option.
-EOF
-    );
+    $return_description = $this->t('If two or more contact records result in matches with identical scores, CRM Core will give preference to one over the other base on selected option.');
     $form['return_order'] = [
       '#type' => 'select',
       '#title' => $this->t('Return Order'),
@@ -152,11 +148,7 @@ EOF
       ],
     ];
 
-    $strict_description = $this->t(<<<EOF
-Check this box to return a match for this contact type the first time one is
-identified that meets the threshold. Stops redundant processing.
-EOF
-    );
+    $strict_description = $this->t('Check this box to return a match for this contact type the first time one is identified that meets the threshold. Stops redundant processing.');
     $form['strict'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Strict matching'),

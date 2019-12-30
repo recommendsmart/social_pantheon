@@ -4,7 +4,6 @@ namespace Drupal\crm_core_activity;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
-use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -12,18 +11,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Activity List Builder.
  */
 class ActivityListBuilder extends EntityListBuilder {
-
-  /**
-   * Constructs a new NodeListBuilder object.
-   *
-   * @param \Drupal\Core\Entity\EntityTypeInterface $entity_type
-   *   The entity type definition.
-   * @param \Drupal\Core\Entity\EntityStorageInterface $storage
-   *   The entity storage class.
-   */
-  public function __construct(EntityTypeInterface $entity_type, EntityStorageInterface $storage) {
-    parent::__construct($entity_type, $storage);
-  }
 
   /**
    * {@inheritdoc}

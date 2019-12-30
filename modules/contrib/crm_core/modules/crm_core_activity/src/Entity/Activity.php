@@ -3,7 +3,6 @@
 namespace Drupal\crm_core_activity\Entity;
 
 use Drupal\Core\Entity\ContentEntityBase;
-use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\crm_core\EntityOwnerTrait;
@@ -61,7 +60,6 @@ use Drupal\crm_core_contact\ContactInterface;
  */
 class Activity extends ContentEntityBase implements ActivityInterface {
 
-  use EntityChangedTrait;
   use EntityOwnerTrait;
 
   /**
@@ -186,7 +184,7 @@ class Activity extends ContentEntityBase implements ActivityInterface {
    */
   public function hasParticipant(ContactInterface $contact) {
     foreach ($this->activity_participants as $participant) {
-      if ($participant->target_id == $contact->id()) {
+      if ($participant->target_id === $contact->id()) {
         return TRUE;
       }
     }

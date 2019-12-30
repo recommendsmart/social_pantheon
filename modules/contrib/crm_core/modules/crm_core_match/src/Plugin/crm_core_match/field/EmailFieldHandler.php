@@ -2,6 +2,8 @@
 
 namespace Drupal\crm_core_match\Plugin\crm_core_match\field;
 
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+
 /**
  * Class for evaluating email fields.
  *
@@ -11,12 +13,14 @@ namespace Drupal\crm_core_match\Plugin\crm_core_match\field;
  */
 class EmailFieldHandler extends FieldHandlerBase {
 
+  use StringTranslationTrait;
+
   /**
    * {@inheritdoc}
    */
   public function getOperators($property = 'value') {
     return [
-      '=' => t('Equals'),
+      '=' => $this->t('Equals'),
     ];
   }
 

@@ -18,10 +18,10 @@ class ActivityForm extends ContentEntityForm {
 
     $status = $activity->save();
 
-    $t_args = ['%title' => $activity->label(), 'link' => $activity->url()];
+    $t_args = ['@title' => $activity->label(), 'link' => $activity->url()];
 
-    if ($status == SAVED_UPDATED) {
-      drupal_set_message($this->t('Activity %title edited.', $t_args));
+    if ($status === SAVED_UPDATED) {
+      $this->messenger()->addStatus($this->t('Activity @title edited.', $t_args));
       if ($activity->access('view')) {
         $form_state->setRedirect('entity.crm_core_activity.canonical', ['crm_core_activity' => $activity->id()]);
       }
@@ -29,9 +29,9 @@ class ActivityForm extends ContentEntityForm {
         $form_state->setRedirect('entity.crm_core_contact.collection');
       }
     }
-    elseif ($status == SAVED_NEW) {
-      drupal_set_message($this->t('Activity %title created.', $t_args));
-      \Drupal::logger('crm_core_contact')->notice('Activity %title created.', $t_args);
+    elseif ($status === SAVED_NEW) {
+      $this->messenger()->addStatus($this->t('Activity @title created.', $t_args));
+      \Drupal::logger('crm_core_contact')->notice('Activity @title created.', $t_args);
       $form_state->setRedirect('entity.crm_core_contact.collection');
     }
 

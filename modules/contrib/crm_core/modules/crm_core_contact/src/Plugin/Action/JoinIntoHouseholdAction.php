@@ -88,7 +88,7 @@ class JoinIntoHouseholdAction extends ConfigurableActionBase implements Containe
       $this->configuration['household'] = Contact::create(['type' => 'household']);
     }
     // Saving household only now because user can click "Cancel" on confirmation
-    // page(if he/she will notice that selected wrong contacts).
+    // page (if they notice that they selected a wrong contact).
     $this->configuration['household']->setOwnerId($this->currentUser->id());
     $this->configuration['household']->save();
     foreach ($objects as $member) {

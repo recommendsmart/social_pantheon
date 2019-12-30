@@ -289,7 +289,7 @@
         "version_normalized": "3.4.1.0",
         "source": {
             "type": "git",
-            "url": "git@github.com:jquery/jquery-dist.git",
+            "url": "https://github.com/jquery/jquery-dist.git",
             "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
         },
         "dist": {
@@ -309,7 +309,7 @@
         "version_normalized": "1.17.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/mochajs/mocha.git",
+            "url": "git@github.com:mochajs/mocha.git",
             "reference": "7fc565ee3e225cb7a66bf39ae9c2c05b346675c1"
         },
         "dist": {
@@ -3079,82 +3079,6 @@
         }
     },
     {
-        "name": "drupal/commerce_reports",
-        "version": "1.0.0-beta1",
-        "version_normalized": "1.0.0.0-beta1",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupalcode.org/project/commerce_reports.git",
-            "reference": "8.x-1.0-beta1"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/commerce_reports-8.x-1.0-beta1.zip",
-            "reference": "8.x-1.0-beta1",
-            "shasum": "855163322ddaed153691e01f2d8f344044c11927"
-        },
-        "require": {
-            "drupal/commerce": "^2",
-            "drupal/commerce_order": "*",
-            "drupal/commerce_price": "*",
-            "drupal/core": "*"
-        },
-        "type": "drupal-module",
-        "extra": {
-            "branch-alias": {
-                "dev-1.x": "1.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-1.0-beta1",
-                "datestamp": "1527793680",
-                "security-coverage": {
-                    "status": "not-covered",
-                    "message": "Beta releases are not covered by Drupal security advisories."
-                }
-            }
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0+"
-        ],
-        "authors": [
-            {
-                "name": "aidanlis",
-                "homepage": "https://www.drupal.org/user/502018"
-            },
-            {
-                "name": "cvangysel",
-                "homepage": "https://www.drupal.org/user/868104"
-            },
-            {
-                "name": "dpearcefl",
-                "homepage": "https://www.drupal.org/user/436410"
-            },
-            {
-                "name": "johnkennedy",
-                "homepage": "https://www.drupal.org/user/1046660"
-            },
-            {
-                "name": "mglaman",
-                "homepage": "https://www.drupal.org/user/2416470"
-            },
-            {
-                "name": "paul.linney",
-                "homepage": "https://www.drupal.org/user/928636"
-            },
-            {
-                "name": "strings6",
-                "homepage": "https://www.drupal.org/user/317422"
-            }
-        ],
-        "description": "Provides reporting capabilities for sales, products, customers and payment gateways.",
-        "homepage": "http://drupal.org/project/commerce_reports",
-        "support": {
-            "source": "https://git.drupalcode.org/project/commerce_reports"
-        }
-    },
-    {
         "name": "drupal/commerce_shipping",
         "version": "2.0.0-beta7",
         "version_normalized": "2.0.0.0-beta7",
@@ -4148,12 +4072,13 @@
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/crm_core.git",
-            "reference": "53c3b91376b8cd357a7ff44e8f42a0cd281ce35b"
+            "reference": "73bd44d92dac0824c71d733065f3330e89f4ede8"
         },
         "require": {
             "drupal/core": "~8.0"
         },
         "require-dev": {
+            "drupal/address": "*",
             "drupal/crm_core_activity": "*",
             "drupal/crm_core_contact": "*",
             "drupal/crm_core_relationship": "*",
@@ -4161,6 +4086,7 @@
             "drupal/entity": "*",
             "drupal/name": "^1.0.0-rc2",
             "drupal/relation": "*",
+            "drupal/relation_endpoint": "*",
             "drupal/search_api": "*"
         },
         "type": "drupal-module",
@@ -4170,7 +4096,7 @@
             },
             "drupal": {
                 "version": "8.x-3.x-dev",
-                "datestamp": "1567341189",
+                "datestamp": "1577554987",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Dev releases are not covered by Drupal security advisories."
@@ -5790,6 +5716,74 @@
         }
     },
     {
+        "name": "drupal/eva",
+        "version": "2.0.0",
+        "version_normalized": "2.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/eva.git",
+            "reference": "8.x-2.0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/eva-8.x-2.0.zip",
+            "reference": "8.x-2.0",
+            "shasum": "8ad6b0ee65a819a243f5f08cb6c19b436280391d"
+        },
+        "require": {
+            "drupal/core": "*"
+        },
+        "suggest": {
+            "drupal/token": "Enable the argument token browser"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-2.x": "2.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-2.0",
+                "datestamp": "1572917286",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "Crell",
+                "homepage": "https://www.drupal.org/user/26398"
+            },
+            {
+                "name": "ahebrank",
+                "homepage": "https://www.drupal.org/user/3190515"
+            },
+            {
+                "name": "eaton",
+                "homepage": "https://www.drupal.org/user/16496"
+            },
+            {
+                "name": "geek.merlin aka axel.rutz",
+                "homepage": "https://www.drupal.org/user/229048"
+            },
+            {
+                "name": "mkadin",
+                "homepage": "https://www.drupal.org/user/1093166"
+            }
+        ],
+        "description": "Attach a view to an entity",
+        "homepage": "https://www.drupal.org/project/eva",
+        "support": {
+            "source": "https://git.drupalcode.org/project/eva"
+        }
+    },
+    {
         "name": "drupal/exif_orientation",
         "version": "1.0.0",
         "version_normalized": "1.0.0.0",
@@ -6232,18 +6226,18 @@
     },
     {
         "name": "drupal/field_inheritance",
-        "version": "1.0.0-alpha1",
-        "version_normalized": "1.0.0.0-alpha1",
+        "version": "1.0.0-alpha3",
+        "version_normalized": "1.0.0.0-alpha3",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/field_inheritance.git",
-            "reference": "8.x-1.0-alpha1"
+            "reference": "8.x-1.0-alpha3"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/field_inheritance-8.x-1.0-alpha1.zip",
-            "reference": "8.x-1.0-alpha1",
-            "shasum": "a8175da03d72bbc3d1a02930564aaac49cbf5e7c"
+            "url": "https://ftp.drupal.org/files/projects/field_inheritance-8.x-1.0-alpha3.zip",
+            "reference": "8.x-1.0-alpha3",
+            "shasum": "0e84fb0cd4d372a7254bce7daee90f4c8159f732"
         },
         "require": {
             "drupal/core": "*"
@@ -6254,8 +6248,8 @@
                 "dev-1.x": "1.x-dev"
             },
             "drupal": {
-                "version": "8.x-1.0-alpha1",
-                "datestamp": "1570395787",
+                "version": "8.x-1.0-alpha3",
+                "datestamp": "1577659083",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Project has not opted into security advisory coverage!"
@@ -8419,63 +8413,6 @@
         "support": {
             "source": "http://cgit.drupalcode.org/metatag",
             "issues": "http://drupal.org/project/issues/metatag"
-        }
-    },
-    {
-        "name": "drupal/module_filter",
-        "version": "3.1.0",
-        "version_normalized": "3.1.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupalcode.org/project/module_filter.git",
-            "reference": "8.x-3.1"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/module_filter-8.x-3.1.zip",
-            "reference": "8.x-3.1",
-            "shasum": "39d627ce60280ae54bcf9beae217b85cce1969e4"
-        },
-        "require": {
-            "drupal/core": "~8.0"
-        },
-        "type": "drupal-module",
-        "extra": {
-            "branch-alias": {
-                "dev-3.x": "3.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-3.1",
-                "datestamp": "1507650844",
-                "security-coverage": {
-                    "status": "covered",
-                    "message": "Covered by Drupal's security advisory policy"
-                }
-            }
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0-or-later"
-        ],
-        "authors": [
-            {
-                "name": "greenSkin",
-                "homepage": "https://www.drupal.org/user/173855"
-            },
-            {
-                "name": "realityloop",
-                "homepage": "https://www.drupal.org/user/139189"
-            },
-            {
-                "name": "shumushin",
-                "homepage": "https://www.drupal.org/user/22093"
-            }
-        ],
-        "description": "Filter the modules list.",
-        "homepage": "https://www.drupal.org/project/module_filter",
-        "support": {
-            "source": "https://git.drupalcode.org/project/module_filter"
         }
     },
     {
@@ -11412,56 +11349,6 @@
         }
     },
     {
-        "name": "drupal/views_accordion",
-        "version": "1.3.0",
-        "version_normalized": "1.3.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupalcode.org/project/views_accordion.git",
-            "reference": "8.x-1.3"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/views_accordion-8.x-1.3.zip",
-            "reference": "8.x-1.3",
-            "shasum": "22f211dd825db51428748bad3f4ad67c0584e7c8"
-        },
-        "require": {
-            "drupal/core": "*"
-        },
-        "type": "drupal-module",
-        "extra": {
-            "branch-alias": {
-                "dev-1.x": "1.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-1.3",
-                "datestamp": "1568186884",
-                "security-coverage": {
-                    "status": "covered",
-                    "message": "Covered by Drupal's security advisory policy"
-                }
-            }
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0+"
-        ],
-        "authors": [
-            {
-                "name": "Manuel Garcia",
-                "homepage": "https://www.drupal.org/user/213194"
-            }
-        ],
-        "description": "Provides an accordion views display plugin.",
-        "homepage": "https://www.drupal.org/project/views_accordion",
-        "support": {
-            "source": "https://git.drupalcode.org/project/views_accordion",
-            "issues": "https://www.drupal.org/project/issues/views_accordion"
-        }
-    },
-    {
         "name": "drupal/views_add_button",
         "version": "1.4.0",
         "version_normalized": "1.4.0.0",
@@ -12243,33 +12130,32 @@
     },
     {
         "name": "egulias/email-validator",
-        "version": "2.1.12",
-        "version_normalized": "2.1.12.0",
+        "version": "2.1.13",
+        "version_normalized": "2.1.13.0",
         "source": {
             "type": "git",
             "url": "https://github.com/egulias/EmailValidator.git",
-            "reference": "a6255605af39f2db7f5cb62e672bd8a7bad8d208"
+            "reference": "834593d5900615639208417760ba6a17299e2497"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/a6255605af39f2db7f5cb62e672bd8a7bad8d208",
-            "reference": "a6255605af39f2db7f5cb62e672bd8a7bad8d208",
+            "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/834593d5900615639208417760ba6a17299e2497",
+            "reference": "834593d5900615639208417760ba6a17299e2497",
             "shasum": ""
         },
         "require": {
             "doctrine/lexer": "^1.0.1",
-            "php": ">= 5.5"
+            "php": ">=5.5"
         },
         "require-dev": {
-            "dominicsayers/isemail": "dev-master",
-            "phpunit/phpunit": "^4.8.35||^5.7||^6.0",
-            "satooshi/php-coveralls": "^1.0.1",
-            "symfony/phpunit-bridge": "^4.4@dev"
+            "dominicsayers/isemail": "^3.0.7",
+            "phpunit/phpunit": "^4.8.36|^7.5.15",
+            "satooshi/php-coveralls": "^1.0.1"
         },
         "suggest": {
             "ext-intl": "PHP Internationalization Libraries are required to use the SpoofChecking validation"
         },
-        "time": "2019-12-20T12:49:39+00:00",
+        "time": "2019-12-30T08:14:25+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -14677,17 +14563,17 @@
     },
     {
         "name": "php-http/discovery",
-        "version": "1.7.0",
-        "version_normalized": "1.7.0.0",
+        "version": "1.7.3",
+        "version_normalized": "1.7.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/php-http/discovery.git",
-            "reference": "e822f86a6983790aa17ab13aa7e69631e86806b6"
+            "reference": "2e0ad94833ec8473280454590a9011a0cd2dfc56"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/php-http/discovery/zipball/e822f86a6983790aa17ab13aa7e69631e86806b6",
-            "reference": "e822f86a6983790aa17ab13aa7e69631e86806b6",
+            "url": "https://api.github.com/repos/php-http/discovery/zipball/2e0ad94833ec8473280454590a9011a0cd2dfc56",
+            "reference": "2e0ad94833ec8473280454590a9011a0cd2dfc56",
             "shasum": ""
         },
         "require": {
@@ -14707,7 +14593,7 @@
             "php-http/message": "Allow to use Guzzle, Diactoros or Slim Framework factories",
             "puli/composer-plugin": "Sets up Puli which is recommended for Discovery to work. Check http://docs.php-http.org/en/latest/discovery.html for more details."
         },
-        "time": "2019-06-30T09:04:27+00:00",
+        "time": "2019-12-27T19:51:10+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {

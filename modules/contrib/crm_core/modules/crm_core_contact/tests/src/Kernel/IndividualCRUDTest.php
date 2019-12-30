@@ -8,6 +8,7 @@ use Drupal\crm_core_contact\Entity\Individual;
 use Drupal\crm_core_contact\Entity\IndividualType;
 use Drupal\crm_core_contact\Entity\Organization;
 use Drupal\crm_core_contact\Entity\OrganizationType;
+use Drupal\relation\Entity\Relation;
 use Drupal\relation\Entity\RelationType;
 use Drupal\KernelTests\KernelTestBase;
 
@@ -33,6 +34,7 @@ class IndividualCRUDTest extends KernelTestBase {
     'dynamic_entity_reference',
     'datetime',
     'relation',
+    'relation_endpoint',
     'name',
     'options',
   ];
@@ -65,6 +67,7 @@ class IndividualCRUDTest extends KernelTestBase {
       'New individual type exists.'
     );
     // @todo Check if this still must be the case.
+    // phpcs:ignore
     // $this->assertTrue($individual_type->locked, t('New individual type has locked set to TRUE.'));
     $individual_type->name = $this->randomMachineName();
     $individual_type->description = $this->randomString();
@@ -93,12 +96,12 @@ class IndividualCRUDTest extends KernelTestBase {
       'Loaded individual type has same description.'
     );
     $uuid = $individual_type_load->uuid();
-    $this->assertTrue(!empty($uuid), 'Loaded individual type has uuid.');
+    $this->assertNotEmpty($uuid, 'Loaded individual type has uuid.');
 
     // Test IndividualType::getNames().
     $individual_type_labels = IndividualType::getNames();
-    $this->assertTrue(
-      $individual_type->name == $individual_type_labels[$individual_type->type]
+    $this->assertSame(
+      $individual_type->name, $individual_type_labels[$individual_type->type]
     );
 
     // Delete.
@@ -144,7 +147,7 @@ class IndividualCRUDTest extends KernelTestBase {
     // Load.
     $individual_load = Individual::load($individual->id());
     $uuid = $individual_load->uuid();
-    $this->assertTrue(!empty($uuid), 'Loaded individual has uuid.');
+    $this->assertNotEmpty($uuid, 'Loaded individual has uuid.');
 
     $activity_type = ActivityType::create(['type' => 'activity_test']);
     $activity_type->save();
@@ -157,10 +160,7 @@ class IndividualCRUDTest extends KernelTestBase {
 
     // Load activity.
     $activity_load = Activity::load($activity->id());
-    $this->assertTrue(
-      !empty($activity_load->uuid()),
-      'Loaded activity has uuid.'
-    );
+    $this->assertNotEmpty($activity_load->uuid(), 'Loaded activity has uuid.');
 
     // Delete first individual, activity should'n be deleted
     // because it's related to second individual.
@@ -263,60 +263,66 @@ class IndividualCRUDTest extends KernelTestBase {
     );
     $meeting_activity->save();
 
-    // @codingStandardsIgnoreStart
+    $this->markTestIncomplete('Incomplete port follows.');
     // Test join_into_household_action.
     // @todo there is no more household bundle after we rename contact to individual.
-    // $join_into_household_action_plugin = $this->pluginManager->createInstance('join_into_household_action', ['household' => $household_contact]);
-    // $join_into_household_action_plugin->executeMultiple([$individual_contact_1, $individual_contact_2, $organization]);
-    // $relations = Relation::loadMultiple();
+    $join_into_household_action_plugin = $this->pluginManager->createInstance('join_into_household_action', ['household' => $household_contact]);
+    $join_into_household_action_plugin->executeMultiple([
+      $individual_customer_1,
+      $individual_customer_2,
+      $organization,
+    ]);
+    $relations = Relation::loadMultiple();
     // Test that there are two new relations with correct endpoints and types.
-    // $this->assertEquals(count($relations), 3, 'Three new relations were created during this test.');
-    // $this->assertEquals($relations[1]->relation_type->target_id, 'crm_member');
-    // $this->assertEquals($relations[2]->relation_type->target_id, 'crm_member');
-    // $this->assertEquals($relations[3]->relation_type->target_id, 'crm_member');
-    // $this->assertEquals($relations[1]->endpoints[0]->entity_id, $individual_contact_1->id());
-    // $this->assertEquals($relations[1]->endpoints[1]->entity_id, $household_contact->id());
-    // $this->assertEquals($relations[2]->endpoints[0]->entity_id, $individual_contact_2->id());
-    // $this->assertEquals($relations[2]->endpoints[1]->entity_id, $household_contact->id());
-    // $this->assertEquals($relations[3]->endpoints[0]->entity_id, $organization->id());
-    // $this->assertEquals($relations[3]->endpoints[1]->entity_id, $household_contact->id());
+    $this->assertEquals(count($relations), 3, 'Three new relations were created during this test.');
+    $this->assertEquals($relations[1]->relation_type->target_id, 'crm_member');
+    $this->assertEquals($relations[2]->relation_type->target_id, 'crm_member');
+    $this->assertEquals($relations[3]->relation_type->target_id, 'crm_member');
+    $this->assertEquals($relations[1]->endpoints[0]->entity_id, $individual_customer_1->id());
+    $this->assertEquals($relations[1]->endpoints[1]->entity_id, $household_contact->id());
+    $this->assertEquals($relations[2]->endpoints[0]->entity_id, $individual_customer_2->id());
+    $this->assertEquals($relations[2]->endpoints[1]->entity_id, $household_contact->id());
+    $this->assertEquals($relations[3]->endpoints[0]->entity_id, $organization->id());
+    $this->assertEquals($relations[3]->endpoints[1]->entity_id, $household_contact->id());
     // Test merge_contacts_action.
     // @todo contacts are now individuals
-    // $data = array(
-    //  'data' => array(
-    //    'contact_id' => $individual_contact_1->id(),
-    //    'name' => array($individual_contact_3->id() => $individual_contact_3->get('name')),
-    //  ),
-    // );
+    $data = [
+      'data' => [
+        'contact_id' => $individual_customer_1->id(),
+        'name' => [$individual_customer_3->id() => $individual_customer_3->get('name')],
+      ],
+    ];
     // Create relation between two individuals.
-    // $endpoints = [
-    //  [
-    //    'entity_type' => 'crm_core_individual',
-    //    'entity_id' => $household_contact->id(),
-    //  ],
-    //  [
-    //    'entity_type' => 'crm_core_individual',
-    //    'entity_id' => $individual_contact_3->id(),
-    //  ],
-    // ];
-    // $relation = Relation::create(array('relation_type' => 'crm_member'));
-    // $relation->endpoints = $endpoints;
-    // $relation->save();
-    // $merge_contacts_action_plugin = $this->pluginManager->createInstance('merge_contacts_action', $data);
-    // $merge_contacts_action_plugin->executeMultiple([$individual_contact_1, $individual_contact_3]);
+    $endpoints = [
+      [
+        'entity_type' => 'crm_core_individual',
+        'entity_id' => $household_contact->id(),
+      ],
+      [
+        'entity_type' => 'crm_core_individual',
+        'entity_id' => $individual_customer_3->id(),
+      ],
+    ];
+    $relation = Relation::create(['relation_type' => 'crm_member']);
+    $relation->endpoints = $endpoints;
+    $relation->save();
+    $merge_contacts_action_plugin = $this->pluginManager->createInstance('merge_contacts_action', $data);
+    $merge_contacts_action_plugin->executeMultiple([
+      $individual_customer_1,
+      $individual_customer_3,
+    ]);
     // Test that there is no individual_contact_3.
-    // $individual_contact_3 = Individual::load($individual_contact_3->id());
-    // $this->assertNull($individual_contact_3);
+    $individual_customer_3 = Individual::load($individual_customer_3->id());
+    $this->assertNull($individual_customer_3);
     // Test that values are updated in meeting_activity.
-    // $meeting_activity = Activity::load($meeting_activity->id());
-    // $this->assertEquals($meeting_activity->activity_participants[0]->target_id, $individual_contact_2->id());
-    // $this->assertEquals($meeting_activity->activity_participants[1]->target_id, $individual_contact_1->id());
+    $meeting_activity = Activity::load($meeting_activity->id());
+    $this->assertEquals($meeting_activity->activity_participants[0]->target_id, $individual_customer_2->id());
+    $this->assertEquals($meeting_activity->activity_participants[1]->target_id, $individual_customer_1->id());
     // Test that relation has been created with correct values.
-    // $relations = Relation::loadMultiple();
-    // $this->assertEquals($relations[5]->relation_type->target_id, 'crm_member');
-    // $this->assertEquals($relations[5]->endpoints[0]->entity_id, $individual_contact_1->id());
-    // $this->assertEquals($relations[5]->endpoints[1]->entity_id, $household_contact->id());
-    // @codingStandardsIgnoreEnd
+    $relations = Relation::loadMultiple();
+    $this->assertEquals($relations[5]->relation_type->target_id, 'crm_member');
+    $this->assertEquals($relations[5]->endpoints[0]->entity_id, $individual_customer_1->id());
+    $this->assertEquals($relations[5]->endpoints[1]->entity_id, $household_contact->id());
   }
 
 }

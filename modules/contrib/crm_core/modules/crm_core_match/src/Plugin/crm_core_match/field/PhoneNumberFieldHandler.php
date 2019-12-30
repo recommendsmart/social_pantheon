@@ -2,10 +2,14 @@
 
 namespace Drupal\crm_core_match\Plugin\crm_core_match\field;
 
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+
 /**
  * Class for evaluating phone_number fields.
  */
 class PhoneNumberFieldHandler extends FieldHandlerBase {
+
+  use StringTranslationTrait;
 
   /**
    * Render the field.
@@ -24,15 +28,15 @@ class PhoneNumberFieldHandler extends FieldHandlerBase {
       $description = '';
       switch ($item) {
         case 'number':
-          $description = t('Number');
+          $description = $this->t('Number');
           break;
 
         case 'country_codes':
-          $description = t('Country code');
+          $description = $this->t('Country code');
           break;
 
         case 'extension':
-          $description = t('Extension');
+          $description = $this->t('Extension');
           break;
       }
       $field_item['field_name'] = $field['field_name'];
@@ -51,7 +55,7 @@ class PhoneNumberFieldHandler extends FieldHandlerBase {
    */
   public function getOperators($property = 'value') {
     return [
-      'equals' => t('Equals'),
+      'equals' => $this->t('Equals'),
     ];
   }
 
