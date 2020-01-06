@@ -113,7 +113,8 @@
         "drupal/commerce_stock": "^1.0@alpha",
         "drupal/flexible_views": "^1.0",
         "drupal/fragments": "^1.0",
-        "drupal/eva": "^2.0"
+        "drupal/eva": "^2.0",
+        "drupal/entity_browser": "^2.2"
 
         },
     "repositories": [

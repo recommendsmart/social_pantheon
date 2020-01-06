@@ -4072,7 +4072,7 @@
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/crm_core.git",
-            "reference": "73bd44d92dac0824c71d733065f3330e89f4ede8"
+            "reference": "cb2f0c60bcef95d55a3a5ce891837632d64e061e"
         },
         "require": {
             "drupal/core": "~8.0"
@@ -4096,7 +4096,7 @@
             },
             "drupal": {
                 "version": "8.x-3.x-dev",
-                "datestamp": "1577554987",
+                "datestamp": "1577556783",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Dev releases are not covered by Drupal security advisories."
@@ -5318,6 +5318,100 @@
         }
     },
     {
+        "name": "drupal/entity_browser",
+        "version": "2.2.0",
+        "version_normalized": "2.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/entity_browser.git",
+            "reference": "8.x-2.2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/entity_browser-8.x-2.2.zip",
+            "reference": "8.x-2.2",
+            "shasum": "083a21040ad7bcb9aef25d8b4a0e702d02574261"
+        },
+        "require": {
+            "drupal/core": "~8.4"
+        },
+        "require-dev": {
+            "drupal/embed": "~1.0",
+            "drupal/entity_embed": "~1.0",
+            "drupal/entityqueue": "~1.0",
+            "drupal/inline_entity_form": "~1.0",
+            "drupal/paragraphs": "~1.0",
+            "drupal/token": "~1.0"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-2.x": "2.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-2.2",
+                "datestamp": "1562512232",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Janez Urevc",
+                "homepage": "https://github.com/slashrsm",
+                "role": "Maintainer"
+            },
+            {
+                "name": "Primoz Hmeljak",
+                "homepage": "https://github.com/primsi",
+                "role": "Maintainer"
+            },
+            {
+                "name": "See other contributors",
+                "homepage": "https://www.drupal.org/node/1943336/committers",
+                "role": "contributor"
+            },
+            {
+                "name": "Drupal Media Team",
+                "homepage": "https://www.drupal.org/user/3260690"
+            },
+            {
+                "name": "Primsi",
+                "homepage": "https://www.drupal.org/user/282629"
+            },
+            {
+                "name": "marcingy",
+                "homepage": "https://www.drupal.org/user/77320"
+            },
+            {
+                "name": "oknate",
+                "homepage": "https://www.drupal.org/user/471638"
+            },
+            {
+                "name": "samuel.mortenson",
+                "homepage": "https://www.drupal.org/user/2582268"
+            },
+            {
+                "name": "slashrsm",
+                "homepage": "https://www.drupal.org/user/744628"
+            }
+        ],
+        "description": "Entity browsing and selecting component.",
+        "homepage": "http://drupal.org/project/entity_browser",
+        "support": {
+            "source": "https://git.drupalcode.org/project/entity_browser",
+            "issues": "https://www.drupal.org/project/issues/entity_browser",
+            "irc": "irc://irc.freenode.org/drupal-contribute"
+        }
+    },
+    {
         "name": "drupal/entity_extra_field",
         "version": "1.0.0-alpha3",
         "version_normalized": "1.0.0.0-alpha3",
@@ -6226,18 +6320,18 @@
     },
     {
         "name": "drupal/field_inheritance",
-        "version": "1.0.0-alpha3",
-        "version_normalized": "1.0.0.0-alpha3",
+        "version": "1.0.0-alpha4",
+        "version_normalized": "1.0.0.0-alpha4",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/field_inheritance.git",
-            "reference": "8.x-1.0-alpha3"
+            "reference": "8.x-1.0-alpha4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/field_inheritance-8.x-1.0-alpha3.zip",
-            "reference": "8.x-1.0-alpha3",
-            "shasum": "0e84fb0cd4d372a7254bce7daee90f4c8159f732"
+            "url": "https://ftp.drupal.org/files/projects/field_inheritance-8.x-1.0-alpha4.zip",
+            "reference": "8.x-1.0-alpha4",
+            "shasum": "383597e45cb0504f3480cfb478b299e275ee0bdc"
         },
         "require": {
             "drupal/core": "*"
@@ -6248,8 +6342,8 @@
                 "dev-1.x": "1.x-dev"
             },
             "drupal": {
-                "version": "8.x-1.0-alpha3",
-                "datestamp": "1577659083",
+                "version": "8.x-1.0-alpha4",
+                "datestamp": "1577826187",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Project has not opted into security advisory coverage!"
@@ -10103,7 +10197,7 @@
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/social_course.git",
-            "reference": "4c43be343af5088beb71ba56a7457c76b95c143a"
+            "reference": "1f5235bb17ed62179c6306abe1478274dbd76aa0"
         },
         "require": {
             "drupal/core": "*",
@@ -10119,7 +10213,7 @@
             },
             "drupal": {
                 "version": "8.x-2.x-dev",
-                "datestamp": "1574065088",
+                "datestamp": "1577098687",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Project has not opted into security advisory coverage!"
@@ -14563,17 +14657,17 @@
     },
     {
         "name": "php-http/discovery",
-        "version": "1.7.3",
-        "version_normalized": "1.7.3.0",
+        "version": "1.7.4",
+        "version_normalized": "1.7.4.0",
         "source": {
             "type": "git",
             "url": "https://github.com/php-http/discovery.git",
-            "reference": "2e0ad94833ec8473280454590a9011a0cd2dfc56"
+            "reference": "82dbef649ccffd8e4f22e1953c3a5265992b83c0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/php-http/discovery/zipball/2e0ad94833ec8473280454590a9011a0cd2dfc56",
-            "reference": "2e0ad94833ec8473280454590a9011a0cd2dfc56",
+            "url": "https://api.github.com/repos/php-http/discovery/zipball/82dbef649ccffd8e4f22e1953c3a5265992b83c0",
+            "reference": "82dbef649ccffd8e4f22e1953c3a5265992b83c0",
             "shasum": ""
         },
         "require": {
@@ -14593,7 +14687,7 @@
             "php-http/message": "Allow to use Guzzle, Diactoros or Slim Framework factories",
             "puli/composer-plugin": "Sets up Puli which is recommended for Discovery to work. Check http://docs.php-http.org/en/latest/discovery.html for more details."
         },
-        "time": "2019-12-27T19:51:10+00:00",
+        "time": "2020-01-03T11:25:47+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -17573,7 +17667,8 @@
             "http",
             "psr",
             "psr-7"
-        ]
+        ],
+        "abandoned": "laminas/laminas-diactoros"
     },
     {
         "name": "zendframework/zend-escaper",
@@ -17620,7 +17715,8 @@
             "ZendFramework",
             "escaper",
             "zf"
-        ]
+        ],
+        "abandoned": "laminas/laminas-escaper"
     },
     {
         "name": "zendframework/zend-feed",
@@ -17685,7 +17781,8 @@
             "ZendFramework",
             "feed",
             "zf"
-        ]
+        ],
+        "abandoned": "laminas/laminas-feed"
     },
     {
         "name": "zendframework/zend-stdlib",
@@ -17733,6 +17830,7 @@
             "ZendFramework",
             "stdlib",
             "zf"
-        ]
+        ],
+        "abandoned": "laminas/laminas-stdlib"
     }
 ]
