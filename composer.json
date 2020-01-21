@@ -21,11 +21,8 @@
 		"doctrine/lexer": "1.0.2",
         "monolog/monolog": "^1.17",
 		"goalgorilla/open_social": "^7.0",
-        "drupal/easy_install": "^10.1",
         "drupal/computed_field": "^2.0",
         "drupal/unique_field_ajax": "^1.2",
-        "drupal/pwa": "^1.1",
-        "minishlink/web-push": "^2.0",
         "piwik/device-detector": "^3.0",
         "drupal/conditional_fields": "^1.0",
         "drupal/entity_serial": " 1.x-dev",
@@ -35,7 +32,6 @@
         "farmsys/liability": "dev-master",
         "farmsys/medical": "dev-master",
         "farmsys/milk": "dev-master",
-		"drupal/forms_steps": "^1.0",
         "drupal/date_recur_modular": "^1.0",
         "drupal/social_geolocation": "^1.0",
         "drupal/duration_field": "^2.0",
@@ -47,7 +43,6 @@
         "drupal/fullcalendar_view": "^2.4",
         "drupal/recipe": "^2.0",
         "drupal/age_field_formatter": "^2.1",
-        "drupal/prevent_term_delete": "^1.1",
         "drupal/linked_field": "^1.1",
         "drupal/responsive_views_grid": "^1.1",
         "drupal/term_reference_fancytree": "^1.0",
@@ -82,9 +77,7 @@
         "drupal/autosave_form": "^1.0",
         "drupal/nbox": "^1.0",
         "drupal/taxonomy_menu_ui": "^1.0",
-        "drupal/maxlength": "^1.0",
         "drupal/field_inheritance": "^1.0",
-        "drupal/system_tags": "^1.6",
         "drupal/number_formatter": "^1.0",
         "drupal/svg_image": "^1.9",
         "drupal/inline_entity_revision_form": "^1.1",
@@ -114,7 +107,9 @@
         "drupal/flexible_views": "^1.0",
         "drupal/fragments": "^1.0",
         "drupal/eva": "^2.0",
-        "drupal/entity_browser": "^2.2"
+        "drupal/entity_browser": "^2.2",
+        "drupal/gsaml": "^1.5",
+        "drupal/entity_theme_engine": "^1.4"
 
         },
     "repositories": [
