@@ -34,6 +34,10 @@ class Google_Service_SQLAdmin_Resource_BackupRuns extends Google_Service_Resourc
    * @param string $id The ID of the Backup Run to delete. To find a Backup Run
    * ID, use the list method.
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string resourceName The name of the backupRun to delete. Format: p
+   * rojects/{project}/locations/{location}/instances/{instance}/backupRuns/{backu
+   * pRun}
    * @return Google_Service_SQLAdmin_Operation
    */
   public function delete($project, $instance, $id, $optParams = array())

@@ -1,5 +1,0 @@
-id: access_denied
-label: 'Access denied'
-status: true
-langcode: en
-dependencies: { }

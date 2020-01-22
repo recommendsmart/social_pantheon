@@ -4,13 +4,14 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitDrupal8
+class ComposerStaticInitf7c22efc32339490febaa9eafb4f9f16
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
+        '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         'cf97c57bfe0f23854afd2f3818abb7a0' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/create_uploaded_file.php',
         '9bf37a3d0dad93e29cb4e1b1bfab04e9' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/marshal_headers_from_sapi.php',
@@ -20,18 +21,16 @@ class ComposerStaticInitDrupal8
         '0b0974a5566a1077e4f2e111341112c1' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/normalize_server.php',
         '1ca3bc274755662169f9629d5412a1da' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/normalize_uploaded_files.php',
         '40360c0b9b437e69bcbb7f1349ce029e' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/parse_cookie_header.php',
+        'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
-        'a4ecaeafb8cfb009ad0e052c90355e98' => __DIR__ . '/..' . '/beberlei/assert/lib/Assert/functions.php',
-        'a16312f9300fed4a097923eacb0ba814' => __DIR__ . '/..' . '/igorw/get-in/src/get_in.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
         '9c67151ae59aff4788964ce8eb2a0f43' => __DIR__ . '/..' . '/clue/stream-filter/src/functions_include.php',
         '9e4824c5afbdc1482b6025ce3d4dfde8' => __DIR__ . '/..' . '/league/csv/src/functions_include.php',
-        '04c6c5c2f7095ccf6c481d3e53e1776f' => __DIR__ . '/..' . '/mustangostang/spyc/Spyc.php',
         '8cff32064859f4559445b89279f3199c' => __DIR__ . '/..' . '/php-http/message/src/filters.php',
         'c65d09b6820da036953a371c8c73a9b1' => __DIR__ . '/..' . '/facebook/graph-sdk/src/Facebook/polyfills.php',
     );
@@ -44,12 +43,6 @@ class ComposerStaticInitDrupal8
         'p' => 
         array (
             'phpseclib\\' => 10,
-        ),
-        'm' => 
-        array (
-            'mikehaertl\\wkhtmlto\\' => 20,
-            'mikehaertl\\tmp\\' => 15,
-            'mikehaertl\\shellcommand\\' => 24,
         ),
         'l' => 
         array (
@@ -74,9 +67,11 @@ class ComposerStaticInitDrupal8
         'S' => 
         array (
             'Symfony\\Polyfill\\Util\\' => 22,
+            'Symfony\\Polyfill\\Php72\\' => 23,
             'Symfony\\Polyfill\\Php70\\' => 23,
             'Symfony\\Polyfill\\Php56\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Polyfill\\Intl\\Idn\\' => 26,
             'Symfony\\Polyfill\\Iconv\\' => 23,
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Component\\Yaml\\' => 23,
@@ -95,12 +90,7 @@ class ComposerStaticInitDrupal8
             'Symfony\\Component\\ClassLoader\\' => 30,
             'Symfony\\Cmf\\Component\\Routing\\' => 30,
             'Symfony\\Bridge\\PsrHttpMessage\\' => 30,
-            'Svg\\' => 4,
             'Social\\' => 7,
-        ),
-        'R' => 
-        array (
-            'RRule\\' => 6,
         ),
         'P' => 
         array (
@@ -108,7 +98,6 @@ class ComposerStaticInitDrupal8
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
             'Psr\\Cache\\' => 10,
-            'PNX\\NestedSet\\' => 14,
         ),
         'O' => 
         array (
@@ -117,22 +106,11 @@ class ComposerStaticInitDrupal8
         'M' => 
         array (
             'Monolog\\' => 8,
-            'Minishlink\\WebPush\\' => 19,
-            'Mdanter\\Ecc\\' => 12,
-            'MathParser\\' => 11,
             'Masterminds\\' => 12,
         ),
         'L' => 
         array (
             'League\\Csv\\' => 11,
-        ),
-        'J' => 
-        array (
-            'Jose\\' => 5,
-        ),
-        'I' => 
-        array (
-            'Ivory\\HttpAdapter\\' => 18,
         ),
         'H' => 
         array (
@@ -156,7 +134,6 @@ class ComposerStaticInitDrupal8
             'FontLib\\' => 8,
             'Firebase\\JWT\\' => 13,
             'Facebook\\' => 9,
-            'FG\\' => 3,
         ),
         'E' => 
         array (
@@ -166,45 +143,30 @@ class ComposerStaticInitDrupal8
         'D' => 
         array (
             'Drupal\\social\\Behat\\' => 20,
-            'Drupal\\plugin\\' => 14,
-            'Drupal\\number_formatter\\' => 24,
-            'Drupal\\facets_pretty_paths\\' => 27,
-            'Drupal\\drush9_example\\' => 22,
-            'Drupal\\dfinance\\' => 16,
-            'Drupal\\currency\\' => 16,
             'Drupal\\Driver\\' => 14,
             'Drupal\\Core\\' => 12,
             'Drupal\\Component\\' => 17,
             'DrupalComposer\\DrupalScaffold\\' => 30,
-            'Dompdf\\' => 7,
             'Doctrine\\Common\\Lexer\\' => 22,
             'Doctrine\\Common\\Cache\\' => 22,
             'Doctrine\\Common\\Annotations\\' => 28,
             'Doctrine\\Common\\' => 16,
-            'DeviceDetector\\' => 15,
         ),
         'C' => 
         array (
             'Composer\\Semver\\' => 16,
             'Composer\\Installers\\' => 20,
-            'Commercie\\Currency\\' => 19,
-            'Commercie\\CurrencyExchange\\' => 27,
-            'CommerceGuys\\Intl\\' => 18,
             'CommerceGuys\\Addressing\\' => 24,
             'Clue\\StreamFilter\\' => 18,
         ),
         'B' => 
         array (
             'Brumann\\Polyfill\\' => 17,
-            'Base64Url\\' => 10,
         ),
         'A' => 
         array (
-            'Assert\\' => 7,
             'Asm89\\Stack\\' => 12,
             'Abraham\\TwitterOAuth\\' => 21,
-            'AESKW\\' => 6,
-            'AESGCM\\' => 7,
         ),
     );
 
@@ -216,18 +178,6 @@ class ComposerStaticInitDrupal8
         'phpseclib\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
-        ),
-        'mikehaertl\\wkhtmlto\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/mikehaertl/phpwkhtmltopdf/src',
-        ),
-        'mikehaertl\\tmp\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/mikehaertl/php-tmpfile/src',
-        ),
-        'mikehaertl\\shellcommand\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/mikehaertl/php-shellcommand/src',
         ),
         'lsolesen\\pel\\' => 
         array (
@@ -265,6 +215,10 @@ class ComposerStaticInitDrupal8
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-util',
         ),
+        'Symfony\\Polyfill\\Php72\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php72',
+        ),
         'Symfony\\Polyfill\\Php70\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php70',
@@ -276,6 +230,10 @@ class ComposerStaticInitDrupal8
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Polyfill\\Intl\\Idn\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-intl-idn',
         ),
         'Symfony\\Polyfill\\Iconv\\' => 
         array (
@@ -349,17 +307,9 @@ class ComposerStaticInitDrupal8
         array (
             0 => __DIR__ . '/..' . '/symfony/psr-http-message-bridge',
         ),
-        'Svg\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/phenx/php-svg-lib/src/Svg',
-        ),
         'Social\\' => 
         array (
             0 => __DIR__ . '/../..' . '/profiles/contrib/social/src',
-        ),
-        'RRule\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/rlanvin/php-rrule/src',
         ),
         'Psr\\Log\\' => 
         array (
@@ -377,10 +327,6 @@ class ComposerStaticInitDrupal8
         array (
             0 => __DIR__ . '/..' . '/psr/cache/src',
         ),
-        'PNX\\NestedSet\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/previousnext/nested-set/src',
-        ),
         'OomphInc\\ComposerInstallersExtender\\' => 
         array (
             0 => __DIR__ . '/..' . '/oomphinc/composer-installers-extender/src',
@@ -389,18 +335,6 @@ class ComposerStaticInitDrupal8
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
-        'Minishlink\\WebPush\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/minishlink/web-push/src',
-        ),
-        'Mdanter\\Ecc\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/mdanter/ecc/src',
-        ),
-        'MathParser\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/mossadal/math-parser/src/MathParser',
-        ),
         'Masterminds\\' => 
         array (
             0 => __DIR__ . '/..' . '/masterminds/html5/src',
@@ -408,14 +342,6 @@ class ComposerStaticInitDrupal8
         'League\\Csv\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/csv/src',
-        ),
-        'Jose\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/spomky-labs/jose/src',
-        ),
-        'Ivory\\HttpAdapter\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/egeloen/http-adapter/src',
         ),
         'Http\\Promise\\' => 
         array (
@@ -475,10 +401,6 @@ class ComposerStaticInitDrupal8
         array (
             0 => __DIR__ . '/..' . '/facebook/graph-sdk/src/Facebook',
         ),
-        'FG\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/fgrosse/phpasn1/lib',
-        ),
         'Embed\\' => 
         array (
             0 => __DIR__ . '/..' . '/embed/embed/src',
@@ -490,30 +412,6 @@ class ComposerStaticInitDrupal8
         'Drupal\\social\\Behat\\' => 
         array (
             0 => __DIR__ . '/../..' . '/profiles/contrib/social/tests/behat/features/bootstrap',
-        ),
-        'Drupal\\plugin\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/modules/contrib/plugin/src',
-        ),
-        'Drupal\\number_formatter\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/modules/contrib/number_formatter/src',
-        ),
-        'Drupal\\facets_pretty_paths\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/modules/contrib/facets_pretty_paths/src',
-        ),
-        'Drupal\\drush9_example\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/modules/contrib/duration_field/src',
-        ),
-        'Drupal\\dfinance\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/modules/contrib/dfinance/src',
-        ),
-        'Drupal\\currency\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/modules/contrib/currency/src',
         ),
         'Drupal\\Driver\\' => 
         array (
@@ -531,10 +429,6 @@ class ComposerStaticInitDrupal8
         array (
             0 => __DIR__ . '/..' . '/drupal-composer/drupal-scaffold/src',
         ),
-        'Dompdf\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/dompdf/dompdf/src',
-        ),
         'Doctrine\\Common\\Lexer\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/lexer/lib/Doctrine/Common/Lexer',
@@ -551,10 +445,6 @@ class ComposerStaticInitDrupal8
         array (
             0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
         ),
-        'DeviceDetector\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/piwik/device-detector',
-        ),
         'Composer\\Semver\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/semver/src',
@@ -562,18 +452,6 @@ class ComposerStaticInitDrupal8
         'Composer\\Installers\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
-        ),
-        'Commercie\\Currency\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/commercie/currency/src',
-        ),
-        'Commercie\\CurrencyExchange\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/commercie/currency-exchange/src',
-        ),
-        'CommerceGuys\\Intl\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/commerceguys/intl/src',
         ),
         'CommerceGuys\\Addressing\\' => 
         array (
@@ -587,14 +465,6 @@ class ComposerStaticInitDrupal8
         array (
             0 => __DIR__ . '/..' . '/brumann/polyfill-unserialize/src',
         ),
-        'Base64Url\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/spomky-labs/base64url/src',
-        ),
-        'Assert\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/beberlei/assert/lib/Assert',
-        ),
         'Asm89\\Stack\\' => 
         array (
             0 => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack',
@@ -602,14 +472,6 @@ class ComposerStaticInitDrupal8
         'Abraham\\TwitterOAuth\\' => 
         array (
             0 => __DIR__ . '/..' . '/abraham/twitteroauth/src',
-        ),
-        'AESKW\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/spomky-labs/aes-key-wrap/src',
-        ),
-        'AESGCM\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/spomky-labs/php-aes-gcm/src',
         ),
     );
 
@@ -627,10 +489,6 @@ class ComposerStaticInitDrupal8
             array (
                 0 => __DIR__ . '/..' . '/stack/builder/src',
             ),
-            'Sabberworm\\CSS' => 
-            array (
-                0 => __DIR__ . '/..' . '/sabberworm/php-css-parser/lib',
-            ),
         ),
         'G' => 
         array (
@@ -642,10 +500,6 @@ class ComposerStaticInitDrupal8
             array (
                 0 => __DIR__ . '/..' . '/google/apiclient/src',
             ),
-            'Geocoder' => 
-            array (
-                0 => __DIR__ . '/..' . '/willdurand/geocoder/src',
-            ),
         ),
         'E' => 
         array (
@@ -656,10 +510,6 @@ class ComposerStaticInitDrupal8
         ),
         'D' => 
         array (
-            'Doctrine\\DBAL\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/doctrine/dbal/lib',
-            ),
             'Doctrine\\Common\\Inflector\\' => 
             array (
                 0 => __DIR__ . '/..' . '/doctrine/inflector/lib',
@@ -692,8 +542,6 @@ class ComposerStaticInitDrupal8
     public static $classMap = array (
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
         'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
-        'Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
-        'Datamatrix' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/barcodes/datamatrix.php',
         'DivisionByZeroError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/DivisionByZeroError.php',
         'Drupal' => __DIR__ . '/../..' . '/core/lib/Drupal.php',
         'Drupal\\Component\\Utility\\Timer' => __DIR__ . '/../..' . '/core/lib/Drupal/Component/Utility/Timer.php',
@@ -705,39 +553,20 @@ class ComposerStaticInitDrupal8
         'Error' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/Error.php',
         'Google_Service_Exception' => __DIR__ . '/..' . '/google/apiclient/src/Google/Service/Exception.php',
         'Google_Service_Resource' => __DIR__ . '/..' . '/google/apiclient/src/Google/Service/Resource.php',
-        'HTML5_Data' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/Data.php',
-        'HTML5_InputStream' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/InputStream.php',
-        'HTML5_Parser' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/Parser.php',
-        'HTML5_Tokenizer' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/Tokenizer.php',
-        'HTML5_TreeBuilder' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/TreeBuilder.php',
-        'PDF417' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/barcodes/pdf417.php',
         'PEAR_Exception' => __DIR__ . '/..' . '/pear/pear_exception/PEAR/Exception.php',
         'ParseError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ParseError.php',
-        'QRcode' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/barcodes/qrcode.php',
         'SessionUpdateTimestampHandlerInterface' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/SessionUpdateTimestampHandlerInterface.php',
-        'TCPDF' => __DIR__ . '/..' . '/tecnickcom/tcpdf/tcpdf.php',
-        'TCPDF2DBarcode' => __DIR__ . '/..' . '/tecnickcom/tcpdf/tcpdf_barcodes_2d.php',
-        'TCPDFBarcode' => __DIR__ . '/..' . '/tecnickcom/tcpdf/tcpdf_barcodes_1d.php',
-        'TCPDF_COLORS' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/tcpdf_colors.php',
-        'TCPDF_FILTERS' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/tcpdf_filters.php',
-        'TCPDF_FONTS' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/tcpdf_fonts.php',
-        'TCPDF_FONT_DATA' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/tcpdf_font_data.php',
-        'TCPDF_IMAGES' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/tcpdf_images.php',
-        'TCPDF_IMPORT' => __DIR__ . '/..' . '/tecnickcom/tcpdf/tcpdf_import.php',
-        'TCPDF_PARSER' => __DIR__ . '/..' . '/tecnickcom/tcpdf/tcpdf_parser.php',
-        'TCPDF_STATIC' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/tcpdf_static.php',
         'TypeError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/TypeError.php',
-        'geoPHP' => __DIR__ . '/..' . '/phayes/geophp/geoPHP.inc',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitDrupal8::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitDrupal8::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitDrupal8::$prefixesPsr0;
-            $loader->fallbackDirsPsr0 = ComposerStaticInitDrupal8::$fallbackDirsPsr0;
-            $loader->classMap = ComposerStaticInitDrupal8::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitf7c22efc32339490febaa9eafb4f9f16::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitf7c22efc32339490febaa9eafb4f9f16::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitf7c22efc32339490febaa9eafb4f9f16::$prefixesPsr0;
+            $loader->fallbackDirsPsr0 = ComposerStaticInitf7c22efc32339490febaa9eafb4f9f16::$fallbackDirsPsr0;
+            $loader->classMap = ComposerStaticInitf7c22efc32339490febaa9eafb4f9f16::$classMap;
 
         }, null, ClassLoader::class);
     }
