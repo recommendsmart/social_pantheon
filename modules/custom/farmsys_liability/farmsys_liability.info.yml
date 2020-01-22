@@ -1,7 +1,0 @@
-name: Liability
-description: 'Liability entity type for farmsys.'
-type: module
-core: 8.x
-dependencies:
-  - eck
-package: FarmSys

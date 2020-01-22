@@ -1,4 +1,0 @@
-bundle: farmsys
-excluded:
-  - group.content_type.open_group-group_node-milk
-required: true

@@ -1,5 +1,0 @@
-smart_content.reaction.plugin.block:
-  type: smart_content.reaction
-  mapping:
-    block_instance:
-      type:  block.settings.[id]

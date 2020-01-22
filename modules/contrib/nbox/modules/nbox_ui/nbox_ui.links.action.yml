@@ -1,5 +1,0 @@
-entity.nbox.add_form:
-  route_name: entity.nbox.add_page
-  title: 'Add Nbox message'
-  appears_on:
-  - entity.nbox_thread.collection

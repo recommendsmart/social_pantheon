@@ -1,9 +1,0 @@
-langcode: en
-status: true
-dependencies:
-  module:
-    - nbox
-id: nbox.thread_view
-label: 'Thread view'
-targetEntityType: nbox
-cache: true

@@ -1,7 +1,0 @@
-name: Drupal Finance
-core: 8.x
-type: module
-dependencies:
-- drupal:views
-- currency:currency
-- token:token

@@ -1,9 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: asset
-label: Asset
-created: true
-changed: true
-uid: true
-title: true

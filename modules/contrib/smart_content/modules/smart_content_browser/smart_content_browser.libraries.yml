@@ -1,6 +1,0 @@
-condition.browser:
-  version: 1.x
-  js:
-    js/condition.browser.js: { }
-  dependencies:
-    - smart_content/decision

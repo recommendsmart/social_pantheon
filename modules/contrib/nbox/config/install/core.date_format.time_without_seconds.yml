@@ -1,7 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: time_without_seconds
-label: 'Time without seconds'
-locked: false
-pattern: 'g:i a'

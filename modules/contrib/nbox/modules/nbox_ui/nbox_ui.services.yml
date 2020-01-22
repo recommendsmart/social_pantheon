@@ -1,5 +1,0 @@
-services:
-  nbox_ui.route_subscriber:
-    class: Drupal\nbox_ui\Routing\NboxRouteSubscriber
-    tags:
-    - { name: event_subscriber }

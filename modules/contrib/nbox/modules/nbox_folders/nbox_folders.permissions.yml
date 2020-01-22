@@ -1,7 +1,0 @@
-administer nbox folder:
-  title: 'Administer Nbox folders'
-  description: 'Allow configuration of Nbox folder entities and access to all folders.'
-  restrict access: true
-
-use nbox folders:
-  title: 'Use Nbox folders'

@@ -1,7 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-_core:
-  default_config_hash: QPkVv-f4HhiVG2gmG1CcNCkpE0LdmnUdAtwMmjYUyOo
-id: message
-label: Message
