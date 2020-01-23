@@ -7,6 +7,9 @@
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Url;
+use Drupal\node\NodeInterface;
 
 /**
  * Implements hook_theme().
@@ -54,4 +57,22 @@ function element_help($route_name, RouteMatchInterface $route_match) {
       }
   }
   return NULL;
+}
+
+/**
+ * Implements hook_social_user_account_header_create_links().
+ *
+ * Adds the "Create Book" link to the content creation menu if the user is
+ * allowed to create new books.
+ */
+function element_social_user_account_header_create_links($context) {
+  return [
+    'add_element' => [
+      '#type' => 'link',
+      '#attributes' => [
+        'title' => new TranslatableMarkup('Create New Element'),
+      ],
+      '#title' => new TranslatableMarkup('New Element'),
+    ] + Url::fromRoute('element.add', ['element_type' => ''])->toRenderArray(),
+  ];
 }
