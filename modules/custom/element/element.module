@@ -67,9 +67,9 @@ function element_social_user_account_header_create_links($context) {
     'add_element' => [
       '#type' => 'link',
       '#attributes' => [
-        'title' => new TranslatableMarkup('Create New Element'),
+        'title' => new t('Create New Element'),
       ],
-      '#title' => new TranslatableMarkup('New Element'),
+      '#title' => new t('New Element'),
     ] + Url::fromRoute('element.add', ['element_type' => ''])->toRenderArray(),
   ];
 }
