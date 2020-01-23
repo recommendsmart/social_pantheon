@@ -1,4 +1,4 @@
-agerpblue<?php
+<?php
 
 namespace Drupal\agerpblue\Plugin\Preprocess;
 
