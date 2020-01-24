@@ -1,5 +1,0 @@
-drupal.relation_entity_controller:
-  version: VERSION
-  css:
-    component:
-      relation_entity_controller.css: {}
