@@ -79,6 +79,7 @@ return array(
     'Doctrine\\Common\\' => array($vendorDir . '/doctrine/common/lib/Doctrine/Common', $vendorDir . '/doctrine/event-manager/lib/Doctrine/Common', $vendorDir . '/doctrine/persistence/lib/Doctrine/Common', $vendorDir . '/doctrine/reflection/lib/Doctrine/Common'),
     'Composer\\Semver\\' => array($vendorDir . '/composer/semver/src'),
     'Composer\\Installers\\' => array($vendorDir . '/composer/installers/src/Composer/Installers'),
+    'CommerceGuys\\Intl\\' => array($vendorDir . '/commerceguys/intl/src'),
     'CommerceGuys\\Addressing\\' => array($vendorDir . '/commerceguys/addressing/src'),
     'Clue\\StreamFilter\\' => array($vendorDir . '/clue/stream-filter/src'),
     'Brumann\\Polyfill\\' => array($vendorDir . '/brumann/polyfill-unserialize/src'),
