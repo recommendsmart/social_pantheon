@@ -31,8 +31,8 @@ class Google_Service_Monitoring_Resource_ProjectsTimeSeries extends Google_Servi
    * written, a corresponding failure message is included in the error response.
    * (timeSeries.create)
    *
-   * @param string $name The project on which to execute the request. The format
-   * is "projects/{project_id_or_number}".
+   * @param string $name Required. The project on which to execute the request.
+   * The format is: projects/[PROJECT_ID_OR_NUMBER]
    * @param Google_Service_Monitoring_CreateTimeSeriesRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_Monitoring_MonitoringEmpty
@@ -45,31 +45,16 @@ class Google_Service_Monitoring_Resource_ProjectsTimeSeries extends Google_Servi
   }
   /**
    * Lists time series that match a filter. This method does not require a
-   * Stackdriver account. (timeSeries.listProjectsTimeSeries)
+   * Workspace. (timeSeries.listProjectsTimeSeries)
    *
-   * @param string $name The project on which to execute the request. The format
-   * is "projects/{project_id_or_number}".
+   * @param string $name Required. The project on which to execute the request.
+   * The format is: projects/[PROJECT_ID_OR_NUMBER]
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string orderBy Unsupported: must be left blank. The points in each
-   * time series are currently returned in reverse time order (most recent to
-   * oldest).
-   * @opt_param string aggregation.crossSeriesReducer The reduction operation to
-   * be used to combine time series into a single time series, where the value of
-   * each data point in the resulting series is a function of all the already
-   * aligned values in the input time series.Not all reducer operations can be
-   * applied to all time series. The valid choices depend on the metric_kind and
-   * the value_type of the original time series. Reduction can yield a time series
-   * with a different metric_kind or value_type than the input time series.Time
-   * series data must first be aligned (see per_series_aligner) in order to
-   * perform cross-time series reduction. If cross_series_reducer is specified,
-   * then per_series_aligner must be specified, and must not be ALIGN_NONE. An
-   * alignment_period must also be specified; otherwise, an error is returned.
-   * @opt_param string filter A monitoring filter that specifies which time series
-   * should be returned. The filter must specify a single metric type, and can
-   * additionally specify metric labels and other information. For example:
-   * metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
-   * metric.labels.instance_name = "my-instance-name"
+   * @opt_param string pageToken If this field is not empty then it must contain
+   * the nextPageToken value returned by a previous call to this method. Using
+   * this field causes the method to return additional results from the previous
+   * method call.
    * @opt_param string aggregation.perSeriesAligner An Aligner describes how to
    * bring the data points in a single time series into temporal alignment. Except
    * for ALIGN_NONE, all alignments cause all the data points in an
@@ -82,15 +67,11 @@ class Google_Service_Monitoring_Resource_ProjectsTimeSeries extends Google_Servi
    * reduction. If cross_series_reducer is specified, then per_series_aligner must
    * be specified and not equal to ALIGN_NONE and alignment_period must be
    * specified; otherwise, an error is returned.
-   * @opt_param string pageToken If this field is not empty then it must contain
-   * the nextPageToken value returned by a previous call to this method. Using
-   * this field causes the method to return additional results from the previous
-   * method call.
    * @opt_param string interval.startTime Optional. The beginning of the time
    * interval. The default value for the start time is the end time. The start
    * time must not be later than the end time.
-   * @opt_param string view Specifies which information is returned about the time
-   * series.
+   * @opt_param string view Required. Specifies which information is returned
+   * about the time series.
    * @opt_param string aggregation.groupByFields The set of fields to preserve
    * when cross_series_reducer is specified. The group_by_fields determine how the
    * time series are partitioned into subsets prior to applying the aggregation
@@ -117,6 +98,26 @@ class Google_Service_Monitoring_Resource_ProjectsTimeSeries extends Google_Servi
    * effective page_size is 100,000 results. If view is set to FULL, this is the
    * maximum number of Points returned. If view is set to HEADERS, this is the
    * maximum number of TimeSeries returned.
+   * @opt_param string orderBy Unsupported: must be left blank. The points in each
+   * time series are currently returned in reverse time order (most recent to
+   * oldest).
+   * @opt_param string aggregation.crossSeriesReducer The reduction operation to
+   * be used to combine time series into a single time series, where the value of
+   * each data point in the resulting series is a function of all the already
+   * aligned values in the input time series.Not all reducer operations can be
+   * applied to all time series. The valid choices depend on the metric_kind and
+   * the value_type of the original time series. Reduction can yield a time series
+   * with a different metric_kind or value_type than the input time series.Time
+   * series data must first be aligned (see per_series_aligner) in order to
+   * perform cross-time series reduction. If cross_series_reducer is specified,
+   * then per_series_aligner must be specified, and must not be ALIGN_NONE. An
+   * alignment_period must also be specified; otherwise, an error is returned.
+   * @opt_param string filter Required. A monitoring filter
+   * (https://cloud.google.com/monitoring/api/v3/filters) that specifies which
+   * time series should be returned. The filter must specify a single metric type,
+   * and can additionally specify metric labels and other information. For
+   * example: metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
+   * metric.labels.instance_name = "my-instance-name"
    * @return Google_Service_Monitoring_ListTimeSeriesResponse
    */
   public function listProjectsTimeSeries($name, $optParams = array())
@@ -124,5 +125,21 @@ class Google_Service_Monitoring_Resource_ProjectsTimeSeries extends Google_Servi
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Monitoring_ListTimeSeriesResponse");
+  }
+  /**
+   * Queries time series using the time series query language. This method does
+   * not require a Workspace. (timeSeries.query)
+   *
+   * @param string $name Required. The project on which to execute the request.
+   * The format is: projects/[PROJECT_ID_OR_NUMBER]
+   * @param Google_Service_Monitoring_QueryTimeSeriesRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Google_Service_Monitoring_QueryTimeSeriesResponse
+   */
+  public function query($name, Google_Service_Monitoring_QueryTimeSeriesRequest $postBody, $optParams = array())
+  {
+    $params = array('name' => $name, 'postBody' => $postBody);
+    $params = array_merge($params, $optParams);
+    return $this->call('query', array($params), "Google_Service_Monitoring_QueryTimeSeriesResponse");
   }
 }

@@ -5,6 +5,7 @@ namespace Drupal\views\Form;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Path\CurrentPathStack;
 use Drupal\Core\Render\Element\Checkboxes;
 use Drupal\Core\Url;
 use Drupal\views\ExposedFormCache;
@@ -24,21 +25,39 @@ class ViewsExposedForm extends FormBase {
    */
   protected $exposedFormCache;
 
+
+  /**
+   * The current path stack.
+   *
+   * @var \Drupal\Core\Path\CurrentPathStack
+   */
+  protected $currentPathStack;
+
   /**
    * Constructs a new ViewsExposedForm
    *
    * @param \Drupal\views\ExposedFormCache $exposed_form_cache
    *   The exposed form cache.
+   * @param \Drupal\Core\Path\CurrentPathStack $current_path_stack
+   *   The current path stack.
    */
-  public function __construct(ExposedFormCache $exposed_form_cache) {
+  public function __construct(ExposedFormCache $exposed_form_cache, CurrentPathStack $current_path_stack = NULL) {
     $this->exposedFormCache = $exposed_form_cache;
+    if ($current_path_stack === NULL) {
+      @trigger_error('The path.current service must be passed to ViewsExposedForm::__construct(), it is required before Drupal 9.0.0. See https://www.drupal.org/node/3066604', E_USER_DEPRECATED);
+      $current_path_stack = \Drupal::service('path.current');
+    }
+    $this->currentPathStack = $current_path_stack;
   }
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-    return new static($container->get('views.exposed_form_cache'));
+    return new static(
+      $container->get('views.exposed_form_cache'),
+      $container->get('path.current')
+    );
   }
 
   /**
@@ -66,6 +85,11 @@ class ViewsExposedForm extends FormBase {
     /** @var \Drupal\views\ViewExecutable $view */
     $view = $form_state->get('view');
     $display = &$form_state->get('display');
+    // Existing arguments need to be passed as this exposed form might
+    // be used in a block. Without this contextual views arguments
+    // will be lost.
+    $args = $this->buildArgs();
+    $view->setArguments($args);
 
     $form_state->setUserInput($view->getExposedInput());
 
@@ -113,7 +137,21 @@ class ViewsExposedForm extends FormBase {
       '#id' => Html::getUniqueId('edit-submit-' . $view->storage->id()),
     ];
 
-    $form['#action'] = $view->hasUrl() ? $view->getUrl()->toString() : Url::fromRoute('<current>')->toString();
+    if (!$view->hasUrl()) {
+      // On any non views.ajax route, use the current route for the form action.
+      if ($this->getRouteMatch()->getRouteName() !== 'views.ajax') {
+        $form_action = Url::fromRoute('<current>')->toString();
+      }
+      else {
+        // On the views.ajax route, set the action to the page we were on.
+        $form_action = Url::fromUserInput($this->currentPathStack->getPath())->toString();
+      }
+    }
+    else {
+      $form_action = $view->getUrl()->toString();
+    }
+
+    $form['#action'] = $form_action;
     $form['#theme'] = $view->buildThemeFunctions('views_exposed_form');
     $form['#id'] = Html::cleanCssIdentifier('views_exposed_form-' . $view->storage->id() . '-' . $display['id']);
 
@@ -125,6 +163,45 @@ class ViewsExposedForm extends FormBase {
     $this->exposedFormCache->setForm($view->storage->id(), $view->current_display, $form);
 
     return $form;
+  }
+
+  /**
+   * @return array
+   *
+   * This code copied from \Drupal\views\Routing\ViewPageController::handle
+   *
+   * TODO: Don't repeat it.
+   *
+   * @see \Drupal\views\Routing\ViewPageController::handle
+   * @see https://www.drupal.org/project/drupal/issues/2821962
+   */
+  protected function buildArgs() {
+    /** @var \Drupal\Core\Routing\CurrentRouteMatch $route_match */
+    $route_match = \Drupal::service('current_route_match');
+    $args = [];
+    $route = $route_match->getRouteObject();
+    $map = $route->hasOption('_view_argument_map') ? $route->getOption('_view_argument_map') : [];
+
+    foreach ($map as $attribute => $parameter_name) {
+      // Allow parameters be pulled from the request.
+      // The map stores the actual name of the parameter in the request. Views
+      // which override existing controller, use for example 'node' instead of
+      // arg_nid as name.
+      if (isset($map[$attribute])) {
+        $attribute = $map[$attribute];
+      }
+      if ($arg = $route_match->getRawParameter($attribute)) {
+      }
+      else {
+        $arg = $route_match->getParameter($attribute);
+      }
+
+      if (isset($arg)) {
+        $args[] = $arg;
+      }
+    }
+
+    return $args;
   }
 
   /**

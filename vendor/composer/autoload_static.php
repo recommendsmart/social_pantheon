@@ -12,6 +12,7 @@ class ComposerStaticInitf7c22efc32339490febaa9eafb4f9f16
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
+        'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         'cf97c57bfe0f23854afd2f3818abb7a0' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/create_uploaded_file.php',
         '9bf37a3d0dad93e29cb4e1b1bfab04e9' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/marshal_headers_from_sapi.php',
@@ -21,7 +22,6 @@ class ComposerStaticInitf7c22efc32339490febaa9eafb4f9f16
         '0b0974a5566a1077e4f2e111341112c1' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/normalize_server.php',
         '1ca3bc274755662169f9629d5412a1da' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/normalize_uploaded_files.php',
         '40360c0b9b437e69bcbb7f1349ce029e' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/parse_cookie_header.php',
-        'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
@@ -90,7 +90,6 @@ class ComposerStaticInitf7c22efc32339490febaa9eafb4f9f16
             'Symfony\\Component\\ClassLoader\\' => 30,
             'Symfony\\Cmf\\Component\\Routing\\' => 30,
             'Symfony\\Bridge\\PsrHttpMessage\\' => 30,
-            'Social\\' => 7,
         ),
         'P' => 
         array (
@@ -143,11 +142,13 @@ class ComposerStaticInitf7c22efc32339490febaa9eafb4f9f16
         'D' => 
         array (
             'Drupal\\social\\Behat\\' => 20,
+            'Drupal\\social\\' => 14,
             'Drupal\\Driver\\' => 14,
             'Drupal\\Core\\' => 12,
             'Drupal\\Component\\' => 17,
             'DrupalComposer\\DrupalScaffold\\' => 30,
             'Doctrine\\Persistence\\' => 21,
+            'Doctrine\\Inflector\\' => 19,
             'Doctrine\\Common\\Lexer\\' => 22,
             'Doctrine\\Common\\Inflector\\' => 26,
             'Doctrine\\Common\\Collections\\' => 28,
@@ -159,13 +160,8 @@ class ComposerStaticInitf7c22efc32339490febaa9eafb4f9f16
         array (
             'Composer\\Semver\\' => 16,
             'Composer\\Installers\\' => 20,
-            'CommerceGuys\\Intl\\' => 18,
             'CommerceGuys\\Addressing\\' => 24,
             'Clue\\StreamFilter\\' => 18,
-        ),
-        'B' => 
-        array (
-            'Brumann\\Polyfill\\' => 17,
         ),
         'A' => 
         array (
@@ -311,10 +307,6 @@ class ComposerStaticInitf7c22efc32339490febaa9eafb4f9f16
         array (
             0 => __DIR__ . '/..' . '/symfony/psr-http-message-bridge',
         ),
-        'Social\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/profiles/contrib/social/src',
-        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
@@ -417,6 +409,10 @@ class ComposerStaticInitf7c22efc32339490febaa9eafb4f9f16
         array (
             0 => __DIR__ . '/../..' . '/profiles/contrib/social/tests/behat/features/bootstrap',
         ),
+        'Drupal\\social\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/profiles/contrib/social/src',
+        ),
         'Drupal\\Driver\\' => 
         array (
             0 => __DIR__ . '/../..' . '/drivers/lib/Drupal/Driver',
@@ -436,6 +432,10 @@ class ComposerStaticInitf7c22efc32339490febaa9eafb4f9f16
         'Doctrine\\Persistence\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/persistence/lib/Doctrine/Persistence',
+        ),
+        'Doctrine\\Inflector\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector',
         ),
         'Doctrine\\Common\\Lexer\\' => 
         array (
@@ -472,10 +472,6 @@ class ComposerStaticInitf7c22efc32339490febaa9eafb4f9f16
         array (
             0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',
         ),
-        'CommerceGuys\\Intl\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/commerceguys/intl/src',
-        ),
         'CommerceGuys\\Addressing\\' => 
         array (
             0 => __DIR__ . '/..' . '/commerceguys/addressing/src',
@@ -483,10 +479,6 @@ class ComposerStaticInitf7c22efc32339490febaa9eafb4f9f16
         'Clue\\StreamFilter\\' => 
         array (
             0 => __DIR__ . '/..' . '/clue/stream-filter/src',
-        ),
-        'Brumann\\Polyfill\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/brumann/polyfill-unserialize/src',
         ),
         'Asm89\\Stack\\' => 
         array (

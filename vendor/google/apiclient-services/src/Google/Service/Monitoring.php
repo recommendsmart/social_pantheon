@@ -19,12 +19,11 @@
  * Service definition for Monitoring (v3).
  *
  * <p>
- * Manages your Stackdriver Monitoring data and configurations. Most projects
- * must be associated with a Stackdriver account, with a few exceptions as noted
- * on the individual method pages. The table entries below are presented in
- * alphabetical order, not in order of common use. For explanations of the
- * concepts found in the table entries, read the Stackdriver Monitoring
- * documentation.</p>
+ * Manages your Cloud Monitoring data and configurations. Most projects must be
+ * associated with a Workspace, with a few exceptions as noted on the individual
+ * method pages. The table entries below are presented in alphabetical order,
+ * not in order of common use. For explanations of the concepts found in the
+ * table entries, read the Cloud Monitoring documentation.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -122,10 +121,6 @@ class Google_Service_Monitoring extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'orderBy' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -137,6 +132,10 @@ class Google_Service_Monitoring extends Google_Service
                 'pageSize' => array(
                   'location' => 'query',
                   'type' => 'integer',
+                ),
+                'filter' => array(
+                  'location' => 'query',
+                  'type' => 'string',
                 ),
               ),
             ),'patch' => array(
@@ -230,6 +229,10 @@ class Google_Service_Monitoring extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
+                'ancestorsOfGroup' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'childrenOfGroup' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -245,10 +248,6 @@ class Google_Service_Monitoring extends Google_Service
                 'pageSize' => array(
                   'location' => 'query',
                   'type' => 'integer',
-                ),
-                'ancestorsOfGroup' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'update' => array(
@@ -510,6 +509,10 @@ class Google_Service_Monitoring extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
+                'filter' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'orderBy' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -521,10 +524,6 @@ class Google_Service_Monitoring extends Google_Service
                 'pageSize' => array(
                   'location' => 'query',
                   'type' => 'integer',
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'patch' => array(
@@ -590,23 +589,11 @@ class Google_Service_Monitoring extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'aggregation.crossSeriesReducer' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'filter' => array(
+                'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
                 'aggregation.perSeriesAligner' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -634,6 +621,28 @@ class Google_Service_Monitoring extends Google_Service
                 'pageSize' => array(
                   'location' => 'query',
                   'type' => 'integer',
+                ),
+                'orderBy' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'aggregation.crossSeriesReducer' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'filter' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+              ),
+            ),'query' => array(
+              'path' => 'v3/{+name}/timeSeries:query',
+              'httpMethod' => 'POST',
+              'parameters' => array(
+                'name' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
                 ),
               ),
             ),
@@ -761,6 +770,10 @@ class Google_Service_Monitoring extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
+                'filter' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -768,10 +781,6 @@ class Google_Service_Monitoring extends Google_Service
                 'pageSize' => array(
                   'location' => 'query',
                   'type' => 'integer',
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),'patch' => array(
@@ -845,10 +854,6 @@ class Google_Service_Monitoring extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -858,6 +863,10 @@ class Google_Service_Monitoring extends Google_Service
                   'type' => 'integer',
                 ),
                 'view' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'filter' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),

@@ -7,6 +7,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\social_core\EntityUrlLanguageTrait;
 use Drupal\user\UserInterface;
 
 /**
@@ -60,6 +61,7 @@ use Drupal\user\UserInterface;
  */
 class Post extends ContentEntityBase implements PostInterface {
   use EntityChangedTrait;
+  use EntityUrlLanguageTrait;
 
   /**
    * {@inheritdoc}
@@ -142,7 +144,7 @@ class Post extends ContentEntityBase implements PostInterface {
    * {@inheritdoc}
    */
   public function setType($type) {
-    $this->set('type', $this->bundle());
+    $this->set('type', $type);
     return $this;
   }
 

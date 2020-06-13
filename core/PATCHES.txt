@@ -18,10 +18,18 @@ Source: https://www.drupal.org/files/issues/drupal-994360-74-states-checkboxes-c
 
 
 Multiple usages of FieldPluginBase::getEntity do not check for NULL, leading to WSOD
-Source: https://www.drupal.org/files/issues/2019-11-12/3007424-57-8-7-x.patch
+Source: https://www.drupal.org/files/issues/2019-11-14/3007424-68.patch
 
 
 Default role id causes issues with validation on VBO
 Source: https://www.drupal.org/files/issues/2018-05-24/2974925-default-rid-config-causes-illegal-error.patch
+
+
+Ensure views exposed form in a form block keeps contextual arguments
+Source: https://www.drupal.org/files/issues/2020-04-17/views-exposed-form-block-args-2821962-30-8.8-notest.patch
+
+
+Display Bug when using #states (Forms API) with Ajax Request
+Source: https://www.drupal.org/files/issues/2019-11-19/1091852-104.patch
 
 
