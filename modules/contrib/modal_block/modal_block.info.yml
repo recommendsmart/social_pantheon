@@ -1,0 +1,11 @@
+name: Modal Block
+type: module
+description: Provide conditional modal announce.
+core: '8.x'
+core_version_requirement: ^8 || ^9
+package: Block
+
+# Information added by Drupal.org packaging script on 2020-06-02
+version: '8.x-1.0-alpha3'
+project: 'modal_block'
+datestamp: 1591117181

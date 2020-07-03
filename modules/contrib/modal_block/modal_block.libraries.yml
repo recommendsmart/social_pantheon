@@ -1,0 +1,11 @@
+modal_block:
+  version: VERSION
+  js:
+    js/modal-block.js: {}
+  dependencies:
+    - core/jquery.once
+    - core/jquery.cookie
+    - core/drupal.dialog.ajax
+  css:
+    theme:
+      css/modal-block.css: {}
