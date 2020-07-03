@@ -1,0 +1,18 @@
+'delete modal entity':
+  title: Delete entity content.
+  restrict access: true
+
+'add modal entity':
+  title: Add entity content
+  restrict access: true
+
+'view modal entity':
+  title: View entity content
+
+'edit modal entity':
+  title: Edit entity content
+  restrict access: true
+
+'administer modal entity':
+  title: Administer settings
+  restrict access: true

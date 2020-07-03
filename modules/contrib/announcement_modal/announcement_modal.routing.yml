@@ -1,0 +1,9 @@
+announcement_modal.announcement_settings:
+  path: '/admin/config/announcement_modal'
+  defaults:
+    _form: '\Drupal\announcement_modal\Form\AnnouncementSettings'
+    _title: 'AnnouncementSettingsForm'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE

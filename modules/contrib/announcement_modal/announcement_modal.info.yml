@@ -1,0 +1,14 @@
+name: Announcement Modal
+description: For creating sitewide Announcements.
+package: Contrib
+type: module
+core_version_requirement: ^8 || ^9
+configure: announcement_modal.announcement_settings
+
+libraries:
+  - announcement_modal/announcement_modal.announcements
+
+# Information added by Drupal.org packaging script on 2020-07-02
+version: '8.x-1.3'
+project: 'announcement_modal'
+datestamp: 1593700104

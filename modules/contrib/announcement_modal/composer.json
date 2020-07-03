@@ -1,0 +1,15 @@
+{
+    "name": "drupal/announcement_modal",
+    "type": "drupal-module",
+    "description": "For creating sitewide Announcements.",
+    "keywords": ["Drupal", "Announcements"],
+    "license": "GPL-2.0+",
+    "homepage": "https://www.drupal.org/project/announcement_modal",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/announcement_modal",
+        "source": "https://git.drupalcode.org/project/announcement_modal"
+    },
+    "require": {
+        "drupal/core": "^8.7 || ^9.0"
+    }
+}

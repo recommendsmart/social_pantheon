@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * Adds BigPipe no-JS detection.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function announcement_modal_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.announcement_modal':
+      $output = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('The Announcement modal module provides the site administrator to configure the site wide announcements for their customers or users') . '</p>';
+
+      return $output;
+  }
+}
