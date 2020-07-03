@@ -1,8 +1,0 @@
-modal_block.ajax_callback:
-  path: '/modal-block/{block}/{js}'
-  defaults:
-    _controller: '\Drupal\modal_block\Controller\ModalBlockAjaxController::handle'
-    _title: 'Modal block content'
-  requirements:
-    _entity_access: 'block.view'
-    _custom_access: '\Drupal\modal_block\Controller\ModalBlockAjaxController::access'
