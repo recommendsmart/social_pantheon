@@ -111,6 +111,7 @@ component-libraries:
       - components/06-pages
 
 regions:
+  header_top: Header top
   hidden: Hidden
   header: Header
   breadcrumb: Breadcrumb
@@ -125,3 +126,4 @@ regions:
   sidebar_first: Sidebar First
   sidebar_second: Sidebar Second
   footer: Footer
+  footer_bottom: Footer bottom
