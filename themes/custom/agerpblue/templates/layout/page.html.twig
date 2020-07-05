@@ -33,8 +33,12 @@
  */
 #}
 
-{% if page.header_top %}
-  {{ page.header_top }}
+{% if page.header_left %}
+  {{ page.header_left }}
+{% endif %}
+
+{% if page.header_right %}
+  {{ page.header_right }}
 {% endif %}
   
 {% if page.header %}
