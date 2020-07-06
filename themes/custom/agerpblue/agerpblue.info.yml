@@ -111,8 +111,8 @@ component-libraries:
       - components/06-pages
 
 regions:
-  header_left: Header left
   header_right: Header right
+  header_left: Header left
   hidden: Hidden
   header: Header
   breadcrumb: Breadcrumb
