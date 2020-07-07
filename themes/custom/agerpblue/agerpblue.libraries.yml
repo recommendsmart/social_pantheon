@@ -188,6 +188,10 @@ site-footer:
   css:
     theme:
       assets/css/site-footer.css: {}
+header-right:
+  css:
+    theme:
+      assets/css/header-right.css: {}
 
 ### 2.4 Templates
 page-node:

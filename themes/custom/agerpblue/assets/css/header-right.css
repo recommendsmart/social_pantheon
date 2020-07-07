@@ -1,0 +1,12 @@
+.header-right {
+  background-color: #1f80aa;
+  color: white;
+}
+
+.header-right .dropdown-menu > li > a {
+  color: #4d4d4d;
+}
+
+.header-right .dropdown-menu > li > a:hover, .header-right .dropdown-menu > li > a:focus {
+  background-color: #f5f5f5;
+}
