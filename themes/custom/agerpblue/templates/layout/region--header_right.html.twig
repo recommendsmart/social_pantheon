@@ -1,5 +1,7 @@
 {% if content %}
-  <header_right class="navbar" role="banner">
-        {{ content }}
-  </header_right>
+  <nav {{ attributes.addClass('navbar') }} role="banner">
+  <div class="container container--navbar">
+      {{ content }}
+    </div>
+  </nav>
 {% endif %}
