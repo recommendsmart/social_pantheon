@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.field.node.timeline.body
     - field.field.node.timeline.field_timeline_date
+    - field.field.node.timeline.field_timeline_link
     - field.field.node.timeline.field_timeline_media
     - node.type.timeline
   module:
@@ -11,6 +12,7 @@ dependencies:
     - ds
     - dynamic_entity_reference
     - layout_builder
+    - linked_field
     - text
     - user
 third_party_settings:
@@ -139,6 +141,11 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+      linked_field:
+        linked: '1'
+        type: field
+        destination: field_timeline_link
+        advanced: {  }
     region: content
   flag_follow_content:
     weight: 5
@@ -183,4 +190,5 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_timeline_link: true
   search_api_excerpt: true

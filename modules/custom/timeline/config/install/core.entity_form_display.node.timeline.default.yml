@@ -4,11 +4,13 @@ dependencies:
   config:
     - field.field.node.timeline.body
     - field.field.node.timeline.field_timeline_date
+    - field.field.node.timeline.field_timeline_link
     - field.field.node.timeline.field_timeline_media
     - node.type.timeline
   module:
     - datetime
     - dynamic_entity_reference
+    - link
     - path
     - text
 id: node.timeline.default
@@ -37,6 +39,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
+    region: content
+  field_timeline_link:
+    weight: 26
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
     region: content
   field_timeline_media:
     type: dynamic_entity_reference_default

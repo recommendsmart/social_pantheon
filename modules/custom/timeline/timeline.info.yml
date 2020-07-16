@@ -10,6 +10,8 @@ dependencies:
   - field
   - group
   - layout_builder
+  - link
+  - linked_field
   - media
   - menu_ui
   - node
@@ -20,3 +22,4 @@ dependencies:
   - user
   - views
 version: 8.x-1.0
+core_incompatible: false
