@@ -41,7 +41,9 @@
 
 <main id="content" class="main-container" role="main">
 
-  {# No breadcrumbs for landing pages #}
+  {{% if page.breadcrumb %}
+    {{ page.breadcrumb }}
+  {% endif %}
   {# Hero region will be in section #}
   {# No secondary navigation #}
   {% if page.secondary_navigation %}
