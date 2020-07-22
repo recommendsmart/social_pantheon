@@ -1,28 +1,6 @@
 /**
- * To make a form auto submit, all you have to do is 3 things:
+ * Views exposed filter autosubmit js for drupal 8:
  *
- * $form['#attached']['library'][] = 'views_filter_autosubmit/autosubmit';
- *
- * On gadgets you want to auto-submit when changed, add the views-auto-submit
- * class. With FAPI, add:
- * @code
- *  '#attributes' => array('class' => array('views-auto-submit')),
- * @endcode
- *
- * If you want to have auto-submit for every form element,
- * add the views-auto-submit-full-form to the form. With FAPI, add:
- * @code
- *   '#attributes' => array('class' => array('views-auto-submit-full-form')),
- * @endcode
- *
- * Finally, you have to identify which button you want clicked for autosubmit.
- * The behavior of this button will be honored if it's ajaxy or not:
- * @code
- *  '#attributes' => array('class' => array('views-use-ajax', 'views-auto-submit-click')),
- * @endcode
- *
- * Currently only 'select', 'radio', 'checkbox' and 'textfield' types are supported. We probably
- * could use additional support for HTML5 input types.
  */
 
 (function ($, drupalSettings) {
@@ -38,7 +16,7 @@ Drupal.behaviors.ViewsAutoSubmit = {
     }
 
     // the change event bubbles so we only need to bind it to the outer form
-    $('form.views-auto-submit-full-form', context)
+    $('form.views-auto-submit-full-form, .views-auto-submit-full-form form', context)
       .add('.views-auto-submit', context)
       .filter('form, select, input:not(:text, :submit)')
       .once('views-auto-submit')
